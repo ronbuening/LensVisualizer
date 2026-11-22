@@ -38,7 +38,7 @@ const LENS_DATA = {
   key: "nikon-nikkor-300mm-f45-ed",
   maker: "Nikon",
   name: "NIKON NIKKOR 300mm f/4.5 ED",
-  subtitle: "US 3,774,991 Example I — strong production correlation; attribution not manufacturer-confirmed",
+  subtitle: "US 3,774,991 Example I — strong production match; not maker-confirmed",
 
   catalog: {
     lensMounts: ["nikon-f"],

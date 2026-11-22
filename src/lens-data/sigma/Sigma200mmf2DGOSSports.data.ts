@@ -24,7 +24,7 @@ const LENS_DATA = {
   key: "sigma-200mm-f2-dg-os-sports",
   maker: "Sigma",
   name: "SIGMA 200mm f/2 DG OS | Sports",
-  subtitle: "JP 2025-162727 A, Example 1 — construction correlation with the S025 production lens",
+  subtitle: "JP 2025-162727 A, Example 1 — production match by construction with the S025 production lens",
 
   catalog: {
     lensMounts: ["l-mount", "sony-fe"],

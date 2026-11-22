@@ -34,7 +34,7 @@ const LENS_DATA = {
   key: "sony-e-18-200mm-f35-63-oss-le",
   maker: "Sony",
   name: "SONY E 18-200mm f/3.5-6.3 OSS LE",
-  subtitle: "US 8,553,339 B2 Example 1 — Tamron / Sony; closest production correlation to SEL18200LE",
+  subtitle: "US 8,553,339 B2 Example 1 — Tamron / Sony; closest production match to SEL18200LE",
 
   catalog: {
     lensMounts: ["sony-fe"],

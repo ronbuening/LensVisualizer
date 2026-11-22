@@ -50,7 +50,7 @@ const LENS_DATA = {
   key: "fujifilm-fujinon-xf-50mm-f2-r-wr",
   maker: "Fujifilm",
   name: "FUJIFILM FUJINON XF 50mm f/2 R WR",
-  subtitle: "US 10,168,507 B2 Example 4 — strong inferential production correlation",
+  subtitle: "US 10,168,507 B2 Example 4 — strong inferred production match",
 
   catalog: {
     lensMounts: ["fujifilm-x"],

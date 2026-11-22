@@ -24,7 +24,7 @@ const LENS_DATA = {
   "key": "leica-summar-50mm-f2",
   "maker": "Leica",
   "name": "LEITZ SUMMAR 50mm f/2",
-  "subtitle": "GB 423,468 A, sole example — scaled ×0.5; production correlation not manufacturer-confirmed",
+  "subtitle": "GB 423,468 A, sole example — scaled ×0.5; production match not maker-confirmed",
   "catalog": {
     "imageFormat": "135-full-frame",
     "lensMounts": [

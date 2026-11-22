@@ -36,7 +36,7 @@ const LENS_DATA = {
   key: "voigtlander-super-dynarex-200mm-f4",
   maker: "Voigtländer",
   name: "VOIGTLÄNDER SUPER-DYNAREX 200mm f/4 (Bessamatic)",
-  subtitle: "US 3,388,956 Example 1 — correlated to the Bessamatic Super-Dynarex 200mm f/4",
+  subtitle: "US 3,388,956 Example 1 — matched to the Bessamatic Super-Dynarex 200mm f/4",
 
   catalog: {
     lensMounts: ["dkl"],

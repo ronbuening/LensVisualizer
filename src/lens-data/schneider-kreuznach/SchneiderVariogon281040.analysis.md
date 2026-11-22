@@ -165,9 +165,9 @@ No apochromatic or anomalous-partial-dispersion claim follows from these data. A
 
 Schneider's historical account states that the camera-to-subject distance in the narrow-gauge Variogon family is set with the front group. The production photograph of the Variogon 2.8/10-40 shows a near focus-scale mark at 1 m, and a secondary exact-variant camera reference independently lists manual focusing from 1.0 m to infinity. [Schneider-Kreuznach, *Variogon – Zoom Lenses*, pp. 4–5; Lippisches Kamera Museum, “Nizo Heliomatic 8 Focovario.”]
 
-The data model nevertheless uses `NO_INTERNAL_RECONSTRUCTION`. Neither the patent nor the recovered manufacturer material publishes the axial travel of the front group at finite object distance. A 1.0 m minimum focus distance is insufficient to solve that missing mechanical state uniquely. Accordingly, `closeFocusM: 1.0` is metadata only: every zoom gap's infinity and close-focus values are identical, and no focus-dependent internal motion is invented.
+The model nevertheless shows the lens at infinity focus only. Neither the patent nor the recovered manufacturer material publishes the axial travel of the front group at a close object distance. A 1.0 m minimum focus distance is insufficient to solve that missing mechanical state uniquely. Accordingly, the 1.0 m close-focus figure is product information only: every spacing that changes with zoom keeps the same value at both ends of the focus control, so focus travel is not modeled; zoom movement is.
 
-This is a deliberate limitation. The viewer can report the production near-limit metadata, but the prescription should not be interpreted as an exact finite-conjugate 1 m optical model.
+This is a deliberate limitation. The viewer can report the production near-limit figure, but the prescription should not be interpreted as an exact close-focus 1 m optical model.
 
 ## Conditional Expressions
 

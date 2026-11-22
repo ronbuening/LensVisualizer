@@ -114,9 +114,9 @@ These catalog comparisons are coordinate equivalences, not historical supplier i
 
 ## Focus Mechanism
 
-The focus status is `NO_INTERNAL_RECONSTRUCTION`. The patent states only that the third lens group moves toward the object when focusing from infinity to a near object; it does not provide a finite-focus spacing table, G3 travel, finite conjugate, or magnification state from which a unique internal focus law could be solved. [US 2003/0072085 A1, ¶¶0038, 0042.]
+The model shows infinity focus only. The patent states only that the third lens group moves toward the object when focusing from infinity to a near object; it does not provide a close-focus spacing table, G3 travel, close-focus object distance, or magnification state from which a unique internal focus law could be solved. [US 2003/0072085 A1, ¶¶0038, 0042.]
 
-The data therefore preserves the three published zoom/infinity states and uses identical infinity/close entries for both variable zoom gaps. The `closeFocusM` value of 0.30 m is production metadata from the COOLPIX SQ manual, not a constraint used to solve patent focus travel. Nikon's manual also gives 0.04 m at the middle zoom position in macro mode, but neither production distance supplies the missing internal patent spacings.
+The model therefore preserves the three published zoom/infinity states, and both spacings that change with zoom stay at their infinity values at both ends of the focus control. The 0.30 m close-focus figure is product information from the COOLPIX SQ manual, not a constraint used to solve patent focus travel. Nikon's manual also gives 0.04 m at the middle zoom position in macro mode, but neither production distance supplies the missing internal patent spacings.
 
 The manufacturer-source contradiction is significant: Nikon's later COOLPIX SQ lens-history article describes group 1 as the focusing group, while the patent specifies G3. The analysis therefore records both statements without reconciling them into a synthetic production model.
 

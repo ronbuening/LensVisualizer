@@ -186,11 +186,11 @@ All 18 elements now resolve to compatible catalog dispersion curves. L2/L3 use S
 
 ## Focus Mechanism
 
-The focus status is **NO_INTERNAL_RECONSTRUCTION**.
+The model shows the lens at infinity focus only; focus travel is not modeled.
 
-The patent directly identifies B6 as the focus group (¶0026) and gives the mathematical definition of focus sensitivity (¶¶0031–0032). It also publishes infinity-focus zoom trajectories and Table 1 focus-sensitivity values. What Example 6 does not publish is a finite-object variable-spacing row, a close-focus B6 displacement, a finite-object magnification, or an object-distance reference plane suitable for reconstructing the production mechanism.
+The patent directly identifies B6 as the focus group (¶0026) and gives the mathematical definition of focus sensitivity (¶¶0031–0032). It also publishes infinity-focus zoom trajectories and Table 1 focus-sensitivity values. What Example 6 does not publish is a close-focus row of the spacings that change with focus, a close-focus B6 displacement, a close-focus magnification, or an object-distance reference plane from which the production mechanism could be modeled.
 
-Accordingly, every focus vector in the data repeats the infinity-focus spacing at each of the three zoom positions. The data field `closeFocusM: 0.05` records Canon's marketed wide-end minimum focusing distance only; Canon separately specifies 0.85 m at telephoto. Neither number is converted into an internal B6 shift.
+Accordingly, at each of the three zoom positions every spacing keeps its infinity-focus value at both ends of the focus control. The model's 0.05 m close-focus figure records Canon's marketed wide-end minimum focusing distance only; Canon separately specifies 0.85 m at telephoto. Neither number is converted into an internal B6 shift.
 
 From the final prescription, finite-difference translation of B6 at infinity gives focus sensitivities of:
 

@@ -23,7 +23,7 @@ const LENS_DATA = {
   key: "canon-fl-f-500mm-f56",
   maker: "Canon",
   name: "CANON FL-F 500mm f/5.6",
-  subtitle: "JP S47-8109 B, Example 1 — probable production correlation, front protective glass omitted",
+  subtitle: "JP S47-8109 B, Example 1 — probable production match, front protective glass omitted",
   catalog: {
     lensMounts: ["canon-fl"],
     imageFormat: "135-full-frame",

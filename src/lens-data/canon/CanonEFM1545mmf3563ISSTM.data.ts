@@ -48,7 +48,7 @@ const LENS_DATA = {
   key: "canon-ef-m-15-45mm-f35-63-is-stm",
   maker: "Canon",
   name: "CANON EF-M 15-45mm f/3.5-6.3 IS STM",
-  subtitle: "JP 2016-118658 A Numerical Example 8 — strong production correlation",
+  subtitle: "JP 2016-118658 A Numerical Example 8 — strong production match",
 
   catalog: {
     lensMounts: ["canon-ef-m"],

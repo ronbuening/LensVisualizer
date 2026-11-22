@@ -25,7 +25,7 @@ const LENS_DATA = {
   key: "leica-summilux-m-50mm-f14-i",
   maker: "Leica",
   name: "LEICA SUMMILUX-M 50mm f/1.4 I",
-  subtitle: "DE 1 045 120 B — sole example; first-version Summilux-M 50mm f/1.4 correlation",
+  subtitle: "DE 1 045 120 B — sole example; first-version Summilux-M 50mm f/1.4 match",
 
   catalog: {
     lensMounts: ["leica-m"],

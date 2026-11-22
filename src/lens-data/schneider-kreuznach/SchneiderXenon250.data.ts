@@ -37,7 +37,7 @@ const LENS_DATA = {
   key: "schneider-retina-xenon-c-50f2",
   maker: "Schneider-Kreuznach",
   name: "SCHNEIDER-KREUZNACH RETINA-XENON C 50mm f/2 (Kodak Retina IIIc)",
-  subtitle: "CH 352844 · Zahlenbeispiel A — 0.5× model; production correlation inferential",
+  subtitle: "CH 352844 · Zahlenbeispiel A — 0.5× model; inferred production match",
 
   catalog: {
     lensMounts: ["fixed-lens-camera"],

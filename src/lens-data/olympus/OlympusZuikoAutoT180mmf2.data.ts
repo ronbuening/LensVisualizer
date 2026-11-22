@@ -14,7 +14,7 @@ const LENS_DATA = {
   key: "olympus-zuiko-auto-t-180mm-f2",
   maker: "Olympus",
   name: "OLYMPUS ZUIKO AUTO-T 180mm f/2",
-  subtitle: "JP H05-042643 B2, Example 1 \u2014 scaled to 180 mm; production correlation",
+  subtitle: "JP H05-042643 B2, Example 1 \u2014 scaled to 180 mm; production match",
   visible: true,
   catalog: {
     lensMounts: ["olympus-om"],

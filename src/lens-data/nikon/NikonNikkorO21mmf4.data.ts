@@ -47,7 +47,7 @@ const LENS_DATA = {
   key: "nikon-nikkor-o-21mm-f4",
   maker: "Nikon",
   name: "NIKON NIKKOR-O 2.1cm f/4",
-  subtitle: "JP 1968-030782 Example 2 — production-correlated; uniformly scaled ×0.21",
+  subtitle: "JP 1968-030782 Example 2 — production match; uniformly scaled ×0.21",
 
   catalog: {
     lensMounts: ["nikon-s", "nikon-f"],

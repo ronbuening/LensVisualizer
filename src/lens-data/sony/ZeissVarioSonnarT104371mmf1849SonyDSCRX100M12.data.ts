@@ -60,7 +60,7 @@ const LENS_DATA = {
   key: "zeiss-vario-sonnar-t-104-371mm-f18-49-rx100m1-2",
   maker: "Sony",
   name: "SONY ZEISS VARIO-SONNAR T* 10.4-37.1mm f/1.8-4.9 (Sony Cyber-shot DSC-RX100 / DSC-RX100 II)",
-  subtitle: "US 2013/0314585 A1 Example 3 — strong RX100/RX100M2 correlation; not manufacturer-confirmed",
+  subtitle: "US 2013/0314585 A1 Example 3 — strong RX100/RX100M2 match; not maker-confirmed",
 
   catalog: {
     lensMounts: ["fixed-lens-camera"],

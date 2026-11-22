@@ -194,7 +194,7 @@ anomalous-partial-dispersion, or secondary-spectrum claim.
 
 The patent Example 1 table is an infinity zoom prescription and does not publish finite-focus spacing rows. The Nikon instruction manual establishes a minimum focusing distance of 1.2 m, but the manufacturer sources reviewed for this audit do not uniquely identify which optical group or internal spacing changes during finite-distance focusing. Nikon Tale 91 describes the two groups' zoom kinematics—G1 as the lead movement and G2 as cam-driven—but that passage concerns zooming, not the separate finite-focus mechanism. [2] [3]
 
-The data file therefore uses `NO_INTERNAL_RECONSTRUCTION`. At both zoom endpoints, every close-focus spacing pair is identical to its infinity value. `closeFocusM: 1.2` is retained as a production specification for the viewer, but no internal 1.2 m optical state, close-focus magnification, or focus travel is claimed. This avoids converting a plausible but underdetermined first-group-focus model into source-backed data.
+The model therefore shows infinity focus only. At both zoom endpoints, every spacing stays at its infinity value at both ends of the focus control. The 1.2 m figure is recorded as Nikon's production specification, but no internal 1.2 m optical state, close-focus magnification, or focus travel is claimed. This avoids converting a plausible but underdetermined first-group-focus model into source-backed data.
 
 ## Conditional Expressions
 

@@ -28,7 +28,7 @@ const LENS_DATA = {
   "key": "canon-50mm-f095",
   "maker": "Canon",
   "name": "CANON 50mm f/0.95",
-  "subtitle": "JP S39-10178 B, Sole Example — probable Canon 7 production correlation",
+  "subtitle": "JP S39-10178 B, Sole Example — probable Canon 7 production match",
   "visible": true,
   "catalog": {
     "lensMounts": [

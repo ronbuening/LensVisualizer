@@ -27,7 +27,7 @@ const LENS_DATA = {
   key: "pentax-fa-star-300mm-f45-ed-if",
   maker: "Pentax",
   name: "PENTAX SMC FA* 300mm f/4.5 ED [IF]",
-  subtitle: "US 4,812,026 A, Example 2 — probable production correlation",
+  subtitle: "US 4,812,026 A, Example 2 — probable production match",
   catalog: {
     lensMounts: ["pentax-k"],
     imageFormat: "135-full-frame",

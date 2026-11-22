@@ -81,7 +81,7 @@ const LENS_DATA = {
   maker: "Tamron",
   name: "TAMRON AF 28-200mm f/3.8-5.6 Super XR Aspherical [IF] MACRO",
   subtitle:
-    "US 6,437,923 B1 Example 1 — Model A03 correlation; documented surface-31 index and asphere-sign corrections",
+    "US 6,437,923 B1 Example 1 — Model A03 match; documented surface-31 index and asphere-sign corrections",
 
   catalog: {
     lensMounts: ["nikon-f", "canon-ef", "sony-a", "pentax-k"],

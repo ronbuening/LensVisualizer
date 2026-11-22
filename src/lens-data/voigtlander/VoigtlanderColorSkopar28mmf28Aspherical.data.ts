@@ -47,7 +47,7 @@ const LENS_DATA = {
   key: "voigtlander-color-skopar-28mm-f28-aspherical-sl-iis",
   maker: "Voigtländer",
   name: "VOIGTLÄNDER COLOR-SKOPAR 28mm f/2.8 Aspherical SL IIs",
-  subtitle: "JP 2023-032663 A Example 1 — production-correlated rigid unit-focus model",
+  subtitle: "JP 2023-032663 A Example 1 — rigid unit-focus model matched to the production lens",
 
   catalog: {
     lensMounts: ["nikon-f"],

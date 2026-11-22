@@ -26,7 +26,7 @@ const LENS_DATA = {
   key: "leica-noctilux-50mm-f12",
   maker: "Leica",
   name: "LEITZ NOCTILUX 50mm f/1.2",
-  subtitle: "US 3,459,468, sole example — convergent production correlation; not manufacturer-confirmed",
+  subtitle: "US 3,459,468, sole example — strong production match; not maker-confirmed",
   visible: true,
   catalog: {
     lensMounts: ["leica-m"],
