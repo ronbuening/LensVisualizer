@@ -3,7 +3,7 @@ import type { LensSummary } from "./lensSummaries.js";
 // Lens analyses document a different retail construction, uncertain production, or a match without marketed specs.
 const PRODUCTION_MATCH_BY_KEY: Readonly<Partial<Record<string, boolean>>> = {
   "busch-pantoskop-1865-von-rohr-1899": true, // Von Rohr identifies the introduced Busch lens.
-  "canon-ef-135mm-f28-soft-focus": false, // The example is f/3.4 in the normal position versus f/2.8.
+  "canon-ef-135mm-f28-soft-focus": true, // The outline coincides with Canon's drawing; the example is f/3.4 at the sharp setting, f/2.8 soft.
   "canon-ef-20mm-f28-usm": true, // Canon's rear focus with a floating effect is the patent's single moving rear group.
   "canon-ef-70-200f28l-is-usm": false, // 21 elements in 19 groups versus the retail 23 in 18.
   "canon-ef-70-300mm-f45-56-do-is-usm": false, // 17 elements in 14 groups versus Canon's 18 in 12.
@@ -44,7 +44,7 @@ const PRODUCTION_MATCH_BY_KEY: Readonly<Partial<Record<string, boolean>>> = {
   "olympus-zuiko-auto-fisheye-8mm-f28": true, // Olympus's 11 elements in 7 groups are the model's 10 in 6 plus the built-in filter.
   "panasonic-leica-dg-25f14": true, // Counts and aspheres agree; Optical Bench lists this Sigma patent example for the Mark II.
   "pentax-dfa645-25mm-f4-al-if-sdm-aw": true, // With the patent's filter plate the example has eight air-separated units, as Ricoh lists.
-  "pentax-hd-d-fa-star-70-200mm-f28-ed-dc-aw": false, // Four cemented doublets yield 15 groups versus Ricoh's 16.
+  "pentax-hd-d-fa-star-70-200mm-f28-ed-dc-aw": true, // The outline coincides with Ricoh's drawing; only the published group count differs, 15 against 16.
   "pentax-hd-d-fa645-35f35-al-if": false, // Eight air-separated groups versus Ricoh's seven.
   "rodenstock-apo-sironar-w-150f56-a1-reconstruction": false, // Archived 8-element model of a 7-element lens.
   "ross-doublet-1864-von-rohr-1899": true, // Von Rohr identifies the form put on the market in 1864.
