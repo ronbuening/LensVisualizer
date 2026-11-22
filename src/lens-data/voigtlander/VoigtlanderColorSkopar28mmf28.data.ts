@@ -9,11 +9,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  Aspherical optical family in VM and L39 mounts.                  ║
  * ║  8 elements / 5 groups, 2 aspherical surfaces.                    ║
  * ║                                                                    ║
- * ║  FOCUS STATUS — NO_INTERNAL_RECONSTRUCTION:                        ║
+ * ║  FOCUS: Infinity only.                                             ║
  * ║    The patent publishes only the infinity prescription and gives   ║
  * ║    no focus-spacing table or group-motion law. The 0.5 m and       ║
- * ║    0.7 m production endpoints are retained as product metadata,    ║
- * ║    but no unverified internal or unit-focus motion is authored.     ║
+ * ║    0.7 m production endpoints are recorded as product              ║
+ * ║    information, but no internal or unit-focus motion is modeled.   ║
  * ║                                                                    ║
  * ║  NOTE ON SCALING:                                                  ║
  * ║    No scaling is applied. The marketed 28 mm designation and the   ║
@@ -244,7 +244,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.5,
     description:
-      "NO_INTERNAL_RECONSTRUCTION: Example 3 publishes only infinity data. The optical family has 0.5 m (VM Type II) and 0.7 m (VM Type I/L39) production endpoints, but no focus motion is modeled.",
+      "Infinity focus only. Example 3 publishes only infinity data. The optical family's 0.5 m (VM Type II) and 0.7 m (VM Type I/L39) minimum focus distances are product information; focus travel is not modeled.",
   },
 
   /* ── Aperture and viewer controls ── */

@@ -44,7 +44,7 @@ const LENS_DATA = {
   key: "canon-rf-200-800-f63-9-is-usm",
   maker: "Canon",
   name: "CANON RF 200-800mm f/6.3-9 IS USM",
-  subtitle: "US 2024/0134166 A1 · Example 1 — strong production correlation, not manufacturer-confirmed",
+  subtitle: "US 2024/0134166 A1 · Example 1 — strong production match, not maker-confirmed",
 
   catalog: {
     lensMounts: ["canon-rf"],

@@ -60,7 +60,7 @@ const LENS_DATA = {
   key: "voigtlander-ultron-27mm-f2",
   maker: "Voigtländer",
   name: "VOIGTLÄNDER ULTRON 27mm f/2",
-  subtitle: "JP 2024-167569 A Example 1 — production correlation to ULTRON 27mm F2 X-mount",
+  subtitle: "JP 2024-167569 A Example 1 — production match to ULTRON 27mm F2 X-mount",
 
   catalog: {
     lensMounts: ["fujifilm-x"],

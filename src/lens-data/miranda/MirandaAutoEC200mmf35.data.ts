@@ -6,7 +6,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ╠══════════════════════════════════════════════════════════════════════════════╣
  * ║  Data source: JP1976-114926, sole example (Miranda Camera Co., Ltd.).      ║
  * ║  Six elements in five groups; all surfaces are spherical.                 ║
- * ║  Focus: NO_INTERNAL_RECONSTRUCTION. The patent publishes one static state. ║
+ * ║  Focus: infinity only. The patent publishes one static state.             ║
  * ║                                                                            ║
  * ║  SCALING: The patent example is normalized to f = 100. All radii, axial   ║
  * ║  spacings, semi-diameters, and the image-plane coordinate are scaled ×2.  ║
@@ -45,7 +45,7 @@ const LENS_DATA = {
   key: "miranda-auto-ec-200mm-f35",
   maker: "Miranda",
   name: "MIRANDA AUTO EC 200mm f/3.5",
-  subtitle: "JP1976-114926 sole example — 2× production-correlated scale",
+  subtitle: "JP1976-114926 sole example — 2× scaled production match",
 
   catalog: {
     lensMounts: ["miranda-bayonet"],
@@ -170,7 +170,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 2.5,
     description:
-      "NO_INTERNAL_RECONSTRUCTION — manufacturer MFD is 2.5 m, but JP1976-114926 publishes only one static, unnumbered prescription; no internal focus motion is modeled.",
+      "Infinity focus only. Miranda's 2.5 m minimum focus distance is product information, but JP1976-114926 publishes only one static, unnumbered prescription, so focus travel is not modeled.",
   },
 
   aperture: { nominalFNumber: 3.5, fStops: [3.5, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22 },

@@ -22,7 +22,7 @@ The production identification is a strong research correlation rather than a man
 
 The 90° patent field and 92° marketed angle are therefore kept separate. No located Leica, Leitz, or Schneider primary source explicitly states that production code 11813 is US 3,512,874 Example 3.
 
-Two numerical source discrepancies are corrected in the modeled branch while the raw patent readings remain preserved in the dossier. Table 3 prints `r15 = +259.71`, but Claim 3 gives `r15 = -259.71` and Table 3's own surface-power column requires the negative sign. Table 3 also prints `d10 = 18.54`, while Claim 3 gives `18.45`; the German priority-family numerical example agrees with `18.45`. [1, Table 3 and Claim 3; 5] The implemented data therefore use `r15 = -259.71` and `d10 = 18.45` before applying the 0.21 scale.
+Two numerical source discrepancies are corrected in the modeled branch while the raw patent readings are recorded here. Table 3 prints `r15 = +259.71`, but Claim 3 gives `r15 = -259.71` and Table 3's own surface-power column requires the negative sign. Table 3 also prints `d10 = 18.54`, while Claim 3 gives `18.45`; the German priority-family numerical example agrees with `18.45`. [1, Table 3 and Claim 3; 5] The implemented data therefore use `r15 = -259.71` and `d10 = 18.45` before applying the 0.21 scale.
 
 A third contradiction is not numerically repaired. The U.S. prose says the axial thicknesses of members IV and V should be about 2.5–5 times `|fIII|`, whereas Example 3 gives ratios of approximately 0.466 and 0.401. The priority-family wording instead uses different component-thickness conditions that the example satisfies. The U.S. prose is retained as a source discrepancy rather than replaced with an invented coefficient. [1, p. 4; Table 4; 5]
 
@@ -42,7 +42,7 @@ All clear semi-diameters in the data file are likewise modeled rather than publi
 
 ## Element-by-Element Analysis
 
-The patent tabulates refractive index and Abbe number at the e line, 546.1 nm. Accordingly, the following element lines use `ne` and `νe`; the data schema stores these values in its historical `nd`/`vd` slots with `indexReference: "e"`. Standalone element focal lengths are computed for each physical lens in air and should not be confused with the net powers of the cemented members IV and V. [1, p. 4; 7; 8]
+The patent tabulates refractive index and Abbe number at the e line, 546.1 nm. Accordingly, the following element lines use `ne` and `νe`; the model stores these values in its historical `nd`/`vd` slots with `indexReference: "e"`. Standalone element focal lengths are computed for each physical lens in air and should not be confused with the net powers of the cemented members IV and V. [1, p. 4; 7; 8]
 
 ### L1 — Positive Meniscus
 
@@ -127,9 +127,9 @@ These modern matches are useful for classifying the optical-coordinate neighborh
 
 ## Focus Mechanism
 
-The implemented prescription has **NO_INTERNAL_RECONSTRUCTION**. The patent does not publish focus-state prescriptions, variable air gaps, group travel, object-distance tables, or any internal movement law for Example 3. The data file therefore contains no focus `var` entries and represents only the published static optical state. [1; 8]
+The model shows the lens at infinity only. The patent does not publish focus-state prescriptions, variable air gaps, group travel, object-distance tables, or any internal movement law for Example 3. No spacing in the model therefore changes with focus, and the model represents only the published static optical state. [1; 8]
 
-Manufacturer literature gives the production Super-Angulon-R 21 mm f/4 a 0.2 m minimum focus distance and describes a non-rotating focusing mount. Those facts establish production focusing capability, but they do not determine whether the patented optical stack moved as a unit or whether any internal compensation occurred. The 0.2 m value is consequently retained as product metadata only and is not used to synthesize a close-focus prescription. [3]
+Manufacturer literature gives the production Super-Angulon-R 21 mm f/4 a 0.2 m minimum focus distance and describes a non-rotating focusing mount. Those facts establish production focusing capability, but they do not determine whether the patented optical stack moved as a unit or whether any internal compensation occurred. The 0.2 m value is consequently recorded as product information only and is not used to work out a close-focus prescription. [3]
 
 ## Conditional Expressions
 
@@ -177,11 +177,11 @@ The final surface-to-image spacing uses the recomputed paraxial BFD rather than 
 
 The prescription is entirely spherical, so there are no aspheric surfaces, conic conventions, or coefficient transformations to analyze. Uniform scaling affects all lengths by 0.21 while leaving indices and Abbe numbers unchanged. [1; 8]
 
-Repository-dependent LensVisualizer checks remain outside the bundled verification. The bundled dossier does not claim that project `buildLens()`, `validateLensData()`, runtime glass resolution, production render diagnostics, corpus tests, or the full build were executed. Those remain integration work rather than evidence for the optical claims above. [7]
+Repository-dependent LensVisualizer checks remain outside the bundled verification. This analysis does not claim that project `buildLens()`, `validateLensData()`, runtime glass resolution, production render diagnostics, corpus tests, or the full build were executed. Those remain integration work rather than evidence for the optical claims above. [7]
 
 ## Sources and References
 
-1. Walter Wöltche, **US 3,512,874, “Wide-Angle Objective of Large Back-Focal Length,”** United States Patent Office, granted May 19, 1970. See especially Fig. 3, pp. 4–7, Table 3, Table 4, and Claim 3. A copy is bundled with this dossier as `US3512874.pdf`.
+1. Walter Wöltche, **US 3,512,874, “Wide-Angle Objective of Large Back-Focal Length,”** United States Patent Office, granted May 19, 1970. See especially Fig. 3, pp. 4–7, Table 3, Table 4, and Claim 3. A copy was consulted as `US3512874.pdf`.
 2. Leitz / Leica, **manufacturer lens brochure**, p. 7, entry for the 21 mm SUPER-ANGULON-R f/4, catalog 11,813. Archival scan: https://www.pacificrimcamera.com/rl/01076/01076.pdf
 3. Leitz / Leica, **Handbook of the LEICA-System Photography**, 4/81 edition, entry for the 21 mm SUPER-ANGULON-R f/4, code 11813. Archival scan: https://www.pacificrimcamera.com/rl/03440/03440.pdf
 4. E. Leitz, Inc. / Ernst Leitz GmbH, **Leica and Leicaflex Cameras and Accessories — Catalog No. 41**, printed 6-68, specifications effective June 1, 1968, printed p. 20. https://www.cameramanuals.org/leica_pdf/leica_leicaflex_accessories.pdf

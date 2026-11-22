@@ -20,7 +20,7 @@ const LENS_DATA = {
   key: "canon-ef-85mm-f18-usm",
   maker: "Canon",
   name: "CANON EF 85mm f/1.8 USM",
-  subtitle: "JP H05-157964 A, Example 1 — production correlation",
+  subtitle: "JP H05-157964 A, Example 1 — production match",
 
   catalog: {
     lensMounts: ["canon-ef"],

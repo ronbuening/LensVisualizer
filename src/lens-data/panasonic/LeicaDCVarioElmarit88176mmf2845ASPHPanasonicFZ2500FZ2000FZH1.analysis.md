@@ -29,7 +29,7 @@ Several independent clues support the attribution:
 
 The contradiction is material. Panasonic markets 8.8-176 mm, 20×, f/2.8-4.5, while patent Table 3A gives 9.1401-168.6806 mm, 18.45502×, f/2.91353-4.63206. Scaling the patent wide end to 8.8 mm requires a factor of about 0.96279, while scaling the telephoto end to 176 mm requires about 1.04339. A single geometric scale therefore cannot reconcile both endpoints, and no scale is applied. The implemented normalized model computes 9.143856-168.707624 mm and f/2.907934-f/4.622166 after the documented cement and rear-plate normalization. Marketed and design quantities remain separate throughout this analysis.
 
-The patent also contains one source-label problem that materially affects the model. Table 3A and ¶0151 call 5.249/5.249/5.892 mm an effective aperture *diameter*. A literal-diameter interpretation produces first-order f-numbers near f/5.81, f/8.60, and f/9.24. Treating the same numbers as stop semi-diameters produces the published f-number scale and, after normalization, gives f/2.907934, f/4.300514, and f/4.622166. The raw wording and values are retained in the dossier; the data model applies the semi-diameter interpretation as a documented source-label correction rather than claiming an independently measured diaphragm size.
+The patent also contains one source-label problem that materially affects the model. Table 3A and ¶0151 call 5.249/5.249/5.892 mm an effective aperture *diameter*. A literal-diameter interpretation produces first-order f-numbers near f/5.81, f/8.60, and f/9.24. Treating the same numbers as stop semi-diameters produces the published f-number scale and, after normalization, gives f/2.907934, f/4.300514, and f/4.622166. The raw wording and values are kept on record as printed; the model applies the semi-diameter interpretation as a documented source-label correction rather than claiming an independently measured diaphragm size.
 
 ## Optical Architecture
 
@@ -237,7 +237,7 @@ The patent's focus mechanism is a rear internal focusing motion of G4. Paragraph
 
 No numerical close-focus spacing table is published for Numerical Example 1. The patent gives the direction of motion but not the required G4 displacement at wide, middle, or telephoto, nor any zoom-dependent compensation law. Panasonic's minimum-focus specification is an observable of the production camera, not enough information to solve a unique internal lens prescription.
 
-The data therefore uses **NO_INTERNAL_RECONSTRUCTION**. Every focus pair in the six variable-spacing arrays is identical at each zoom keyframe, so changing the UI focus coordinate does not invent internal motion. `closeFocusM = 0.03 m` is retained only as manufacturer-derived wide-end macro/MF metadata required by the schema. It is not evidence that the patent model has been solved at 0.03 m.
+The model therefore shows **infinity focus only**. Each of the six spacings that change with zoom keeps its infinity value at both ends of the focus control at each zoom keyframe, so moving the focus control moves no group. The 0.03 m close-focus figure is Panasonic's wide-end macro/manual-focus minimum distance, recorded only as product information. It is not evidence that the patent model has been solved at 0.03 m.
 
 This limitation also constrains interpretation of patent statements about proximity-focus field curvature. The patent uses the G4 focal-length condition partly to discuss proximity behavior, but only the infinity-focus wide/middle/telephoto prescriptions are represented numerically here.
 
@@ -251,7 +251,7 @@ $$
 Z(h)=\frac{h^2/r}{1+\sqrt{1-(1+K)(h/r)^2}}+\sum A_n h^n,
 $$
 
-with h and r in millimeters. This is the same `1 + K` conic convention used by the LensVisualizer schema, so the patent K values map directly; no K offset is applied. No geometric scale is applied, so the coefficients are transcribed without an asphere scaling transform. The patent supplies A4, A6, A8, A10, and A12 for this example; A14 is zero in the application data because no nonzero A14 term is published.
+with h and r in millimeters. This is the same `1 + K` conic convention used by the model, so the patent K values map directly; no K offset is applied. No geometric scale is applied, so the coefficients are transcribed without an asphere scaling transform. The patent supplies A4, A6, A8, A10, and A12 for this example; A14 is zero in the application data because no nonzero A14 term is published.
 
 | Active surface | Element | K | A4 | A6 | A8 | A10 | A12 |
 |---|---|---:|---:|---:|---:|---:|---:|
@@ -308,7 +308,7 @@ The active values also fall within the patent's tighter preferred ranges: condit
 
 ## Model Normalization and Verification
 
-The data file is not a literal 35-plane copy of Table 1. It applies project normalization while preserving a raw source branch in the dossier.
+The data file is not a literal 35-plane copy of Table 1. It applies project normalization while keeping a raw source version on record.
 
 First, five source interfaces insert a 0.005 mm, nd = 1.56732 medium between patent-defined bonded element pairs: L1/L2, L8/L9, L10/L11, L13/L14, and L15/L16. The active model removes those generic cement media. Each surviving same-radius cemented junction carries the downstream element's refractive index and element ID, and the 0.005 mm axial thickness is added to the downstream element thickness. This preserves the subsequent axial stations but changes the first-order power slightly, which is why all active element, group, and system quantities are recomputed from the final file rather than copied from Table 3B or 3C.
 

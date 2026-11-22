@@ -28,6 +28,9 @@ const SOURCES = {
   fujinonRename: "https://www.itmedia.co.jp/news/article/0407/01/1040701077/",
   hoyaHistory: "https://www.hoya.com/en/company/history/",
   hoyaPentaxMerger: "https://www.hoya.com/en/news/20111001/",
+  iscoHistory: "https://de.wikipedia.org/wiki/ISCO_G%C3%B6ttingen",
+  iscoMerger:
+    "https://www.pressebox.com/pressrelease/jos-schneider-optische-werke-gmbh/ISK-Optics-merges-with-parent-company-Jos-Schneider-Optische-Werke/boxid/698220",
   jenoptikHistory: "https://de.wikipedia.org/wiki/Jenoptik",
   kmzHistory: "https://bigenc.ru/c/krasnogorskii-zavod-imeni-s-a-zvereva-dfb513",
   kenkoTokinaHistory: "https://kenkoglobal.com/company/history/",
@@ -315,6 +318,28 @@ export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporat
         sourceUrl: SOURCES.hoyaHistory,
         note: "Covers the PENTAX imaging business while HOYA owned it after the March 2008 merger; patents from this window name HOYA as assignee.",
       },
+    ],
+  },
+  "Isco Optische Werke GmbH": {
+    subsidiaryOf: [
+      {
+        organization: "Jos. Schneider & Co., Optische Werke",
+        effectiveFrom: "1936",
+        effectiveTo: "1982",
+        sourceUrl: SOURCES.iscoHistory,
+        note: "Schneider Kreuznach's Göttingen works, founded in 1936 (some references give 1939). US 2,972,285 prints Isco Optische Werke G.m.b.H., Göttingen-Weende. After the Schneider parent's 1982 bankruptcy, Kurt Lindstedt and two partners took ISCO over as Isco-Optik.",
+      },
+      {
+        organization: "Jos. Schneider Optische Werke GmbH",
+        effectiveFrom: "2009",
+        effectiveTo: "2014",
+        sourceUrl: SOURCES.iscoMerger,
+        note: "The Göttingen business returned to the Schneider group as Schneider Kreuznach ISCO Division (sources give 2008 or 2009), was renamed ISK Optics GmbH in 2011 and merged into its parent in 2014.",
+      },
+    ],
+    corporateFamily: [
+      { family: "Schneider-Kreuznach", effectiveFrom: "1936", effectiveTo: "1982", sourceUrl: SOURCES.iscoHistory },
+      { family: "Schneider-Kreuznach", effectiveFrom: "2009", effectiveTo: "2014", sourceUrl: SOURCES.iscoMerger },
     ],
   },
   "Jenoptik Jena GmbH": {

@@ -140,12 +140,12 @@ therefore does not support an apochromatic or anomalous-partial-dispersion claim
 
 ## Focus Mechanism
 
-The patent publishes only the infinity prescription for Example 1. It gives no finite-object spacing table, magnification
-state, moving-group definition, or internal focus kinematics. The data file therefore uses
-`NO_INTERNAL_RECONSTRUCTION`: `var` and `varLabels` are empty, and no lens group is made to move in the visualization.
+The patent publishes only the infinity prescription for Example 1. It gives no close-focus spacing table, magnification
+state, moving-group definition, or description of how the lens moves to focus. The model therefore shows the lens at
+infinity only, and no lens group moves in the visualization.
 
-Archival product literature gives the Skoparex focusing range as infinity to 39 inches (0.9906 m). That value is retained
-as `closeFocusM` product metadata only. It is not sufficient to determine whether the patent prescription should be
+Archival product literature gives the Skoparex focusing range as infinity to 39 inches (0.9906 m). The model records
+that value as product information only. It is not sufficient to determine whether the patent prescription should be
 modeled as unit focus or with some internal movement, so no close-focus optical state is inferred from it.
 
 ## Aberration-Correction Strategy

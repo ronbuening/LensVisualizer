@@ -43,7 +43,7 @@ const LENS_DATA = {
   maker: "Olympus",
   name: "OLYMPUS M.ZUIKO DIGITAL ED 8mm f/1.8 Fisheye PRO",
   subtitle:
-    "JP 2016-184136 A, Numerical Example 7 — Sigma patent; construction correlation, production prescription unconfirmed",
+    "JP 2016-184136 A, Numerical Example 7 — Sigma patent; production match by construction, production prescription not maker-confirmed",
 
   catalog: {
     lensMounts: ["micro-four-thirds"],

@@ -44,7 +44,7 @@ const LENS_DATA = {
   key: "leica-telyt-s-800mm-f63",
   maker: "Leica",
   name: "LEICA TELYT-S 800mm f/6.3",
-  subtitle: "US 3,536,379 — sole numerical embodiment; research correlation",
+  subtitle: "US 3,536,379 — sole numerical embodiment; likely production match",
 
   catalog: {
     lensMounts: ["leica-r"],

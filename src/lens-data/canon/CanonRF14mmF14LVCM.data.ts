@@ -47,7 +47,7 @@ const LENS_DATA = {
   key: "canon-rf-14mm-f14-l-vcm",
   maker: "Canon",
   name: "CANON RF 14mm f/1.4 L VCM",
-  subtitle: "US 2025/0389929 A1 — Numerical Example 1; strong production correlation",
+  subtitle: "US 2025/0389929 A1 — Numerical Example 1; strong production match",
 
   catalog: {
     lensMounts: ["canon-rf"],

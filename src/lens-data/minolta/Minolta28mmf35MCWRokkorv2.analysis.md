@@ -30,7 +30,7 @@ Two radius entries in the printed Example 2 table require correction before the 
 published optical behavior. Page 3 prints `r9 = +0.5260` and `r12 = -5421`; the Example 2 Seidel/Petzval table on page 4
 requires `r9 = -0.5260` and `r12 = -0.5421`. With those corrections, the recomputed surface-9 and surface-12 Petzval terms
 match the printed signs and magnitudes, and the first-order focal length returns to approximately the patent's normalized
-`f = 1`. The raw printed values remain preserved in the dossier rather than being overwritten. (JP 1969-025743 B, pp. 3–4.)
+`f = 1`. The printed values are recorded here rather than being overwritten. (JP 1969-025743 B, pp. 3–4.)
 
 ## Optical Architecture
 
@@ -134,13 +134,13 @@ Catalog comparisons are used to defend class-level labels. Named classes are spe
 
 ## Focus Mechanism
 
-The focus status is `NO_INTERNAL_RECONSTRUCTION`. Example 2 provides one fixed prescription and no variable-spacing table,
-close-focus prescription, or mechanism constraint from which an internal focus law could be uniquely reconstructed.
-Accordingly, the data file contains an empty `var` object and does not move any internal element or group.
+Example 2 provides one fixed prescription and no table of variable spacings, no close-focus prescription, and no
+description of the focusing mechanism from which the focus movement could be uniquely worked out. Accordingly, the model
+shows the lens at infinity only and does not move any element or group.
 
-The `closeFocusM = 0.6` field is product metadata associated with the correlated production variant; it does not alter the
-published optical state. The available patent evidence therefore does not establish which element or group moves in the
-production lens, how much it moves, or how back focus changes with object distance.
+The 0.6 m close-focus figure is product information associated with the matching production variant; it does not alter
+the published optical state. The available patent evidence therefore does not establish which element or group moves in
+the production lens, how much it moves, or how back focus changes with object distance.
 
 ## Patent Conditional Expressions
 
@@ -188,7 +188,7 @@ numerical tolerance.
 | Normalized Petzval sum | 0.237835 | Patent Example 2 table: 0.2380 |
 
 Petzval curvature was recomputed surface by surface as `φ/(n·n′)`. The corrected implemented model reproduces the Example
-2 table within the source-precision tolerances used by the dossier. The same calculation is what supports the r9 and r12
+2 table within the source-precision tolerances used here. The same calculation is what supports the r9 and r12
 source corrections rather than a silent typographical assumption.
 
 The model is numerically retrofocus because its verified back focal distance exceeds its verified EFL. Its verified total

@@ -30,7 +30,7 @@ const LENS_DATA = {
   "key": "pentax-m-star-300mm-f4",
   "maker": "Pentax",
   "name": "PENTAX SMC M* 300mm f/4",
-  "subtitle": "US 4,293,197 A, Example 1 — construction correlation with the 1981 production lens",
+  "subtitle": "US 4,293,197 A, Example 1 — production match by construction with the 1981 production lens",
   "catalog": {
     "lensMounts": [
       "pentax-k"

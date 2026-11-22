@@ -35,7 +35,7 @@ const LENS_DATA = {
   key: "sigma-105mm-f28-dg-dn-macro-art",
   maker: "Sigma",
   name: "SIGMA 105mm f/2.8 DG DN MACRO | Art",
-  subtitle: "JP 2021-148808 A · Numerical Example 1 · Construction correlation",
+  subtitle: "JP 2021-148808 A · Numerical Example 1 · Production match by construction",
 
   catalog: {
     lensMounts: ["l-mount", "sony-fe"],

@@ -86,9 +86,9 @@ The patent indices and Abbe numbers are retained unchanged. Catalog curves are c
 
 ## Focus Mechanism
 
-CH 346706 Table A does not publish finite-object spacing rows, focus-group travel, or a mechanical focus law for the selected base prescription. The model accordingly uses `NO_INTERNAL_RECONSTRUCTION`: `var` is empty and every internal optical spacing remains at the published infinity-state geometry after scaling.
+CH 346706 Table A does not publish close-focus spacing rows, focus-group travel, or a mechanical focus law for the selected base prescription. The model accordingly shows the lens at infinity only: every internal optical spacing stays at the published infinity-state geometry after scaling, and focus travel is not modeled.
 
-The secondary Exakta history reports a 0.8 m near-focus specification for the cited early Xenon 1.9/50 and describes a helicoid-type special mount. That information is retained only as bounded product metadata in `closeFocusM`; it is insufficient to determine whether the exact target variant translated the complete optical unit, how far it moved, or whether any internal spacing changed. No such motion is invented in the data.
+The secondary Exakta history reports a 0.8 m near-focus specification for the cited early Xenon 1.9/50 and describes a helicoid-type special mount. The model records the 0.8 m figure only as product information; it is insufficient to determine whether the exact target variant translated the complete optical unit, how far it moved, or whether any internal spacing changed. No such movement is modeled.
 
 ## Verification Summary
 

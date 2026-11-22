@@ -18,14 +18,13 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ SEMI-DIAMETERS: No patent SDs are published. The authored SDs are modeled values   ║
  * ║ checked against exact meridional ray sampling and the patent optical section, then  ║
  * ║ checked for edge thickness, actual spherical rim slope, and shared-gap intrusion.   ║
- * ║ Production computeElementRenderDiagnostics() remains an integration-only check.      ║
  * ║                                                                                      ║
- * ║ FOCUS: NO_INTERNAL_RECONSTRUCTION. The patent supplies only one optical state and   ║
- * ║ no authoritative exact-product minimum focus distance has been established. The      ║
- * ║ closeFocusM is an infinity sentinel for this static model, not a product MFD.      ║
+ * ║ FOCUS: Infinity only. The patent gives one optical state and no close-focus data,    ║
+ * ║ and no reliable minimum focus distance for the product has been found.               ║
+ * ║ closeFocusM = 1e15 holds the lens at infinity; it is not a product figure.           ║
  * ║                                                                                      ║
- * ║ PRODUCT CORRELATION: Strong research attribution to the S-Travenar 2,8/135, but no ║
- * ║ manufacturer source located explicitly links CH 479 879's example to that product.  ║
+ * ║ PRODUCT MATCH: Strong attribution to the S-Travenar 2,8/135, but no manufacturer     ║
+ * ║ source found links CH 479 879's example to that product.                             ║
  * ╚══════════════════════════════════════════════════════════════════════════════════════╝
  */
 
@@ -35,7 +34,7 @@ const LENS_DATA = {
   key: "schacht-s-travenar-135f28",
   maker: "Schacht",
   name: "SCHACHT S-TRAVENAR 135mm f/2.8",
-  subtitle: "CH 479 879 sole example — 1.35× normalized research correlation",
+  subtitle: "CH 479 879 sole example ×1.35 — likely production match, not maker-confirmed",
 
   catalog: {
     lensMounts: ["m42", "exakta"],
@@ -140,12 +139,11 @@ const LENS_DATA = {
   ],
 
   /* ── Focus configuration ── */
-  // closeFocusM is intentionally omitted: no authoritative exact-product MFD has been established.
-  // Static-model sentinel; no source-backed production minimum focus distance is known.
+  // 1e15 holds the lens at infinity: no reliable minimum focus distance for the product is known.
   focus: {
     closeFocusM: 1e15,
     description:
-      "NO_INTERNAL_RECONSTRUCTION — one patent prescription state only; no internal focus motion is modeled.",
+      "Infinity focus only. The patent gives one prescription and no close-focus data, and no reliable minimum focus distance for the product has been found, so focus travel is not modeled.",
   },
 
   /* ── Aperture configuration ── */

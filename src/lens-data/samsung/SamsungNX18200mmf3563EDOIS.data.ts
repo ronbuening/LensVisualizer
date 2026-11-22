@@ -42,7 +42,7 @@ const LENS_DATA = {
   key: "samsung-nx-18-200mm-f35-63-ed-ois",
   maker: "Samsung",
   name: "SAMSUNG 18-200mm f/3.5-6.3 ED OIS",
-  subtitle: "EP 2 469 319 A2, Example 2 — construction-based production correlation",
+  subtitle: "EP 2 469 319 A2, Example 2 — production match by construction",
   visible: true,
   catalog: {
     lensMounts: ["samsung-nx"],

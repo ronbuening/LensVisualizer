@@ -47,7 +47,7 @@ const LENS_DATA = {
   key: "zeiss-biotar-50f14",
   maker: "Carl Zeiss Jena",
   name: "CARL ZEISS JENA BIOTAR 50mm f/1.4",
-  subtitle: "US 1,786,916 Example 2 — 0.5× patent scale; Biotar correlation qualified",
+  subtitle: "US 1,786,916 Example 2 — 0.5× patent scale; tentative Biotar match",
 
   catalog: {
     specs: ["6 ELEMENTS / 4 GROUPS", "f = 49.9567 mm", "F/1.4", "ALL-SPHERICAL"],

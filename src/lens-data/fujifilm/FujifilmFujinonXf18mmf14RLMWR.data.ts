@@ -47,7 +47,7 @@ const LENS_DATA = {
   key: "fujifilm-fujinon-xf-18mm-f14-r-lm-wr",
   maker: "Fujifilm",
   name: "FUJIFILM FUJINON XF 18mm f/1.4 R LM WR",
-  subtitle: "US 2022/0011542 A1 Example 1 — strong production correlation, not manufacturer-confirmed",
+  subtitle: "US 2022/0011542 A1 Example 1 — strong production match, not maker-confirmed",
 
   catalog: {
     lensMounts: ["fujifilm-x"],

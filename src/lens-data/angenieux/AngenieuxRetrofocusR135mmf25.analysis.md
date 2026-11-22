@@ -177,13 +177,13 @@ final doublet, but it does not establish apochromatic correction or anomalous pa
 ## Focus Mechanism
 
 GB 673,358 A publishes one fixed prescription and no object-distance table, magnification, moving-group description, or
-focus-dependent spacing. The data therefore has the status `NO_INTERNAL_RECONSTRUCTION` and authors no variable focus spacings. It does
-not model unit extension, an internal floating group, or any close-focus optical state.
+focus-dependent spacing. The model therefore shows the lens at infinity only and has no spacings that change with focus.
+It does not model unit extension, an internal floating group, or any close-focus optical state.
 
-The required catalog field `closeFocusM` is 0.914m, taken as representative metadata for an Exakta production specimen.
-It is not a patent value, does not establish a universal R1 minimum-focus distance across mounts or production variants,
-and does not alter the infinity prescription. The production focusing mechanism is consequently outside the modeled
-optical data.
+The model records a 0.914 m close-focus figure, taken as representative product information for an Exakta production
+specimen. It is not a patent value, does not establish a universal R1 minimum-focus distance across mounts or production
+variants, and does not alter the infinity prescription. The production focusing mechanism is consequently outside the
+modeled optical data.
 
 ## Conditional Expressions
 

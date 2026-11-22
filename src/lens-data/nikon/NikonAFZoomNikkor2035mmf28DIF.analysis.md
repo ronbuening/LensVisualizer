@@ -183,9 +183,9 @@ The broad spread from high-νd crown-like coordinates to low-νd flint-like coor
 
 The patent specifies internal focusing by axial motion of the **cemented positive L21 doublet alone** within G2. L22 remains the rear member of G2, and focusing changes the separation between L21 and L22. This is a source fact, not a reconstructed mechanism.
 
-The data file's focus status is **NO_INTERNAL_RECONSTRUCTION**. Although surface 11 is marked as a variable gap by the patent, the source publishes only infinity-focus zoom rows and supplies no finite-object spacing table, focus travel, or close-focus magnification. The authored values therefore keep every `[infinity, close]` pair identical at all three zoom positions. The viewer receives the published infinity geometry only; it does not simulate an invented close-focus state.
+The model shows infinity focus only. Although surface 11 is marked as a variable gap by the patent, the source publishes only infinity-focus zoom rows and supplies no close-focus spacing table, focus travel, or close-focus magnification. Every spacing therefore stays at its infinity value at both ends of the focus control at all three zoom positions. The viewer receives the published infinity geometry only; it does not simulate an invented close-focus state.
 
-The production minimum focus distance stored as metadata is **0.5 m**, taken from a Nikon user manual preserved by an archival mirror. That product specification is not used to solve or infer L21 travel. Consequently, no quantitative statement about internal focus displacement, close-focus magnification, or aberration change with focusing is made here.
+The production minimum focus distance recorded as product information is **0.5 m**, taken from a Nikon user manual preserved by an archival mirror. That product specification is not used to solve or infer L21 travel. Consequently, no quantitative statement about internal focus displacement, close-focus magnification, or aberration change with focusing is made here.
 
 ## Aspherical Surfaces
 

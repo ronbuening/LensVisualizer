@@ -90,7 +90,7 @@ The actual pinned runtime resolves the four labels to spectral proxies N-LASF44,
 
 The source publishes one prescription and no finite-focus spacing law. The manufacturer documents manual focusing and a 0.9 m minimum focusing distance, but that specification does not identify a unique internal or unit-motion solution for the patent table.
 
-The model’s disposition is **NO_INTERNAL_RECONSTRUCTION**. Close focus is **not modeled**: the data uses closeFocusM = 1e15 and an empty var object, with an explicit infinity-only disclosure. Focus-control samples remain the same geometry. No focus travel, breathing behavior, or finite-conjugate performance is inferred from the production minimum-focus distance.
+Close focus is **not modeled**: the focus control is held at infinity, no spacing changes with focus, and the focus caption says the model is infinity-only. The stored focus value is not a product minimum focus distance. Every focus-control position shows the same geometry. No focus travel, breathing behavior, or close-focus performance is inferred from the production minimum-focus distance.
 
 ## Aspherical Surfaces
 

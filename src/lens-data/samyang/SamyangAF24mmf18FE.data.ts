@@ -42,7 +42,7 @@ const LENS_DATA = {
   key: "samyang-af-24mm-f1p8-fe",
   maker: "Samyang",
   name: "SAMYANG AF 24mm f/1.8 FE",
-  subtitle: "US 2024/0151940 A1 Example 1 — production correlation inferred",
+  subtitle: "US 2024/0151940 A1 Example 1 — inferred production match",
 
   catalog: {
     lensMounts: ["sony-fe"],

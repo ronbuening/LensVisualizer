@@ -45,7 +45,7 @@ const LENS_DATA = {
   key: "schneider-variogon-8-40-f18",
   maker: "Schneider-Kreuznach",
   name: "SCHNEIDER-KREUZNACH VARIOGON 8-40mm f/1.8",
-  subtitle: "US 3,442,573 Example 1 — convergent production correlation; patent attribution not manufacturer-confirmed",
+  subtitle: "US 3,442,573 Example 1 — strong production match; patent attribution not maker-confirmed",
 
   catalog: {
     imageFormat: "super-8",

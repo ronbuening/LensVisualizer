@@ -20,9 +20,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Zoom-only infinity-state gaps: D(5), D(13), D(19), D(22), D(31). With the image plane
  * fixed, LG2 reverses absolute axial direction between the intermediate and tele states.
  *
- * Focus status: NO_INTERNAL_RECONSTRUCTION. Example 4 publishes infinity-focus zoom
- * states only. The manufacturer's 0.38 m MFD is retained as catalog metadata without
- * inventing internal close-focus spacings.
+ * Focus: infinity only. Example 4 publishes infinity-focus zoom
+ * states only. The manufacturer's 0.38 m MFD is product information only; focus travel
+ * is not modeled.
  *
  * Asphere convention: the patent epsilon converts to the standard conic constant as
  * K = epsilon - 1. Published A2 terms are zero; A4-A10 are retained. A12/A14 are zero
@@ -48,7 +48,7 @@ const LENS_DATA = {
   key: "tamron-sp-a007-24-70mm-f28-vc",
   maker: "Tamron",
   name: "TAMRON SP 24-70mm f/2.8 Di VC USD",
-  subtitle: "US 8,810,918 B2 Example 4 — A007 correlation (inferred)",
+  subtitle: "US 8,810,918 B2 Example 4 — inferred A007 match",
 
   catalog: {
     lensMounts: ["canon-ef", "nikon-f", "sony-a"],
@@ -438,8 +438,8 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.38,
     description:
-      "NO_INTERNAL_RECONSTRUCTION: Example 4 publishes infinity-focus zoom states only. " +
-      "The 0.38 m manufacturer MFD is retained as metadata; no axial close-focus movement is modeled.",
+      "Infinity focus only. Example 4 publishes infinity-focus zoom states only, so focus travel is not modeled; zoom movement is. " +
+      "Tamron's 0.38 m minimum focus distance is product information.",
   },
 
   /* (moved from var) ── Published infinity-focus zoom spacings; no close-focus reconstruction ── */

@@ -19,7 +19,7 @@ const LENS_DATA = {
   key: "canon-r-58mm-f12",
   maker: "Canon",
   name: "CANON R 58mm f/1.2",
-  subtitle: "JP S40-24553 B, sole example — probable production correlation",
+  subtitle: "JP S40-24553 B, sole example — probable production match",
   visible: true,
   catalog: {
     lensMounts: ["canon-r"],

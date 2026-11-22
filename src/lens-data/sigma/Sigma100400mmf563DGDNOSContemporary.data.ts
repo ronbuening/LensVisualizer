@@ -32,7 +32,7 @@ const LENS_DATA = {
   key: "sigma-100-400-f5-63-dg-dn-os-c",
   maker: "Sigma",
   name: "SIGMA 100-400mm f/5-6.3 DG DN OS | Contemporary",
-  subtitle: "JP 2021-92636 A, Numerical Example 1 — production correlation",
+  subtitle: "JP 2021-92636 A, Numerical Example 1 — production match",
   catalog: {
     lensMounts: ["l-mount", "sony-fe", "fujifilm-x"],
     imageFormat: "135-full-frame",

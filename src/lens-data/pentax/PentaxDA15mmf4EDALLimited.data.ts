@@ -28,7 +28,7 @@ const LENS_DATA = {
   key: "pentax-smc-da-15mm-f4-ed-al-limited",
   maker: "Pentax",
   name: "PENTAX DA 15mm f/4 ED AL Limited",
-  subtitle: "US 7,843,651 B2, Embodiment 1 \u2014 probable production correlation",
+  subtitle: "US 7,843,651 B2, Embodiment 1 \u2014 probable production match",
   catalog: {
     lensMounts: ["pentax-k"],
     imageFormat: "aps-c",

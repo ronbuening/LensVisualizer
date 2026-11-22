@@ -458,7 +458,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 2,
     description:
-      "PUBLISHED internal focus: G1m (L15-L17) translates 17.49408 mm imageward from infinity to the patent's 2 m state; G2/G3 zoom gaps are published. G4m VR decenter is transverse and is not represented as an axial var state.",
+      "PUBLISHED internal focus: G1m (L15-L17) translates 17.49408 mm imageward from infinity to the patent's 2 m state; G2/G3 zoom gaps are published. G4m VR decenter is transverse and is not modeled as a change in axial spacing.",
     conjugates: [
       {
         zoomStation: 0,

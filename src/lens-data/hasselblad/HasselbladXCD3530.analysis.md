@@ -162,7 +162,7 @@ The patent states that the optical system may focus by moving G1 and G2 independ
 
 Hasselblad describes the production XCD 3,5/30 as full focusing with a floating mechanism and publishes a minimum object-to-image-plane distance of 0.40 m and maximum image scale of 1:9.6. Those production quantities are rounded and do not provide the internal group positions.
 
-The final data therefore has focus status **NO_INTERNAL_RECONSTRUCTION**. Its `var` object is empty and the only modeled optical state is the published infinity prescription. `closeFocusM: 0.4` is retained as product metadata for the interface; it does not imply that the displayed surfaces move to a reconstructed 0.40 m state.
+The model therefore shows the lens at infinity only: no spacing changes with focus, and the only modeled optical state is the published infinity prescription. The 0.40 m close-focus figure is kept as product information for the focus control; it does not imply that the displayed surfaces move to a modeled 0.40 m state.
 
 This omission is deliberate. A two-group diagnostic using the rounded 0.40 m and 1:9.6 values as exact constraints is unstable with respect to the last displayed digit of magnification and can drive the stop-to-G2 spacing negative. The available sources do not uniquely constrain a physically defensible internal close-focus model.
 
