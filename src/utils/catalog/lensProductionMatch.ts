@@ -7,9 +7,9 @@ const PRODUCTION_MATCH_BY_KEY: Readonly<Partial<Record<string, boolean>>> = {
   "canon-ef-20mm-f28-usm": true, // Canon's rear focus with a floating effect is the patent's single moving rear group.
   "canon-ef-70-200f28l-is-usm": false, // 21 elements in 19 groups versus the retail 23 in 18.
   "canon-ef-70-300mm-f45-56-do-is-usm": false, // 17 elements in 14 groups versus Canon's 18 in 12.
-  "canon-ef-s-18-135mm-f35-56-is-stm": false, // 11 optical groups in the model versus 12 in production.
+  "canon-ef-s-18-135mm-f35-56-is-stm": true, // The outline coincides with Canon's drawing; only the published group count differs, 11 against 12.
   "canon-rf-14mm-f14-l-vcm": false, // Canon describes a concave focus-group asphere where the model has a biconvex lens.
-  "canon-rf-70-200-f28": false, // 12 air-separated groups versus 13 in production.
+  "canon-rf-70-200-f28": true, // The outline coincides with Canon's drawing; only the published group count differs, 12 against 13.
   "canon-rf-85f12l": true, // Nine groups and the special optics agree; the 14 modeled elements include the bonded Lp2 layer.
   "canon-ts-e-24mm-f35l-ii": false, // 10 air-separated groups versus Canon's 11.
   "canon-tse-50f28l-macro": true, // Canon's own diagram and Japanese page show two UD elements and no asphere, as modeled.
@@ -24,11 +24,11 @@ const PRODUCTION_MATCH_BY_KEY: Readonly<Partial<Record<string, boolean>>> = {
   "leica-super-vario-elmar-sl-16-35mm-f35-45-asph": true, // Leica's manual describes a two-lens cemented focusing element, as modeled.
   "meyer-optik-gorlitz-double-plasmat-135mm-f45": true, // No construction difference is documented; Optical Bench lists the same patent example.
   "meyer-optik-gorlitz-kino-plasmat-100-f2": true,
-  "minolta-250mm-f56-rf": false, // The patent design is f/4.5; Minolta's lens is f/5.6.
-  "minolta-af-70-200mm-f28-apo-g-d-ssm": false, // 15 air-separated groups versus 16 in production.
+  "minolta-250mm-f56-rf": true, // Minolta's section shows the same optics plus a rear filter; the patent figure is labeled f/4.5.
+  "minolta-af-70-200mm-f28-apo-g-d-ssm": true, // The outline coincides with Sony's drawing; only the published group count differs, 15 against 16.
   "nikkor-85f14d": false, // Patent candidate has an additional element and group.
   "nikkor-af-s-58f14g": false, // Production separates the post-stop pair and moves an asphere.
-  "nikkor-afs-16-35f4-vr": false, // The patent has 11 air-separated groups versus Nikon's 12.
+  "nikkor-afs-16-35f4-vr": true, // The outline coincides with Nikon's drawing; only the published group count differs, 11 against 12.
   "nikon-af-nikkor-35mm-f2d": true, // The lens extends as a unit, as in the patent; only Nikon USA's table lists rear focusing.
   "nikon-af-s-dx-micro-nikkor-40mm-f28g": false, // A confirmed group-count difference and different focus travel.
   "nikon-af-s-fisheye-nikkor-8-15mm-f35-45e-ed": false, // 18 elements versus 15, with different aspheres.
@@ -39,7 +39,7 @@ const PRODUCTION_MATCH_BY_KEY: Readonly<Partial<Record<string, boolean>>> = {
   "nikon-fisheye-nikkor-105mm-f28g-ed": true, // Nikon's manual lists no aspherical element; only Nikon USA's table does.
   "nikon-nikkor-20mm-f4": false, // The patent splits a positive production element into two.
   "nikon-uv-nikkor-55mm-f4": true, // Three elements at f/4 as in the 1968 handbook; Optical Bench lists the same patent example.
-  "nikon-zoom-nikkor-56-168-f27-48-coolpix-sq": false, // The patent focuses with G3; Nikon describes G1 focus for the production lens.
+  "nikon-zoom-nikkor-56-168-f27-48-coolpix-sq": true, // The outline coincides with Nikon's drawing; Nikon focuses with G1, the patent with G3.
   "olympus-mzuiko-12mm-f2": false, // The patent air-spaces a pair and has nine groups versus eight in production.
   "olympus-zuiko-auto-fisheye-8mm-f28": true, // Olympus's 11 elements in 7 groups are the model's 10 in 6 plus the built-in filter.
   "panasonic-leica-dg-25f14": true, // Counts and aspheres agree; Optical Bench lists this Sigma patent example for the Mark II.
