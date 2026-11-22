@@ -118,6 +118,7 @@ describe("parseLensIndexUrlState", () => {
     expect(parse("?filters=open").filterOpen).toBe(true);
     expect(parse("?makers=canon").filterOpen).toBe(true);
     expect(parse("?sources=literature&production=matched").filterOpen).toBe(false);
+    expect(parse("?sources=patent,literature").filterOpen).toBe(true);
     expect(parse("?filters=closed").filterOpen).toBe(false);
   });
 });

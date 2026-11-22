@@ -9,6 +9,7 @@ import {
   DEBUG_CATALOG_ENTRIES,
   catalogEntriesForView,
   groupByAssignee,
+  groupByFocalLength,
   groupByImageFormat,
   groupByInventor,
   groupByMount,
@@ -175,6 +176,36 @@ describe("lens index catalog metadata grouping", () => {
     expect(groups.map((group) => group.label)).toEqual(["Alpha Optics", "Beta Optics"]);
     expect(groups[0].lenses).toEqual([multiAssignee]);
     expect(groups[1].lenses).toEqual([multiAssignee]);
+  });
+
+  it("buckets focal lengths by whole millimetres and keeps lenses without one", () => {
+    const focal = (key: string, focalLengthMarketing?: number | [number, number]): CatalogLensEntry => ({
+      ...entry(key),
+      data: { key, name: key, focalLengthMarketing } as LensSummary,
+    });
+    const sections = groupByFocalLength([
+      focal("unknown"),
+      focal("prime-24-2", 24.2),
+      focal("prime-24-6", 24.6),
+      focal("zoom-24-70", [24, 70]),
+    ]);
+
+    expect(
+      sections.map((section) => [
+        section.label,
+        section.subGroups.map((group) => [group.label, group.lenses.map((lens) => lens.key)]),
+      ]),
+    ).toEqual([
+      [
+        "Primes",
+        [
+          ["Ultrawide (≤24mm)", ["prime-24-2"]],
+          ["Wide (25–39mm)", ["prime-24-6"]],
+          ["Unknown Focal Length", ["unknown"]],
+        ],
+      ],
+      ["Zooms", [["Ultrawide (≤24mm)", ["zoom-24-70"]]]],
+    ]);
   });
 
   it("duplicates multi-mount lenses into each mount group and puts unknown last", () => {

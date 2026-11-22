@@ -184,11 +184,18 @@ export default function useLensIndexFilters({
       ),
     }));
 
+  // Re-selecting the current value keeps the same filter object, so the list is not regrouped.
   const selectSourceKind = (kind: LensSourceKind) =>
-    setCustomFilter((previous) => ({ ...previous, sourceKinds: [kind] }));
+    setCustomFilter((previous) =>
+      previous.sourceKinds.length === 1 && previous.sourceKinds[0] === kind
+        ? previous
+        : { ...previous, sourceKinds: [kind] },
+    );
 
   const setProductionMatch = (productionMatch: ProductionMatchFilter) =>
-    setCustomFilter((previous) => ({ ...previous, productionMatch }));
+    setCustomFilter((previous) =>
+      previous.productionMatch === productionMatch ? previous : { ...previous, productionMatch },
+    );
 
   const clearSourceKindSelection = () =>
     setCustomFilter((previous) => ({
@@ -216,7 +223,13 @@ export default function useLensIndexFilters({
       return;
     }
 
-    applyNumericField(field, clampNumericFilterValue(parsed, config.min, config.max, config.step));
+    const value = clampNumericFilterValue(parsed, config.min, config.max, config.step);
+    if (value === customFilter[field]) {
+      // Nothing to commit: restore the draft text without regrouping the list.
+      resetNumericInputField(field);
+      return;
+    }
+    applyNumericField(field, value);
   };
 
   const handleNumericInputKeyDown = (field: NumericFilterField, event: React.KeyboardEvent<HTMLInputElement>) => {

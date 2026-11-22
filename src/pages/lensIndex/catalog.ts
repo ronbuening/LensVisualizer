@@ -58,8 +58,10 @@ const UNKNOWN_FOCAL_BUCKET = "Unknown Focal Length";
 const FOCAL_BUCKET_LABELS = [...FOCAL_BUCKETS.map(({ label }) => label), UNKNOWN_FOCAL_BUCKET];
 
 function focalBucketLabel(fl: number): string {
+  // The labels name whole millimetres, so a 24.2 mm lens belongs with 24 mm.
+  const rounded = Math.round(fl);
   for (const { label, maxFl } of FOCAL_BUCKETS) {
-    if (fl <= maxFl) return label;
+    if (rounded <= maxFl) return label;
   }
   return FOCAL_BUCKETS[FOCAL_BUCKETS.length - 1].label;
 }
@@ -298,6 +300,8 @@ export function hasActiveCustomFilters(filter: CustomFilterState, bounds: Filter
 /** These filters need the custom panel to display their active selections. */
 export function hasActivePanelFilters(filter: CustomFilterState, bounds: FilterBounds): boolean {
   return (
+    // The toolbar shows one source by name; only the panel shows which sources a multiple selection holds.
+    filter.sourceKinds.length > 1 ||
     filter.focalMin !== bounds.focalMin ||
     filter.focalMax !== bounds.focalMax ||
     filter.apertureMin !== bounds.apertureMin ||
