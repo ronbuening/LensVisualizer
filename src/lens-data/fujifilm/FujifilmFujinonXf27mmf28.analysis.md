@@ -20,7 +20,7 @@ The correlation to the original FUJIFILM FUJINON XF27mmF2.8 is strong but remain
 3. FUJIFILM identifies the original lens as an X-mount APS-C lens. The implemented metadata therefore uses `lensMounts: ["fujifilm-x"]` and `imageFormat: "aps-c"`.
 4. The patent priority date is 2013-05-09. An official FUJIFILM article dated 2013-11-20 discusses the original XF27mmF2.8, establishing that the production lens was publicly marketed by that date. The exact launch date was not established from a current primary launch notice in the source set used here.
 
-No FUJIFILM source in the dossier identifies US 2016/0011404 or Example 5 as the production prescription. The identification should therefore be read as a technically close correlation, not documentary confirmation.
+No FUJIFILM source consulted identifies US 2016/0011404 or Example 5 as the production prescription. The identification should therefore be read as a technically close correlation, not documentary confirmation.
 
 ## Optical Architecture
 
@@ -97,7 +97,7 @@ The calculated Petzval sum of the final d-line prescription is +0.005715845 mm�
 
 The patent's preferred focus arrangement is front focusing: only G1 and G2 move integrally toward the object as focus changes from infinity toward a nearer object (¶0077; claim 18). The patent does not publish a finite-distance Example 5 spacing table, focus travel, object-distance mapping, or a close-focus aberration prescription. It also does not provide enough information to determine unambiguously whether the stop co-moves in a production implementation.
 
-For that reason the data file uses `NO_INTERNAL_RECONSTRUCTION`. The `var` object is empty, and all optical calculations in this record refer to the published infinity state. FUJIFILM's marketed minimum focus distance of 0.34 m and maximum magnification of 0.1× are retained as production metadata only; neither value is used to invent internal spacing changes.
+For that reason the model shows the lens at infinity only and moves no group. No spacing changes with focus, and all optical calculations in this record refer to the published infinity state. FUJIFILM's marketed minimum focus distance of 0.34 m and maximum magnification of 0.1× are recorded as product information only; neither value is used to work out any close-focus movement.
 
 ## Aspherical Surfaces
 

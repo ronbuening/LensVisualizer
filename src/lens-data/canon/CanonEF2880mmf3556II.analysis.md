@@ -149,7 +149,7 @@ The catalog curves supply the C/F/g indices and partial dispersions; the origina
 
 The patent assigns focusing to the complete first unit L1 while L2 and L3 retain their zoom-state positions. Canon describes the production lens as front-group focusing; the mechanical rotation is a means of producing the axial optical motion.
 
-The patent publishes no finite-focus D8 or D17 values, no worked object distance, and no close-focus magnification state. The data therefore uses **`NO_INTERNAL_RECONSTRUCTION`**. `closeFocusM: 0.38` records Canon's rounded production MFD only and does not validate a particular L1 displacement.
+The patent publishes no close-focus D8 or D17 values, no worked object distance, and no close-focus magnification state. The model therefore shows the lens at infinity focus only, and focus travel is not modeled. The 0.38 m close-focus figure records Canon's rounded production MFD only and does not validate a particular L1 displacement.
 
 | Zoom state | D8 infinity / close control | D17 infinity / close control |
 | ---------- | --------------------------: | ---------------------------: |
@@ -157,7 +157,7 @@ The patent publishes no finite-focus D8 or D17 values, no worked object distance
 | Middle     |            11.61 / 11.61 mm |             17.95 / 17.95 mm |
 | Tele       |              1.31 / 1.31 mm |             37.21 / 37.21 mm |
 
-The identical pairs deliberately keep the focus control optically neutral. No focus travel or finite-focus magnification is claimed.
+The identical pairs deliberately keep the focus control optically neutral. No focus travel or close-focus magnification is claimed.
 
 ## Conditional Expressions
 

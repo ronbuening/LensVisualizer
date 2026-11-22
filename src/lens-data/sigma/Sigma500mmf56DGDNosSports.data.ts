@@ -30,7 +30,7 @@ const LENS_DATA = {
   key: "sigma-500mm-f56-dg-dn-os-sports",
   maker: "Sigma",
   name: "SIGMA 500mm f/5.6 DG DN OS | Sports",
-  subtitle: "JP 2025-071886 A, Example 1 — probable production correlation",
+  subtitle: "JP 2025-071886 A, Example 1 — probable production match",
   catalog: {
     lensMounts: ["sony-fe", "l-mount"],
     imageFormat: "135-full-frame",

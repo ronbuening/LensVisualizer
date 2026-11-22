@@ -14,7 +14,7 @@
 
 US 3,973,832 describes a retrofocus wide-angle objective for a single-lens reflex camera. Its general construction divides the lens into three components: a negative front component A, a positive second component B, and a four-lens rear component C. Example 2 is the seven-element, seven-group embodiment with normalized focal length `f = 1`, relative aperture F/2.8, full field angle `2ω = 76°`, and published back focus `s′ = 1.31`. The numerical prescription is the source of the modeled radii, spacings, and refractive-index/Abbe coordinates; the model interprets those coordinates as d-line `nd/νd`. The architectural description and the four governing conditions appear on PDF pages 7–8 of the supplied patent; the Example 2 table is on PDF page 8, printed page 4 (Source 1).
 
-The production identification is a strong correlation rather than a manufacturer-confirmed patent attribution. Minolta-authored system literature documents 28 mm f/2.8 lenses with seven elements in seven groups, approximately 75–76° angle of view, and 0.3 m minimum focus. Those specifications converge with Example 2 in focal-length class, aperture, element/group count, and field coverage. The patent itself never names the commercial lens, and the broad “MD 28mm f/2.8” designation also encompasses a later five-element/five-group redesign. This model therefore represents only the inferred seven-element/seven-group MD-family variant (Sources 2–4; the later 5/5 variant is retained only as a correlation limit in the dossier evidence).
+The production identification is a strong correlation rather than a manufacturer-confirmed patent attribution. Minolta-authored system literature documents 28 mm f/2.8 lenses with seven elements in seven groups, approximately 75–76° angle of view, and 0.3 m minimum focus. Those specifications converge with Example 2 in focal-length class, aperture, element/group count, and field coverage. The patent itself never names the commercial lens, and the broad “MD 28mm f/2.8” designation also encompasses a later five-element/five-group redesign. This model therefore represents only the inferred seven-element/seven-group MD-family variant (Sources 2–4; the later 5/5 variant is noted only as a limit on this identification).
 
 The patent prescription is normalized to `f = 1`; the implemented model applies a uniform scale of 28.0 mm per patent unit. The rounded prescription then computes an effective focal length of 27.99547564 mm rather than exactly 28 mm. Marketing and design values are kept separate: 28 mm is the product-class focal length, while 27.99547564 mm is the verified paraxial EFL of the implemented prescription.
 
@@ -96,7 +96,7 @@ The patent does not assign IVC an isolated aberration-correction function in the
 
 ## Glass Identification and Selection
 
-The patent table publishes refractive-index and Abbe-number coordinates but does not label the reference wavelength. The model treats the pairs as d-line `nd/νd`, consistent with the six-digit glass-code and current catalog comparisons used in the dossier. The patent gives no supplier names, melt designations, C/F/g-line indices, anomalous partial-dispersion values, or Sellmeier coefficients. The data file therefore treats glass identity as a catalog-correlation problem rather than a source fact.
+The patent table publishes refractive-index and Abbe-number coordinates but does not label the reference wavelength. The model treats the pairs as d-line `nd/νd`, consistent with the six-digit glass-code and current catalog comparisons used here. The patent gives no supplier names, melt designations, C/F/g-line indices, anomalous partial-dispersion values, or Sellmeier coefficients. The data file therefore treats glass identity as a catalog-correlation problem rather than a source fact.
 
 | Element(s) | Patent coordinate | Final glass annotation | Identification status |
 |---|---:|---|---|
@@ -113,9 +113,9 @@ No element carries `nC`, `nF`, `ng`, or `dPgF` in the final data. Consequently, 
 
 ## Focus Mechanism
 
-The optical prescription contains only the published design/infinity state. The focus status is `NO_INTERNAL_RECONSTRUCTION`.
+The optical prescription contains only the published design/infinity state. The model therefore shows the lens at infinity only, and no group moves.
 
-Minolta product literature gives a minimum focus distance of 0.3 m for the correlated seven-element/seven-group 28 mm f/2.8 family, and the data retains that value as `closeFocusM` (Sources 2–4). Neither the patent nor the manufacturer sources used for this dossier provide a mechanism-constrained finite-focus spacing law for Example 2. The model therefore has an empty `var` structure and does not invent internal lens motion from minimum-focus distance alone.
+Minolta product literature gives a minimum focus distance of 0.3 m for the matching seven-element/seven-group 28 mm f/2.8 family, and the model records that value as product information (Sources 2–4). Neither the patent nor the manufacturer sources used here give close-focus spacings for Example 2 or the focusing mechanism that would produce them. The model therefore has no spacings that change with focus and does not work out any close-focus movement from the minimum focus distance alone.
 
 This distinction is important: 0.3 m is a production specification, not a solved optical focus state in the current model. No focus breathing, finite-conjugate magnification, group travel, or close-focus aberration behavior is claimed from the infinity prescription.
 
@@ -150,7 +150,7 @@ The patent’s printed normalized back focus `s′ = 1.31` would scale to 36.68 
 
 Because the patent publishes no semi-diameters, the implemented clear apertures are modeled. Portable geometry checks find a maximum spherical rim angle of 46.1019°, a minimum checked element edge thickness of 1.1316 mm, and a minimum shared-gap margin of 0.00712 mm under the current `0.90 × gap` intrusion rule. Exact meridional sampling traced 73 rays: 69 passed, four extreme field/pupil combinations were geometrically unavailable even before modeled-aperture clipping, and no solvable ray was clipped by the modeled surface semi-diameters. Both ±38° chief rays reached the image plane.
 
-These are dossier-level checks, not substitutes for LensVisualizer repository validation. Real `LensDataInput` type checking, `buildLens()/validateLensData()`, project exact tracing, runtime glass resolution, Prettier, and production render-trim diagnostics remain integration-stage checks.
+These are standalone checks, not substitutes for LensVisualizer repository validation. Real `LensDataInput` type checking, `buildLens()/validateLensData()`, project exact tracing, runtime glass resolution, Prettier, and production render-trim diagnostics remain integration-stage checks.
 
 ## Sources and References
 
@@ -162,7 +162,7 @@ These are dossier-level checks, not substitutes for LensVisualizer repository va
 6. OHARA Corporation, **S-LAL Glass Types**; used only for catalog-coordinate comparison. https://oharacorp.com/glass-type/s-lal/
 7. HIKARI Glass Co., Ltd., **J-LAF** and **J-SF** general optical-glass catalogs; used only for catalog-coordinate comparison. https://www.hikari-g.co.jp/optical_glass/general_optical_glass/j-laf/ and https://www.hikari-g.co.jp/optical_glass/general_optical_glass/j-sf/
 
-Computed quantities in this analysis are reproduced by the companion `Minolta28mmf28MD.verify.py` from the exact `Minolta28mmf28MD.data.ts` revision in the same dossier.
+Computed quantities in this analysis are reproduced by the companion `Minolta28mmf28MD.verify.py` from the exact `Minolta28mmf28MD.data.ts` revision reviewed here.
 
 ### Catalog proxy labels
 

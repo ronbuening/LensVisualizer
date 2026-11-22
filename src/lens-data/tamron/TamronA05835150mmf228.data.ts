@@ -38,7 +38,7 @@ const LENS_DATA = {
   key: "tamron-35-150mm-f2-28-di-iii-vxd-a058",
   maker: "Tamron",
   name: "TAMRON 35-150mm f/2-2.8 Di III VXD (A058)",
-  subtitle: "JP 2023-004721 A, Numerical Example 1; construction-correlated production lens",
+  subtitle: "JP 2023-004721 A, Numerical Example 1; production match by construction",
 
   catalog: {
     lensMounts: ["sony-fe", "nikon-z"],

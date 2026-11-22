@@ -37,7 +37,7 @@ const LENS_DATA = {
   key: "nikon-af-micro-nikkor-60mm-f28d",
   maker: "Nikon",
   name: "NIKON AF MICRO-NIKKOR 60mm f/2.8 D",
-  subtitle: "US 5,751,485 — First Embodiment / Table 1; centered-formula correlation",
+  subtitle: "US 5,751,485 — First Embodiment / Table 1; optical-formula match",
 
   catalog: {
     lensMounts: ["nikon-f"],

@@ -43,7 +43,7 @@ const LENS_DATA = {
   key: "konica-hexanon-60f12",
   maker: "Konica",
   name: "KONICA HEXANON 60mm f/1.2 L",
-  subtitle: "JP H11-160615 A Example 1 — 58.26mm F1.24 patent design correlated to the L-mount 60mm f/1.2",
+  subtitle: "JP H11-160615 A Example 1 — 58.26mm F1.24 patent design matched to the L-mount 60mm f/1.2",
 
   catalog: {
     lensMounts: ["leica-ltm"],

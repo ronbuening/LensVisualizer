@@ -155,10 +155,10 @@ not support an APO label or a quantitative claim about secondary spectrum from t
 
 ## Focus Mechanism
 
-The focus status is NO_INTERNAL_RECONSTRUCTION. The patent table supplies a single infinity-design prescription
-and no finite-conjugate spacing schedule. There is no constrained optical/mechanical solution from which to
-infer a unit-focus travel or internal group trajectory. All spacings remain fixed, var is empty, and the
-established closeFocusM = 1e15 sentinel is used. The UI explicitly says that close focus is not modeled.
+The patent table supplies a single infinity-design prescription and no close-focus spacing schedule. There is no
+constrained optical/mechanical solution from which to infer a unit-focus travel or internal group trajectory. All
+spacings remain fixed, and the focus control is held at infinity; the stored value is not a product minimum focus
+distance. The focus caption explicitly says that close focus is not modeled.
 
 Cosina specifies manual, non-rangefinder-coupled scale focus down to 0.3 m for the L39 product. That production
 minimum distance remains contextual information; it does not establish the unknown optical motion law.

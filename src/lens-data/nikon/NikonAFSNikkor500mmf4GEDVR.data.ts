@@ -43,7 +43,7 @@ const LENS_DATA = {
   key: "nikon-af-s-nikkor-500mm-f4g-ed-vr",
   maker: "Nikon",
   name: "NIKON AF-S NIKKOR 500mm f/4 G ED VR",
-  subtitle: "US 2009/0190239 A1 Example 1 — optical-specification correlation; attribution not manufacturer-confirmed",
+  subtitle: "US 2009/0190239 A1 Example 1 — production match in optical specifications; not maker-confirmed",
 
   catalog: {
     lensMounts: ["nikon-f"],

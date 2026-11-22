@@ -157,15 +157,13 @@ No APO or anomalous-partial-dispersion claim follows from these values. The sele
 
 ## Focus Mechanism
 
-The implemented focus status is **NO_INTERNAL_RECONSTRUCTION**.
-
 Example 3 publishes only infinity-focus wide, intermediate, and telephoto states. Tables 11 and 12 define zoom positions and variable gaps, and Figures 10–12 are explicitly infinity-focus aberration diagrams. No close-focus table supplies group travel, and the selected embodiment does not uniquely state which group or combination of groups performs production focusing.
 
 The patent's general paragraph 0049 says the fourth group may be used for focusing, and paragraph 0127 says the camera's lens-driving unit moves predetermined lenses for focusing. Those statements leave the Example 3 mechanism underdetermined. They do not justify synthesizing a GR4-only focus law.
 
-Sony's RX100 specification gives a product focus range of 1.97 inches to infinity at the wide end and 1.80 feet to infinity at the telephoto end. The data file records `closeFocusM: 0.05` as wide-end product metadata because 1.97 inches is approximately 0.05 m. That value is not used to create a close-focus optical state. Every focus pair in the zoom `var` table therefore repeats the same infinity spacing.
+Sony's RX100 specification gives a product focus range of 1.97 inches to infinity at the wide end and 1.80 feet to infinity at the telephoto end. The model records 0.05 m as the wide-end product figure because 1.97 inches is approximately 0.05 m. That value is not used to create a close-focus optical state. At every zoom position, each spacing that changes with focus therefore keeps the same infinity value at both ends of the focus control, and the model shows infinity focus only.
 
-This distinction matters because a production minimum-focus distance does not uniquely determine internal group motion. Any future close-focus reconstruction would require additional mechanism constraints or published spacing data and would be a different modeling status.
+This distinction matters because a production minimum-focus distance does not uniquely determine internal group motion. Modeling close-focus movement would require additional mechanism constraints or published spacing data.
 
 ## Aspherical Surfaces
 

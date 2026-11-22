@@ -37,7 +37,7 @@ const LENS_DATA = {
   key: "sigma-apo-50-500mm-f45-63-dg-os-hsm",
   maker: "Sigma",
   name: "SIGMA APO 50-500mm f/4.5-6.3 DG OS HSM",
-  subtitle: "JP 2011-039260 A, Example 2 — probable production correlation",
+  subtitle: "JP 2011-039260 A, Example 2 — probable production match",
   visible: true,
   layout: { yScFill: 0.66 },
   catalog: {

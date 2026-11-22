@@ -28,7 +28,7 @@ const LENS_DATA = {
   key: "voigtlander-ultra-wide-heliar-12mm-f56-aspherical-l39",
   maker: "Voigtländer",
   name: "VOIGTLÄNDER ULTRA WIDE-HELIAR 12mm f/5.6 Aspherical L39",
-  subtitle: "JP 2001-124985 A, Example 1 (scaled ×12) — supported but unconfirmed L39 production correlation",
+  subtitle: "JP 2001-124985 A, Example 1 (scaled ×12) — supported but unconfirmed L39 production match",
 
   catalog: {
     lensMounts: ["leica-ltm"],

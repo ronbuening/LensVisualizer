@@ -17,7 +17,7 @@ const LENS_DATA = {
   "key": "sigma-4-5mm-f2-8-ex-dc-circular-fisheye-hsm",
   "maker": "Sigma",
   "name": "SIGMA 4.5mm f/2.8 EX DC CIRCULAR FISHEYE HSM",
-  "subtitle": "JP 2009-058817 A, Example 3 \u2014 strong production correlation; not manufacturer-confirmed",
+  "subtitle": "JP 2009-058817 A, Example 3 \u2014 strong production match; not maker-confirmed",
   "catalog": {
     "lensMounts": [
       "sigma-sa",

@@ -155,7 +155,7 @@ For close-up photography at the short focal-length end, the patent describes a s
 
 Nikon's production manual specifies normal focusing from infinity to 2 m. At the 100 mm setting only, the lens enters a macro range from 2 m to 0.71 m, and zooming is disabled in that macro range. Focus and zoom share one mechanical ring: rotation focuses and axial sliding changes focal length. [2, pp. 7–9]
 
-The patent does not publish numerical focus travels or close-focus air-space tables for Example 2. The data therefore uses `NO_INTERNAL_RECONSTRUCTION`: the three zoom-variable gaps contain identical infinity/close members at each zoom endpoint, and 0.71 m is retained only as manufacturer metadata. No internal 2 m or 0.71 m focus state is synthesized from object distance alone.
+The patent does not publish numerical focus travels or close-focus air-space tables for Example 2. The model therefore shows infinity focus only: at each zoom endpoint, the three spacings that change with zoom stay at their infinity values at both ends of the focus control, and 0.71 m is recorded only as Nikon's product specification. No internal 2 m or 0.71 m focus state is synthesized from object distance alone.
 
 ## Aberration-Correction Strategy
 

@@ -51,7 +51,7 @@ const LENS_DATA = {
   key: "viltrox-af-27mm-f12-pro-xf",
   maker: "Viltrox",
   name: "VILTROX AF 27mm f/1.2 PRO XF",
-  subtitle: "CN 115840281 A Example 4 — production correlation to AF 27mm f/1.2 PRO XF",
+  subtitle: "CN 115840281 A Example 4 — production match to AF 27mm f/1.2 PRO XF",
 
   catalog: {
     lensMounts: ["fujifilm-x"],

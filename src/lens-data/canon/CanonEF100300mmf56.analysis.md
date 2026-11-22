@@ -148,7 +148,7 @@ No element carries explicit patent C-, F- or g-line indices or `dPgF`. Neither t
 
 The patent states that focusing is preferably performed by moving the first lens group because this produces relatively small aberration variation. It does not publish a finite-object spacing table, focus travel, magnification state, or close-focus group position for the numerical example. [1]
 
-The data file therefore uses `NO_INTERNAL_RECONSTRUCTION`. All zoom `var` entries have identical infinity and close values, so the modeled internal geometry remains at the published infinity states. Canon's 2.0 m closest-focusing-distance specification is retained as product metadata only. It is not used to solve a Group I position, and no numerical close-focus magnification is attributed to the patent model. [2, 3]
+The model therefore shows the lens at infinity focus only. Every spacing that changes with zoom keeps the same value at both ends of the focus control, so the modeled internal geometry remains at the published infinity states and focus travel is not modeled. Canon's 2.0 m closest-focusing-distance specification is recorded as product information only. It is not used to solve a Group I position, and no numerical close-focus magnification is attributed to the patent model. [2, 3]
 
 ## Conditional Expressions
 

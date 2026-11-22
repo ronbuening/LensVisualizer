@@ -53,7 +53,7 @@ const LENS_DATA = {
   key: "pentax-dfa645-25mm-f4-al-if-sdm-aw",
   maker: "Pentax",
   name: "PENTAX SMC D FA645 25mm f/4 AL [IF] SDM AW",
-  subtitle: "US 8,422,143 B2 Example 1 — Masakazu Saori; strong production correlation",
+  subtitle: "US 8,422,143 B2 Example 1 — Masakazu Saori; strong production match",
 
   catalog: {
     lensMounts: ["pentax-645"],

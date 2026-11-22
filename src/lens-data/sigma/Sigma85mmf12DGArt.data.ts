@@ -25,7 +25,7 @@ const LENS_DATA = {
   maker: "Sigma",
   name: "SIGMA 85mm f/1.2 DG | Art",
   subtitle:
-    "JP 2025-124346 A, Example 2 — construction correlation with the A026 production lens",
+    "JP 2025-124346 A, Example 2 — production match by construction with the A026 production lens",
 
   catalog: {
     lensMounts: ["l-mount", "sony-fe"],
