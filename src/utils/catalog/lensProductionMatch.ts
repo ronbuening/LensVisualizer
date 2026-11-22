@@ -22,6 +22,7 @@ const PRODUCTION_MATCH_BY_KEY: Readonly<Partial<Record<string, boolean>>> = {
   "industar-itmo2013-v2": true, // The 1970 GOI catalogue prints the Industar-50 with this 18.86 mm length and 43.53 mm back focus.
   "kodak-ektar-52f15": true,
   "leica-super-vario-elmar-sl-16-35mm-f35-45-asph": true, // Leica's manual describes a two-lens cemented focusing element, as modeled.
+  "meyer-optik-gorlitz-double-plasmat-135mm-f45": true, // No construction difference is documented; Optical Bench lists the same patent example.
   "meyer-optik-gorlitz-kino-plasmat-100-f2": true,
   "minolta-250mm-f56-rf": false, // The patent design is f/4.5; Minolta's lens is f/5.6.
   "minolta-af-70-200mm-f28-apo-g-d-ssm": false, // 15 air-separated groups versus 16 in production.
@@ -37,11 +38,11 @@ const PRODUCTION_MATCH_BY_KEY: Readonly<Partial<Record<string, boolean>>> = {
   "nikon-afs-105f28-vr-micro": false, // 11 air-separated groups versus Nikon's 12.
   "nikon-fisheye-nikkor-105mm-f28g-ed": true, // Nikon's manual lists no aspherical element; only Nikon USA's table does.
   "nikon-nikkor-20mm-f4": false, // The patent splits a positive production element into two.
-  "nikon-uv-nikkor-55mm-f4": false, // Catalog production status is unestablished.
+  "nikon-uv-nikkor-55mm-f4": true, // Three elements at f/4 as in the 1968 handbook; Optical Bench lists the same patent example.
   "nikon-zoom-nikkor-56-168-f27-48-coolpix-sq": false, // The patent focuses with G3; Nikon describes G1 focus for the production lens.
   "olympus-mzuiko-12mm-f2": false, // The patent air-spaces a pair and has nine groups versus eight in production.
   "olympus-zuiko-auto-fisheye-8mm-f28": true, // Olympus's 11 elements in 7 groups are the model's 10 in 6 plus the built-in filter.
-  "panasonic-leica-dg-25f14": false, // A Sigma patent linked to this lens only by speculation.
+  "panasonic-leica-dg-25f14": true, // Counts and aspheres agree; Optical Bench lists this Sigma patent example for the Mark II.
   "pentax-dfa645-25mm-f4-al-if-sdm-aw": true, // With the patent's filter plate the example has eight air-separated units, as Ricoh lists.
   "pentax-hd-d-fa-star-70-200mm-f28-ed-dc-aw": false, // Four cemented doublets yield 15 groups versus Ricoh's 16.
   "pentax-hd-d-fa645-35f35-al-if": false, // Eight air-separated groups versus Ricoh's seven.
@@ -57,8 +58,10 @@ const PRODUCTION_MATCH_BY_KEY: Readonly<Partial<Record<string, boolean>>> = {
   "sony-vario-sonnar-88-733f28-rx10": false, // The example covers 9.2–64.7 mm versus 8.8–73.3 mm.
   "steinheil-periskop-1865-von-rohr-1899": true, // Von Rohr identifies the 1865 marketed form.
   "voigtlander-apo-lanthar-180-f4": false, // The modeled example is 198 mm; the notes favor the 178 mm example.
+  "voigtlander-cine-tele-anastigmat-100mm-f45": true, // No construction difference is documented; Optical Bench lists the same patent example.
   "voigtlander-macro-apo-lanthar-125-f25": false, // 10 elements versus 11 in the retail lens.
   "voigtlander-portrait-1878-von-rohr-1899": true, // Published reduction of the form Voigtländer introduced in 1878.
+  "voigtlander-tele-dynar-100mm-f63": true, // Five elements in three groups at f/6.3, as sold; 100 mm is the patent's scale.
   "zeiss-otus-ml-85mm-f14": false, // One aspherical element versus two in production.
 };
 
