@@ -31,7 +31,7 @@ const LENS_DATA = {
   key: "fujifilm-fujinon-mkx18-55mm-t29",
   maker: "Fujifilm",
   name: "FUJIFILM FUJINON MKX18-55mm T2.9",
-  subtitle: "US 2018/0188508 A1, Example 6 — strong production correlation; not manufacturer-confirmed",
+  subtitle: "US 2018/0188508 A1, Example 6 — strong production match; not maker-confirmed",
   visible: true,
   catalog: {
     lensMounts: ["fujifilm-x"],

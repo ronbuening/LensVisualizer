@@ -53,7 +53,7 @@ The runtime resolves the modern N-BAK4 curve as a coordinate-compatible spectral
 
 ## Glass Identification and Selection
 
-The model deliberately preserves the patent's native **Fraunhofer e-line** convention. The historical schema fields `nd` and `vd` therefore contain `ne` and `νe`, with `indexReference: "e"` on all three elements.
+The model deliberately preserves the patent's native **Fraunhofer e-line** convention. The model's historical fields `nd` and `vd` therefore contain `ne` and `νe`, with `indexReference: "e"` on all three elements.
 
 | Element | Source identity | ne | νe | Spectral treatment |
 |---|---|---:|---:|---|
@@ -65,9 +65,9 @@ The patent defines `νe = (ne − 1)/(nF′ − nC′)` and `ν′ = (ng − nF�
 
 ## Focus Mechanism
 
-The patent publishes only the infinity state: rays enter parallel to the optical axis, and no focus-dependent spacing table is supplied. The data file therefore uses **NO_INTERNAL_RECONSTRUCTION** and contains no authored `var` spacings.
+The patent publishes only the infinity state: rays enter parallel to the optical axis, and no focus-dependent spacing table is supplied. The model therefore shows the lens at infinity only, and no spacing changes with focus.
 
-Production literature gives a **12.5 m minimum focusing distance** and describes rapid focusing by a rotary knob and parallel guide. Those product facts do not uniquely determine how the optical cell moves relative to the image plane, so 12.5 m is retained only as production metadata. The model does not claim a reconstructed close-focus optical state, focus travel, or focus-dependent BFD.
+Production literature gives a **12.5 m minimum focusing distance** and describes rapid focusing by a rotary knob and parallel guide. Those product facts do not uniquely determine how the optical cell moves relative to the image plane, so 12.5 m is recorded only as product information. The model does not claim a close-focus optical state, focus travel, or focus-dependent BFD.
 
 ## Chromatic Correction Strategy
 

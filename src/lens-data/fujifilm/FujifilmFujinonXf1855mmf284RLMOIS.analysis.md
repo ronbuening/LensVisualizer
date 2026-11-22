@@ -165,9 +165,9 @@ The patent gives one explicit glass-pairing rationale for the OIS subgroup. In G
 
 ## Focus Mechanism
 
-Focus status is **NO_INTERNAL_RECONSTRUCTION**. Patent ¶0075 identifies G4-2 as the focusing subgroup and states that it moves from the object side toward the image side as focus changes from infinity toward close-up. The final prescription preserves that mechanism description but contains no invented internal travel.
+The model shows infinity focus only; focus travel is not modeled. Patent ¶0075 identifies G4-2 as the focusing subgroup and states that it moves from the object side toward the image side as focus changes from infinity toward close-up. This analysis records that mechanism description, but the model does not move G4-2.
 
-Example 1 does not publish numerical close-focus spacings for G4-2. FUJIFILM specifies production minimum focus distances of 0.30 m at the wide end and 0.40 m at the telephoto end, but those external object distances do not uniquely determine the G4-2 translation and its two adjacent air gaps. The data file therefore keeps all `var` pairs identical at each zoom keyframe and uses `closeFocusM: 0.3` only as catalog/UI metadata. It must not be read as a solved close-focus optical state.
+Example 1 does not publish numerical close-focus spacings for G4-2. FUJIFILM specifies production minimum focus distances of 0.30 m at the wide end and 0.40 m at the telephoto end, but those external object distances do not uniquely determine the G4-2 translation and its two adjacent air gaps. The model therefore keeps every spacing that changes with focus at its infinity value at both ends of the focus control, at each zoom keyframe, and records the 0.30 m close-focus figure only as product information. It must not be read as a solved close-focus optical state.
 
 FUJIFILM markets the production lens with linear-motor autofocus. The patent, however, specifies the optical focusing subgroup and direction rather than a motor implementation. The production motor specification is therefore kept as a product-correlation fact, not used to infer additional patent mechanics.
 
@@ -319,7 +319,7 @@ L11, L23, and L33 carry **inferred APD** colors. Their coordinate-compatible cat
 
 ## Sources
 
-1. **Primary patent:** Tetsuya Ori and Michio Cho, “Zoom Lens and Imaging Apparatus,” US 2015/0177500 A1, published June 25, 2015. Relevant locations: Fig. 1; ¶0057–¶0076; ¶0096–¶0112; Tables 1–4; Table 21. The original PDF is included with this dossier.
+1. **Primary patent:** Tetsuya Ori and Michio Cho, “Zoom Lens and Imaging Apparatus,” US 2015/0177500 A1, published June 25, 2015. Relevant locations: Fig. 1; ¶0057–¶0076; ¶0096–¶0112; Tables 1–4; Table 21. The original PDF was among the sources consulted.
 2. **FUJIFILM production specification:** “XF18-55mmF2.8-4 R LM OIS Specifications,” FUJIFILM, https://www.fujifilm-x.com/en-ca/products/lenses/xf18-55mmf28-4-r-lm-ois/specifications/ (retrieved 2026-09-18).
 3. **FUJIFILM product overview:** “FUJINON XF18-55mmF2.8-4 R LM OIS,” FUJIFILM, https://www.fujifilm-x.com/en-us/products/lenses/xf18-55mmf28-4-r-lm-ois/ (retrieved 2026-09-18).
 4. **FUJIFILM X system / format context:** https://www.fujifilm.com/us/en/consumer/digitalcameras/x and https://www.fujifilm-x.com/en-us/filmmaking/ (retrieved 2026-09-18).

@@ -60,7 +60,7 @@ const LENS_DATA = {
   key: "nikon-ai-af-zoom-nikkor-24-120-f35-56d",
   maker: "Nikon",
   name: "NIKON AI AF ZOOM-NIKKOR 24-120mm f/3.5-5.6 D IF",
-  subtitle: "US 5,734,508 A WORKING EXAMPLE 1 — PRODUCTION-CORRELATED, SCALE 1.0",
+  subtitle: "US 5,734,508 A WORKING EXAMPLE 1 — PRODUCTION MATCH, SCALE 1.0",
 
   catalog: {
     lensMounts: ["nikon-f"],

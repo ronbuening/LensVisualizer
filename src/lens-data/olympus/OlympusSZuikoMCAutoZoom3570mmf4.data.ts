@@ -45,7 +45,7 @@ const LENS_DATA = {
   key: "olympus-s-zuiko-mc-auto-zoom-35-70mm-f4",
   maker: "Olympus",
   name: "OLYMPUS S ZUIKO MC AUTO-ZOOM 35-70mm f/4",
-  subtitle: "US 4,452,512, Embodiment 1 — probable production correlation",
+  subtitle: "US 4,452,512, Embodiment 1 — probable production match",
   visible: true,
   catalog: {
     lensMounts: ["olympus-om"],

@@ -201,14 +201,14 @@ the historical lens.
 
 The patent embodiment publishes infinity-focus zoom states only. It gives no close-focus spacing table, focus-group
 travel, image magnification at close focus, or other optical constraint from which a unique close-focus prescription can
-be reconstructed. The data file therefore uses `NO_INTERNAL_RECONSTRUCTION`: every close member of every variable-gap
-pair is identical to its corresponding infinity value.
+be worked out. In the model, every spacing that changes with focus therefore stays at its published infinity value at
+both ends of the focus control.
 
 The production lens manual specifies a minimum focusing distance of 2 ft / 0.6 m and describes a combined
 zooming/focusing ring. It also states that the push-pull 28-50mm zoom reaches its close focusing distance without a
 separate special close-focusing mechanism. These are product-level mechanical facts, not a published internal optical
-focus prescription. Accordingly, `closeFocusM: 0.6` is retained as catalog metadata while the optical model remains at
-the patent's published infinity states.
+focus prescription. Accordingly, the 0.6 m figure is recorded as product information while the optical model remains
+at the patent's published infinity states.
 
 No focus travel, close-focus EFL, close-focus pupil geometry, or close-focus aberration behavior is inferred in this
 analysis.

@@ -152,9 +152,9 @@ The explicit nC, nF, ng, and dPgF values justify discussion of anomalous partial
 
 ## Focus Mechanism
 
-The modeled focus status is **NO_INTERNAL_RECONSTRUCTION**. The patent illustrates only infinity-focused wide, middle, and tele states (¶0053). It states that G4 may be used for quick focusing (¶0093), but it does not publish a close-focus spacing table, group travel, object-distance calibration, or magnification data for Example 1.
+The model shows infinity focus only; focus travel is not modeled. The patent illustrates only infinity-focused wide, middle, and tele states (¶0053). It states that G4 may be used for quick focusing (¶0093), but it does not publish a close-focus spacing table, group travel, object-distance calibration, or magnification data for Example 1.
 
-All authored focus pairs are therefore identical at each zoom state. The data file’s `closeFocusM` value of 0.50 m records the X10’s ordinary wide-angle focusing limit as catalog metadata; it is not a traced optical state. Fujifilm separately specifies ordinary tele focus from approximately 0.80 m, macro modes down to approximately 0.10 m at wide and 0.50 m at tele, and a wide-only Super Macro mode to approximately 0.01 m. None of those internal mechanisms is reconstructed.
+Every spacing that changes with focus therefore keeps its infinity value at both ends of the focus control at each zoom state. The model records the X10’s ordinary wide-angle focusing limit of 0.50 m as product information; it is not a traced optical state. Fujifilm separately specifies ordinary tele focus from approximately 0.80 m, macro modes down to approximately 0.10 m at wide and 0.50 m at tele, and a wide-only Super Macro mode to approximately 0.01 m. None of those internal mechanisms is modeled.
 
 The absence of a close-focus state also means that no close-focus magnification, floating-group behavior, or focus-induced aberration change is claimed from this prescription.
 

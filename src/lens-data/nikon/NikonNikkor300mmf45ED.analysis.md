@@ -103,9 +103,9 @@ Because the patent does not provide material C/F/g line indices or anomalous par
 
 The production lens belongs to Nikon's 1975 ED super-telephoto series that used focusing units. Nikon explains that super-telephotos of this focusing-unit type moved the entire lens during focusing, in contrast to the later internal-focusing designs. [2]
 
-The period Nikon specification table gives a **4 m (13 ft)** minimum focus for the 300mm f/4.5 ED-Nikkor. [4, scan p. 52 / printed p. 51] This value is used only as `closeFocusM` product metadata. Neither the patent nor the brochure provides a close-focus optical spacing row or the axial travel of the focusing unit.
+The period Nikon specification table gives a **4 m (13 ft)** minimum focus for the 300mm f/4.5 ED-Nikkor. [4, scan p. 52 / printed p. 51] The model uses this value only as product information. Neither the patent nor the brochure provides a close-focus optical spacing row or the axial travel of the focusing unit.
 
-Accordingly, the implemented focus status is **NO_INTERNAL_RECONSTRUCTION**. The data file contains no variable optical gaps and no invented close-focus prescription. The nominal patent-derived optical state is retained; the 4 m endpoint describes the production lens rather than a reconstructed internal model state.
+Accordingly, the model shows the lens at infinity only and moves no group. No spacing changes with focus and no close-focus prescription is invented. The nominal patent-derived optical state is kept; the 4 m endpoint describes the production lens rather than a modeled close-focus state.
 
 ## Chromatic Correction Strategy
 

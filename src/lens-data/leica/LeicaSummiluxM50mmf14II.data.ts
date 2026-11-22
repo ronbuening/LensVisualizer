@@ -25,7 +25,7 @@ const LENS_DATA = {
   key: "leica-summilux-m-50mm-f14-ii",
   maker: "Leica",
   name: "LEICA SUMMILUX-M 50mm f/1.4 II",
-  subtitle: "US 3,291,553 — sole numerical example; correlated to the second Summilux-M 50 f/1.4 optical design",
+  subtitle: "US 3,291,553 — sole numerical example; matched to the second Summilux-M 50 f/1.4 optical design",
 
   catalog: {
     lensMounts: ["leica-m"],

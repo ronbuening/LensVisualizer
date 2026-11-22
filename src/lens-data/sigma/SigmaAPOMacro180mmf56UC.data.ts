@@ -57,7 +57,7 @@ const LENS_DATA = {
   key: "sigma-apo-macro-180mm-f56-uc",
   maker: "Sigma",
   name: "SIGMA APO MACRO 180mm f/5.6 UC",
-  subtitle: "JP H04-110811 A, Example 3 — construction-based production correlation",
+  subtitle: "JP H04-110811 A, Example 3 — production match by construction",
 
   catalog: {
     lensMounts: ["sigma-sa", "sony-a", "nikon-f", "canon-ef"],

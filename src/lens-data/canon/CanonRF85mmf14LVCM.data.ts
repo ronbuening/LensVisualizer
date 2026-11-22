@@ -31,7 +31,7 @@ const LENS_DATA = {
   "key": "canon-rf-85mm-f14-l-vcm",
   "maker": "Canon",
   "name": "CANON RF 85mm f/1.4 L VCM",
-  "subtitle": "JP 2026-094892 A, Example 5 — construction correlation with the production lens",
+  "subtitle": "JP 2026-094892 A, Example 5 — production match by construction",
   "catalog": {
     "lensMounts": [
       "canon-rf"

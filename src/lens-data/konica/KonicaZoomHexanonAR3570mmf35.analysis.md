@@ -127,11 +127,11 @@ The palette spans `νd = 25.4` to `64.1`, providing substantial first-order disp
 
 ## Focus Mechanism
 
-The final data file deliberately uses **`NO_INTERNAL_RECONSTRUCTION`**. The selected patent example publishes zoom-state values for `d8` and back focus at infinity, but it does not publish a finite-object prescription, a moving-focus-group trajectory, magnification table, or internal focus travel. Consequently the optical model contains no invented close-focus state: at every zoom station the `var` infinity and close-focus values are identical.
+The model deliberately shows the lens **at infinity focus only**. The selected patent example publishes zoom-state values for `d8` and back focus at infinity, but it does not publish a close-object prescription, a moving-focus-group trajectory, magnification table, or internal focus travel. Consequently the optical model contains no modeled close-focus state: at every zoom station each spacing keeps its infinity value at both ends of the focus control.
 
 Two source facts are retained without turning them into an unsupported optical reconstruction. First, the patent states that placing the stop between L7 and L8 permits a shortest shooting distance of 0.35 m. Second, Konica's Cat. No. 703-172 brochure specifies minimum focus as 1.2 ft (0.35 m) **from the film plane** and describes one-touch zoom/focus operation. Neither source identifies a unique internal group motion at that distance.
 
-Accordingly, `closeFocusM: 0.35` is product metadata and a source anchor, not a modeled finite-conjugate ray-trace state. The analysis does not characterize the production lens as unit focus, inner focus, or floating focus because the supplied sources do not establish which optical elements move during focusing.
+Accordingly, the 0.35 m close-focus figure is product information backed by those sources, not a modeled close-focus ray-trace state. The analysis does not characterize the production lens as unit focus, inner focus, or floating focus because the supplied sources do not establish which optical elements move during focusing.
 
 ## Aperture Stop and Clear-Aperture Model
 

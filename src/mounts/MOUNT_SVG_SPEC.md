@@ -66,9 +66,17 @@ selected variant. Declare a non-evolved mount `base_only` with `selectedMvpProfi
 
 ## Sources
 
-IEEE-numbered `sourceRefs`. **Every live URL must carry an archived snapshot + ISO-8601 capture date**
-(package Section 3) — `validateMountSpec` enforces this. Use the Wayback availability API to get a real
-snapshot: `http://archive.org/wayback/available?url=<page>`.
+IEEE-numbered `sourceRefs`. **Every live URL must carry an archived copy + ISO-8601 capture date**
+(package Section 3) — `validateMountSpec` enforces this. For `archiveUrl`, use a second stable copy that
+is not on archive.org: the patent-office or `patentimages` PDF for a Google Patents page, a maker-hosted
+PDF or manual mirror for a manual, a permanent-revision link (`&oldid=`) for a wiki page. When no
+independent mirror exists, a direct file on the same site (the page's image or PDF) is accepted.
+
+A patent supports two different things, so cite it as two sources. The entry typed `patent` covers only
+what the text or a dimensioned figure states; values that rest on it take status `patent`. A value scaled
+off an undimensioned drawing cites a second entry typed `patent_figure` and stays `photo_scaled`.
+`normalizeMountSpec()` promotes any `photo_scaled` value that cites a `patent`-typed source to `patent`,
+and the cross-mount suite fails on one, so the split is what keeps a scaled value drawn as an estimate.
 
 ## Determinism
 
@@ -82,7 +90,11 @@ outward to whole mm. Coordinates are rounded to 3 decimals; layers emit in the f
 2. Fill `coreDimensions`, `lockGeometry`, `cameraSideFeatures`, `lensSideFeatures`, `axialStack`, and any
    `contacts` / `mechanicalCouplings` / `screwsGasketsBaffles`, each as value envelopes.
 3. Number bayonet instances clockwise from the one nearest 12 o'clock (`body-slot-1`, `lens-lug-1`, …) and
-   set `matesWith` to the opposite-side feature id.
+   set `matesWith` to the opposite-side feature id. Draw the body as it is and the lens as mounted and
+   locked: a `body-slot-n` is the body's claw or flange (the solid metal that retains a lug), not the open
+   entry gap beside it, and each lens lug, lock notch, contact and coupling sits where it is on a mounted
+   lens, so a lug lies behind its claw. Only the lens index is drawn at the body index, where the two
+   line up for insertion. The turn between insertion and lock lives only in `lockGeometry`.
 4. Define the `mvp.profileModel` (base + variants) and set `selectedMvpProfileId`.
 5. Add `sourceRefs` (with archived snapshots) and `openQuestions` for any photo-scaled/unknown values.
 6. Register the spec in [`index.ts`](./index.ts).

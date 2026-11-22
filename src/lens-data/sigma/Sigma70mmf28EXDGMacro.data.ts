@@ -33,7 +33,7 @@ const LENS_DATA = {
   key: "sigma-macro-70mm-f28-ex-dg",
   maker: "Sigma",
   name: "SIGMA MACRO 70mm f/2.8 EX DG",
-  subtitle: "JP 2008-020656 A, Example 1 — qualified production correlation",
+  subtitle: "JP 2008-020656 A, Example 1 — tentative production match",
 
   catalog: {
     lensMounts: ["sigma-sa", "canon-ef", "nikon-f", "pentax-k", "sony-a"],

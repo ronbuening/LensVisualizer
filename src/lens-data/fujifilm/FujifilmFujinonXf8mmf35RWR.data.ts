@@ -47,7 +47,7 @@ const LENS_DATA = {
   key: "fujifilm-fujinon-xf-8mm-f35-r-wr",
   maker: "Fujifilm",
   name: "FUJIFILM FUJINON XF 8mm f/3.5 R WR",
-  subtitle: "JP 2023-001878 A Example 7 - production correlation inferred",
+  subtitle: "JP 2023-001878 A Example 7 - inferred production match",
 
   catalog: {
     lensMounts: ["fujifilm-x"],

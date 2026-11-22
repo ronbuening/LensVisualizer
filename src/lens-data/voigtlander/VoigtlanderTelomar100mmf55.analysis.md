@@ -82,11 +82,11 @@ The palette alternates moderate-dispersion positive elements with lower-Abbe neg
 
 ## Focus Mechanism
 
-The patent publishes only the infinity prescription and no finite-distance spacing table. The data therefore declares `NO_INTERNAL_RECONSTRUCTION`, has an empty `var` object, and defines no close-focus optical state. No movement, magnification, effective-focal-length change, or finite-conjugate aberration result is inferred.
+The patent publishes only the infinity prescription and no close-focus spacing table. The model therefore shows the lens at infinity only: no spacing changes with focus and there is no close-focus optical state. No movement, magnification, effective-focal-length change, or close-focus aberration result is inferred.
 
-The supplied Voigtländer instructions direct the photographer to focus by turning the front ring while observing the ground-glass image through the 5× magnifier.[3] The lens scale visible in the manual and the KONTUR instruction for views closer than about 6 ft support using 1.8288 m as approximate product metadata. They do not provide an exact optical spacing table or identify which internal element or group moves. Accordingly, the moving optical group is not established by the supplied sources.
+The supplied Voigtländer instructions direct the photographer to focus by turning the front ring while observing the ground-glass image through the 5× magnifier.[3] The lens scale visible in the manual and the KONTUR instruction for views closer than about 6 ft support using 1.8288 m as an approximate product figure. They do not provide an exact optical spacing table or identify which internal element or group moves. Accordingly, the moving optical group is not established by the supplied sources.
 
-The `closeFocusM` field consequently carries 1.8288 m only because a numeric catalog field is required. It does not alter any surface spacing in the model. The manual's KONTUR adjustment below approximately 6 ft is a finder parallax-compensation instruction, not an independent patent focus state.[3]
+The model records that approximate 1.8288 m figure as product information only. It does not alter any surface spacing in the model. The manual's KONTUR adjustment below approximately 6 ft is a finder parallax-compensation instruction, not an independent patent focus state.[3]
 
 ## Patent Conditions
 

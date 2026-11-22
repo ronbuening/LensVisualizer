@@ -46,7 +46,7 @@ const LENS_DATA = {
   key: "schneider-retina-curtagon-28f4",
   maker: "Schneider-Kreuznach",
   name: "SCHNEIDER-KREUZNACH RETINA-CURTAGON 28mm f/4",
-  subtitle: "US 2,824,495 — sole example; scaled ×0.28; Retina/DKL production correlation (inferred)",
+  subtitle: "US 2,824,495 — sole example; scaled ×0.28; Retina/DKL inferred production match",
 
   catalog: {
     lensMounts: ["dkl"],

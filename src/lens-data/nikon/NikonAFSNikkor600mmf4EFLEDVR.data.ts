@@ -47,7 +47,7 @@ const LENS_DATA = {
   key: "nikon-af-s-nikkor-600mm-f4e-fl-ed-vr",
   maker: "Nikon",
   name: "NIKON AF-S NIKKOR 600mm f/4 E FL ED VR",
-  subtitle: "US 2018/0031811 A1 — Example 4; correlated to the 2015 AF-S production lens",
+  subtitle: "US 2018/0031811 A1 — Example 4; matched to the 2015 AF-S production lens",
 
   catalog: {
     lensMounts: ["nikon-f"],

@@ -11,11 +11,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ 18 elements / 13 air-separated optical assemblies; 6 kinematic zoom groups B1–B6. ║
  * ║ Five aspherical surfaces: source S8, S13, S14, S21, S31.                           ║
  * ║                                                                                      ║
- * ║ Focus status: NO_INTERNAL_RECONSTRUCTION.                                           ║
- * ║ Example 6 publishes only infinity-focus W/M/T spacings. B6 is the focus group, but ║
- * ║ no finite-object spacing row is published; all focus vectors below therefore repeat ║
- * ║ the infinity value. closeFocusM stores Canon's marketed wide-end minimum only.      ║
- * ║ Canon markets 0.05 m at W and 0.85 m at T; these values do not define patent motion.║
+ * ║ Focus: infinity only.                                                                ║
+ * ║ Example 6 publishes only infinity-focus W/M/T spacings. B6 is the focus group, but   ║
+ * ║ no close-focus spacing row is published; all focus vectors below therefore repeat    ║
+ * ║ the infinity value. closeFocusM stores Canon's marketed wide-end minimum only.       ║
+ * ║ Canon markets 0.05 m at W and 0.85 m at T; these values do not define patent motion. ║
  * ║                                                                                      ║
  * ║ Zoom variables: source d5, d11, d20, d23, d30, d33.                                ║
  * ║ S12 is an inactive air-to-air bookkeeping plane and is omitted; its 0.10 mm is      ║
@@ -50,7 +50,7 @@ const LENS_DATA = {
   key: "canon-powershot-g3x",
   maker: "Canon",
   name: "CANON 8.8-220mm f/2.8-5.6 (Canon PowerShot G3 X)",
-  subtitle: "JP 2016-148731 A — Numerical Example 6 — Canon PowerShot G3 X correlation",
+  subtitle: "JP 2016-148731 A — Numerical Example 6 — Canon PowerShot G3 X match",
 
   catalog: {
     lensMounts: ["fixed-lens-camera"],
@@ -386,7 +386,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.05,
     description:
-      "NO_INTERNAL_RECONSTRUCTION: JP 2016-148731 A Example 6 publishes B6 as the focus group but gives no finite-object spacing row. All focus vectors preserve the infinity-focus W/M/T states. Canon markets 0.05 m at wide and 0.85 m at tele; closeFocusM records the wide-end product minimum only and is not used to infer B6 travel.",
+      "Infinity focus only. JP 2016-148731 A Example 6 names B6 as the focusing group but gives no close-focus spacings, so focus travel is not modeled; zoom movement is. Canon gives 0.05 m minimum focus at wide and 0.85 m at tele; the model records the wide-end figure as product information and does not use it to infer B6 travel.",
   },
 
   gaps: {

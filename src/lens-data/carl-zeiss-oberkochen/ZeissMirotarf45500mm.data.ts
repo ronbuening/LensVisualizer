@@ -54,7 +54,7 @@ const LENS_DATA = {
   key: "carl-zeiss-mirotar-500f45",
   maker: "Carl Zeiss Oberkochen",
   name: "CARL ZEISS MIROTAR 500mm f/4.5",
-  subtitle: "GB 975,446 sole example — correlated to ZEISS Mirotar f/4.5 500 mm",
+  subtitle: "GB 975,446 sole example — matched to ZEISS Mirotar f/4.5 500 mm",
 
   catalog: {
     imageFormat: "135-full-frame",

@@ -133,9 +133,10 @@ This signed paraxial sum is not a traced sagittal/tangential field-curvature cur
 
 ## Focus Mechanism
 
-The selected example supplies one distant-object prescription and no finite-conjugate spacing table or group-travel law.
-The model therefore has status NO_INTERNAL_RECONSTRUCTION, with no moving gaps and no finite-focus endpoint.
-The data retains the production 1.5 m minimum focus distance as metadata. With no authored moving gaps, V2 keeps the optical model at infinity.
+The selected example supplies one distant-object prescription and no close-focus spacing table or group-travel law.
+The model therefore shows the lens at infinity only, with no moving gaps and no close-focus endpoint.
+The production 1.5 m minimum focus distance is recorded as product information.
+Because no gap moves, the model stays at infinity.
 
 The manufacturer brochure separately lists a marketed minimum focusing distance of 1.5m. That product specification
 is retained as context. It does not uniquely determine internal motions, a unit-focus travel, or a patent image-plane
@@ -190,7 +191,7 @@ The actual default application fan was also checked at all seven aperture settin
 states: 231 rays, including 9 explicit clips, with no unexplained trace failure or nonfinite wrapper output.
 Its automatically derived off-axis field is 10.423132°, which exceeds the patent's 9.1° half-field; this is additional
 model/application sampling, not a newly sourced design field. All four production element-render diagnostics report
-zero hidden trim. Targeted real type, schema, glass-fallback and formatting checks pass; full-project integration
+zero hidden trim. Targeted real type, data-format, glass-fallback and formatting checks pass; full-project integration
 checks are outside this per-lens audit.
 
 ## Sources

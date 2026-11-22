@@ -45,7 +45,7 @@ const LENS_DATA = {
   key: "tamron-a056-70-180-f28",
   maker: "Tamron",
   name: "TAMRON 70-180mm f/2.8 Di III VXD",
-  subtitle: "JP 2021-43375 A Example 1 — A056 production-lens correlation",
+  subtitle: "JP 2021-43375 A Example 1 — A056 production match",
 
   catalog: {
     lensMounts: ["sony-fe"],

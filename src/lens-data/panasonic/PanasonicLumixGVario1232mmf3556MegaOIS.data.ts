@@ -38,7 +38,7 @@ const LENS_DATA = {
   key: "panasonic-lumix-g-vario-12-32mm-f35-56-mega-ois",
   maker: "Panasonic",
   name: "PANASONIC LUMIX G VARIO 12-32mm f/3.5-5.6 ASPH. MEGA O.I.S.",
-  subtitle: "US 2015/0097989 A1, Numerical Example 2 — qualified production correlation",
+  subtitle: "US 2015/0097989 A1, Numerical Example 2 — tentative production match",
   catalog: {
     lensMounts: ["micro-four-thirds"],
     imageFormat: "four-thirds",

@@ -37,7 +37,7 @@ const LENS_DATA = {
   key: "nikon-af-s-dx-18-105-f35-56g-ed-vr",
   maker: "Nikon",
   name: "NIKON AF-S DX NIKKOR 18-105mm f/3.5-5.6 G ED VR",
-  subtitle: "US 7,839,577 B2, Example 5 — strong production correlation",
+  subtitle: "US 7,839,577 B2, Example 5 — strong production match",
   catalog: {
     lensMounts: ["nikon-f"],
     imageFormat: "aps-c",

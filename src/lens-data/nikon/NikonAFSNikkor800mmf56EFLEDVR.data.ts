@@ -51,7 +51,7 @@ const LENS_DATA = {
   key: "nikon-af-s-nikkor-800f56e-fl-ed-vr",
   maker: "Nikon",
   name: "NIKON AF-S NIKKOR 800mm f/5.6 E FL ED VR",
-  subtitle: "JP 2013-250293 A, Example 1 — strong production correlation; not manufacturer-confirmed",
+  subtitle: "JP 2013-250293 A, Example 1 — strong production match; not maker-confirmed",
 
   catalog: {
     lensMounts: ["nikon-f"],

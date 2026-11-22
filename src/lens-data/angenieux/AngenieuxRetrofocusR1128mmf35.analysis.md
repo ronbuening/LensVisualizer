@@ -96,9 +96,9 @@ The front pair deliberately combines the lower-Abbe positive L1 with the higher-
 
 ## Focus Mechanism
 
-The patent publishes only an infinity prescription. It gives no finite-conjugate table, object distance, magnification, variable spacing, moving-group identification, or mechanical focusing description. The data therefore uses `NO_INTERNAL_RECONSTRUCTION`, an empty `var` object, and no modeled focus motion. It does not assume unit focusing, inner focusing, or floating movement.
+The patent publishes only an infinity prescription. It gives no close-focus table, object distance, magnification, spacings that change with focus, moving-group identification, or mechanical focusing description. The model therefore shows the lens at infinity only and moves no group. It does not assume unit focusing, inner focusing, or floating movement.
 
-The required catalog field `closeFocusM` is set to 0.6 m from consistent surviving production-lens listings for M42 and Exakta examples [4; 5]. This value is secondary product metadata rather than a patent quantity or an optical state. Changing the viewer’s focus control cannot reconstruct a close-focus prescription because no focus variables are defined.
+The model records a 0.6 m close-focus figure from consistent surviving production-lens listings for M42 and Exakta examples [4; 5]. This value is secondary product information rather than a patent quantity or an optical state. Changing the viewer’s focus control cannot produce a close-focus prescription because no spacings change with focus.
 
 ## Conditional Expressions
 

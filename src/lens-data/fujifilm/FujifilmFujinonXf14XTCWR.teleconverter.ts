@@ -64,7 +64,7 @@ const TELECONVERTER_DATA = {
   key: "fujifilm-xf14x-tc-wr",
   maker: "Fujifilm",
   name: "FUJIFILM FUJINON TELECONVERTER XF1.4X TC WR",
-  subtitle: "US 2017/0090163 A1 Example 1 — rear converter; production correlation not manufacturer-confirmed",
+  subtitle: "US 2017/0090163 A1 Example 1 — rear converter; production match not maker-confirmed",
 
   catalog: {
     lensMounts: ["fujifilm-x"],

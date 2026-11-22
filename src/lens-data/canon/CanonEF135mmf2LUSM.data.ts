@@ -45,7 +45,7 @@ const LENS_DATA = {
   key: "canon-ef-135-f2l-usm",
   maker: "Canon",
   name: "CANON EF 135mm f/2 L USM",
-  subtitle: "JP 2018-049102 A Numerical Example 1 — later apodized Canon embodiment correlated to EF 135mm f/2L USM",
+  subtitle: "JP 2018-049102 A Numerical Example 1 — later apodized Canon embodiment matched to EF 135mm f/2L USM",
 
   catalog: {
     lensMounts: ["canon-ef"],

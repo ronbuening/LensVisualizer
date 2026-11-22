@@ -50,7 +50,7 @@ const LENS_DATA = {
   key: "pentax-da-11-18-f28",
   maker: "Pentax",
   name: "PENTAX HD DA* 11-18mm f/2.8 ED DC AW",
-  subtitle: "US 2018/0164556 A1 Example 1 — probable production correlation",
+  subtitle: "US 2018/0164556 A1 Example 1 — probable production match",
 
   catalog: {
     lensMounts: ["pentax-k"],

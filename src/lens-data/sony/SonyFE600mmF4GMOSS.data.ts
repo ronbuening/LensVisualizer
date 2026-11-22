@@ -70,7 +70,7 @@ const LENS_DATA = {
   key: "sony-fe-600mm-f4-gm-oss",
   maker: "Sony",
   name: "SONY FE 600mm f/4 GM OSS",
-  subtitle: "JP 2025-063175 A, Example 4 — design-family correlation; not manufacturer-confirmed",
+  subtitle: "JP 2025-063175 A, Example 4 — match to the design family; not maker-confirmed",
 
   catalog: {
     lensMounts: ["sony-fe"],

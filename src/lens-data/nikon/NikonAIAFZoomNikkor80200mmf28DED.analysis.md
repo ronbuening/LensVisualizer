@@ -323,12 +323,12 @@ uniquely specified focusing group for this embodiment. General patent prose note
 be performed by the first or fourth unit in this class of zoom, but that statement is not sufficient
 to reconstruct the production focusing motion of Example 3. [1]
 
-The data therefore has focus status **NO_INTERNAL_RECONSTRUCTION**. Every `[d_inf, d_close]` pair in
-the four variable gaps is intentionally identical at a given zoom endpoint. The nominal
-`closeFocusM = 1.5` records Nikon's production minimum-focus-distance specification only; it is not an
-optically traced 1.5 m state and is not used to infer internal movement or magnification. [2]
+The model therefore shows infinity focus only. At a given zoom endpoint, each of the four spacings that
+change with zoom stays at its infinity value at both ends of the focus control. The 1.5 m close-focus
+figure records Nikon's production minimum-focus-distance specification only; it is not an optically
+traced 1.5 m state and is not used to infer internal movement or magnification. [2]
 
-The absence of a reconstructed finite-focus state also means that the production lens's published
+The absence of a modeled close-focus state also means that the production lens's published
 maximum reproduction ratio of 0.24x is not treated as a calculated property of this patent model.
 It remains a manufacturer specification. [2]
 

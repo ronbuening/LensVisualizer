@@ -32,7 +32,7 @@ const LENS_DATA = {
   key: "carl-zeiss-jena-biometar-120f28",
   maker: "Carl Zeiss Jena",
   name: "CARL ZEISS JENA BIOMETAR 120mm f/2.8",
-  subtitle: "US 2,968,221 Example II — ×1.2 model; correlated to the 60×60 Biometar 2.8/120",
+  subtitle: "US 2,968,221 Example II — ×1.2 model; matched to the 60×60 Biometar 2.8/120",
 
   catalog: {
     lensMounts: ["pentacon-six"],

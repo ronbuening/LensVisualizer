@@ -8,8 +8,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Patent zoom states: 46.76, 67.38, 99.18 mm; no uniform production scale is applied.
  * Internal zoom: C1 and C4 are fixed; C2 translates imageward; C3 reverses direction.
  *
- * Focus status: NO_INTERNAL_RECONSTRUCTION. The patent publishes zoom spacings only. The manufacturer's
- * 0.35 m MFD is retained as product metadata, not as a solved close-focus optical state.
+ * Focus: infinity only. The patent publishes zoom spacings only. The manufacturer's 0.35 m minimum
+ * focus is recorded as product information, not as a modeled close-focus optical state.
  *
  * STO MODEL — position from the patent text, diameter modeled:
  * The prescription table has no stop row. The figure description (printed p. 273) gives the abscissa of the
@@ -236,8 +236,8 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.35,
     description:
-      "NO_INTERNAL_RECONSTRUCTION: the patent publishes only zoom spacings. The manufacturer 0.35 m MFD is metadata; " +
-      "no close-focus group motion is modeled.",
+      "Infinity focus only. The patent publishes only infinity zoom spacings. The manufacturer's 0.35 m minimum focus " +
+      "distance is product information; focus travel is not modeled, zoom movement is.",
   },
 
   gaps: {

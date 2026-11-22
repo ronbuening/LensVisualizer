@@ -6,8 +6,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ╠══════════════════════════════════════════════════════════════════════════════╣
  * ║ Data source: JP 2010-164839 A, Example 4 (Ricoh / Yoshifumi Sudoh).        ║
  * ║ 8 elements / 6 air-separated groups, 2 aspherical surfaces.               ║
- * ║ Focus status: NO_INTERNAL_RECONSTRUCTION. The patent publishes only the    ║
- * ║ infinity prescription; no internal focus movement is authored.             ║
+ * ║ Focus: infinity only. The patent publishes only the infinity               ║
+ * ║ prescription; no internal focus movement is modeled.                       ║
  * ║                                                                            ║
  * ║ Production correlation: the job card fixes the Ricoh GR DIGITAL IV lens.   ║
  * ║ Official specifications match 6.0 mm, 8/6, and two aspheric elements /    ║
@@ -45,7 +45,7 @@ const LENS_DATA = {
   key: "ricoh-gr-lens-6mm-f19-gr-digital-iv",
   maker: "Ricoh",
   name: "RICOH GR LENS 6.0mm f/1.9 (Ricoh GR DIGITAL IV)",
-  subtitle: "JP 2010-164839 A, Example 4 — GR DIGITAL IV correlation (not unique vs GR DIGITAL III)",
+  subtitle: "JP 2010-164839 A, Example 4 — GR DIGITAL IV match (could also be the GR DIGITAL III)",
 
   catalog: {
     lensMounts: ["fixed-lens-camera"],
@@ -256,7 +256,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.01,
     description:
-      "NO_INTERNAL_RECONSTRUCTION: JP 2010-164839 A Example 4 publishes only the infinity prescription. The production GR DIGITAL IV reaches approximately 0.01 m in macro mode from the lens front, but no internal focus movement is reconstructed here.",
+      "Infinity focus only. JP 2010-164839 A Example 4 gives only the infinity prescription, so focus travel is not modeled. The production GR DIGITAL IV focuses to about 0.01 m from the lens front in macro mode; that figure is product information only.",
   },
 
   /* ── Aperture configuration ── */

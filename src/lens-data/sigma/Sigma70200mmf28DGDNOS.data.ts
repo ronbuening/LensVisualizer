@@ -40,7 +40,7 @@ const LENS_DATA = {
   key: "sigma-70-200mm-f28-dg-dn-os-sports",
   maker: "Sigma",
   name: "SIGMA 70-200mm f/2.8 DG DN OS | Sports",
-  subtitle: "JP 2025-043459 A, Numerical Example 1; construction correlation",
+  subtitle: "JP 2025-043459 A, Numerical Example 1; production match by construction",
 
   catalog: {
     lensMounts: ["l-mount", "sony-fe"],
