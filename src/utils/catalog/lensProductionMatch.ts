@@ -33,11 +33,11 @@ const PRODUCTION_MATCH_BY_KEY: Readonly<Partial<Record<string, boolean>>> = {
   "nikon-af-s-dx-micro-nikkor-40mm-f28g": false, // A confirmed group-count difference and different focus travel.
   "nikon-af-s-fisheye-nikkor-8-15mm-f35-45e-ed": false, // 18 elements versus 15, with different aspheres.
   "nikon-af-s-nikkor-180-400mm-f4e-tc14-fl-ed-vr-tc-in": false, // The converter has four groups versus Nikon's five.
-  "nikon-af-s-nikkor-24-85mm-f35-45g-ed-vr": false, // The example is f/5.8 at telephoto versus f/4.5.
+  "nikon-af-s-nikkor-24-85mm-f35-45g-ed-vr": true, // The wide-end layout agrees with Nikon's drawing; the example is 87 mm f/5.8 at telephoto against 85 mm f/4.5.
   "nikon-af-zoom-micro-70-180mm-f45-56d": false, // The example is 82.4–194 mm versus 70–180 mm.
-  "nikon-afs-105f28-vr-micro": false, // 11 air-separated groups versus Nikon's 12.
+  "nikon-afs-105f28-vr-micro": true, // Optical Bench and Camera Gossip cite this patent example; it has 11 groups against Nikon's 12.
   "nikon-fisheye-nikkor-105mm-f28g-ed": true, // Nikon's manual lists no aspherical element; only Nikon USA's table does.
-  "nikon-nikkor-20mm-f4": false, // The patent splits a positive production element into two.
+  "nikon-nikkor-20mm-f4": true, // Optical Bench and Camera Gossip cite this patent; it splits one production element into two.
   "nikon-uv-nikkor-55mm-f4": true, // Three elements at f/4 as in the 1968 handbook; Optical Bench lists the same patent example.
   "nikon-zoom-nikkor-56-168-f27-48-coolpix-sq": true, // The outline coincides with Nikon's drawing; Nikon focuses with G1, the patent with G3.
   "olympus-mzuiko-12mm-f2": false, // The patent air-spaces a pair and has nine groups versus eight in production.
@@ -45,13 +45,13 @@ const PRODUCTION_MATCH_BY_KEY: Readonly<Partial<Record<string, boolean>>> = {
   "panasonic-leica-dg-25f14": true, // Counts and aspheres agree; Optical Bench lists this Sigma patent example for the Mark II.
   "pentax-dfa645-25mm-f4-al-if-sdm-aw": true, // With the patent's filter plate the example has eight air-separated units, as Ricoh lists.
   "pentax-hd-d-fa-star-70-200mm-f28-ed-dc-aw": true, // The outline coincides with Ricoh's drawing; only the published group count differs, 15 against 16.
-  "pentax-hd-d-fa645-35f35-al-if": false, // Eight air-separated groups versus Ricoh's seven.
+  "pentax-hd-d-fa645-35f35-al-if": true, // Optical Bench cites this example and a Pentax patent index ties the patent to the FA645 35mm; eight groups against Ricoh's seven.
   "rodenstock-apo-sironar-w-150f56-a1-reconstruction": false, // Archived 8-element model of a 7-element lens.
   "ross-doublet-1864-von-rohr-1899": true, // Von Rohr identifies the form put on the market in 1864.
   "russar-22-70f8": true, // Roossinov names the Russar-22 as the lens patented; the 122° f/8 example fits.
   "schneider-super-symmar-xl-110-f56": false, // Five air-separated groups versus four in Schneider's specification.
   "schneider-variogon-45-100-f28": false, // 10 air-spaced groups versus 11 in the product brochure.
-  "sigma-30mm-f28-dn-art": false, // Two aspherical faces versus three in production.
+  "sigma-30mm-f28-dn-art": true, // The profiles align with Sigma's drawing; the example has two aspherical faces against three.
   "sony-fe-400-800-f63-8-g-oss": false, // 17 optical groups versus 19 in Sony's specifications.
   "sony-fe-600mm-f4-gm-oss": false, // The example is all-spherical and lacks the production XA element.
   "sony-fe-8-14mm-f35-fisheye-g": false, // The example is 7.55–12.59 mm f/2.9 versus 8–14 mm f/3.5.
