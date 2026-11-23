@@ -1,0 +1,72 @@
+import type { LensSummary } from "./lensSummaries.js";
+
+// Lens analyses document a different retail construction, uncertain production, or a match without marketed specs.
+const PRODUCTION_MATCH_BY_KEY: Readonly<Partial<Record<string, boolean>>> = {
+  "busch-pantoskop-1865-von-rohr-1899": true, // Von Rohr identifies the introduced Busch lens.
+  "canon-ef-135mm-f28-soft-focus": true, // The outline coincides with Canon's drawing; the example is f/3.4 at the sharp setting, f/2.8 soft.
+  "canon-ef-20mm-f28-usm": true, // Canon's rear focus with a floating effect is the patent's single moving rear group.
+  "canon-ef-70-200f28l-is-usm": false, // 21 elements in 19 groups versus the retail 23 in 18.
+  "canon-ef-70-300mm-f45-56-do-is-usm": false, // 17 elements in 14 groups versus Canon's 18 in 12.
+  "canon-ef-s-18-135mm-f35-56-is-stm": true, // The outline coincides with Canon's drawing; only the published group count differs, 11 against 12.
+  "canon-rf-70-200-f28": true, // The outline coincides with Canon's drawing; only the published group count differs, 12 against 13.
+  "canon-rf-85f12l": true, // Nine groups and the special optics agree; the 14 modeled elements include the bonded Lp2 layer.
+  "canon-ts-e-24mm-f35l-ii": true, // The front elements and stop follow Canon's drawing; only the published group count differs, 10 against 11.
+  "canon-tse-50f28l-macro": true, // Canon's own diagram and Japanese page show two UD elements and no asphere, as modeled.
+  "carl-zeiss-jena-cardinar-100mm-f4": true, // Factory prescription for the published Werra lens.
+  "carl-zeiss-jena-pi-flektogon-30mm-f28-printed-1975-eline": false, // A 1975 maker sheet; no source shows the printed state was built.
+  "cooke-series-xi-6-25in-f35": true, // The lens is engraved with this patent; Example I opens to f/3 and the lens is rated f/3.5.
+  "cooke-series-xv-12-25in-f68": true, // The patent gives the 12¼ in f/6.8 complete lens; its cells are 25½ and 19¼ in against the catalogue's 26½ and 19.
+  "dallmeyer-rapid-landscape-1865-von-rohr-1899": true, // Von Rohr ties the modeled form to the 1865 release.
+  "fujifilm-fujinon-85mm-f4-sf-ebc": false, // The example is f/2.8 and the retail lens is f/4.
+  "fujifilm-gf-23mm-f4": true, // Fujifilm's 15 elements in 12 groups are the model's 14 in 11 plus a flat rear plate.
+  "fujifilm-gf-45-100mm-f4-patent-example-1": true, // The 17th modeled element is a bonded resin layer; Fujifilm counts 16.
+  "industar-itmo2013-v2": true, // The 1970 GOI catalogue prints the Industar-50 with this 18.86 mm length and 43.53 mm back focus.
+  "kodak-ektar-52f15": true,
+  "leica-super-vario-elmar-sl-16-35mm-f35-45-asph": true, // Leica's manual describes a two-lens cemented focusing element, as modeled.
+  "meyer-optik-gorlitz-double-plasmat-135mm-f45": true, // No construction difference is documented; Optical Bench lists the same patent example.
+  "meyer-optik-gorlitz-kino-plasmat-100-f2": true,
+  "minolta-250mm-f56-rf": true, // Minolta's section shows the same optics plus a rear filter; the patent figure is labeled f/4.5.
+  "minolta-af-70-200mm-f28-apo-g-d-ssm": true, // The outline coincides with Sony's drawing; only the published group count differs, 15 against 16.
+  "nikkor-af-s-58f14g": false, // Production separates the post-stop pair and moves an asphere.
+  "nikkor-afs-16-35f4-vr": true, // The outline coincides with Nikon's drawing; only the published group count differs, 11 against 12.
+  "nikon-af-nikkor-35mm-f2d": true, // The lens extends as a unit, as in the patent; only Nikon USA's table lists rear focusing.
+  "nikon-af-s-fisheye-nikkor-8-15mm-f35-45e-ed": false, // 18 elements versus 15, with different aspheres.
+  "nikon-af-s-nikkor-180-400mm-f4e-tc14-fl-ed-vr-tc-in": false, // The converter has four groups versus Nikon's five.
+  "nikon-af-s-nikkor-24-85mm-f35-45g-ed-vr": true, // The wide-end layout agrees with Nikon's drawing; the example is 87 mm f/5.8 at telephoto against 85 mm f/4.5.
+  "nikon-afs-105f28-vr-micro": true, // Optical Bench and Camera Gossip cite this patent example; it has 11 groups against Nikon's 12.
+  "nikon-fisheye-nikkor-105mm-f28g-ed": true, // Nikon's manual lists no aspherical element; only Nikon USA's table does.
+  "nikon-nikkor-20mm-f4": true, // Optical Bench and Camera Gossip cite this patent; it splits one production element into two.
+  "nikon-uv-nikkor-55mm-f4": true, // Three elements at f/4 as in the 1968 handbook; Optical Bench lists the same patent example.
+  "nikon-zoom-nikkor-56-168-f27-48-coolpix-sq": true, // The outline coincides with Nikon's drawing; Nikon focuses with G1, the patent with G3.
+  "olympus-mzuiko-12mm-f2": true, // The surfaces follow Olympus's drawing; a 0.6 mm air gap that Olympus draws cemented makes nine groups against eight.
+  "olympus-zuiko-auto-fisheye-8mm-f28": true, // Olympus's 11 elements in 7 groups are the model's 10 in 6 plus the built-in filter.
+  "panasonic-leica-dg-25f14": true, // Counts and aspheres agree; Optical Bench lists this Sigma patent example for the Mark II.
+  "pentax-645-fa-35mm-f35-al-if": true, // A Pentax patent index names this patent for the smc FA645 35mm; eight groups against Ricoh's seven.
+  "pentax-dfa645-25mm-f4-al-if-sdm-aw": true, // With the patent's filter plate the example has eight air-separated units, as Ricoh lists.
+  "pentax-hd-d-fa-star-70-200mm-f28-ed-dc-aw": true, // The outline coincides with Ricoh's drawing; only the published group count differs, 15 against 16.
+  "rodenstock-apo-sironar-w-150f56-a1-reconstruction": false, // Archived 8-element model of a 7-element lens.
+  "ross-doublet-1864-von-rohr-1899": true, // Von Rohr identifies the form put on the market in 1864.
+  "russar-22-70f8": true, // Roossinov names the Russar-22 as the lens patented; the 122° f/8 example fits.
+  "schneider-super-symmar-xl-110-f56": true, // Optical Bench lists this patent example; it has five air-separated groups against Schneider's four, and no maker section was found.
+  "schneider-variogon-45-100-f28": true, // Optical Bench lists this patent example; it has 10 air-spaced groups against the brochure's 11, and the maker section is too coarse to judge.
+  "sigma-30mm-f28-dn-art": true, // The profiles align with Sigma's drawing; the example has two aspherical faces against three.
+  "sony-fe-400-800-f63-8-g-oss": false, // 17 optical groups versus 19 in Sony's specifications.
+  "sony-fe-600mm-f4-gm-oss": false, // The example is all-spherical and lacks the production XA element.
+  "sony-fe-8-14mm-f35-fisheye-g": false, // The example is 7.55–12.59 mm f/2.9 versus 8–14 mm f/3.5.
+  "sony-vario-sonnar-88-733f28-rx10": true, // Optical Bench lists this patent example; it covers 9.2–64.7 mm against the marketed 8.8–73.3 mm.
+  "steinheil-periskop-1865-von-rohr-1899": true, // Von Rohr identifies the 1865 marketed form.
+  "voigtlander-apo-lanthar-180-f4": true, // The 178 mm example has Cosina's counts and glass positions; the drawing fits only in part.
+  "voigtlander-cine-tele-anastigmat-100mm-f45": true, // No construction difference is documented; Optical Bench lists the same patent example.
+  "voigtlander-macro-apo-lanthar-125-f25": false, // 10 elements versus 11 in the retail lens.
+  "voigtlander-portrait-1878-von-rohr-1899": true, // Published reduction of the form Voigtländer introduced in 1878.
+  "voigtlander-tele-dynar-100mm-f63": true, // Five elements in three groups at f/6.3, as sold; 100 mm is the patent's scale.
+  "zeiss-otus-ml-85mm-f14": true, // Counts, layout and close focus agree and two outside sources cite this example; it has one aspherical element against two.
+};
+
+export function hasProductionMatch(summary: LensSummary): boolean {
+  if (summary.key.startsWith("reference-")) return false;
+  const override = Object.hasOwn(PRODUCTION_MATCH_BY_KEY, summary.key)
+    ? PRODUCTION_MATCH_BY_KEY[summary.key]
+    : undefined;
+  return override ?? (summary.focalLengthMarketing !== undefined || summary.apertureMarketing !== undefined);
+}

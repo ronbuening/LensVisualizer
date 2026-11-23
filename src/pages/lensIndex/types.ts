@@ -29,6 +29,7 @@ export interface CatalogLensEntry {
   aperture: number | null;
   patentYear: number | null;
   sourceKind: LensSourceKind | null;
+  productionMatch: boolean;
   lensMounts: LensMountMetadata[];
   imageFormat: ImageFormatMetadata | null;
 }
@@ -47,6 +48,14 @@ export interface MountOption {
 
 /** The kind of document a lens prescription comes from; a lens that records none has no kind. */
 export type LensSourceKind = "patent" | "maker-document" | "literature";
+
+export type ProductionMatchFilter = "all" | "matched" | "unmatched";
+
+export const PRODUCTION_MATCH_OPTIONS: ReadonlyArray<readonly [ProductionMatchFilter, string]> = [
+  ["all", "Any match status"],
+  ["matched", "Has production match"],
+  ["unmatched", "No known production match"],
+];
 
 export interface SourceKindOption {
   id: LensSourceKind;
@@ -113,6 +122,7 @@ export interface CustomFilterState extends FilterBounds {
   lensMountIds: LensMountId[];
   imageFormatIds: ImageFormatId[];
   sourceKinds: LensSourceKind[];
+  productionMatch: ProductionMatchFilter;
 }
 
 export type NumericFilterField = keyof FilterBounds;

@@ -70,10 +70,11 @@ describe("author lookups", () => {
     if (!author) return;
 
     expect(getAuthorByName("Motohisa Mori")).toBeUndefined();
-    expect(author.patentCount).toBe(2);
+    expect(author.patentCount).toBe(3);
     expect(patentsForAuthor(author.name).map((patent) => patent.patentNumber)).toEqual([
       "US 5,528,428",
       "US 5,579,169",
+      "US 2011/0176215 A1",
     ]);
   });
 });

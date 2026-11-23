@@ -19,7 +19,7 @@ const LENS_DATA = {
   schema: 2,
   key: "carl-zeiss-jena-pi-flektogon-30mm-f28-printed-1975-eline",
   maker: "Carl Zeiss Jena",
-  name: "CARL ZEISS JENA PI-FLEKTOGON 30mm f/2.8 (1975 e-line reconstruction)",
+  name: "CARL ZEISS JENA PI-FLEKTOGON 30mm f/2.8 (Prototype Design)",
   subtitle:
     "Printed 1975 manufacturer sheet; monochromatic e-line/direct-contact research model. DD301976A7 Table 3 / Fig. 2 equivalence unverified.",
 
