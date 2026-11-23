@@ -402,6 +402,15 @@ export const IMAGE_FORMATS = [
     sortOrder: 560,
   },
   {
+    id: "quarter-plate",
+    label: "Quarter-plate",
+    widthMm: 107.95,
+    heightMm: 82.55,
+    diagonalMm: 135.9,
+    aspectRatio: 17 / 13,
+    sortOrder: 650,
+  },
+  {
     id: "4x5",
     label: "4x5",
     widthMm: 127,
