@@ -1,4 +1,4 @@
-# FUJIFILM EBC FUJINON 85mm f/4 SOFT-FOCUS
+# FUJIFILM EBC FUJINON 85mm f/4 SOFT-FOCUS (Prototype Design)
 
 ## Patent Reference and Design Identification
 

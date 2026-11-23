@@ -15,7 +15,7 @@ equidistant diagonal-fisheye state at the long end. Example 1 contains 16 elemen
 four zoom-moving groups: G1, G2A, G2B, and G2C. G2B, the L13–L14 pair, is also identified by the patent as the focus
 group. See JP 2022-155067 A, ¶0075–¶0083, Tables 1–5, and Fig. 1.
 
-The production correlation to the Sony FE 8-14mm F3.5 Fisheye G (SEL814G) is strong but is not manufacturer-confirmed.
+Example 1 is a prototype design for the Sony FE 8-14mm F3.5 Fisheye G (SEL814G), not the production prescription: it covers 7.55–12.59 mm at f/2.9 against the marketed 8–14 mm at f/3.5, and its ED glass sits in different positions. The association is not manufacturer-confirmed.
 The identification rests on several convergent points:
 
 1. Sony specifies the production lens as 13 groups / 16 elements, matching Example 1 exactly in physical count.

@@ -3,7 +3,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════════════════════════════╗
- * ║  LENS DATA — PENTAX HD D FA645 35mm f/3.5 AL [IF]                                                  ║
+ * ║  LENS DATA — PENTAX SMC FA 645 35mm f/3.5 AL [IF]                                                   ║
  * ╠══════════════════════════════════════════════════════════════════════════════════════════════════════╣
  * ║  Data source: US 2001/0007512 A1, Embodiment 4 (Takayuki Sensui / Asahi Kogaku Kogyo).              ║
  * ║  Unscaled 36.000133 mm d-line retrofocus prescription; 10 physical elements / 8 patent groups.       ║
@@ -12,10 +12,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  Focus status: PUBLISHED. G2 (surfaces 13–19A, including STO) moves 7.810 mm objectward; the          ║
  * ║  endpoint gaps are published, and linear interpolation reproduces the x=-1/40 row within 0.003 mm.  ║
  * ║                                                                                                      ║
- * ║  PRODUCT-CORRELATION CAVEAT: the patent is a plausible FA645-lineage design, not a confirmed exact   ║
- * ║  2015 HD production formula. The patent has 10 elements / 8 groups and m=0.200 at minimum distance;  ║
- * ║  Ricoh lists the production lens as 10 elements / 7 groups and 0.25x. Ricoh also states that the      ║
- * ║  2015 HD revision introduced a newly designed glass-molded asphere.                                   ║
+ * ║  PRODUCT-CORRELATION CAVEAT: the patent (priority December 1999) is attributed to the smc FA645     ║
+ * ║  35mm announced in March 2001; it is not a confirmed production formula. The patent has 10          ║
+ * ║  elements / 8 groups and m=0.200 at minimum distance; Ricoh lists the lens as 10 elements / 7       ║
+ * ║  groups and 0.25x. The 2015 HD D FA645 35mm is based on this lens with a new glass-molded asphere.  ║
  * ║                                                                                                      ║
  * ║  NO SCALING: radii, spacings and coefficient magnitudes retain the Embodiment 4 scale.             ║
  * ║  SOURCE ERRATA: surface 5A K, A6, A8 and A10 have restored minus signs; the printed positive block   ║
@@ -35,11 +35,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 const LENS_DATA = {
   /* ── Identity ── */
   schema: 2,
-  key: "pentax-hd-d-fa645-35f35-al-if",
+  key: "pentax-645-fa-35mm-f35-al-if",
   maker: "Pentax",
-  name: "PENTAX HD D FA645 35mm f/3.5 AL [IF]",
+  name: "PENTAX SMC FA 645 35mm f/3.5 AL [IF]",
   subtitle:
-    "US 2001/0007512 A1 Embodiment 4 — plausible FA645-lineage match; not confirmed as the exact 2015 HD formula",
+    "US 2001/0007512 A1 Embodiment 4 — filed ahead of the 2001 lens; 10 elements in 8 groups against Ricoh's 10 in 7",
 
   catalog: {
     lensMounts: ["pentax-645"],
