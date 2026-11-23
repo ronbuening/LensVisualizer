@@ -15,6 +15,8 @@ const PRODUCTION_MATCH_BY_KEY: Readonly<Partial<Record<string, boolean>>> = {
   "canon-tse-50f28l-macro": true, // Canon's own diagram and Japanese page show two UD elements and no asphere, as modeled.
   "carl-zeiss-jena-cardinar-100mm-f4": true, // Factory prescription for the published Werra lens.
   "carl-zeiss-jena-pi-flektogon-30mm-f28-printed-1975-eline": false, // A 1975 maker sheet; no source shows the printed state was built.
+  "cooke-series-xi-6-25in-f35": true, // The lens is engraved with this patent; Example I opens to f/3 and the lens is rated f/3.5.
+  "cooke-series-xv-12-25in-f68": true, // The patent gives the 12¼ in f/6.8 complete lens; its cells are 25½ and 19¼ in against the catalogue's 26½ and 19.
   "dallmeyer-rapid-landscape-1865-von-rohr-1899": true, // Von Rohr ties the modeled form to the 1865 release.
   "fujifilm-fujinon-85mm-f4-sf-ebc": false, // The example is f/2.8 and the retail lens is f/4.
   "fujifilm-gf-23mm-f4": true, // Fujifilm's 15 elements in 12 groups are the model's 14 in 11 plus a flat rear plate.
