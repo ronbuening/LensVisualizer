@@ -17,8 +17,10 @@ import type {
   MakerOption,
   MountOption,
   NumericFilterField,
+  ProductionMatchFilter,
   SourceKindOption,
 } from "./types.js";
+import { PRODUCTION_MATCH_OPTIONS } from "./types.js";
 import type { Theme } from "../../types/theme.js";
 import type { ImageFormatId, LensMountId } from "../../utils/catalog/lensTaxonomy.js";
 import { countSuffix } from "../../utils/style/styles.js";
@@ -36,6 +38,7 @@ interface LensIndexFilterPanelProps {
   filterInputValues: Record<NumericFilterField, string>;
   activeFilters: boolean;
   onClearFilters: () => void;
+  onProductionMatchChange: (value: ProductionMatchFilter) => void;
   onClearMakerSelection: () => void;
   onToggleMaker: (makerSlug: string) => void;
   onClearMountSelection: () => void;
@@ -254,6 +257,7 @@ export default function LensIndexFilterPanel({
   filterInputValues,
   activeFilters,
   onClearFilters,
+  onProductionMatchChange,
   onClearMakerSelection,
   onToggleMaker,
   onClearMountSelection,
@@ -397,6 +401,28 @@ export default function LensIndexFilterPanel({
       </div>
 
       <div style={{ display: "grid", gap: "1rem" }}>
+        <section>
+          <h3 id="custom-filter-production-match" style={FILTER_TITLE_STYLE}>
+            Production Match
+          </h3>
+          <div role="group" aria-labelledby="custom-filter-production-match" style={FILTER_CHIP_GROUP_STYLE}>
+            {PRODUCTION_MATCH_OPTIONS.map(([value, label]) => (
+              <button
+                key={value}
+                type="button"
+                style={buildToggleButtonStyle(t, customFilter.productionMatch === value)}
+                aria-pressed={customFilter.productionMatch === value}
+                onClick={() => onProductionMatchChange(value)}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
+          <p style={{ margin: "0.4rem 0 0", fontSize: "0.78rem", color: t.muted }}>
+            Matches include both documented and inferred production counterparts.
+          </p>
+        </section>
+
         <section>
           <h3 style={FILTER_TITLE_STYLE}>
             Focal Length
