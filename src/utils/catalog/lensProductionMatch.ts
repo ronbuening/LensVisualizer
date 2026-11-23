@@ -49,8 +49,8 @@ const PRODUCTION_MATCH_BY_KEY: Readonly<Partial<Record<string, boolean>>> = {
   "rodenstock-apo-sironar-w-150f56-a1-reconstruction": false, // Archived 8-element model of a 7-element lens.
   "ross-doublet-1864-von-rohr-1899": true, // Von Rohr identifies the form put on the market in 1864.
   "russar-22-70f8": true, // Roossinov names the Russar-22 as the lens patented; the 122° f/8 example fits.
-  "schneider-super-symmar-xl-110-f56": false, // Five air-separated groups versus four in Schneider's specification.
-  "schneider-variogon-45-100-f28": false, // 10 air-spaced groups versus 11 in the product brochure.
+  "schneider-super-symmar-xl-110-f56": true, // Optical Bench lists this patent example; it has five air-separated groups against Schneider's four, and no maker section was found.
+  "schneider-variogon-45-100-f28": true, // Optical Bench lists this patent example; it has 10 air-spaced groups against the brochure's 11, and the maker section is too coarse to judge.
   "sigma-30mm-f28-dn-art": true, // The profiles align with Sigma's drawing; the example has two aspherical faces against three.
   "sony-fe-400-800-f63-8-g-oss": false, // 17 optical groups versus 19 in Sony's specifications.
   "sony-fe-600mm-f4-gm-oss": false, // The example is all-spherical and lacks the production XA element.
