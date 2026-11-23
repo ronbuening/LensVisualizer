@@ -1,4 +1,4 @@
-# Carl Zeiss Jena PI-Flektogon 30mm f/2.8 (1975 e-line reconstruction)
+# Carl Zeiss Jena PI-Flektogon 30mm f/2.8 (Prototype Design)
 
 ## Source Reference and Design Identification
 
