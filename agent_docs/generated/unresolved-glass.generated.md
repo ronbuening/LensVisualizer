@@ -328,7 +328,7 @@ or per-lens patent backfills.
 
 ### 576388 — 1 occurrence
 
-- [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) 37: `576388 — catalog unresolved (supplier unconfirmed)`
+- [SONY FE 400-800mm f/6.3-8 G OSS (Prototype Design)](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) 37: `576388 — catalog unresolved (supplier unconfirmed)`
 
 ### 585417 — 1 occurrence
 
@@ -364,7 +364,7 @@ or per-lens patent backfills.
 
 ### 634299 — 1 occurrence
 
-- [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) 34: `634299 — catalog unresolved (supplier unconfirmed)`
+- [SONY FE 400-800mm f/6.3-8 G OSS (Prototype Design)](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) 34: `634299 — catalog unresolved (supplier unconfirmed)`
 
 ### 640353 — 1 occurrence
 
@@ -372,11 +372,11 @@ or per-lens patent backfills.
 
 ### 646287 — 1 occurrence
 
-- [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) 44: `646287 — catalog unresolved (supplier unconfirmed)`
+- [SONY FE 400-800mm f/6.3-8 G OSS (Prototype Design)](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) 44: `646287 — catalog unresolved (supplier unconfirmed)`
 
 ### 656277 — 1 occurrence
 
-- [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) 41: `656277 — catalog unresolved (supplier unconfirmed)`
+- [SONY FE 400-800mm f/6.3-8 G OSS (Prototype Design)](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) 41: `656277 — catalog unresolved (supplier unconfirmed)`
 
 ### 667311 — 1 occurrence
 
@@ -388,7 +388,7 @@ or per-lens patent backfills.
 
 ### 670266 — 1 occurrence
 
-- [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) 29: `670266 — catalog unresolved (supplier unconfirmed)`
+- [SONY FE 400-800mm f/6.3-8 G OSS (Prototype Design)](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) 29: `670266 — catalog unresolved (supplier unconfirmed)`
 
 ### 672323 — 1 occurrence
 
@@ -400,7 +400,7 @@ or per-lens patent backfills.
 
 ### 673343 — 1 occurrence
 
-- [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) 22: `673343 — catalog unresolved (supplier unconfirmed)`
+- [SONY FE 400-800mm f/6.3-8 G OSS (Prototype Design)](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) 22: `673343 — catalog unresolved (supplier unconfirmed)`
 
 ### 678314 — 1 occurrence
 
@@ -436,7 +436,7 @@ or per-lens patent backfills.
 
 ### 721234 — 1 occurrence
 
-- [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) 24: `721234 — catalog unresolved (supplier unconfirmed)`
+- [SONY FE 400-800mm f/6.3-8 G OSS (Prototype Design)](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) 24: `721234 — catalog unresolved (supplier unconfirmed)`
 
 ### 721334 — 1 occurrence
 
@@ -444,7 +444,7 @@ or per-lens patent backfills.
 
 ### 729364 — 1 occurrence
 
-- [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) 7: `729364 — catalog unresolved (supplier unconfirmed)`
+- [SONY FE 400-800mm f/6.3-8 G OSS (Prototype Design)](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) 7: `729364 — catalog unresolved (supplier unconfirmed)`
 
 ### 735416 — 1 occurrence
 
@@ -552,7 +552,7 @@ or per-lens patent backfills.
 
 ### 827336 — 1 occurrence
 
-- [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) 35: `827336 — catalog unresolved (supplier unconfirmed)`
+- [SONY FE 400-800mm f/6.3-8 G OSS (Prototype Design)](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) 35: `827336 — catalog unresolved (supplier unconfirmed)`
 
 ### 835447 — 1 occurrence
 
@@ -560,11 +560,11 @@ or per-lens patent backfills.
 
 ### 837333 — 1 occurrence
 
-- [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) 19: `837333 — catalog unresolved (supplier unconfirmed)`
+- [SONY FE 400-800mm f/6.3-8 G OSS (Prototype Design)](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) 19: `837333 — catalog unresolved (supplier unconfirmed)`
 
 ### 839196 — 1 occurrence
 
-- [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) 10: `839196 — catalog unresolved (supplier unconfirmed)`
+- [SONY FE 400-800mm f/6.3-8 G OSS (Prototype Design)](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) 10: `839196 — catalog unresolved (supplier unconfirmed)`
 
 ### 840433 — 1 occurrence
 
@@ -580,7 +580,7 @@ or per-lens patent backfills.
 
 ### 868323 — 1 occurrence
 
-- [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) 12: `868323 — catalog unresolved (supplier unconfirmed)`
+- [SONY FE 400-800mm f/6.3-8 G OSS (Prototype Design)](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) 12: `868323 — catalog unresolved (supplier unconfirmed)`
 
 ### 877370 — 1 occurrence
 
@@ -604,7 +604,7 @@ or per-lens patent backfills.
 
 ### 958300 — 1 occurrence
 
-- [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) 21: `958300 — catalog unresolved (supplier unconfirmed)`
+- [SONY FE 400-800mm f/6.3-8 G OSS (Prototype Design)](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) 21: `958300 — catalog unresolved (supplier unconfirmed)`
 
 ### FPL51 — 1 occurrence
 

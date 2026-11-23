@@ -1,4 +1,4 @@
-# Audit Log - Pentax HD D FA645 35mm f/3.5 AL [IF]
+# Audit Log - Pentax smc FA 645 35mm f/3.5 AL [IF]
 
 Patent: US 2001/0007512 A1, Embodiment 4
 
@@ -91,3 +91,20 @@ The optional close-focus helper run returns RI at each sampled finite field but 
 The patent prints a magnification and no object distance for this state. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
 
 All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.
+
+## 2026-11-22 — Product attribution
+
+The entry was named after the 2015 HD PENTAX-D FA645 35mm f/3.5 AL [IF] and is now named after the smc PENTAX-FA645
+35mm f/3.5 AL [IF]. The key changed from `pentax-hd-d-fa645-35f35-al-if` to `pentax-645-fa-35mm-f35-al-if`, with a
+redirect from the old address in `public/_redirects`. The prescription, semi-diameters, glasses and focus data are
+unchanged.
+
+- The patent's priority date is 14 December 1999. Ricoh's 2001 press index lists the smc lens in March 2001. The HD
+  lens followed in 2015 with a newly designed glass-molded aspherical element.
+- An outside Pentax patent index lists US 2001/0007512 under the smc FA645 35mm f/3.5. PhotonsToPhotos Optical Bench
+  lists Embodiment 4 under the HD lens.
+- Ricoh lists 10 elements in 7 groups and 0.25× for both lenses. The model has 10 in 8 and the patent's 0.200× near
+  state, so that difference remains.
+- No maker section drawing of the smc lens was found in Ricoh's product pages, the 645NII, 645D and 645Z brochures or
+  the FA645 manual. The earlier overlay used Ricoh's drawing of the HD lens, which draws the rear pair joined where the
+  model has a narrow air gap.
