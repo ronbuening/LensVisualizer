@@ -147,6 +147,7 @@ in distortion, vignetting, bokeh, and aberration analysis.
 | `6x7` | 6x7 | 70 x 56 | 89.6 | 5:4 |
 | `6x8` | 6x8 | 76 x 56 | 94.4 | about 4:3 |
 | `6x9` | 6x9 | 84 x 56 | 101 | 3:2 |
+| `quarter-plate` | Quarter-plate | 107.95 x 82.55 | 135.9 | 17:13 |
 | `4x5` | 4x5 | 127 x 101.6 | 162.6 | 5:4 |
 | `5x7` | 5x7 | 177.8 x 127 | 218.5 | 7:5 |
 | `8x10` | 8x10 | 254 x 203.2 | 325.3 | 5:4 |
