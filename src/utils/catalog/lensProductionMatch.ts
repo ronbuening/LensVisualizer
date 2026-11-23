@@ -11,7 +11,7 @@ const PRODUCTION_MATCH_BY_KEY: Readonly<Partial<Record<string, boolean>>> = {
   "canon-rf-14mm-f14-l-vcm": false, // Canon describes a concave focus-group asphere where the model has a biconvex lens.
   "canon-rf-70-200-f28": true, // The outline coincides with Canon's drawing; only the published group count differs, 12 against 13.
   "canon-rf-85f12l": true, // Nine groups and the special optics agree; the 14 modeled elements include the bonded Lp2 layer.
-  "canon-ts-e-24mm-f35l-ii": false, // 10 air-separated groups versus Canon's 11.
+  "canon-ts-e-24mm-f35l-ii": true, // The front elements and stop follow Canon's drawing; only the published group count differs, 10 against 11.
   "canon-tse-50f28l-macro": true, // Canon's own diagram and Japanese page show two UD elements and no asphere, as modeled.
   "carl-zeiss-jena-cardinar-100mm-f4": true, // Factory prescription for the published Werra lens.
   "carl-zeiss-jena-pi-flektogon-30mm-f28-printed-1975-eline": false, // A 1975 maker sheet; no source shows the printed state was built.
@@ -40,7 +40,7 @@ const PRODUCTION_MATCH_BY_KEY: Readonly<Partial<Record<string, boolean>>> = {
   "nikon-nikkor-20mm-f4": true, // Optical Bench and Camera Gossip cite this patent; it splits one production element into two.
   "nikon-uv-nikkor-55mm-f4": true, // Three elements at f/4 as in the 1968 handbook; Optical Bench lists the same patent example.
   "nikon-zoom-nikkor-56-168-f27-48-coolpix-sq": true, // The outline coincides with Nikon's drawing; Nikon focuses with G1, the patent with G3.
-  "olympus-mzuiko-12mm-f2": false, // The patent air-spaces a pair and has nine groups versus eight in production.
+  "olympus-mzuiko-12mm-f2": true, // The surfaces follow Olympus's drawing; a 0.6 mm air gap that Olympus draws cemented makes nine groups against eight.
   "olympus-zuiko-auto-fisheye-8mm-f28": true, // Olympus's 11 elements in 7 groups are the model's 10 in 6 plus the built-in filter.
   "panasonic-leica-dg-25f14": true, // Counts and aspheres agree; Optical Bench lists this Sigma patent example for the Mark II.
   "pentax-645-fa-35mm-f35-al-if": true, // A Pentax patent index names this patent for the smc FA645 35mm; eight groups against Ricoh's seven.
