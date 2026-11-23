@@ -221,6 +221,13 @@ export const IMAGE_FORMAT_DETAILS: Record<ImageFormatId, ImageFormatDetails> = {
     description:
       "6x9 is one of the largest common 120 roll-film formats. Its usable frame is about 84 x 56 mm, giving a 3:2 aspect ratio similar to 35 mm full-frame but at far larger scale. The format appears in folding cameras, press and technical cameras, and rangefinder systems such as the Fuji G690, where the goal is a large negative without moving up to sheet film.\n\nThe large diagonal changes everything about the optics. Normal lenses sit around 100 mm, wide-angle coverage is demanding, and fast apertures become large and expensive. Rangefinder and view-camera-style systems can avoid some SLR mirror constraints, but lenses still need to deliver adequate sharpness, illumination, and distortion control over a 101 mm diagonal. Catalog entries in this class show medium-format design pushed toward the edge of roll-film coverage.",
   },
+  "quarter-plate": {
+    commonUses: "Early twentieth-century hand and stand cameras, press cameras and plate cameras",
+    coverageNotes: "Nominal 4¼ x 3¼ in (107.95 x 82.55 mm) plate or sheet with a 135.9 mm diagonal",
+    summary: "The British quarter-plate, a 4¼ x 3¼ in glass-plate and cut-film size of the hand-camera era.",
+    description:
+      "Quarter-plate was one of the standard British plate sizes, a quarter of the 8½ x 6½ in whole plate. Hand and stand cameras, folding plate cameras and reflexes used it from the late nineteenth century into the 1930s, first on glass plates and later on cut film and film packs. In the catalog's landscape orientation the nominal frame is 107.95 x 82.55 mm; holders and masks exposed slightly less.\n\nA lens needs to cover a 135.9 mm diagonal. Normal lenses for the format sit around 5 to 6 inches, and British lens catalogues of the period often stated coverage by plate size.",
+  },
   "4x5": {
     commonUses: "Large-format view cameras, field cameras, press cameras, and technical cameras",
     coverageNotes: "Nominal 127 x 101.6 mm sheet-film size with a 162.6 mm diagonal",
