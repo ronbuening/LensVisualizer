@@ -57,7 +57,7 @@ const PRODUCTION_MATCH_BY_KEY: Readonly<Partial<Record<string, boolean>>> = {
   "sony-fe-8-14mm-f35-fisheye-g": false, // The example is 7.55–12.59 mm f/2.9 versus 8–14 mm f/3.5.
   "sony-vario-sonnar-88-733f28-rx10": false, // The example covers 9.2–64.7 mm versus 8.8–73.3 mm.
   "steinheil-periskop-1865-von-rohr-1899": true, // Von Rohr identifies the 1865 marketed form.
-  "voigtlander-apo-lanthar-180-f4": false, // The 178 mm example has the production counts; Cosina's drawing fits only in part.
+  "voigtlander-apo-lanthar-180-f4": true, // The 178 mm example has Cosina's counts and glass positions; the drawing fits only in part.
   "voigtlander-cine-tele-anastigmat-100mm-f45": true, // No construction difference is documented; Optical Bench lists the same patent example.
   "voigtlander-macro-apo-lanthar-125-f25": false, // 10 elements versus 11 in the retail lens.
   "voigtlander-portrait-1878-von-rohr-1899": true, // Published reduction of the form Voigtländer introduced in 1878.
