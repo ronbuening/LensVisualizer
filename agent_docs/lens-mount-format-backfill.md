@@ -9,7 +9,7 @@ the fields unset and add a note here until a source check resolves it.
 
 - Total lens data files, literature reconstructions excluded: **1195**
 - Files with both `lensMounts` and `imageFormat`: **1137**
-- Files missing `lensMounts`: **48** (33 public lenses, 2 hidden patent designs and 13 hidden reference fixtures)
+- Files missing `lensMounts`: **48** (32 public lenses, 3 hidden patent designs and 13 hidden reference fixtures)
 - Files missing `imageFormat`: **40** (28 public lenses and 12 hidden reference fixtures)
 - Files missing both fields: **30**
 - Formats currently in use: `1-1.7-inch-type`, `1-1.8-inch-type`, `1-2.3-inch-type`, `1-2.55-inch-type`,
