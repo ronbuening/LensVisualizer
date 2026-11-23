@@ -1,4 +1,4 @@
-# Sony FE 600mm F4 GM OSS — Optical Design Analysis
+# Sony FE 600mm F4 GM OSS (Prototype Design) — Optical Design Analysis
 
 ## Patent Reference and Design Identification
 
