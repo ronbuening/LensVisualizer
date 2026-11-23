@@ -43,9 +43,9 @@ const PRODUCTION_MATCH_BY_KEY: Readonly<Partial<Record<string, boolean>>> = {
   "olympus-mzuiko-12mm-f2": false, // The patent air-spaces a pair and has nine groups versus eight in production.
   "olympus-zuiko-auto-fisheye-8mm-f28": true, // Olympus's 11 elements in 7 groups are the model's 10 in 6 plus the built-in filter.
   "panasonic-leica-dg-25f14": true, // Counts and aspheres agree; Optical Bench lists this Sigma patent example for the Mark II.
+  "pentax-645-fa-35mm-f35-al-if": true, // A Pentax patent index names this patent for the smc FA645 35mm; eight groups against Ricoh's seven.
   "pentax-dfa645-25mm-f4-al-if-sdm-aw": true, // With the patent's filter plate the example has eight air-separated units, as Ricoh lists.
   "pentax-hd-d-fa-star-70-200mm-f28-ed-dc-aw": true, // The outline coincides with Ricoh's drawing; only the published group count differs, 15 against 16.
-  "pentax-hd-d-fa645-35f35-al-if": true, // Optical Bench cites this example and a Pentax patent index ties the patent to the FA645 35mm; eight groups against Ricoh's seven.
   "rodenstock-apo-sironar-w-150f56-a1-reconstruction": false, // Archived 8-element model of a 7-element lens.
   "ross-doublet-1864-von-rohr-1899": true, // Von Rohr identifies the form put on the market in 1864.
   "russar-22-70f8": true, // Roossinov names the Russar-22 as the lens patented; the 122° f/8 example fits.
