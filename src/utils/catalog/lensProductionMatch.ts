@@ -8,7 +8,6 @@ const PRODUCTION_MATCH_BY_KEY: Readonly<Partial<Record<string, boolean>>> = {
   "canon-ef-70-200f28l-is-usm": false, // 21 elements in 19 groups versus the retail 23 in 18.
   "canon-ef-70-300mm-f45-56-do-is-usm": false, // 17 elements in 14 groups versus Canon's 18 in 12.
   "canon-ef-s-18-135mm-f35-56-is-stm": true, // The outline coincides with Canon's drawing; only the published group count differs, 11 against 12.
-  "canon-rf-14mm-f14-l-vcm": false, // Canon describes a concave focus-group asphere where the model has a biconvex lens.
   "canon-rf-70-200-f28": true, // The outline coincides with Canon's drawing; only the published group count differs, 12 against 13.
   "canon-rf-85f12l": true, // Nine groups and the special optics agree; the 14 modeled elements include the bonded Lp2 layer.
   "canon-ts-e-24mm-f35l-ii": true, // The front elements and stop follow Canon's drawing; only the published group count differs, 10 against 11.
@@ -31,7 +30,6 @@ const PRODUCTION_MATCH_BY_KEY: Readonly<Partial<Record<string, boolean>>> = {
   "nikkor-af-s-58f14g": false, // Production separates the post-stop pair and moves an asphere.
   "nikkor-afs-16-35f4-vr": true, // The outline coincides with Nikon's drawing; only the published group count differs, 11 against 12.
   "nikon-af-nikkor-35mm-f2d": true, // The lens extends as a unit, as in the patent; only Nikon USA's table lists rear focusing.
-  "nikon-af-s-dx-micro-nikkor-40mm-f28g": false, // A confirmed group-count difference and different focus travel.
   "nikon-af-s-fisheye-nikkor-8-15mm-f35-45e-ed": false, // 18 elements versus 15, with different aspheres.
   "nikon-af-s-nikkor-180-400mm-f4e-tc14-fl-ed-vr-tc-in": false, // The converter has four groups versus Nikon's five.
   "nikon-af-s-nikkor-24-85mm-f35-45g-ed-vr": true, // The wide-end layout agrees with Nikon's drawing; the example is 87 mm f/5.8 at telephoto against 85 mm f/4.5.
