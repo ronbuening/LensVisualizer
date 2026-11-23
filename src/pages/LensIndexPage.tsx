@@ -5,8 +5,8 @@
  * and custom filters, with crawlable <a> links.
  */
 
-import { useCallback, useEffect, useMemo, useState } from "react";
-import { Link, useSearchParams } from "react-router";
+import { useCallback, useEffect, useId, useMemo, useState } from "react";
+import { Link, useLocation, useNavigationType, useSearchParams } from "react-router";
 import SEOHead from "../components/SEOHead.js";
 import PageNavBar from "../components/layout/PageNavBar.js";
 import { LENS_SUMMARIES, SUMMARY_KEYS } from "../utils/catalog/lensSummaries.js";
@@ -28,6 +28,7 @@ import {
 } from "./lensIndex/groupAnchors.js";
 import {
   FILTER_BOUNDS,
+  SOURCE_KIND_LABELS,
   buildFilterBounds,
   buildImageFormatOptions,
   buildMakerOptions,
@@ -41,9 +42,11 @@ import {
   groupByMaker,
   groupByMount,
   groupByPatentYear,
+  hasActivePanelFilters,
+  isLensSourceKind,
 } from "./lensIndex/catalog.js";
 import { H1_STYLE, PAGE_BASE_STYLE } from "./lensIndex/styles.js";
-import type { GroupMode } from "./lensIndex/types.js";
+import { PRODUCTION_MATCH_OPTIONS, type GroupMode } from "./lensIndex/types.js";
 import useLensIndexFilters from "./lensIndex/useLensIndexFilters.js";
 import { lensLinkFromLibrary } from "./lensIndex/clusterLinks.js";
 import type { LensLibraryBreadcrumbContext } from "./lensIndex/clusterLinks.js";
@@ -51,8 +54,58 @@ import { parseLensIndexUrlState, parseLensIndexViewMode, serializeLensIndexUrlSt
 import { LENS_FEED_PATH } from "../utils/content/feedMetadata.js";
 import { textRun } from "../utils/text.js";
 
+import type { Theme } from "../types/theme.js";
+
+function LibraryFilterSelect<T extends string>({
+  label,
+  options,
+  value,
+  onChange,
+  theme,
+}: {
+  label: string;
+  options: ReadonlyArray<readonly [T, string]>;
+  value: T;
+  onChange: (value: T) => void;
+  theme: Theme;
+}) {
+  const active = value !== "all";
+  return (
+    <label style={{ display: "grid", gap: "0.3rem", width: "min(100%, 14.5rem)", fontSize: "0.8rem" }}>
+      <span>{label}</span>
+      <select
+        value={value}
+        onChange={(event) => {
+          const next = options.find(([id]) => id === event.currentTarget.value);
+          if (next) onChange(next[0]);
+        }}
+        style={{
+          maxWidth: "100%",
+          minHeight: 32,
+          padding: "0.25rem 0.5rem",
+          font: "inherit",
+          color: active ? theme.toggleActiveText : theme.body,
+          backgroundColor: active ? theme.toggleActiveBg : theme.panelBg,
+          border: `1px solid ${active ? theme.toggleActiveBorder : theme.panelBorder}`,
+          borderRadius: 4,
+          cursor: "pointer",
+        }}
+      >
+        {options.map(([id, name]) => (
+          <option key={id} value={id} disabled={id === "multiple"}>
+            {name}
+          </option>
+        ))}
+      </select>
+    </label>
+  );
+}
+
 export default function LensIndexPage() {
   const [searchParams, setSearchParams] = useSearchParams();
+  const location = useLocation();
+  const navigationType = useNavigationType();
+  const urlSyncId = useId();
   const requestedViewMode = useMemo(() => parseLensIndexViewMode(searchParams.toString()), [searchParams]);
   const catalogEntries = useMemo(() => catalogEntriesForView(requestedViewMode), [requestedViewMode]);
   const filterBounds = useMemo(
@@ -78,11 +131,23 @@ export default function LensIndexPage() {
   );
   const [groupMode, setGroupMode] = useState<GroupMode>(parsedUrlState.groupMode);
   const [filterOpen, setFilterOpen] = useState(parsedUrlState.filterOpen);
+  const [filterFromUrl, setFilterFromUrl] = useState(parsedUrlState.customFilter);
+  const [previousSearch, setPreviousSearch] = useState(location.search);
+  if (location.search !== previousSearch) {
+    setPreviousSearch(location.search);
+    // A replacement from this page can arrive after another edit has already changed the controls.
+    const ownReplacement = navigationType === "REPLACE" && location.state?.lensIndexUrlSync === urlSyncId;
+    if (!ownReplacement) {
+      setGroupMode(parsedUrlState.groupMode);
+      setFilterOpen(parsedUrlState.filterOpen);
+      setFilterFromUrl(parsedUrlState.customFilter);
+    }
+  }
   const yearDir: "asc" | "desc" = groupMode === "year-desc" ? "desc" : "asc";
   const totalLenses = catalogEntries.length;
   const publicLensCount = SUMMARY_KEYS.length;
   const { theme: t, themeMode, highContrast, toggleTheme, toggleHC } = usePageThemeToggle();
-  const seoDescription = `Browse ${publicLensCount} patent-derived lens cross-section diagrams from Nikon, Carl Zeiss, Ricoh, Voigtländer, and more, with ray tracing and optical analysis.`;
+  const seoDescription = `Browse ${publicLensCount} lens cross-section diagrams from Nikon, Carl Zeiss, Ricoh, Voigtländer, and more, with ray tracing and optical analysis.`;
   const {
     customFilter,
     filterInputValues,
@@ -96,6 +161,8 @@ export default function LensIndexPage() {
     clearImageFormatSelection,
     toggleImageFormat,
     clearSourceKindSelection,
+    selectSourceKind,
+    setProductionMatch,
     toggleSourceKind,
     applyNumericField,
     handleNumericInputChange,
@@ -104,8 +171,14 @@ export default function LensIndexPage() {
   } = useLensIndexFilters({
     entries: catalogEntries,
     bounds: filterBounds,
-    initialFilter: parsedUrlState.customFilter,
+    initialFilter: filterFromUrl,
   });
+  const multipleSources = customFilter.sourceKinds.length > 1;
+  const toolbarSources: ReadonlyArray<readonly [string, string]> = [
+    ["all", "All sources"],
+    ...Object.entries(SOURCE_KIND_LABELS),
+    ...(multipleSources ? [["multiple", "Multiple sources"] as const] : []),
+  ];
   const makerGroups = useMemo(() => groupByMaker(filteredEntries), [filteredEntries]);
   const inventorGroups = useMemo(() => groupByInventor(filteredEntries), [filteredEntries]);
   const assigneeGroups = useMemo(() => groupByAssignee(filteredEntries), [filteredEntries]);
@@ -204,16 +277,11 @@ export default function LensIndexPage() {
   );
 
   useEffect(() => {
-    setGroupMode(parsedUrlState.groupMode);
-    setFilterOpen(parsedUrlState.filterOpen);
-  }, [parsedUrlState.groupMode, parsedUrlState.filterOpen]);
-
-  useEffect(() => {
     const nextSearch = currentLensIndexSearch;
     if (nextSearch !== searchParams.toString()) {
-      setSearchParams(nextSearch, { replace: true });
+      setSearchParams(nextSearch, { replace: true, state: { lensIndexUrlSync: urlSyncId } });
     }
-  }, [currentLensIndexSearch, searchParams, setSearchParams]);
+  }, [currentLensIndexSearch, searchParams, setSearchParams, urlSyncId]);
 
   const toggleButtonStyle = (active: boolean): React.CSSProperties => ({
     padding: "0.25rem 0.75rem",
@@ -241,7 +309,7 @@ export default function LensIndexPage() {
             route: "/lenses",
           }),
           datasetJsonLd({
-            name: "Patent-Derived Camera Lens Cross-Section Library",
+            name: "Camera Lens Cross-Section Library",
             description: seoDescription,
             url: `${SITE_URL}/lenses`,
             route: "/lenses",
@@ -333,13 +401,13 @@ export default function LensIndexPage() {
             marginBottom: filterOpen ? "1rem" : "2rem",
           }}
         >
-          <p style={{ fontSize: "0.875rem", color: t.muted, margin: 0 }}>
+          <p role="status" style={{ fontSize: "0.875rem", color: t.muted, margin: 0 }}>
             {textRun(
               "Showing ",
               filteredEntries.length,
               " of ",
               totalLenses,
-              " interactive optical cross-section diagrams built from patent data.",
+              " interactive optical cross-section diagrams.",
             )}
           </p>
           <div
@@ -408,9 +476,35 @@ export default function LensIndexPage() {
             >
               By Format
             </button>
+          </div>
+          <div
+            role="group"
+            aria-label="Library filters"
+            style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem 1rem", alignItems: "end", width: "100%" }}
+          >
+            <LibraryFilterSelect
+              label="Build source"
+              options={toolbarSources}
+              value={multipleSources ? "multiple" : (customFilter.sourceKinds[0] ?? "all")}
+              onChange={(value) => {
+                if (isLensSourceKind(value)) selectSourceKind(value);
+                else if (value === "all") clearSourceKindSelection();
+              }}
+              theme={t}
+            />
+            <LibraryFilterSelect
+              label="Production match"
+              options={PRODUCTION_MATCH_OPTIONS}
+              value={customFilter.productionMatch}
+              onChange={setProductionMatch}
+              theme={t}
+            />
             <button
               type="button"
-              style={toggleButtonStyle(filterOpen || activeFilters)}
+              style={{
+                ...toggleButtonStyle(filterOpen || hasActivePanelFilters(customFilter, filterBounds)),
+                minHeight: 32,
+              }}
               onClick={() => setFilterOpen((open) => !open)}
               aria-expanded={filterOpen}
               aria-controls="custom-filter-panel"
@@ -433,6 +527,7 @@ export default function LensIndexPage() {
             filterInputValues={filterInputValues}
             activeFilters={activeFilters}
             onClearFilters={clearFilters}
+            onProductionMatchChange={setProductionMatch}
             onClearMakerSelection={clearMakerSelection}
             onToggleMaker={toggleMaker}
             onClearMountSelection={clearMountSelection}
@@ -458,9 +553,9 @@ export default function LensIndexPage() {
               color: t.body,
             }}
           >
-            <p style={{ marginTop: 0, marginBottom: "0.75rem" }}>No lenses match the current custom filter.</p>
+            <p style={{ marginTop: 0, marginBottom: "0.75rem" }}>No lenses match the current filters.</p>
             <button type="button" style={toggleButtonStyle(true)} onClick={clearFilters}>
-              Reset Custom Filter
+              Reset Filters
             </button>
           </div>
         )}

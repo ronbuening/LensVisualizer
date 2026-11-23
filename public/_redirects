@@ -14,6 +14,9 @@
 /lens/nikon-af-zoom-micro-70-180mm-f4.5-5.6d/ /lens/nikon-af-zoom-micro-70-180mm-f45-56d/ 301
 /lens/sony-sal-70-400mm-f4-5.6-g /lens/sony-sal-70-400mm-f4-56-g/ 301
 /lens/sony-sal-70-400mm-f4-5.6-g/ /lens/sony-sal-70-400mm-f4-56-g/ 301
+# 2026-11-22: the Pentax 645 35mm entry is named after the smc FA645 lens its patent precedes.
+/lens/pentax-hd-d-fa645-35f35-al-if /lens/pentax-645-fa-35mm-f35-al-if/ 301
+/lens/pentax-hd-d-fa645-35f35-al-if/ /lens/pentax-645-fa-35mm-f35-al-if/ 301
 # 2026-09-16: image-format ids "1/2.3-inch-type" and "1/1.7-inch-type" renamed to
 # single-segment slugs; the old two-segment paths never matched /formats/:formatId.
 /formats/1/2.3-inch-type /formats/1-2.3-inch-type/ 301
