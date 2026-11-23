@@ -44,7 +44,7 @@ const LENS_DATA = {
   schema: 2,
   key: "voigtlander-macro-apo-lanthar-125-f25",
   maker: "Voigtländer",
-  name: "VOIGTLÄNDER MACRO APO-LANTHAR 125mm f/2.5 SL (JP 2002-090622 A Prototype Design)",
+  name: "VOIGTLÄNDER MACRO APO-LANTHAR 125mm f/2.5 SL (Prototype Design)",
   subtitle: "JP 2002-090622 A Example 2 — Cosina / Yoshihisa Yomogida; prototype design, not the production prescription",
 
   catalog: {

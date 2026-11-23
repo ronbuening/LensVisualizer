@@ -16,7 +16,7 @@ const LENS_DATA = {
   schema: 2,
   key: "nikkor-af-s-58f14g",
   maker: "Nikon",
-  name: "NIKON AF-S NIKKOR 58mm f/1.4 G (JP 2013-019993 A Prototype Design)",
+  name: "NIKON AF-S NIKKOR 58mm f/1.4 G (Prototype Design)",
   subtitle: "JP 2013-019993 A EXAMPLE 2 — HARUO SATO; related to AF-S NIKKOR 58mm f/1.4G",
 
   catalog: {

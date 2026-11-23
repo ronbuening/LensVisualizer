@@ -1,4 +1,4 @@
-# NIKON AF-S NIKKOR 58mm f/1.4 G (JP 2013-019993 A Prototype Design)
+# NIKON AF-S NIKKOR 58mm f/1.4 G (Prototype Design)
 
 ## Patent Reference and Design Identification
 
