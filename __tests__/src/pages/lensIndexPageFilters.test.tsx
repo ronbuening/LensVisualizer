@@ -128,9 +128,9 @@ describe("LensIndexPage custom filters", () => {
 
     fireEvent.click(screen.getByRole("button", { name: /^Patents \(\d+\)$/ }));
     expect(source.value).toBe("multiple");
-    expect(screen.getByRole("link", { name: /AF-S NIKKOR 58mm f\/1.4 G.*patent design candidate/i })).toBeTruthy();
+    expect(screen.getByRole("link", { name: /AF-S NIKKOR 58mm f\/1.4 G.*Prototype Design/i })).toBeTruthy();
     fireEvent.change(source, { target: { value: "literature" } });
-    expect(screen.queryByRole("link", { name: /AF-S NIKKOR 58mm f\/1.4 G.*patent design candidate/i })).toBeNull();
+    expect(screen.queryByRole("link", { name: /AF-S NIKKOR 58mm f\/1.4 G.*Prototype Design/i })).toBeNull();
     fireEvent.click(screen.getByRole("button", { name: "Clear Filters" }));
     expect(source.value).toBe("all");
     expect(production.value).toBe("all");

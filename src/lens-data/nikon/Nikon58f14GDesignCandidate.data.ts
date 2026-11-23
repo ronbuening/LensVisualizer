@@ -2,7 +2,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * JP 2013-019993 A, Example 2 / Figure 3 / Tables 4-5.
- * Related 58mm patent design candidate, not an established AF-S production prescription.
+ * Related 58mm prototype design from the patent, not an established AF-S production prescription.
  * Production has six air-separated components and E1/E6 aspheres;
  * Example 2 has five components and E1/E9 aspheres.
  * Nine elements, five air-separated components, four optical groups.
@@ -16,14 +16,14 @@ const LENS_DATA = {
   schema: 2,
   key: "nikkor-af-s-58f14g",
   maker: "Nikon",
-  name: "NIKON AF-S NIKKOR 58mm f/1.4 G (patent design candidate)",
+  name: "NIKON AF-S NIKKOR 58mm f/1.4 G (JP 2013-019993 A Prototype Design)",
   subtitle: "JP 2013-019993 A EXAMPLE 2 — HARUO SATO; related to AF-S NIKKOR 58mm f/1.4G",
 
   catalog: {
     lensMounts: ["nikon-f"],
     imageFormat: "135-full-frame",
     specs: [
-      "9 ELEMENTS / 5 GROUPS · PATENT DESIGN CANDIDATE",
+      "9 ELEMENTS / 5 GROUPS · PROTOTYPE DESIGN",
       "RELATED TO AF-S NIKKOR 58mm f/1.4G",
       "f = 58.0216 mm (PATENT)",
       "F/1.45 (PATENT)",

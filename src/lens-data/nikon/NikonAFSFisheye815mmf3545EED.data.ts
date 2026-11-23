@@ -44,8 +44,8 @@ const LENS_DATA = {
   schema: 2,
   key: "nikon-af-s-fisheye-nikkor-8-15mm-f35-45e-ed",
   maker: "Nikon",
-  name: "NIKON AF-S FISHEYE NIKKOR 8-15mm f/3.5-4.5 E ED",
-  subtitle: "JP 2017-068114 A Example 1 — approximate production match; not the production prescription",
+  name: "NIKON AF-S FISHEYE NIKKOR 8-15mm f/3.5-4.5 E ED (JP 2017-068114 A Prototype Design)",
+  subtitle: "JP 2017-068114 A Example 1 — prototype design; not the production prescription",
 
   catalog: {
     lensMounts: ["nikon-f"],
