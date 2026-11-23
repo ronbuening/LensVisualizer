@@ -28,7 +28,6 @@ const PRODUCTION_MATCH_BY_KEY: Readonly<Partial<Record<string, boolean>>> = {
   "meyer-optik-gorlitz-kino-plasmat-100-f2": true,
   "minolta-250mm-f56-rf": true, // Minolta's section shows the same optics plus a rear filter; the patent figure is labeled f/4.5.
   "minolta-af-70-200mm-f28-apo-g-d-ssm": true, // The outline coincides with Sony's drawing; only the published group count differs, 15 against 16.
-  "nikkor-85f14d": false, // Patent candidate has an additional element and group.
   "nikkor-af-s-58f14g": false, // Production separates the post-stop pair and moves an asphere.
   "nikkor-afs-16-35f4-vr": true, // The outline coincides with Nikon's drawing; only the published group count differs, 11 against 12.
   "nikon-af-nikkor-35mm-f2d": true, // The lens extends as a unit, as in the patent; only Nikon USA's table lists rear focusing.
@@ -36,7 +35,6 @@ const PRODUCTION_MATCH_BY_KEY: Readonly<Partial<Record<string, boolean>>> = {
   "nikon-af-s-fisheye-nikkor-8-15mm-f35-45e-ed": false, // 18 elements versus 15, with different aspheres.
   "nikon-af-s-nikkor-180-400mm-f4e-tc14-fl-ed-vr-tc-in": false, // The converter has four groups versus Nikon's five.
   "nikon-af-s-nikkor-24-85mm-f35-45g-ed-vr": true, // The wide-end layout agrees with Nikon's drawing; the example is 87 mm f/5.8 at telephoto against 85 mm f/4.5.
-  "nikon-af-zoom-micro-70-180mm-f45-56d": false, // The example is 82.4–194 mm versus 70–180 mm.
   "nikon-afs-105f28-vr-micro": true, // Optical Bench and Camera Gossip cite this patent example; it has 11 groups against Nikon's 12.
   "nikon-fisheye-nikkor-105mm-f28g-ed": true, // Nikon's manual lists no aspherical element; only Nikon USA's table does.
   "nikon-nikkor-20mm-f4": true, // Optical Bench and Camera Gossip cite this patent; it splits one production element into two.
@@ -59,7 +57,7 @@ const PRODUCTION_MATCH_BY_KEY: Readonly<Partial<Record<string, boolean>>> = {
   "sony-fe-8-14mm-f35-fisheye-g": false, // The example is 7.55–12.59 mm f/2.9 versus 8–14 mm f/3.5.
   "sony-vario-sonnar-88-733f28-rx10": false, // The example covers 9.2–64.7 mm versus 8.8–73.3 mm.
   "steinheil-periskop-1865-von-rohr-1899": true, // Von Rohr identifies the 1865 marketed form.
-  "voigtlander-apo-lanthar-180-f4": false, // The modeled example is 198 mm; the notes favor the 178 mm example.
+  "voigtlander-apo-lanthar-180-f4": false, // The 178 mm example has the production counts; Cosina's drawing fits only in part.
   "voigtlander-cine-tele-anastigmat-100mm-f45": true, // No construction difference is documented; Optical Bench lists the same patent example.
   "voigtlander-macro-apo-lanthar-125-f25": false, // 10 elements versus 11 in the retail lens.
   "voigtlander-portrait-1878-von-rohr-1899": true, // Published reduction of the form Voigtländer introduced in 1878.
