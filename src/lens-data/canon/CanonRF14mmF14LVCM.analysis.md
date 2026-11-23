@@ -2,385 +2,218 @@
 
 ## Patent Reference and Design Identification
 
-**Patent:** US 2025/0389929 A1\
-**Application Number:** 19/243,548\
-**Filed:** June 19, 2025\
-**Priority:** JP 2024-101168, June 24, 2024\
-**Published:** December 25, 2025\
-**Inventor:** Takahiro Saito\
-**Applicant:** Canon Kabushiki Kaisha\
-**Title:** _Optical System and Imaging Apparatus Including Same_\
-**Scoped original follow-up:** October 30, 2026; August 20 source/glass history retained
+**Patent:** US 2026/0235852 A1\
+**Application Number:** 19/434,445\
+**Filed:** December 29, 2025\
+**Priority:** JP 2025-021520, February 13, 2025\
+**Published:** August 13, 2026\
+**Inventor:** Tatsuro Watanabe\
+**Applicant:** Canon Inc.\
+**Title:** _Optical System and Image Pickup Apparatus_\
+**Example details:** Infinity section in Fig. 1, infinity and near aberrations in Figs. 2A and 2B, and prescription on printed pp. 6–7.
 
-The LensVisualizer prescription uses Numerical Example 1 of US 2025/0389929 A1 as the fixed correlation for the Canon RF 14mm f/1.4 L VCM. The patent itself does not identify a commercial product. The correspondence is therefore an architectural and numerical correlation rather than a manufacturer statement that the production lens uses this exact prescription.
+Canon identifies Tatsuro Watanabe, the patent inventor, as the optical designer of the production RF14mm F1.4 L VCM. The example agrees with Canon's drawing in its 18 lens elements and 13 air-spaced groups, the positions of the UD and fluorite lenses and bonded BR layer, and the five-element focus unit ending in a double-concave asphere. Canon identifies that element and the two corresponding front aspheres as glass-molded. The design values of 14.42 mm and f/1.45 are close to the marketed 14 mm f/1.4.
 
-The notation needs one explicit mapping. The data keeps internal element names **L1–L18**, while the diagram now displays the patent's physical-lens labels **G1–G18**. Its functional annotations likewise use the patent group labels **L1 (FIXED), L2 (OBJECTWARD FOCUS), and L3 (FIXED)**.
+The iris aligns within one pixel in Canon's original section drawing when the infinity model is registered to the first and last lens vertices. The rear focusing asphere sits about six pixels farther toward the object, and several lens edges differ. Canon gives no focus setting or dimensional scale for its drawing. The construction and designer support a close production correlation. The exact production prescription, material grades and clear apertures remain unverified.
 
-Several independent features converge on the selected production correlation:
-
-1. Canon publishes an **18-element / 13-group** construction for the RF14mm F1.4 L VCM, exactly matching Numerical Example 1's 18 physical elements in 13 air-separated groups.
-2. Canon markets the product as **14 mm f/1.4**; Numerical Example 1 is an unscaled **14.42 mm, Fno 1.46** design. The data file keeps the marketed and design values separate rather than forcing a scale transformation.
-3. Canon specifies **three aspherical elements**. Example 1 contains five aspherical surfaces on three elements: data L1, L3, and L16. Canon's developer interview independently places two GMo aspherical elements in the front portion and one in the rear focus group.
-4. Canon specifies one **fluorite** and one **UD** element. The production optical cross-section locates the UD element in the front portion of the lens, making data L2 / patent G2 the strongest location-based UD correlation. The negative data L5 / patent G5 has `nd = 1.43387`, `νd = 95.1` and is the convergent match for Canon's explicitly concave fluorite element.
-5. Canon locates its **BR optical element immediately behind the aperture**, sandwiched between a convex and a concave lens. Example 1 has a `1.57060 / 20.08` resin-correlated member, data L11, between positive L10 and negative L12 in the cemented triplet immediately behind the stop.
-6. Canon identifies a rear focus unit driven by VCM actuators. Example 1 likewise focuses by translating only patent group L2, while L1 and L3 remain fixed.
-7. The product's **0.24 m** minimum focusing distance and **0.11×** maximum magnification are close to the patent's second focus state, which is tabulated at **−0.1×** and includes a disputed `240.532 mm` object-distance row discussed below.
-8. The timing is consistent: Japanese priority was claimed in June 2024, the U.S. application was published in December 2025, and Canon announced the RF14mm F1.4 L VCM on February 4, 2026.
-
-One shape-level discrepancy prevents treating the correlation as an exact production disclosure. Canon's developer interview describes the production focus-group GMo as a **concave** aspherical lens, whereas Example 1 places its focus-group aspherical surfaces 28 and 29 on data L16, a **positive biconvex** element. The selected patent/example remains the fixed LensVisualizer correlation, but this difference should remain visible whenever production identity is discussed.
-
-The patent's own prose contains a separate internal label error at ¶0136. It first says that the second lens group L2 moves during focusing and then states that the first and third groups “L1 and L2” remain stationary. The abstract, ¶0032, and claim 1 consistently establish the intended stationary pair as **L1 and L3**; the analysis follows that internally consistent reading.
+Canon announced the lens in 2026. Its specification lists a full-frame RF mount, 11 aperture blades, an f/16 minimum aperture, 0.24 m minimum focus and 0.11× maximum magnification. The lens accepts a cut-to-size gel or polyester filter in a rear holder and has no front filter thread.
 
 ## Optical Architecture
 
-Numerical Example 1 is a three-functional-group, wide-angle prime with a **positive–positive–negative** group-power sequence. It contains 18 elements in 13 air-separated groups and four cemented assemblies. The aperture stop lies inside the first functional group, after data L9 and before the post-stop cemented triplet C2. Patent ¶¶0032–0049 describe the same broad architecture: a positive front group, a positive moving second group, and a rear group whose negative power is used to control the rear ray geometry and Petzval balance.
+This ultra-wide prime has three functional units with positive net power. The first two lenses distribute the strong negative power at the front. Their shapes help hold down barrel distortion and field curvature while maintaining space behind the lens, as described in ¶¶0023–0026. The fixed front unit converges the beam before it reaches the moving unit, which lets the focusing elements be smaller. The weakly positive fixed rear doublet reduces incidence angles at the image and contributes to the off-axis correction (¶¶0075, 0084).
 
-| Patent / diagram group | Data elements     | State                              | Independently verified focal length | Principal role                                                                                       |
-| ---------------------- | ----------------- | ---------------------------------- | ----------------------------------: | ---------------------------------------------------------------------------------------------------- |
-| L1 (FIXED)             | L1–L12 / G1–G12   | Fixed                              |                         +36.2812 mm | Front negative-power distribution, aperture, and most of the primary chromatic/aberration correction |
-| L2 (OBJECTWARD FOCUS)  | L13–L16 / G13–G16 | Moves toward object at close focus |                         +28.3504 mm | Rear focusing group; preserves a positive net power despite a net-negative front cemented pair       |
-| L3 (FIXED)             | L17–L18 / G17–G18 | Fixed                              |                         −57.2743 mm | Rear negative cemented group controlling image-side ray geometry and field balance                   |
+| Patent unit | Diagram media               | Computed focal length | Function                                                                                   |
+| ----------- | --------------------------- | --------------------: | ------------------------------------------------------------------------------------------ |
+| L1          | G1–G12, including resin G11 |             +60.62 mm | Fixed front section. L1A, ahead of the stop, is +140.33 mm. L1B, behind it, is +293.36 mm. |
+| L2          | G13–G17                     |             +45.36 mm | Moving positive focus unit with one doublet and three singlets.                            |
+| L3          | G18–G19                     |            +164.63 mm | Fixed, weakly positive image-side doublet.                                                 |
 
-The front group begins with three consecutive negative lenses. Patent ¶¶0042–0043 states the purpose explicitly: distributing the required negative refractive power among three lenses reduces the burden on each element and suppresses barrel distortion and field curvature while retaining sufficient back focus. The following positive members then restore the group to a net positive focal length. Patent ¶¶0153–0158 further associates the front meniscus/aspherical arrangement with distortion, astigmatism, field curvature, and chromatic correction.
+Canon counts 18 lens elements, including the fluorite element. The model also counts the bonded resin G11 as a separate optical medium, giving 19 numbered entries and the same 13 air-spaced groups. There are four glass doublets and one glass–resin–glass assembly. G numbers below follow the numerical table's lens order, including the resin. L1–L3 are the patent's functional units.
 
-The second functional group has four elements. Its front cemented pair C3 is net negative in isolation, while L15 and L16 supply enough positive power to make the complete focus group positive. That distinction matters: the positive **group** focal length does not mean every constituent or every cemented subassembly is positive.
-
-The third functional group is exactly the cemented pair C4. Its isolated focal length, **−57.2743 mm**, is therefore also the focal length of the complete patent L3 functional group. Patent ¶0171 assigns this positive/negative cemented rear pair to magnification-chromatic and astigmatism correction.
-
-Independent paraxial tracing of the infinity state gives an effective focal length of **14.4176265 mm** and a back focal length of **13.9940664 mm** from the last surface, reproducing the patent's 14.42 mm and 14.00 mm values to the table precision. The first vertex to image-plane track is **118.50 mm**. Under the project's strict terminology, the design is neither telephoto (`TL/EFL = 8.2191`) nor retrofocus (`BFD/EFL = 0.97062`, below unity).
-
-No uniform production scaling is applied. All radii, axial spacings, and aspherical coefficients remain at the patent's Example 1 scale. The marketed 14 mm / f/1.4 values are metadata; the source design remains 14.42 mm / Fno 1.46, with computed infinity EFL 14.4176265 mm. The catalog design field now records the literal 14.42 mm rather than the former computed EFL; no optical value changes.
-
-The patent publishes neither clear apertures nor an absolute stop diameter. The authored surface semi-diameters are therefore modeling values derived from the patent drawing, pupil geometry, ray containment, and the current geometry limits. The stop semi-diameter is modeled as **11.504 mm**, consistent with the paraxial f/1.46 pupil constraint, but it is not a patent-published iris dimension. No sensor cover, optical filter, inactive dummy plane, flare-cutter plane, or mechanical rear gel-holder component is included in the sequential optical model.
+The aperture stop is surface 17, inside L1. It lies 57.60 mm behind the first vertex, 4.59 mm behind surface 16 and 1.99 mm ahead of surface 18. Its derived semi-diameter is 13.102 mm for the design f/1.45, with a paraxial entrance-pupil semi-diameter of 4.971 mm. Traced exactly, that iris admits an on-axis entrance radius of 4.750 mm at infinity, which is f/1.517 by focal length over entrance diameter; f/1.45 is the paraxial design value. Lens rims are estimated from Fig. 1 and compared with Canon's section. The physical iris diameter and clear apertures are unpublished. The 13.43 mm final gap represents air. The optional production filter is outside this prescription.
 
 ## Element-by-Element Analysis
 
-### L1 — Negative Meniscus, two aspherical surfaces
+The focal lengths below are computed for each element in air at the patent's reference wavelength. Bonded assemblies have their own net powers.
 
-`nd = 1.58313, νd = 59.4. Glass model: S-BAL42 catalog equivalent for patent 583594; production supplier unspecified. f = −40.86 mm.`
+### G1 — Negative meniscus, two aspherical surfaces
 
-L1 is the large front negative meniscus and carries aspherical surfaces 1A and 2A. It supplies the first share of the distributed front negative power discussed in ¶¶0042–0043. Patent ¶¶0153–0154 identifies the first negative menisci and their aspherization as important to distortion, field-curvature, and astigmatism control. Canon's production interview places one of its two front GMo aspheres at the large front element, providing a strong positional correlation without proving material identity.
+`nd = 1.58313, νd = 59.4. Glass: S-BAL42 (Ohara equivalent). f = −36.71 mm.`
 
-### L2 — Negative Meniscus, front low-dispersion element
+The broad front meniscus supplies the larger share of the first pair's negative power. Its two aspherical faces change the bending of rays at different heights. The patent assigns the two front aspheres to distortion and astigmatism control and discusses the outer curvature of the first element in particular (¶0078).
 
-`nd = 1.49700, νd = 81.65. Glass model: FCD1 catalog equivalent for patent 497817; production supplier unspecified. f = −97.46 mm.`
+### G2 — Negative meniscus, two aspherical surfaces
 
-L2 is the weakest of the first three negative lenses by standalone power, which is consistent with the patent's strategy of spreading the front negative power among several elements. Its high Abbe number also places low dispersion early in the train. Table 2 identifies patent G2 as one of the high-`νd` negative lenses satisfying condition (14). Canon's production cross-section labels the marketed UD element in this front region, making L2 the strongest location-based UD correlation; the patent does not identify a Canon melt or vendor catalog glass.
+`nd = 1.85400, νd = 40.4. Glass: L-LAH85V (Ohara equivalent). f = −51.63 mm.`
 
-### L3 — Biconcave Negative, rear aspherical surface
+The second meniscus shares the front negative power with G1. The air space between its image-facing asphere and the concave front of G3 has negative power. The patent associates this air lens with a lower Petzval sum and improved field curvature (¶0079).
 
-`nd = 1.80400, νd = 46.5. Glass model: S-LAH65V catalog equivalent for patent 804465; production supplier unspecified. f = −34.81 mm.`
+### G3 and G4 — Front cemented doublet C1
 
-L3 is the strongest of the first three front negative elements after L1 and carries the aspherical rear surface 6A. In Example 1, patent ¶0154 specifically identifies G1 and G3 as the two front aspherical lenses used to strengthen distortion and astigmatism correction. Its high index permits substantial negative power without requiring the extreme curvatures that a lower-index glass would require for the same standalone power.
+- **G3, biconcave negative.** `nd = 1.49700, νd = 81.7. Glass: unmatched, at Canon's UD position. f = −85.68 mm.`
+- **G4, biconvex positive.** `nd = 2.00100, νd = 29.1. Glass: S-LAH99 (Ohara equivalent). f = +51.90 mm.`
 
-### L4 — Positive Meniscus
+The low-dispersion negative element is bonded to a stronger positive element with much higher dispersion. The shared curvature gives the two materials a common interface for chromatic correction. In air the assembly has a net focal length of +123.62 mm.
 
-`nd = 1.66565, νd = 35.6. Glass model: H-ZBaF4 catalog equivalent for patent 666356; production supplier unspecified. f = +87.85 mm.`
+### G5 — Negative meniscus, fluorite position
 
-L4 is the first positive element after the three-lens negative front train. Patent ¶¶0156–0157 assigns this positive fourth lens a direct role in correcting barrel distortion and magnification chromatic aberration generated by the preceding negative sequence. Its moderate standalone positive power begins the recovery toward the net-positive G1 functional group.
+`nd = 1.43387, νd = 95.1. Glass: unmatched, at Canon's fluorite position. f = −51.99 mm.`
 
-### L5 — Biconcave Negative, fluorite-correlated
+The patent labels this concave-front meniscus GFn and gives its dispersion and power explicit bounds. The high Abbe number and convex image-facing surface give the designer a way to control lateral color and higher-order field curvature (¶¶0042, 0066–0068). Canon's marked section places its concave fluorite lens at this position.
 
-`nd = 1.43387, νd = 95.1. Glass model: CaF2-compatible spectral proxy; fluorite production correlation, historical supplier and material identity unproved. f = −61.56 mm.`
+### G6 and G7 — Second cemented doublet C2
 
-L5 is a strongly low-dispersion negative element. Table 2 lists patent G5 at `νd = 95.10` among the high-Abbe negative lenses used by condition (14). Canon states that the RF14mm F1.4 L VCM uses one fluorite element and, unusually for this material in Canon lenses, that it is a **concave** lens used to suppress lateral chromatic aberration toward the periphery. The combination of shape, location, and `nd/νd` makes L5 the convergent production fluorite correlation; it is not a public optical-glass catalog assignment.
+- **G6, biconvex positive.** `nd = 1.75500, νd = 52.3. Glass: S-LAH97 (Ohara equivalent). f = +24.84 mm.`
+- **G7, negative meniscus.** `nd = 1.90366, νd = 31.3. Glass: TAFD25 (Hoya equivalent). f = −45.33 mm.`
 
-### L6 + L7 — C1 cemented positive/negative pair
+This is a net positive assembly (+56.50 mm). The convex rear face of G6 forms the strongly curved bond with the concave front of G7. The negative higher-dispersion member balances part of the positive power and its chromatic contribution.
 
-- **L6:** `nd = 1.75500, νd = 52.3. Glass model: S-LAH97 catalog equivalent for patent 755523; production supplier unspecified. f = +20.57 mm.`
-- **L7:** `nd = 1.84666, νd = 23.8. Glass model: S-TIH53 catalog equivalent for patent 847238; production supplier unspecified. f = −62.22 mm.`
+### G8 — Biconvex positive
 
-The isolated C1 cemented pair has a computed focal length of **+29.4283 mm**. This is a computed cemented-stack value; the standalone L6 and L7 powers remain those shown above. Patent ¶0158 states that a positive/negative cemented lens in the first functional group can favorably correct axial and magnification chromatic aberration. C1 provides that pairing before the final pre-stop elements.
+`nd = 2.00100, νd = 29.1. Glass: S-LAH99 (Ohara equivalent). f = +44.10 mm.`
 
-### L8 — Biconvex Positive
+The front face is shallow and the rear face provides most of the bending. This singlet helps bring the fixed front unit to net positive power after the negative front section.
 
-`nd = 1.83481, νd = 42.7. Glass model: TAFD5G catalog equivalent for patent 835427; production supplier unspecified. f = +46.32 mm.`
+### G9 — Biconcave negative
 
-L8 is an uncoupled positive element between C1 and the final negative element ahead of the stop. Together with L4 and the net-positive C1 pair, it supplies positive power needed to make the complete front group positive after the strongly negative front cluster. Its high index keeps that positive contribution compact.
+`nd = 1.85478, νd = 24.8. Glass: S-NBH56 (Ohara equivalent). f = −115.35 mm.`
 
-### L9 — Negative Meniscus, pre-stop anomalous-dispersion datum
+This thin, weakly negative lens is the last glass before the stop. Its shallow object-facing surface and steeper image-facing surface apply a small negative correction where the axial beam is wide.
 
-`nd = 1.77047, νd = 29.74. Glass model: NBFD29 catalog equivalent for patent 770297; production supplier unspecified. f = −52.48 mm.`
+### G10, G11 and G12 — Glass–resin–glass assembly C3
 
-L9 is the last refracting element before the aperture stop. The patent publishes `θgF = 0.5951` for patent G9 and includes it among the negative lenses evaluated by conditions (6) and (7). Patent ¶¶0079–0089 explains that selected negative lenses with controlled partial dispersion can reduce excessive short-wavelength axial chromatic aberration. The data file stores a SCHOTT-normal-line `dPgF = +0.00132268` derived from the published `θgF`; this is not the same quantity as the patent's own `ΔθgFn` normal-line residual.
+- **G10, biconvex positive.** `nd = 1.74320, νd = 49.3. Glass: S-LAM60 (Ohara equivalent). f = +39.52 mm.`
+- **G11, positive resin meniscus Gp.** `nd = 1.57060, νd = 20.1. Material: unmatched patent resin, θgF = 0.7782. f = +302.11 mm.`
+- **G12, biconcave negative.** `nd = 1.66565, νd = 35.6. Glass: unmatched. f = −37.29 mm.`
 
-### L10 + L11 + L12 — C2 post-stop cemented triplet with a high-partial-dispersion medium
+The 0.70 mm resin layer is bonded between the two glass members. Its image-facing convex shape makes the layer nearly concentric with the oblique bundles that enter it. The patent explains that the position and anomalous dispersion help correct both longitudinal and lateral color (¶¶0043, 0070, 0080). This is the same position Canon marks as BR optics. The complete assembly is L1B and has only weak positive power.
 
-- **L10:** `nd = 2.00100, νd = 29.1. Glass model: S-LAH99 catalog equivalent for patent 001291; production supplier unspecified. f = +24.97 mm.`
-- **L11:** `nd = 1.57060, νd = 20.08. Glass: Unmatched (published high-partial-dispersion medium; BR-resin production correlation only). f = +198.37 mm.`
-- **L12:** `nd = 1.66565, νd = 35.64. Glass: H-ZBaF4 catalog equivalent for patent 666356; production supplier unspecified. f = −33.37 mm.`
+### G13 and G14 — Moving cemented doublet C4
 
-C2 is the cemented triplet immediately behind the stop. Its isolated net focal length is **+59.2977 mm**, even though the rear member L12 is strongly negative. Patent ¶¶0115–0122 describes the benefit of placing a positive partial-dispersion-correcting member in a cemented triplet near the aperture, where axial ray height is large, to strengthen axial chromatic correction.
+- **G13, biconvex positive.** `nd = 1.59282, νd = 68.6. Glass: FCD515 (Hoya equivalent). f = +27.72 mm.`
+- **G14, biconcave negative.** `nd = 1.85478, νd = 24.8. Glass: S-NBH56 (Ohara equivalent). f = −18.75 mm.`
 
-L11 is the most distinctive material in the prescription. The patent gives patent G11 `θgF = 0.7782` and a large positive condition-(15) residual. The data file converts this to a SCHOTT-normal `dPgF = +0.16817456`. Canon independently describes the production BR element as a molded resin immediately behind the stop, bonded between convex and concave glass members, with unusually strong refraction in the short-wavelength blue region. The positional and spectral fingerprints support that production correlation, but the selected source never names BR or identifies the historical medium chemistry, cure or supplier. Its medium remains unmatched. General organic/hybrid constructions permitted in paragraph 0172 do not establish the selected material or a separate unprinted layer.
+The doublet contributes net negative power (−64.17 mm) at the front of the moving unit. Its contrasting Abbe numbers make it part of the color correction that moves with focus. The following positive singlets bring the complete L2 unit to positive power.
 
-L12 carries `θgF = 0.5824` and derived `dPgF = -0.00145352`. Its negative power and cemented placement complete the triplet's power and dispersion balance rather than functioning as an isolated corrective lens.
+### G15 — Biconvex positive
 
-### L13 + L14 — C3 cemented pair at the front of the focus group
+`nd = 1.53775, νd = 74.7. Glass: S-FPM3 (Ohara equivalent). f = +38.84 mm.`
 
-- **L13:** `nd = 1.43875, νd = 94.66. Glass model: S-FPL55 catalog equivalent for patent 439947; production supplier unspecified. f = +36.96 mm.`
-- **L14:** `nd = 1.77047, νd = 29.74. Glass model: NBFD29 catalog equivalent for patent 770297; production supplier unspecified. f = −25.61 mm.`
+Equal and opposite vertex radii give this low-dispersion singlet a symmetric form. It supplies positive power behind the moving doublet with less primary dispersion than the positive singlet that follows.
 
-C3 begins the moving patent L2 functional group. In isolation the cemented pair is **net negative**, with a computed focal length of **−77.2687 mm**. The complete focus group nevertheless remains positive because L15 and L16 add greater positive power downstream.
+### G16 — Biconvex positive
 
-L13 is an extreme low-dispersion positive member, but Canon's published optical cross-section places the marketed UD element in the front portion of the production lens. The data file therefore treats L13 as a low-dispersion catalog-class match, not as the production UD identification.
+`nd = 1.92286, νd = 20.9. Glass: E-FDS1 (Hoya equivalent). f = +35.18 mm.`
 
-L14 provides the negative partner and carries patent `θgF = 0.5951`, giving the same derived SCHOTT-normal `dPgF = +0.00132268` as L9. Patent ¶¶0161–0166 describe a negative/positive cemented combination near the object side of the second functional group as a means of stabilizing axial chromatic correction through focus.
+The high-index second positive singlet is immediately ahead of the rear focusing asphere. Together with G13 and G15 it spreads positive power over three elements with substantially different dispersions. The patent associates the three-positive, two-negative unit with controlling color, spherical aberration and field curvature through focus (¶0081).
 
-### L15 — Biconvex Positive, low-dispersion
+### G17 — Double-concave negative, one aspherical surface
 
-`nd = 1.49700, νd = 81.65. Glass model: FCD1 catalog equivalent for patent 497817; production supplier unspecified. f = +36.91 mm.`
+`nd = 1.85400, νd = 40.4. Glass: L-LAH85V (Ohara equivalent). f = −54.99 mm.`
 
-L15 is a strong positive lens in the moving group and supplies low-dispersion positive power after the net-negative C3 pair. Table 2 identifies patent G15 as one of the high-Abbe positive lenses satisfying condition (12). The complete patent L2 focal length of +28.3504 mm depends materially on L15 and L16; it cannot be inferred from C3 alone.
+GRn is the last element of the moving unit. Asphere 29A faces the object, and the much steeper concave rear face supplies most of the paraxial power. The patent connects this placement with focus-dependent astigmatism and the concave rear surface with suppression of sagittal coma flare (¶¶0082–0083). The shape and placement correspond to Canon's concave GMo focusing element.
 
-### L16 — Biconvex Positive, two aspherical surfaces
+### G18 and G19 — Fixed rear cemented doublet C5
 
-`nd = 1.85400, νd = 40.4. Glass model: L-LAH85V catalog equivalent for patent 854404; production supplier unspecified. f = +52.63 mm.`
+- **G18, biconvex positive.** `nd = 1.59282, νd = 68.6. Glass: FCD515 (Hoya equivalent). f = +33.24 mm.`
+- **G19, negative meniscus.** `nd = 2.00100, νd = 29.1. Glass: S-LAH99 (Ohara equivalent). f = −42.28 mm.`
 
-L16 is the final element of the moving focus group and carries aspherical surfaces 28A and 29A. Patent ¶¶0169–0170 explains why an image-side lens of the second group is made strongly relevant to focus stability: its geometry is used to reduce variations in astigmatism, coma, and angle of view as the group moves. The high-index positive element also supplies part of the net positive group power.
-
-Canon confirms that the production rear focus group contains a GMo aspherical element, which is a strong positional match. Canon also describes that production GMo as concave, however, whereas Example 1's L16 is positive biconvex. That difference is retained as a production-correlation limitation rather than reconciled by altering the patent prescription.
-
-### L17 + L18 — C4 rear cemented group
-
-- **L17:** `nd = 1.59282, νd = 68.6. Glass model: FCD515 catalog equivalent for patent 593686; production supplier unspecified. f = +39.24 mm.`
-- **L18:** `nd = 1.91650, νd = 31.6. Glass model: S-LAH88 catalog equivalent for patent 917316; production supplier unspecified. f = −23.32 mm.`
-
-C4 is the entire fixed rear patent L3 functional group. Its isolated net focal length is **−57.2743 mm**, reproducing the patent's `f3 = −57.275 mm`. Patent ¶0171 identifies the rear positive/negative cemented lens as a contributor to magnification-chromatic and astigmatism correction. Patent ¶¶0152 and 0068–0075 also explain the broader reason for a negative rear group: it sets image-side ray angles and reduces the positive Petzval burden while preserving peripheral correction.
+The near-flat entrance face leads into a strongly curved cemented junction. A higher-dispersion negative member follows the low-dispersion positive member. This is all of L3, which the patent assigns to lateral color and astigmatism correction (¶0084).
 
 ## Glass Identification and Selection
 
-The patent supplies refractive indices and Abbe numbers but does not name glass vendors or melts. Catalog names in the data file are therefore **qualified optical-model equivalents**, not material identities. The explicit names make the resolver's selected Sellmeier curve visible and deterministic while every label preserves the unresolved production supplier. Seventeen of 18 elements now have a compatible catalog or fluorite curve; only the source G11 high-partial-dispersion medium remains unresolved; BR-resin identity is an external production correlation.
+The patent defines the reference d-line at 587.6 nm, the rounded helium d wavelength. It gives C, F and g at 656.3, 486.1 and 435.8 nm. The catalog equivalents below supply spectral curves for the model and preserve the patent's d-line indexes and Abbe numbers. Supplier and melt identities are unspecified.
 
-Where multiple catalogs share a coordinate, the selected name identifies the model curve only. S-BAL42 is used for patent 583594 instead of implying that the coordinate proves OHARA's standard- or low-Tg BAL42 family, and FCD515 is the nearest compatible curve for patent 593686 without asserting a HOYA production melt. H-ZBaF4 is the only compatible explicit catalog candidate for both patent 666356 elements within the repository tolerances. On L4, which lacks patent `θgF`, the catalog g-line remains purely a modeling extension; on L12, the patent-derived `dPgF` remains authoritative.
+| Reference glass or material              |      nd |   νd | Diagram media |
+| ---------------------------------------- | ------: | ---: | ------------- |
+| Ohara S-BAL42                            | 1.58313 | 59.4 | G1            |
+| Ohara L-LAH85V                           | 1.85400 | 40.4 | G2, G17       |
+| Unmatched at UD position                 | 1.49700 | 81.7 | G3            |
+| Ohara S-LAH99                            | 2.00100 | 29.1 | G4, G8, G19   |
+| Unmatched at fluorite position           | 1.43387 | 95.1 | G5            |
+| Ohara S-LAH97                            | 1.75500 | 52.3 | G6            |
+| Hoya TAFD25                              | 1.90366 | 31.3 | G7            |
+| Ohara S-NBH56                            | 1.85478 | 24.8 | G9, G14       |
+| Ohara S-LAM60                            | 1.74320 | 49.3 | G10           |
+| Unmatched anomalous resin at BR position | 1.57060 | 20.1 | G11           |
+| Unmatched glass                          | 1.66565 | 35.6 | G12           |
+| Hoya FCD515                              | 1.59282 | 68.6 | G13, G18      |
+| Ohara S-FPM3                             | 1.53775 | 74.7 | G15           |
+| Hoya E-FDS1                              | 1.92286 | 20.9 | G16           |
 
-| Data element(s) |    `nd` |  `νd` | Data-file glass identification                                                             | Status / role                                                                      |
-| --------------- | ------: | ----: | ------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------- |
-| L1              | 1.58313 |  59.4 | S-BAL42 equivalent for patent 583594                                                       | Model curve only; BAL42 family and production supplier unresolved                  |
-| L2, L15         | 1.49700 | 81.65 | FCD1 equivalent for patent 497817                                                          | L2 is strongest production UD-location correlation; production supplier unresolved |
-| L3              | 1.80400 |  46.5 | S-LAH65V equivalent for patent 804465                                                      | Qualified model equivalent                                                         |
-| L4              | 1.66565 |  35.6 | H-ZBaF4 equivalent for patent 666356                                                       | Catalog C/d/F model; no patent partial-dispersion datum                            |
-| L5              | 1.43387 |  95.1 | CaF2 fluorite                                                                              | Canon production-correlation inference at the patent G5 coordinate                 |
-| L12             | 1.66565 | 35.64 | H-ZBaF4 catalog equivalent                                                                 | Patent `dPgF` remains authoritative; production supplier unspecified               |
-| L6              | 1.75500 |  52.3 | S-LAH97 equivalent for patent 755523                                                       | Qualified model equivalent                                                         |
-| L7              | 1.84666 |  23.8 | S-TIH53 equivalent for patent 847238                                                       | Qualified model equivalent                                                         |
-| L8              | 1.83481 |  42.7 | TAFD5G equivalent for patent 835427                                                        | Qualified model equivalent                                                         |
-| L9, L14         | 1.77047 | 29.74 | NBFD29 equivalent for patent 770297                                                        | Patent `θgF = 0.5951`; derived `dPgF = +0.00132268`                                |
-| L10             | 2.00100 |  29.1 | S-LAH99 equivalent for patent 001291                                                       | Qualified very-high-index model                                                    |
-| L11             | 1.57060 | 20.08 | Unmatched (published high-partial-dispersion medium; BR-resin production correlation only) | Manufacturer-supported proprietary resin correlation                               |
-| L13             | 1.43875 | 94.66 | S-FPL55 equivalent for patent 439947                                                       | Low-dispersion model; not assigned as production UD element                        |
-| L16             | 1.85400 |  40.4 | L-LAH85V equivalent for patent 854404                                                      | Qualified model equivalent                                                         |
-| L17             | 1.59282 |  68.6 | FCD515 equivalent for patent 593686                                                        | Selected model curve; production melt unresolved                                   |
-| L18             | 1.91650 |  31.6 | S-LAH88 equivalent for patent 917316                                                       | Qualified model equivalent                                                         |
-
-The palette uses three distinct chromatic mechanisms rather than relying on one nominal “ED” category. First, high-Abbe negative and positive members such as L2, L5, L13, L15, and L17 reduce ordinary d-line dispersion. Second, the patent explicitly controls partial dispersion in selected negative elements L9, L12, and L14. Third, the post-stop L11 medium has an unusually large positive partial-dispersion deviation and is placed in a cemented triplet where the patent expects strong axial-color leverage.
-
-The patent defines d, F, C, and g Fraunhofer wavelengths as 587.6, 486.1, 656.3, and 435.8 nm and publishes `θgF` only for selected elements. Complete `nC/nF/ng` triplets are not published for Example 1; the selected catalog-equivalent curves supply those model wavelengths. The stored `dPgF` values on L9, L11, L12, and L14 are instead derived from the published `θgF` values using the SCHOTT Pg,F normal line and remain authoritative over catalog g-line behavior. The diagram tags those four as patent-backed anomalous-dispersion elements and tags the production-correlated UD L2 and fluorite L5 separately as inferred.
-
-No apochromatic designation is asserted. The prescription and Canon's product documentation plainly contain substantial chromatic-correction measures, but the available source data do not justify converting that into a formal APO claim.
+The UD and fluorite designations identify locations in Canon's production diagram. Nearby spectral references differ from the printed coordinates, so their curves are left unassigned. The resin uses its published partial-dispersion ratio, θgF = 0.7782, which is +0.17928 above the patent's cubic normal and +0.16821 above the linear Schott normal. Its exact chemistry and full spectrum remain unspecified.
 
 ## Focus Mechanism
 
-The patent uses a published rear/inner-focus state rather than a reconstructed one. Patent lens group L2, corresponding to data elements L13–L16 and surfaces 23–29A, translates **toward the object** from infinity to the close state. Patent groups L1 and L3 remain fixed with respect to the image plane. This agrees with the abstract, ¶0027, ¶0032, claim 1, and the variable-spacing table for Numerical Example 1. The diagram labels the moving group `L2 (OBJECTWARD FOCUS)`; zoom is correctly unavailable because this is a prime lens.
+The five-element L2 unit moves 1.78 mm toward the object from infinity to the tabulated near state. L1, the iris and L3 remain fixed. Canon describes two voice coil motors driving the production focus unit. The patent geometry describes one translating unit.
 
-| Variable gap | Infinity | Patent close state |   Change |
-| ------------ | -------: | -----------------: | -------: |
-| D22          |  5.08 mm |            4.08 mm | −1.00 mm |
-| D29          |  2.20 mm |            3.21 mm | +1.01 mm |
+| Quantity                                                 |    Infinity |      Published near state |
+| -------------------------------------------------------- | ----------: | ------------------------: |
+| Air gap after surface 21                                 |     5.67 mm |                   3.89 mm |
+| Air gap after surface 30                                 |     6.98 mm |                   8.76 mm |
+| Published object-to-image distance                       |           ∞ |                254.067 mm |
+| Published lateral magnification                          |           — |                    −0.10× |
+| Computed effective focal length                          | 14.41658 mm |               14.40778 mm |
+| Computed paraxial image distance behind the last surface | 13.42094 mm | 13.41943 mm at 254.067 mm |
+| Computed paraxial image-space f-number, fixed iris       |   f/1.45000 |                 f/1.44912 |
+| Computed finite-conjugate working f-number, paraxial     |           — |                 f/1.47237 |
 
-The two rounded gaps imply approximately 1.00–1.01 mm of group translation. Patent Table 1 gives the signed movement quantity `M2 = −1.005 mm`; under the patent's sign definition, the negative value denotes motion toward the object. The 0.01 mm mismatch in the sum of the two rounded neighboring gaps is retained rather than forcing exact conservation.
-
-The second focus column is labeled at **−0.1×** lateral magnification. It also prints “First surface from object plane = 240.532 mm.” Literal use of 240.532 mm as the distance from the object to the first lens surface fails the paraxial conjugate: when the image plane is re-focused for that literal object distance, the rounded close-state prescription gives about −0.054× rather than −0.1×. Treating 240.532 mm as an **object-plane to image-plane** distance instead brings the calculated state close to the stated magnification, and solving the rounded paraxial prescription exactly gives an object-to-image conjugate of about 239.15 mm at −0.10098×. The data file therefore preserves the printed 240.532 mm value in the audit but interprets its reference plane as an image-plane-referenced MFD/total conjugate for comparison. The internal focus spacings themselves remain fully published; there is no reconstructed focus motion.
-
-Canon specifies a **0.24 m** minimum focusing distance and **0.11×** maximum magnification for the production lens, which is consistent with that normalized close-state scale. Canon also specifies **two VCM focus motors**. The optical prescription, however, contains only one moving optical group. The mechanical use of two actuators therefore should not be read as evidence for two independently moving lens groups in this model.
+The infinity focal length rounds to the patent's 14.42 mm. The computed infinity and finite images lie 0.009 mm and 0.011 mm ahead of the printed 13.43 mm rear gap, respectively. At the printed near distance, computed magnification is −0.099996×. At the fixed image plane the rounded gaps focus exactly at 253.018 mm. The other focus positions interpolate the two published rows. The modeled focus range ends at the patent's near state. Canon publishes a separate production endpoint of 0.24 m at up to 0.11×.
 
 ## Aspherical Surfaces
 
-Numerical Example 1 has five aspherical surfaces on three elements: **1A and 2A on L1, 6A on L3, and 28A and 29A on L16**. Patent ¶0176 defines the sag as
+The patent uses a base conic with conventional constant K, plus even powers A4 through A14 of the radial height in millimeters (¶¶0087–0093). K = 0 specifies a spherical base. Higher terms omitted from the table contribute zero.
 
-$$
-x(h)=\frac{h^2/R}{1+\sqrt{1-(1+K)(h/R)^2}}+A_4h^4+A_6h^6+A_8h^8+A_{10}h^{10}+A_{12}h^{12}+A_{14}h^{14}+A_{16}h^{16}.
-$$
+| Surface         |           K |          A4 |          A6 |           A8 |          A10 |          A12 |          A14 |
+| --------------- | ----------: | ----------: | ----------: | -----------: | -----------: | -----------: | -----------: |
+| 1A (G1 front)   |           0 |  2.85263e−6 | −1.06525e−9 |  6.56552e−12 | −1.19824e−14 |  1.27858e−17 | −5.74533e−21 |
+| 2A (G1 rear)    | −7.63673e−1 |  3.24368e−7 |  1.38290e−8 | −2.16651e−10 |  1.03526e−12 | −2.85465e−15 |  2.51224e−18 |
+| 3A (G2 front)   |           0 | −1.93330e−5 |  5.99502e−8 |  2.63193e−11 | −1.91446e−13 |            — |            — |
+| 4A (G2 rear)    |           0 | −1.26314e−6 |  8.53091e−8 |  3.29375e−10 | −1.43389e−12 |  6.79219e−15 |            — |
+| 29A (G17 front) |           0 | −1.36198e−5 | −5.53900e−9 |  2.76263e−11 | −2.94829e−13 |  7.25340e−16 |            — |
 
-The patent's `k` is therefore the standard conic constant **K** used by LensVisualizer; no `κ → K` conversion is needed. The Example 1 table contains no nonzero odd-order terms and no nonzero terms above A12. No uniform scaling has been applied, so the coefficients are transcribed without transformation.
-
-| Surface | Element |           K |          A4 |          A6 |           A8 |          A10 |          A12 |
-| ------- | ------- | ----------: | ----------: | ----------: | -----------: | -----------: | -----------: |
-| 1A      | L1      |           0 | -9.44889e-6 | -2.78211e-9 | +1.38292e-11 | -1.87056e-14 | +7.67401e-18 |
-| 2A      | L1      | -6.82090e-1 | -2.16920e-6 | -9.17628e-9 | -2.33882e-10 | +8.26939e-13 | -1.85607e-15 |
-| 6A      | L3      |           0 | +2.29625e-5 | +1.76297e-8 | +4.18666e-10 | -2.45395e-12 | +6.29348e-15 |
-| 28A     | L16     |           0 | -2.17900e-5 | -7.22596e-9 | -1.48661e-10 | +1.85432e-12 | -3.03305e-15 |
-| 29A     | L16     |           0 | -1.07831e-5 | -3.03321e-9 | -5.03844e-11 | +1.22127e-12 | -1.50312e-15 |
-
-The two front aspherical elements follow the patent's stated strategy for distortion and astigmatism correction in the strongly negative front section (¶¶0153–0154). The rear pair on L16 follows the patent's separate strategy of controlling astigmatism, coma, and angle-of-view variation in the moving second group (¶¶0169–0170). Canon's production interview likewise attributes its three GMo elements to sagittal-flare and peripheral point-image control.
-
-Canon identifies the production aspheres as **GMo (glass-molded)** elements. The patent itself does not require Example 1 to be manufactured by that process; ¶0172 allows glass, plastic/organic, or bonded aspherical constructions in the broader disclosure. The production manufacturing statement is therefore external correlation evidence, not a property inferred solely from the Example 1 coefficient table.
-
-The patent does not publish clear apertures for these surfaces. Because the LensVisualizer semi-diameters are inferred modeling values, no asphere-departure-at-rim figures are quoted as patent data.
+At the modeled clear rims, signed departures from the base conic are +2.625 mm and −1.664 mm on G1 (29.5 and 20.1 mm semi-diameters). G2's front departs −0.382 mm and its rear +0.756 mm (17.9 and 13.4 mm). The rear moving asphere departs −0.585 mm at 14.1 mm, adding objectward sag to its shallow concavity. These are polynomial departures from each face's own base conic. Canon identifies the corresponding production aspheres as glass-molded.
 
 ## Chromatic Correction Strategy
 
-The chromatic strategy spans the entire lens rather than being confined to one cemented achromat. Patent ¶¶0079–0089 and ¶¶0111–0122 explicitly separate two types of dispersion control: selected negative lenses with constrained short-wavelength partial dispersion, and positive members with high positive partial-dispersion deviation placed where axial ray height is favorable.
+The fixed front unit places two low-dispersion negative elements ahead of the stop and a positive anomalous-dispersion resin just behind it. The former act where the oblique bundles are widely separated. The latter gives particular control over the short-wavelength residual near the center of the image. The moving unit includes both a low-dispersion positive member and strongly dispersive glass. The last doublet continues the lateral-color correction close to the image.
 
-The production correlation adds three manufacturer-identified special materials. Canon states that its concave fluorite element suppresses lateral chromatic aberration toward the periphery; this aligns with data L5. Canon's optical cross-section places the single marketed UD element in the front portion, aligning most strongly with data L2. Canon's BR resin sits immediately behind the stop, aligning with data L11 and with the patent's high-`θgF` positive member in the post-stop triplet.
-
-The four data elements carrying structured `dPgF` are:
-
-- L9: `θgF = 0.5951`, derived SCHOTT-normal `dPgF = +0.00132268`.
-- L11: `θgF = 0.7782`, derived SCHOTT-normal `dPgF = +0.16817456`.
-- L12: `θgF = 0.5824`, derived SCHOTT-normal `dPgF = -0.00145352`.
-- L14: `θgF = 0.5951`, derived SCHOTT-normal `dPgF = +0.00132268`.
-
-These values support discussion of partial-dispersion behavior for those four elements. They do not supply full line-index dispersion curves, and they do not justify an APO label for the complete lens.
+The d-line axial curves show the same small negative mid-pupil excursion as Figs. 2A and 2B. At infinity the model's d-line shift is −0.024 mm at 70% and −0.005 mm at 100% of the entrance radius that the iris admits. At the near state the corresponding shifts are −0.032 mm and −0.010 mm at 70% and 100% of the real stop-limited axial bundle. The model's near-axis g-line focus is 0.037 mm ahead of the d-line focus at infinity and 0.044 mm ahead at the near state. The patent plots support the scale of the residuals, with some differences in the violet curve. Complete wavelength-dependent performance depends on the unidentified media and the true clear apertures.
 
 ## Conditional Expressions
 
-US 2025/0389929 A1 gives a broad set of design inequalities and explains their optical purposes in ¶¶0034–0131. Numerical Example 1 satisfies every applicable base condition. The evaluated values below come from the patent definitions and the independently checked Example 1 data; conditions (6), (7), (12), (14), and (15) apply to more than one listed lens where shown.
+Conditions (1)–(17) in ¶¶0027–0044 constrain focus-unit power, spacing, front shape and dispersion. All 17 fall inside their stated bounds when evaluated with the rounded prescription. The focus sensitivity in condition (8) uses the paraxial magnifications of the second and third units at infinity. Condition (16) uses the patent's cubic dispersion reference.
 
-| No. | Patent condition                                 | Example 1 value                               | Result    |
-| --: | ------------------------------------------------ | --------------------------------------------- | --------- | -------- | --------- |
-|   1 | `0.50 < f2/f < 3.00`                             | 1.96595                                       | Satisfied |
-|   2 | `0.20 < sk/f < 1.20`                             | 0.970874                                      | Satisfied |
-|   3 | `0.30 < f1/f2 < 3.00`                            | 1.28047                                       | Satisfied |
-|   4 | `−1.50 < f/f3 < 1.50`                            | −0.251768                                     | Satisfied |
-|   5 | `−1.50 < (R22−R21)/(R22+R21) < 1.50`             | −0.292663                                     | Satisfied |
-|   6 | `−0.015 < ΔθgFn < 0.015`                         | G9 −0.0046950; G12 −0.0025766; G14 −0.0046950 | Satisfied |
-|   7 | `−0.20 < Ndn − (−0.0145425νdn + 2.28725) < 0.05` | G9 −0.0842861; G12 −0.1033053; G14 −0.0842861 | Satisfied |
-|   8 | `0.50 < (1−β2²)β3² < 2.50`                       | 1.41675                                       | Satisfied |
-|   9 | `0.00 < sk/                                      | f3                                            | < 0.80`   | 0.244435 | Satisfied |
-|  10 | `0.20 < ΣDair/(L−sk) < 0.70`                     | 0.385656                                      | Satisfied |
-|  11 | `2.00 < L/f < 15.00`                             | 8.21775                                       | Satisfied |
-|  12 | `60.00 < νd2p < 100.00`                          | G13 94.66; G15 81.65                          | Satisfied |
-|  13 | `−0.200 < M2/DSP < −0.005`                       | −0.0205606                                    | Satisfied |
-|  14 | `60.00 < νd1n < 100.00`                          | G2 81.65; G5 95.10                            | Satisfied |
-|  15 | `0.050 < ΔθgFp < 0.250`                          | G11 0.144301                                  | Satisfied |
-|  16 | `0.30 < (DSP+sk)/L < 0.80`                       | 0.530633                                      | Satisfied |
-|  17 | `0.50 < f1/f < 5.00`                             | 2.51734                                       | Satisfied |
+| Condition | Quantity                              |  Allowed range | Table 1 | Computed |
+| --------- | ------------------------------------- | -------------: | ------: | -------: |
+| 1         | L2 focal length / system focal length |  2.70 to 10.00 |   3.146 |    3.147 |
+| 2         | L1 / L2 focal lengths                 |   0.50 to 2.80 |   1.338 |    1.336 |
+| 3         | L1B / L2 focal lengths                |   1.00 to 9.00 |   6.468 |    6.467 |
+| 4         | System / L1A focal lengths            |  −0.30 to 0.30 |   0.103 |    0.103 |
+| 5         | Back focus / iris-to-image distance   |   0.10 to 0.35 |   0.192 |    0.192 |
+| 6         | System / L3 focal lengths             |  −0.30 to 0.30 |   0.088 |    0.088 |
+| 7         | System focal length / back focus      |   0.80 to 1.50 |   1.074 |    1.074 |
+| 8         | Focus sensitivity                     |   0.50 to 1.10 |   0.802 |    0.802 |
+| 9         | GRn / L2 focal lengths                | −3.00 to −0.50 |  −1.212 |   −1.212 |
+| 10        | L2 maximum internal gap / gap to L3   |   0.01 to 0.60 |   0.043 |    0.043 |
+| 11        | G1 shape factor                       | −4.00 to −1.00 |  −1.583 |   −1.583 |
+| 12        | G2 shape factor                       | −4.00 to −1.00 |  −1.381 |   −1.381 |
+| 13        | Combined G1–G2 / system focal lengths | −3.00 to −0.80 |  −1.272 |   −1.272 |
+| 14        | Abbe number of GFn                    |  81.0 to 100.0 |    95.1 |     95.1 |
+| 15        | GFn / system focal lengths            | −6.50 to −2.00 |  −3.606 |   −3.606 |
+| 16        | Gp anomalous partial dispersion       | 0.050 to 0.250 |   0.179 |    0.179 |
+| 17        | System / Gp focal lengths             | 0.020 to 0.090 |   0.048 |    0.048 |
 
-The patent gives narrower preferred ranges after the base expressions. The table above uses the principal published bounds because they state the design constraints without duplicating the full sequence of progressively narrowed alternatives. The source's Table 1 and Table 2 give rounded Example 1 values consistent with the independent evaluations.
+## Field Coverage and Modeling Limits
 
-## Verification and Modeling Boundaries
+The lens stays at the patent's near-production scale. The sum of the printed axial dimensions gives 127.52 mm from the first vertex to the image plane, compared with 127.50 mm in the patent's summary. The small first-order residuals are consistent with the rounded surface table.
 
-The final authored prescription reproduces the patent's first-order quantities without rescaling. Independent height/reduced-angle tracing and an ABCD composition agree, and the sequential infinity-state model gives:
-
-- **EFL:** 14.4176265 mm, versus patent 14.42 mm.
-- **BFL:** 13.9940664 mm, versus patent 14.00 mm.
-- **Total track:** 118.500 mm, versus patent 118.50 mm.
-- **Patent L1 focal length:** +36.2812 mm, versus 36.30 mm.
-- **Patent L2 focal length:** +28.3504 mm, versus 28.349 mm.
-- **Patent L3 focal length:** −57.2743 mm, versus −57.275 mm.
-- **Petzval sum:** +0.002927098 mm⁻¹, corresponding to a Petzval-radius magnitude of about 341.635 mm under the adopted sign convention.
-
-The modeled aperture and semi-diameters are not source facts. The current runtime
-iris radius is 11.503957 mm, derived at infinity from the source F/1.46 rule. Its
-real collimated admitted pupil instead gives EFL/(2r)=1.561063; those are distinct
-paraxial/real-beam conventions and do not identify a physical source diaphragm.
-The source's post-stop G11 medium remains a connected 1 mm central layer between
-its two source optical caps. Its minimum modeled thickness is 0.073943 mm; no
-opaque interface land, inferred resin chemistry or detached wing is introduced.
-
-The August 20 review remains dated history. A fresh native/source SVG comparison
-reopens the missing free-end shoulders and C3's oversized rear cap. The original
-embeds approximately 300–301 ppi rasters; its earlier 600-dpi render was upsampling.
-A native Fig. 1 crop spans about 1718 px over the 104.5 mm first/last-vertex track,
-about 16.44 px/mm. Practical height uncertainty is ±0.6 mm, ±0.9 mm at front blank
-transitions. The source C3 blank half-height is approximately 12.3 mm, supporting
-S25's correction from 14 to 12.6 mm. Other clear caps retain the earlier source
-review; front second-element flange/leader ambiguity is excluded from optical-rim
-measurements rather than used to enlarge it.
-
-| Surface | Retained/adopted clear sd | Outer shoulder sd |
-| ------- | ------------------------: | ----------------: |
-| 2A      |                      19.2 |              27.8 |
-| 4       |                      16.8 |              17.3 |
-| 6A      |                      14.2 |              14.6 |
-| 10      |                      13.9 |              14.4 |
-| 16      |                      13.3 |              13.6 |
-| 22      |                      13.7 |              13.9 |
-
-All dimensions are millimeters. The six free-end shoulders preserve their optical
-caps. A full S8 outer 14.4 trial is rejected: its land intrudes 4.111 mm into the
-printed 4.01 mm S8/9 air gap (guard 3.609 mm), producing about 0.101 mm physical
-overlap. S8 retains clear 12.5 without forcing a full-height opaque block. All four
-bonded assemblies remain connected, including both interfaces around the unidentified
-G11 medium. Source R/d, five aspheres, stop placement and published focus-gap
-endpoints are preserved; all 101 sampled focus contours have eighteen finite,
-closed, connected paths and zero hidden renderer trimming.
-
-The literal source was checked directly: Numerical Example 1 and five aspheres,
-PDF pp. 27–28 / printed pp. 10–11; precise Abbe/partial values in Tables 1–2,
-PDF pp. 38–39 / printed pp. 21–22. All 32 rows, 30 fixed distances, 18 pairs and
-five K/A4–A12 blocks match. Source paragraph 0174 / PDF p. 26 explicitly defines
-d587.6/F486.1/C656.3/g435.8 nm. Four genuinely published θgF values and their
-SCHOTT-normal `dPgF` values on G9/G11/G12/G14 are retained. Paragraph 0079 / PDF p. 22
-explicitly calls the negative-lens condition anomalous partial dispersion;
-paragraph 0115 / PDF p. 23 does the same for the positive member. The patent APD tags
-therefore have direct source support. No numeric nC/nF/ng values are printed.
-All 17 existing compatible curves resolve identically, with G11 still unmatched;
-no unsupported numeric spectral override was present or removed. The earlier
-August 20 glass selections and genuine partials are reused with their actual date,
-while every public label now qualifies historical supplier, melt and chemistry.
-
-Surface, image-circle, infinity aperture and ≥99% format-chief checks pass. The
-actual pupil census spans 101 focus controls, axis/half/full nominal 21.635 mm
-format field and 97 stop-aimed samples: 29,391 rays. The 100 finite controls use
-explicit positive actual Gaussian object planes; no virtual object is substituted.
-All axial pupils and converged chiefs clear. There are 6212 ordinary marginal clips
-and 10 independently classified first-asphere cap misses, with no unexplained
-intersection failure, failed seed or unaimed ray. The prior-cap baseline has 5604
-ordinary clips and the same 10 cap misses: the source-supported S25 correction
-adds 608 sampled marginal clips without restricting a sampled chief or axial pupil.
-
-These finite object heights are scaled using paraxial magnification; their actual
-distorted image heights are not forced to equal the nominal field value. At the
-close source-height-scaled target 18.68 mm, the actual chief image is 16.208003 mm.
-Separate positive-object supplements retain this field-scaling convention: using
-240.532/focus mm from the image plane gives 6264 ordinary clips; literal first-surface
-240.532/focus mm gives 6318. Each samples 29,391 rays with all axial pupils/chiefs
-clear and ten bounded first-cap misses. These scopes do not resolve the source's
-object-distance reference-plane contradiction.
-
-A separate inverse-chief calculation does solve actual image-height edges. At all
-100 non-infinity focus controls, unclipped chief geometry is solved for actual
-image heights 18.68 and 21.635 mm, then the actual apertures are applied. All 200
-roots converge and every resulting chief clears, with maximum image residual below
-0.000001 mm. Its 19,400 marginal-pupil rays include 12,262 ordinary clips and 962 independently
-classified first-asphere cap misses. At 18.68 mm there are 5120 ordinary clips
-and zero intersection failures; at 21.635 mm there are 7142 ordinary clips and
-962 bounded misses. These are kept separate from the clear chiefs; this is a runtime result at the retained Gaussian
-conjugates, not proof of a production finite-field specification or the disputed
-literal 240.532 mm source plane.
-
-At infinity, the inverse chief reaching source image height 18.68 mm has an actual
-angle 56.316670°, matching Fig. 2A's rounded 56.3°; the table's 52.34° is the paraxial
-angle. The close Fig. 2B label 55.9° is preserved without tuning geometry to equate
-its angle convention to this reconstructed-reference runtime diagnostic. A separate
-bounding-sphere angular check at focus 0/.5/1 samples 873 source-range pupil rays:
-all axial pupils/chiefs clear, 161 ordinary clips and three independently classified
-first-cap misses. Its nine 80/89/90° extreme-angle seeds are unbracketed and are
-limits, not claimed coverage. Angular launches at a nonzero focus control are not
-used as evidence of a finite object plane.
-
-The published focus gaps remain literal. Their close state gives actual Gaussian
-first-surface object distance 120.641763 mm, object-to-image distance 239.151763 mm,
-and magnification −0.100982. Literal use of the source first-surface distance 240.532
-requires a different image gap 13.344840 mm and gives −0.054115 magnification.
-The existing image-plane interpretation remains qualified and formally unresolved
-in `source.errata`; the source row is not silently rewritten. Paragraph 0136's
-stationary L1/L2 wording is likewise recorded against the abstract/paragraph 0032/
-Claim 1 L1/L3 evidence. Neither discrepancy is repaired by changing R/d or controls.
-
-No plate, dummy plane, or filter has been removed from Numerical Example 1, because the example does not contain one. Patent ¶0175 explicitly notes that optical members corresponding to filters are excluded from the numerical-example optical length. The production lens's rear gelatin-filter holder is mechanical product hardware and does not create an additional refracting plane in this prescription.
+At infinity the exact d-line chief ray at the 57° plot limit lands at about 18.70 mm. This agrees closely with the table's 18.73 mm image height. The 52.40° tabulated half-angle is the rectilinear angle corresponding to that image height and the stated focal length. The difference from the traced angle reflects barrel distortion. Canon specifies a 114° diagonal field and describes electronic distortion correction for the production lens. The model depicts the optical image before that correction. At wide aperture, estimated rims preserve off-axis vignetting. The farthest transmitted infinity chief ray on the continuous central branch reaches about 20.93 mm, short of the 21.65 mm full-frame corner.
 
 ## Sources and References
 
-1. **US 2025/0389929 A1**, _Optical System and Imaging Apparatus Including Same_, Takahiro Saito / Canon Kabushiki Kaisha. Principal references: abstract; ¶¶0026–0178; Fig. 1; Numerical Example 1; Tables 1–2.
-2. Canon U.S.A., **RF14mm F1.4 L VCM support specifications**: https://www.usa.canon.com/support/p/rf14mm-f1-4-l-vcm
-3. Canon U.S.A., **launch release**, February 4, 2026: https://www.usa.canon.com/newsroom/2026/20260204-lenses
-4. Canon Japan, **RF14mm F1.4 L VCM developer interview**, February 5, 2026: https://personal.canon.jp/articles/interview/developer-rf14-f14l-vcm
-5. OHARA, **current optical-glass catalog**: https://www.ohara-inc.co.jp/en/product/01000/
-6. HOYA, **Optical Glass catalog portal**: https://www.hoya-opticalworld.com/english/
-7. SCHOTT, **Optical Glass technical data**: https://www.schott.com/en-gb/products/optical-glass/technical-details
-8. Sumita Optical Glass, **glass/preform catalog**: https://www.sumita-opt.co.jp/en/products/preform.html
-
-Catalog names are used as coordinate-compatible class/equivalent labels unless the source independently establishes material identity. The patent does not name glass vendors, and the production fluorite, UD, BR, and GMo identifications are kept separate from the patent's exact prescription quantities.
+- [US 2026/0235852 A1, USPTO publication](https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/20260235852) — Figs. 1 and 2A–2B, Numerical Example 1 on printed pp. 6–7, Table 1 and claims.
+- [Canon RF14mm F1.4 L VCM technical specifications](https://www.usa.canon.com/support/p/rf14mm-f1-4-l-vcm) — construction, special materials, focus, aperture and filter holder.
+- [Canon developer interview](https://hk.canon/en/pro-imaging/rf14mm-f14-l-vcm/article) — designer, molding, color correction, focus unit and electronic distortion correction.
+- [Canon Marketing Japan optical section](https://personal.canon.jp/articles/interview/developer-rf14-f14l-vcm) and [marked lens construction](https://personal.canon.jp/product/camera/rf/rf14-f14lv/spec) — location and shape of the special elements.
+- [Canon's February 2026 announcement](https://www.usa.canon.com/newsroom/2026/20260204-lenses) — introduction of the RF14mm F1.4 L VCM.

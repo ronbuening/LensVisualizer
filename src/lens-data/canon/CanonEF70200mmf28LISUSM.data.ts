@@ -24,8 +24,8 @@ const LENS_DATA = {
   schema: 2,
   key: "canon-ef-70-200f28l-is-usm",
   maker: "Canon",
-  name: "CANON EF 70-200mm f/2.8 L IS USM",
-  subtitle: "JP2002162564A Example 1 — patent embodiment matched to the production lens; not the exact 23/18 production formula",
+  name: "CANON EF 70-200mm f/2.8 L IS USM (Prototype Design)",
+  subtitle: "JP 2002-162564 A Example 1 — prototype design; not the 23-element production prescription",
 
   catalog: {
     lensMounts: ["canon-ef"],

@@ -26,7 +26,7 @@ const LENS_DATA = {
   schema: 2,
   key: "canon-ef-70-300mm-f45-56-do-is-usm",
   maker: "Canon",
-  name: "CANON EF 70-300mm f/4.5-5.6 DO IS USM",
+  name: "CANON EF 70-300mm f/4.5-5.6 DO IS USM (Prototype Design)",
   subtitle: "JP 2004-317867 A, Numerical Example 1 — patent-cam L6 focus model",
 
   catalog: {

@@ -19,7 +19,7 @@ experimental Russar-21 in 1940 with a 133° angular field; a secondary historica
 Russar-21 as 18/60. No primary factory source was found that establishes a standardized production mount, image format, or
 that Example I was the exact production prescription for every Russar-21 unit.
 
-The data file therefore keeps the public name `RUSSAR-21 60mm f/18` while separating the rounded historical identity from
+The data file therefore keeps the public name `RUSSAR-21 60mm f/18 (Prototype Design)` while separating the rounded historical identity from
 the design quantities calculated from the patent prescription. The computed Gaussian EFL is 59.425803 mm, while the
 modeled f-number is 17.928943 from the patent's physical 4.5 mm central diaphragm.
 
