@@ -133,6 +133,10 @@ Read the smallest relevant doc before changing an area. `agent_docs/README.md` i
 
 ## Verification
 
+Before starting LensVisualizer work, fetch `origin/main` and use its latest commit as the base. Fast-forward a clean
+`main` checkout with `git pull --ff-only origin main`. If updating would disturb local changes or divergent history, use a
+separate checkout based on the fetched tip. Record the base commit when reporting a catalog audit.
+
 Before commits or PRs:
 
 ```bash

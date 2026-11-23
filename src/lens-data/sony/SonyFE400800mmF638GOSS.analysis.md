@@ -15,8 +15,8 @@ and the conditional-expression parameters used by the specification. The LensVis
 native scale and does not force the telephoto endpoint to the product's marketed 800 mm value. The source prescription
 is all-spherical. [WO 2024/154461 A1, ¶¶0063–0078, PDF pp. 21–25; Tables 1–5, PDF pp. 26–28; Fig. 1, PDF p. 87.]
 
-The research correlation to the production **Sony FE 400–800mm F6.3–8 G OSS (SEL400800G)** is substantial but is not
-manufacturer-confirmed. The evidence converges in several independent ways:
+Example 1 is a prototype design for the **Sony FE 400–800mm F6.3–8 G OSS (SEL400800G)**, not the production
+prescription, and the association is not manufacturer-confirmed. Several points tie the patent to the lens:
 
 1. Example 1 contains 27 physical glass elements, matching Sony's published 27-element specification.
 2. The patent publishes 399.99–775.96 mm at f/6.40–8.24, close to the marketed 400–800 mm f/6.3–8 range without

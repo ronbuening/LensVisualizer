@@ -10,8 +10,8 @@
 This model uses **JP 2002-090622 A, Example 2**, Table 2 (original PDF page 4) and Figure 5 (page 7).
 All source radii and axial separations retain their existing uniform 1.25 scale from the approximately 100 mm patent
 example to the catalog's 125 mm model. The patent's ten elements in nine groups are preserved. The association with
-the retail Macro Apo-Lanthar is a research correlation: the previously documented retail eleven-element count differs
-from this selected example. Two compatible ED-class positions do not establish that this is the production prescription.
+the retail Macro Apo-Lanthar is that of a prototype design: the retail lens has eleven elements, one more than this
+selected example. Two compatible ED-class positions do not establish that this is the production prescription.
 The original front page names 蓬田 祥寿; the subtitle now agrees with the existing Yoshihisa Yomogida author metadata.
 
 ## Optical layout and focus

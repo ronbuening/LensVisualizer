@@ -46,8 +46,8 @@ const LENS_DATA = {
   schema: 2,
   key: "sony-fe-8-14mm-f35-fisheye-g",
   maker: "Sony",
-  name: "SONY FE 8-14mm f/3.5 Fisheye G",
-  subtitle: "JP 2022-155067 A Example 1 — strong production match; not maker-confirmed",
+  name: "SONY FE 8-14mm f/3.5 Fisheye G (Prototype Design)",
+  subtitle: "JP 2022-155067 A Example 1 — prototype design; not the production prescription",
 
   catalog: {
     lensMounts: ["sony-fe"],
