@@ -12,7 +12,7 @@
 **Title:** Imaging Optical System, and Imaging Apparatus Incorporating the Same
 **Example details:** corresponding to FIG. 1 and FIG. 8
 
-The patent discloses seven numerical examples for a compact wide-angle imaging optical system intended for a mirrorless interchangeable-lens camera. Numerical Example 1 is the embodiment transcribed here. It is the best match for the Olympus M.Zuiko Digital ED 12mm f/2.0, with the important caveat that the patent prescription resolves into nine air-separated optical groups while Olympus publishes the production construction as eleven elements in eight groups. The 0.189 mm air space between L6 and L7 is the probable source of that group-count discrepancy; the patent data are retained as written, while production-facing metadata use the manufacturer-published focal length, aperture, corrected angle of view, and minimum focus distance.
+The patent discloses seven numerical examples for a compact wide-angle imaging optical system intended for a mirrorless interchangeable-lens camera. Numerical Example 1 is the embodiment transcribed here. It is the best match for the Olympus M.Zuiko Digital ED 12mm f/2.0, with the important caveat that the patent prescription resolves into nine air-separated optical groups while Olympus publishes the production construction as eleven elements in eight groups. The 0.635 mm air space between L3 and L4 is the source of that group-count discrepancy: Olympus's section drawing shows L3, L4 and L5 joined as one group, and shows L6 and L7 separated as the patent has them; the patent data are retained as written, while production-facing metadata use the manufacturer-published focal length, aperture, corrected angle of view, and minimum focus distance.
 
 The identification rests on convergent evidence rather than on focal length alone. Example 1 gives f = 12.187 mm and Fno = 2.051, matching the 12 mm f/2 production specification after normal marketing rounding. It uses eleven elements, a Four Thirds-format image height of 11.15 mm, and a 20 cm close-focus state. Its rear-focus mechanism moves only the last positive element. It has four aspherical surfaces on two elements: both surfaces of the second negative meniscus and both surfaces of the positive element immediately ahead of the focus element. The sibling Example 6 is also a roughly 12 mm f/2 eleven-element design, but it has six aspherical surfaces over three elements, including the focus element, and therefore does not match the published two-aspherical-element production configuration.
 
@@ -75,7 +75,7 @@ L4 is the patent embodiment's ED-class element. It is not a fluorite-like anomal
 
 nd = 1.76182, νd = 26.52. Glass: S-TIH14 (Ohara). f = -33.75 mm.
 
-L6 is a dense-flint negative meniscus immediately ahead of L7. Its rear surface lies only 0.189 mm from L7's front surface. This thin air gap is real in the patent prescription and is retained in the data file. It is also the likely reason the patent resolves into nine air-separated groups while the production datasheet is commonly stated as eight groups.
+L6 is a dense-flint negative meniscus immediately ahead of L7. Its rear surface lies only 0.189 mm from L7's front surface. This thin air gap is real in the patent prescription and is retained in the data file. Olympus's section drawing shows the same narrow separation between the two elements, so it is not the reason the patent has nine air-separated groups against Olympus's eight; that difference lies at L3 and L4.
 
 ### L7 — Biconvex Positive
 

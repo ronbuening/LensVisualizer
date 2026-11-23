@@ -1,121 +1,127 @@
-# Nikon AF Nikkor 85mm f/1.4D IF — Patent Candidate
+# AI AF Nikkor 85mm f/1.4D IF
 
 ## Patent Reference and Design Identification
 
-**Patent:** US 5,640,277 A — *Large Aperture Medium Telephoto Lens System*
+**Patent:** US 5,640,277 A\
+**Filed:** December 27, 1994\
+**Granted:** June 17, 1997\
+**Priority:** December 28, 1993 (JP 5-353455)\
+**Inventor:** Kouichi Ohshita (printed as Koichi Ohshita)\
+**Assignee:** Nikon Corporation\
+**Title:** Large Aperture Medium Telephoto Lens System\
+**Example details:** Example 1, Figure 1, columns 12–13, with aberration plots in Figures 2 and 3. The prescription is at the patent's original scale.
 
-**Inventor:** Kouichi Ohshita (printed as Koichi Ohshita on this publication)
+Example 1 is a close match to the production lens. Nikon specifies **nine elements in eight groups**, and the optical section in Tale 41 closely follows the example's powered surfaces, including the single front meniscus, the cemented doublet behind the stop, and the weak rear meniscus. The axial stop position also lines up. Nikon describes the same internal-focus arrangement, with the middle group and stop moving together between fixed front and rear groups.
 
-**Assignee:** Nikon Corporation
+The patent's 85.00 mm, f/1.43 design is consistent with Nikon's 85 mm f/1.4 specification. Figure 2 shows a 14.3° half-field at a 21.6 mm image height, close to Nikon's 28°30′ full angle of view on 35 mm film. Nikon's brochure marks no ED or aspherical elements for the production lens. The example is all spherical, and the patent gives no special-glass designation. Nikon's section gives no focus distance or dimensions. The agreement supports the identification, while the exact production prescription, glass types, clear apertures and minimum-focus spacings remain unverified.
 
-**Filed:** December 27, 1994
-
-**Priority:** December 28, 1993 (JP 5-353455)
-
-**Granted:** June 17, 1997
-
-**Example details:** Figure 4, numerical prescription in column14 (PDFp.34).
-
-The viewer reproduces Example2 as a candidate associated with the catalog's85mm f/1.4D name. This example has **ten elements in nine air-separated components**, not the nine/eight count formerly displayed. Its split front component contains two separate positive singlets; the rear cemented L6 component also contains two elements. Patent labelsL1–L8 therefore do not directly count physical elements.
-
-The source is retained without removing a lens to force a marketing match. Production identity is not established by this example. Source f85.00mm and FN1.43 are used for numerical controls; marketing f/1.4 remains separate. Figure5 reports image height21.6mm and a rounded maximum chief-ray angle14.3°.
+Nikon released the lens in December 1995. It has a 77 mm front filter thread and a nine-blade rounded diaphragm with a marked range of f/1.4 to f/16.
 
 ## Optical Architecture
 
-Three positive groups form an internal focusing system. Fixed G1 has four elements: L1a, L1b, L2 and L3. Moving G2 has five elements: L4, L5, the L6a/L6b cemented pair and L7, plus the stop. Fixed G3 is the weak final positive meniscus L8.
+A positive front converter (G1) feeds a modified Gauss-type middle group (G2). G2 contains two subgroups on either side of the stop, G21 ahead of it and G22 behind it. G3 is a single, weak positive meniscus fixed near the image. The calculated focal lengths of G1, G2 and G3 are about +178.03, +74.94 and +1300.04 mm. Their ratios to the whole lens are 2.094, 0.882 and 15.295, matching the patent's conditions table.
 
-Source group-to-system focal-length ratios are2.290,0.852 and15.296. The third group is consequently weak, with its role described as a compensator for focus-dependent aberration variation. All surfaces are spherical. Element roles below are qualitative interpretations; listed focal lengths are isolated-medium values in air and are not powers inside the cemented pair.
+G1 narrows the beam entering the moving group. G2 provides most of the focusing power, and G3 helps control changes in spherical aberration and field curvature as G2 moves. The group count in Nikon's specifications refers to air-separated components. The three groups named here are the patent's mechanical units.
 
 ## Element-by-Element Analysis
 
-### L1a — Positive Meniscus
+Focal lengths below are for each element in isolation in air. The two halves of L6 work together at a shared glass-to-glass interface.
 
-nd = 1.60300, νd = 65.42. Glass: S-PHM53 (OHARA, approximate coordinate counterpart). Isolated-in-air focal length ≈ +313.1 mm.
+### L1 — Positive Meniscus
 
-Front converter — gently converges the f/1.4 ray bundle with low dispersion.
+nd = 1.60300, νd = 65.42. Glass: unmatched. Isolated focal length ≈ +104.32 mm.
 
-### L1b — Positive Meniscus
-
-nd = 1.59319, νd = 67.87. Glass: J-PSKH1 (Hikari, inferred coordinate counterpart). Isolated-in-air focal length ≈ +113.7 mm.
-
-Primary power element of G1 front section — low-dispersion split with L1a distributes refraction over four surfaces.
+The thick front element begins converging the wide beam. Its relatively low dispersion helps balance the high-dispersion negative meniscus at the back of G1.
 
 ### L2 — Positive Meniscus
 
-nd = 1.79631, νd = 40.90. Glass: NBFD2 (HOYA catalog equivalent; production supplier unspecified; patent 796409). Isolated-in-air focal length ≈ +261.8 mm.
+nd = 1.80411, νd = 46.55. Glass: unmatched. Isolated focal length ≈ +112.47 mm.
 
-Completes G1 positive power; high-index allows strong curvatures with reduced SA.
+The second positive meniscus shares the front converter's converging power with L1. Its higher index supplies comparable power even though its two faces have more similar curvature.
 
 ### L3 — Negative Meniscus
 
-nd = 1.71736, νd = 29.46. Glass: S-TIH1 (OHARA, inferred coordinate counterpart). Isolated-in-air focal length ≈ -62.7 mm.
+nd = 1.71736, νd = 29.46. Glass: unmatched. Isolated focal length ≈ −53.67 mm.
 
-Diverging element — forms tele-converter with L1/L2 to reduce G2 size and travel.
+The strong concave rear face reduces the convergence from L1 and L2 before the beam reaches G2. Its high dispersion contributes to the front group's chromatic balance.
 
 ### L4 — Positive Meniscus
 
-nd = 1.80454, νd = 39.61. Glass: NBFD3 (HOYA, inferred coordinate counterpart). Isolated-in-air focal length ≈ +60.0 mm.
+nd = 1.80454, νd = 39.61. Glass: unmatched. Isolated focal length ≈ +70.85 mm.
 
-First element of focus group G2; front sub-unit G21 positive component.
+The first element of G21 supplies positive power ahead of L5. Both elements travel with the aperture stop during focusing.
 
 ### L5 — Biconcave Negative
 
-nd = 1.67270, νd = 32.17. Glass: S-TIM25 (OHARA, inferred coordinate counterpart). Isolated-in-air focal length ≈ -42.2 mm.
+nd = 1.64831, νd = 33.75. Glass: unmatched. Isolated focal length ≈ −44.55 mm.
 
-Last element before stop; strongly concave image surface defines modified Gauss symmetry.
+The strongly concave rear face looks across the stop toward the concave front face of L6a. These opposing surfaces give the moving group its Gauss-like shape around the stop.
 
 ### L6a — Biconcave Negative
 
-nd = 1.68893, νd = 31.08. Glass: S-TIM28 (OHARA, inferred coordinate counterpart). Isolated-in-air focal length ≈ -43.1 mm.
+nd = 1.67270, νd = 32.17. Glass: HOYA E-FD5 catalog equivalent. Isolated focal length ≈ −43.50 mm.
 
-Chromatic corrector and Petzval sum control — cemented with L6b.
+This is the negative half of a cemented doublet. Its high dispersion pairs with the less dispersive positive glass of L6b.
 
 ### L6b — Biconvex Positive
 
-nd = 1.86994, νd = 39.82. Glass: TAFD32 (HOYA, inferred coordinate counterpart). Isolated-in-air focal length ≈ +41.8 mm.
+nd = 1.86994, νd = 39.82. Glass: unmatched. Isolated focal length ≈ +36.56 mm.
 
-High-index positive for Petzval sum control (n7 ≥ 1.84); cemented with L6a.
+The strongest positive element shares its front surface with L6a. The patent calls for a high index here to help restrain field curvature. The cemented pair has a combined focal length of about +153.19 mm.
 
 ### L7 — Biconvex Positive
 
-nd = 1.78797, νd = 47.47. Glass: N-LAF21 (Schott, inferred coordinate counterpart). Isolated-in-air focal length ≈ +69.5 mm.
+nd = 1.78797, νd = 47.47. Glass: unmatched. Isolated focal length ≈ +82.95 mm.
 
-Dominant positive power of rear sub-unit G22; provides back focus and image convergence.
+This singlet provides most of the positive power of G22. It is the last moving element and approaches the rear compensator at infinity focus.
 
 ### L8 — Positive Meniscus
 
-nd = 1.74810, νd = 52.30. Glass: 748523 — E-LAKH1 catalog equivalent (Hikari; production supplier unspecified). Isolated-in-air focal length ≈ +1300.2 mm.
+nd = 1.74810, νd = 52.30. Glass: Hikari E-LAKH1 catalog equivalent. Isolated focal length ≈ +1300.04 mm.
 
-Fixed rear compensator G3 — cancels SA and field curvature variation during focusing.
+The shallow rear meniscus stays fixed as G2 moves. Its small positive power helps compensate for changes in aberrations during focusing.
 
 ## Glass Identification and Selection
 
-All commercial glass names are inferred counterparts to the source nd/νd coordinates. They do not establish historical suppliers or exact chemistry. The two front media are low-dispersion at νd65.42 and67.87; L1b resolves compatibly to J-PSKH1. L2 retains the compatible NBFD2 counterpart. L8 retains E-LAKH1.
+| Element | nd / νd         | Catalog counterpart |
+| ------- | --------------- | ------------------- |
+| L1      | 1.60300 / 65.42 | Unmatched           |
+| L2      | 1.80411 / 46.55 | Unmatched           |
+| L3      | 1.71736 / 29.46 | Unmatched           |
+| L4      | 1.80454 / 39.61 | Unmatched           |
+| L5      | 1.64831 / 33.75 | Unmatched           |
+| L6a     | 1.67270 / 32.17 | HOYA E-FD5          |
+| L6b     | 1.86994 / 39.82 | Unmatched           |
+| L7      | 1.78797 / 47.47 | Unmatched           |
+| L8      | 1.74810 / 52.30 | Hikari E-LAKH1      |
 
-The source L6 pair combines1.68893/31.08 and1.86994/39.82. The higher-index positive medium is compatible with TAFD32; its source coordinates remain unchanged. No patent-measured anomalous partial dispersion is supplied. The previous chemistry labels are replaced with qualified catalog counterparts.
+The indices and Abbe numbers are for the helium d line (587.6 nm). The two named catalog glasses match both coordinates at the patent's printed precision. They supply dispersion curves for the model. Nikon's production suppliers and glass formulations are unknown, and the remaining glasses use dispersion estimated from the published index and Abbe number.
 
-All ten isolated focal lengths were recalculated from the published radii and central thicknesses. Several old values were incorrect; notably L2 is approximately+261.8mm rather than+371.4mm and L8 approximately+1300.2mm rather than+1341.8mm.
+The patent calls for a lower-dispersion front positive element and a high-index positive element immediately behind the negative member of the doublet. These choices help balance chromatic aberration and field curvature. It gives no individual spectral-line indices or partial-dispersion values. The modeled violet focus shifts toward longer focus at the pupil edge, as in Figures 2 and 3. The violet and d-line curves separate by a different amount near the axis, particularly at close focus.
 
 ## Focus Mechanism
 
-| Gap (mm) | Infinity | Source β=−0.1 station |
-|---|---:|---:|
-| D8, G1–G2 | 17.7992 | 7.4554 |
-| D18, G2–G3 | 1.1997 | 11.5435 |
+| Spacing            |   Infinity | Patent near position |
+| ------------------ | ---------: | -------------------: |
+| D6, from G1 to G2  | 17.7999 mm |            6.9908 mm |
+| D16, from G2 to G3 |  1.2001 mm |           12.0092 mm |
+| S18 to the image   | 38.1202 mm |           38.1202 mm |
 
-G2 and the stop move10.3438mm objectward. G1, G3 and the image plane remain fixed. D18 is an internal group gap, not BF. The actual rear gap is38.1199mm throughout, rounded38.12mm in the source summary. The summed track is118.1188mm.
+G2 and the iris move **10.8091 mm toward the subject** at the published near position. The outer units and the image plane stay fixed. The first vertex remains 116.3202 mm ahead of the image. The model interpolates the two group gaps between the published positions.
 
-An independent matrix reproduces infinity EFL84.999905mm and near magnification−0.100001884. The source finite station implies approximately0.955706m object-to-image distance, replacing the former0.85m label. This distance is derived from the patent prescription, not a production minimum-focus claim. Intermediate movement is interpolated between the two published states.
+The patent gives a near magnification of **1:10**. The prescription reproduces it at **0.952 m** from the image plane, about 835.81 mm ahead of the first surface. At this position the effective focal length falls to about 79.885 mm and the paraxial working aperture is f/1.70, consistent with Figure 3. Nikon specifies a production minimum of **0.85 m at 1:8.8**. The diagram ends at the published patent position because the production spacings at 0.85 m are unknown.
 
-## Diagram Dimensions and Modeling Limits
+## Aperture and Diagram Dimensions
 
-The original Figure4 was inspected at600dpi. Its approximately80mm first-to-last vertex span provides the scale. Adopted inferred outer blank radii are36mm for the first singlet,32.5mm for the second,28mm for L2 and23.5mm for L3. G2 steps from18mm to17.5mm and17.3mm; the rear compensator is17.3mm. S12 and S14 retain their smaller 15.8 mm optical caps because extending their spheres would overlap and be silently trimmed. Opaque rim extensions now carry their drawn blank heights to 17.5 and 17.3 mm, restoring the source cap-end seats without growing either clear aperture. S6 and S8 gain inferred concave cuts of 6.35 and 8.36 mm, with clear radii 24.555 and 20.399 mm inside their existing 28 and 23.5 mm outer rims. The S6 cut was moved outward from the measured figure share to clear the complete traced beam and its margin; both cuts pass that sweep. These improve the original figure proportions while retaining positive edge thickness and clear neighboring surfaces. The thin front components constrain how far their drawing's outer ink can be interpreted as usable spherical aperture.
+The stop is patent surface 11, 4.0 mm behind L5 and 3.4 mm ahead of the cemented doublet. The patent leaves its diameter unspecified. The model derives a fixed 14.54 mm iris radius from the f/1.43 design aperture at infinity, with a computed effective focal length of 85.0001 mm and back focus of 38.1202 mm. The exact cone from that iris gives working apertures of about f/1.49 at infinity and f/1.75 at the near position. The ray heights used to draw the patent's aberration plots correspond to slightly larger cones. The glass rims pass the entire axial beam admitted by the modeled iris.
 
-The figure includes crossing rays and callout brackets. Automated envelopes contaminated by those features were not treated as optical-rim evidence. The adopted dimensions are estimates, not published clear apertures. Surface and image-circle checks validate the working geometry.
-
-No cover-glass or filter medium is present in Example2. The source rear air gap remains38.1199mm, and no extra plate is introduced.
+The patent lists no clear apertures. The rims follow Figure 1 and Nikon's optical section where the two drawings resolve the edges. The front two elements have drawn semi-diameters of 33 and 28 mm, and L3 steps down to 23.5 mm. Flat lands interrupt the curved rear profiles of L2 and L3 and the two faces that border the iris. The front face of L5 is narrower than shown at the L4–L5 gap because extending the sphere farther would interfere with L4. The model retains geometric vignetting away from the axis. These apertures and lands are estimates from the drawings. The patent models an air path from L8 to the image.
 
 ## Sources
 
-- [US5,640,277A](https://patents.google.com/patent/US5640277A/en): original local PDF, titlep.1, Figure4p.5, Figure5p.6, Example2 and its focus tablep.34.
-- Local glass catalog: inferred coordinate counterparts, not source supplier assignments.
+- Title page, Figures 1–3 (PDF pp. 2–4), and Example 1 (PDF pp. 33–34). [US 5,640,277 A](https://patents.google.com/patent/US5640277A/en)
+- Design history, focusing mechanism and optical section. [Nikon, NIKKOR — The Thousand and One Nights No. 41](https://imaging.nikon.com/imaging/information/story/0041/index.html)
+- [Nikon Japan, AI AF Nikkor 85mm f/1.4D IF specifications](https://nij.nikon.com/products/lineup/nikkor/fmount/ai_af_nikkor_85mm_f14d_if/spec.html).
+- Construction and special-element markings on printed p. 23. [Nikon, Nikkor Lenses brochure](https://www.nikonusa.com/fileuploads/pdfs/Nikkor%20lens%20Broch_061017.pdf#page=12)
+- HOYA E-FD5 coefficient data. [HOYA optical glass data](https://www.hoya-opticalworld.com/english/datadownload/index.html)
+- Nikon/Hikari optical-glass catalog data dated July 1, 2022: dispersion coefficients of the discontinued E-LAKH1. Hikari's current catalog lists the glass as discontinued in 2009 and no longer prints the coefficients.
