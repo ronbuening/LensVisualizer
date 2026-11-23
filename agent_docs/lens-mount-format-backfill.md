@@ -9,7 +9,7 @@ the fields unset and add a note here until a source check resolves it.
 
 - Total lens data files, literature reconstructions excluded: **1208**
 - Files with both `lensMounts` and `imageFormat`: **1132**
-- Files missing `lensMounts`: **64** (42 public lenses, 9 hidden patent designs and 13 hidden reference fixtures)
+- Files missing `lensMounts`: **64** (41 public lenses, 10 hidden patent designs and 13 hidden reference fixtures)
 - Files missing `imageFormat`: **58** (39 public lenses, 7 hidden patent designs and 12 hidden reference fixtures)
 - Files missing both fields: **46**
 - Formats currently in use: `1-1.7-inch-type`, `1-1.8-inch-type`, `1-2.3-inch-type`, `1-2.55-inch-type`,
@@ -44,7 +44,6 @@ with remaining compatibility questions explained in the lens analysis.
 | Nikon Ultra-Micro-Nikkor 29.5mm | Photolithography installation; its optical back focus and reduction ratio do not identify a consumer camera mount. |
 | Meyer Kino-Plasmat 100mm; Double-Plasmat 135mm | Historical barrel/specimen evidence and normalized patent scaling do not select a standard factory camera mount. |
 | Minor Photographic Objective 65mm f/2 | US 1,360,667 Figure 2 establishes no production manufacturer, mount, camera format, or image circle. The approximately 65° field and ambiguous focal distance do not establish a format. |
-| Tamron 45.3mm f/2.8 Macro (US 7,286,303 Design) | A patent design with no identified retail lens; the patent's 21.633 mm image height sets the 135 format but names no camera mount. |
 | Russar-21; Russar-22 | Experimental prescription sources lack a manufacturer-issued standardized production fitting. |
 | Voigtländer Dynar | Normalized patent model lacks a selected commercial installation; leave mount and format unset. |
 | Goerz Double Objective 240mm f/7.6 (GB 1898/12,859); Steinheil Orthostigmat Type II 493mm f/6.2 and 476mm f/4 (DE 88505); Voigtländer Collinear Type II 150mm f/6.9 (DE 90482) | 1890s view-camera objectives in barrel. The patents draw flanged cells but name no camera, plate size or lens board, and the Collinear Type II and the fast Orthostigmat were never sold; `large-format-lens-board` needs a period catalog that ties each example to a product. |
@@ -61,8 +60,8 @@ with remaining compatibility questions explained in the lens analysis.
 `src/lens-data/reference/*.data.ts` are synthetic mirror/folded fixtures and intentionally remain outside public
 catalog mount/format taxonomy unless a separate reference-fixture convention is added.
 
-The hidden Nikon 61mm f/2.88 and Pentax 87.8mm f/2.9 macro patent designs match no production lens, so no camera
-mount applies; each carries the image format its patent implies.
+The hidden Nikon 61mm f/2.88, Pentax 87.8mm f/2.9 and Tamron 45.3mm f/2.8 macro patent designs match no production
+lens, so no camera mount applies; each carries the image format its patent implies.
 
 The hidden Cooke US 1,361,207 Example II, US 1,797,202, US 1,926,569, US 2,019,985, US 2,117,252 and US 2,130,760
 and Goerz US 1,643,865 patent designs have no source that supplies a mount or format. The hidden Cooke US 1,484,853
