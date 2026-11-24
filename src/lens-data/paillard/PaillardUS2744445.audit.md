@@ -24,9 +24,9 @@ The paraxial Petzval sum is 0.008393 mm⁻¹. Longitudinal spherical shifts of a
 
 ## Values Not Printed in the Patent
 
-Figure 1 shows no iris, and the patent gives no stop station or diameter, clear semi-diameters, back focus or finite-conjugate focus law. The stop is inferred 3 mm behind R4, dividing the central air space into 3 and 70.8 mm. R4's sag at its 38 mm rim is 1.98 mm, leaving the stop clear of the glass.
+Figure 1 shows no iris, and the patent gives no stop station or diameter, clear semi-diameters, back focus or finite-conjugate focus law. The stop is inferred 3 mm behind R4, dividing the central air space into 3 and 70.8 mm. R4's sag at its 36.8 mm rim is 1.86 mm, leaving the stop clear of the glass.
 
-The inferred clear semi-diameters at R1–R8 are 39, 36, 36, 38, 25.2, 25.2, 23.4 and 23.4 mm. Minimum front-pair air clearance is about 0.174 mm, minimum rear-positive glass thickness about 2.051 mm, and minimum rear-pair air clearance about 1.003 mm. Figure 1 supports their relative sizes and edge shapes, but its unequal axial scales do not establish exact rear clear diameters.
+The inferred clear semi-diameters at R1–R8 are 39, 39, 36.8, 36.8, 25.2, 25.2, 23.4 and 23.4 mm. Minimum front-pair air clearance is about 0.128 mm, minimum rear-positive glass thickness about 2.051 mm, and minimum rear-pair air clearance about 1.003 mm. Figure 1 supports their relative sizes and edge shapes, with inconsistent axial scales across the two pairs.
 
 The image circle is not a printed diameter. Twice the real chief-ray height at the printed ±8.0° field gives 27.72 mm. It does not establish a production film format or a fully unvignetted edge pupil. `focus.closeFocusM` is 10¹⁵ m, which stands for infinity. No finite-focus movement is described. The selectable f/1.4–f/16 range is not a published diaphragm range.
 
@@ -63,9 +63,17 @@ After these corrections: EFL 99.71 mm, paraxial f/1.40, BFD 37.75 mm, first-vert
 - Element 4: Unmatched (nD 1.74174 / ν 27.5) → SF13 (Sumita), spectral proxy; ΔnD = −0.00120, Δν = +0.20.
 - These spectral proxies lie within index 0.002 / Abbe number 0.25 at the printed sodium D line. Differences are catalogue minus printed; the printed indices and Abbe numbers are kept, and historical suppliers and melts remain unspecified.
 
+2026-11-24 diagram review:
+
+- Figure 1 on PDF page 1 shows a flat outer edge on L1. The front thicknesses measure about 16.2 pixels/mm at 600 dpi and the independently fitted R1 arc gives 16.3 pixels/mm. L1 reaches about 630 pixels from the axis, and L2's optical faces end about 600–610 pixels from the axis inside its chamfers. The central gap and L3 thickness give about 7.0 and 25.8 pixels/mm, respectively. The rear positive and rear negative optical rims measure about 360 and 330 pixels from the local axis, supporting the smaller rear negative optical rim.
+- R2 increased from 36 to 39 mm to square L1 at R1's rim. R3 increased from 36 to 36.8 mm and R4 decreased from 38 to 36.8 mm to align L2's two optical edges. The minimum R2–R3 clearance is 0.128 mm. At a common 38 mm radius the combined sag would be 1.09 mm, above the 1.035 mm allowance for the 1.15 mm gap. Figure 1's beveled outer corners on the negative elements are omitted. The rear pair keeps its relative rim heights from the drawing.
+- Wide-open illumination remains 97.5% at 6.7° and 91.3% at 8.0°, with a maximum loss of 2.9 percentage points from the original rims at 8.0°. The axial marginal and 8.0° chief rays clear the glass rims. EFL is 99.71 mm, the modeled half-field is 8.0°, the paraxial aperture is f/1.40 and the accepted axial aperture is about f/1.46.
+- The displayed L1–L4 labels follow Figure 1. The element shapes, roles and standalone focal lengths of +87.79, −139.33, +48.77 and −80.82 mm agree with the prescription. The two pair captions describe the patent's air-spaced achromats. All four singlets are spherical. The display has no cemented or special-dispersion markings. STO lies between the pairs, 3 mm behind R4. Focus is available only at infinity, with fixed spacings and no zoom. The header gives the printed 100 mm design scale and f/1.4.
+- All four displayed glass labels resolve. At the sodium D line, FD8 has ΔnD = +0.0000084 and Δν = −0.05. LAC12 and SF13 remain within the site's spectral-proxy tolerance. The description and claims on PDF pages 2–3 give all four Abbe numbers but supply no additional line indices or partial dispersion. Figure 3's C and D identify tangential and sagittal field curves. The assignee printed on PDF page 2 is Paillard S. A., recorded as Paillard S.A.
+
 ## Remaining Questions
 
-- The exact historical stop station, iris diameter and small edge chamfers are unknown. Figure 1 settles the rim order and square rear-positive edges, but supplies no exact clear diameters. The inferred stop leaves small differences from the printed field-curvature and astigmatism limits.
+- The exact historical stop station, iris diameter, optical clear diameters and chamfer dimensions are unknown. Figure 1 shows square positive rims and chamfered negative rims. The inferred stop leaves small differences from the printed field-curvature and astigmatism limits.
 - The LAC12 and SF13 curves are spectral proxies; Element 2's FD8 match does not identify a historical glass. Historical suppliers, melts and broadband correction remain unknown.
 - The 0.3% focal-length difference is unexplained; the identical tables supply no evidence for changing a printed value.
 - Finite conjugates, focus travel, production identity, mount, image format, marketed focal length and aperture, minimum focus distance, diaphragm blade count and shape, and minimum opening are undocumented.

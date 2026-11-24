@@ -3,8 +3,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /**
  * US 2,744,445 A, Figure 1 and claim 2, at the printed f = 100 mm.
  * The four air-spaced elements retain the printed radii, thicknesses, D-line
- * indices and Abbe numbers. Clear semi-diameters are inferred from Figure 1's
- * rim proportions; the rear rims also preserve wide-open edge illumination.
+ * indices and Abbe numbers. Clear semi-diameters follow Figure 1's square L1
+ * rim and L2 optical edges inside its chamfers. The rear rim proportions
+ * also preserve wide-open edge illumination.
  * The drawing is not uniformly to scale along the axis. The inferred
  * stop lies 3 mm behind surface 4, where the field curves support its position;
  * no iris is drawn. The image plane is the computed paraxial back focus.
@@ -107,20 +108,20 @@ const LENS_DATA = {
       label: "2",
       R: -162.2,
       d: 1.15,
-      sd: 36,
+      sd: 39,
     },
     {
       label: "3",
       R: -131.55,
       d: 10,
-      sd: 36,
+      sd: 36.8,
       medium: 2,
     },
     {
       label: "4",
       R: 365.7,
       d: 3,
-      sd: 38,
+      sd: 36.8,
     },
     {
       label: "STO",

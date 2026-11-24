@@ -34,13 +34,13 @@ The invention reduces the Petzval sum through its distribution of curvature, thi
 
 nD = 1.67741, ν = 55.6. Glass: LAC12 (Hoya), spectral proxy. Standalone focal length in air: +87.79 mm.
 
-The +89.8/−162.2 mm surfaces enclose 17.5 mm of glass. This is the positive member of the front achromatic pair. Its inferred front and rear clear semi-diameters are 39 and 36 mm.
+The +89.8/−162.2 mm surfaces enclose 17.5 mm of glass. This is the positive member of the front achromatic pair. Both faces have an inferred clear semi-diameter of 39 mm, giving the element the square rim drawn in Figure 1.
 
 ### Element 2 / L2 — Biconcave Negative
 
 nD = 1.68873, ν = 31.2. Glass: FD8 (Hoya), catalogue match. Standalone focal length in air: −139.33 mm.
 
-The −131.55/+365.7 mm surfaces enclose 10 mm of glass. Its stronger dispersion offsets colour from the positive front member. The inferred clear semi-diameters are 36 and 38 mm; the 1.15 mm air gap separates it from Element 1.
+The −131.55/+365.7 mm surfaces enclose 10 mm of glass. Its stronger dispersion offsets colour from the positive front member. Both faces have an inferred clear semi-diameter of 36.8 mm based on the optical edges inside the drawn chamfers. The axial air gap to Element 1 is 1.15 mm.
 
 ### Element 3 / L3 — Biconvex Positive
 
@@ -58,9 +58,9 @@ The −59.95 mm front surface and plane rear surface enclose 2.5 mm of glass. Th
 
 The patent explicitly gives indices for the D line, taken as sodium at 589.3 nm, together with Abbe numbers. Those printed values are retained. It supplies no individual C-, F- or g-line indices or partial-dispersion data.
 
-FD8 (Hoya) matches Element 2's printed pair within index 0.0001 and Abbe number 0.15, with ΔnD = +0.0000084 and Δν = −0.04 using its catalogue Abbe number. A catalogue match does not identify the historical supplier or melt.
+FD8 (Hoya) matches Element 2's printed pair within index 0.0001 and Abbe number 0.15. At the sodium D line, ΔnD = +0.0000084 and Δν = −0.05. The historical supplier and melt remain unknown.
 
-Elements 1 and 3 use LAC12 (Hoya) as a spectral proxy, with ΔnD = +0.00038 and Δν = −0.09. Element 4 uses SF13 (Sumita) as a spectral proxy, with ΔnD = −0.00120 and Δν = +0.20. These catalogue-minus-printed differences are evaluated at the sodium D line and lie within the proxy limits of index 0.002 and Abbe number 0.25. The printed indices and Abbe numbers are kept; the catalogue curves supply only the dispersion shape in place of Abbe-based estimates.
+Elements 1 and 3 use LAC12 (Hoya) as a spectral proxy, with ΔnD = +0.00038 and Δν = −0.09. Element 4 uses SF13 (Sumita) as a spectral proxy, with ΔnD = −0.00120 and Δν = +0.20. These differences are evaluated at the sodium D line and fall within the site's spectral-proxy tolerance of 0.002 in index and 0.25 in Abbe number. The model keeps the printed indices and Abbe numbers and uses the catalogue curves for the wavelength dependence.
 
 All four elements use catalogue curves; none remains Unmatched. The proxy names do not identify Paillard's historical glasses. The available data do not establish broadband performance or anomalous partial dispersion.
 
@@ -74,13 +74,13 @@ The patent's ±8.0° field is retained. With the inferred stop described below, 
 
 ## Inferred Stop and Clear Apertures
 
-Figure 1 shows no iris, and the patent gives neither a stop station nor its diameter. The inferred stop is 3 mm behind R4, splitting the 73.8 mm air space into 3 and 70.8 mm. At the 38 mm R4 rim, the surface sag is 1.98 mm, leaving the stop clear of the glass.
+Figure 1 shows no iris, and the patent gives neither a stop station nor its diameter. The inferred stop is 3 mm behind R4, splitting the 73.8 mm air space into 3 and 70.8 mm. At the 36.8 mm R4 rim, the surface sag is 1.86 mm, leaving the stop clear of the glass.
 
 This position is supported by Figure 3 and the text's limits of 0.17% f for mean field curvature and below 0.65% f for astigmatism. Real-ray fits with a stop 0–4 mm behind R4 give mean curvature of about 0.18–0.20% f and astigmatism of about 0.64–0.68% f. These are closer to the printed claims than a midpoint stop, which gives mean curvature about 0.37% f and the wrong sign for the edge tangential focus. The exact historical stop station remains unknown, and the inferred position does not reproduce every printed bound exactly.
 
 The paraxial f/1.40 stop has radius 30.41 mm. Its accepted real axial entrance radius is 34.18 mm, corresponding to f/1.46. The iris sets that aperture; the glass rims do not limit the axial beam. The 8.0° chief ray clears every rim, while approximately 91.3% of the on-axis pupil area remains at 8.0°. This area ratio describes modeled vignetting, not measured transmission.
 
-The inferred clear semi-diameters at R1–R8 are 39, 36, 36, 38, 25.2, 25.2, 23.4 and 23.4 mm. Figure 1 supports the front rims, a square-cut rear positive element and smaller optical rims on the rear negative element, whose small outer chamfers are omitted. The drawing's front thicknesses and front curvature agree on a scale of about 16.4 pixels/mm at 600 dpi, but its central gap and rear thicknesses do not share that scale, so the rear sizes follow proportions rather than absolute drawing dimensions. Both rear elements remain larger than those proportions alone suggest to preserve edge illumination. The minimum front-pair air clearance is about 0.174 mm, the rear positive element retains about 2.051 mm minimum glass thickness, and the rear-pair air clearance is about 1.003 mm.
+The inferred clear semi-diameters at R1–R8 are 39, 39, 36.8, 36.8, 25.2, 25.2, 23.4 and 23.4 mm. Figure 1 shows square rims on the positive elements and outer chamfers on the negative elements. The negative elements are drawn here to their optical rims. The front thicknesses and R1 curvature give a local scale of about 16.3 pixels/mm at 600 dpi. The central gap and rear positive thickness have different scales. The model follows the relative sizes of the two rear elements and leaves both larger than the drawing alone suggests to retain edge illumination. The minimum front-pair air clearance is about 0.128 mm, the rear positive element retains about 2.051 mm minimum glass thickness, and the rear-pair air clearance is about 1.003 mm.
 
 ## Aberration Curves and MTF Scope
 
