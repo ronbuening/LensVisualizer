@@ -46,7 +46,7 @@ This is the negative front member of the rear doublet. Its weakly curved front f
 
 ### Element 4 — Biconvex Positive
 
-D-line index 1.700; Abbe number 48.0. Glass: S-LAM51 (Ohara), a catalog match at the printed index precision. Focal length in air: +36.03 mm.
+D-line index 1.700 and Abbe number 48.0. Glass: S-LAM51 (Ohara), spectral proxy. Focal length in air: +36.03 mm.
 
 Element 4 supplies the rear component's positive power. The cemented elements together have a focal length of +61.07 mm, so the rear component remains positive despite element 3's negative power.
 
@@ -54,9 +54,7 @@ Element 4 supplies the rear component's positive power. The cemented elements to
 
 The patent explicitly identifies the D line, taken here as sodium at 589.3 nm, and prints an index and Abbe number for each element. Those values remain unchanged. It supplies no trade names, suppliers, additional line indices or partial-dispersion data.
 
-Elements 1–3 use spectral proxies. Hoya M-PCD55AR serves element 1 (ΔnD +0.00048, Δν +0.17), Ohara TIM11 serves element 2 (ΔnD +0.00080, Δν −0.13), and Hoya E-F5 serves element 3 (ΔnD −0.00172, Δν +0.002). Differences are catalog minus printed values at the sodium D line. Each row meets the site's spectral-proxy tolerance of 0.002 in index and 0.25 in Abbe number. The model keeps the printed coordinates and uses the catalog curves for wavelength dependence.
-
-Element 4 retains Ohara S-LAM51: nD = 1.69987 and a D-referenced Abbe number of 48.072. The index rounds to the printed 1.700 and the dispersion differs by +0.072. All four elements use catalog curves; none remains unmatched. These rows do not identify Wollensak's historical suppliers or melts, and the patent data do not establish broadband performance or secondary-spectrum accuracy.
+All four elements use catalog dispersion curves as spectral proxies. The differences in index and Abbe number, catalog minus patent at the sodium D line, are +0.00048 and +0.17 for M-PCD55AR (element 1), +0.00080 and −0.13 for TIM11 (element 2), −0.00172 and +0.002 for E-F5 (element 3), and −0.00013 and +0.07 for S-LAM51 (element 4). Each row is within 0.002 in index and 0.25 in Abbe number. The curves describe how the index varies with wavelength in the color analysis. Wollensak's glass suppliers and melts remain unknown. Broadband performance and secondary-spectrum accuracy remain unverified.
 
 ## Focus Mechanism and Aperture
 

@@ -93,7 +93,7 @@ const LENS_DATA = {
       nd: 1.7,
       vd: 48,
       indexReference: "D",
-      glass: "S-LAM51 (Ohara)",
+      glass: "S-LAM51 (spectral proxy; patent nD 1.700 / ν 48.0; supplier and melt unspecified)",
       focalLengthMm: 36.03,
       role: "Positive member that supplies the rear doublet's converging power",
       cemented: "C1",

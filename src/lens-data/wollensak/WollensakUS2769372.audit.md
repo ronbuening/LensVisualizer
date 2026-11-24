@@ -30,7 +30,7 @@ The exact paraxial image distance is calculated. The 103.05 mm image circle is d
 
 `focus.closeFocusM` is 10¹⁵ m, which stands for infinity. No close-focus prescription, movement law or minimum object distance is printed. The modeled aperture series extends from f/3.2 to f/32; the patent gives no minimum iris opening or blade details.
 
-The patent supplies no glass trade names, suppliers, additional spectral indices or partial-dispersion data. Elements 1–3 use catalog dispersion curves as spectral proxies while retaining the printed D-line indices and Abbe numbers. Element 4 retains its Ohara catalog match at the printed precision. None of these rows establishes the historical supplier or melt. No anomalous dispersion, broadband performance or secondary-spectrum accuracy is established by these data.
+The patent supplies no glass trade names, suppliers, additional spectral indices or partial-dispersion data. All four elements use catalog dispersion curves as spectral proxies and retain the printed D-line indices and Abbe numbers. Historical suppliers and melts remain unknown. No anomalous dispersion, broadband performance or secondary-spectrum accuracy is established by these data.
 
 ## Product Identification
 
@@ -45,7 +45,7 @@ No specific commercial lens is documented for this prescription. Its Tessar-type
 - The catalog design focal length changed from the printed 100 mm to the calculated 99.99 mm. The four-element, three-group counts and printed f/3.2 design aperture are retained; no production specifications were inferred.
 - Generic element descriptions became Element 1 through Element 4, with shapes matching the radius signs and short optical roles. Calculated in-air focal lengths of +59.56, −38.32, −83.63 and +36.03 mm were added. The rear pair has a combined focal length of +61.07 mm. C1 identifies the rear cemented doublet at R5–R7, replacing its earlier group designation. Brackets identify the front component, middle component and rear doublet.
 - The rims retain the printed element diameters and R4 bevel-start diameter; their attribution to estimated dimensions was removed. All radii, thicknesses, air separations, D-line indices, Abbe numbers, stop station and clear radii remain unchanged. The image plane remains at the calculated paraxial back focus of 82.91 mm behind R7.
-- Generic glass descriptions became `Unmatched (nD 1.638 / ν 55.0)`, `Unmatched (nD 1.620 / ν 36.0)` and `Unmatched (nD 1.605 / ν 38.0)` for elements 1–3. Their printed coordinates are unchanged, with ΔnD = 0 and Δν = 0. Element 4 became `S-LAM51 (Ohara)`: its catalog curve gives nD 1.69987, ΔnD −0.000131, and D-referenced ν 48.072, Δν +0.072. The index agrees with the printed 1.700 at three-decimal precision. Historical glass identities remain unresolved, and no anomalous-dispersion claim is added.
+- Generic glass descriptions became `Unmatched (nD 1.638 / ν 55.0)`, `Unmatched (nD 1.620 / ν 36.0)` and `Unmatched (nD 1.605 / ν 38.0)` for elements 1–3. Their printed coordinates are unchanged, with ΔnD = 0 and Δν = 0. Element 4 initially received the label `S-LAM51 (Ohara)`. Its catalog curve gives nD 1.69987, ΔnD −0.000131, and D-referenced ν 48.072, Δν +0.072. The index agrees with the printed 1.700 at three-decimal precision. Historical glass identities remain unresolved, and no anomalous-dispersion claim is added.
 
 After these corrections the model has EFL 99.99 mm, aperture f/3.20, paraxial back focus 82.91 mm, stop radius 12.611 mm and half-field 27.5°. The fixed rims admit the axial beam and the edge chief ray, with substantial edge-bundle vignetting.
 
@@ -61,7 +61,7 @@ After these corrections the model has EFL 99.99 mm, aperture f/3.20, paraxial ba
 - Element 1: `Unmatched (nD 1.638 / ν 55.0)` → `M-PCD55AR (spectral proxy; patent nD 1.638 / ν 55.0; supplier and melt unspecified)` (Hoya); ΔnD +0.00048, Δν +0.17, catalog minus printed at the sodium D line; spectral proxy.
 - Element 2: `Unmatched (nD 1.620 / ν 36.0)` → `TIM11 (spectral proxy; patent nD 1.620 / ν 36.0; supplier and melt unspecified)` (Ohara); ΔnD +0.00080, Δν −0.13, catalog minus printed at the sodium D line; spectral proxy.
 - Element 3: `Unmatched (nD 1.605 / ν 38.0)` → `F15 (spectral proxy; patent nD 1.605 / ν 38.0; supplier and melt unspecified)` (Hoya); ΔnD +0.00051, Δν −0.11, catalog minus printed at the sodium D line; spectral proxy.
-- Spectral proxies are within 0.002 in index and 0.25 in Abbe number at the printed D line; the printed index and Abbe number are kept. Element 4 retains `S-LAM51 (Ohara)`, and historical glass identities remain unresolved.
+- Spectral proxies are within 0.002 in index and 0.25 in Abbe number at the printed D line; the printed index and Abbe number are kept. At that stage, element 4 kept the label `S-LAM51 (Ohara)`. Historical glass identities remained unresolved.
 
 2026-11-24 diagram review:
 
@@ -70,6 +70,11 @@ After these corrections the model has EFL 99.99 mm, aperture f/3.20, paraxial ba
 - Figure 1 uses the numerals 1–4, which are now explicit on the diagram. The inspectors retain L1–L4 and Element 1–4. Shapes, roles and in-air focal lengths agree with the prescription: +59.56, −38.32, −83.63 and +36.03 mm. The front, middle and rear captions span R1–R2, R3–R4 and R5–R7. C1 marks the R5–R7 doublet and STO sits 4.4 mm ahead of R5, as specified on PDF page 2. There are no aspheric or special-dispersion tags. The title, example and design specifications agree with Figures 1–2 and the text.
 - The three components have zero axial travel in the model. The focus control shows infinity alone, consistent with the single modeled conjugate and the lack of a focusing prescription in the patent.
 - Element 3 now uses Hoya E-F5 in place of F15. At the sodium D line, catalog minus print changes from ΔnD +0.00051 and Δν −0.109 to ΔnD −0.00172 and Δν +0.002, within the site's spectral-proxy tolerance. The inspector shows the revised glass label. All four elements retain catalog dispersion curves and the printed indices and Abbe numbers. PDF pages 2–3 supply no additional line indices, partial-dispersion values or spectral curves. The glass pairs for elements 2–4 recur in Example II. The assignee on PDF page 2 is Wollensak Optical Company, the catalog spelling.
+
+2026-11-24 glass review:
+
+- Element 4 changed from `S-LAM51 (Ohara)` to `S-LAM51 (spectral proxy; patent nD 1.700 / ν 48.0; supplier and melt unspecified)`. The Ohara spectral proxy differs by ΔnD −0.00013 and Δν +0.07 (catalog minus patent at the sodium D line).
+- Spectral proxies fall within 0.002 in index and 0.25 in Abbe number at the patent's sodium D line. The printed index and Abbe number are kept.
 
 ## Remaining Questions
 
