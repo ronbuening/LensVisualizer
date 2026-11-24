@@ -20,7 +20,7 @@ The patent describes a large-aperture photographic objective particularly suited
 
 ## Optical Architecture
 
-Five spherical elements form four air-separated groups: a positive front meniscus, a positive cemented second group, a biconcave negative third group and a biconvex positive rear group. Elements 2 and 3 are cemented at the flat r4 interface. Their combined focal length is +87.73 mm, although element 3 alone is negative. The front air separation is the printed 0.1 mm.
+Five spherical elements form four air-separated components, numbered I–IV in the patent. Component I is a positive meniscus, II is the positive cemented pair, III is biconcave and negative, and IV is biconvex and positive. The five glass entries in the prescription are separately numbered I–V and appear under those numerals in the diagram. Elements 2 and 3 are cemented at the flat r4 interface. Their combined focal length is +87.73 mm, although element 3 alone is negative. The front air separation is the printed 0.1 mm.
 
 The patent emphasizes the weak curvature of the cemented interface, the front element's weak rear surface, and the higher dispersion of the negative member of the cemented pair. These features balance the positive components while allowing relatively shallow spherical surfaces. Example 1 uses an infinite cemented radius, within the claim's range from six focal lengths to infinity. [Specification and claim, PDF pp. 2–3](https://patents.google.com/patent/US2543856A/en)
 
@@ -50,9 +50,9 @@ Element 2 is plano-convex positive: `nD = 1.65981, ν = 50.3; f = +68.96 mm`. El
 
 The patent explicitly names the sodium D line and supplies Abbe numbers, but gives no glass names or separate C, F or G′ indices. The source indices remain attached to that line.
 
-Schott SF1 matches the printed D-line glass coordinates for elements 3 and 4: its catalogue curve gives nD = 1.71715 and νD = 29.50, with catalogue minus printed differences Δn = −0.0000012 and Δν = −0.0959. Element 5 uses Schott P-SK60 as a spectral proxy, with Δn = −0.00190 and Δν = −0.11 at the sodium D line, within the proxy limits of 0.002 in index and 0.25 in Abbe number. Its printed index and Abbe number are retained; P-SK60 supplies only the dispersion-curve shape so colour analysis follows a real glass rather than an Abbe-number estimate. Neither catalogue name identifies the historical supplier or melt.
+Schott SF1 matches the printed D-line glass coordinates for elements 3 and 4: its catalogue curve gives nD = 1.71715 and νD = 29.50, with catalogue minus printed differences Δn = −0.0000012 and Δν = −0.0959. Element 5 uses Schott P-SK60 as a spectral proxy, with Δn = −0.00190 and Δν = −0.11 at the sodium D line, within the site's spectral-proxy tolerance of 0.002 in index and 0.25 in Abbe number. The model retains the printed index and Abbe number and borrows the dispersion-curve shape from P-SK60. Neither catalogue name identifies the historical supplier or melt.
 
-Elements 1 and 2 remain unmatched because no catalogue row falls within those limits at the sodium D line; their printed indices and Abbe numbers are retained. The available data do not establish anomalous partial dispersion or measured broadband performance.
+Elements 1 and 2 use Abbe-based dispersion estimates. Their shared sodium-D index and Abbe number recur in all three examples. The closest catalogue row by Abbe number within the index tolerance, Hikari J-SSK5, differs by +0.53 in νD. The available data do not establish anomalous partial dispersion or measured broadband performance.
 
 ## Focus Mechanism
 
@@ -66,15 +66,16 @@ There are no aspherical surfaces. The curved faces are spherical, and r4 is flat
 
 ## Source Aberrations and Model Limits
 
-The computed Petzval sum is 0.0050162 mm⁻¹, or 0.5016 when multiplied by the stated 100 mm focal length, reproducing the patent's printed sum. The sodium-D spherical-aberration calculation also closely reproduces its table:
+The computed Petzval sum is 0.0050162 mm⁻¹, or 0.5016 when multiplied by the stated 100 mm focal length, reproducing the patent's printed sum. Figure 2 and its table give longitudinal focus offsets relative to paraxial sodium D. Each pair below gives the published and modeled offsets, in mm. The model evaluates G′ at approximately 434.0 nm. [Aberration tables and Figure 2, PDF pp. 1–3](https://patents.google.com/patent/US2543856A/en), [NIST hydrogen wavelengths](https://physics.nist.gov/PhysRefData/Handbook/Tables/hydrogentable2_a.htm)
 
-| Incident axial ray height (mm) | Printed longitudinal aberration (mm) | Computed longitudinal aberration (mm) |
-| ------------------------------ | -----------------------------------: | ------------------------------------: |
-| 19.45                          |                               −0.327 |                                −0.332 |
-| 24.06                          |                               −0.241 |                                −0.240 |
-| 27.78                          |                               +0.148 |                                +0.139 |
+| Incident axial ray height (mm) | C, patent / model | D, patent / model | F, patent / model | G′, patent / model |
+| ------------------------------ | ----------------: | ----------------: | ----------------: | -----------------: |
+| 0 (paraxial)                   |   +0.120 / +0.151 |     0.000 / 0.000 |   −0.225 / −0.241 |    −0.281 / −0.317 |
+| 19.45                          |   −0.289 / −0.220 |   −0.327 / −0.332 |   −0.423 / −0.466 |    −0.523 / −0.443 |
+| 24.06                          |   −0.240 / −0.153 |   −0.241 / −0.240 |   −0.306 / −0.302 |    −0.150 / −0.211 |
+| 27.78                          |   +0.168 / +0.197 |   +0.148 / +0.139 |   +0.160 / +0.160 |    +0.373 / +0.334 |
 
-The largest difference is 0.009 mm. These comparisons use the patent's specified incident heights; they do not define the inferred iris opening. The printed paraxial F−C separation is −0.345 mm. A calculation from the printed Abbe numbers gives about −0.404 mm, probably reflecting differences from the designer's glass data rather than a transcription error. The printed indices and Abbe numbers are retained. [Aberration tables and Figure 2, PDF pp. 1–3](https://patents.google.com/patent/US2543856A/en)
+The largest sodium-D difference is 0.009 mm. The largest colour difference is 0.087 mm for C at 24.06 mm ray height. Paraxial F−C separation is −0.392 mm with the modeled glass curves and −0.404 mm using the printed Abbe numbers alone, compared with the patent's −0.345 mm. These system-level values leave the historical glasses' individual dispersion curves undetermined.
 
 The patent states no field angle or image format. The displayed ±10° field is illustrative and carries no image-circle or mount claim. Its chief ray and the f/1.8 axial beam clear the modeled rims, although off-axis bundles are partly vignetted.
 

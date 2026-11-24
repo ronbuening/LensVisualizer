@@ -45,6 +45,7 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1",
+      diagramLabel: "I",
       label: "Element 1",
       type: "Positive Meniscus",
       role: "Positive front collector",
@@ -57,6 +58,7 @@ const LENS_DATA = {
     {
       id: 2,
       name: "L2",
+      diagramLabel: "II",
       label: "Element 2",
       type: "Plano-Convex Positive",
       role: "Positive front element of the cemented second group",
@@ -70,6 +72,7 @@ const LENS_DATA = {
     {
       id: 3,
       name: "L3",
+      diagramLabel: "III",
       label: "Element 3",
       type: "Plano-Concave Negative",
       role: "Dispersive negative rear element of the cemented second group",
@@ -83,6 +86,7 @@ const LENS_DATA = {
     {
       id: 4,
       name: "L4",
+      diagramLabel: "IV",
       label: "Element 4",
       type: "Biconcave Negative",
       role: "Negative third group balancing the positive components",
@@ -95,6 +99,7 @@ const LENS_DATA = {
     {
       id: 5,
       name: "L5",
+      diagramLabel: "V",
       label: "Element 5",
       type: "Biconvex Positive",
       role: "Positive rear group forming the image",
@@ -183,26 +188,26 @@ const LENS_DATA = {
   },
   focus: {
     closeFocusM: 1e15,
-    description: "Infinity focus only; the patent gives no close-focus data.",
+    description: "Infinity only. The patent gives no focusing mechanism or finite-distance prescription.",
   },
   groups: [
     {
-      text: "G1 · L1",
+      text: "Component I",
       fromSurface: "1",
       toSurface: "2",
     },
     {
-      text: "G2 · L2 + L3",
+      text: "Component II",
       fromSurface: "3",
       toSurface: "5",
     },
     {
-      text: "G3 · L4",
+      text: "Component III",
       fromSurface: "6",
       toSurface: "7",
     },
     {
-      text: "G4 · L5",
+      text: "Component IV",
       fromSurface: "8",
       toSurface: "9",
     },
