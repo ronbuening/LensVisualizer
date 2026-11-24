@@ -51,6 +51,7 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1",
+      diagramLabel: "L1",
       label: "Element 1",
       type: "Biconvex Positive",
       nd: 1.60801,
@@ -63,6 +64,7 @@ const LENS_DATA = {
     {
       id: 2,
       name: "L2",
+      diagramLabel: "L2",
       label: "Element 2",
       type: "Biconcave Negative",
       nd: 1.72825,
@@ -75,6 +77,7 @@ const LENS_DATA = {
     {
       id: 3,
       name: "L3",
+      diagramLabel: "L3",
       label: "Element 3",
       type: "Negative Meniscus",
       nd: 1.60801,
@@ -87,6 +90,7 @@ const LENS_DATA = {
     {
       id: 4,
       name: "L4",
+      diagramLabel: "L4",
       label: "Element 4",
       type: "Plano-Convex Positive",
       nd: 1.72825,
@@ -133,14 +137,14 @@ const LENS_DATA = {
       label: "5",
       R: -13,
       d: 1,
-      sd: 9.5,
+      sd: 9.3,
       medium: 3,
     },
     {
       label: "6",
       R: -70,
       d: 0.07,
-      sd: 9.5,
+      sd: 9.3,
     },
     {
       label: "7",
@@ -158,7 +162,7 @@ const LENS_DATA = {
   ],
   focus: {
     closeFocusM: 1000000000000000,
-    description: "Infinity focus only; the patent gives no close-focus data.",
+    description: "Fixed at infinity. The patent gives no focusing mechanism or close-focus data.",
   },
   aperture: {
     nominalFNumber: 6.3,

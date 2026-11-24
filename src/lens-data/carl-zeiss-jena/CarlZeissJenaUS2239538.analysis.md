@@ -64,13 +64,13 @@ The diaphragm is drawn between elements 2 and 3. Its printed distances are 14.23
 
 The lens track through the last glass surface is 37.79 mm. The printed 79.37 mm front-vertex-to-focus distance therefore gives a last gap of 41.58 mm, which the model retains. The prescription computes to EFL 100.03 mm and paraxial BFD 41.599 mm, placing the paraxial image about 0.02 mm behind the printed plane. The image plane remains at the printed distance.
 
-The model is focused at infinity; the patent gives no close-focus data.
+The model is fixed at infinity. The patent gives no focusing mechanism or close-focus data.
 
 ## Field and Clear Apertures
 
 The full field is 30°, matching the patent's “about 30°” statement. At the 15.0° half-field the real chief ray reaches an image height of approximately 27.10 mm on the printed image plane, giving a field-derived image-circle diameter of 54.20 mm. No film format is assigned.
 
-All chief-ray intersections at 15° clear the rims; the largest is approximately 7.50 mm against a 9.5 mm clear radius. The inferred clear semi-diameters are 8.7 mm at surfaces 1–4 and 9.5 mm at surfaces 5–8, with both faces of each element at the same height. Figure 2 supports these square rims and the slightly larger rear elements, but its individual glass thicknesses are not drawn consistently to scale, so it supplies proportions rather than manufacturing dimensions. The full on-axis beam clears every glass rim. Wide-open geometric transmission is approximately 76.7% at 10°, 67.0% at 12.5° and 40.2% at 15°; off-axis pupil rays remain vignetted. The minimum edge thicknesses are approximately 0.375 mm at element 1 and 0.481 mm at element 4.
+All chief-ray intersections at 15° clear the rims. The largest is approximately 7.50 mm against a 9.5 mm clear radius. The inferred clear semi-diameters are 8.7 mm at surfaces 1–4, 9.3 mm at surfaces 5–6 and 9.5 mm at surfaces 7–8. Both faces of each element end at the same height. In Figure 2 the rear pair is taller than the front pair, and the final element extends slightly beyond the meniscus. The drawing gives rim proportions, with individual glass thicknesses drawn to varying scale. The full on-axis beam clears every glass rim. Wide-open geometric transmission is approximately 76.7% at 10°, 67.0% at 12.5° and 40.2% at 15° as off-axis pupil rays are vignetted. The minimum edge thicknesses are approximately 0.375 mm at element 1 and 0.481 mm at element 4.
 
 Geometric MTF at the printed image plane describes that unshifted plane. The patent provides no MTF curves for comparison, and the glass assignments do not establish manufactured broadband performance.
 
