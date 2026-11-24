@@ -8,9 +8,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * is split 7.58/1.96 mm using the stop-space ratio printed in DE 700,699 C,
  * a German member of the same invention with a different numerical example.
  * The iris diameter follows the paraxial f/2 rule. Clear semi-diameters are
- * inferred from the section drawing's proportions: 24 mm at the cylindrical
- * triplet rims, with R6/R7 retained above the f/2 axial beam. The drawing's
- * unequal axial scales do not establish exact rim or chamfer dimensions.
+ * inferred from the section drawing's proportions: 30 mm at the square-cut
+ * front singlet and 24 mm at the cylindrical triplet rims. The R6/R7 curve
+ * ends clear the f/2 axial beam. The drawing's unequal axial scales leave
+ * exact rim and chamfer dimensions uncertain.
  * The image plane is the computed paraxial back focus, rounded to
  * 0.0001 mm. The 10-degree half-field is illustrative; no field is printed.
  */
@@ -47,6 +48,7 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1",
+      diagramLabel: "L1",
       label: "Element 1",
       type: "Positive Meniscus",
       nd: 1.62,
@@ -60,6 +62,7 @@ const LENS_DATA = {
     {
       id: 2,
       name: "L2",
+      diagramLabel: "L2",
       label: "Element 2",
       type: "Positive Meniscus",
       nd: 1.7015,
@@ -73,6 +76,7 @@ const LENS_DATA = {
     {
       id: 3,
       name: "L3",
+      diagramLabel: "L3",
       label: "Element 3",
       type: "Biconvex Positive",
       nd: 1.5487,
@@ -87,6 +91,7 @@ const LENS_DATA = {
     {
       id: 4,
       name: "L4",
+      diagramLabel: "L4",
       label: "Element 4",
       type: "Biconcave Negative",
       nd: 1.6883,
@@ -100,6 +105,7 @@ const LENS_DATA = {
     {
       id: 5,
       name: "L5",
+      diagramLabel: "L5",
       label: "Element 5",
       type: "Positive Meniscus",
       nd: 1.62,
@@ -114,6 +120,7 @@ const LENS_DATA = {
     {
       id: 6,
       name: "L6",
+      diagramLabel: "L6",
       label: "Element 6",
       type: "Biconcave Negative",
       nd: 1.515,
@@ -127,6 +134,7 @@ const LENS_DATA = {
     {
       id: 7,
       name: "L7",
+      diagramLabel: "L7",
       label: "Element 7",
       type: "Biconvex Positive",
       nd: 1.6682,
@@ -150,7 +158,7 @@ const LENS_DATA = {
       label: "2",
       R: 384.32,
       d: 0.38,
-      sd: 29.6,
+      sd: 30,
     },
     {
       label: "3",
@@ -214,7 +222,7 @@ const LENS_DATA = {
   ],
   focus: {
     closeFocusM: 1e15,
-    description: "Infinity focus only; the patent gives no close-focus data.",
+    description: "Infinity focus only. The patent describes no focusing mechanism or travel.",
   },
   aperture: {
     nominalFNumber: 2,
