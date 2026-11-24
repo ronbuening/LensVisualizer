@@ -211,7 +211,7 @@ const LENS_DATA = {
   ],
   focus: {
     closeFocusM: 1e15,
-    description: "Infinity focus only; the patent gives no close-focus data.",
+    description: "Fixed group spacing at infinity. The patent gives no focusing mechanism or close-focus data.",
   },
   aperture: {
     nominalFNumber: 4,
@@ -225,22 +225,22 @@ const LENS_DATA = {
   },
   groups: [
     {
-      text: "Front divergent cemented pair",
+      text: "Doublet",
       fromSurface: "1",
       toSurface: "3",
     },
     {
-      text: "CaF2 positive meniscus",
+      text: "CaF₂",
       fromSurface: "4",
       toSurface: "5",
     },
     {
-      text: "CaF2 positive meniscus",
+      text: "CaF₂",
       fromSurface: "6",
       toSurface: "7",
     },
     {
-      text: "Rear cemented doublet",
+      text: "Doublet",
       fromSurface: "8",
       toSurface: "10",
     },
