@@ -1,19 +1,16 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
- * US 9,791,677 B2, Example 6. The radii, axial spacings, d-line indices,
- * Abbe numbers, aspheres and camera-side plate follow the patent in mm at
- * scale 1. The image plane is 0.75 mm behind the plate.
- *
- * Clear radii and the land on surface 6 are estimated from Fig. 6C.
- * The iris radius is calculated from the infinity f/3.56. The patent prints
- * f/3.56, f/4.07 and f/5.04 at infinity, 0.5× and 1×. The model holds the
- * iris at its infinity size, so the 1× axial beam reaches the rims of the
- * cemented pair and L5 (surfaces 7, 8, 9A and 10A).
- *
- * The three printed gap pairs are preserved. Finite object distances and
- * 33 intermediate gap pairs are solved for paraxial focus at the fixed
- * image plane. The moving gaps always sum to 21.72 mm.
+ * US 9,791,677 B2, Example 6. The radii, spacings, d-line indices, Abbe numbers,
+ * aspheres and camera-side plate follow the patent at its printed millimetre scale.
+ * The image plane is 0.75 mm behind the plate. The clear radii and land on
+ * surface 6 follow Fig. 6C, and the iris radius follows the infinity f/3.56.
+ * The patent prints f/3.56, f/4.07 and f/5.04 at infinity, 0.5× and 1×.
+ * With the iris held at its infinity size, surfaces 7, 8, 9A and 10A clip
+ * the 1× axial beam. The moving gaps sum to 21.72 mm at every setting.
+ * Three gap pairs are printed. The finite object distances and 33 intermediate
+ * gap pairs are calculated for paraxial focus at the fixed image plane.
+ * The table gives an 11.15 mm image height, and Fig. 12 labels it 11.45 mm.
  */
 const LENS_DATA = {
   schema: 2,
@@ -25,7 +22,7 @@ const LENS_DATA = {
   catalog: {
     lensMounts: ["micro-four-thirds"],
     imageFormat: "four-thirds",
-    specs: ["7 ELEMENTS / 6 GROUPS", "3 ASPHERICAL ELEMENTS", "1 ED ELEMENT", "DESIGN f = 30.42 mm", "DESIGN F/3.56"],
+    specs: ["7 ELEMENTS / 6 GROUPS", "3 ASPHERICAL ELEMENTS", "1 ED ELEMENT", "DESIGN F/3.56", "INNER FOCUS"],
     elementCount: 7,
     groupCount: 6,
     focalLengthMm: {
@@ -62,7 +59,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "S-BAL35",
       focalLengthMm: -15.32,
-      role: "Negative front element of G1.",
+      role: "Dual Super Aspherical (DSA) negative front element that helps control off-axis aberrations.",
       diagramLabel: "L1",
     },
     {
@@ -75,7 +72,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "S-BAH28",
       focalLengthMm: 15.54,
-      role: "Positive second element of the fixed front unit G1.",
+      role: "Positive element that balances L1 and leaves G1 weakly positive.",
       diagramLabel: "L2",
     },
     {
@@ -89,7 +86,7 @@ const LENS_DATA = {
       glass: "S-TIH14",
       cemented: "C1",
       focalLengthMm: -11.62,
-      role: "High-dispersion negative member of the cemented pair in G2.",
+      role: "High-dispersion negative member of the cemented pair that helps correct color in G2.",
       diagramLabel: "L3",
     },
     {
@@ -103,7 +100,7 @@ const LENS_DATA = {
       glass: "S-LAH52",
       cemented: "C1",
       focalLengthMm: 17.1,
-      role: "High-index positive member of the cemented pair in G2.",
+      role: "High-index positive member that offsets most of the negative power of L3.",
       diagramLabel: "L4",
     },
     {
@@ -116,10 +113,10 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "FCD1",
       focalLengthMm: 19.08,
-      role: "Low-dispersion positive element at the rear of G2.",
+      role: "Extra-low-dispersion aspherical (EDA) element that makes G2 net positive.",
       diagramLabel: "L5",
       apd: "inferred",
-      apdNote: "Olympus marks this position EDA, and the patent gives it an Abbe number of 81.61.",
+      apdNote: "Olympus marks L5 as extra-low-dispersion aspherical (EDA). The patent gives an Abbe number of 81.61.",
     },
     {
       id: 6,
@@ -131,7 +128,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "L-BSL7",
       focalLengthMm: -27.74,
-      role: "Single negative element of G3, which moves toward the image for close focus.",
+      role: "Double-aspheric negative element that moves toward the image for close focus.",
       diagramLabel: "L6",
     },
     {
@@ -144,7 +141,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "S-LAH55V",
       focalLengthMm: 45.88,
-      role: "Fixed positive rear element of G4, with a shallow front curvature.",
+      role: "Fixed positive rear element that converges the beam after G3.",
       diagramLabel: "L7",
     },
   ],
@@ -324,7 +321,7 @@ const LENS_DATA = {
       },
     ],
     description:
-      "PUBLISHED — The patent gives the spacings at infinity, 0.5× and 1×. G3 moves 6.16 mm toward the image at 0.5× and 13.76 mm at 1×. The object distances and intermediate spacings are calculated. The model ends at 1× with the iris set to its infinity size.",
+      "PUBLISHED — The patent gives the spacings at infinity, 0.5× and 1×. G3 moves 6.16 mm toward the image at 0.5× and 13.76 mm at 1×. The object distances and the other 33 positions are calculated. The model stops at 1× with the iris held at its infinity size. The production lens reaches 1.25×.",
   },
   gaps: {
     "10A": {

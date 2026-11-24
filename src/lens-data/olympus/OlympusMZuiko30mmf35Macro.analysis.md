@@ -11,23 +11,22 @@
 **Title:** Inner focus macrolens and image pickup device using the same\
 **Example details:** Fig. 6A–C, surface and focus tables in columns 18–19, and aberration plots in Fig. 12A–L
 
-Olympus's construction drawing points to **Example 5 or 6** of Morooka's patent. Both show seven elements in six
-air-spaced components, with the same cemented pair behind the stop. Olympus marks the front element
-DSA, the fifth EDA and the sixth aspherical. These positions agree with the patent's three double-aspheric elements,
-including the low-dispersion fifth element. The drawing also shows the single negative element just ahead of the
-fixed rear element, where Fig. 6A–C shows the focusing unit moving. Olympus describes the production lens as an
-inner-focus design with a screw drive. [Olympus construction drawing](https://jp.omsystem.com/content/000083238.jpg)
+Olympus's construction drawing points to **Example 5 or 6**. Both show seven elements in six air-spaced components,
+with a cemented pair behind the stop. Olympus marks L1 DSA, L5 EDA and L6 aspherical, matching the three
+double-aspheric elements in the patent. The negative element ahead of the fixed rear lens corresponds to the
+moving unit in Fig. 6A–C. Olympus specifies inner focus with a screw drive.
+[Olympus construction drawing](https://jp.omsystem.com/content/000083238.jpg)
 [OM SYSTEM product specifications](https://explore.omsystem.com/us/en/m-zuiko-ed-30mm-f3-5-macro)
 
-Examples 2–4 have eight elements or an 82.6 mm air-equivalent length. Example 1 has a rear element that bends the
-other way and a wider 41.56° field. The two closest examples share the construction visible in Olympus's drawing.
-Example 6 is modeled here because its 39.89° infinity field is marginally closer to Olympus's 40° specification
-than Example 5's 39.65°. The drawing identifies the design family. The exact production prescription remains
-unconfirmed. [Patent, Examples 1–6](https://patents.google.com/patent/US9791677B2/en)
+Examples 2–4 have eight elements or an air-equivalent length of about 82.6 mm. Example 1 has a rear meniscus
+and a 41.6° field. The drawing leaves the choice between Examples 5 and 6 open. Example 6 supplies the modeled
+prescription because its 39.89° infinity field is closer to Olympus's 40° specification than Example 5's 39.65°.
+[Patent, Examples 1–6](https://patents.google.com/patent/US9791677B2/en)
+[Olympus lens specifications](https://jp.omsystem.com/product/lens/macro/30_35macro/spec.html)
 
-The production lens is a 30 mm f/3.5 Micro Four Thirds prime with a seven-blade circular diaphragm that closes to f/22. The
-patent gives 30.43 mm and f/3.56 at infinity, and its prescription yields a paraxial focal length of 30.42 mm.
-Olympus specifies 1.25× at 0.095 m. Example 6 ends at 1×, which the model reaches at 0.09761 m from object to image.
+The 30 mm f/3.5 production lens uses the Micro Four Thirds mount and a seven-blade circular diaphragm that
+closes to f/22. Example 6 gives 30.43 mm and f/3.56 at infinity, with a calculated paraxial focal length of 30.42 mm.
+[Olympus instruction manual](https://learnandsupport.getolympus.com/sites/default/files/media/files/2018/03/man_mzd30f35macro.pdf)
 [Olympus lens specifications](https://jp.omsystem.com/product/lens/macro/30_35macro/spec.html)
 [Patent, Example 6](https://patents.google.com/patent/US9791677B2/en)
 
@@ -42,11 +41,11 @@ Gauss-type front section that carries the main aberration correction. This lets 
 negative element. The fixed positive G4 helps set the close-range magnification. The 6.08 mm camera-side plate is
 part of the patent's optical path, behind the seven powered elements.
 
-The prescription uses the printed radii, spacings, d-line glass values and aspheres at scale 1. The printed plate
-and gaps put the image plane 73.69 mm behind the front vertex. At infinity this plane is 0.0247 mm behind paraxial
-best focus. Clear radii follow the outlines in Fig. 6C. The 4.686 mm iris radius follows from the printed infinity
-aperture. The infinity chief ray reaches the Four Thirds corner at an image height of 10.82 mm and a half-field
-angle of 19.42°.
+The prescription retains the printed radii, spacings, d-line glass values and aspheres. The plate and gaps put
+the image plane 73.69 mm behind the front vertex, 0.025 mm behind paraxial focus at infinity. The clear radii
+and the land on surface 6 are estimated from Fig. 6C. The calculated 4.686 mm iris radius follows the printed
+infinity aperture. At infinity the chief ray reaches the Four Thirds corner at 10.82 mm image height and
+19.4° half-field.
 
 ## Element-by-Element Analysis
 
@@ -58,7 +57,7 @@ $n_d = 1.58913$, $\nu_d = 61.15$. Glass: S-BAL35 (Ohara). Focal length −15.32 
 
 The negative front element of G1 has a shallow front and much stronger rear curvature. The patent links this
 configuration to reducing off-axis aberrations and moving the principal point toward the object, which helps
-preserve working distance at close focus. Olympus marks this position DSA.
+preserve working distance at close focus.
 
 ### L2 — Biconvex positive
 
@@ -84,9 +83,9 @@ focal length of −64.91 mm in air, much weaker than either element by itself.
 
 $n_d = 1.49700$, $\nu_d = 81.61$. Glass: FCD1 (Hoya). Focal length +19.08 mm.
 
-The low-dispersion positive element behind the doublet makes G2 net positive. Olympus marks it EDA, an
-extra-low-dispersion aspherical element. This position and the printed Abbe number support the inferred
-special-dispersion designation.
+The low-dispersion positive element behind the doublet makes G2 net positive. The printed Abbe number
+of 81.61 is consistent with Olympus's extra-low-dispersion aspherical (EDA) designation.
+[Olympus construction drawing](https://jp.omsystem.com/content/000083238.jpg)
 
 ### L6 — Biconcave negative, double aspheric
 
@@ -121,13 +120,14 @@ gains exactly the distance the gap behind it loses, so their sum remains 21.72 m
 | 0.5×        |     7.96 |    13.76 |           6.16 |                        54.80 |               128.49 |            27.80 / 27.79 |             4.07 |
 | 1×          |    15.56 |     6.16 |          13.76 |                        23.92 |                97.61 |            22.49 / 22.48 |             5.04 |
 
-The patent prints the finite magnifications and spacings. The distances are calculated from paraxial focus on
-the fixed image plane. Thirty-three intermediate gap pairs are likewise calculated to keep the interpolated
-focus near that plane. The production lens's 1.25× position lies beyond the last printed state.
+The patent prints three sets of spacings. The finite object distances and 33 of the 36 focus positions are
+calculated for the fixed image plane. The model ends at 1× and 97.61 mm from object to image. Olympus specifies
+1.25× at 95 mm from the sensor, with about 14 mm of working distance from the front of the lens.
+[OM SYSTEM close-focus specifications](https://explore.omsystem.com/ee/en/m-zuiko-ed-30mm-f3-5-macro-black)
 
-The model holds the iris at its infinity size. Before clipping, the calculated image-side f-numbers at 0.5× and
-1× are about 3.58 and 3.55, respectively. The larger 1× beam is slightly clipped by the cemented pair and L5,
-whose rims follow Fig. 6C. The printed f/4.07 and f/5.04 describe narrower close-range beams.
+With the iris fixed at its infinity size, the image-side f-numbers before clipping are about 3.58 at 0.5× and
+3.55 at 1×. The 1× axial beam slightly overfills the rims of the cemented pair and L5 at surfaces 7, 8, 9A
+and 10A. The printed f/4.07 and f/5.04 describe narrower close-range beams.
 
 ## Aspherical Surfaces
 
@@ -169,5 +169,7 @@ infinity-to-1× travel, $D_3$ its thickness, and $TL$ the air-equivalent length.
 ## Sources
 
 - Prescription, focus states and design conditions. [US 9,791,677 B2](https://patents.google.com/patent/US9791677B2/en)
-- Production dimensions, construction, focus, magnification and aperture. [Olympus specifications](https://jp.omsystem.com/product/lens/macro/30_35macro/spec.html) and [OM SYSTEM specifications](https://explore.omsystem.com/us/en/m-zuiko-ed-30mm-f3-5-macro)
-- Section and special-element positions. [Olympus construction drawing](https://jp.omsystem.com/content/000083238.jpg) and [drawing with English labels](https://www.lenstip.com/upload2/171892_oly30mm.jpg)
+- Production construction, angle of view, aperture and screw drive. [Olympus specifications](https://jp.omsystem.com/product/lens/macro/30_35macro/spec.html) and [OM SYSTEM specifications](https://explore.omsystem.com/us/en/m-zuiko-ed-30mm-f3-5-macro)
+- Mount and aperture range. [Olympus instruction manual](https://learnandsupport.getolympus.com/sites/default/files/media/files/2018/03/man_mzd30f35macro.pdf)
+- Maximum magnification, minimum focus and working distance. [OM SYSTEM close-focus specifications](https://explore.omsystem.com/ee/en/m-zuiko-ed-30mm-f3-5-macro-black)
+- Section and special-element designations. [Olympus construction drawing](https://jp.omsystem.com/content/000083238.jpg) and [Olympus announcement](https://www.olympus-global.com/news/2016/nr160920m30macroe.html)
