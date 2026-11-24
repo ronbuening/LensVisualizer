@@ -79,7 +79,7 @@ The final refracting vertex is followed in the model by the calculated 115.80154
 
 ## Glass Identification and Selection
 
-The patent gives three distinct historical glass coordinates and repeats them symmetrically. It prints uppercase `nD`, an `nG′` value, and a dispersion number. The implementation preserves the numerical `nD` values in the schema's `nd` slot, while treating the source D line as the historical sodium D line near 589.3 nm. The patent's G′ line is near 434.0 nm and is not silently stored as modern `ng` at 435.8 nm.
+The patent gives three distinct historical glass coordinates and repeats them symmetrically. It prints uppercase `nD`, an `nG′` value, and a dispersion number. The implementation preserves the numerical `nD` values in the model's `nd` field, while treating the source D line as the historical sodium D line near 589.3 nm. The patent's G′ line is near 434.0 nm and is not silently stored as modern `ng` at 435.8 nm.
 
 | Patent glass | Elements | Stored nD | ν | Authored identification |
 |---|---|---:|---:|---|
@@ -93,9 +93,9 @@ The source's use of a lower-index negative L2 between higher-index positive memb
 
 ## Focus Mechanism
 
-The focus status is **NO_INTERNAL_RECONSTRUCTION**. Example 2 supplies one fixed prescription and no finite-object table, variable spacing, moving group, minimum focusing distance, or lens-specific focusing mechanism. Accordingly, `var` and `varLabels` are empty.
+The model shows the lens at infinity only and moves no group. Example 2 supplies one fixed prescription and no close-focus table, variable spacing, moving group, minimum focusing distance, or lens-specific focusing mechanism. Accordingly, no spacing in the model changes with focus.
 
-The required `closeFocusM` field is 1.0 m only as a documented LensVisualizer UI/schema placeholder for this static prescription. It is not a production MFD and is not used to generate a finite-focus optical state. Any focusing by translating the complete objective or camera standard lies outside the implemented internal-spacing model.
+The 1.0 m value stored for the focus control is only a placeholder for this fixed prescription. It is not a production minimum focus distance and is not used to generate a close-focus optical state. Any focusing by translating the complete objective or camera standard lies outside the modeled internal spacings.
 
 ## Conditional Expression and Numerical Verification
 

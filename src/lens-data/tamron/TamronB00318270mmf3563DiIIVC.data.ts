@@ -48,7 +48,7 @@ const LENS_DATA = {
   key: "tamron-b003-18-270mm-f35-63-di-ii-vc",
   maker: "Tamron",
   name: "TAMRON AF 18-270mm f/3.5-6.3 Di II VC LD ASPHERICAL [IF] MACRO (B003)",
-  subtitle: "JP 2010-044103 A, sole embodiment — B003 production correlation",
+  subtitle: "JP 2010-044103 A, sole embodiment — B003 production match",
 
   catalog: {
     lensMounts: ["canon-ef", "nikon-f"],

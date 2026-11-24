@@ -37,7 +37,7 @@ The patent drawing shows the diaphragm within source gap a6 but does not dimensi
 
 ## Element-by-Element Analysis
 
-The source publishes refractive indices and Abbe numbers in the e-line system. Although the LensVisualizer schema retains these numbers in historical `nd` and `vd` fields, the values below are written correctly as **nₑ** and **νₑ**. The listed focal lengths are standalone thick-element focal lengths with each physical element isolated in air; they are not the in-situ focal lengths of the complete patent members.
+The source publishes refractive indices and Abbe numbers in the e-line system. Although the model retains these numbers in historical `nd` and `vd` fields, the values below are written correctly as **nₑ** and **νₑ**. The listed focal lengths are standalone thick-element focal lengths with each physical element isolated in air; they are not the in-situ focal lengths of the complete patent members.
 
 ### L1 — Positive Meniscus
 
@@ -97,21 +97,21 @@ No `nC`, `nF`, `ng`, or `dPgF` values are source-published for these elements, a
 
 ## Focus Mechanism
 
-The focus status is **NO_INTERNAL_RECONSTRUCTION**. US 3,291,553 supplies one prescription and no focus-spacing table, moving-group law, or second optical state. The data therefore contains no authored focus `var` entries and makes no claim about internal group motion.
+The model shows the lens at infinity only. US 3,291,553 supplies one prescription and no focus-spacing table, moving-group law, or second optical state. No spacing in the model therefore changes with focus, and the model makes no claim about internal group motion.
 
-The historical `closeFocusM` value of **1.0 m** comes from the May 1987 *Handbook of the LEICA System*, whose 50 mm Summilux-M f/1.4 listing gives a focusing range from infinity to 1 m. The same listing gives seven elements in five components, 45° angle of view, and the Leica M rapid bayonet. [Leica, *Handbook of the LEICA System*, Issue 1, May 1987, catalog p. 5-9; mirrored copy.](https://device.report/m/45d516c2ad4829fd27b4e34e553b14de23968c124d847307b2d3efb4f7e387d8)
+The historical close-focus figure of **1.0 m** comes from the May 1987 *Handbook of the LEICA System*, whose 50 mm Summilux-M f/1.4 listing gives a focusing range from infinity to 1 m. The same listing gives seven elements in five components, 45° angle of view, and the Leica M rapid bayonet. [Leica, *Handbook of the LEICA System*, Issue 1, May 1987, catalog p. 5-9; mirrored copy.](https://device.report/m/45d516c2ad4829fd27b4e34e553b14de23968c124d847307b2d3efb4f7e387d8)
 
 Leica's current reinterpretation focuses to 0.7 m, but Leica explicitly describes that as an extension relative to the historical predecessor. The current 0.7 m figure and the modern 12-blade diaphragm are therefore not projected backward into this historical model. [Leica press material.](https://leica-camera.com/en-US/press/leica-summilux-m-50-f14)
 
 ## Verification Summary
 
-The final `.data.ts` was reloaded with the dossier's strict literal parser and recomputed from the parsed values rather than from a separate hard-coded prescription. Independent scalar height/reduced-angle propagation and ABCD composition agree within the Stage 2 numerical tolerance. The final model gives **EFL = 50.00723 mm**, **BFD = 27.62286 mm from r12**, and a surface-by-surface Petzval sum of **0.005207316 mm⁻¹** using `φ/(n·n′)` at each refracting surface.
+The final `.data.ts` was reloaded with a separate strict literal parser and recomputed from the parsed values rather than from a separate hard-coded prescription. Independent scalar height/reduced-angle propagation and ABCD composition agree within the Stage 2 numerical tolerance. The final model gives **EFL = 50.00723 mm**, **BFD = 27.62286 mm from r12**, and a surface-by-surface Petzval sum of **0.005207316 mm⁻¹** using `φ/(n·n′)` at each refracting surface.
 
 The inferred stop gives a paraxial entrance-pupil semi-diameter of **17.85973 mm** and a modeled f-number of **1.40000**. Because the stop semi-diameter was selected to reproduce the patent's f/1.4 specification, this result verifies internal consistency of the calibrated model rather than an unpublished physical iris measurement.
 
 The semi-diameter set is likewise modeled rather than sourced. Portable checks pass for spherical-domain validity, actual rim slope, edge thickness, shared-band air-gap intrusion, and representative exact Snell traces. The exact-ray checks include the on-axis wide-open pupil, representative rays at ±13.5°, and chief/inward rays at the historical ±22.5° half-field. The model intentionally permits edge-field vignetting rather than claiming an unvignetted 45° full field.
 
-Production LensVisualizer checks remain separate from these chat-side calculations. Real `LensDataInput` type checking, Prettier execution, `buildLens()` / `validateLensData()`, runtime glass resolution, and production render diagnostics were not executed in this dossier and remain integration-pending.
+Production LensVisualizer checks remain separate from these chat-side calculations. Real `LensDataInput` type checking, Prettier execution, `buildLens()` / `validateLensData()`, runtime glass resolution, and production render diagnostics were not executed for this analysis and remain integration-pending.
 
 ## Sources / References
 

@@ -328,9 +328,9 @@ The patent does not publish close-focus group travels, close-focus spacing rows,
 magnification table. The manufacturer specifies a 0.95 m closest focusing distance and approximately 0.21× maximum
 magnification, but those rounded product values do not uniquely determine two independent group trajectories. [2]
 
-The data file therefore has focus status `NO_INTERNAL_RECONSTRUCTION`. Every close-focus member of the six `var` arrays
-is identical to its corresponding infinity value. The 0.95 m field is retained as product metadata only; the viewer does
-not simulate the internal close-focus state. No focus travel is inferred or concealed in the rear image spacing.
+The model therefore shows infinity focus only. Each of the six spacings that change with zoom keeps its infinity value
+at both ends of the focus control. The 0.95 m close-focus figure is recorded as product information only; the viewer
+does not simulate the internal close-focus state. No focus travel is inferred or concealed in the rear image spacing.
 
 ## Aspherical Surfaces
 

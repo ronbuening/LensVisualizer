@@ -117,6 +117,8 @@ describe("parseLensIndexUrlState", () => {
   it("opens the filter panel explicitly or when a filter is active", () => {
     expect(parse("?filters=open").filterOpen).toBe(true);
     expect(parse("?makers=canon").filterOpen).toBe(true);
+    expect(parse("?sources=literature&production=matched").filterOpen).toBe(false);
+    expect(parse("?sources=patent,literature").filterOpen).toBe(true);
     expect(parse("?filters=closed").filterOpen).toBe(false);
   });
 });
@@ -133,13 +135,14 @@ describe("serializeLensIndexUrlState", () => {
 
   it("round-trips every field", () => {
     const search =
-      "?group=inventor&view=debug&makers=canon,nikon&mounts=canon-rf,nikon-z&formats=aps-c&sources=literature&focalMin=24&focalMax=200&apertureMin=1.4&apertureMax=5.6&yearMin=1970&yearMax=2020";
+      "?group=inventor&view=debug&makers=canon,nikon&mounts=canon-rf,nikon-z&formats=aps-c&sources=literature&production=unmatched&focalMin=24&focalMax=200&apertureMin=1.4&apertureMax=5.6&yearMin=1970&yearMax=2020";
     const parsed = parse(search);
     const reparsed = parse(`?${serialize(parsed)}`);
 
     expect(reparsed.viewMode).toBe(parsed.viewMode);
     expect(reparsed.groupMode).toBe(parsed.groupMode);
     expect(reparsed.filterOpen).toBe(parsed.filterOpen);
+    expect(reparsed.customFilter.productionMatch).toBe("unmatched");
     expect(isSameCustomFilter(reparsed.customFilter, parsed.customFilter)).toBe(true);
   });
 
@@ -168,6 +171,7 @@ describe("isSameCustomFilter", () => {
     ["lensMountIds", { lensMountIds: ["canon-rf"] }],
     ["imageFormatIds", { imageFormatIds: ["aps-c"] }],
     ["sourceKinds", { sourceKinds: ["literature"] }],
+    ["productionMatch", { productionMatch: "matched" }],
   ])("detects a change in %s", (_field, patch) => {
     expect(isSameCustomFilter(base, { ...base, ...patch })).toBe(false);
   });

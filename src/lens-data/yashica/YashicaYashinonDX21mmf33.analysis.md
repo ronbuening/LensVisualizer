@@ -115,9 +115,9 @@ These are catalog-coordinate comparators, not evidence that Yashica bought those
 
 ## Focus Mechanism
 
-The focus status is `NO_INTERNAL_RECONSTRUCTION`. JP 1969-024068 B Example 1 publishes one fixed optical prescription and gives no finite-object spacing table, magnification row, or internal group-motion prescription. The data file therefore has an empty `var` object and defines no focus movement.
+JP 1969-024068 B Example 1 publishes one fixed optical prescription and gives no close-focus spacing table, magnification row, or description of how any group moves. The model therefore shows the lens at infinity only and defines no focus movement.
 
-The production 0.8 m minimum focus is retained as manufacturer metadata. It is not used to infer unit focusing, inner focusing, floating motion, or a close-focus back focal distance. The reviewed manufacturer material establishes the marketed minimum focus but does not provide the optical kinematics needed to reconstruct a finite-focus prescription. The LensVisualizer model therefore represents only the source-published fixed state.
+The production 0.8 m minimum focus is recorded as manufacturer product information. It is not used to infer unit focusing, inner focusing, floating motion, or a close-focus back focal distance. The reviewed manufacturer material establishes the marketed minimum focus but does not describe the optical movement needed to model a close-focus prescription. The model therefore represents only the source-published fixed state.
 
 ## Conditional Expressions
 

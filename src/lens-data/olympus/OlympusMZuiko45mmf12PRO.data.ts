@@ -46,7 +46,7 @@ const LENS_DATA = {
   key: "olympus-mzuiko-digital-ed-45mm-f12-pro",
   maker: "Olympus",
   name: "OLYMPUS M.ZUIKO DIGITAL ED 45mm f/1.2 PRO",
-  subtitle: "JP 2019-023693 A, Example 1 — qualified production correlation",
+  subtitle: "JP 2019-023693 A, Example 1 — tentative production match",
 
   catalog: {
     lensMounts: ["micro-four-thirds"],

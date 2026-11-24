@@ -28,7 +28,7 @@ const LENS_DATA = {
   maker: "Leica",
   name: "LEITZ SUMMAREX 85mm f/1.5",
   subtitle:
-    "DE L 12741 (Leitz application, laid open 1953), sole example — inferred Summarex correlation; not manufacturer-confirmed",
+    "DE L 12741 (Leitz application, laid open 1953), sole example — inferred Summarex match; not maker-confirmed",
   visible: true,
   catalog: {
     lensMounts: ["leica-ltm"],

@@ -46,7 +46,7 @@ const LENS_DATA = {
   key: "fujifilm-fujinon-xf-14mm-f28-r",
   maker: "Fujifilm",
   name: "FUJIFILM FUJINON XF 14mm f/2.8 R",
-  subtitle: "US 2015/0168694 A1 Example 1 — production correlation to XF14mmF2.8 R",
+  subtitle: "US 2015/0168694 A1 Example 1 — production match to XF14mmF2.8 R",
 
   catalog: {
     lensMounts: ["fujifilm-x"],

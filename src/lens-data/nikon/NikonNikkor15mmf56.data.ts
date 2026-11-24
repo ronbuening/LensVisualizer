@@ -81,7 +81,7 @@ const LENS_DATA = {
   maker: "Nikon",
   name: "NIKON NIKKOR-QD·C AUTO 15mm f/5.6",
   subtitle:
-    "JP S48-71634 A spherical reference table — production-correlated model (correlation not confirmed by Nikon)",
+    "JP S48-71634 A spherical reference table — model matched to the production lens (match not confirmed by Nikon)",
 
   catalog: {
     lensMounts: ["nikon-f"],

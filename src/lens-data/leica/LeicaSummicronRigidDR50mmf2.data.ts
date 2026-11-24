@@ -18,7 +18,7 @@ const LENS_DATA = {
   key: "leica-summicron-50mm-f2-rigid-dual-range",
   maker: "Leica",
   name: "LEICA SUMMICRON 50mm f/2 Rigid / Dual Range",
-  subtitle: "DE 939956 B, sole example \u2014 probable production correlation, scaled \u00d70.5",
+  subtitle: "DE 939956 B, sole example \u2014 probable production match, scaled \u00d70.5",
   visible: true,
   catalog: {
     lensMounts: ["leica-m"],

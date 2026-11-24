@@ -42,7 +42,7 @@ const LENS_DATA = {
   key: "sony-fe-pz-16-35-f4-g",
   maker: "Sony",
   name: "SONY FE PZ 16-35mm f/4 G",
-  subtitle: "JP 2023-44106 A, Example 5 — inferred production correlation",
+  subtitle: "JP 2023-44106 A, Example 5 — inferred production match",
 
   catalog: {
     lensMounts: ["sony-fe"],

@@ -120,8 +120,8 @@ Isolated-air f = +25.134 mm.
 
 L8 is the biconvex positive singlet that forms component IV. It remains fixed while components II and III move. Its source
 coordinate is preserved as an unmatched historical class rather than forced to a modern catalog identity. The computed
-+25.134 mm focal length agrees, within the source-precision tolerance used in the dossier, with the patent's printed
-+25.02 mm component value.
++25.134 mm focal length agrees, within the source-precision tolerance used here, with the patent's printed +25.02 mm
+component value.
 
 ### P — Plane-parallel reflex prism
 
@@ -195,18 +195,17 @@ published partial-dispersion or multi-line index set.
 
 ## Focus Mechanism
 
-The final data deliberately carries **NO_INTERNAL_RECONSTRUCTION** for focusing. US 3,442,573 provides the zoom motion of
-components II and III but no finite-object numerical prescription, no focus travel table, and no unique set of object-
-distance-dependent spacings. Its general description says that nominally stationary positive components may have limited
-adjustability for focusing, while Schneider's Variogon retrospective describes subject-distance setting with the front
-group. Those statements establish the existence and general location of focusing behavior, not a solvable Example 1
-focus law.
+The model shows the lens at infinity focus only. US 3,442,573 provides the zoom motion of components II and III but no
+close-focus numerical prescription, no focus travel table, and no unique set of object-distance-dependent spacings. Its
+general description says that nominally stationary positive components may have limited adjustability for focusing,
+while Schneider's Variogon retrospective describes subject-distance setting with the front group. Those statements
+establish the existence and general location of focusing behavior, not a solvable Example 1 focus law.
 
-`closeFocusM` is therefore metadata rather than an optical focus state. The data uses 0.9144 m, corresponding to the
-3-foot focusing limit published for a Bauer C2 installation of the Schneider Variogon f/1.8 8-40 mm. All authored
-focus-pair values in `var` are identical at a given zoom node, so the LensVisualizer prescription contains no invented
-close-focus internal movement. The Bauer limit is production-variant evidence only and should not be read as proof that
-all Variogon 8-40 barrels use the same focusing range.
+The close-focus figure is therefore product information rather than an optical focus state. The model uses 0.9144 m,
+corresponding to the 3-foot focusing limit published for a Bauer C2 installation of the Schneider Variogon f/1.8 8-40
+mm. At each zoom position, every spacing keeps the same value at both ends of the focus control, so focus travel is not
+modeled; zoom movement is. The Bauer limit is production-variant evidence only and should not be read as proof that all
+Variogon 8-40 barrels use the same focusing range.
 
 ## Zoom Kinematics and First-Order Behavior
 
@@ -231,8 +230,8 @@ at 14.37, 32.03, and 41.18 mm at the three nodes. Component III lies at 50.81, 4
 monotonically imageward, whereas component III reverses direction around the intermediate state.
 
 The computed BFDs differ slightly from the patent's one-decimal 13.1 mm statement because the prescription itself is
-rounded. The 13.1559–13.1625 mm calculated values remain within the dossier's 0.10 mm source-precision tolerance. The data
-retains the source-stated 13.1 mm rear image spacing after r24 rather than changing the prescription to force exact
+rounded. The 13.1559–13.1625 mm calculated values remain within the 0.10 mm source-precision tolerance used here. The
+data retains the source-stated 13.1 mm rear image spacing after r24 rather than changing the prescription to force exact
 Gaussian focus.
 
 ## Aperture Stop, Pupils, and Modeled Clear Apertures
@@ -281,13 +280,13 @@ the directly evaluable Example 1 relationships:
 
 These are construction checks, not measures of image quality. The synthetic stop contributes zero optical power, and the
 flat prism surfaces likewise contribute zero Petzval terms. Recomputing the complete final prescription surface by surface
-with the dossier convention φ/(n·n′) gives a Petzval sum of 0.007574025613 mm⁻¹, with reciprocal magnitude 132.030185 mm.
+with the convention φ/(n·n′) gives a Petzval sum of 0.007574025613 mm⁻¹, with reciprocal magnitude 132.030185 mm.
 That scalar is reported only as a first-order property; it is not treated as a direct field-curvature or corner-performance
 prediction.
 
 The final-data paraxial solution was independently evaluated by sequential height/reduced-angle tracing and a separate ABCD
 matrix product. The two methods agree to the recorded numerical tolerance at each authored zoom node. The same final data
-also reproduces the patent's printed component focal lengths within the source-precision tolerances used in the dossier.
+also reproduces the patent's printed component focal lengths within the source-precision tolerances used here.
 
 ## Sources and References
 

@@ -23,7 +23,7 @@ const LENS_DATA = {
   key: "canon-ef-m-18-150mm-f35-63-is-stm",
   maker: "Canon",
   name: "CANON EF-M 18-150mm f/3.5-6.3 IS STM",
-  subtitle: "US 2018/0074300 A1, Numerical Value Data 2 — strong production correlation",
+  subtitle: "US 2018/0074300 A1, Numerical Value Data 2 — strong production match",
   catalog: {
     lensMounts: ["canon-ef-m"],
     imageFormat: "aps-c",

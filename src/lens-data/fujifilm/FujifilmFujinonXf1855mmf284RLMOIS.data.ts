@@ -8,8 +8,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * not manufacturer-confirmed patent attribution.
  * Prescription: 14 elements / 10 air-separated assemblies; five functional zoom groups with + − + + + power.
  * Published zoom states: f = 18.56 / 31.50 / 53.46 mm with DD[3], DD[9], DD[18], DD[23].
- * Focus status: NO_INTERNAL_RECONSTRUCTION. The patent identifies G4-2 as the axial focus group but publishes no
- * numerical Example 1 close-focus spacings; production MFD is metadata only and no focus travel is invented.
+ * Focus: infinity only. The patent identifies G4-2 as the axial focus group but publishes no
+ * numerical Example 1 close-focus spacings; production MFD is product information only; focus travel is not modeled.
  * Rear plate: optional camera-side plate PP (Table 1 surfaces 26-27; 2.85 mm, nd 1.51680, vd 64.20) is modeled in
  * `rearPlates` (traced, not drawn). Surface 25 keeps the patent's 11.83 mm gap to PP; PP to image is 2.42 mm.
  * Scaling: s = 1. No dimensional scaling. Fujifilm source KA=1 maps to LensVisualizer K=0; A3-A20 are unchanged.
@@ -29,7 +29,7 @@ const LENS_DATA = {
   key: "fujifilm-fujinon-xf-18-55-f28-4-r-lm-ois",
   maker: "Fujifilm",
   name: "FUJIFILM FUJINON XF 18-55mm f/2.8-4 R LM OIS",
-  subtitle: "US 2015/0177500 A1 Example 1 — strong production correlation; not manufacturer-confirmed",
+  subtitle: "US 2015/0177500 A1 Example 1 — strong production match; not maker-confirmed",
 
   catalog: {
     lensMounts: ["fujifilm-x"],
@@ -455,7 +455,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.3,
     description:
-      "NO_INTERNAL_RECONSTRUCTION: patent ¶0075 identifies G4-2 as the axial focus group moving imageward toward close focus, but Example 1 gives no numerical close-focus spacings. Production MFD is 0.30 m at wide / 0.40 m at tele; the authored var table therefore preserves zoom only and invents no focus travel.",
+      "Infinity focus only. Patent ¶0075 names G4-2 as the focusing group, moving toward the image for close focus, but Example 1 gives no close-focus spacings. Fujifilm's minimum focus distance of 0.30 m at wide and 0.40 m at tele is product information; focus travel is not modeled, zoom movement is.",
   },
 
   gaps: {

@@ -30,7 +30,7 @@ const LENS_DATA = {
   key: "sigma-apo-50-500mm-f4-63-ex-rf-hsm",
   maker: "Sigma",
   name: "SIGMA APO 50-500mm f/4-6.3 EX RF HSM",
-  subtitle: "JP 2001-108902 A, Example 1 — qualified production correlation",
+  subtitle: "JP 2001-108902 A, Example 1 — tentative production match",
   visible: true,
   layout: {
     yScFill: 0.85,

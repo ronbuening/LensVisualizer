@@ -46,7 +46,7 @@ const LENS_DATA = {
   key: "hasselblad-xcd-25mm-f25-v",
   maker: "Hasselblad",
   name: "HASSELBLAD XCD 25mm f/2.5 V",
-  subtitle: "US 2024/0329362 A1, Example 2 — production correlation",
+  subtitle: "US 2024/0329362 A1, Example 2 — production match",
 
   catalog: {
     lensMounts: ["hasselblad-xcd"],

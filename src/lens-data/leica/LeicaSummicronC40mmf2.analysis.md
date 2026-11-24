@@ -129,7 +129,7 @@ also participates directly in one of the patent's construction inequalities.
 ## Glass Identification and Selection
 
 The patent tabulates $n_e$ and $\nu_e$, not d-line $n_d$ and $\nu_d$. The data therefore preserves the source coordinate
-system with `indexReference: "e"`; the historical `nd` and `vd` field names in the schema contain native e-line values for
+system with `indexReference: "e"`; the historical `nd` and `vd` field names in the model contain native e-line values for
 this lens. No d-line conversion has been imposed.
 
 | Element | Patent index / Abbe | Reference | Runtime spectral model | Index residual / Abbe residual |
@@ -153,9 +153,9 @@ example, however, publishes only one prescription state and no finite-focus spac
 itself does not determine whether the optical cell translates rigidly, whether any internal spacing changes, or what the
 close-focus back focal distance would be.
 
-The implemented status is therefore **NO_INTERNAL_RECONSTRUCTION**. `closeFocusM: 0.8` is retained as production metadata,
-but the data file has no focus `var` entries. No close-focus internal motion, breathing value, or finite-focus optical
-performance is inferred from the brochure specification.
+The model therefore shows the lens at infinity only. The 0.8 m close-focus figure is kept as product information, but
+no spacing changes with focus. No close-focus internal motion, breathing value, or close-focus optical performance is
+inferred from the brochure specification.
 
 ## Conditional Expressions and Source Discrepancy
 

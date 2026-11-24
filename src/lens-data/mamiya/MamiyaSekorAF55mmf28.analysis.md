@@ -114,9 +114,9 @@ The most important glass selection is L6. The patent explicitly requires anomalo
 
 The production AF 55mm f/2.8 is described by Mamiya literature as using a floating-element mechanism, with a minimum focusing distance of `0.45 m` and a maximum magnification of `0.18×`.[3] Those are manufacturer product specifications, not parameters published in JP 1997-297263 Example 1.
 
-The patent supplies only one prescription state. It gives no focus-spacing table, object-distance table, moving-group designation, travel distance, or magnification-dependent geometry. The data file therefore uses the focus status `NO_INTERNAL_RECONSTRUCTION`, has an empty `var` object, and models only the published infinity-like state.
+The patent supplies only one prescription state. It gives no focus-spacing table, object-distance table, moving-group designation, travel distance, or magnification-dependent geometry. The model therefore shows only the published infinity-like state, and no spacing changes with focus.
 
-No attempt is made to infer which physical element or subgroup performs the production floating motion. The marketed `0.45 m` minimum focus distance is retained as product metadata only; it is not used to synthesize an underdetermined close-focus prescription.
+No attempt is made to infer which physical element or subgroup performs the production floating motion. The marketed `0.45 m` minimum focus distance is recorded as product information only; it is not used to work out a close-focus prescription that the sources do not determine.
 
 ## Chromatic Correction Strategy
 

@@ -17,8 +17,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ STO is therefore coincident with surface 1 (d = 0). The physical diameter  ║
  * ║ is not published; the stop radius derives from the design f-number, f/6.3. ║
  * ║                                                                            ║
- * ║ FOCUS: NO_INTERNAL_RECONSTRUCTION. The patent publishes infinity only.     ║
- * ║ The manufacturer's 4.5 m minimum focus is metadata only; var remains empty.║
+ * ║ FOCUS: Infinity only. The patent publishes the infinity state only.        ║
+ * ║ The manufacturer's 4.5 m minimum focus is product information; focus       ║
+ * ║ travel is not modeled.                                                     ║
  * ║                                                                            ║
  * ║ SEMI-DIAMETERS: Not published. SDs are inferred from the wide-open ray     ║
  * ║ envelope, the patent Fig. 1 silhouette, and geometry validation. The full  ║
@@ -39,7 +40,7 @@ const LENS_DATA = {
   key: "konica-fl-hexanon-ar-300mm-f63",
   maker: "Konica",
   name: "KONICA FL-HEXANON AR 300mm f/6.3",
-  subtitle: "JP 1974-023892 Example 1 — literal ×300 scale; Konica 300mm f/6.3 fluorite correlation",
+  subtitle: "JP 1974-023892 Example 1 — literal ×300 scale; Konica 300mm f/6.3 fluorite match",
 
   catalog: {
     lensMounts: ["konica-ar"],
@@ -204,8 +205,8 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 4.5,
     description:
-      "NO_INTERNAL_RECONSTRUCTION: the patent publishes the infinity prescription only; the 4.5 m manufacturer " +
-      "MFD is metadata and no focus motion is modeled.",
+      "Infinity focus only. The patent publishes the infinity prescription only. The manufacturer's 4.5 m " +
+      "minimum focus distance is product information; focus travel is not modeled.",
   },
 
   aperture: { nominalFNumber: 6.3, fStops: [6.3, 8, 11, 16, 22], maxFNumber: 22 },

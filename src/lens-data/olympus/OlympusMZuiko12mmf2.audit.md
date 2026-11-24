@@ -26,3 +26,15 @@ Distance-reference basis: `audit-resolved`. The patent does not explicitly defin
 - State 0/1: BF=16.679, LRF gap=1.4977 mm. The printed finite-spacing column matches these authored gaps.
 
 Residuals retain the authored prescription and image plane. Every declared state already has its published-focus flag.
+
+## 2026-11-23 — Group count against the maker's section drawing
+
+The model outline was laid over OM System's lens-construction drawing
+(`https://jp.omsystem.com/product/lens/single/premi/12_20/spec.html`). The drawing shows the groups as
+L1 | L2 | L3–L4–L5 | L6 | L7 | L8–L9 | L10 | L11, eight in all. Example 1 has 0.635 mm of air between L3 and L4,
+which makes its ninth group; L6 and L7 are drawn separated, as the patent's 0.189 mm gap has them. Earlier notes
+attributed the difference to the L6/L7 gap; the header and analysis are corrected. No prescription value changed.
+
+The other six examples of US 8,248,716 B2 were counted: none has eleven elements in eight groups (Example 6, the only
+other eleven-element f/2 design, has ten groups and a third aspherical element). Olympus marks ED glass at L9 and
+Super HR glass at L5; Example 1 prints nd 1.88300 / νd 40.80 at L9 and nd 1.72151 at L5, and its νd 70.23 glass at L4.

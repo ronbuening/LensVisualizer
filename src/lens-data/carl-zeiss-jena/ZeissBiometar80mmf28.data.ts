@@ -26,7 +26,7 @@ const LENS_DATA = {
   key: "carl-zeiss-jena-biometar-80f28",
   maker: "Carl Zeiss Jena",
   name: "CARL ZEISS JENA BIOMETAR 80mm f/2.8",
-  subtitle: "US 2,968,221 EXAMPLE I — HARRY ZOLLNER / VEB CARL ZEISS JENA — 0.8× CORRELATION",
+  subtitle: "US 2,968,221 EXAMPLE I — HARRY ZOLLNER / VEB CARL ZEISS JENA — 0.8× PRODUCTION MATCH",
 
   catalog: {
     lensMounts: ["pentacon-six"],

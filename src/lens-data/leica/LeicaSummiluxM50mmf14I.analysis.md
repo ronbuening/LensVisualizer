@@ -70,7 +70,7 @@ L7 is the final positive singlet. Its standalone power is 0.4577 of the complete
 
 ## Glass Identification and Selection
 
-The patent prescription uses native `ne`/`νe` coordinates. The data therefore sets `indexReference: "e"` for every element and retains the published values in the schema’s historical `nd`/`vd` slots. No d-line conversion is applied.
+The patent prescription uses native `ne`/`νe` coordinates. The data therefore sets `indexReference: "e"` for every element and retains the published values in the model’s historical `nd`/`vd` slots. No d-line conversion is applied.
 
 | Elements | Native `ne / νe` | Implemented glass treatment | Evidence level |
 |---|---:|---|---|
@@ -84,9 +84,9 @@ The selected patent publishes no `nC`, `nF`, `ng`, `dPgF`, or Sellmeier coeffici
 
 ## Focus Mechanism
 
-The optical prescription is represented only at the published infinity state. DE 1 045 120 B gives no finite-focus spacing table, focus-group displacement, or other information sufficient to reconstruct an internal focusing law. The data therefore uses `NO_INTERNAL_RECONSTRUCTION`, with an empty `var` object and no modeled internal movement.
+The optical prescription is represented only at the published infinity state. DE 1 045 120 B gives no close-focus spacing table, focus-group displacement, or other information sufficient to work out an internal focusing law. The model therefore shows the lens at infinity only: no spacing changes with focus and no internal movement is modeled.
 
-The `closeFocusM` value of 1.0 m is product metadata, not an optical state derived from the patent. The October 1961 Leitz dealer catalogue specifies rangefinder coupling from infinity to 3 ft 4 in and describes a non-rotating focusing mount for catalogue no. 11 114 F. Because that catalogue date lies at the transition between the first and second Summilux optical calculations, the value is used only as historical product context. It is not used to invent a close-focus prescription for DE1045120. [Ernst Leitz GmbH, *General Catalogue for Leica Dealers*, October 1961, p. 89; Leica Camera AG, 20 February 2025.]
+The 1.0 m close-focus figure is product information, not an optical state derived from the patent. The October 1961 Leitz dealer catalogue specifies rangefinder coupling from infinity to 3 ft 4 in and describes a non-rotating focusing mount for catalogue no. 11 114 F. Because that catalogue date lies at the transition between the first and second Summilux optical calculations, the value is used only as historical product context. It is not used to invent a close-focus prescription for DE1045120. [Ernst Leitz GmbH, *General Catalogue for Leica Dealers*, October 1961, p. 89; Leica Camera AG, 20 February 2025.]
 
 ## Verification Summary
 

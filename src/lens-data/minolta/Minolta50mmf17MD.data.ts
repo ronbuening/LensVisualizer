@@ -49,7 +49,7 @@ const LENS_DATA = {
   "key": "minolta-md-50f17",
   "maker": "Minolta",
   "name": "MINOLTA MD 50mm f/1.7",
-  "subtitle": "JP S60-111215 A, master lens — production correlation, exact version unresolved",
+  "subtitle": "JP S60-111215 A, master lens — production match, exact version unresolved",
   "visible": true,
   "catalog": {
     "lensMounts": [

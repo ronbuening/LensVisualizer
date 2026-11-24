@@ -29,7 +29,7 @@ const LENS_DATA = {
   key: "sigma-500mm-f4-dg-os-hsm-sports",
   maker: "Sigma",
   name: "SIGMA 500mm f/4 DG OS HSM | Sports",
-  subtitle: "JP 2017-032809 A, Example 1 — construction correlation with the S016 production lens",
+  subtitle: "JP 2017-032809 A, Example 1 — production match by construction with the S016 production lens",
   catalog: {
     lensMounts: ["canon-ef", "nikon-f", "sigma-sa"],
     imageFormat: "135-full-frame",

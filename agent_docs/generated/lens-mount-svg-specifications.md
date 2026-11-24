@@ -15,43 +15,43 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
 
 | Mount | Mechanism | Flange focal distance | Throat | MVP status | Profiles |
 |---|---|---|---|---|---|
-| [`bronica-etr`](#bronica-etr--zenza-bronica-etr) | bayonet | 69 mm | 54 mm | `renderable` | 1 |
-| [`bronica-gs`](#bronica-gs--zenza-bronica-gs) | bayonet | 85 mm | 57 mm | `renderable` | 1 |
-| [`bronica-sq`](#bronica-sq--zenza-bronica-sq) | bayonet | 85 mm | 57 mm | `renderable` | 1 |
+| [`bronica-etr`](#bronica-etr--zenza-bronica-etr) | bayonet | 69 mm | unknown mm | `renderable` | 1 |
+| [`bronica-gs`](#bronica-gs--zenza-bronica-gs) | bayonet | 85 mm | unknown mm | `renderable` | 1 |
+| [`bronica-sq`](#bronica-sq--zenza-bronica-sq) | bayonet | 85 mm | unknown mm | `renderable` | 1 |
 | [`canon-ef`](#canon-ef--canon-ef) | bayonet | 44 mm | 54 mm | `mvp_complete` | 1 |
 | [`canon-ef-m`](#canon-ef-m--canon-ef-m) | bayonet | 18 mm | 47 mm | `mvp_complete` | 1 |
 | [`canon-ef-s`](#canon-ef-s--canon-ef-s) | bayonet | 44 mm | 54 mm | `mvp_complete` | 1 |
 | [`canon-fd`](#canon-fd--canon-fd) | breech_lock | 42 mm | 48 mm | `mvp_complete` | 1 |
 | [`canon-fl`](#canon-fl--canon-fl) | breech_lock | 42 mm | 48 mm | `renderable` | 1 |
 | [`canon-rf`](#canon-rf--canon-rf) | bayonet | 20 mm | 54 mm | `mvp_complete` | 1 |
-| [`contax-rf`](#contax-rf--contax-rf) | hybrid | 34.85 mm | 44 mm | `renderable` | 1 |
-| [`contax-yashica`](#contax-yashica--contax-yashica) | bayonet | 45.5 mm | 48 mm | `renderable` | 1 |
-| [`exakta`](#exakta--exakta) | bayonet | 44.7 mm | 33.8 mm | `renderable` | 1 |
+| [`contax-rf`](#contax-rf--contax-rf) | hybrid | 34.85 mm | 36 mm | `renderable` | 3 |
+| [`contax-yashica`](#contax-yashica--contax-yashica) | bayonet | 45.5 mm | 48 mm | `renderable` | 3 |
+| [`exakta`](#exakta--exakta) | bayonet | 44.7 mm | 33.8 mm | `renderable` | 7 |
 | [`fixed-lens-camera`](#fixed-lens-camera--fixed-lens-camera) | fixed_lens | 0 mm | 28 mm | `not_applicable` | 1 |
 | [`four-thirds`](#four-thirds--four-thirds) | bayonet | 38.67 mm | 44 mm | `mvp_complete` | 1 |
 | [`fujifilm-g`](#fujifilm-g--fujifilm-g) | bayonet | 26.7 mm | 65 mm | `mvp_complete` | 1 |
 | [`fujifilm-x`](#fujifilm-x--fujifilm-x) | bayonet | 17.7 mm | 44 mm | `mvp_complete` | 1 |
 | [`hasselblad-h`](#hasselblad-h--hasselblad-h) | bayonet | 61.63 mm | 67.5 mm | `renderable` | 1 |
-| [`hasselblad-v`](#hasselblad-v--hasselblad-v) | bayonet | 74.9 mm | 69 mm | `renderable` | 1 |
+| [`hasselblad-v`](#hasselblad-v--hasselblad-v) | bayonet | 74.9 mm | 69 mm | `renderable` | 2 |
 | [`hasselblad-xcd`](#hasselblad-xcd--hasselblad-xcd) | bayonet | 18.14 mm | 61 mm | `renderable` | 1 |
 | [`l-mount`](#l-mount--l-mount) | bayonet | 20 mm | 51.6 mm | `mvp_complete` | 1 |
 | [`leica-ltm`](#leica-ltm--leica-ltm-m39) | threaded | 28.8 mm | 39 mm | `mvp_complete` | 1 |
 | [`leica-m`](#leica-m--leica-m) | bayonet | 27.8 mm | 44 mm | `mvp_complete` | 2 |
-| [`leica-r`](#leica-r--leica-r) | bayonet | 47 mm | 49 mm | `renderable` | 1 |
+| [`leica-r`](#leica-r--leica-r) | bayonet | 47 mm | 49 mm | `renderable` | 6 |
 | [`m42`](#m42--m42) | threaded | 45.46 mm | 42 mm | `mvp_complete` | 1 |
 | [`micro-four-thirds`](#micro-four-thirds--micro-four-thirds) | bayonet | 19.25 mm | 38 mm | `mvp_complete` | 1 |
-| [`minolta-sr`](#minolta-sr--minolta-sr) | bayonet | 43.5 mm | 45 mm | `renderable` | 1 |
+| [`minolta-sr`](#minolta-sr--minolta-sr) | bayonet | 43.5 mm | 44.97 mm | `renderable` | 4 |
 | [`nikon-1`](#nikon-1--nikon-1) | bayonet | 17 mm | 40 mm | `mvp_complete` | 1 |
 | [`nikon-f`](#nikon-f--nikon-f) | bayonet | 46.5 mm | 44 mm | `mvp_complete` | 6 |
-| [`nikon-s`](#nikon-s--nikon-s) | hybrid | 34.85 mm | 44 mm | `renderable` | 1 |
+| [`nikon-s`](#nikon-s--nikon-s) | hybrid | 34.85 mm | 36.5 mm | `renderable` | 3 |
 | [`nikon-z`](#nikon-z--nikon-z) | bayonet | 16 mm | 55 mm | `mvp_complete` | 1 |
 | [`olympus-om`](#olympus-om--olympus-om) | bayonet | 46 mm | 47 mm | `mvp_complete` | 1 |
-| [`pentax-110`](#pentax-110--pentax-110) | bayonet | 27 mm | 25 mm | `renderable` | 1 |
-| [`pentax-645`](#pentax-645--pentax-645) | bayonet | 70.87 mm | 61 mm | `renderable` | 1 |
+| [`pentax-110`](#pentax-110--pentax-110) | bayonet | 27 mm | 20.6 mm | `renderable` | 1 |
+| [`pentax-645`](#pentax-645--pentax-645) | bayonet | 70.87 mm | 61.2 mm | `renderable` | 4 |
 | [`pentax-67`](#pentax-67--pentax-67) | bayonet | 84.95 mm | 72 mm | `renderable` | 1 |
 | [`pentax-k`](#pentax-k--pentax-k) | bayonet | 45.46 mm | 44 mm | `mvp_complete` | 7 |
 | [`samsung-nx`](#samsung-nx--samsung-nx) | bayonet | 25.5 mm | 42 mm | `renderable` | 1 |
-| [`sigma-sa`](#sigma-sa--sigma-sa) | bayonet | 44 mm | 44 mm | `renderable` | 1 |
+| [`sigma-sa`](#sigma-sa--sigma-sa) | bayonet | 44 mm | 44.4 mm | `renderable` | 3 |
 | [`sony-a`](#sony-a--sony-a) | bayonet | 44.5 mm | 49.7 mm | `mvp_complete` | 1 |
 | [`sony-fe`](#sony-fe--sony-e) | bayonet | 18 mm | 46.1 mm | `mvp_complete` | 1 |
 | [`zeiss-contarex`](#zeiss-contarex--zeiss-contarex) | bayonet | 46 mm | 46 mm | `renderable` | 1 |
@@ -76,71 +76,91 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
 
 | Profile ID | Type | Applies to | Adds | Removes | Changes |
 |---|---|---|---|---|---|
-| `bronica-etr/base` | base | Bronica ETR / ETRS / ETRSi 6x4.5 leaf-shutter lenses and bodies | medium-format bayonet; leaf-shutter cocking/release coupling; aperture coupling | electrical contacts in the classic leaf-shutter lens mount | ETR-specific mapping from the broader Bronica patent family remains unconfirmed |
+| `bronica-etr/base` | base | Bronica ETR / ETRS / ETRSi 6x4.5 leaf-shutter lenses and bodies | four-claw bayonet; spring-loaded lock pin and fixed stop pin; two shutter drive pins on a rotating body ring; six electrical contact pins in two groups of three | separate mechanical aperture coupling (aperture values are passed through the contacts) | the ETRSi repair manual says the ETRS body mount ring is not interchangeable with the ETRSi ring (two holes are 2.3 mm against 2.0 mm); no source shows a difference in the lens-facing geometry, so no variant profile is drawn |
 
 #### Dimensional summary
 
 | Field | Value | Unit |
 |---|---|---|
-| Flange focal distance | 69 (`secondary`) | mm |
-| Nominal throat diameter | 54 (`patent`) | mm |
-| Effective clear aperture | 54 (`patent`) | mm |
-| Camera mount outer diameter | 64 (`patent`) | mm |
-| Lens mount outer diameter | 62 (`patent`) | mm |
-| Contact count | not_applicable (`not_applicable`) | count |
-| Lock rotation | 60 (`patent`) | deg |
-| Lock direction | clockwise (`patent`) | — |
+| Flange focal distance | 69 (`service_manual`) | mm |
+| Nominal throat diameter | unknown (`unknown`) | mm |
+| Effective clear aperture | unknown (`unknown`) | mm |
+| Camera mount outer diameter | 84 (`photo_scaled`) | mm |
+| Lens mount outer diameter | unknown (`unknown`) | mm |
+| Contact count | 6 (`secondary`) | count |
+| Lock rotation | unknown (`unknown`) | deg |
+| Lock direction | counterclockwise (`official`) | — |
 
 #### Figures (selected profile `bronica-etr/base`)
 
-**Camera-side front view** — viewBox `-40 -41 80 81` · 38 elements in 4 layers · hash `28b96df2` ([standalone SVG](mounts/bronica-etr-camera-front.svg))
+**Camera-side front view** — viewBox `-51 -54 102 105` · 50 elements in 5 layers · hash `11223f5d` ([standalone SVG](mounts/bronica-etr-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-38 -40 76 78` · 32 elements in 4 layers · hash `26d770fe` ([standalone SVG](mounts/bronica-etr-lens-rear.svg))
+**Lens-side rear view** — viewBox `-34 -36 68 70` · 50 elements in 5 layers · hash `a58860c8` ([standalone SVG](mounts/bronica-etr-lens-rear.svg))
 
-**Axial / register schematic** — viewBox `-77 -47 86 90` · 12 elements in 2 layers · hash `8b47149f` ([standalone SVG](mounts/bronica-etr-axial.svg))
+**Axial / register schematic** — viewBox `-78 -55 87 106` · 10 elements in 2 layers · hash `e7941b62` ([standalone SVG](mounts/bronica-etr-axial.svg))
 
 #### Camera-side front-view geometry
 
 | Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
 |---|---|---|---|---|---|---|---|
-| `body-throat` | body_throat | `bronica-etr/base` | 0° | 0° | 360° | 0 | 27 |
-| `body-mount-ring` | mount_ring | `bronica-etr/base` | 0° | 0° | 360° | 27 | 32 |
-| `body-slot-1` | bayonet_receiving_slot | `bronica-etr/base` | 20° | 2° | 38° | 27 | 29.5 |
-| `body-slot-2` | bayonet_receiving_slot | `bronica-etr/base` | 140° | 122° | 158° | 27 | 29.5 |
-| `body-slot-3` | bayonet_receiving_slot | `bronica-etr/base` | 260° | 242° | 278° | 27 | 29.5 |
-| `body-index-mark` | index_mark | `bronica-etr/base` | 0° | unknown | unknown | unknown | 32.5 |
-| `body-lock-pin` | lock_pin | `bronica-etr/base` | 270° | unknown | unknown | unknown | 28 |
+| `body-throat` | body_throat | `bronica-etr/base` | 0° | 0° | 360° | 0 | unknown |
+| `body-mount-ring` | mount_ring | `bronica-etr/base` | 0° | 0° | 360° | unknown | 42 |
+| `body-slot-1` | bayonet_receiving_slot | `bronica-etr/base` | 45° | 22° | 68° | unknown | unknown |
+| `body-slot-2` | bayonet_receiving_slot | `bronica-etr/base` | 136° | 111° | 161° | unknown | unknown |
+| `body-slot-3` | bayonet_receiving_slot | `bronica-etr/base` | 224° | 202° | 246° | unknown | unknown |
+| `body-slot-4` | bayonet_receiving_slot | `bronica-etr/base` | 315° | 292° | 338° | unknown | unknown |
+| `body-index-mark` | index_mark | `bronica-etr/base` | 0° | unknown | unknown | unknown | 42 |
+| `body-lock-pin` | lock_pin | `bronica-etr/base` | 121° | unknown | unknown | unknown | unknown |
+| `body-stop-pin` | alignment_pin | `bronica-etr/base` | 209° | unknown | unknown | unknown | unknown |
 
 #### Lens-side rear-view geometry
 
 | Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
 |---|---|---|---|---|---|---|---|
-| `lens-throat` | lens_throat | `bronica-etr/base` | 0° | 0° | 360° | 0 | 26 |
-| `lens-mount-ring` | lens_mount_ring | `bronica-etr/base` | 0° | 0° | 360° | 26 | 31 |
-| `lens-lug-1` | bayonet_lug | `bronica-etr/base` | 20° | 2° | 38° | 27 | 29.5 |
-| `lens-lug-2` | bayonet_lug | `bronica-etr/base` | 140° | 122° | 158° | 27 | 29.5 |
-| `lens-lug-3` | bayonet_lug | `bronica-etr/base` | 260° | 242° | 278° | 27 | 29.5 |
-| `lens-index-mark` | index_mark | `bronica-etr/base` | 0° | unknown | unknown | unknown | 31.5 |
-| `lens-lock-notch` | lock_notch | `bronica-etr/base` | 270° | unknown | unknown | unknown | 28 |
+| `lens-throat` | lens_throat | `bronica-etr/base` | 0° | 0° | 360° | 0 | unknown |
+| `lens-mount-ring` | lens_mount_ring | `bronica-etr/base` | 0° | 0° | 360° | unknown | unknown |
+| `lens-lug-1` | bayonet_lug | `bronica-etr/base` | 45° | 22° | 68° | unknown | unknown |
+| `lens-lug-2` | bayonet_lug | `bronica-etr/base` | 136° | 111° | 161° | unknown | unknown |
+| `lens-lug-3` | bayonet_lug | `bronica-etr/base` | 224° | 202° | 246° | unknown | unknown |
+| `lens-lug-4` | bayonet_lug | `bronica-etr/base` | 315° | 292° | 338° | unknown | unknown |
+| `lens-index-mark` | index_mark | `bronica-etr/base` | 0° | unknown | unknown | unknown | unknown |
+| `lens-lock-notch` | lock_notch | `bronica-etr/base` | 121° | unknown | unknown | unknown | unknown |
+| `lens-stop-pin` | alignment_pin | `bronica-etr/base` | 209° | unknown | unknown | unknown | unknown |
+
+#### Electrical contacts
+
+| Side | No. | Profile | Center angle | Radius | Function |
+|---|---|---|---|---|---|
+| body | 1 | `bronica-etr/base` | 322° | unknown |  |
+| body | 2 | `bronica-etr/base` | 330° | unknown |  |
+| body | 3 | `bronica-etr/base` | 338° | unknown |  |
+| body | 4 | `bronica-etr/base` | 22° | unknown |  |
+| body | 5 | `bronica-etr/base` | 30° | unknown |  |
+| body | 6 | `bronica-etr/base` | 38° | unknown |  |
+| lens | 1 | `bronica-etr/base` | 322° | unknown |  |
+| lens | 2 | `bronica-etr/base` | 330° | unknown |  |
+| lens | 3 | `bronica-etr/base` | 338° | unknown |  |
+| lens | 4 | `bronica-etr/base` | 22° | unknown |  |
+| lens | 5 | `bronica-etr/base` | 30° | unknown |  |
+| lens | 6 | `bronica-etr/base` | 38° | unknown |  |
 
 #### Mechanical couplings
 
 | Feature | Side | Profile | Function |
 |---|---|---|---|
-| `leaf-shutter-cocking-coupler` | both | `bronica-etr/base` | cocks/arms the lens leaf shutter |
-| `aperture-control-coupler` | both | `bronica-etr/base` | body/lens aperture coordination |
+| `shutter-drive-pin-1` | both | `bronica-etr/base` | fixed pin 21 with retractable pin 22 drives lens connecting pin 11 on the lens shutter drive ring 10 (cocks and trips the leaf shutter) |
+| `shutter-drive-pin-2` | both | `bronica-etr/base` | fixed pin 20 drives lens connecting pin 12 on the lens shutter drive ring 10 (cocks and trips the leaf shutter) |
 
 #### Axial stack
 
 | Plane | z (mm) | Diameter (mm) |
 |---|---|---|
-| `flange_datum` | 0 | 64 |
-| `bayonet_lug_engagement` | 1.2 | 59 |
-| `sensor_film_plane` | -69 | 69.7 |
+| `flange_datum` | 0 | 84 |
+| `sensor_film_plane` | -69 | 69.6 |
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/bronica-etr.mount.ts` (28965 bytes, content hash `c0159b28`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/bronica-etr.mount.ts` (47269 bytes, content hash `f004a6f6`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -148,11 +168,20 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 |---|---|---|---|---|---|
 | `betr-1` | secondary | “Flange focal distance,” Wikipedia. Accessed 2026-06-06. | [snapshot](http://web.archive.org/web/20260526152456/https://en.wikipedia.org/wiki/Flange_focal_distance) | 2026-05-26 | medium |
 | `betr-2` | secondary | “Zenza Bronica ETRSi,” Lunar Stage. Accessed 2026-06-06. | [snapshot](https://lunarstage.com/bronica-etrsi/) | 2026-06-06 | medium |
-| `betr-p1` | patent | US4063264A, Bronica lens-shutter SLR interchangeable-lens mount family. Accessed 2026-06-06. | [snapshot](https://patents.google.com/patent/US4063264A/en) | 2026-06-06 | low |
+| `betr-p1` | patent | US4063264A, “Means for mounting an interchangeable lens on a single lens reflex camera,” Zenza Bronica Industries, filed 1976-07-26, granted 1977-12-13. Accessed 2026-06-06. | [snapshot](https://patents.google.com/patent/US4063264A/en) | 2026-06-06 | medium |
+| `betr-p1f` | patent_figure | US4063264A, FIG. 2 (drawing sheet 1 of 3): front view of the camera body. Angles scaled by hand from the figure, 2026-11-21. | [snapshot](https://patentimages.storage.googleapis.com/ff/03/60/00c9f2bed7855b/US4063264.pdf) | 2026-11-21 | low |
+| `betr-sm` | service_manual | Zenza Bronica, ETRSi Repair Manual, March 1990, pp. P-16, P-18 and P-29. | [snapshot](https://www.cameramanuals.org/bronica/bronica_etrsi_repair_manual.pdf) | 2026-11-21 | high |
+| `betr-om1` | official | Zenza Bronica ETR instruction manual, specifications and section 7, “Exchanging Lenses.” | [snapshot](https://www.cameramanuals.org/prof_pdf/bronica_etr-scan.pdf) | 2026-11-21 | high |
+| `betr-om2` | official | Zenza Bronica ETRSi instruction manual, specifications, p. 22 “Exchanging Lenses,” and p. 39 “Shutter cocking pins” photographs. | [snapshot](https://www.cameramanuals.org/bronica/bronica_etr_si.pdf) | 2026-11-21 | medium |
+| `betr-mp` | secondary | “World's Best Cameras,” Bronica ETRS article reprinted from the Fall 1980 issue of Modern Photography (reprint 10M-11/83), Pacific Rim Camera reference library. | [snapshot](https://www.pacificrimcamera.com/rl/02213/02213.pdf) | 2026-11-21 | medium |
 
 #### Open questions
 
-- ETR bayonet sector geometry and leaf-shutter coupling positions are unresolved; current figure is register-correct and renderable but not reference-grade. _(Upgrade from Bronica ETR service manuals or measured ETR body/lens samples.)_
+- No dimensioned drawing of the ETR bayonet was found. Claw, lock pin, stop pin and drive pin angles are scaled from US4063264A FIG. 2, which has no stated angles or scale. Claw radii and depth, the length of the lens claws, and the radii of the lock pin, stop pin and drive pins are unknown. The earlier three lugs at 20°, 140° and 260°, the 1.2 mm lug engagement plane and the aperture coupler at 320° had no source and are removed. _(Needs a factory lens-mount drawing or a measured body and lens. Checked: US4063264A, its Japanese counterpart JPS5221036A, connector utility model JPS5850335Y2, the ETRSi repair manual, the ETR and ETRSi owner manuals, and the Modern Photography 1980 reprint.)_
+- Throat diameter, clear aperture and lens flange diameter have no source; the earlier 54, 64 and 62 mm figures were unsourced stand-ins and are removed. The 84 mm body ring diameter is scaled from an oblique manual photograph and is good to about ±5 mm. _(Measure a body and lens, or find a dimensioned mount drawing.)_
+- The lock rotation angle is not stated anywhere. Comparing the perspective lens view (FIG. 1) with FIG. 2 suggests roughly 30°, too loose to store. The earlier 60° was an unsourced stand-in. _(Measure on a body, or find a manual or drawing that states the angle.)_
+- Contact pin angles are scaled from oblique photographs; pin circle radius, pin size and the function of each pin are unknown. The count of six comes from ETRSi-era sources and is not separately confirmed for the 1976 ETR. JPS5850335Y2 describes radially sprung body pins against fixed lens pins but shows four or eight, not six. _(Needs an ETR lens wiring diagram or a measured lens rear.)_
+- The nine mount screws have no sourced positions or pitch circle and are not drawn. The repair manual says the ETRS mount ring is not interchangeable with the ETRSi ring and tells them apart by two holes of 2.3 mm or 2.0 mm, without saying what the holes are. _(An ETRS repair manual or parts list would show whether this difference needs separate ETRS and ETRSi profiles.)_
 
 ### `bronica-gs` — Zenza Bronica GS
 
@@ -172,71 +201,59 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 | Profile ID | Type | Applies to | Adds | Removes | Changes |
 |---|---|---|---|---|---|
-| `bronica-gs/base` | base | Bronica GS-1 6x7 leaf-shutter lenses and bodies | medium-format bayonet; leaf-shutter cocking/release coupling; aperture coupling | electrical contacts in the classic leaf-shutter lens mount | GS-specific mapping from the broader Bronica patent family remains unconfirmed |
+| `bronica-gs/base` | base | Bronica GS-1 6x7 leaf-shutter lenses and bodies | four-claw bayonet; lens release button; shutter cocking pins on body and lens | — | the claws, the lock and the cocking pins have no sourced position, so they are listed here but not drawn; lens-to-body electrical contacts are expected for the electronically timed shutter but no source consulted gives their count or layout, so none are drawn; the cited Bronica patent is an ETR-era filing and supplies no GS value |
 
 #### Dimensional summary
 
 | Field | Value | Unit |
 |---|---|---|
 | Flange focal distance | 85 (`secondary`) | mm |
-| Nominal throat diameter | 57 (`patent`) | mm |
-| Effective clear aperture | 57 (`patent`) | mm |
-| Camera mount outer diameter | 70 (`patent`) | mm |
-| Lens mount outer diameter | 68 (`patent`) | mm |
-| Contact count | not_applicable (`not_applicable`) | count |
-| Lock rotation | 60 (`patent`) | deg |
-| Lock direction | clockwise (`patent`) | — |
+| Nominal throat diameter | unknown (`unknown`) | mm |
+| Effective clear aperture | unknown (`unknown`) | mm |
+| Camera mount outer diameter | unknown (`unknown`) | mm |
+| Lens mount outer diameter | unknown (`unknown`) | mm |
+| Contact count | unknown (`unknown`) | count |
+| Lock rotation | unknown (`unknown`) | deg |
+| Lock direction | counterclockwise (`official`) | — |
 
 #### Figures (selected profile `bronica-gs/base`)
 
-**Camera-side front view** — viewBox `-43 -45 86 88` · 38 elements in 4 layers · hash `b2a651f0` ([standalone SVG](mounts/bronica-gs-camera-front.svg))
+**Camera-side front view** — viewBox `-34 -36 68 70` · 16 elements in 3 layers · hash `381dfa7a` ([standalone SVG](mounts/bronica-gs-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-42 -44 84 86` · 32 elements in 4 layers · hash `0d6dc0f4` ([standalone SVG](mounts/bronica-gs-lens-rear.svg))
+**Lens-side rear view** — viewBox `-34 -36 68 70` · 16 elements in 3 layers · hash `8053afe8` ([standalone SVG](mounts/bronica-gs-lens-rear.svg))
 
-**Axial / register schematic** — viewBox `-95 -59 106 114` · 12 elements in 2 layers · hash `77332cb5` ([standalone SVG](mounts/bronica-gs-axial.svg))
+**Axial / register schematic** — viewBox `-95 -58 105 112` · 10 elements in 2 layers · hash `3b2d443e` ([standalone SVG](mounts/bronica-gs-axial.svg))
 
 #### Camera-side front-view geometry
 
 | Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
 |---|---|---|---|---|---|---|---|
-| `body-throat` | body_throat | `bronica-gs/base` | 0° | 0° | 360° | 0 | 28.5 |
-| `body-mount-ring` | mount_ring | `bronica-gs/base` | 0° | 0° | 360° | 28.5 | 35 |
-| `body-slot-1` | bayonet_receiving_slot | `bronica-gs/base` | 20° | 2° | 38° | 28.5 | 31 |
-| `body-slot-2` | bayonet_receiving_slot | `bronica-gs/base` | 140° | 122° | 158° | 28.5 | 31 |
-| `body-slot-3` | bayonet_receiving_slot | `bronica-gs/base` | 260° | 242° | 278° | 28.5 | 31 |
-| `body-index-mark` | index_mark | `bronica-gs/base` | 0° | unknown | unknown | unknown | 35.5 |
-| `body-lock-pin` | lock_pin | `bronica-gs/base` | 270° | unknown | unknown | unknown | 29.5 |
+| `body-throat` | body_throat | `bronica-gs/base` | 0° | 0° | 360° | 0 | unknown |
+| `body-mount-ring` | mount_ring | `bronica-gs/base` | 0° | 0° | 360° | unknown | unknown |
+| `body-index-mark` | index_mark | `bronica-gs/base` | 0° | unknown | unknown | unknown | unknown |
 
 #### Lens-side rear-view geometry
 
 | Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
 |---|---|---|---|---|---|---|---|
-| `lens-throat` | lens_throat | `bronica-gs/base` | 0° | 0° | 360° | 0 | 27.5 |
-| `lens-mount-ring` | lens_mount_ring | `bronica-gs/base` | 0° | 0° | 360° | 27.5 | 34 |
-| `lens-lug-1` | bayonet_lug | `bronica-gs/base` | 20° | 2° | 38° | 28.5 | 31 |
-| `lens-lug-2` | bayonet_lug | `bronica-gs/base` | 140° | 122° | 158° | 28.5 | 31 |
-| `lens-lug-3` | bayonet_lug | `bronica-gs/base` | 260° | 242° | 278° | 28.5 | 31 |
-| `lens-index-mark` | index_mark | `bronica-gs/base` | 0° | unknown | unknown | unknown | 34.5 |
-| `lens-lock-notch` | lock_notch | `bronica-gs/base` | 270° | unknown | unknown | unknown | 29.5 |
+| `lens-throat` | lens_throat | `bronica-gs/base` | 0° | 0° | 360° | 0 | unknown |
+| `lens-mount-ring` | lens_mount_ring | `bronica-gs/base` | 0° | 0° | 360° | unknown | unknown |
+| `lens-index-mark` | index_mark | `bronica-gs/base` | 0° | unknown | unknown | unknown | unknown |
 
 #### Mechanical couplings
 
-| Feature | Side | Profile | Function |
-|---|---|---|---|
-| `leaf-shutter-cocking-coupler` | both | `bronica-gs/base` | cocks/arms the lens leaf shutter |
-| `aperture-control-coupler` | both | `bronica-gs/base` | body/lens aperture coordination |
+None — fully electronic.
 
 #### Axial stack
 
 | Plane | z (mm) | Diameter (mm) |
 |---|---|---|
-| `flange_datum` | 0 | 70 |
-| `bayonet_lug_engagement` | 1.2 | 64 |
-| `sensor_film_plane` | -85 | 89.6 |
+| `flange_datum` | 0 | unknown |
+| `sensor_film_plane` | -85 | 88.6 |
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/bronica-gs.mount.ts` (28604 bytes, content hash `ce14d029`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/bronica-gs.mount.ts` (17059 bytes, content hash `3530969b`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -244,11 +261,15 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 |---|---|---|---|---|---|
 | `bgs-1` | secondary | “Flange focal distance,” Wikipedia. Accessed 2026-06-06. | [snapshot](http://web.archive.org/web/20260526152456/https://en.wikipedia.org/wiki/Flange_focal_distance) | 2026-05-26 | medium |
 | `bgs-2` | secondary | “Bronica GS-1,” Camera-wiki.org. Accessed 2026-06-06. | [snapshot](https://camera-wiki.org/wiki/Bronica_GS1) | 2026-06-06 | medium |
-| `bgs-p1` | patent | US4063264A, Bronica lens-shutter SLR interchangeable-lens mount family. Accessed 2026-06-06. | [snapshot](https://patents.google.com/patent/US4063264A/en) | 2026-06-06 | low |
+| `bgs-p1` | patent | US4063264A, “Means for mounting an interchangeable lens on a single lens reflex camera,” Zenza Bronica Industries, filed 1976-07-26. Accessed 2026-06-06. | [snapshot](https://patents.google.com/patent/US4063264A/en) | 2026-06-06 | low |
+| `bgs-om` | official | Zenza Bronica GS-1 instruction manual: specifications, p. 4 “Parts of the Zenza Bronica GS-1,” p. 22 “Exchanging Lenses,” and p. 36 “Cocking pins.” | [snapshot](https://www.cameramanuals.org/bronica/bronica_gs-1.pdf) | 2026-11-21 | high |
 
 #### Open questions
 
-- GS bayonet sector geometry and leaf-shutter coupling positions are unresolved; GS and SQ share a register but are not assumed mechanically identical. _(Upgrade from Bronica GS service manuals or measured GS body/lens samples.)_
+- No source gives the clock positions, spans or radii of the four bayonet claws, the position of the lock, or the positions of the shutter cocking pins, so none of them is drawn; they are recorded in the profile only. The earlier three lugs at 20°, 140° and 260°, lock at 270°, cocking coupler at 40° and aperture coupler at 320° were unsourced and are removed. _(Needs a GS-1 service manual, a factory mount drawing or a measured body and lens. Checked: the GS-1 owner manual and the Modern Photography January 1984 GS-1 reprint. No GS-specific Bronica patent was found, and Petersen's Photographic January 1986 was not read.)_
+- No mount diameter is sourced: throat, clear aperture, body ring and lens flange are all unknown, so the figures use the renderer's default size. The earlier 57, 70 and 68 mm figures matched the SQ stand-ins and had no source. The 85 mm register still rests on secondary listings. _(Measure a body and lens, or find a dimensioned mount drawing or repair manual.)_
+- The lens-to-body electrical contacts are not documented in any source consulted: their count, layout and functions are unknown and none is drawn. Whether the GS mount has any mechanical aperture coupling is also unconfirmed. _(Needs a clear photograph of a PG lens rear and GS-1 body mount from a citable source, or a wiring diagram.)_
+- The lock rotation angle and the mount screw count and positions are unknown; the earlier 60° and four screws were unsourced stand-ins and are removed. _(Measure on a body, or find a GS-1 repair manual.)_
 
 ### `bronica-sq` — Zenza Bronica SQ
 
@@ -268,71 +289,81 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 | Profile ID | Type | Applies to | Adds | Removes | Changes |
 |---|---|---|---|---|---|
-| `bronica-sq/base` | base | Bronica SQ / SQ-A / SQ-Ai 6x6 leaf-shutter lenses and bodies | medium-format bayonet; leaf-shutter cocking/release coupling; aperture coupling | electrical contacts in the classic leaf-shutter lens mount | SQ-specific mapping from the broader Bronica patent family remains unconfirmed |
+| `bronica-sq/base` | base | Bronica SQ / SQ-A / SQ-Ai 6x6 leaf-shutter lenses and bodies | four-claw bayonet; pivoted lens-release catch; two shutter cocking lugs on a rotating body ring; six electrical contacts in two groups of three at the top of the mount | separate mechanical aperture coupling (three of the six contacts carry the f-stop) | sources cover the SQ (1980) and SQ-A (1982); SQ-Ai and SQ-B bodies were not separately checked; the cited Bronica patent is an ETR-era filing and supplies no SQ value |
 
 #### Dimensional summary
 
 | Field | Value | Unit |
 |---|---|---|
 | Flange focal distance | 85 (`secondary`) | mm |
-| Nominal throat diameter | 57 (`patent`) | mm |
-| Effective clear aperture | 57 (`patent`) | mm |
-| Camera mount outer diameter | 70 (`patent`) | mm |
-| Lens mount outer diameter | 68 (`patent`) | mm |
-| Contact count | not_applicable (`not_applicable`) | count |
-| Lock rotation | 60 (`patent`) | deg |
-| Lock direction | clockwise (`patent`) | — |
+| Nominal throat diameter | unknown (`unknown`) | mm |
+| Effective clear aperture | unknown (`unknown`) | mm |
+| Camera mount outer diameter | 76 (`conflicting`) | mm |
+| Lens mount outer diameter | unknown (`unknown`) | mm |
+| Contact count | 6 (`secondary`) | count |
+| Lock rotation | 20 (`secondary`) | deg |
+| Lock direction | counterclockwise (`official`) | — |
 
 #### Figures (selected profile `bronica-sq/base`)
 
-**Camera-side front view** — viewBox `-43 -45 86 88` · 38 elements in 4 layers · hash `fa8c433e` ([standalone SVG](mounts/bronica-sq-camera-front.svg))
+**Camera-side front view** — viewBox `-46 -49 92 95` · 38 elements in 5 layers · hash `9d43e132` ([standalone SVG](mounts/bronica-sq-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-42 -44 84 86` · 32 elements in 4 layers · hash `cd815cea` ([standalone SVG](mounts/bronica-sq-lens-rear.svg))
+**Lens-side rear view** — viewBox `-34 -36 68 70` · 38 elements in 5 layers · hash `e1767c05` ([standalone SVG](mounts/bronica-sq-lens-rear.svg))
 
-**Axial / register schematic** — viewBox `-94 -53 104 102` · 12 elements in 2 layers · hash `fc849b7e` ([standalone SVG](mounts/bronica-sq-axial.svg))
+**Axial / register schematic** — viewBox `-94 -52 103 100` · 10 elements in 2 layers · hash `f82b6d84` ([standalone SVG](mounts/bronica-sq-axial.svg))
 
 #### Camera-side front-view geometry
 
 | Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
 |---|---|---|---|---|---|---|---|
-| `body-throat` | body_throat | `bronica-sq/base` | 0° | 0° | 360° | 0 | 28.5 |
-| `body-mount-ring` | mount_ring | `bronica-sq/base` | 0° | 0° | 360° | 28.5 | 35 |
-| `body-slot-1` | bayonet_receiving_slot | `bronica-sq/base` | 20° | 2° | 38° | 28.5 | 31 |
-| `body-slot-2` | bayonet_receiving_slot | `bronica-sq/base` | 140° | 122° | 158° | 28.5 | 31 |
-| `body-slot-3` | bayonet_receiving_slot | `bronica-sq/base` | 260° | 242° | 278° | 28.5 | 31 |
-| `body-index-mark` | index_mark | `bronica-sq/base` | 0° | unknown | unknown | unknown | 35.5 |
-| `body-lock-pin` | lock_pin | `bronica-sq/base` | 270° | unknown | unknown | unknown | 29.5 |
+| `body-throat` | body_throat | `bronica-sq/base` | 0° | 0° | 360° | 0 | unknown |
+| `body-mount-ring` | mount_ring | `bronica-sq/base` | 0° | 0° | 360° | unknown | 38 |
+| `body-index-mark` | index_mark | `bronica-sq/base` | 0° | unknown | unknown | unknown | unknown |
+| `body-lock-pin` | lock_pin | `bronica-sq/base` | 135° | unknown | unknown | unknown | unknown |
 
 #### Lens-side rear-view geometry
 
 | Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
 |---|---|---|---|---|---|---|---|
-| `lens-throat` | lens_throat | `bronica-sq/base` | 0° | 0° | 360° | 0 | 27.5 |
-| `lens-mount-ring` | lens_mount_ring | `bronica-sq/base` | 0° | 0° | 360° | 27.5 | 34 |
-| `lens-lug-1` | bayonet_lug | `bronica-sq/base` | 20° | 2° | 38° | 28.5 | 31 |
-| `lens-lug-2` | bayonet_lug | `bronica-sq/base` | 140° | 122° | 158° | 28.5 | 31 |
-| `lens-lug-3` | bayonet_lug | `bronica-sq/base` | 260° | 242° | 278° | 28.5 | 31 |
-| `lens-index-mark` | index_mark | `bronica-sq/base` | 0° | unknown | unknown | unknown | 34.5 |
-| `lens-lock-notch` | lock_notch | `bronica-sq/base` | 270° | unknown | unknown | unknown | 29.5 |
+| `lens-throat` | lens_throat | `bronica-sq/base` | 0° | 0° | 360° | 0 | unknown |
+| `lens-mount-ring` | lens_mount_ring | `bronica-sq/base` | 0° | 0° | 360° | unknown | unknown |
+| `lens-index-mark` | index_mark | `bronica-sq/base` | 0° | unknown | unknown | unknown | unknown |
+| `lens-lock-notch` | lock_notch | `bronica-sq/base` | 135° | unknown | unknown | unknown | unknown |
+
+#### Electrical contacts
+
+| Side | No. | Profile | Center angle | Radius | Function |
+|---|---|---|---|---|---|
+| body | 1 | `bronica-sq/base` | 323° | unknown |  |
+| body | 2 | `bronica-sq/base` | 330° | unknown |  |
+| body | 3 | `bronica-sq/base` | 338° | unknown |  |
+| body | 4 | `bronica-sq/base` | 22° | unknown |  |
+| body | 5 | `bronica-sq/base` | 30° | unknown |  |
+| body | 6 | `bronica-sq/base` | 37° | unknown |  |
+| lens | 1 | `bronica-sq/base` | 323° | unknown |  |
+| lens | 2 | `bronica-sq/base` | 330° | unknown |  |
+| lens | 3 | `bronica-sq/base` | 338° | unknown |  |
+| lens | 4 | `bronica-sq/base` | 22° | unknown |  |
+| lens | 5 | `bronica-sq/base` | 30° | unknown |  |
+| lens | 6 | `bronica-sq/base` | 37° | unknown |  |
 
 #### Mechanical couplings
 
 | Feature | Side | Profile | Function |
 |---|---|---|---|
-| `leaf-shutter-cocking-coupler` | both | `bronica-sq/base` | cocks/arms the lens leaf shutter |
-| `aperture-control-coupler` | both | `bronica-sq/base` | body/lens aperture coordination |
+| `shutter-cocking-lug-1` | both | `bronica-sq/base` | tensions and trips the leaf shutter in the lens |
+| `shutter-cocking-lug-2` | both | `bronica-sq/base` | tensions and trips the leaf shutter in the lens |
 
 #### Axial stack
 
 | Plane | z (mm) | Diameter (mm) |
 |---|---|---|
-| `flange_datum` | 0 | 70 |
-| `bayonet_lug_engagement` | 1.2 | 64 |
-| `sensor_film_plane` | -85 | 79.2 |
+| `flange_datum` | 0 | 76 |
+| `sensor_film_plane` | -85 | 78.6 |
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/bronica-sq.mount.ts` (28612 bytes, content hash `739c5835`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/bronica-sq.mount.ts` (32835 bytes, content hash `f2b4ce5f`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -340,11 +371,18 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 |---|---|---|---|---|---|
 | `bsq-1` | secondary | “Flange focal distance,” Wikipedia. Accessed 2026-06-06. | [snapshot](http://web.archive.org/web/20260526152456/https://en.wikipedia.org/wiki/Flange_focal_distance) | 2026-05-26 | medium |
 | `bsq-2` | secondary | “Bronica SQ,” Camera-wiki.org. Accessed 2026-06-06. | [snapshot](https://camera-wiki.org/wiki/Bronica_SQ-Ai) | 2026-06-06 | medium |
-| `bsq-p1` | patent | US4063264A, Bronica lens-shutter SLR interchangeable-lens mount family. Accessed 2026-06-06. | [snapshot](https://patents.google.com/patent/US4063264A/en) | 2026-06-06 | low |
+| `bsq-p1` | patent | US4063264A, “Means for mounting an interchangeable lens on a single lens reflex camera,” Zenza Bronica Industries, filed 1976-07-26. Accessed 2026-06-06. | [snapshot](https://patents.google.com/patent/US4063264A/en) | 2026-06-06 | low |
+| `bsq-om` | official | Zenza Bronica SQ-A instruction manual: specifications, “Exchanging Lenses,” and the “Cocking pin” care note. | [snapshot](https://www.cameramanuals.org/bronica/bronica_sq-a.pdf) | 2026-11-21 | high |
+| `bsq-mt` | secondary | Modern Photography “Modern Tests” report on the Bronica SQ (headed “Bronica SQ: Pro 2¼ SLR System”), reprint 5M/11-83, Pacific Rim Camera reference library. Original issue date not printed on the reprint. | [snapshot](https://www.pacificrimcamera.com/rl/01117/01117.pdf) | 2026-11-21 | medium |
+| `bsq-pp` | secondary | N. Goldberg and M. A. Frank, lab report on the Bronica SQ-A, Popular Photography, vol. 90, no. 5, May 1983, reprint 10M/12-83, Pacific Rim Camera reference library. | [snapshot](https://www.pacificrimcamera.com/rl/01116/01116.pdf) | 2026-11-21 | medium |
 
 #### Open questions
 
-- SQ bayonet sector geometry and leaf-shutter coupling positions are unresolved; current figure is register-correct and separate from the GS placeholder. _(Upgrade from Bronica SQ service manuals or measured SQ body/lens samples.)_
+- No source gives the clock positions, spans or radii of the four bayonet claws, so no claw is drawn; the four-claw count is recorded in the profile only. The earlier three lugs at 20°, 140° and 260° were unsourced and are removed. _(Needs an SQ service manual, a factory mount drawing or a measured body and lens. Checked: SQ and SQ-A owner manuals, the SQ-A sales brochure, the Modern Photography SQ report and the Popular Photography SQ-A report. No SQ-specific Bronica patent was found.)_
+- Mount diameters are unresolved. The only stated figure is “3 in.” for the body mount, while the same report's front photograph scales to about 83 mm against the 92 mm body width. Throat, clear aperture and lens flange diameter have no source; the earlier 57, 70 and 68 mm figures were unsourced stand-ins and are removed. _(Measure a body and lens, or find a dimensioned mount drawing.)_
+- Cocking lug and release catch positions are clock-face descriptions (about ±15° and ±25°), and their radii are unknown. The lens-rear photograph puts the lens cocking lugs nearer 104° and 286°. The 20° lock rotation is the report's “about 20°”. _(Needs an SQ service drawing or a measured sample.)_
+- Contact angles are scaled from halftone photographs; pin circle radius and pin size are unknown, and no source says which of the six contacts carries which signal. _(Needs an SQ lens or body wiring diagram.)_
+- The eight mount screws are counted on the SQ-A; their positions, pitch circle and size are unknown and they are not drawn. The 85 mm register still rests on secondary listings. _(An SQ repair manual would give both, as the ETRSi manual does for the ETR.)_
 
 ### `canon-ef` — Canon EF
 
@@ -383,7 +421,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 **Camera-side front view** — viewBox `-40 -42 80 82` · 54 elements in 4 layers · hash `fa292b81` ([standalone SVG](mounts/canon-ef-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-38 -40 76 78` · 46 elements in 4 layers · hash `775ebff5` ([standalone SVG](mounts/canon-ef-lens-rear.svg))
+**Lens-side rear view** — viewBox `-38 -40 76 78` · 46 elements in 4 layers · hash `d7291545` ([standalone SVG](mounts/canon-ef-lens-rear.svg))
 
 **Axial / register schematic** — viewBox `-51 -44 60 84` · 14 elements in 2 layers · hash `c9102df1` ([standalone SVG](mounts/canon-ef-axial.svg))
 
@@ -501,7 +539,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 **Camera-side front view** — viewBox `-35 -36 70 71` · 54 elements in 4 layers · hash `045aec3d` ([standalone SVG](mounts/canon-ef-m-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-34 -35 68 69` · 48 elements in 4 layers · hash `ca237aa5` ([standalone SVG](mounts/canon-ef-m-lens-rear.svg))
+**Lens-side rear view** — viewBox `-34 -35 68 69` · 48 elements in 4 layers · hash `5ecbfd23` ([standalone SVG](mounts/canon-ef-m-lens-rear.svg))
 
 **Axial / register schematic** — viewBox `-24 -38 32 72` · 14 elements in 2 layers · hash `e63b191a` ([standalone SVG](mounts/canon-ef-m-axial.svg))
 
@@ -618,7 +656,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 **Camera-side front view** — viewBox `-40 -42 80 82` · 54 elements in 4 layers · hash `7a4f283e` ([standalone SVG](mounts/canon-ef-s-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-39 -40 78 79` · 49 elements in 4 layers · hash `15518f1c` ([standalone SVG](mounts/canon-ef-s-lens-rear.svg))
+**Lens-side rear view** — viewBox `-39 -40 78 79` · 49 elements in 4 layers · hash `ec7c6d58` ([standalone SVG](mounts/canon-ef-s-lens-rear.svg))
 
 **Axial / register schematic** — viewBox `-51 -44 60 84` · 14 elements in 2 layers · hash `5dc8ef1a` ([standalone SVG](mounts/canon-ef-s-axial.svg))
 
@@ -814,82 +852,90 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 | Profile ID | Type | Applies to | Adds | Removes | Changes |
 |---|---|---|---|---|---|
-| `canon-fl/base` | base | Canon FL breech-lock lenses and bodies, 1964–1971 | FL/FD-family breech-lock bayonet; lens-side rotating locking collar; automatic diaphragm lever | FD selected-aperture reporting linkage; electrical contacts | predecessor to FD, with simpler aperture communication |
+| `canon-fl/base` | base | Canon FL breech-lock lenses and bodies (FX, FP, Pellix, FT QL, TL), 1964–1971 | fixed body flange with three outward bayonet lugs; lens-side rotating breech ring with three inward claws; lens guide pin and body notch at 12 o'clock; automatic diaphragm lever | FD aperture-signal lever and full-aperture signal pin; electrical contacts | predecessor to FD on the same 42 mm / 48 mm three-lug body flange |
 
 #### Dimensional summary
 
 | Field | Value | Unit |
 |---|---|---|
-| Flange focal distance | 42 (`secondary`) | mm |
-| Nominal throat diameter | 48 (`secondary`) | mm |
+| Flange focal distance | 42 (`official`) | mm |
+| Nominal throat diameter | 48 (`official`) | mm |
 | Effective clear aperture | 48 (`secondary`) | mm |
-| Camera mount outer diameter | 58 (`photo_scaled`) | mm |
-| Lens mount outer diameter | 56 (`photo_scaled`) | mm |
+| Camera mount outer diameter | 54 (`photo_scaled`) | mm |
+| Lens mount outer diameter | 65 (`photo_scaled`) | mm |
 | Contact count | not_applicable (`not_applicable`) | count |
-| Lock rotation | 90 (`photo_scaled`) | deg |
-| Lock direction | clockwise (`photo_scaled`) | — |
+| Lock rotation | unknown (`unknown`) | deg |
+| Lock direction | clockwise (`official`) | — |
 
 #### Figures (selected profile `canon-fl/base`)
 
-**Camera-side front view** — viewBox `-36 -37 72 73` · 37 elements in 4 layers · hash `175d4e0e` ([standalone SVG](mounts/canon-fl-camera-front.svg))
+**Camera-side front view** — viewBox `-33 -35 66 68` · 29 elements in 4 layers · hash `97070d6a` ([standalone SVG](mounts/canon-fl-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-35 -36 70 71` · 32 elements in 4 layers · hash `cbe39b66` ([standalone SVG](mounts/canon-fl-lens-rear.svg))
+**Lens-side rear view** — viewBox `-40 -42 80 82` · 32 elements in 4 layers · hash `90c85e78` ([standalone SVG](mounts/canon-fl-lens-rear.svg))
 
-**Axial / register schematic** — viewBox `-49 -40 57 76` · 12 elements in 2 layers · hash `877967d7` ([standalone SVG](mounts/canon-fl-axial.svg))
+**Axial / register schematic** — viewBox `-48 -37 54 70` · 10 elements in 2 layers · hash `ac132d99` ([standalone SVG](mounts/canon-fl-axial.svg))
 
 #### Camera-side front-view geometry
 
 | Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
 |---|---|---|---|---|---|---|---|
 | `body-throat` | body_throat | `canon-fl/base` | 0° | 0° | 360° | 0 | 24 |
-| `body-mount-ring` | mount_ring | `canon-fl/base` | 0° | 0° | 360° | 24 | 29 |
-| `body-slot-1` | bayonet_receiving_slot | `canon-fl/base` | 30° | 10° | 50° | 24 | 26.5 |
-| `body-slot-2` | bayonet_receiving_slot | `canon-fl/base` | 150° | 130° | 170° | 24 | 26.5 |
-| `body-slot-3` | bayonet_receiving_slot | `canon-fl/base` | 270° | 250° | 290° | 24 | 26.5 |
-| `body-index-mark` | index_mark | `canon-fl/base` | 0° | unknown | unknown | unknown | 29.5 |
-| `body-lock-pin` | lock_pin | `canon-fl/base` | 0° | unknown | unknown | unknown | 25 |
+| `body-mount-ring` | mount_ring | `canon-fl/base` | 0° | 0° | 360° | 24 | 26 |
+| `body-lug-1` | bayonet_lug | `canon-fl/base` | 359° | 325° | 33° | 26 | 27 |
+| `body-lug-2` | bayonet_lug | `canon-fl/base` | 122.5° | 100.5° | 144.5° | 26 | 27 |
+| `body-lug-3` | bayonet_lug | `canon-fl/base` | 237.5° | 215.5° | 259.5° | 26 | 27 |
+| `body-index-mark` | index_mark | `canon-fl/base` | 0° | unknown | unknown | unknown | unknown |
+| `body-positioning-notch` | positioning_notch | `canon-fl/base` | 0° | 357.5° | 2.5° | 24.4 | 27 |
 
 #### Lens-side rear-view geometry
 
 | Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
 |---|---|---|---|---|---|---|---|
-| `lens-throat` | lens_throat | `canon-fl/base` | 0° | 0° | 360° | 0 | 23 |
-| `lens-mount-ring` | lens_mount_ring | `canon-fl/base` | 0° | 0° | 360° | 23 | 28 |
-| `lens-lug-1` | bayonet_lug | `canon-fl/base` | 30° | 10° | 50° | 24 | 26.5 |
-| `lens-lug-2` | bayonet_lug | `canon-fl/base` | 150° | 130° | 170° | 24 | 26.5 |
-| `lens-lug-3` | bayonet_lug | `canon-fl/base` | 270° | 250° | 290° | 24 | 26.5 |
-| `lens-index-mark` | index_mark | `canon-fl/base` | 0° | unknown | unknown | unknown | 28.5 |
-| `lens-lock-notch` | lock_notch | `canon-fl/base` | 0° | unknown | unknown | unknown | 25 |
+| `lens-throat` | lens_throat | `canon-fl/base` | 0° | 0° | 360° | 0 | 23.6 |
+| `lens-mount-ring` | lens_mount_ring | `canon-fl/base` | 0° | 0° | 360° | 27.7 | 32.5 |
+| `lens-claw-1` | breech_ring_claw | `canon-fl/base` | 67° | 39.5° | 95.5° | 26.5 | 27.7 |
+| `lens-claw-2` | breech_ring_claw | `canon-fl/base` | 180° | 149° | 212° | 26.5 | 27.7 |
+| `lens-claw-3` | breech_ring_claw | `canon-fl/base` | 292° | 263.5° | 320.5° | 26.5 | 27.7 |
+| `lens-index-mark` | index_mark | `canon-fl/base` | 0° | unknown | unknown | unknown | 32.5 |
+| `lens-positioning-pin` | alignment_pin | `canon-fl/base` | 0° | unknown | unknown | unknown | 25.7 |
 
 #### Mechanical couplings
 
 | Feature | Side | Profile | Function |
 |---|---|---|---|
-| `automatic-diaphragm-lever` | both | `canon-fl/base` | automatic diaphragm stop-down |
+| `automatic-diaphragm-lever` | both | `canon-fl/base` | automatic diaphragm stop-down: the body lever moves the lens lever at exposure |
 | `breech-lock-collar` | lens | `canon-fl/base` | clamps the lens to the body without rotating the lens barrel |
 
 #### Axial stack
 
 | Plane | z (mm) | Diameter (mm) |
 |---|---|---|
-| `flange_datum` | 0 | 58 |
-| `bayonet_lug_engagement` | 1.2 | 53 |
+| `flange_datum` | 0 | 54 |
 | `sensor_film_plane` | -42 | 43.3 |
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/canon-fl.mount.ts` (25621 bytes, content hash `b74b8c87`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/canon-fl.mount.ts` (35931 bytes, content hash `e8d9c946`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
 | Ref | Type | Citation | Archive | Captured | Confidence |
 |---|---|---|---|---|---|
 | `fl-1` | secondary | “Canon FL lens mount,” Wikipedia. Accessed 2026-06-06. | [snapshot](http://web.archive.org/web/20260513020307/https://en.wikipedia.org/wiki/Canon_FL_lens_mount) | 2026-05-13 | medium |
-| `fl-p1` | patent | US3906534A, “Device for mounting and dismounting an interchangeable lens.” Accessed 2026-06-06. | [snapshot](https://patents.google.com/patent/US3906534A/en) | 2026-06-06 | low |
+| `fl-o1` | official | Canon Inc., “Canon FX,” Canon Camera Museum, Film Cameras (marketed April 1964), Lens Mount specification. Accessed 2026-11-21. Second copy: Canon's Japanese-language page for the same camera. | [snapshot](https://global.canon/ja/c-museum/product/film49.html) | 2026-11-21 | high |
+| `fl-o2` | official | Canon Inc., “Canon F-1,” Canon Camera Museum, Film Cameras (marketed March 1971), Lens Mount specification. Accessed 2026-11-21. Second copy: Canon's Japanese-language page for the same camera. | [snapshot](https://global.canon/ja/c-museum/product/film78.html) | 2026-11-21 | high |
+| `fl-m1` | official | Canon Camera Co., Canon FT QL Instructions, “Uses of Lenses: Changing Lenses,” p. 30 (PDF p. 32 of the cameramanuals.org scan). Accessed 2026-11-21. Second copy: ManualsLib, page 30 of 44. | [snapshot](https://www.manualslib.com/manual/3384540/Canon-Ft-Ql.html?page=30) | 2026-11-21 | high |
+| `fl-p1` | patent | T. Shirasaki (Canon K.K.), US3906534A, “Device for mounting and dismounting an interchangeable lens,” filed 1973-08-29 (Japanese priority 1972), granted 1975-09-16. Accessed 2026-11-21. | [snapshot](https://patentimages.storage.googleapis.com/8c/87/1b/6bcdb04f3d405e/US3906534.pdf) | 2026-11-21 | medium |
+| `fl-p1f` | patent_figure | US3906534A, FIG. 2 (drawing sheet 2 of 2): rear end view of the lens with the body mounting washer in section. Undimensioned drawing, scaled for this spec. Accessed 2026-11-21. | [snapshot](https://patentimages.storage.googleapis.com/4b/ee/ec/ef91431b848a50/US3906534-drawings-page-3.png) | 2026-11-21 | low |
+| `fl-ph1` | secondary | H. W. Robeck, “Rear of Canon FL 28mm Lens and Super-Canomatic Lens R 50mm,” photograph, Wikimedia Commons, 2020-02-09, CC BY-SA 4.0. Accessed 2026-11-21. Second copy: the original file on upload.wikimedia.org. | [snapshot](https://upload.wikimedia.org/wikipedia/commons/f/f0/Rear_of_Canon_FL_28mm_Lens_and_Super-Canomatic_Lens_R_50mm.jpg) | 2026-11-21 | low |
 
 #### Open questions
 
-- FL-specific lug/collar geometry and diaphragm-lever position are unresolved; current diagram is a renderable FL-family approximation. _(Upgrade to Canon FL service drawings or measured body/lens samples.)_
+- No dimensioned drawing of the FL (or common R/FL/FD) body flange or breech ring was found. Lug, claw, notch and pin angles and radii are scaled from US3906534A FIG. 2, which carries no dimensions and shows an FD-era lens; only the body flange is common with FL by Canon's own statement. The FL 28 mm photograph confirms the same wide-plus-two-narrow relief pattern on an FL ring, but only to about ±7 degrees. _(Replace with a Canon service drawing of the FX / FT QL / Pellix mount flange or an FL breech ring, or a calibrated measurement of a body and lens. Searched without result: Canon patents US3906534A, US3051067A, US3081680A and US2826118A, Canon Camera Museum FX, FT QL, FTb and F-1 pages, Canon FT QL instructions, and web searches for FL / FT / Pellix service manuals and dimensioned mount drawings.)_
+- The ring's lock rotation is not stated by any source. The earlier 90 degree figure was a stand-in and is withdrawn; the scaled lug and claw arcs would give full overlap after roughly 49 to 61 degrees of clockwise ring travel, which is an inference from an undimensioned drawing, not a sourced value. _(Take the ring travel from a service manual or a measured lens on a body.)_
+- The automatic diaphragm lever is placed from a single oblique photograph of one FL lens (FL 28 mm). Its travel, its direction of travel, the body-side actuating lever geometry and any lens-to-lens variation are not sourced. _(Use a Canon FL lens or FX / FT QL body service manual, or the Canon FL automatic diaphragm patent if one can be identified.)_
+- Lug thickness and the axial position of the claw engagement are unknown. US3906534A says the ring claws come to the rear of the body lugs, so the engagement lies on the camera side of the flange face, but gives no depth. The earlier lug-engagement plane (a stand-in drawn 1.2 mm on the lens side) is withdrawn, and no engagement plane is drawn until its depth is sourced. _(Take lug thickness and claw depth from a service drawing or a measured flange.)_
+- Values still resting on fl-1 are stand-ins that the cited page does not carry: the effective clear aperture (set equal to the 48 mm bore), the 43.3 mm film-plane diameter (the 24 x 36 mm frame diagonal), and the schematic breech-collar marker. Body mount screws are set to unknown: the earlier four-screw 54 mm circle fell on the lug edge and had no source. The body index-dot radius is also unknown. _(Source each from a service manual or measured sample, or drop the stand-ins.)_
 
 ### `canon-rf` — Canon RF
 
@@ -928,7 +974,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 **Camera-side front view** — viewBox `-40 -42 80 82` · 62 elements in 4 layers · hash `dc858a2c` ([standalone SVG](mounts/canon-rf-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-38 -40 76 78` · 54 elements in 4 layers · hash `6f33e20e` ([standalone SVG](mounts/canon-rf-lens-rear.svg))
+**Lens-side rear view** — viewBox `-38 -40 76 78` · 54 elements in 4 layers · hash `9f581cc8` ([standalone SVG](mounts/canon-rf-lens-rear.svg))
 
 **Axial / register schematic** — viewBox `-27 -44 36 84` · 14 elements in 2 layers · hash `e2d76571` ([standalone SVG](mounts/canon-rf-axial.svg))
 
@@ -1024,82 +1070,95 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 |---|---|
 | Mount ID | `contax-rf` |
 | Display label | Contax RF |
-| Project note | Contax rangefinder bayonet with internal/external focusing interfaces. |
+| Project note | Contax rangefinder double bayonet: an inner bayonet in the body's focusing helicoid for 5 cm lenses and a fixed outer bayonet for all other focal lengths. |
 | Research status | `partial` |
 | MVP status | `renderable` |
 | Mount mechanism | `hybrid` (lock `sprung_detent`) |
 | Base profile | `contax-rf/base` |
-| Selected MVP profile | `contax-rf/base` |
-| Variant strategy | `base_only` |
+| Selected MVP profile | `contax-rf/outer-bayonet` |
+| Variant strategy | `variant_profiles_defined` |
 
 #### Base and variant profile matrix
 
 | Profile ID | Type | Applies to | Adds | Removes | Changes |
 |---|---|---|---|---|---|
-| `contax-rf/base` | base | Zeiss Ikon Contax rangefinder lenses and bodies | internal bayonet for normal lenses; external bayonet for larger lenses; rangefinder focusing coupling | SLR mirror clearance | internal/external bayonet details are collapsed into one renderable MVP profile |
+| `contax-rf/base` | base | Zeiss Ikon Contax I, II, III, IIa and IIIa bodies and the Kiev copies of the pre-war mount | bore of the focusing helicoid (inner bayonet diameter); rotating helicoid ring with the distance scale; fixed outer ring with the depth-of-field scale; 34.85 mm register at the outer bayonet seat and 31.85 mm at the inner seat | electrical contacts; SLR mirror clearance | — |
+| `contax-rf/inner-bayonet` | variant | 5 cm (2 inch) lenses, which have no helicoid and focus with the body's | three unequal receiving slots in the helicoid bore; spring catch on the helicoid ring that holds the lens's red-dot projection; red-dot mounting index on the catch spring | outer bayonet lugs and hooks (present on the body but not used by these lenses) | lens turns anti-clockwise, seen from the front, to lock; about 47 deg from the red dot to the catch on the Kiev photograph, against 90 deg for the outer bayonet |
+| `contax-rf/outer-bayonet` | variant | all lenses other than 5 cm, which carry their own focusing helicoid | three fixed outward lugs on the outer ring; three inward hooks in the lens skirt; red-dot mounting index on the front plate; rear sleeve of the lens that turns the body helicoid for rangefinder coupling | inner receiving slots as a lens seat (the sleeve still engages them) | lens turns 90 deg anti-clockwise, seen from the front, to a stop; a catch on the lens then snaps in |
 
 #### Dimensional summary
 
 | Field | Value | Unit |
 |---|---|---|
 | Flange focal distance | 34.85 (`secondary`) | mm |
-| Nominal throat diameter | 44 (`photo_scaled`) | mm |
-| Effective clear aperture | 44 (`photo_scaled`) | mm |
-| Camera mount outer diameter | 52 (`photo_scaled`) | mm |
+| Nominal throat diameter | 36 (`secondary`) | mm |
+| Effective clear aperture | 34.4 (`photo_scaled`) | mm |
+| Camera mount outer diameter | 49 (`secondary`) | mm |
 | Lens mount outer diameter | 50 (`photo_scaled`) | mm |
 | Contact count | not_applicable (`not_applicable`) | count |
-| Lock rotation | 45 (`photo_scaled`) | deg |
-| Lock direction | clockwise (`photo_scaled`) | — |
+| Lock rotation | 90 (`official`) | deg |
+| Lock direction | counterclockwise (`official`) | — |
 
-#### Figures (selected profile `contax-rf/base`)
+#### Figures (selected profile `contax-rf/outer-bayonet`)
 
-**Camera-side front view** — viewBox `-32 -33 64 65` · 31 elements in 4 layers · hash `8bc1d5e5` ([standalone SVG](mounts/contax-rf-camera-front.svg))
+**Camera-side front view** — viewBox `-31 -32 62 63` · 29 elements in 4 layers · hash `383e41dc` ([standalone SVG](mounts/contax-rf-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-31 -32 62 63` · 31 elements in 4 layers · hash `46ad7b1b` ([standalone SVG](mounts/contax-rf-lens-rear.svg))
+**Lens-side rear view** — viewBox `-31 -32 62 63` · 27 elements in 4 layers · hash `d5f7c966` ([standalone SVG](mounts/contax-rf-lens-rear.svg))
 
-**Axial / register schematic** — viewBox `-41 -36 48 68` · 12 elements in 2 layers · hash `0ea2d05b` ([standalone SVG](mounts/contax-rf-axial.svg))
+**Axial / register schematic** — viewBox `-41 -34 48 64` · 14 elements in 2 layers · hash `a144def5` ([standalone SVG](mounts/contax-rf-axial.svg))
 
 #### Camera-side front-view geometry
 
 | Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
 |---|---|---|---|---|---|---|---|
-| `body-throat` | body_throat | `contax-rf/base` | 0° | 0° | 360° | 0 | 22 |
-| `body-mount-ring` | mount_ring | `contax-rf/base` | 0° | 0° | 360° | 22 | 26 |
-| `body-slot-1` | bayonet_receiving_slot | `contax-rf/base` | 0° | 344° | 16° | 22 | 24.5 |
-| `body-slot-2` | bayonet_receiving_slot | `contax-rf/base` | 120° | 104° | 136° | 22 | 24.5 |
-| `body-slot-3` | bayonet_receiving_slot | `contax-rf/base` | 240° | 224° | 256° | 22 | 24.5 |
-| `body-index-mark` | index_mark | `contax-rf/base` | 0° | unknown | unknown | unknown | 26.5 |
-| `body-lock-pin` | lock_pin | `contax-rf/base` | 90° | unknown | unknown | unknown | 23 |
+| `body-throat` | body_throat | `contax-rf/base` | 0° | 0° | 360° | 0 | 18 |
+| `body-helicoid-ring` | mount_ring | `contax-rf/base` | 0° | 0° | 360° | 18 | 21.6 |
+| `body-mount-ring` | mount_ring | `contax-rf/base` | 0° | 0° | 360° | 21.6 | 22.9 |
+| `body-slot-1` | bayonet_receiving_slot | `contax-rf/inner-bayonet` | 324.5° | 289° | 0° | 17.2 | 18 |
+| `body-slot-2` | bayonet_receiving_slot | `contax-rf/inner-bayonet` | 84.5° | 62° | 107° | 17.2 | 18 |
+| `body-slot-3` | bayonet_receiving_slot | `contax-rf/inner-bayonet` | 207° | 182° | 232° | 17.2 | 18 |
+| `body-outer-lug-1` | outer_bayonet_lug | `contax-rf/outer-bayonet` | 359° | 331° | 27° | 22.9 | 24.5 |
+| `body-outer-lug-2` | outer_bayonet_lug | `contax-rf/outer-bayonet` | 126.5° | 109° | 144° | 22.9 | 24.5 |
+| `body-outer-lug-3` | outer_bayonet_lug | `contax-rf/outer-bayonet` | 234.5° | 217° | 252° | 22.9 | 24.5 |
+| `body-index-mark` | index_mark | `contax-rf/inner-bayonet` | 71° | unknown | unknown | unknown | 20.3 |
+| `body-outer-index-mark` | index_mark | `contax-rf/outer-bayonet` | 69° | unknown | unknown | unknown | 25.7 |
+| `body-lock-pin` | lock_pin | `contax-rf/inner-bayonet` | 24.5° | 19° | 30° | 18.7 | 20.3 |
 
 #### Lens-side rear-view geometry
 
 | Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
 |---|---|---|---|---|---|---|---|
-| `lens-throat` | lens_throat | `contax-rf/base` | 0° | 0° | 360° | 0 | 21 |
-| `lens-mount-ring` | lens_mount_ring | `contax-rf/base` | 0° | 0° | 360° | 21 | 25 |
-| `lens-lug-1` | bayonet_lug | `contax-rf/base` | 0° | 344° | 16° | 22 | 24.5 |
-| `lens-lug-2` | bayonet_lug | `contax-rf/base` | 120° | 104° | 136° | 22 | 24.5 |
-| `lens-lug-3` | bayonet_lug | `contax-rf/base` | 240° | 224° | 256° | 22 | 24.5 |
-| `lens-index-mark` | index_mark | `contax-rf/base` | 0° | unknown | unknown | unknown | 25.5 |
-| `lens-lock-notch` | lock_notch | `contax-rf/base` | 90° | unknown | unknown | unknown | 23 |
+| `lens-throat` | lens_throat | `contax-rf/inner-bayonet` | unknown | unknown | unknown | unknown | unknown |
+| `lens-lug-1` | bayonet_lug | `contax-rf/inner-bayonet` | 324.5° | 308.5° | 340.5° | 17.2 | 18 |
+| `lens-lug-2` | bayonet_lug | `contax-rf/inner-bayonet` | 84.5° | 68.5° | 100.5° | 17.2 | 18 |
+| `lens-lug-3` | bayonet_lug | `contax-rf/inner-bayonet` | 207° | 191° | 223° | 17.2 | 18 |
+| `lens-index-mark` | index_mark | `contax-rf/inner-bayonet` | 71° | unknown | unknown | unknown | 20.3 |
+| `lens-lock-notch` | lock_notch | `contax-rf/inner-bayonet` | 24.5° | unknown | unknown | 18.7 | 20.3 |
+| `lens-outer-throat` | lens_throat | `contax-rf/outer-bayonet` | unknown | unknown | unknown | unknown | unknown |
+| `lens-mount-ring` | lens_mount_ring | `contax-rf/outer-bayonet` | 0° | 0° | 360° | 22.9 | 25 |
+| `lens-outer-hook-1` | outer_bayonet_hook | `contax-rf/outer-bayonet` | 359° | 343° | 15° | 22.9 | 24.5 |
+| `lens-outer-hook-2` | outer_bayonet_hook | `contax-rf/outer-bayonet` | 126.5° | 110.5° | 142.5° | 22.9 | 24.5 |
+| `lens-outer-hook-3` | outer_bayonet_hook | `contax-rf/outer-bayonet` | 234.5° | 218.5° | 250.5° | 22.9 | 24.5 |
+| `lens-outer-index-mark` | index_mark | `contax-rf/outer-bayonet` | 69° | unknown | unknown | unknown | unknown |
 
 #### Mechanical couplings
 
 | Feature | Side | Profile | Function |
 |---|---|---|---|
-| `rangefinder-focusing-coupler` | both | `contax-rf/base` | couples lens focus to rangefinder mechanism |
+| `rangefinder-coupling-sleeve` | both | `contax-rf/outer-bayonet` | turning the lens's own focusing ring turns the body helicoid and with it the rangefinder cam; a cam inside the lens matches its focal length to the body's 5 cm movement |
 
 #### Axial stack
 
 | Plane | z (mm) | Diameter (mm) |
 |---|---|---|
-| `flange_datum` | 0 | 52 |
+| `flange_datum` | 0 | 49 |
+| `inner_bayonet_seat` | -3 | 36 |
 | `bayonet_lug_engagement` | 1.2 | 47 |
 | `sensor_film_plane` | -34.85 | 43.3 |
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/contax-rf.mount.ts` (25084 bytes, content hash `337c0902`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/contax-rf.mount.ts` (48926 bytes, content hash `22ca5135`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -1107,10 +1166,20 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 |---|---|---|---|---|---|
 | `crf-1` | secondary | “Flange focal distance,” Wikipedia. Accessed 2026-06-06. | [snapshot](http://web.archive.org/web/20260526152456/https://en.wikipedia.org/wiki/Flange_focal_distance) | 2026-05-26 | medium |
 | `crf-2` | secondary | Contax rangefinder mount visual references. Accessed 2026-06-06. | [snapshot](unknown) | unknown | low |
+| `crf-3` | secondary | “Байонет Contax RF,” Russian Wikipedia, revision of 2025-07-16; its dimensions cite V. Gutskin, “Kreplenie smennykh ob’ektivov,” Sovetskoe Foto, 1981, no. 4, p. 42. Accessed 2026-11-21. | [snapshot](https://ru.wikipedia.org/w/index.php?title=%D0%91%D0%B0%D0%B9%D0%BE%D0%BD%D0%B5%D1%82_Contax_RF&oldid=146423487) | 2026-11-21 | medium |
+| `crf-4` | field_photo | Runner1616, “Kiev-Contax mount.jpg,” Wikimedia Commons, 2018-12-23, CC BY-SA 4.0 (captioned “Contax pre-war rangefinder lens mount”). Accessed 2026-11-21. | [snapshot](https://upload.wikimedia.org/wikipedia/commons/c/c6/Kiev-Contax_mount.jpg) | 2026-11-21 | medium |
+| `crf-m1` | official | Zeiss Ikon, Contax II instruction book (English), section V, “Changing the lenses,” pp. 22–24; scan in M. Butkus’s camera manual library. Accessed 2026-11-21. | [snapshot](https://www.cameramanuals.org/zeiss_ikon/zeiss_ikon_contax_ii.pdf) | 2026-11-21 | high |
+| `crf-m2` | official | Zeiss Ikon, Contax IIa instruction book (English), “Changing the lenses,” pp. 28–29, figs. 36–38; scan in M. Butkus’s camera manual library. Accessed 2026-11-21. | [snapshot](https://cameramanuals.org/zeiss_ikon/zeiss_ikon_contax_iia.pdf) | 2026-11-21 | high |
+| `crf-p1` | patent | H. Küppenbender, M. Nowicki, E. Goldberg and A. Mende, “Photographic camera with finder,” US1973213A, filed 1932-02-27 (Germany 1931-04-11), granted 1934-09-11. Accessed 2026-11-21. | [snapshot](https://patentimages.storage.googleapis.com/81/23/f8/e94f19bc0ae401/US1973213.pdf) | 2026-11-21 | medium |
 
 #### Open questions
 
-- Internal and external Contax RF bayonet dimensions need a dedicated split profile. _(Add inner/outer bayonet variants from a service manual or measured Contax body.)_
+- Every angle here comes from one photograph of a Kiev body, not from a dimensioned drawing or a Zeiss Ikon body. Lug ends, slot edges, the catch and the red dots are good to about 3 deg at best. _(Replace with a Zeiss Ikon or Arsenal works drawing, a repair manual with a dimensioned mount, or a calibrated measurement of a Contax body. Searched without result: Zeiss Ikon patents (US1973213A has no front view; US2830513A is a later, different mount), Maizenberg's Soviet repair book, GOST 10332-63 (covers other mounts), Zeiss Historica Spring 2012.)_
+- Lens-side lug and hook widths are a 32 deg stand-in from the earlier label-only reference [crf-2], as are the 50 mm lens flange diameter and the lug engagement plane in the axial view. No lens-rear source was found. _(Measure or photograph square-on the rear of a 5 cm lens and of an outer-mount lens. Fig. 38 of the Contax IIa instruction book shows an outer-mount lens rear, but at an angle that cannot be scaled.)_
+- The turn that locks a 5 cm lens in the inner bayonet is not stated; the instruction books say only a slight turn. The Kiev photograph gives about 47 deg, from the red dot at 71 deg to the catch at 24.5 deg. _(Confirm on a body, or from a drawing of the helicoid ring.)_
+- The catch of an outer-mount lens is on the lens and is not drawn: neither its angle nor the body feature it catches is sourced. The pin in the front plate beside the mount, near 47 deg on the Kiev photograph, is not drawn either, because no usable source states its function. _(Find a repair manual or parts drawing for the Contax II or IIa front plate and an outer-mount lens.)_
+- The nominal throat was 44 mm; it is now the 36 mm inner bayonet. The 44 mm in general mount tables matches no opening on the photograph, where the bore scales to about 36 mm and the clear opening inside the lip to about 34.4 mm. _(Confirm the bore and lip diameters against a works drawing or a measured body.)_
+- Sources disagree on the inner register. Russian Wikipedia gives 31.85 mm (3.00 mm behind the outer seat); a Japanese adapter review gives 31.75 mm. _(Confirm against a Zeiss Ikon drawing or the original Sovetskoe Foto table.)_
 
 ### `contax-yashica` — Contax / Yashica
 
@@ -1123,14 +1192,16 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 | MVP status | `renderable` |
 | Mount mechanism | `bayonet` (lock `sprung_detent`) |
 | Base profile | `contax-yashica/base` |
-| Selected MVP profile | `contax-yashica/base` |
-| Variant strategy | `base_only` |
+| Selected MVP profile | `contax-yashica/mm` |
+| Variant strategy | `variant_profiles_defined` |
 
 #### Base and variant profile matrix
 
 | Profile ID | Type | Applies to | Adds | Removes | Changes |
 |---|---|---|---|---|---|
-| `contax-yashica/base` | base | Contax/Yashica manual-focus SLR lenses and bodies | three-lug bayonet; aperture coupling | rangefinder focusing coupling | AE/MM generation details are collapsed for MVP rendering |
+| `contax-yashica/base` | base | every Contax/Yashica manual-focus SLR body and lens, 1975 to 2005 | three-claw bayonet with three unequal flanges and gaps; body lock tab and lens claw notch; red-dot index at 12 o'clock; aperture-ring coupling to the body's F-stop connecting ring; maximum-aperture (aperture scale) pin; automatic diaphragm lever | electrical contacts | — |
+| `contax-yashica/ae` | variant | AE lenses (1975 onward) and bodies without program modes (for example Contax RTS and RTS II, Yashica FR and FX-3) | — | program coupling pin | aperture-priority and manual exposure only; draws the base geometry unchanged |
+| `contax-yashica/mm` | variant | MM lenses (introduced with the Contax 159MM, mid-1980s) on program-capable bodies | program coupling pin on the lens, read by the body's Theta lever outside the bayonet | — | program exposure modes, in which the body sets the aperture; MM lenses mark the minimum aperture in green; the body stops the diaphragm lever part-way by counting encoder pulses, eight per aperture step, so the lever stroke is equal per stop |
 
 #### Dimensional summary
 
@@ -1139,31 +1210,31 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 | Flange focal distance | 45.5 (`secondary`) | mm |
 | Nominal throat diameter | 48 (`secondary`) | mm |
 | Effective clear aperture | 48 (`secondary`) | mm |
-| Camera mount outer diameter | 58 (`photo_scaled`) | mm |
+| Camera mount outer diameter | 59.5 (`photo_scaled`) | mm |
 | Lens mount outer diameter | 56 (`photo_scaled`) | mm |
 | Contact count | not_applicable (`not_applicable`) | count |
-| Lock rotation | 60 (`photo_scaled`) | deg |
-| Lock direction | clockwise (`photo_scaled`) | — |
+| Lock rotation | 72 (`secondary`) | deg |
+| Lock direction | clockwise (`secondary`) | — |
 
-#### Figures (selected profile `contax-yashica/base`)
+#### Figures (selected profile `contax-yashica/mm`)
 
-**Camera-side front view** — viewBox `-36 -37 72 73` · 37 elements in 4 layers · hash `e21b2a77` ([standalone SVG](mounts/contax-yashica-camera-front.svg))
+**Camera-side front view** — viewBox `-38 -38 76 76` · 40 elements in 4 layers · hash `a0f3e9ed` ([standalone SVG](mounts/contax-yashica-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-35 -36 70 71` · 31 elements in 4 layers · hash `1708051c` ([standalone SVG](mounts/contax-yashica-lens-rear.svg))
+**Lens-side rear view** — viewBox `-35 -36 70 71` · 34 elements in 4 layers · hash `f17bb2d9` ([standalone SVG](mounts/contax-yashica-lens-rear.svg))
 
-**Axial / register schematic** — viewBox `-52 -40 60 76` · 12 elements in 2 layers · hash `c3a302f9` ([standalone SVG](mounts/contax-yashica-axial.svg))
+**Axial / register schematic** — viewBox `-52 -41 60 78` · 12 elements in 2 layers · hash `a3bac492` ([standalone SVG](mounts/contax-yashica-axial.svg))
 
 #### Camera-side front-view geometry
 
 | Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
 |---|---|---|---|---|---|---|---|
 | `body-throat` | body_throat | `contax-yashica/base` | 0° | 0° | 360° | 0 | 24 |
-| `body-mount-ring` | mount_ring | `contax-yashica/base` | 0° | 0° | 360° | 24 | 29 |
-| `body-slot-1` | bayonet_receiving_slot | `contax-yashica/base` | 30° | 11° | 49° | 24 | 26.5 |
-| `body-slot-2` | bayonet_receiving_slot | `contax-yashica/base` | 150° | 131° | 169° | 24 | 26.5 |
-| `body-slot-3` | bayonet_receiving_slot | `contax-yashica/base` | 270° | 251° | 289° | 24 | 26.5 |
-| `body-index-mark` | index_mark | `contax-yashica/base` | 0° | unknown | unknown | unknown | 29.5 |
-| `body-lock-pin` | lock_pin | `contax-yashica/base` | 90° | unknown | unknown | unknown | 25 |
+| `body-mount-ring` | mount_ring | `contax-yashica/base` | 0° | 0° | 360° | 24 | 29.75 |
+| `body-slot-1` | bayonet_receiving_slot | `contax-yashica/base` | 347° | 316° | 18° | 22.3 | 24 |
+| `body-slot-2` | bayonet_receiving_slot | `contax-yashica/base` | 107° | 67° | 147° | 22.3 | 24 |
+| `body-slot-3` | bayonet_receiving_slot | `contax-yashica/base` | 225° | 198° | 252° | 22.3 | 24 |
+| `body-index-mark` | index_mark | `contax-yashica/base` | 0° | unknown | unknown | unknown | 30.8 |
+| `body-lock-pin` | lock_pin | `contax-yashica/base` | 15° | unknown | unknown | unknown | 22.7 |
 
 #### Lens-side rear-view geometry
 
@@ -1171,29 +1242,32 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 |---|---|---|---|---|---|---|---|
 | `lens-throat` | lens_throat | `contax-yashica/base` | 0° | 0° | 360° | 0 | 23 |
 | `lens-mount-ring` | lens_mount_ring | `contax-yashica/base` | 0° | 0° | 360° | 23 | 28 |
-| `lens-lug-1` | bayonet_lug | `contax-yashica/base` | 30° | 11° | 49° | 24 | 26.5 |
-| `lens-lug-2` | bayonet_lug | `contax-yashica/base` | 150° | 131° | 169° | 24 | 26.5 |
-| `lens-lug-3` | bayonet_lug | `contax-yashica/base` | 270° | 251° | 289° | 24 | 26.5 |
+| `lens-lug-1` | bayonet_lug | `contax-yashica/base` | 347° | 315° | 19° | 22.3 | 24 |
+| `lens-lug-2` | bayonet_lug | `contax-yashica/base` | 107° | 82.5° | 131.5° | 22.3 | 24 |
+| `lens-lug-3` | bayonet_lug | `contax-yashica/base` | 225° | 199.5° | 250.5° | 22.3 | 24 |
 | `lens-index-mark` | index_mark | `contax-yashica/base` | 0° | unknown | unknown | unknown | 28.5 |
-| `lens-lock-notch` | lock_notch | `contax-yashica/base` | 90° | unknown | unknown | unknown | 25 |
+| `lens-lock-notch` | lock_notch | `contax-yashica/base` | 15° | unknown | unknown | unknown | 22.7 |
 
 #### Mechanical couplings
 
 | Feature | Side | Profile | Function |
 |---|---|---|---|
-| `aperture-coupling` | both | `contax-yashica/base` | aperture control/reporting |
+| `aperture-ring-coupling` | both | `contax-yashica/base` | set-aperture input: a lug on the lens aperture ring positions the body's F-stop connecting ring |
+| `maximum-aperture-pin` | both | `contax-yashica/base` | aperture scale coupling: tells the body the lens's maximum aperture for the finder aperture display |
+| `automatic-diaphragm-lever` | both | `contax-yashica/base` | the body's automatic diaphragm action lever closes the lens diaphragm at exposure |
+| `mm-program-coupling` | both | `contax-yashica/mm` | tells a program-capable body that an MM lens is mounted |
 
 #### Axial stack
 
 | Plane | z (mm) | Diameter (mm) |
 |---|---|---|
-| `flange_datum` | 0 | 58 |
+| `flange_datum` | 0 | 59.5 |
 | `bayonet_lug_engagement` | 1.2 | 53 |
 | `sensor_film_plane` | -45.5 | 43.3 |
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/contax-yashica.mount.ts` (25395 bytes, content hash `868c20a8`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/contax-yashica.mount.ts` (42257 bytes, content hash `e5405741`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -1201,10 +1275,24 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 |---|---|---|---|---|---|
 | `cy-1` | secondary | “Flange focal distance,” Wikipedia. Accessed 2026-06-06. | [snapshot](http://web.archive.org/web/20260526152456/https://en.wikipedia.org/wiki/Flange_focal_distance) | 2026-05-26 | medium |
 | `cy-2` | secondary | Contax/Yashica mount visual references. Accessed 2026-06-06. | [snapshot](unknown) | unknown | low |
+| `cy-3` | secondary | “Lens mount,” Wikipedia, revision of 2026-11-13. Accessed 2026-11-21. | [snapshot](https://en.wikipedia.org/w/index.php?title=Lens_mount&oldid=1385498741) | 2026-11-21 | medium |
+| `cy-4` | secondary | “Contax/Yashica SLRs,” Wikipedia, revision of 2026-10-17, section “Lens mount”. Accessed 2026-11-21. | [snapshot](https://en.wikipedia.org/w/index.php?title=Contax/Yashica_SLRs&oldid=1380717752) | 2026-11-21 | medium |
+| `cy-m1` | official | Yashica Co., Ltd., Contax RTS instruction manual, c. 1975 (scan hosted by M. Butkus). Accessed 2026-11-21. | [snapshot](https://www.cameramanuals.org/contax/contax_rts.pdf) | 2026-11-21 | high |
+| `cy-m2` | official | Yashica Co., Ltd., Yashica FR instruction manual, c. 1976 (scan hosted by M. Butkus). Accessed 2026-11-21. | [snapshot](https://www.cameramanuals.org/yashica_pdf/yashica_fr.pdf) | 2026-11-21 | high |
+| `cy-sm1` | service_manual | Contax 159MM Repair Manual, Kyocera, mid-1980s (scan listed on the Contax 139 Resource documents page). Accessed 2026-11-21. | [snapshot](https://drive.google.com/open?id=0B4O3Tuo7UDz3d1o1M29rLU9VZW8) | 2026-11-21 | high |
+| `cy-sm2` | service_manual | Contax RTS II Quartz Repair Manual, Yashica Co., Ltd., c. 1982 (scan listed on the Contax 139 Resource documents page). Accessed 2026-11-21. | [snapshot](https://drive.google.com/open?id=0B4O3Tuo7UDz3Vk9uNWJPaE83cHc) | 2026-11-21 | high |
+| `cy-ph1` | field_photo | Mliu92, “Contax-Yashica mount, body.jpg” (mounting flange of a Yashica FX-3), Wikimedia Commons, 2026-06-30. Accessed 2026-11-21. | [snapshot](https://upload.wikimedia.org/wikipedia/commons/f/f1/Contax-Yashica_mount%2C_body.jpg) | 2026-11-21 | medium |
+| `cy-ph2` | field_photo | Mliu92, “Contax-Yashica mount, lens.jpg” (mounting flange of a Yashica ML 50 mm f/2), Wikimedia Commons, 2026-06-30. Accessed 2026-11-21. | [snapshot](https://upload.wikimedia.org/wikipedia/commons/e/eb/Contax-Yashica_mount%2C_lens.jpg) | 2026-11-21 | low |
 
 #### Open questions
 
-- C/Y lug geometry and AE/MM coupling details are photo-scaled. _(Upgrade with measured C/Y bodies and lenses or service drawings.)_
+- No dimensioned drawing of the bayonet was found. Flange edges are scaled from one FX-3 flange photo (about +/-2 deg), with the 159MM repair manual Fig. 21 drawing as an undimensioned cross-check; the lens claws are drawn behind the flanges at the width of the gaps they enter through, an upper bound, because their own spans were not measured. Searched: web and Google Patents for Yashica, Kyocera and Carl Zeiss bayonet or aperture-coupling patents (none found for the mount itself; JPS58100837A and JPS58216227A cover a multi-mode aperture ring and state no angles or dimensions), the Contax RTS, RTS II and 159MM and Yashica FR repair manuals, and the RTS and FR owner manuals. _(A factory mount drawing, a service manual with mount dimensions, or calibrated measurement of a body and lens. Searched on 2026-11-21: Google Patents for Yashica bayonet, mount and interchangeable-lens filings from 1971 to 1986 (28 results); none describes the bayonet itself.)_
+- The 159MM repair manual gives the body flange back as 45.42 +0.02/-0.03 mm from the body mount plane to the film rail plane (p. 48), against the 45.5 mm register in secondary tables. The stored value stays at the nominal 45.5 mm. _(A Zeiss or Kyocera statement of the nominal register and of how the body adjustment figure relates to it.)_
+- Coupling angles are photo-scaled and their radii are the apparent ones in a front photo (the parts sit behind the flange). The maximum-aperture pin has no radius, and no source gives the aperture follower's travel per stop or the diaphragm lever's stroke. _(A lens or body service manual with coupling dimensions, or calibrated measurement.)_
+- The MM program coupling is placed only by the Wikipedia article's 'about 5 o'clock on the body, outside the bayonet'; its radius is unknown. The 159MM repair manual names the parts without a position, and its Fig. 21 draws an unlabelled lever outside the ring at about 138 deg. The MM stop-down lever's proportional stroke is not dimensioned by any source found. _(A Contax 159MM or 167MT service drawing of the Theta lever, or an MM lens repair manual.)_
+- The lock tab is placed by the Wikipedia article's clock position (about 12:30) and its radius by the FX-3 photo. The lens release button on the body front is not modelled. _(A service manual drawing of the lock tab and the notch in the lens claw.)_
+- Mount screw positions and pitch circle are photo-scaled from the FX-3 photo (four screws; the 159MM drawing shows four in similar positions). Screw diameter is a stand-in. _(A parts list or assembly chart with the screw size and positions.)_
+- The label-only reference cy-2 still carries stand-in values no located source supports: lens mount outer diameter (56 mm), lens throat and flange radii, lug thickness and slot depth (1.8 mm), the lug engagement plane, the lens index radius and the screw diameter. _(Measurement of a C/Y lens rear and a body mount ring section, or a lens service manual.)_
 
 ### `exakta` — Exakta
 
@@ -1212,19 +1300,25 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 |---|---|
 | Mount ID | `exakta` |
 | Display label | Exakta |
-| Project note | Ihagee Exakta/Exa bayonet family. |
+| Project note | Ihagee Exakta/Exa bayonet family, with Topcon, Mamiya and Exakta RTL 1000 variants. |
 | Research status | `partial` |
 | MVP status | `renderable` |
 | Mount mechanism | `bayonet` (lock `sprung_detent`) |
 | Base profile | `exakta/base` |
-| Selected MVP profile | `exakta/base` |
-| Variant strategy | `base_only` |
+| Selected MVP profile | `exakta/varex` |
+| Variant strategy | `variant_profiles_defined` |
 
 #### Base and variant profile matrix
 
 | Profile ID | Type | Applies to | Adds | Removes | Changes |
 |---|---|---|---|---|---|
-| `exakta/base` | base | inner Exakta bayonet lenses and bodies, 1936 onward | three-pronged inner bayonet; spring-loaded locking/release pin; left-side release clearance | electrical contacts | external telephoto bayonet and later Topcon/Mamiya variants not yet modeled |
+| `exakta/base` | base | every Exakta-mount body and lens, 1936 to the 1970s (Ihagee, Topcon, Mamiya, Pentacon) | three-lug inner bayonet on a 38 mm body bore; spring latch hook on the body and locking pin on the lens; red-dot index at 12 o'clock | electrical contacts | — |
+| `exakta/kine` | variant | Kine Exakta bodies as drawn in US2136149A (1936 to about 1950), inner bayonet only | narrow fixing flange; latch lever pivot and knob as drawn in the patent | outer bayonet | all values are proportions scaled from undimensioned patent figures |
+| `exakta/varex` | variant | Ihagee bodies with the double bayonet (Exakta Varex / VX onward; introduced 1951 per JAPB) with a standard inner-bayonet lens, including pod or rocker auto-diaphragm lenses | wide fixing flange with the release lever; three outward lugs on the bayonet ring rim (outer bayonet), unused by a standard lens; front shutter release reached by the lens's auto-diaphragm pod | — | fixing flange is wider than on the Kine Exakta |
+| `exakta/outer-bayonet` | variant | long lenses that grip the outer bayonet of a Varex-era body (for example the 500 mm Telemegor) | three inward hooks on the lens mount; the body's outer lugs and wide fixing flange that they grip | inner lugs on the lens: an outer-mount lens has none, though the base still draws them | — |
+| `exakta/topcon-re` | variant | Topcon RE Super / Super D and later RE bodies with RE Auto-Topcor lenses (1963 onward) | outer skirt around the mount; body-to-lens aperture stop-down lever in an arcuate slot; lens-to-body aperture feeler in an arcuate slot (full-aperture metering) | outer bayonet lugs; front shutter release for pod lenses | different release lever shape; mount screws clocked differently from Ihagee bodies |
+| `exakta/rtl-1000` | variant | Exakta RTL 1000 (Pentacon, 1969 to 1973) and its inner-release lenses | aperture stop-down pin on the lens rear, worked from inside the body; flange cut-out that clears the release-lever knob of older bodies | — | right-hand body release; older external-release lenses use a coupling point on the camera's left side; outer bayonet rim retained |
+| `exakta/mamiya-prismat` | variant | Mamiya Prismat Exakta-mount bodies (1961) | body pin at the right front that works a reversed pressure diaphragm on the lens | — | earliest bodies carried both bayonets, later ones dropped the outer one |
 
 #### Dimensional summary
 
@@ -1232,75 +1326,108 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 |---|---|---|
 | Flange focal distance | 44.7 (`secondary`) | mm |
 | Nominal throat diameter | 33.8 (`secondary`) | mm |
-| Effective clear aperture | 33.8 (`secondary`) | mm |
-| Camera mount outer diameter | 43 (`photo_scaled`) | mm |
-| Lens mount outer diameter | 41 (`photo_scaled`) | mm |
+| Effective clear aperture | 32.5 (`secondary`) | mm |
+| Camera mount outer diameter | 56 (`photo_scaled`) | mm |
+| Lens mount outer diameter | 47 (`photo_scaled`) | mm |
 | Contact count | not_applicable (`not_applicable`) | count |
-| Lock rotation | 45 (`patent`) | deg |
+| Lock rotation | 60 (`photo_scaled`) | deg |
 | Lock direction | clockwise (`patent`) | — |
 
-#### Figures (selected profile `exakta/base`)
+#### Figures (selected profile `exakta/varex`)
 
-**Camera-side front view** — viewBox `-27 -28 54 55` · 37 elements in 4 layers · hash `43ec2626` ([standalone SVG](mounts/exakta-camera-front.svg))
+**Camera-side front view** — viewBox `-35 -36 74 71` · 47 elements in 4 layers · hash `cb293bdf` ([standalone SVG](mounts/exakta-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-26 -27 52 53` · 31 elements in 4 layers · hash `4aac9673` ([standalone SVG](mounts/exakta-lens-rear.svg))
+**Lens-side rear view** — viewBox `-38 -32 68 62` · 31 elements in 4 layers · hash `d4dd897a` ([standalone SVG](mounts/exakta-lens-rear.svg))
 
-**Axial / register schematic** — viewBox `-50 -31 56 58` · 12 elements in 2 layers · hash `5d3e48a8` ([standalone SVG](mounts/exakta-axial.svg))
+**Axial / register schematic** — viewBox `-51 -38 59 72` · 12 elements in 2 layers · hash `77cbe2d7` ([standalone SVG](mounts/exakta-axial.svg))
 
 #### Camera-side front-view geometry
 
 | Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
 |---|---|---|---|---|---|---|---|
 | `body-throat` | body_throat | `exakta/base` | 0° | 0° | 360° | 0 | 16.9 |
-| `body-mount-ring` | mount_ring | `exakta/base` | 0° | 0° | 360° | 16.9 | 21.5 |
-| `body-slot-1` | bayonet_receiving_slot | `exakta/base` | 0° | 343° | 17° | 16.9 | 19.4 |
-| `body-slot-2` | bayonet_receiving_slot | `exakta/base` | 120° | 103° | 137° | 16.9 | 19.4 |
-| `body-slot-3` | bayonet_receiving_slot | `exakta/base` | 240° | 223° | 257° | 16.9 | 19.4 |
-| `body-index-mark` | index_mark | `exakta/base` | 0° | unknown | unknown | unknown | 22 |
-| `body-lock-pin` | lock_pin | `exakta/base` | 300° | unknown | unknown | unknown | 17.9 |
+| `body-mount-ring` | mount_ring | `exakta/base` | 0° | 0° | 360° | 19 | 22 |
+| `body-slot-1` | bayonet_receiving_slot | `exakta/base` | 345° | 325° | 5° | 16.9 | 19 |
+| `body-slot-2` | bayonet_receiving_slot | `exakta/base` | 105° | 85° | 125° | 16.9 | 19 |
+| `body-slot-3` | bayonet_receiving_slot | `exakta/base` | 225° | 205° | 245° | 16.9 | 19 |
+| `body-index-mark` | index_mark | `exakta/base` | 0° | unknown | unknown | unknown | 27 |
+| `body-lock-latch` | lock_receiver | `exakta/base` | 70° | unknown | unknown | unknown | 22.8 |
+| `body-kine-fixing-flange` | mount_ring | `exakta/kine` | 0° | 0° | 360° | 19 | 24.2 |
+| `body-fixing-flange` | mount_ring | `exakta/varex` | 0° | 0° | 360° | 19 | 28 |
+| `body-outer-lug-1` | outer_bayonet_lug | `exakta/varex` | 40° | 20° | 60° | 22 | 23 |
+| `body-outer-lug-2` | outer_bayonet_lug | `exakta/varex` | 160° | 140° | 180° | 22 | 23 |
+| `body-outer-lug-3` | outer_bayonet_lug | `exakta/varex` | 280° | 260° | 300° | 22 | 23 |
+| `body-fixing-flange-long-lens` | mount_ring | `exakta/outer-bayonet` | 0° | 0° | 360° | 19 | 28 |
+| `body-outer-lug-1-long-lens` | outer_bayonet_lug | `exakta/outer-bayonet` | 40° | 20° | 60° | 22 | 23 |
+| `body-outer-lug-2-long-lens` | outer_bayonet_lug | `exakta/outer-bayonet` | 160° | 140° | 180° | 22 | 23 |
+| `body-outer-lug-3-long-lens` | outer_bayonet_lug | `exakta/outer-bayonet` | 280° | 260° | 300° | 22 | 23 |
+| `body-topcon-mount-plate` | mount_ring | `exakta/topcon-re` | 0° | 0° | 360° | 19 | 29.9 |
+| `body-topcon-skirt` | mount_ring | `exakta/topcon-re` | 0° | 0° | 360° | 29.9 | 30.9 |
 
 #### Lens-side rear-view geometry
 
 | Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
 |---|---|---|---|---|---|---|---|
-| `lens-throat` | lens_throat | `exakta/base` | 0° | 0° | 360° | 0 | 15.899999999999999 |
-| `lens-mount-ring` | lens_mount_ring | `exakta/base` | 0° | 0° | 360° | 15.899999999999999 | 20.5 |
-| `lens-lug-1` | bayonet_lug | `exakta/base` | 0° | 343° | 17° | 16.9 | 19.4 |
-| `lens-lug-2` | bayonet_lug | `exakta/base` | 120° | 103° | 137° | 16.9 | 19.4 |
-| `lens-lug-3` | bayonet_lug | `exakta/base` | 240° | 223° | 257° | 16.9 | 19.4 |
-| `lens-index-mark` | index_mark | `exakta/base` | 0° | unknown | unknown | unknown | 21 |
-| `lens-lock-notch` | lock_notch | `exakta/base` | 300° | unknown | unknown | unknown | 17.9 |
+| `lens-throat` | lens_throat | `exakta/base` | 0° | 0° | 360° | 0 | 16.25 |
+| `lens-mount-ring` | lens_mount_ring | `exakta/base` | 0° | 0° | 360° | 16.25 | 23.5 |
+| `lens-lug-1` | bayonet_lug | `exakta/base` | 345° | 312.5° | 17.5° | 16.9 | 18.75 |
+| `lens-lug-2` | bayonet_lug | `exakta/base` | 105° | 72.5° | 137.5° | 16.9 | 18.75 |
+| `lens-lug-3` | bayonet_lug | `exakta/base` | 225° | 192.5° | 257.5° | 16.9 | 18.75 |
+| `lens-index-mark` | index_mark | `exakta/base` | 0° | unknown | unknown | unknown | 24 |
+| `lens-lock-pin` | lock_pin | `exakta/base` | 70° | unknown | unknown | unknown | 21.2 |
+| `lens-outer-hook-1` | outer_bayonet_hook | `exakta/outer-bayonet` | 40° | 23° | 57° | 22 | 23 |
+| `lens-outer-hook-2` | outer_bayonet_hook | `exakta/outer-bayonet` | 160° | 143° | 177° | 22 | 23 |
+| `lens-outer-hook-3` | outer_bayonet_hook | `exakta/outer-bayonet` | 280° | 263° | 297° | 22 | 23 |
 
 #### Mechanical couplings
 
 | Feature | Side | Profile | Function |
 |---|---|---|---|
-| `lens-release-lever-clearance` | body | `exakta/base` | retains and releases the lens locking pin |
-| `aperture-pod-pass-through` | lens | `exakta/base` | allows Exakta auto-aperture pod lenses to actuate the body release |
+| `kine-release-lever-pivot` | body | `exakta/kine` | pivot of the spring-pressed locking latch on the fixing flange |
+| `kine-release-lever-knob` | body | `exakta/kine` | releases the lens pin from the latch hook |
+| `lens-release-lever-pivot` | body | `exakta/varex` | pivot of the lens release lever on the fixing flange |
+| `lens-release-lever-knob` | body | `exakta/varex` | releases the lens pin from the latch hook |
+| `body-front-shutter-release` | body | `exakta/varex` | pressed through the lens's auto-diaphragm pod or rocker, which stops the lens down first |
+| `aperture-pod-pass-through` | lens | `exakta/varex` | two-stage pass-through: stops the diaphragm down, then trips the body release |
+| `topcon-release-lever-pivot` | body | `exakta/topcon-re` | pivot of the lens release lever |
+| `topcon-release-lever-tail` | body | `exakta/topcon-re` | releases the lens pin from the latch hook |
+| `topcon-stop-down-lever` | both | `exakta/topcon-re` | body-to-lens aperture stop-down lever |
+| `topcon-aperture-feeler` | both | `exakta/topcon-re` | lens-to-body feeler that reads the aperture ring for full-aperture metering |
+| `rtl-internal-stop-down-pin` | lens | `exakta/rtl-1000` | internally operated pressure diaphragm, worked by the RTL 1000 body |
+| `rtl-release-lever-cutout` | lens | `exakta/rtl-1000` | clears the release-lever knob when the lens goes on an older Exakta body |
 
 #### Axial stack
 
 | Plane | z (mm) | Diameter (mm) |
 |---|---|---|
-| `flange_datum` | 0 | 43 |
-| `bayonet_lug_engagement` | 1.2 | 38 |
+| `flange_datum` | 0 | 56 |
+| `bayonet_lug_engagement` | 1.2 | 37.5 |
 | `sensor_film_plane` | -44.7 | 43.3 |
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/exakta.mount.ts` (28297 bytes, content hash `af4a67e7`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/exakta.mount.ts` (66425 bytes, content hash `ded05499`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
 | Ref | Type | Citation | Archive | Captured | Confidence |
 |---|---|---|---|---|---|
 | `exa-1` | secondary | “Flange focal distance,” Wikipedia. Accessed 2026-06-06. | [snapshot](http://web.archive.org/web/20260526152456/https://en.wikipedia.org/wiki/Flange_focal_distance) | 2026-05-26 | medium |
-| `exa-2` | secondary | “Lens Mounts: Exakta,” JAPB (japb.net). Accessed 2026-06-06. | [snapshot](https://japb.net/theory/lens-mounts/exakta/) | 2026-06-06 | medium |
-| `exa-p1` | patent | US2136149A, Ihagee quick-detachable lens mount patent. Accessed 2026-06-06. | [snapshot](https://patents.google.com/patent/US2136149A/en) | 2026-06-06 | low |
+| `exa-2` | secondary | “Lens Mounts: Exakta,” JAPB (japb.net). Accessed 2026-06-06; photos re-read 2026-11-21. | [snapshot](https://japb.net/theory/lens-mounts/exakta/) | 2026-06-06 | medium |
+| `exa-p1` | patent | K. Nuechterlein, “Lens mount,” US2136149A, assigned to Ihagee Kamerawerk Steenbergen & Co., filed 1937-06-04, granted 1938-11-08. | [snapshot](https://patentimages.storage.googleapis.com/db/83/3f/b6a3c99dd0fd5b/US2136149.pdf) | 2026-11-21 | high |
+| `exa-p1f` | patent_figure | US2136149A, Figs. 1, 3 and 5 (drawing sheet). Undimensioned drawings, scaled for this spec. Accessed 2026-11-21. | [snapshot](https://patentimages.storage.googleapis.com/db/83/3f/b6a3c99dd0fd5b/US2136149.pdf) | 2026-11-21 | low |
+| `exa-m1` | official | Ihagee Kamerawerk, “EXAKTA VX 1000” instruction manual, scan in M. Butkus's camera manual library. | [snapshot](https://www.butkus.org/chinon/exakta/exakta_vx1000/exakta_vx1000.pdf) | 2026-11-21 | high |
+| `exa-m2` | official | “EXAKTA RTL 1000 with Internal Metering” brochure, scan in M. Butkus's camera manual library. | [snapshot](https://www.cameramanuals.org/exakta/exakta_rtl1000-02.pdf) | 2026-11-21 | medium |
+| `exa-4` | secondary | S. H. Westin, “Camera Mounts Sorted by Register,” data from W.-J. Markerink, last modified 2016-02-11. | [snapshot](https://www.graphics.cornell.edu/~westin/misc/mounts-alphabetical.html) | 2026-11-21 | low |
 
 #### Open questions
 
-- The current Exakta diagram models only the inner bayonet; external bayonet, Topcon Exakta, Mamiya Exakta and RTL cut-out variants remain unresolved. _(Add variant profiles from measured body/lens samples or dimensioned service drawings.)_
+- No dimensioned drawing of the bayonet was found. US2136149A states no angle, dimension or lug count, so every lug, slot, flange, latch and index angle is scaled from JAPB photos (about +/-5 deg) and rounded to 5 deg on a 120 deg pitch. The 38 mm bore and the 60 deg lock rotation (slot centre to flange centre; the lens pin reads 60 to 70 deg from the red dot to the hook) are derived from those readings, not stated anywhere read. The lens is drawn as mounted, with its lugs behind the body flanges and its pin in the latch hook; only the lens red dot is drawn at the body dot's angle, where the two line up for insertion. _(Find an Ihagee or Pentacon workshop drawing or repair manual (Upton's Exakta repair book and the Pentacon Exa repair manual were named in forums but not obtainable), or measure a body and lens.)_
+- Lug and flange thickness (1.8 mm) and the axial position of the lug engagement plane are unsourced stand-ins from the first draft. US2136149A Figs. 2 and 4 show the body flanges inset toward the film side of the ring, with no dimension. _(Measure a lens bayonet tube and body ring, or find a sectioned service drawing.)_
+- Outer bayonet: lug positions come from the hooks on one Telemegor rear photo, lug spans from a low-resolution outline, and the 46 mm lug circle from photo scaling supported only by an undefined “46” in the Westin/Markerink table. Introduction year conflicts between sources (1951 per JAPB; 1953 per Wrotniak, not cited). _(No Ihagee outer-bayonet patent was found by search; needs an Espacenet/DEPATISnet assignee search or a measured body.)_
+- Mount screws, fixing-flange diameters, release-lever pivot and knob, and the front shutter release are photo-scaled from one Varex VX body. Topcon RE bodies clock their four screws differently (about 55/125/235/305 deg on about 53 mm) and screws are not profile-scoped, so only the Ihagee pattern is drawn. The Kine profile is scaled from undimensioned patent figures. _(Measure sample bodies of each generation.)_
+- Topcon RE: no Tokyo Kogaku patent showing the production mount was found (US3163097A describes a coaxial resistor ring coupled to the lens preset ring, not the RE Super's lever and feeler slots), so the skirt, stop-down lever and aperture feeler are photo-scaled. The earlier Topcon R / Auto-Topcor pod placement is not modeled. _(Find the RE Super repair manual or a Tokyo Kogaku mount patent (J-PlatPat assignee search).)_
+- Exakta RTL 1000: the body-side internal release plunger and the RTL body's flange and outer-bayonet geometry were not seen; only the lens-side pin and cut-out are placed. Mamiya Prismat bodies are declared as a profile with no drawn geometry because no photo or drawing of their body pin was found. _(Find Pentacon RTL 1000 service documents and a Mamiya Prismat mount photo or patent.)_
 
 ### `fixed-lens-camera` — Fixed-lens Camera
 
@@ -1416,7 +1543,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 **Camera-side front view** — viewBox `-31 -32 62 63` · 54 elements in 4 layers · hash `3c5709fe` ([standalone SVG](mounts/four-thirds-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-30 -31 60 61` · 48 elements in 4 layers · hash `4ea196e1` ([standalone SVG](mounts/four-thirds-lens-rear.svg))
+**Lens-side rear view** — viewBox `-30 -31 60 61` · 48 elements in 4 layers · hash `c9de0f99` ([standalone SVG](mounts/four-thirds-lens-rear.svg))
 
 **Axial / register schematic** — viewBox `-45 -35 52 66` · 14 elements in 2 layers · hash `5934d50c` ([standalone SVG](mounts/four-thirds-axial.svg))
 
@@ -1533,7 +1660,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 **Camera-side front view** — viewBox `-48 -50 96 98` · 62 elements in 4 layers · hash `0eec3f02` ([standalone SVG](mounts/fujifilm-g-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-47 -49 94 96` · 54 elements in 4 layers · hash `f7ce434d` ([standalone SVG](mounts/fujifilm-g-lens-rear.svg))
+**Lens-side rear view** — viewBox `-47 -49 94 96` · 54 elements in 4 layers · hash `9fa9e6c5` ([standalone SVG](mounts/fujifilm-g-lens-rear.svg))
 
 **Axial / register schematic** — viewBox `-35 -52 45 100` · 14 elements in 2 layers · hash `b5c39255` ([standalone SVG](mounts/fujifilm-g-axial.svg))
 
@@ -1657,7 +1784,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 **Camera-side front view** — viewBox `-31 -32 62 63` · 56 elements in 4 layers · hash `d318e3c7` ([standalone SVG](mounts/fujifilm-x-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-30 -31 60 61` · 50 elements in 4 layers · hash `e4cf732e` ([standalone SVG](mounts/fujifilm-x-lens-rear.svg))
+**Lens-side rear view** — viewBox `-30 -31 60 61` · 50 elements in 4 layers · hash `3e5eb856` ([standalone SVG](mounts/fujifilm-x-lens-rear.svg))
 
 **Axial / register schematic** — viewBox `-24 -35 31 66` · 14 elements in 2 layers · hash `2b87f13b` ([standalone SVG](mounts/fujifilm-x-axial.svg))
 
@@ -1757,7 +1884,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 | Profile ID | Type | Applies to | Adds | Removes | Changes |
 |---|---|---|---|---|---|
-| `hasselblad-h/base` | base | Hasselblad H-system lenses and bodies | large medium-format bayonet; electrical contact bank; leaf-shutter communication | — | renderable profile uses chart dimensions and photo-scaled feature placement |
+| `hasselblad-h/base` | base | Hasselblad H-system bodies and HC/HCD lenses | large medium-format bayonet; nine-pin databus contact row at the bottom of the throat; leaf-shutter communication | — | single base interface: the H2 (2005) and H6D (2018) manuals give the same index position and clockwise attachment, and no source shows a mechanical change between body or lens generations; contact row, pin and index are scaled from maker figures; register and throat are chart values; lugs, ring diameters and screws remain stand-ins |
 
 #### Dimensional summary
 
@@ -1768,17 +1895,17 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 | Effective clear aperture | 67.5 (`secondary`) | mm |
 | Camera mount outer diameter | 80 (`photo_scaled`) | mm |
 | Lens mount outer diameter | 78 (`photo_scaled`) | mm |
-| Contact count | 10 (`photo_scaled`) | count |
-| Lock rotation | 60 (`photo_scaled`) | deg |
-| Lock direction | clockwise (`photo_scaled`) | — |
+| Contact count | 9 (`conflicting`) | count |
+| Lock rotation | 90 (`official`) | deg |
+| Lock direction | clockwise (`official`) | — |
 
 #### Figures (selected profile `hasselblad-h/base`)
 
-**Camera-side front view** — viewBox `-49 -51 98 100` · 56 elements in 4 layers · hash `9fbd0ee6` ([standalone SVG](mounts/hasselblad-h-camera-front.svg))
+**Camera-side front view** — viewBox `-49 -51 98 100` · 54 elements in 4 layers · hash `1c1fac3a` ([standalone SVG](mounts/hasselblad-h-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-48 -50 96 98` · 50 elements in 4 layers · hash `7c966a9f` ([standalone SVG](mounts/hasselblad-h-lens-rear.svg))
+**Lens-side rear view** — viewBox `-48 -50 96 98` · 48 elements in 4 layers · hash `0509e740` ([standalone SVG](mounts/hasselblad-h-lens-rear.svg))
 
-**Axial / register schematic** — viewBox `-71 -53 81 102` · 14 elements in 2 layers · hash `4cc88b3a` ([standalone SVG](mounts/hasselblad-h-axial.svg))
+**Axial / register schematic** — viewBox `-71 -53 81 102` · 14 elements in 2 layers · hash `abe3d89b` ([standalone SVG](mounts/hasselblad-h-axial.svg))
 
 #### Camera-side front-view geometry
 
@@ -1790,7 +1917,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 | `body-slot-2` | bayonet_receiving_slot | `hasselblad-h/base` | 140° | 123° | 157° | 33.75 | 36.25 |
 | `body-slot-3` | bayonet_receiving_slot | `hasselblad-h/base` | 260° | 243° | 277° | 33.75 | 36.25 |
 | `body-index-mark` | index_mark | `hasselblad-h/base` | 0° | unknown | unknown | unknown | 40.5 |
-| `body-lock-pin` | lock_pin | `hasselblad-h/base` | 285° | unknown | unknown | unknown | 34.75 |
+| `body-lock-pin` | lock_pin | `hasselblad-h/base` | 145° | unknown | unknown | unknown | 29 |
 
 #### Lens-side rear-view geometry
 
@@ -1802,32 +1929,30 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 | `lens-lug-2` | bayonet_lug | `hasselblad-h/base` | 140° | 123° | 157° | 33.75 | 36.25 |
 | `lens-lug-3` | bayonet_lug | `hasselblad-h/base` | 260° | 243° | 277° | 33.75 | 36.25 |
 | `lens-index-mark` | index_mark | `hasselblad-h/base` | 0° | unknown | unknown | unknown | 39.5 |
-| `lens-lock-notch` | lock_notch | `hasselblad-h/base` | 285° | unknown | unknown | unknown | 34.75 |
+| `lens-lock-notch` | lock_notch | `hasselblad-h/base` | 145° | unknown | unknown | unknown | 29 |
 
 #### Electrical contacts
 
 | Side | No. | Profile | Center angle | Radius | Function |
 |---|---|---|---|---|---|
-| body | 1 | `hasselblad-h/base` | 215° | 36 |  |
-| body | 2 | `hasselblad-h/base` | 221° | 36 |  |
-| body | 3 | `hasselblad-h/base` | 227° | 36 |  |
-| body | 4 | `hasselblad-h/base` | 233° | 36 |  |
-| body | 5 | `hasselblad-h/base` | 239° | 36 |  |
-| body | 6 | `hasselblad-h/base` | 245° | 36 |  |
-| body | 7 | `hasselblad-h/base` | 251° | 36 |  |
-| body | 8 | `hasselblad-h/base` | 257° | 36 |  |
-| body | 9 | `hasselblad-h/base` | 263° | 36 |  |
-| body | 10 | `hasselblad-h/base` | 269° | 36 |  |
-| lens | 1 | `hasselblad-h/base` | 215° | 36 |  |
-| lens | 2 | `hasselblad-h/base` | 221° | 36 |  |
-| lens | 3 | `hasselblad-h/base` | 227° | 36 |  |
-| lens | 4 | `hasselblad-h/base` | 233° | 36 |  |
-| lens | 5 | `hasselblad-h/base` | 239° | 36 |  |
-| lens | 6 | `hasselblad-h/base` | 245° | 36 |  |
-| lens | 7 | `hasselblad-h/base` | 251° | 36 |  |
-| lens | 8 | `hasselblad-h/base` | 257° | 36 |  |
-| lens | 9 | `hasselblad-h/base` | 263° | 36 |  |
-| lens | 10 | `hasselblad-h/base` | 269° | 36 |  |
+| body | 1 | `hasselblad-h/base` | 160° | 27 |  |
+| body | 2 | `hasselblad-h/base` | 165° | 27 |  |
+| body | 3 | `hasselblad-h/base` | 170° | 27 |  |
+| body | 4 | `hasselblad-h/base` | 175° | 27 |  |
+| body | 5 | `hasselblad-h/base` | 180° | 27 |  |
+| body | 6 | `hasselblad-h/base` | 185° | 27 |  |
+| body | 7 | `hasselblad-h/base` | 190° | 27 |  |
+| body | 8 | `hasselblad-h/base` | 195° | 27 |  |
+| body | 9 | `hasselblad-h/base` | 200° | 27 |  |
+| lens | 1 | `hasselblad-h/base` | 160° | 27 |  |
+| lens | 2 | `hasselblad-h/base` | 165° | 27 |  |
+| lens | 3 | `hasselblad-h/base` | 170° | 27 |  |
+| lens | 4 | `hasselblad-h/base` | 175° | 27 |  |
+| lens | 5 | `hasselblad-h/base` | 180° | 27 |  |
+| lens | 6 | `hasselblad-h/base` | 185° | 27 |  |
+| lens | 7 | `hasselblad-h/base` | 190° | 27 |  |
+| lens | 8 | `hasselblad-h/base` | 195° | 27 |  |
+| lens | 9 | `hasselblad-h/base` | 200° | 27 |  |
 
 #### Mechanical couplings
 
@@ -1839,12 +1964,12 @@ None — fully electronic.
 |---|---|---|
 | `flange_datum` | 0 | 80 |
 | `bayonet_lug_engagement` | 1.2 | 74 |
-| `electrical_contact_plane` | 0.5 | 70 |
+| `electrical_contact_plane` | 0.5 | 54 |
 | `sensor_film_plane` | -61.63 | 69.7 |
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/hasselblad-h.mount.ts` (43920 bytes, content hash `d75bc0ad`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/hasselblad-h.mount.ts` (47970 bytes, content hash `b104ee47`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -1852,10 +1977,16 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 |---|---|---|---|---|---|
 | `hh-1` | secondary | Film and Digital Times / IB/E Optics mount chart. Accessed 2026-06-06. | [snapshot](https://www.fdtimes.com/wp-content/uploads/2017/05/81-82-FDTimes-IBE-Optics-Update.pdf) | 2026-06-06 | medium |
 | `hh-2` | secondary | Hasselblad H mount body/lens visual references. Accessed 2026-06-06. | [snapshot](unknown) | unknown | low |
+| `hh-3` | official | Victor Hasselblad AB, H2 User Manual, 2005, p. 6 (parts drawing, items 34, 42 and 44), p. 8 (step 8 and figures 5 and 8) and p. 30 (Attaching a lens). Accessed 2026-11-21. | [snapshot](https://www.manualslib.com/manual/66533/Hasselblad-H2.html) | 2026-11-21 | medium |
+| `hh-4` | official | Victor Hasselblad AB, H6D User Guide, 2018, p. 51 (Change Lens) and p. 177 (Optional HC Lens Accessories, Macro Converter H photograph). The archive copy is a 192-page edition with the same sections on pp. 162 and 174. Accessed 2026-11-21. | [snapshot](https://www.manualslib.com/manual/1081614/Hasselblad-H6d.html) | 2026-11-21 | medium |
+| `hh-5` | secondary | FUJIFILM Corporation, H MOUNT ADAPTER G Owner's Manual, pp. EN-5 (Parts of the Adapter) and EN-7 (Attaching Lenses). Accessed 2026-11-21. | [snapshot](https://www.manualslib.mx/manual/275971/Fujifilm-H-Mount-Adapter-G.html) | 2026-11-21 | medium |
 
 #### Open questions
 
-- H-system lug spans and contact geometry are photo-scaled; exact official drawing is still needed. _(Upgrade from Hasselblad service data or a measured H body/lens pair.)_
+- Bayonet lug count, centre angles and spans, the ring outer diameters and the mount screws are stand-ins. No dimensioned H-mount drawing was found: searches for Victor Hasselblad AB and Fuji Photo Optical mount patents from 2000 to 2003 found only US 7,500,796 (accessory status detection, no mount geometry), no H service manual was located, and the H2 and H6D manuals print no mount dimensions. _(Needs Hasselblad or Fujifilm service data, a dimensioned third-party H-mount drawing, or a calibrated measurement of a body and lens. Searched again on 2026-11-21: Google Patents for Hasselblad lens-mount and bayonet filings from 1995 to 2020 (18 results); the only H-system hit is the US 7,500,796 family.)_
+- Contact row, pin and index positions are photo-scaled from oblique maker figures (about +/-8 degrees; contact radius 25.5 to 29 mm and pin radius 26.5 to 33 mm, depending on which ring edge the 67.5 mm chart diameter refers to). Contact pad size and pinout are not sourced, and the pin's lock function is inferred from its place beside the lens release control. _(Replace with dimensioned positions from service data or a measured sample.)_
+- Contact count: three maker figures of body-side H mounts show nine pins (H2 manual p. 6 body drawing, Macro Converter H photograph, Fujifilm adapter drawing), but the H2 manual's lens-rear drawing on the same page shows ten pads. _(Count the pads on a straight-on photograph of an HC lens rear, or use a service pinout.)_
+- Lock rotation is the H2 manual's wording, approximately one quarter turn; the exact detent angle is not sourced. The H6D guide gives the direction only. _(Upgrade from a service drawing or a measured rotation between the index marks.)_
 
 ### `hasselblad-v` — Hasselblad V
 
@@ -1869,13 +2000,14 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 | Mount mechanism | `bayonet` (lock `sprung_detent`) |
 | Base profile | `hasselblad-v/base` |
 | Selected MVP profile | `hasselblad-v/base` |
-| Variant strategy | `base_only` |
+| Variant strategy | `variant_profiles_defined` |
 
 #### Base and variant profile matrix
 
 | Profile ID | Type | Applies to | Adds | Removes | Changes |
 |---|---|---|---|---|---|
-| `hasselblad-v/base` | base | Hasselblad V-system 500/200-series lenses and bodies | medium-format bayonet interface; lens shutter synchronization/cocking couplings | electrical contacts in the classic mechanical interface | early Hasselblad-related patent is treated as related lineage, not a complete V mount drawing |
+| `hasselblad-v/base` | base | Hasselblad 500-series, 2000-series and 200-series bodies with C, CF, CB, CFi, F and other V lenses, 1957 onward; not the 1600F / 1000F mount | four body retaining flanges; mounting index at 12 o'clock; rotation stop pin; lens release button; body drive shaft key and lens drive coupling | electrical contacts | F lenses have no leaf shutter but keep the same bayonet and drive coupling, so they need no profile of their own |
+| `hasselblad-v/databus` | variant | FE lenses on 200-series bodies such as the 203FE; CFE lenses carry the same data-bus connections for the 200 series | four data-bus contact pins in the lens bayonet plate and matching body contacts | — | the lens reports its aperture setting to the body metering system |
 
 #### Dimensional summary
 
@@ -1884,62 +2016,77 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 | Flange focal distance | 74.9 (`secondary`) | mm |
 | Nominal throat diameter | 69 (`secondary`) | mm |
 | Effective clear aperture | 69 (`secondary`) | mm |
-| Camera mount outer diameter | 78 (`patent`) | mm |
-| Lens mount outer diameter | 76 (`patent`) | mm |
+| Camera mount outer diameter | 75.5 (`photo_scaled`) | mm |
+| Lens mount outer diameter | 74.4 (`photo_scaled`) | mm |
 | Contact count | not_applicable (`not_applicable`) | count |
-| Lock rotation | 60 (`patent`) | deg |
-| Lock direction | clockwise (`patent`) | — |
+| Lock rotation | 72 (`official`) | deg |
+| Lock direction | clockwise (`official`) | — |
 
 #### Figures (selected profile `hasselblad-v/base`)
 
-**Camera-side front view** — viewBox `-48 -50 96 98` · 38 elements in 4 layers · hash `504b4407` ([standalone SVG](mounts/hasselblad-v-camera-front.svg))
+**Camera-side front view** — viewBox `-46 -48 92 94` · 42 elements in 4 layers · hash `29066b3b` ([standalone SVG](mounts/hasselblad-v-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-47 -49 94 96` · 32 elements in 4 layers · hash `a7aae316` ([standalone SVG](mounts/hasselblad-v-lens-rear.svg))
+**Lens-side rear view** — viewBox `-45 -48 90 93` · 29 elements in 4 layers · hash `1423d33a` ([standalone SVG](mounts/hasselblad-v-lens-rear.svg))
 
-**Axial / register schematic** — viewBox `-84 -52 94 100` · 12 elements in 2 layers · hash `4f515194` ([standalone SVG](mounts/hasselblad-v-axial.svg))
+**Axial / register schematic** — viewBox `-84 -52 93 100` · 12 elements in 2 layers · hash `6e04e375` ([standalone SVG](mounts/hasselblad-v-axial.svg))
 
 #### Camera-side front-view geometry
 
 | Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
 |---|---|---|---|---|---|---|---|
 | `body-throat` | body_throat | `hasselblad-v/base` | 0° | 0° | 360° | 0 | 34.5 |
-| `body-mount-ring` | mount_ring | `hasselblad-v/base` | 0° | 0° | 360° | 34.5 | 39 |
-| `body-slot-1` | bayonet_receiving_slot | `hasselblad-v/base` | 0° | 343° | 17° | 34.5 | 37 |
-| `body-slot-2` | bayonet_receiving_slot | `hasselblad-v/base` | 120° | 103° | 137° | 34.5 | 37 |
-| `body-slot-3` | bayonet_receiving_slot | `hasselblad-v/base` | 240° | 223° | 257° | 34.5 | 37 |
-| `body-index-mark` | index_mark | `hasselblad-v/base` | 0° | unknown | unknown | unknown | 39.5 |
-| `body-lock-pin` | lock_pin | `hasselblad-v/base` | 270° | unknown | unknown | unknown | 35.5 |
+| `body-mount-ring` | mount_ring | `hasselblad-v/base` | 0° | 0° | 360° | 34.5 | 37.8 |
+| `body-slot-1` | bayonet_receiving_slot | `hasselblad-v/base` | 47° | 34° | 60° | 34.5 | 36.3 |
+| `body-slot-2` | bayonet_receiving_slot | `hasselblad-v/base` | 136° | 121° | 151° | 34.5 | 36.3 |
+| `body-slot-3` | bayonet_receiving_slot | `hasselblad-v/base` | 226° | 212° | 240° | 34.5 | 36.3 |
+| `body-slot-4` | bayonet_receiving_slot | `hasselblad-v/base` | 314.5° | 300° | 329° | 34.5 | 36.3 |
+| `body-index-mark` | index_mark | `hasselblad-v/base` | 0° | 0° | 0° | 33.6 | 33.6 |
+| `body-stop-pin` | alignment_pin | `hasselblad-v/base` | 153° | 153° | 153° | 34.8 | 34.8 |
+| `body-release-button` | lens_release_button | `hasselblad-v/base` | 135° | unknown | unknown | unknown | 47 |
 
 #### Lens-side rear-view geometry
 
 | Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
 |---|---|---|---|---|---|---|---|
-| `lens-throat` | lens_throat | `hasselblad-v/base` | 0° | 0° | 360° | 0 | 33.5 |
-| `lens-mount-ring` | lens_mount_ring | `hasselblad-v/base` | 0° | 0° | 360° | 33.5 | 38 |
-| `lens-lug-1` | bayonet_lug | `hasselblad-v/base` | 0° | 343° | 17° | 34.5 | 37 |
-| `lens-lug-2` | bayonet_lug | `hasselblad-v/base` | 120° | 103° | 137° | 34.5 | 37 |
-| `lens-lug-3` | bayonet_lug | `hasselblad-v/base` | 240° | 223° | 257° | 34.5 | 37 |
-| `lens-index-mark` | index_mark | `hasselblad-v/base` | 0° | unknown | unknown | unknown | 38.5 |
-| `lens-lock-notch` | lock_notch | `hasselblad-v/base` | 270° | unknown | unknown | unknown | 35.5 |
+| `lens-throat` | lens_throat | `hasselblad-v/base` | 0° | 0° | 360° | 0 | 34.3 |
+| `lens-mount-ring` | lens_mount_ring | `hasselblad-v/base` | 0° | 0° | 360° | 34.3 | 37.2 |
+| `lens-lug-1` | bayonet_lug | `hasselblad-v/base` | 29° | 5° | 53° | 34.3 | 36.1 |
+| `lens-lug-2` | bayonet_lug | `hasselblad-v/base` | 122° | 97° | 147° | 34.3 | 36.1 |
+| `lens-lug-3` | bayonet_lug | `hasselblad-v/base` | 209.5° | 185° | 234° | 34.3 | 36.1 |
+| `lens-lug-4` | bayonet_lug | `hasselblad-v/base` | 300° | 275° | 325° | 34.3 | 36.1 |
+| `lens-index-mark` | index_mark | `hasselblad-v/base` | 0° | unknown | unknown | unknown | unknown |
+
+#### Electrical contacts
+
+| Side | No. | Profile | Center angle | Radius | Function |
+|---|---|---|---|---|---|
+| body | 1 | `hasselblad-v/databus` | 97° | 33.3 | data-bus line (signal assignment not published) |
+| body | 2 | `hasselblad-v/databus` | 104° | 33.3 | data-bus line (signal assignment not published) |
+| body | 3 | `hasselblad-v/databus` | 111° | 33.3 | data-bus line (signal assignment not published) |
+| body | 4 | `hasselblad-v/databus` | 118° | 33.3 | data-bus line (signal assignment not published) |
+| lens | 1 | `hasselblad-v/databus` | 97° | 33.3 | data-bus line (signal assignment not published) |
+| lens | 2 | `hasselblad-v/databus` | 104° | 33.3 | data-bus line (signal assignment not published) |
+| lens | 3 | `hasselblad-v/databus` | 111° | 33.3 | data-bus line (signal assignment not published) |
+| lens | 4 | `hasselblad-v/databus` | 118° | 33.3 | data-bus line (signal assignment not published) |
 
 #### Mechanical couplings
 
 | Feature | Side | Profile | Function |
 |---|---|---|---|
-| `leaf-shutter-cocking-coupler` | both | `hasselblad-v/base` | coordinates the lens leaf shutter with the body |
-| `aperture-shutter-release-coupler` | both | `hasselblad-v/base` | body-to-lens shutter/aperture release coordination |
+| `lens-drive-shaft` | both | `hasselblad-v/base` | winding turns the key to cock the lens shutter and open it for viewing; on release the key turns back to close the shutter, stop the lens down and fire it |
+| `drive-shaft-index-dot` | body | `hasselblad-v/base` | the key slot points at this dot when the body is cocked |
 
 #### Axial stack
 
 | Plane | z (mm) | Diameter (mm) |
 |---|---|---|
-| `flange_datum` | 0 | 78 |
-| `bayonet_lug_engagement` | 1.2 | 72 |
+| `flange_datum` | 0 | 75.5 |
+| `body_rear_plate` | -71.4 | unknown |
 | `sensor_film_plane` | -74.9 | 79.2 |
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/hasselblad-v.mount.ts` (28599 bytes, content hash `853c6244`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/hasselblad-v.mount.ts` (53938 bytes, content hash `4ad96e0b`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -1947,11 +2094,25 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 |---|---|---|---|---|---|
 | `hv-1` | secondary | “Flange focal distance,” Wikipedia. Accessed 2026-06-06. | [snapshot](http://web.archive.org/web/20260526152456/https://en.wikipedia.org/wiki/Flange_focal_distance) | 2026-05-26 | medium |
 | `hv-2` | secondary | Film and Digital Times / IB/E Optics mount chart. Accessed 2026-06-06. | [snapshot](https://www.fdtimes.com/wp-content/uploads/2017/05/81-82-FDTimes-IBE-Optics-Update.pdf) | 2026-06-06 | medium |
-| `hv-p1` | patent | US2526433A, early Hasselblad-related lens-mount/focusing patent. Accessed 2026-06-06. | [snapshot](https://patents.google.com/patent/US2526433A/en) | 2026-06-06 | low |
+| `hv-3` | service_manual | Victor Hasselblad AB, Service Manual, Camera body 503CW (with 501C, 503CXi, 503CX, 500C/M and 501CM sections), October 1996, revised to January 2001: p. 4:6 (PDF p. 18); p. 5:1 Fig. 29 (PDF p. 19); pp. 5:2 and 5:3 (PDF pp. 20 and 21); p. 6:1 Figs. 55 and 56 (PDF p. 32); section 11 exploded view and parts list (PDF pp. 44 and 45). Accessed 2026-11-21. | [snapshot](https://www.scribd.com/document/496560651/Hasselblad-500-503-Sm-En) | 2026-11-21 | medium |
+| `hv-4` | official | Victor Hasselblad AB, Hasselblad 503cx / 500C/M Instruction Manual: p. 6 (drive shaft and lens drive coupling illustration), p. 7 (attaching and removing the lens), p. 32 (Camera Body Dimensions). Accessed 2026-11-21. | [snapshot](https://www.cameramanuals.org/hasselblad/hasselblad_503cx.pdf) | 2026-11-21 | medium |
+| `hv-5` | official | Victor Hasselblad AB, Hasselblad 500C Instructions for Use, “Changing lenses” and “Shutter setting”: p. 21 with Figs. 20 and 21 in the later printing, p. 15 with Figs. 16 and 17 in the earlier printing. Accessed 2026-11-21. | [snapshot](https://www.cameramanuals.org/hasselblad/hasselblad_500c.pdf) | 2026-11-21 | high |
+| `hv-6` | official | Victor Hasselblad AB, Hasselblad 203FE Instruction Manual: p. 5 (Parts and Components, items 62 to 65), p. 30 (FE Lenses), p. 79 (troubleshooting) and the Lens Mount line of the specifications. Accessed 2026-11-21. | [snapshot](https://www.cameramanuals.org/hasselblad/hasselblad_203fe.pdf) | 2026-11-21 | low |
+| `hv-7` | official | Victor Hasselblad AB, Hasselblad CFi, CFE Lenses Instruction Manual: parts list item 8 and the closing description. Accessed 2026-11-21. | [snapshot](https://www.cameramanuals.org/hasselblad/hasselblad_cfi_cfe_lenses.pdf) | 2026-11-21 | high |
+| `hv-p1` | patent | A. P. Svensson, assignor to F. V. Hasselblad, US2526433A, “Mount for camera lenses” (Swedish priority 1944). Accessed 2026-06-06. | [snapshot](https://patents.google.com/patent/US2526433A/en) | 2026-06-06 | low |
+| `hv-p2` | patent | B. H. Hedén, assignor to F. V. Hasselblad, US2992602A, “Mirror reflex cameras” (Swedish priority 1957): col. 2, about lines 40 to 50, col. 3, about lines 35 to 47, and Figs. 6 to 12. Accessed 2026-11-21. | [snapshot](https://patentimages.storage.googleapis.com/dc/6c/c2/acd86cc4baf922/US2992602.pdf) | 2026-11-21 | high |
+| `hv-p3` | patent | A. I. Alfredsson, assignor to F. V. Hasselblad, US3715965A, “Preset diaphragm for interchangeable lenses of single-lens mirror reflex cameras” (Swedish priority 1970). Accessed 2026-11-21. | [snapshot](https://patentimages.storage.googleapis.com/6c/96/ea/4aa2458019574d/US3715965.pdf) | 2026-11-21 | medium |
+| `hv-p4` | patent | R. G. Fransson, assignor to Victor Hasselblad AB, US4954092A, “Electrical contact unit” (Swedish priority 1987): col. 3, about lines 21 to 66, and col. 4, about lines 49 to 53. Accessed 2026-11-21. | [snapshot](https://patentimages.storage.googleapis.com/5d/3a/1e/6e137b6df2bc75/US4954092.pdf) | 2026-11-21 | medium |
+| `hv-p4f` | patent_figure | US4954092A, FIGS. 4 and 5: camera-front view of the body mount and view of the mounting end of the lens. Undimensioned drawings, scaled for this spec. Accessed 2026-11-21. | [snapshot](https://patentimages.storage.googleapis.com/5d/3a/1e/6e137b6df2bc75/US4954092.pdf) | 2026-11-21 | medium |
 
 #### Open questions
 
-- Bayonet lug count/spans and the V-system leaf-shutter coupling positions are not confirmed from a dimensioned source; current values are renderable placeholders. _(Upgrade from Hasselblad service drawings or measured V-system body/lens samples.)_
+- The flange edges, the ring radii, index dot and release button are scaled from a small dimensioned drawing in the owner manual (about 0.5 deg and 0.3 mm per pixel; the four stated dimensions on that page give scales that differ by up to 1.5 percent). The flange centres read 47, 136, 226 and 314.5 deg, which may be a nominal 45, 135, 225 and 315. Flange thickness is not given anywhere. _(Replace with a dimensioned Hasselblad front-plate drawing (front bayonet plate 40403) or a measured body.)_
+- The lens lugs are scaled from one undimensioned patent figure (US4954092 FIG. 5: four lugs of 48 to 50 deg with openings of 38 to 44 deg), which agrees with the one opening visible in the owner-manual lens drawing (503cx manual p. 6, 149 to 185 deg). Both drawings show the mounted lens, and both put each lug only 27 to 31 deg clockwise of a lug centred in a body gap, so they imply a turn of about 30 deg, not the 72 deg (1/5 of a revolution) the 500C manual states. A 72 deg turn would carry each lug past its flange. The lock rotation is left at the maker's stated figure; the reason for the single starting point is also unresolved, because the patent draws four near-equal lugs. _(Measure a V lens rear or find a Carl Zeiss C / CF lens service drawing of the bayonet plate (the CB / CFE / CFi lens service manual was not reachable).)_
+- The point where lens catch lever 103440 engages the lens is not shown in the sources used, so no lock pin or lock notch is drawn; only the release button and the stop pin are placed. The stop pin is identified from the exploded-view leader, not from text. _(Read the lens catch position from a front-plate drawing or a photo taken square to the mount with the lens removed.)_
+- Drive key and stop pin radii rest on service manual Fig. 29 scaled to the 69 mm throat; the owner-manual front view scales the key to 27.4 mm instead of 26.4 mm. The four upper flange screws are not placed. The lens-side radii are scaled through that same key radius. _(Upgrade from a dimensioned front gear / front plate drawing or a measured body and lens.)_
+- Data-bus variant: the count of four is stated by Hasselblad, but the contact angles and pitch radius come from one perspective figure and are good to about 15 deg; contact size, protrusion and signal assignment are unknown, and no body-side view of the contacts was found. _(Read the contact positions from the 203FE / 205 service manual front-plate pages or a measured FE lens and 200-series body.)_
+- The 74.9 mm register is still a secondary value. The factory gauges give 71.40 mm from the front bayonet to the body rear plate; the film magazine manual's 3.55 mm picture-frame distance would make 74.95 mm, but that manual has no second copy to cite. _(Cite a Hasselblad or Carl Zeiss statement of the flange focal distance.)_
 
 ### `hasselblad-xcd` — Hasselblad XCD
 
@@ -1971,7 +2132,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 | Profile ID | Type | Applies to | Adds | Removes | Changes |
 |---|---|---|---|---|---|
-| `hasselblad-xcd/base` | base | Hasselblad XCD lenses and X-system bodies | short-register mirrorless medium-format bayonet; electrical contact bank | SLR mirror box spacing | feature placement is photo-scaled pending official drawings |
+| `hasselblad-xcd/base` | base | Hasselblad XCD lenses and X-system bodies (X1D, X1D II, X2D, 907X) | short-register mirrorless medium-format bayonet; nine-pin electrical contact row at the bottom of the throat | SLR mirror box spacing | single base interface: the maker lists XCD lenses for all X-system and 907X cameras, and no source shows a change in drawn geometry between bodies; contact row, lock pin, index and ring screws are scaled from the X1D User Guide renders; lugs and ring diameters remain stand-ins |
 
 #### Dimensional summary
 
@@ -1982,17 +2143,17 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 | Effective clear aperture | 61 (`secondary`) | mm |
 | Camera mount outer diameter | 76 (`photo_scaled`) | mm |
 | Lens mount outer diameter | 74 (`photo_scaled`) | mm |
-| Contact count | 10 (`photo_scaled`) | count |
+| Contact count | 9 (`secondary`) | count |
 | Lock rotation | 60 (`photo_scaled`) | deg |
-| Lock direction | clockwise (`photo_scaled`) | — |
+| Lock direction | clockwise (`official`) | — |
 
 #### Figures (selected profile `hasselblad-xcd/base`)
 
-**Camera-side front view** — viewBox `-47 -49 94 96` · 56 elements in 4 layers · hash `01354a4e` ([standalone SVG](mounts/hasselblad-xcd-camera-front.svg))
+**Camera-side front view** — viewBox `-47 -49 94 96` · 54 elements in 4 layers · hash `605f5b62` ([standalone SVG](mounts/hasselblad-xcd-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-46 -47 92 93` · 50 elements in 4 layers · hash `13f89228` ([standalone SVG](mounts/hasselblad-xcd-lens-rear.svg))
+**Lens-side rear view** — viewBox `-46 -47 92 93` · 48 elements in 4 layers · hash `bca41f5d` ([standalone SVG](mounts/hasselblad-xcd-lens-rear.svg))
 
-**Axial / register schematic** — viewBox `-27 -50 37 96` · 14 elements in 2 layers · hash `955f08fc` ([standalone SVG](mounts/hasselblad-xcd-axial.svg))
+**Axial / register schematic** — viewBox `-27 -50 37 96` · 14 elements in 2 layers · hash `dd45cbff` ([standalone SVG](mounts/hasselblad-xcd-axial.svg))
 
 #### Camera-side front-view geometry
 
@@ -2004,7 +2165,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 | `body-slot-2` | bayonet_receiving_slot | `hasselblad-xcd/base` | 140° | 123° | 157° | 30.5 | 33 |
 | `body-slot-3` | bayonet_receiving_slot | `hasselblad-xcd/base` | 260° | 243° | 277° | 30.5 | 33 |
 | `body-index-mark` | index_mark | `hasselblad-xcd/base` | 0° | unknown | unknown | unknown | 38.5 |
-| `body-lock-pin` | lock_pin | `hasselblad-xcd/base` | 285° | unknown | unknown | unknown | 31.5 |
+| `body-lock-pin` | lock_pin | `hasselblad-xcd/base` | 133° | unknown | unknown | unknown | 33.5 |
 
 #### Lens-side rear-view geometry
 
@@ -2016,32 +2177,30 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 | `lens-lug-2` | bayonet_lug | `hasselblad-xcd/base` | 140° | 123° | 157° | 30.5 | 33 |
 | `lens-lug-3` | bayonet_lug | `hasselblad-xcd/base` | 260° | 243° | 277° | 30.5 | 33 |
 | `lens-index-mark` | index_mark | `hasselblad-xcd/base` | 0° | unknown | unknown | unknown | 37.5 |
-| `lens-lock-notch` | lock_notch | `hasselblad-xcd/base` | 285° | unknown | unknown | unknown | 31.5 |
+| `lens-lock-notch` | lock_notch | `hasselblad-xcd/base` | 133° | unknown | unknown | unknown | 33.5 |
 
 #### Electrical contacts
 
 | Side | No. | Profile | Center angle | Radius | Function |
 |---|---|---|---|---|---|
-| body | 1 | `hasselblad-xcd/base` | 215° | 33 |  |
-| body | 2 | `hasselblad-xcd/base` | 221° | 33 |  |
-| body | 3 | `hasselblad-xcd/base` | 227° | 33 |  |
-| body | 4 | `hasselblad-xcd/base` | 233° | 33 |  |
-| body | 5 | `hasselblad-xcd/base` | 239° | 33 |  |
-| body | 6 | `hasselblad-xcd/base` | 245° | 33 |  |
-| body | 7 | `hasselblad-xcd/base` | 251° | 33 |  |
-| body | 8 | `hasselblad-xcd/base` | 257° | 33 |  |
-| body | 9 | `hasselblad-xcd/base` | 263° | 33 |  |
-| body | 10 | `hasselblad-xcd/base` | 269° | 33 |  |
-| lens | 1 | `hasselblad-xcd/base` | 215° | 33 |  |
-| lens | 2 | `hasselblad-xcd/base` | 221° | 33 |  |
-| lens | 3 | `hasselblad-xcd/base` | 227° | 33 |  |
-| lens | 4 | `hasselblad-xcd/base` | 233° | 33 |  |
-| lens | 5 | `hasselblad-xcd/base` | 239° | 33 |  |
-| lens | 6 | `hasselblad-xcd/base` | 245° | 33 |  |
-| lens | 7 | `hasselblad-xcd/base` | 251° | 33 |  |
-| lens | 8 | `hasselblad-xcd/base` | 257° | 33 |  |
-| lens | 9 | `hasselblad-xcd/base` | 263° | 33 |  |
-| lens | 10 | `hasselblad-xcd/base` | 269° | 33 |  |
+| body | 1 | `hasselblad-xcd/base` | 162° | 26 |  |
+| body | 2 | `hasselblad-xcd/base` | 166.5° | 26 |  |
+| body | 3 | `hasselblad-xcd/base` | 171° | 26 |  |
+| body | 4 | `hasselblad-xcd/base` | 175.5° | 26 |  |
+| body | 5 | `hasselblad-xcd/base` | 180° | 26 |  |
+| body | 6 | `hasselblad-xcd/base` | 184.5° | 26 |  |
+| body | 7 | `hasselblad-xcd/base` | 189° | 26 |  |
+| body | 8 | `hasselblad-xcd/base` | 193.5° | 26 |  |
+| body | 9 | `hasselblad-xcd/base` | 198° | 26 |  |
+| lens | 1 | `hasselblad-xcd/base` | 162° | 26 |  |
+| lens | 2 | `hasselblad-xcd/base` | 166.5° | 26 |  |
+| lens | 3 | `hasselblad-xcd/base` | 171° | 26 |  |
+| lens | 4 | `hasselblad-xcd/base` | 175.5° | 26 |  |
+| lens | 5 | `hasselblad-xcd/base` | 180° | 26 |  |
+| lens | 6 | `hasselblad-xcd/base` | 184.5° | 26 |  |
+| lens | 7 | `hasselblad-xcd/base` | 189° | 26 |  |
+| lens | 8 | `hasselblad-xcd/base` | 193.5° | 26 |  |
+| lens | 9 | `hasselblad-xcd/base` | 198° | 26 |  |
 
 #### Mechanical couplings
 
@@ -2053,12 +2212,12 @@ None — fully electronic.
 |---|---|---|
 | `flange_datum` | 0 | 76 |
 | `bayonet_lug_engagement` | 1.2 | 69 |
-| `electrical_contact_plane` | 0.5 | 65 |
+| `electrical_contact_plane` | 0.5 | 52 |
 | `sensor_film_plane` | -18.14 | 54.78 |
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/hasselblad-xcd.mount.ts` (44323 bytes, content hash `4a1b20fc`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/hasselblad-xcd.mount.ts` (45975 bytes, content hash `39021a35`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -2066,10 +2225,15 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 |---|---|---|---|---|---|
 | `xcd-1` | secondary | “Flange focal distance,” Wikipedia. Accessed 2026-06-06. | [snapshot](http://web.archive.org/web/20260526152456/https://en.wikipedia.org/wiki/Flange_focal_distance) | 2026-05-26 | medium |
 | `xcd-2` | secondary | Hasselblad XCD mount visual references. Accessed 2026-06-06. | [snapshot](unknown) | unknown | low |
+| `xcd-3` | official | Victor Hasselblad AB, X1D User Guide, version 1.8, 2017-12-19, pp. 51–52 (Remove and Attach a Lens) and p. 140 (Clean the Sensor Filter). The archive copy is an earlier 124-page edition with the same sections on pp. 51 and 123. Accessed 2026-11-21. | [snapshot](https://www.manualslib.com/manual/1232924/Hasselblad-X1d.html) | 2026-11-21 | medium |
+| `xcd-4` | secondary | “Hasselblad XCD mount lenses,” ISO3200.org reference page. Accessed 2026-11-21. | [snapshot](https://iso3200.org/blog/?page_id=1085) | 2026-11-21 | low |
 
 #### Open questions
 
-- XCD contact count/position and lug spans are photo-scaled. _(Upgrade from Hasselblad service data or measured XCD body/lens samples.)_
+- Bayonet lug centre angles and spans are stand-ins; only the count of three is stated, by one secondary reference (ISO3200.org). No dimensioned X-mount drawing was found: a Google Patents search for Hasselblad lens-mount and bayonet filings from 1995 to 2020 returned 18 results and no X-mount utility patent (the 2016 design patent USD868868 shows a different camera, and CN112243502A covers the inside of an adapter), the X1D User Guide and X2D II / XCD data sheets print no mount dimensions, and the user-guide renders do not resolve the lug edges. _(Needs Hasselblad service data, a dimensioned third-party X-mount drawing, or a calibrated measurement of a body and lens.)_
+- Contact row, lock pin, index and ring screw positions are photo-scaled from oblique user-guide renders (about +/-5 degrees; contact radius 24.5 to 27.5 mm, lock pin radius 32.5 to 34.5 mm, screw circle 65.5 to 69.5 mm, all scaled against the 61 mm throat). The nine contacts are counted on the body; no lens-rear figure was found, so the lens pads are assumed to mate one to one. Contact pad size and pinout are not sourced. _(Replace with dimensioned positions from service data or a measured sample.)_
+- The user guide's red-mark callout and the top ring screw fall at the same place in the figures; whether the red mark is a separate dot beside that screw is not visible. The pin scaled as the lock pin is not labelled in the guide. _(Check against a straight-on photograph of the body mount with a known scale.)_
+- The 18.14 mm register, 61 mm throat and ring outer diameters have no maker-stated value: Hasselblad's X1D guide, X2D II data sheet and XCD lens data sheets do not print them, and the adapter lengths Hasselblad lists (XH 53 mm, XV 64 mm, XPan 21.4 mm) are overall lengths, not register differences. _(Upgrade if Hasselblad publishes the mount dimensions or a service drawing is found.)_
 
 ### `l-mount` — L-Mount
 
@@ -2108,7 +2272,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 **Camera-side front view** — viewBox `-38 -40 76 78` · 60 elements in 4 layers · hash `24660a32` ([standalone SVG](mounts/l-mount-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-37 -39 74 76` · 52 elements in 4 layers · hash `bed91b66` ([standalone SVG](mounts/l-mount-lens-rear.svg))
+**Lens-side rear view** — viewBox `-37 -39 74 76` · 52 elements in 4 layers · hash `343c976e` ([standalone SVG](mounts/l-mount-lens-rear.svg))
 
 **Axial / register schematic** — viewBox `-27 -42 35 80` · 14 elements in 2 layers · hash `1b5ff790` ([standalone SVG](mounts/l-mount-axial.svg))
 
@@ -2383,19 +2547,24 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 |---|---|
 | Mount ID | `leica-r` |
 | Display label | Leica R |
-| Project note | Leica R SLR bayonet mount. |
+| Project note | Leica R SLR bayonet mount, Leicaflex (1964) to R9. |
 | Research status | `partial` |
 | MVP status | `renderable` |
 | Mount mechanism | `bayonet` (lock `sprung_detent`) |
 | Base profile | `leica-r/base` |
-| Selected MVP profile | `leica-r/base` |
-| Variant strategy | `base_only` |
+| Selected MVP profile | `leica-r/3-cam` |
+| Variant strategy | `variant_profiles_defined` |
 
 #### Base and variant profile matrix
 
 | Profile ID | Type | Applies to | Adds | Removes | Changes |
 |---|---|---|---|---|---|
-| `leica-r/base` | base | Leica R SLR lenses and bodies | three-lug bayonet; mechanical aperture/metering cam interface | rangefinder coupling; threaded LTM interface | variant cam and ROM details are not split into profile overlays yet |
+| `leica-r/base` | base | every Leicaflex and Leica R body and lens, 1964 to the R9 | three-lug bayonet; 47 mm register; bayonet lock at 8 o'clock from the camera front, which is also the index the lens's red dot is set against; automatic-diaphragm lever at the lens rear, worked by a body lever linked to the mirror (position not sourced, not drawn) | rangefinder coupling; threaded LTM interface | — |
+| `leica-r/1-cam` | variant | 1-cam lenses for the Leicaflex Standard, 1964 to 1968 | one sloped cam on the aperture ring | — | stop-down metering only on SL / SL2 and R bodies; Leica warns against use on the R8 / R9 |
+| `leica-r/2-cam` | variant | 2-cam lenses for the Leicaflex SL and SL2, 1968 to 1976 | second sloped cam for the through-the-lens meter, opposite the first | — | first cam kept for the Leicaflex Standard |
+| `leica-r/3-cam` | variant | 3-cam lenses, 1976 to 1988; fit every Leicaflex and Leica R body | stepped R cam just inside the second sloped cam; two R-cam followers in Leica R bodies | — | both Leicaflex cams kept |
+| `leica-r/r-only` | variant | R-only lenses, 1988 to 1996; Leica R bodies from the R3 only | stepped R cam; two R-cam followers in Leica R bodies | both Leicaflex cams | bayonet altered slightly so the lens does not fit Leicaflex bodies; the altered geometry is not sourced and not drawn |
+| `leica-r/rom` | variant | ROM lenses and R8 / R9 bodies, 1996 onward | electrical contact strip on the lens in the place of the first Leicaflex cam; matching contact strip in the R8 / R9 bayonet; stepped R cam; two R-cam followers in Leica R bodies | both Leicaflex cams | lens data such as focal length go to the body electrically; does not fit Leicaflex bodies |
 
 #### Dimensional summary
 
@@ -2404,31 +2573,31 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 | Flange focal distance | 47 (`secondary`) | mm |
 | Nominal throat diameter | 49 (`secondary`) | mm |
 | Effective clear aperture | 49 (`secondary`) | mm |
-| Camera mount outer diameter | 58 (`photo_scaled`) | mm |
+| Camera mount outer diameter | 59 (`photo_scaled`) | mm |
 | Lens mount outer diameter | 56 (`photo_scaled`) | mm |
 | Contact count | not_applicable (`not_applicable`) | count |
-| Lock rotation | 60 (`photo_scaled`) | deg |
-| Lock direction | clockwise (`photo_scaled`) | — |
+| Lock rotation | 45 (`photo_scaled`) | deg |
+| Lock direction | clockwise (`official`) | — |
 
-#### Figures (selected profile `leica-r/base`)
+#### Figures (selected profile `leica-r/3-cam`)
 
-**Camera-side front view** — viewBox `-36 -37 72 73` · 34 elements in 3 layers · hash `bdd12bb8` ([standalone SVG](mounts/leica-r-camera-front.svg))
+**Camera-side front view** — viewBox `-36 -38 72 74` · 40 elements in 4 layers · hash `dcd3f00a` ([standalone SVG](mounts/leica-r-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-35 -36 70 71` · 31 elements in 4 layers · hash `6e0c857d` ([standalone SVG](mounts/leica-r-lens-rear.svg))
+**Lens-side rear view** — viewBox `-35 -36 70 71` · 33 elements in 4 layers · hash `7e4765d9` ([standalone SVG](mounts/leica-r-lens-rear.svg))
 
-**Axial / register schematic** — viewBox `-54 -40 62 76` · 12 elements in 2 layers · hash `16a497d8` ([standalone SVG](mounts/leica-r-axial.svg))
+**Axial / register schematic** — viewBox `-54 -40 62 76` · 12 elements in 2 layers · hash `b8737a4c` ([standalone SVG](mounts/leica-r-axial.svg))
 
 #### Camera-side front-view geometry
 
 | Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
 |---|---|---|---|---|---|---|---|
 | `body-throat` | body_throat | `leica-r/base` | 0° | 0° | 360° | 0 | 24.5 |
-| `body-mount-ring` | mount_ring | `leica-r/base` | 0° | 0° | 360° | 24.5 | 29 |
-| `body-slot-1` | bayonet_receiving_slot | `leica-r/base` | 35° | 17° | 53° | 24.5 | 27 |
-| `body-slot-2` | bayonet_receiving_slot | `leica-r/base` | 155° | 137° | 173° | 24.5 | 27 |
-| `body-slot-3` | bayonet_receiving_slot | `leica-r/base` | 275° | 257° | 293° | 24.5 | 27 |
-| `body-index-mark` | index_mark | `leica-r/base` | 0° | unknown | unknown | unknown | 29.5 |
-| `body-lock-pin` | lock_pin | `leica-r/base` | 90° | unknown | unknown | unknown | 25.5 |
+| `body-mount-ring` | mount_ring | `leica-r/base` | 0° | 0° | 360° | 24.5 | 29.5 |
+| `body-slot-1` | bayonet_receiving_slot | `leica-r/base` | 14.5° | 347° | 42° | 24.5 | 27 |
+| `body-slot-2` | bayonet_receiving_slot | `leica-r/base` | 136° | 114° | 158° | 24.5 | 27 |
+| `body-slot-3` | bayonet_receiving_slot | `leica-r/base` | 253° | 232.5° | 273.5° | 24.5 | 27 |
+| `body-index-mark` | index_mark | `leica-r/base` | 253.5° | unknown | unknown | unknown | 29.5 |
+| `body-lock-pin` | lock_pin | `leica-r/base` | 253.5° | unknown | unknown | unknown | 28 |
 
 #### Lens-side rear-view geometry
 
@@ -2436,17 +2605,37 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 |---|---|---|---|---|---|---|---|
 | `lens-throat` | lens_throat | `leica-r/base` | 0° | 0° | 360° | 0 | 23.5 |
 | `lens-mount-ring` | lens_mount_ring | `leica-r/base` | 0° | 0° | 360° | 23.5 | 28 |
-| `lens-lug-1` | bayonet_lug | `leica-r/base` | 35° | 17° | 53° | 24.5 | 27 |
-| `lens-lug-2` | bayonet_lug | `leica-r/base` | 155° | 137° | 173° | 24.5 | 27 |
-| `lens-lug-3` | bayonet_lug | `leica-r/base` | 275° | 257° | 293° | 24.5 | 27 |
-| `lens-index-mark` | index_mark | `leica-r/base` | 0° | unknown | unknown | unknown | 28.5 |
-| `lens-lock-notch` | lock_notch | `leica-r/base` | 90° | unknown | unknown | unknown | 25.5 |
+| `lens-lug-1` | bayonet_lug | `leica-r/base` | 14.5° | 347° | 42° | 24.5 | 27 |
+| `lens-lug-2` | bayonet_lug | `leica-r/base` | 136° | 114° | 158° | 24.5 | 27 |
+| `lens-lug-3` | bayonet_lug | `leica-r/base` | 253° | 232.5° | 273.5° | 24.5 | 27 |
+| `lens-index-mark` | index_mark | `leica-r/base` | 253.5° | unknown | unknown | unknown | 28.5 |
+| `lens-lock-notch` | lock_notch | `leica-r/base` | 253.5° | unknown | unknown | unknown | 28 |
+
+#### Electrical contacts
+
+| Side | No. | Profile | Center angle | Radius | Function |
+|---|---|---|---|---|---|
+| body | 1 | `leica-r/rom` | 358.5° | unknown | contact strip in the R8 / R9 bayonet that reads the lens strip; stored at the lens strip's angle. One marker stands for the whole strip |
+| lens | 1 | `leica-r/rom` | 358.5° | unknown | ROM contact strip on the lens, in the place of the first Leicaflex cam; arc of roughly 60 deg in the R9 instructions photo (p. 128). One marker stands for the whole strip |
 
 #### Mechanical couplings
 
 | Feature | Side | Profile | Function |
 |---|---|---|---|
-| `metering-cam` | lens | `leica-r/base` | aperture/metering communication on R lenses |
+| `leicaflex-cam-1-1-cam` | lens | `leica-r/1-cam` | passes the preselected aperture to the Leicaflex Standard meter coupling |
+| `leicaflex-cam-1-2-cam` | lens | `leica-r/2-cam` | passes the preselected aperture to the Leicaflex Standard meter coupling |
+| `leicaflex-cam-2-2-cam` | lens | `leica-r/2-cam` | passes the preselected aperture to the Leicaflex SL / SL2 through-the-lens meter |
+| `leicaflex-cam-1-3-cam` | lens | `leica-r/3-cam` | passes the preselected aperture to the Leicaflex Standard meter coupling |
+| `leicaflex-cam-2-3-cam` | lens | `leica-r/3-cam` | passes the preselected aperture to the Leicaflex SL / SL2 through-the-lens meter |
+| `r-cam-3-cam` | lens | `leica-r/3-cam` | passes the preselected aperture and the lens's maximum aperture to Leica R bodies (R3 onward) |
+| `r-cam-meter-follower-3-cam` | body | `leica-r/3-cam` | follows the R-cam prong whose position is the same on every lens (metering) |
+| `r-cam-aperture-follower-3-cam` | body | `leica-r/3-cam` | follows the R-cam prong whose position varies with the lens's maximum aperture |
+| `r-cam-r-only` | lens | `leica-r/r-only` | passes the preselected aperture and the lens's maximum aperture to Leica R bodies (R3 onward) |
+| `r-cam-meter-follower-r-only` | body | `leica-r/r-only` | follows the R-cam prong whose position is the same on every lens (metering) |
+| `r-cam-aperture-follower-r-only` | body | `leica-r/r-only` | follows the R-cam prong whose position varies with the lens's maximum aperture |
+| `r-cam-rom` | lens | `leica-r/rom` | passes the preselected aperture and the lens's maximum aperture to Leica R bodies (R3 onward) |
+| `r-cam-meter-follower-rom` | body | `leica-r/rom` | follows the R-cam prong whose position is the same on every lens (metering) |
+| `r-cam-aperture-follower-rom` | body | `leica-r/rom` | follows the R-cam prong whose position varies with the lens's maximum aperture |
 
 #### Axial stack
 
@@ -2458,7 +2647,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/leica-r.mount.ts` (25226 bytes, content hash `f5eb116d`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/leica-r.mount.ts` (58535 bytes, content hash `a311389d`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -2466,10 +2655,23 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 |---|---|---|---|---|---|
 | `lr-1` | secondary | “Flange focal distance,” Wikipedia. Accessed 2026-06-06. | [snapshot](http://web.archive.org/web/20260526152456/https://en.wikipedia.org/wiki/Flange_focal_distance) | 2026-05-26 | medium |
 | `lr-2` | secondary | Leica R mount visual references. Accessed 2026-06-06. | [snapshot](unknown) | unknown | low |
+| `lr-3` | secondary | “Leica R bayonet,” Wikipedia, revision of 2026-06-03. Accessed 2026-11-21. | [snapshot](https://en.wikipedia.org/w/index.php?title=Leica_R_bayonet&oldid=1357537022) | 2026-06-03 | low |
+| `lr-m1` | official | Leica Camera AG, “LEICA R9 Instructions,” fold-out front view and pp. 108, 127–129 and 197. Accessed 2026-11-21. | [snapshot](https://www.manualslib.com/manual/1968838/Leica-R9.html?page=133) | 2026-11-21 | medium |
+| `lr-m2` | official | Ernst Leitz GmbH Wetzlar, “LEICAFLEX SL Instructions,” pp. 4, 12, 14 and 16. Accessed 2026-11-21. | [snapshot](https://www.cameramanuals.org/leica_pdf/leicaflex_sl.pdf) | 2026-11-21 | medium |
+| `lr-p1` | patent | W. Schlapp and W. Wiessner (Ernst Leitz Wetzlar GmbH), US4181419, “Interchangeable lens for SLR-cameras having TTL light metering,” 1980 (priority DE2651263, 1976). Accessed 2026-11-21. | [snapshot](https://patentimages.storage.googleapis.com/f2/13/08/42f97eafb8047a/US4181419.pdf) | 2026-11-21 | medium |
+| `lr-p1f` | patent_figure | US4181419, FIG. 1a: front elevation of the camera mount. Undimensioned drawing, scaled for this spec. Accessed 2026-11-21. | [snapshot](https://patentimages.storage.googleapis.com/f2/13/08/42f97eafb8047a/US4181419.pdf) | 2026-11-21 | low |
+| `lr-ph1` | field_photo | HBR, “R-Mount of Leicaflex SL.JPG” (R-Bajonett einer Leicaflex SL), Wikimedia Commons, 2009-06-28. Accessed 2026-11-21. | [snapshot](https://upload.wikimedia.org/wikipedia/commons/0/0c/R-Mount_of_Leicaflex_SL.JPG) | 2026-11-21 | medium |
+| `lr-p4` | patent | P. Loseries, Ernst Leitz GmbH, DE1810353 (filed 1968-11-22; B2 1977, C3 1977), “Bajonettverriegelung”. Accessed 2026-11-21. | [snapshot](https://depatisnet.dpma.de/DepatisNet/depatisnet?action=pdf&docid=DE000001810353C3) | 2026-11-21 | low |
+| `lr-p2` | patent | H. Broschke, W. Holle and W. Wiessner (Ernst Leitz GmbH), US3427946, “Single lens reflex cameras,” 1969 (German priority application L 51,782). Accessed 2026-11-21. | [snapshot](https://patentimages.storage.googleapis.com/88/f6/bb/ea685e4f228feb/US3427946.pdf) | 2026-11-21 | high |
+| `lr-p3` | patent | W. Schlapp and W. Wiessner (Ernst Leitz Wetzlar GmbH), US4504134, “Photographic objective with automatic diaphragm,” 1985. Accessed 2026-11-21. | [snapshot](https://patentimages.storage.googleapis.com/09/ce/2e/4b010ad69675dc/US4504134.pdf) | 2026-11-21 | medium |
 
 #### Open questions
 
-- Leica R cam variants and exact lug profile need measured drawings. _(Split R cam/ROM generations after sourcing service documentation.)_
+- No dimensioned drawing of the bayonet was found. The body flanges (347 to 42, 114 to 158 and 232.5 to 273.5 deg) are read off one straight-on photograph of a Leicaflex SL body mount, corrected for tilt with the six ring screws and good to about 3 deg; the ring diameter, screw circle and lock pin radius are scaled from the same photograph by taking the ring bore as the 49 mm throat. US4181419 FIG. 1a draws the same three flanges in a small sketch. DE1810353 (Leitz, 1968) Figs. 2 to 4 draw the stamped body bayonet ring with its openings at the top, right and left, the reverse of the photograph, so that schematic is not used. The lens lugs are drawn as the flange arcs they sit behind; their own lengths, every flange and lug radius, the lens flange diameter and all thicknesses are unsourced. _(Needs a Leitz service drawing, a Leicaflex or Leica R repair manual with the bayonet ring, or a calibrated measurement of a body and a lens rear. Searched: Google Patents (Leitz, bayonet, 1960 to 1985, 82 results) and the pages for US4181419, US3427946, US4504134, DE1810353, DE1772018, DE1282442, DE1220723, GB1096268; DEPATISnet for the DE1810353 figures; Wikimedia Commons; Leicaflex SL and R9 instructions; Wikipedia, apotelyt, JAPB, photoethnography. Only paid Leicaflex service manuals were located.)_
+- The turn to lock is stated by Leitz only as short or slight. 45 deg is scaled from one three-quarter view (Leicaflex SL instructions p. 4) and could be off by 10 deg or more; the earlier unsourced estimate was 60 deg. In the body photograph each entry gap is about 73 deg wide and a gap centre is 58 to 64 deg from the centre of the next flange clockwise, so a lug that starts centred in its gap and ends centred behind its flange would turn about 60 deg. Lug lengths are not sourced, so the photograph does not settle it. _(Measure on a body and lens, or find a service drawing.)_
+- Cam, R-cam and contact-strip angles are scaled from two small lens-rear photos (R9 instructions p. 128) and clocked by the lock notch, placed at the 253.5 deg of the body pin in the Leicaflex SL photograph. Wikipedia instead rounds cam 1 to 12 o'clock and cams 2 and 3 to 6 o'clock, 20 to 45 deg from the scaled values. No radius, arc length or cam rise is sourced, so the radii are unknown and the markers sit at a placeholder radius. The two body followers come from a patent figure of a camera the patent presents as an example only; the Leicaflex and SL / SL2 body feelers are not placed at all. _(Needs a dimensioned Leitz drawing of the lens rear or a measured lens of each generation.)_
+- The ROM strip is one marker per side. The number of contacts, their pitch, pad size and radius were not found in any source that could be cited; the R9 instructions call it only a contact strip. The 3-cam MVP profile has no contacts, so contactCount stays not_applicable. _(Find a Leica patent or service document for the R8 lens contacts (none located), or count and measure on a ROM lens and an R8 / R9 body.)_
+- R-only and ROM lenses are said to have a slightly altered bayonet that keeps them off Leicaflex bodies. No source describes the alteration, so those profiles draw the base bayonet unchanged. The automatic-diaphragm lever and its body lever are documented (US4504134) but no source gives their angle, so they are not drawn. _(Compare an R-only lens flange with a 3-cam one, or find the Leitz conversion instructions.)_
 
 ### `m42` — M42
 
@@ -2595,7 +2797,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 **Camera-side front view** — viewBox `-28 -28 56 56` · 58 elements in 4 layers · hash `2d574df2` ([standalone SVG](mounts/micro-four-thirds-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-26 -27 52 53` · 52 elements in 4 layers · hash `744b0ab6` ([standalone SVG](mounts/micro-four-thirds-lens-rear.svg))
+**Lens-side rear view** — viewBox `-26 -27 52 53` · 52 elements in 4 layers · hash `ac2bf37e` ([standalone SVG](mounts/micro-four-thirds-lens-rear.svg))
 
 **Axial / register schematic** — viewBox `-25 -31 32 58` · 14 elements in 2 layers · hash `d21e78fb` ([standalone SVG](mounts/micro-four-thirds-axial.svg))
 
@@ -2684,83 +2886,88 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 |---|---|
 | Mount ID | `minolta-sr` |
 | Display label | Minolta SR |
-| Project note | Minolta SR manual-focus SLR bayonet mount. |
+| Project note | Minolta SR manual-focus SLR bayonet mount (SR, MC and MD generations). |
 | Research status | `partial` |
 | MVP status | `renderable` |
 | Mount mechanism | `bayonet` (lock `sprung_detent`) |
 | Base profile | `minolta-sr/base` |
-| Selected MVP profile | `minolta-sr/base` |
-| Variant strategy | `base_only` |
+| Selected MVP profile | `minolta-sr/md` |
+| Variant strategy | `variant_profiles_defined` |
 
 #### Base and variant profile matrix
 
 | Profile ID | Type | Applies to | Adds | Removes | Changes |
 |---|---|---|---|---|---|
-| `minolta-sr/base` | base | Minolta SR, MC, and MD manual-focus lenses and bodies | three-lug bayonet; aperture and meter coupling levers | electrical contacts | SR/MC/MD couplings are collapsed for MVP rendering |
+| `minolta-sr/base` | base | every Minolta SR-mount body and lens, 1958 to 2001 (SR, MC and MD generations) | three-lug bayonet on a 44.97 mm body bore; red mounting index; lens lock released by a button beside the mount; automatic-diaphragm lever inside the mirror box | — | — |
+| `minolta-sr/sr` | variant | SR bodies and Auto Rokkor lenses, 1958 to 1966 | — | — | automatic diaphragm only: no coupling lug on the aperture ring and no follower on the body, so the figure is the base alone |
+| `minolta-sr/mc` | variant | MC (meter-coupled) lenses and full-aperture-metering bodies, 1966 to 1977 | meter-coupling lug on the aperture ring; its follower on a ring around the body mount | — | the lug reports how many stops the ring is set below full aperture |
+| `minolta-sr/md` | variant | MD lenses and shutter-priority or program bodies (XD, X-700 and later), 1977 to 2001 | minimum-aperture lug on the aperture ring; its follower lever beside the meter-coupling follower on the body | — | keeps the meter-coupling lug unchanged; the second lug reaches its follower only with the ring at minimum aperture and reports whether that is f/16, f/22 or f/32 |
 
 #### Dimensional summary
 
 | Field | Value | Unit |
 |---|---|---|
 | Flange focal distance | 43.5 (`secondary`) | mm |
-| Nominal throat diameter | 45 (`secondary`) | mm |
-| Effective clear aperture | 45 (`secondary`) | mm |
-| Camera mount outer diameter | 55 (`photo_scaled`) | mm |
+| Nominal throat diameter | 44.97 (`secondary`) | mm |
+| Effective clear aperture | 41.9 (`photo_scaled`) | mm |
+| Camera mount outer diameter | 57.3 (`photo_scaled`) | mm |
 | Lens mount outer diameter | 53 (`photo_scaled`) | mm |
 | Contact count | not_applicable (`not_applicable`) | count |
-| Lock rotation | 60 (`photo_scaled`) | deg |
-| Lock direction | clockwise (`photo_scaled`) | — |
+| Lock rotation | 54 (`secondary`) | deg |
+| Lock direction | clockwise (`official`) | — |
 
-#### Figures (selected profile `minolta-sr/base`)
+#### Figures (selected profile `minolta-sr/md`)
 
-**Camera-side front view** — viewBox `-34 -35 68 69` · 37 elements in 4 layers · hash `86001b45` ([standalone SVG](mounts/minolta-sr-camera-front.svg))
+**Camera-side front view** — viewBox `-35 -37 70 72` · 39 elements in 4 layers · hash `473728fa` ([standalone SVG](mounts/minolta-sr-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-33 -34 66 67` · 32 elements in 4 layers · hash `e39e4b25` ([standalone SVG](mounts/minolta-sr-lens-rear.svg))
+**Lens-side rear view** — viewBox `-33 -35 66 68` · 33 elements in 4 layers · hash `0203d1e3` ([standalone SVG](mounts/minolta-sr-lens-rear.svg))
 
-**Axial / register schematic** — viewBox `-50 -38 58 72` · 12 elements in 2 layers · hash `f4c52f13` ([standalone SVG](mounts/minolta-sr-axial.svg))
+**Axial / register schematic** — viewBox `-50 -39 58 74` · 12 elements in 2 layers · hash `86c74519` ([standalone SVG](mounts/minolta-sr-axial.svg))
 
 #### Camera-side front-view geometry
 
 | Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
 |---|---|---|---|---|---|---|---|
-| `body-throat` | body_throat | `minolta-sr/base` | 0° | 0° | 360° | 0 | 22.5 |
-| `body-mount-ring` | mount_ring | `minolta-sr/base` | 0° | 0° | 360° | 22.5 | 27.5 |
-| `body-slot-1` | bayonet_receiving_slot | `minolta-sr/base` | 20° | 0° | 40° | 22.5 | 25 |
-| `body-slot-2` | bayonet_receiving_slot | `minolta-sr/base` | 140° | 120° | 160° | 22.5 | 25 |
-| `body-slot-3` | bayonet_receiving_slot | `minolta-sr/base` | 260° | 240° | 280° | 22.5 | 25 |
-| `body-index-mark` | index_mark | `minolta-sr/base` | 0° | unknown | unknown | unknown | 28 |
+| `body-throat` | body_throat | `minolta-sr/base` | 0° | 0° | 360° | 0 | 22.485 |
+| `body-mount-ring` | mount_ring | `minolta-sr/base` | 0° | 0° | 360° | 22.485 | 28.65 |
+| `body-slot-1` | bayonet_receiving_slot | `minolta-sr/base` | 359° | 325° | 33° | 20.95 | 22.485 |
+| `body-slot-2` | bayonet_receiving_slot | `minolta-sr/base` | 122° | 85° | 159° | 20.95 | 22.485 |
+| `body-slot-3` | bayonet_receiving_slot | `minolta-sr/base` | 244.5° | 219° | 270° | 20.95 | 22.485 |
+| `body-index-mark` | index_mark | `minolta-sr/base` | 1° | unknown | unknown | unknown | 25.5 |
 | `body-lock-pin` | lock_pin | `minolta-sr/base` | 90° | unknown | unknown | unknown | 23.5 |
 
 #### Lens-side rear-view geometry
 
 | Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
 |---|---|---|---|---|---|---|---|
-| `lens-throat` | lens_throat | `minolta-sr/base` | 0° | 0° | 360° | 0 | 21.5 |
-| `lens-mount-ring` | lens_mount_ring | `minolta-sr/base` | 0° | 0° | 360° | 21.5 | 26.5 |
-| `lens-lug-1` | bayonet_lug | `minolta-sr/base` | 20° | 0° | 40° | 22.5 | 25 |
-| `lens-lug-2` | bayonet_lug | `minolta-sr/base` | 140° | 120° | 160° | 22.5 | 25 |
-| `lens-lug-3` | bayonet_lug | `minolta-sr/base` | 260° | 240° | 280° | 22.5 | 25 |
-| `lens-index-mark` | index_mark | `minolta-sr/base` | 0° | unknown | unknown | unknown | 27 |
+| `lens-throat` | lens_throat | `minolta-sr/base` | 0° | 0° | 360° | 0 | unknown |
+| `lens-mount-ring` | lens_mount_ring | `minolta-sr/base` | 0° | 0° | 360° | unknown | 26.5 |
+| `lens-lug-1` | bayonet_lug | `minolta-sr/base` | 359° | 331.5° | 26.5° | 20.95 | 22.485 |
+| `lens-lug-2` | bayonet_lug | `minolta-sr/base` | 122° | 96° | 148° | 20.95 | 22.485 |
+| `lens-lug-3` | bayonet_lug | `minolta-sr/base` | 244.5° | 214.5° | 274.5° | 20.95 | 22.485 |
+| `lens-index-mark` | index_mark | `minolta-sr/base` | 1° | unknown | unknown | unknown | 27 |
 | `lens-lock-notch` | lock_notch | `minolta-sr/base` | 90° | unknown | unknown | unknown | 23.5 |
 
 #### Mechanical couplings
 
 | Feature | Side | Profile | Function |
 |---|---|---|---|
-| `aperture-actuation-lever` | both | `minolta-sr/base` | stops down aperture at exposure |
-| `meter-coupling-tab` | lens | `minolta-sr/base` | reports aperture setting to body |
+| `aperture-actuation-lever` | both | `minolta-sr/base` | holds the lens diaphragm open and lets it stop down at exposure |
+| `meter-coupling-tab` | both | `minolta-sr/mc` | reports how many stops the aperture ring is set below full aperture |
+| `meter-coupling-tab-md` | both | `minolta-sr/md` | reports how many stops the aperture ring is set below full aperture |
+| `minimum-aperture-tab` | both | `minolta-sr/md` | signals that the ring is at minimum aperture and whether that is f/16, f/22 or f/32 |
 
 #### Axial stack
 
 | Plane | z (mm) | Diameter (mm) |
 |---|---|---|
-| `flange_datum` | 0 | 55 |
-| `bayonet_lug_engagement` | 1.2 | 50 |
+| `flange_datum` | 0 | 57.3 |
+| `bayonet_lug_engagement` | 1.2 | 44.97 |
 | `sensor_film_plane` | -43.5 | 43.3 |
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/minolta-sr.mount.ts` (26077 bytes, content hash `33eee8d8`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/minolta-sr.mount.ts` (44508 bytes, content hash `c60a4e65`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -2768,10 +2975,25 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 |---|---|---|---|---|---|
 | `msr-1` | secondary | “Flange focal distance,” Wikipedia. Accessed 2026-06-06. | [snapshot](http://web.archive.org/web/20260526152456/https://en.wikipedia.org/wiki/Flange_focal_distance) | 2026-05-26 | medium |
 | `msr-2` | secondary | Minolta SR/MC/MD mount visual references. Accessed 2026-06-06. | [snapshot](unknown) | unknown | low |
+| `msr-3` | secondary | “Lens mount,” Wikipedia, table of lens mounts, revision of 2026-11-13. Accessed 2026-11-21. Second copy: the permanent link to that revision. | [snapshot](https://en.wikipedia.org/w/index.php?title=Lens_mount&oldid=1385498741) | 2026-11-21 | low |
+| `msr-4` | secondary | “Minolta SR-mount,” Wikipedia, revision of 2025-02-20. Accessed 2026-11-21. Second copy: the permanent link to that revision. | [snapshot](https://en.wikipedia.org/w/index.php?title=Minolta_SR-mount&oldid=1276636299) | 2026-11-21 | medium |
+| `msr-5` | secondary | S. H. Westin, “Alphabetical List of Camera Mounts,” data from W.-J. Markerink, last modified 2016-02-11. Accessed 2026-11-21. Second copy: the same row on the site's by-register page. | [snapshot](https://www.graphics.cornell.edu/~westin/misc/mounts-by-register.html) | 2026-11-21 | low |
+| `msr-p1` | patent | Y. Kuramoto, H. Ueda, and K. Uesugi (Minolta Camera K.K.), US4118726A, "Exchangeable lenses for use in internal light measuring type single lens reflex cameras," filed 1977-02-17, issued 1978-10-03. Accessed 2026-11-21. | [snapshot](https://patentimages.storage.googleapis.com/4f/58/80/5dae08a1eaedb7/US4118726.pdf) | 2026-11-21 | high |
+| `msr-m1` | official | Minolta Camera Co., Ltd., Minolta X-700 instruction manual, “Mounting and care of lenses,” p. 11. Accessed 2026-11-21. Second copy: the scan hosted by cameramanuals.org (PDF page 14). | [snapshot](https://www.cameramanuals.org/minolta_pdf/minolta_x-700.pdf) | 2026-11-21 | high |
+| `msr-c1` | secondary | Runner1616, “Minolta SR mount” (female mount of a Minolta SR-1), photograph, Wikimedia Commons, 2025-02-25, CC BY-SA 4.0. Accessed 2026-11-21. Second copy: the original file on upload.wikimedia.org. | [snapshot](https://upload.wikimedia.org/wikipedia/commons/9/96/Minolta_SR_mount.jpg) | 2026-11-21 | low |
+| `msr-c2` | secondary | M. Pettitt, “Close-up front view of Minolta X-700 SLR camera without lens,” photograph, Wikimedia Commons (from Flickr), 2022-04-15, CC BY 2.0. Accessed 2026-11-21. Second copy: the original file on upload.wikimedia.org. | [snapshot](https://upload.wikimedia.org/wikipedia/commons/d/dc/Close-up_front_view_of_Minolta_X-700_SLR_camera_without_lens.jpg) | 2026-11-21 | low |
+| `msr-c3` | secondary | smial, “Bajonett manual minolta” (Minolta XD-7 body and MC Rokkor 58 mm f/1.4 rear), photograph, Wikimedia Commons, 2005-12-09, CC BY-SA 2.0 DE. Accessed 2026-11-21. Second copy: the original file on upload.wikimedia.org. | [snapshot](https://upload.wikimedia.org/wikipedia/commons/4/4b/Bajonett_manual_minolta.jpg) | 2026-11-21 | low |
 
 #### Open questions
 
-- Exact SR/MC/MD lever clocking and lug dimensions are photo-scaled. _(Split generation variants after measured Minolta examples are available.)_
+- No dimensioned source for the bayonet was found. The body flanges come from one SR-1 photograph (about +/-3 deg), and the lens lugs are drawn behind them at the width of the gaps they enter through, an upper bound, because no usable lens-rear photograph was found, so true lug arcs, lug thickness and the flange ramp are unknown. The 1.8 mm depth and the axial lug plane still rest on the unsourced first draft [msr-2]. _(A Minolta mount drawing, a patent with stated angles, or a calibrated measurement of a body ring and a lens bayonet.)_
+- Every photo-scaled millimetre value assumes the Wikipedia 44.97 mm throat is the bore the lugs pass through. The table row has no reference and does not define the diameter. On that scale the clear opening between the flanges is 41.9 mm and the ring is 57.3 mm across; Westin's list gives an undefined 41 mm. _(A sourced bore and flange diameter.)_
+- The 54 deg locking turn is known only from the unreferenced Wikipedia table, which shows the same figure for the Minolta A mount. The first draft used 60. The body photo allows roughly 51 to 63 deg, so it does not decide between them; the manual states the direction but no angle. _(A Minolta figure for the turn, or the angle between the red dot and the aperture index measured on a lens.)_
+- The lock pin and notch position (90 deg, 23.5 mm) still rests only on the unsourced first draft [msr-2]. Neither body photograph shows the latch. Two places would fit the flange geometry: the start of the right-hand flange at about 85 deg, and the pocket at the end of the top flange at about 30 to 35 deg. _(A service-manual exploded view of the mount, or a photograph with the latch visible.)_
+- Lens-side sizes still on the unsourced first draft [msr-2]: flange outer diameter 53 mm and index radius 27 mm. The lens rear opening is now unknown; its first-draft 21.5 mm radius could not pass the 41.9 mm clear opening. _(A square-on lens-rear photograph with a scale, or a lens service drawing.)_
+- The meter-coupling and minimum-aperture followers are placed from one X-700 photograph at rest with no lens. The MC profile reuses that position because no square-on photo of a 1966-era body was found. Lug sizes, travel per stop and the three minimum-aperture offsets are not dimensioned; US4118726A states the scheme only. _(Minolta SR-T, XD or X-700 service-manual dimensions for the coupling ring and lever, or measured lenses.)_
+- The 43.5 mm register is a Wikipedia table value. The Minolta X-700 service manual gives a body back of 43.72 +0.01/-0.02 mm measured to the pressure-plate contact surface, which is a different plane; it was not added as a source because no second copy on another host was found. _(A Minolta statement of the film-plane register.)_
+- The body index is read from the X-700 only. The SR-1 photograph shows no index on the ring face, so its position on 1958-era bodies is not confirmed. _(A front photograph or manual figure of an SR-1, SR-2 or SR-7 showing the index.)_
 
 ### `nikon-1` — Nikon 1
 
@@ -2810,7 +3032,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 **Camera-side front view** — viewBox `-30 -31 60 61` · 60 elements in 4 layers · hash `c47372cd` ([standalone SVG](mounts/nikon-1-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-29 -30 58 59` · 54 elements in 4 layers · hash `84688f0d` ([standalone SVG](mounts/nikon-1-lens-rear.svg))
+**Lens-side rear view** — viewBox `-29 -30 58 59` · 54 elements in 4 layers · hash `10f99389` ([standalone SVG](mounts/nikon-1-lens-rear.svg))
 
 **Axial / register schematic** — viewBox `-23 -34 30 64` · 14 elements in 2 layers · hash `17aba5b6` ([standalone SVG](mounts/nikon-1-axial.svg))
 
@@ -2941,7 +3163,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 **Camera-side front view** — viewBox `-34 -35 68 69` · 56 elements in 5 layers · hash `96727b9b` ([standalone SVG](mounts/nikon-f-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-32 -32 64 64` · 56 elements in 5 layers · hash `40f529fa` ([standalone SVG](mounts/nikon-f-lens-rear.svg))
+**Lens-side rear view** — viewBox `-32 -32 64 64` · 56 elements in 5 layers · hash `eda151ca` ([standalone SVG](mounts/nikon-f-lens-rear.svg))
 
 **Axial / register schematic** — viewBox `-53 -37 61 70` · 12 elements in 2 layers · hash `6318edcf` ([standalone SVG](mounts/nikon-f-axial.svg))
 
@@ -3042,64 +3264,73 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 |---|---|
 | Mount ID | `nikon-s` |
 | Display label | Nikon S |
-| Project note | Nikon S rangefinder bayonet mount. |
+| Project note | Nikon S rangefinder double bayonet: an inner bayonet in the body's focusing helicoid for 5 cm lenses and a fixed outer bayonet for wide-angle and telephoto lenses. |
 | Research status | `partial` |
 | MVP status | `renderable` |
 | Mount mechanism | `hybrid` (lock `sprung_detent`) |
 | Base profile | `nikon-s/base` |
-| Selected MVP profile | `nikon-s/base` |
-| Variant strategy | `base_only` |
+| Selected MVP profile | `nikon-s/outer-bayonet` |
+| Variant strategy | `variant_profiles_defined` |
 
 #### Base and variant profile matrix
 
 | Profile ID | Type | Applies to | Adds | Removes | Changes |
 |---|---|---|---|---|---|
-| `nikon-s/base` | base | Nikon S rangefinder lenses and bodies | internal/external rangefinder bayonet; rangefinder focusing coupling | SLR mirror clearance | inner/outer bayonet detail is simplified for MVP rendering |
+| `nikon-s/base` | base | Nikon I, M, S, S2, SP, S3, S4 and S3M bodies | bore of the focusing helicoid (internal bayonet diameter); rotating helicoid ring with the distance scale; fixed outer ring; red-dot mounting index on the front plate; 34.85 mm register | electrical contacts; SLR mirror clearance | — |
+| `nikon-s/inner-bayonet` | variant | standard 5 cm lenses, which have no helicoid and focus with the body's | three unequal receiving slots in the helicoid bore; spring catch on the helicoid ring that holds the lens | outer bayonet lugs and hooks (present on the body but not used by these lenses) | lens turns counter-clockwise, seen from the front, until it clicks; about 41 deg from the red dot to the catch on the Nikon SP photograph |
+| `nikon-s/outer-bayonet` | variant | wide-angle and telephoto lenses, which carry their own focusing helicoid | three fixed outward lugs on the outer ring; three inward hooks in the lens skirt | inner receiving slots as a lens seat | lens turns counter-clockwise, seen from the front, until it clicks and the safety catch on the lens sets; the angle of the turn is not stated |
 
 #### Dimensional summary
 
 | Field | Value | Unit |
 |---|---|---|
 | Flange focal distance | 34.85 (`secondary`) | mm |
-| Nominal throat diameter | 44 (`photo_scaled`) | mm |
-| Effective clear aperture | 44 (`photo_scaled`) | mm |
-| Camera mount outer diameter | 52 (`photo_scaled`) | mm |
+| Nominal throat diameter | 36.5 (`secondary`) | mm |
+| Effective clear aperture | 34 (`secondary`) | mm |
+| Camera mount outer diameter | 49 (`secondary`) | mm |
 | Lens mount outer diameter | 50 (`photo_scaled`) | mm |
 | Contact count | not_applicable (`not_applicable`) | count |
-| Lock rotation | 45 (`photo_scaled`) | deg |
-| Lock direction | clockwise (`photo_scaled`) | — |
+| Lock rotation | unknown (`unknown`) | deg |
+| Lock direction | counterclockwise (`official`) | — |
 
-#### Figures (selected profile `nikon-s/base`)
+#### Figures (selected profile `nikon-s/outer-bayonet`)
 
-**Camera-side front view** — viewBox `-32 -33 64 65` · 31 elements in 4 layers · hash `f15a633c` ([standalone SVG](mounts/nikon-s-camera-front.svg))
+**Camera-side front view** — viewBox `-32 -32 64 64` · 29 elements in 4 layers · hash `68dd7c35` ([standalone SVG](mounts/nikon-s-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-31 -32 62 63` · 31 elements in 4 layers · hash `3b0cc2d4` ([standalone SVG](mounts/nikon-s-lens-rear.svg))
+**Lens-side rear view** — viewBox `-31 -32 62 63` · 27 elements in 4 layers · hash `70446de1` ([standalone SVG](mounts/nikon-s-lens-rear.svg))
 
-**Axial / register schematic** — viewBox `-41 -36 48 68` · 12 elements in 2 layers · hash `12ef402c` ([standalone SVG](mounts/nikon-s-axial.svg))
+**Axial / register schematic** — viewBox `-41 -34 48 64` · 12 elements in 2 layers · hash `222cb50d` ([standalone SVG](mounts/nikon-s-axial.svg))
 
 #### Camera-side front-view geometry
 
 | Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
 |---|---|---|---|---|---|---|---|
-| `body-throat` | body_throat | `nikon-s/base` | 0° | 0° | 360° | 0 | 22 |
-| `body-mount-ring` | mount_ring | `nikon-s/base` | 0° | 0° | 360° | 22 | 26 |
-| `body-slot-1` | bayonet_receiving_slot | `nikon-s/base` | 0° | 344° | 16° | 22 | 24.5 |
-| `body-slot-2` | bayonet_receiving_slot | `nikon-s/base` | 120° | 104° | 136° | 22 | 24.5 |
-| `body-slot-3` | bayonet_receiving_slot | `nikon-s/base` | 240° | 224° | 256° | 22 | 24.5 |
-| `body-index-mark` | index_mark | `nikon-s/base` | 0° | unknown | unknown | unknown | 26.5 |
-| `body-lock-pin` | lock_pin | `nikon-s/base` | 90° | unknown | unknown | unknown | 23 |
+| `body-throat` | body_throat | `nikon-s/base` | 0° | 0° | 360° | 0 | 18.25 |
+| `body-helicoid-ring` | mount_ring | `nikon-s/base` | 0° | 0° | 360° | 18.25 | 21.4 |
+| `body-mount-ring` | mount_ring | `nikon-s/base` | 0° | 0° | 360° | 21.4 | 23.1 |
+| `body-slot-1` | bayonet_receiving_slot | `nikon-s/inner-bayonet` | 324° | 288° | 0° | 17 | 18.25 |
+| `body-slot-2` | bayonet_receiving_slot | `nikon-s/inner-bayonet` | 83° | 60° | 106° | 17 | 18.25 |
+| `body-slot-3` | bayonet_receiving_slot | `nikon-s/inner-bayonet` | 207° | 181° | 233° | 17 | 18.25 |
+| `body-outer-lug-1` | outer_bayonet_lug | `nikon-s/outer-bayonet` | 359° | 332° | 26° | 23.1 | 24.5 |
+| `body-outer-lug-2` | outer_bayonet_lug | `nikon-s/outer-bayonet` | 125° | 109° | 141° | 23.1 | 24.5 |
+| `body-outer-lug-3` | outer_bayonet_lug | `nikon-s/outer-bayonet` | 234° | 219° | 249° | 23.1 | 24.5 |
+| `body-index-mark` | index_mark | `nikon-s/base` | 66° | unknown | unknown | unknown | 26.6 |
+| `body-lock-pin` | lock_pin | `nikon-s/inner-bayonet` | 25.5° | 20° | 31° | 20.2 | 20.7 |
 
 #### Lens-side rear-view geometry
 
 | Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
 |---|---|---|---|---|---|---|---|
-| `lens-throat` | lens_throat | `nikon-s/base` | 0° | 0° | 360° | 0 | 21 |
-| `lens-mount-ring` | lens_mount_ring | `nikon-s/base` | 0° | 0° | 360° | 21 | 25 |
-| `lens-lug-1` | bayonet_lug | `nikon-s/base` | 0° | 344° | 16° | 22 | 24.5 |
-| `lens-lug-2` | bayonet_lug | `nikon-s/base` | 120° | 104° | 136° | 22 | 24.5 |
-| `lens-lug-3` | bayonet_lug | `nikon-s/base` | 240° | 224° | 256° | 22 | 24.5 |
-| `lens-index-mark` | index_mark | `nikon-s/base` | 0° | unknown | unknown | unknown | 25.5 |
-| `lens-lock-notch` | lock_notch | `nikon-s/base` | 90° | unknown | unknown | unknown | 23 |
+| `lens-throat` | lens_throat | `nikon-s/base` | unknown | unknown | unknown | unknown | unknown |
+| `lens-index-mark` | index_mark | `nikon-s/base` | 66° | unknown | unknown | unknown | unknown |
+| `lens-lug-1` | bayonet_lug | `nikon-s/inner-bayonet` | 324° | 308° | 340° | 17 | 18.25 |
+| `lens-lug-2` | bayonet_lug | `nikon-s/inner-bayonet` | 83° | 67° | 99° | 17 | 18.25 |
+| `lens-lug-3` | bayonet_lug | `nikon-s/inner-bayonet` | 207° | 191° | 223° | 17 | 18.25 |
+| `lens-lock-notch` | lock_notch | `nikon-s/inner-bayonet` | 25.5° | unknown | unknown | 20.2 | 20.7 |
+| `lens-mount-ring` | lens_mount_ring | `nikon-s/outer-bayonet` | 0° | 0° | 360° | 23.1 | 25 |
+| `lens-outer-hook-1` | outer_bayonet_hook | `nikon-s/outer-bayonet` | 359° | 343° | 15° | 23.1 | 24.5 |
+| `lens-outer-hook-2` | outer_bayonet_hook | `nikon-s/outer-bayonet` | 125° | 109° | 141° | 23.1 | 24.5 |
+| `lens-outer-hook-3` | outer_bayonet_hook | `nikon-s/outer-bayonet` | 234° | 218° | 250° | 23.1 | 24.5 |
 
 #### Mechanical couplings
 
@@ -3111,13 +3342,13 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 | Plane | z (mm) | Diameter (mm) |
 |---|---|---|
-| `flange_datum` | 0 | 52 |
+| `flange_datum` | 0 | 49 |
 | `bayonet_lug_engagement` | 1.2 | 47 |
 | `sensor_film_plane` | -34.85 | 43.3 |
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/nikon-s.mount.ts` (24651 bytes, content hash `2ec9eb3c`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/nikon-s.mount.ts` (43887 bytes, content hash `809d9fe0`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -3125,10 +3356,20 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 |---|---|---|---|---|---|
 | `ns-1` | secondary | “Flange focal distance,” Wikipedia. Accessed 2026-06-06. | [snapshot](http://web.archive.org/web/20260526152456/https://en.wikipedia.org/wiki/Flange_focal_distance) | 2026-05-26 | medium |
 | `ns-2` | secondary | Nikon S rangefinder mount visual references. Accessed 2026-06-06. | [snapshot](unknown) | unknown | low |
+| `ns-3` | secondary | “Nikon S-mount,” Wikipedia, revision of 2026-10-07. Accessed 2026-11-21. | [snapshot](https://en.wikipedia.org/w/index.php?title=Nikon_S-mount&oldid=1378943424) | 2026-11-21 | low |
+| `ns-4` | secondary | “Lens mount,” Wikipedia, revision of 2026-11-13, comparison table. Accessed 2026-11-21. | [snapshot](https://en.wikipedia.org/w/index.php?title=Lens_mount&oldid=1385498741) | 2026-11-21 | medium |
+| `ns-5` | field_photo | S. Shenoy, “Nikon-S-mount.jpg,” Wikimedia Commons, 2009-11-21, CC BY 3.0 (Nikon SP body without lens). Accessed 2026-11-21. | [snapshot](https://upload.wikimedia.org/wikipedia/commons/3/3b/Nikon-S-mount.jpg) | 2026-11-21 | medium |
+| `ns-m1` | official | Nippon Kogaku, Nikon SP Instructions, “Changing Lenses,” pp. 14–15, figs. 14–15; scan in M. Butkus’s camera manual library. Accessed 2026-11-21. | [snapshot](https://www.cameramanuals.org/nikon_pdf/nikon_sp.pdf) | 2026-11-21 | high |
+| `ns-6` | secondary | “Байонет Contax RF,” Russian Wikipedia, revision of 2025-07-16; its Nikon passage cites K. Nakamura (Photoethnography) and S. Gandy (CameraQuest). Accessed 2026-11-21. | [snapshot](https://ru.wikipedia.org/w/index.php?title=%D0%91%D0%B0%D0%B9%D0%BE%D0%BD%D0%B5%D1%82_Contax_RF&oldid=146423487) | 2026-11-21 | medium |
 
 #### Open questions
 
-- Nikon S inner/outer bayonet and Contax compatibility differences need a split, measured profile. _(Upgrade with measured Nikon S and Contax rangefinder samples.)_
+- Every angle here comes from one photograph of a Nikon SP body, not from a dimensioned drawing. Outer lug ends, the catch and the red dot are good to about 3 deg; the inner slot edges sit in shadow and are good to about 5 deg. _(Replace with a Nippon Kogaku drawing, a repair manual with a dimensioned mount, or a calibrated measurement of a body. The Nikon SP repair manual compiled by E. Romney (1984) shows the focusing mount only in undimensioned exploded views and sets the flange distance with shims without stating it.)_
+- The instruction book gives the direction of the locking turn but not its angle. The Zeiss Ikon Contax II book states 90 deg for outer-bayonet lenses, and the outer lugs measured here sit within about 3 deg of those on a Contax-pattern body, but no usable source states the Nikon angle. _(Confirm on a body or from Nippon Kogaku documentation; then set the lock angle from the 66 deg red dot.)_
+- Lens-side lug and hook widths are a 32 deg stand-in from the earlier label-only reference [ns-2], as are the 50 mm lens flange diameter and the lug engagement plane in the axial view. No lens-rear source was found, and the safety catch on wide-angle and telephoto lenses is not drawn because its position is not sourced. _(Measure or photograph square-on the rear of a 5 cm Nikkor and of an outer-mount Nikkor.)_
+- The register of the inner bayonet is not drawn. A Japanese adapter review gives 31.95 mm for Nikon S against 31.75 mm for Contax, and one mount list gives 34.54 mm instead of 34.85 mm for the outer register; neither could be added as a source. _(Confirm both registers from Nikon documentation or a measured body.)_
+- The nominal throat was 44 mm; it is now the 36.5 mm internal bayonet, with the 34 mm table throat as the clear opening. Both are uncited Wikipedia figures; on the photograph the bore scales to roughly 35.5 mm. _(Confirm the bore and lip diameters against a drawing or a measured body.)_
+- What separates Nikon S from Contax is not drawn: the body helicoid is matched to a 5 cm lens of about 51.6 mm focal length against about 52.3 mm for Contax, so the two agree at infinity and drift apart at close range [ns-6]. No helicoid lead or rotation figure was found, and the rangefinder coupling marker is still the earlier stand-in position [ns-2]. _(Add the helicoid lead and the rangefinder cam travel from a repair manual if one states them.)_
 
 ### `nikon-z` — Nikon Z
 
@@ -3167,7 +3408,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 **Camera-side front view** — viewBox `-41 -42 82 83` · 62 elements in 4 layers · hash `6e425bab` ([standalone SVG](mounts/nikon-z-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-39 -41 78 80` · 54 elements in 4 layers · hash `c579251b` ([standalone SVG](mounts/nikon-z-lens-rear.svg))
+**Lens-side rear view** — viewBox `-39 -41 78 80` · 54 elements in 4 layers · hash `4e5bf093` ([standalone SVG](mounts/nikon-z-lens-rear.svg))
 
 **Axial / register schematic** — viewBox `-23 -44 31 84` · 14 elements in 2 layers · hash `74eab9f8` ([standalone SVG](mounts/nikon-z-axial.svg))
 
@@ -3366,50 +3607,50 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 | Profile ID | Type | Applies to | Adds | Removes | Changes |
 |---|---|---|---|---|---|
-| `pentax-110/base` | base | Pentax Auto 110 lenses and bodies | two-tab miniature bayonet interface; in-body aperture/shutter system | lens aperture mechanism; electrical contacts | rendered geometry is photo-scaled |
+| `pentax-110/base` | base | Pentax Auto 110 and Auto 110 Super bodies and Pentax-110 lenses | two-tab miniature bayonet interface; in-body aperture/shutter system | lens aperture mechanism; electrical contacts | lock rotation (about 90° clockwise) and index clocking follow the maker manual; throat uses a published value that conflicts with a second published value; lug sectors, ring diameters and lock-pin position are photo-scaled |
 
 #### Dimensional summary
 
 | Field | Value | Unit |
 |---|---|---|
 | Flange focal distance | 27 (`secondary`) | mm |
-| Nominal throat diameter | 25 (`photo_scaled`) | mm |
-| Effective clear aperture | 25 (`photo_scaled`) | mm |
+| Nominal throat diameter | 20.6 (`conflicting`) | mm |
+| Effective clear aperture | 20.6 (`conflicting`) | mm |
 | Camera mount outer diameter | 34 (`photo_scaled`) | mm |
 | Lens mount outer diameter | 32 (`photo_scaled`) | mm |
 | Contact count | not_applicable (`not_applicable`) | count |
-| Lock rotation | 45 (`photo_scaled`) | deg |
-| Lock direction | clockwise (`photo_scaled`) | — |
+| Lock rotation | 90 (`official`) | deg |
+| Lock direction | clockwise (`official`) | — |
 
 #### Figures (selected profile `pentax-110/base`)
 
-**Camera-side front view** — viewBox `-22 -22 44 44` · 26 elements in 3 layers · hash `90dbd7d0` ([standalone SVG](mounts/pentax-110-camera-front.svg))
+**Camera-side front view** — viewBox `-22 -22 44 44` · 26 elements in 3 layers · hash `91f67f7c` ([standalone SVG](mounts/pentax-110-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-20 -21 40 41` · 26 elements in 3 layers · hash `61c9eb6a` ([standalone SVG](mounts/pentax-110-lens-rear.svg))
+**Lens-side rear view** — viewBox `-20 -21 40 41` · 26 elements in 3 layers · hash `f356a507` ([standalone SVG](mounts/pentax-110-lens-rear.svg))
 
-**Axial / register schematic** — viewBox `-31 -25 36 46` · 12 elements in 2 layers · hash `b57405a2` ([standalone SVG](mounts/pentax-110-axial.svg))
+**Axial / register schematic** — viewBox `-31 -25 36 46` · 12 elements in 2 layers · hash `ef7f45ad` ([standalone SVG](mounts/pentax-110-axial.svg))
 
 #### Camera-side front-view geometry
 
 | Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
 |---|---|---|---|---|---|---|---|
-| `body-throat` | body_throat | `pentax-110/base` | 0° | 0° | 360° | 0 | 12.5 |
-| `body-mount-ring` | mount_ring | `pentax-110/base` | 0° | 0° | 360° | 12.5 | 17 |
-| `body-slot-1` | bayonet_receiving_slot | `pentax-110/base` | 0° | 339° | 21° | 12.5 | 15 |
-| `body-slot-2` | bayonet_receiving_slot | `pentax-110/base` | 180° | 159° | 201° | 12.5 | 15 |
-| `body-index-mark` | index_mark | `pentax-110/base` | 0° | unknown | unknown | unknown | 17.5 |
-| `body-lock-pin` | lock_pin | `pentax-110/base` | 90° | unknown | unknown | unknown | 13.5 |
+| `body-throat` | body_throat | `pentax-110/base` | 0° | 0° | 360° | 0 | 10.3 |
+| `body-mount-ring` | mount_ring | `pentax-110/base` | 0° | 0° | 360° | 10.3 | 17 |
+| `body-slot-1` | bayonet_receiving_slot | `pentax-110/base` | 0° | 339° | 21° | 10.3 | 12.8 |
+| `body-slot-2` | bayonet_receiving_slot | `pentax-110/base` | 180° | 159° | 201° | 10.3 | 12.8 |
+| `body-index-mark` | index_mark | `pentax-110/base` | 270° | unknown | unknown | unknown | 17.5 |
+| `body-lock-pin` | lock_pin | `pentax-110/base` | 90° | unknown | unknown | unknown | 11.3 |
 
 #### Lens-side rear-view geometry
 
 | Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
 |---|---|---|---|---|---|---|---|
-| `lens-throat` | lens_throat | `pentax-110/base` | 0° | 0° | 360° | 0 | 11.5 |
-| `lens-mount-ring` | lens_mount_ring | `pentax-110/base` | 0° | 0° | 360° | 11.5 | 16 |
-| `lens-lug-1` | bayonet_lug | `pentax-110/base` | 0° | 339° | 21° | 12.5 | 15 |
-| `lens-lug-2` | bayonet_lug | `pentax-110/base` | 180° | 159° | 201° | 12.5 | 15 |
-| `lens-index-mark` | index_mark | `pentax-110/base` | 0° | unknown | unknown | unknown | 16.5 |
-| `lens-lock-notch` | lock_notch | `pentax-110/base` | 90° | unknown | unknown | unknown | 13.5 |
+| `lens-throat` | lens_throat | `pentax-110/base` | 0° | 0° | 360° | 0 | 9.3 |
+| `lens-mount-ring` | lens_mount_ring | `pentax-110/base` | 0° | 0° | 360° | 9.3 | 16 |
+| `lens-lug-1` | bayonet_lug | `pentax-110/base` | 0° | 339° | 21° | 10.3 | 12.8 |
+| `lens-lug-2` | bayonet_lug | `pentax-110/base` | 180° | 159° | 201° | 10.3 | 12.8 |
+| `lens-index-mark` | index_mark | `pentax-110/base` | 270° | unknown | unknown | unknown | 16.5 |
+| `lens-lock-notch` | lock_notch | `pentax-110/base` | 90° | unknown | unknown | unknown | 11.3 |
 
 #### Mechanical couplings
 
@@ -3425,7 +3666,7 @@ None — fully electronic.
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/pentax-110.mount.ts` (21815 bytes, content hash `5d80fc6f`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/pentax-110.mount.ts` (27724 bytes, content hash `50d1a797`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -3433,10 +3674,15 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 |---|---|---|---|---|---|
 | `p110-1` | secondary | “Flange focal distance,” Wikipedia. Accessed 2026-06-06. | [snapshot](http://web.archive.org/web/20260526152456/https://en.wikipedia.org/wiki/Flange_focal_distance) | 2026-05-26 | medium |
 | `p110-2` | secondary | ISO3200.org, “Pentax 110 mount lenses.” Accessed 2026-06-06. | [snapshot](http://web.archive.org/web/20260508081500/https://iso3200.org/blog/references/pentax-110-mount-lenses/) | 2026-05-08 | medium |
+| `p110-3` | official | Asahi Optical Co., Pentax Auto 110 operating manual, pp. 4 and 12 (scan in the M. Butkus camera manual library). Accessed 2026-11-21. | [snapshot](https://www.cameramanuals.org/pentax_pdf/pentax_auto_110.pdf) | 2026-11-21 | high |
+| `p110-4` | secondary | “Lens mount,” Wikipedia, list of lens mounts, revision of 2026-11-13. Accessed 2026-11-21. | [snapshot](https://en.wikipedia.org/w/index.php?title=Lens_mount&oldid=1385498741) | 2026-11-21 | low |
 
 #### Open questions
 
-- Pentax 110 lug spans and throat diameter are photo-scaled; two-tab count and 27 mm register are sourced. _(Upgrade with measured Auto 110 body/lens samples.)_
+- Throat diameter is unresolved. Wikipedia's lens-mount list carries two Auto 110 rows, 19.5 mm (uncited) and 20.6 mm (cited to a hobbyist adapter model); the earlier 25 mm value in this file was an unsourced photo-scale. The figure draws 20.6 mm with the conflicting stroke. No maker dimension, patent or service-manual value was found. _(Measure the body throat on an Auto 110, or find the dimension in the Asahi Auto 110 service manual or a dimensioned mount drawing.)_
+- Tab geometry is a stand-in. The two-tab count is sourced, but tab centres (0°/180°), the 42° span, the 1.8 mm depth and the tab radii are not: the radii are generated from the throat radius plus a fixed 2.5 mm, not measured. Ring outer diameters (34 mm body, 32 mm lens) are photo-scaled with no identified photograph. _(Measure an Auto 110 body and a Pentax-110 lens rear, or scale a straight-on dimensioned photograph of each.)_
+- Lock-pin clock position (90°) and radius are photo-scaled. The manual only shows the release lever to the right of the mount seen from the front; it does not show where the pin meets the lens. _(Read the pin position from a service-manual exploded view or a measured lens-rear notch.)_
+- Searched without result: Asahi Kogaku US/JP patents for the Auto 110 lens mount (web searches 1977 to 1980; US4032938A and US3956759A are earlier cassette-SLR optics/layout patents with no mount; US4251134A is Canon), and the Asahi Auto 110 service manual, which is listed online (manualzz, elektrotanya) but could not be read through plain page fetches. _(A readable service-manual copy, or the figures of DE2838823 (Asahi, Japanese priority 1977, a camera with a bayonet lens and a shutter-release interlock): a Google Patents assignee search on 2026-11-21 (Asahi, bayonet mount, 1960 to 1985, 36 results) found it, but its text names no camera model, Google Patents carries no figures for it, and J-PlatPat document display was under maintenance and Espacenet behind a bot check that day.)_
 
 ### `pentax-645` — Pentax 645
 
@@ -3449,77 +3695,126 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 | MVP status | `renderable` |
 | Mount mechanism | `bayonet` (lock `sprung_detent`) |
 | Base profile | `pentax-645/base` |
-| Selected MVP profile | `pentax-645/base` |
-| Variant strategy | `base_only` |
+| Selected MVP profile | `pentax-645/af` |
+| Variant strategy | `variant_profiles_defined` |
 
 #### Base and variant profile matrix
 
 | Profile ID | Type | Applies to | Adds | Removes | Changes |
 |---|---|---|---|---|---|
-| `pentax-645/base` | base | Pentax 645 and 645A/FA lenses and bodies | medium-format bayonet; aperture coupling; later electronic communication variants | — | electrical variants are noted but not split in MVP |
+| `pentax-645/base` | base | all Pentax 645 bodies and lenses, 1984 onward | three-lug bayonet; 70.87 mm register; clockwise lock; mounting index; aperture coupling | — | — |
+| `pentax-645/a` | variant | 645 A mount: Pentax 645 (1984) and 645 A lenses | seven lens information pins in two groups (four and three) inside the mount | — | manual focus only; no AF coupler |
+| `pentax-645/af` | variant | 645 AF mount: Pentax 645N / 645NII (1997 onward) and FA 645 lenses | five more pins between the two 645 A groups, twelve on one arc; AF coupler | — | the seven 645 A pin positions are kept, so 645 A lenses and bodies still connect |
+| `pentax-645/af2` | variant | 645 AF2 mount: Pentax 645D / 645Z and D FA 645 / DA 645 lenses | power contacts (position and count not sourced, not drawn) | — | the maker lists AF coupler, lens information contacts and power contacts; only the body AF coupler is drawn because no dimensioned or front-view source for the 645 AF2 contact bank was found |
 
 #### Dimensional summary
 
 | Field | Value | Unit |
 |---|---|---|
 | Flange focal distance | 70.87 (`secondary`) | mm |
-| Nominal throat diameter | 61 (`secondary`) | mm |
-| Effective clear aperture | 61 (`secondary`) | mm |
+| Nominal throat diameter | 61.2 (`secondary`) | mm |
+| Effective clear aperture | 61.2 (`secondary`) | mm |
 | Camera mount outer diameter | 72 (`photo_scaled`) | mm |
 | Lens mount outer diameter | 70 (`photo_scaled`) | mm |
-| Contact count | not_applicable (`not_applicable`) | count |
+| Contact count | 12 (`patent`) | count |
 | Lock rotation | 60 (`photo_scaled`) | deg |
-| Lock direction | clockwise (`photo_scaled`) | — |
+| Lock direction | clockwise (`official`) | — |
 
-#### Figures (selected profile `pentax-645/base`)
+#### Figures (selected profile `pentax-645/af`)
 
-**Camera-side front view** — viewBox `-44 -46 88 90` · 37 elements in 4 layers · hash `a161264d` ([standalone SVG](mounts/pentax-645-camera-front.svg))
+**Camera-side front view** — viewBox `-44 -46 88 90` · 64 elements in 5 layers · hash `7037aa0a` ([standalone SVG](mounts/pentax-645-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-43 -45 86 88` · 31 elements in 4 layers · hash `38ac28b0` ([standalone SVG](mounts/pentax-645-lens-rear.svg))
+**Lens-side rear view** — viewBox `-43 -45 86 88` · 58 elements in 5 layers · hash `bd6f8f9f` ([standalone SVG](mounts/pentax-645-lens-rear.svg))
 
-**Axial / register schematic** — viewBox `-79 -48 88 92` · 12 elements in 2 layers · hash `c59f31d9` ([standalone SVG](mounts/pentax-645-axial.svg))
+**Axial / register schematic** — viewBox `-79 -48 88 92` · 12 elements in 2 layers · hash `be478445` ([standalone SVG](mounts/pentax-645-axial.svg))
 
 #### Camera-side front-view geometry
 
 | Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
 |---|---|---|---|---|---|---|---|
-| `body-throat` | body_throat | `pentax-645/base` | 0° | 0° | 360° | 0 | 30.5 |
-| `body-mount-ring` | mount_ring | `pentax-645/base` | 0° | 0° | 360° | 30.5 | 36 |
-| `body-slot-1` | bayonet_receiving_slot | `pentax-645/base` | 20° | 2° | 38° | 30.5 | 33 |
-| `body-slot-2` | bayonet_receiving_slot | `pentax-645/base` | 140° | 122° | 158° | 30.5 | 33 |
-| `body-slot-3` | bayonet_receiving_slot | `pentax-645/base` | 260° | 242° | 278° | 30.5 | 33 |
-| `body-index-mark` | index_mark | `pentax-645/base` | 0° | unknown | unknown | unknown | 36.5 |
-| `body-lock-pin` | lock_pin | `pentax-645/base` | 90° | unknown | unknown | unknown | 31.5 |
+| `body-throat` | body_throat | `pentax-645/base` | 0° | 0° | 360° | 0 | 30.6 |
+| `body-mount-ring` | mount_ring | `pentax-645/base` | 0° | 0° | 360° | 30.6 | 36 |
+| `body-slot-1` | bayonet_receiving_slot | `pentax-645/base` | 66° | 28° | 104° | 28.1 | 30.6 |
+| `body-slot-2` | bayonet_receiving_slot | `pentax-645/base` | 188.75° | 163° | 214.5° | 28.1 | 30.6 |
+| `body-slot-3` | bayonet_receiving_slot | `pentax-645/base` | 293° | 261.5° | 324.5° | 28.1 | 30.6 |
+| `body-index-mark` | index_mark | `pentax-645/base` | 305° | 305° | 305° | not_applicable | 36.5 |
+| `body-lock-pin` | lock_pin | `pentax-645/base` | unknown | unknown | unknown | unknown | unknown |
 
 #### Lens-side rear-view geometry
 
 | Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
 |---|---|---|---|---|---|---|---|
-| `lens-throat` | lens_throat | `pentax-645/base` | 0° | 0° | 360° | 0 | 29.5 |
-| `lens-mount-ring` | lens_mount_ring | `pentax-645/base` | 0° | 0° | 360° | 29.5 | 35 |
-| `lens-lug-1` | bayonet_lug | `pentax-645/base` | 20° | 2° | 38° | 30.5 | 33 |
-| `lens-lug-2` | bayonet_lug | `pentax-645/base` | 140° | 122° | 158° | 30.5 | 33 |
-| `lens-lug-3` | bayonet_lug | `pentax-645/base` | 260° | 242° | 278° | 30.5 | 33 |
-| `lens-index-mark` | index_mark | `pentax-645/base` | 0° | unknown | unknown | unknown | 35.5 |
-| `lens-lock-notch` | lock_notch | `pentax-645/base` | 90° | unknown | unknown | unknown | 31.5 |
+| `lens-throat` | lens_throat | `pentax-645/base` | 0° | 0° | 360° | 0 | 22.1 |
+| `lens-mount-ring` | lens_mount_ring | `pentax-645/base` | 0° | 0° | 360° | 30.6 | 35 |
+| `lens-lug-1` | bayonet_lug | `pentax-645/base` | 309° | 293.5° | 324.5° | 28.1 | 30.1 |
+| `lens-lug-2` | bayonet_lug | `pentax-645/base` | 57.75° | 28° | 87.5° | 28.1 | 30.1 |
+| `lens-lug-3` | bayonet_lug | `pentax-645/base` | 192.25° | 166.5° | 218° | 28.1 | 30.1 |
+| `lens-index-mark` | index_mark | `pentax-645/base` | 305° | 305° | 305° | not_applicable | 35.5 |
+| `lens-lock-notch` | lock_notch | `pentax-645/base` | unknown | unknown | unknown | unknown | unknown |
+
+#### Electrical contacts
+
+| Side | No. | Profile | Center angle | Radius | Function |
+|---|---|---|---|---|---|
+| body | 1 | `pentax-645/a` | 325° | 25.4 | pin a: Fmin2/DATA |
+| body | 2 | `pentax-645/a` | 331.5° | 25.4 | pin b: Fmin1/SCK |
+| body | 3 | `pentax-645/a` | 338° | 25.4 | pin c: Fmax1 |
+| body | 4 | `pentax-645/a` | 344° | 25.4 | pin d: Fmax2 |
+| body | 5 | `pentax-645/a` | 22.5° | 25.4 | pin j: LS/ACK |
+| body | 6 | `pentax-645/a` | 28.5° | 25.4 | pin k: Fmin3/RES |
+| body | 7 | `pentax-645/a` | 35° | 25.4 | pin l: A/M |
+| lens | 1 | `pentax-645/a` | 325° | 25.4 | pin a: Fmin2/DATA |
+| lens | 2 | `pentax-645/a` | 331.5° | 25.4 | pin b: Fmin1/SCK |
+| lens | 3 | `pentax-645/a` | 338° | 25.4 | pin c: Fmax1 |
+| lens | 4 | `pentax-645/a` | 344° | 25.4 | pin d: Fmax2 |
+| lens | 5 | `pentax-645/a` | 22.5° | 25.4 | pin j: LS/ACK |
+| lens | 6 | `pentax-645/a` | 28.5° | 25.4 | pin k: Fmin3/RES |
+| lens | 7 | `pentax-645/a` | 35° | 25.4 | pin l: A/M |
+| body | 1 | `pentax-645/af` | 325° | 25.4 | pin a: Fmin2/DATA |
+| body | 2 | `pentax-645/af` | 331.5° | 25.4 | pin b: Fmin1/SCK |
+| body | 3 | `pentax-645/af` | 338° | 25.4 | pin c: Fmax1 |
+| body | 4 | `pentax-645/af` | 344° | 25.4 | pin d: Fmax2 |
+| body | 5 | `pentax-645/af` | 350.5° | 25.4 | pin e: (dummy) |
+| body | 6 | `pentax-645/af` | 356.5° | 25.4 | pin f: PGND |
+| body | 7 | `pentax-645/af` | 3° | 25.4 | pin g: VLENS (VBATT) |
+| body | 8 | `pentax-645/af` | 9° | 25.4 | pin h: LENS N/O |
+| body | 9 | `pentax-645/af` | 15.5° | 25.4 | pin i: CONTL/VDD |
+| body | 10 | `pentax-645/af` | 22.5° | 25.4 | pin j: LS/ACK |
+| body | 11 | `pentax-645/af` | 28.5° | 25.4 | pin k: Fmin3/RES |
+| body | 12 | `pentax-645/af` | 35° | 25.4 | pin l: A/M |
+| lens | 1 | `pentax-645/af` | 325° | 25.4 | pin a: Fmin2/DATA |
+| lens | 2 | `pentax-645/af` | 331.5° | 25.4 | pin b: Fmin1/SCK |
+| lens | 3 | `pentax-645/af` | 338° | 25.4 | pin c: Fmax1 |
+| lens | 4 | `pentax-645/af` | 344° | 25.4 | pin d: Fmax2 |
+| lens | 5 | `pentax-645/af` | 350.5° | 25.4 | pin e: (dummy) |
+| lens | 6 | `pentax-645/af` | 356.5° | 25.4 | pin f: PGND |
+| lens | 7 | `pentax-645/af` | 3° | 25.4 | pin g: VLENS (VBATT) |
+| lens | 8 | `pentax-645/af` | 9° | 25.4 | pin h: LENS N/O |
+| lens | 9 | `pentax-645/af` | 15.5° | 25.4 | pin i: CONTL/VDD |
+| lens | 10 | `pentax-645/af` | 22.5° | 25.4 | pin j: LS/ACK |
+| lens | 11 | `pentax-645/af` | 28.5° | 25.4 | pin k: Fmin3/RES |
+| lens | 12 | `pentax-645/af` | 35° | 25.4 | pin l: A/M |
 
 #### Mechanical couplings
 
 | Feature | Side | Profile | Function |
 |---|---|---|---|
 | `aperture-coupling` | both | `pentax-645/base` | aperture actuation and reporting |
+| `af-coupler` | body | `pentax-645/af` | screw-drive autofocus from the body AF motor |
+| `af-driven-coupler` | lens | `pentax-645/af` | receives the body AF coupler |
+| `af-coupler-af2` | body | `pentax-645/af2` | screw-drive autofocus from the body AF motor |
 
 #### Axial stack
 
 | Plane | z (mm) | Diameter (mm) |
 |---|---|---|
 | `flange_datum` | 0 | 72 |
-| `bayonet_lug_engagement` | 1.2 | 66 |
+| `bayonet_lug_engagement` | 1.2 | 60.2 |
 | `sensor_film_plane` | -70.87 | 69.7 |
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/pentax-645.mount.ts` (25676 bytes, content hash `7e8b4fba`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/pentax-645.mount.ts` (75045 bytes, content hash `f26d5f22`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -3527,10 +3822,23 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 |---|---|---|---|---|---|
 | `p645-1` | secondary | “Flange focal distance,” Wikipedia. Accessed 2026-06-06. | [snapshot](http://web.archive.org/web/20260526152456/https://en.wikipedia.org/wiki/Flange_focal_distance) | 2026-05-26 | medium |
 | `p645-2` | secondary | Pentax 645 mount visual references. Accessed 2026-06-06. | [snapshot](unknown) | unknown | low |
+| `p645-3` | secondary | “Lens mount,” Wikipedia, table row “Pentax 645”. Accessed 2026-11-21. | [snapshot](https://en.wikipedia.org/w/index.php?title=Lens_mount&oldid=1385498741) | 2026-11-21 | low |
+| `p645-p1` | patent | US6341902B1, "Photographic lens recognition system for a camera body," Asahi Kogaku Kogyo K.K., priority JP 09-336028 (1997-12-05). Accessed 2026-11-21. | [snapshot](https://patentimages.storage.googleapis.com/48/94/2c/fd55faa9c410d2/US6341902.pdf) | 2026-11-21 | high |
+| `p645-p1f` | patent_figure | US6341902B1, FIGS. 2 to 5: lens rear and body front views of the pre-existing and new mounts. Undimensioned drawings, scaled for this spec. Accessed 2026-11-21. | [snapshot](https://patentimages.storage.googleapis.com/48/94/2c/fd55faa9c410d2/US6341902.pdf) | 2026-11-21 | medium |
+| `p645-m1` | official | Pentax 645NII Operating Manual, Asahi Optical Co., Ltd. Accessed 2026-11-21. | [snapshot](https://www.manualslib.com/manual/259899/Pentax-645n2.html) | 2026-11-21 | high |
+| `p645-m2` | official | PENTAX 645Z Menu Reference, main specifications, Ricoh Imaging Co., Ltd. Accessed 2026-11-21. | [snapshot](https://www.manualslib.com/manual/878377/Pentax-645-Z.html) | 2026-11-21 | high |
+| `p645-m3` | official | PENTAX 645D Operating Manual, maker PDF hosted by Ricoh Imaging. Accessed 2026-11-21. | [snapshot](https://www.manualslib.com/manual/417746/Pentax-645d.html) | 2026-11-21 | medium |
+| `p645-m4` | official | ペンタックス645 使用説明書 (Pentax 645 operating manual), Asahi Optical Co., Ltd. Accessed 2026-11-21. | [snapshot](https://www.ricoh-imaging.co.jp/japan/support/man-pdf/645-2.pdf) | 2026-11-21 | high |
 
 #### Open questions
 
-- Pentax 645 lug spans, exact throat, and generation-specific contacts are unresolved. _(Add A/FA/D FA profile overlays after measured samples or service data.)_
+- Claw and lug angles are scaled from US6341902B1 FIGS. 2 to 5, which state no angle or scale. Readings repeat to about 1 degree between the old and new figures except the narrow lug (lens-lug-1), drawn 31 degrees wide in FIG. 4 and 45.5 degrees in FIG. 2. Which sectors of the lens figures are lugs is inferred, not labelled: only the 59.5, 51.5 and 31 degree sectors fit through the 63.5, 59 and 47 degree body gaps. The bottom lug is drawn running 3.5 degrees past its claw (218 against 214.5 degrees), which is within the figure tolerance. _(A dimensioned Pentax bayonet drawing, a 645 / 645N service manual with mount-part drawings, or a measured lens and body. Searched: Google Patents pages for Asahi contact patents (US4653889A and JPS60243643A are K-mount; US5570153A is a joint Asahi/Nikon two-format bayonet), Ricoh manual downloads, Wikipedia, iso3200.org; a Google Patents search for Asahi bayonet-mount and lens-contact filings from 1960 to 2002 (136 results read by title). JPS60201328A (Asahi, 1984, mount locking device) is not tied to a camera model and Google Patents carries no figures for it; J-PlatPat document display was under maintenance on 2026-11-21.)_
+- Lock rotation angle is not stated by any source found. The 60 degree value is the earlier estimate; turning the locked lugs back until each clears its entry gap admits about 60 to 64 degrees on the patent-figure edges. Direction (clockwise from the front) is stated by the maker manuals. _(Maker service data or a measured sample.)_
+- Lock pin and lock notch positions are unknown and render as placeholders at 0 degrees. Candidates: near the lens unlock button (about 235 degrees in the 645D manual drawing) or the unlabelled notch in lens-lug-3 of US6341902B1 FIGS. 2 and 4 (about 180 degrees with the lens locked). _(Service manual exploded view or a measured body.)_
+- Throat 61.2 mm is an uncited Wikipedia table value; no maker, patent or service figure for it was found. Every radius scaled from the patent figures (lug root 28.1, lug tip 30.1, pin circle 25.4, rear opening 22.1 mm) is a ratio of that throat and moves with it. The 70.87 mm register is also still secondary: the Ricoh 645 lens line-up PDF Wikipedia cites for it no longer states a register. _(Maker drawing or calibrated measurement.)_
+- Both outer diameters, the mount-ring outer radii, the index-mark radii, lug thickness, the lug-engagement plane, the aperture coupling (drawn outside the throat radius, which cannot be right) and the four mount screws still rest only on the unreferenced imagery source p645-2. The same patent-figure ratios would give about 67 mm (body ring) and 65 mm (lens ring) outer diameters, but those outer circles are not corroborated between figures and were not adopted. _(Measured sample or service manual. US6341902B1 FIGS. 2 and 4 also show three unlabelled arc windows in the lens rear ring that may include the aperture lever slot.)_
+- 645 AF pin positions follow the patent embodiment; that the production 645N / 645NII and FA 645 lenses carry all twelve pins is not confirmed by a photograph or service document. The body-front figures (FIGS. 3 and 5) place pins j to l about 2 to 4 degrees further clockwise than the lens-rear figures used here. Pin diameter (1.3 mm) is a figure ratio and pin protrusion is unknown. _(645N service manual or a measured body and lens.)_
+- 645 AF2 power contacts are named by the maker but not located. The 645D manual drawing shows one contact arc at the top of the mount with at least ten pins visible, and the patent's twelve-pin set already includes lens power pins (PGND, VLENS), so the power contacts may lie within that arc; this is not confirmed. No lens-side 645 AF2 geometry is drawn, and which D FA 645 / DA 645 lenses omit the AF coupler or use an electromagnetic diaphragm was not sourced. _(A Hoya / Ricoh patent or service manual for the 645D or 645Z mount, or front-view photographs with a scale. contactCount records the 645 AF figure of twelve.)_
 
 ### `pentax-67` — Pentax 67
 
@@ -3538,7 +3846,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 |---|---|
 | Mount ID | `pentax-67` |
 | Display label | Pentax 67 |
-| Project note | Pentax 6x7 / 67 medium-format bayonet mount. |
+| Project note | Pentax 6x7 / 67 medium-format dual bayonet mount. |
 | Research status | `partial` |
 | MVP status | `renderable` |
 | Mount mechanism | `bayonet` (lock `sprung_detent`) |
@@ -3550,26 +3858,26 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 | Profile ID | Type | Applies to | Adds | Removes | Changes |
 |---|---|---|---|---|---|
-| `pentax-67/base` | base | Pentax 6x7 and Pentax 67 lenses and bodies | large medium-format bayonet; aperture coupling | — | feature placement is photo-scaled |
+| `pentax-67/base` | base | all Pentax 6x7, 67 and 67II bodies, 1969 onward, with inner-bayonet lenses (35 mm to 300 mm) and inner-bayonet accessories | 72 mm throat and body mount ring; 84.95 mm register; four-screw bayonet seat; three-lug inner bayonet; red-dot mounting index; body lock pin and lens notch; automatic-aperture coupling | — | lug sectors, lock rotation angle and aperture-lever position are photo-scaled; the same body ring also carries an outer four-lug bayonet for the 400 mm to 1000 mm lenses and their extension tubes. Its lugs are symmetric, so the body can be set in any of four positions, and those lenses have no automatic-aperture linkage (stop-down operation only). It is not drawn: no source gives its clocking, spans or radii |
 
 #### Dimensional summary
 
 | Field | Value | Unit |
 |---|---|---|
-| Flange focal distance | 84.95 (`secondary`) | mm |
-| Nominal throat diameter | 72 (`photo_scaled`) | mm |
+| Flange focal distance | 84.95 (`service_manual`) | mm |
+| Nominal throat diameter | 72 (`secondary`) | mm |
 | Effective clear aperture | 72 (`photo_scaled`) | mm |
 | Camera mount outer diameter | 86 (`photo_scaled`) | mm |
 | Lens mount outer diameter | 84 (`photo_scaled`) | mm |
 | Contact count | not_applicable (`not_applicable`) | count |
 | Lock rotation | 60 (`photo_scaled`) | deg |
-| Lock direction | clockwise (`photo_scaled`) | — |
+| Lock direction | clockwise (`official`) | — |
 
 #### Figures (selected profile `pentax-67/base`)
 
-**Camera-side front view** — viewBox `-53 -55 106 108` · 37 elements in 4 layers · hash `81be679f` ([standalone SVG](mounts/pentax-67-camera-front.svg))
+**Camera-side front view** — viewBox `-53 -55 106 108` · 37 elements in 4 layers · hash `76cfdd27` ([standalone SVG](mounts/pentax-67-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-52 -54 104 106` · 31 elements in 4 layers · hash `794ae986` ([standalone SVG](mounts/pentax-67-lens-rear.svg))
+**Lens-side rear view** — viewBox `-52 -54 104 106` · 31 elements in 4 layers · hash `916799f8` ([standalone SVG](mounts/pentax-67-lens-rear.svg))
 
 **Axial / register schematic** — viewBox `-95 -59 106 114` · 12 elements in 2 layers · hash `10abe52f` ([standalone SVG](mounts/pentax-67-axial.svg))
 
@@ -3582,7 +3890,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 | `body-slot-1` | bayonet_receiving_slot | `pentax-67/base` | 20° | 3° | 37° | 36 | 38.5 |
 | `body-slot-2` | bayonet_receiving_slot | `pentax-67/base` | 140° | 123° | 157° | 36 | 38.5 |
 | `body-slot-3` | bayonet_receiving_slot | `pentax-67/base` | 260° | 243° | 277° | 36 | 38.5 |
-| `body-index-mark` | index_mark | `pentax-67/base` | 0° | unknown | unknown | unknown | 43.5 |
+| `body-index-mark` | index_mark | `pentax-67/base` | 285° | unknown | unknown | unknown | 43.5 |
 | `body-lock-pin` | lock_pin | `pentax-67/base` | 90° | unknown | unknown | unknown | 37 |
 
 #### Lens-side rear-view geometry
@@ -3594,7 +3902,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 | `lens-lug-1` | bayonet_lug | `pentax-67/base` | 20° | 3° | 37° | 36 | 38.5 |
 | `lens-lug-2` | bayonet_lug | `pentax-67/base` | 140° | 123° | 157° | 36 | 38.5 |
 | `lens-lug-3` | bayonet_lug | `pentax-67/base` | 260° | 243° | 277° | 36 | 38.5 |
-| `lens-index-mark` | index_mark | `pentax-67/base` | 0° | unknown | unknown | unknown | 42.5 |
+| `lens-index-mark` | index_mark | `pentax-67/base` | 285° | unknown | unknown | unknown | 42.5 |
 | `lens-lock-notch` | lock_notch | `pentax-67/base` | 90° | unknown | unknown | unknown | 37 |
 
 #### Mechanical couplings
@@ -3613,7 +3921,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/pentax-67.mount.ts` (25428 bytes, content hash `5e33b695`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/pentax-67.mount.ts` (32398 bytes, content hash `484d91c2`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -3621,10 +3929,19 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 |---|---|---|---|---|---|
 | `p67-1` | secondary | “Flange focal distance,” Wikipedia. Accessed 2026-06-06. | [snapshot](http://web.archive.org/web/20260526152456/https://en.wikipedia.org/wiki/Flange_focal_distance) | 2026-05-26 | medium |
 | `p67-2` | secondary | Pentax 67 mount visual references. Accessed 2026-06-06. | [snapshot](unknown) | unknown | low |
+| `p67-3` | service_manual | Pentax 67II Service Manual, Product No. 27340, sections 2.16 and 6.15 (sheets 17/70, 42/70 and 43/70; viewer pages 18, 43 and 44). Accessed 2026-11-21. | [snapshot](https://www.scribd.com/document/269439309/Pentax67II-Service-Manual) | 2026-11-21 | high |
+| `p67-4` | official | Pentax 67II Operating Manual, pp. 18 and 19. Ricoh Imaging. Accessed 2026-11-21. | [snapshot](https://www.manualslib.com/manual/121756/Pentax-67ii.html?page=20) | 2026-11-21 | high |
+| `p67-5` | official | Asahi Optical Co., Asahi Pentax 6x7 operating manual, pp. 2, 14 and 15 (scan in the M. Butkus camera manual library). Accessed 2026-11-21. | [snapshot](https://www.cameramanuals.org/pentax_pdf/pentax_6x7.pdf) | 2026-11-21 | high |
+| `p67-6` | secondary | “Lens mount,” Wikipedia, list of lens mounts, revision of 2026-11-13. Accessed 2026-11-21. | [snapshot](https://en.wikipedia.org/w/index.php?title=Lens_mount&oldid=1385498741) | 2026-11-21 | low |
+| `p67-7` | secondary | “Pentax 6×7,” Wikipedia, revision of 2026-11-09. Accessed 2026-11-21. | [snapshot](https://en.wikipedia.org/w/index.php?title=Pentax_6%C3%977&oldid=1384743181) | 2026-11-21 | medium |
 
 #### Open questions
 
-- Pentax 67 throat, lug sectors, and aperture lever clocking are photo-scaled. _(Upgrade with measured Pentax 67 body/lens samples.)_
+- Inner-bayonet lug sectors are photo-scaled from unidentified imagery [p67-2]: centres 20°/140°/260°, 34° spans, lug radii and depth. The three-lug count is sourced, the geometry is not. No patent, service-manual drawing with angles, or measured sample was found. _(Measure a 6x7/67 body mount and an inner-bayonet lens rear, or find a dimensioned bayonet drawing. Searched on 2026-11-21: Google Patents for Asahi bayonet-mount filings from 1960 to 1985 (36 results); US3388647A and US3439600A (1965) turned out to be screw-mount patents, and none of the rest describes the 6x7 double bayonet.)_
+- Outer-bayonet geometry is unknown. Sources give only the count (four), the symmetry (four body positions) and the lens range (400 mm to 1000 mm). Clock position, spans, radii and how the outer lens locks are not sourced, so the outer bayonet is described in the profile notes and is not drawn. _(The Pentax 67 interchangeable-lens manual (cited by the 67II manual for outer-bayonet mounting), a service manual for an outer-bayonet lens, or a measured body and 400 mm-class lens. With a source, add the outer bayonet as its own profile.)_
+- Throat is a published secondary value (72 mm, uncited in its table); the effective clear aperture, both ring outer diameters (86 mm body, 84 mm lens) and the 60° lock rotation are still photo-scaled from unidentified imagery [p67-2]. _(Measured body and lens samples, or a maker dimension drawing.)_
+- Index, lock pin, aperture lever and mount screws are placed from undimensioned figures. The red-dot index (285°) is scaled from a perspective manual figure, about ±15°. The lock pin (90°) is known only to sit on the right-hand side seen from the front. The aperture stop-down lever (55°, 34 mm radius) and the screw pitch circle and clock angles rest on unidentified imagery [p67-2]; the four-screw count is from the service manual. The aperture-value coupler ring (O-K102) and the lens tab that drives it are not drawn. _(The Asahi Pentax 6x7 service manual (Product No. 23400) exploded views read page by page, or a measured body and lens rear.)_
+- The low-confidence imagery source [p67-2] still carries drawn features: the inner lug sectors, ring diameters, lock rotation angle, aperture lever, and screw pitch circle. Patent searches for the Asahi dual bayonet and its aperture coupling (1965 to 1972) found nothing; US4017878A and DE1900677A1 are Asahi screw-to-bayonet adapter patents that do not describe this mount. _(Replace [p67-2] once the values above have a dimensioned or measured source.)_
 
 ### `pentax-k` — Pentax K
 
@@ -3669,7 +3986,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 **Camera-side front view** — viewBox `-35 -36 70 71` · 52 elements in 5 layers · hash `11bc3a75` ([standalone SVG](mounts/pentax-k-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-33 -34 66 67` · 42 elements in 4 layers · hash `7e1ed239` ([standalone SVG](mounts/pentax-k-lens-rear.svg))
+**Lens-side rear view** — viewBox `-33 -34 66 67` · 42 elements in 4 layers · hash `d958b335` ([standalone SVG](mounts/pentax-k-lens-rear.svg))
 
 **Axial / register schematic** — viewBox `-52 -38 60 72` · 12 elements in 2 layers · hash `f8955533` ([standalone SVG](mounts/pentax-k-axial.svg))
 
@@ -3776,7 +4093,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 | Profile ID | Type | Applies to | Adds | Removes | Changes |
 |---|---|---|---|---|---|
-| `samsung-nx/base` | base | Samsung NX lenses and APS-C NX bodies, 2010–2015 | three-sector short-register bayonet; eight-contact fully electronic interface; body-side sprung lock pin and red mounting index | mechanical aperture and autofocus couplings | single base interface; NX Mini uses the separate, incompatible NX-M mount |
+| `samsung-nx/base` | base | Samsung NX lenses and APS-C NX bodies, 2010–2015 | three-sector short-register bayonet with unequal sectors; eight-contact fully electronic interface (five interface pins, three power pins); body-side sprung lock shaft and red mounting index on the mount plate face; spring-loaded lens-detect pin inside the throat | mechanical aperture and autofocus couplings | single base interface; NX Mini uses the separate, incompatible NX-M mount; NX10 (2010), NX200 (2011) and NX300 (2013) service manuals show the same four-screw plate, eight contacts, index and lock positions; only the plate screw thread differs by body |
 
 #### Dimensional summary
 
@@ -3785,81 +4102,83 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 | Flange focal distance | 25.5 (`secondary`) | mm |
 | Nominal throat diameter | 42 (`secondary`) | mm |
 | Effective clear aperture | 42 (`secondary`) | mm |
-| Camera mount outer diameter | 52 (`photo_scaled`) | mm |
-| Lens mount outer diameter | 50 (`photo_scaled`) | mm |
-| Contact count | 8 (`photo_scaled`) | count |
+| Camera mount outer diameter | 60 (`photo_scaled`) | mm |
+| Lens mount outer diameter | 57 (`photo_scaled`) | mm |
+| Contact count | 8 (`service_manual`) | count |
 | Lock rotation | 60 (`photo_scaled`) | deg |
 | Lock direction | clockwise (`official`) | — |
 
 #### Figures (selected profile `samsung-nx/base`)
 
-**Camera-side front view** — viewBox `-32 -33 64 65` · 52 elements in 4 layers · hash `06d7cc8d` ([standalone SVG](mounts/samsung-nx-camera-front.svg))
+**Camera-side front view** — viewBox `-37 -38 74 75` · 55 elements in 5 layers · hash `65c4a904` ([standalone SVG](mounts/samsung-nx-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-31 -32 62 63` · 46 elements in 4 layers · hash `f88bef92` ([standalone SVG](mounts/samsung-nx-lens-rear.svg))
+**Lens-side rear view** — viewBox `-35 -37 70 72` · 46 elements in 4 layers · hash `e6fbb89a` ([standalone SVG](mounts/samsung-nx-lens-rear.svg))
 
-**Axial / register schematic** — viewBox `-32 -36 39 68` · 14 elements in 2 layers · hash `c094ccc0` ([standalone SVG](mounts/samsung-nx-axial.svg))
+**Axial / register schematic** — viewBox `-32 -41 40 78` · 14 elements in 2 layers · hash `ed3f9133` ([standalone SVG](mounts/samsung-nx-axial.svg))
 
 #### Camera-side front-view geometry
 
 | Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
 |---|---|---|---|---|---|---|---|
 | `body-throat` | body_throat | `samsung-nx/base` | 0° | 0° | 360° | 0 | 21 |
-| `body-mount-ring` | mount_ring | `samsung-nx/base` | 0° | 0° | 360° | 21 | 26 |
-| `body-slot-1` | bayonet_receiving_slot | `samsung-nx/base` | 30° | 10° | 50° | 21 | 23.5 |
-| `body-slot-2` | bayonet_receiving_slot | `samsung-nx/base` | 150° | 130° | 170° | 21 | 23.5 |
-| `body-slot-3` | bayonet_receiving_slot | `samsung-nx/base` | 292° | 272° | 312° | 21 | 23.5 |
-| `body-index-mark` | index_mark | `samsung-nx/base` | 240° | unknown | unknown | unknown | 26.5 |
-| `body-lock-pin` | lock_pin | `samsung-nx/base` | 90° | unknown | unknown | unknown | 22 |
+| `body-mount-ring` | mount_ring | `samsung-nx/base` | 0° | 0° | 360° | 21 | 30 |
+| `body-slot-1` | bayonet_receiving_slot | `samsung-nx/base` | 359° | 332° | 26° | 21 | 23.5 |
+| `body-slot-2` | bayonet_receiving_slot | `samsung-nx/base` | 129.5° | 96° | 163° | 21 | 23.5 |
+| `body-slot-3` | bayonet_receiving_slot | `samsung-nx/base` | 244° | 217° | 271° | 21 | 23.5 |
+| `body-index-mark` | index_mark | `samsung-nx/base` | 300° | unknown | unknown | unknown | 26.5 |
+| `body-lock-pin` | lock_pin | `samsung-nx/base` | 90° | unknown | unknown | unknown | 26.5 |
 
 #### Lens-side rear-view geometry
 
 | Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
 |---|---|---|---|---|---|---|---|
 | `lens-throat` | lens_throat | `samsung-nx/base` | 0° | 0° | 360° | 0 | 20 |
-| `lens-mount-ring` | lens_mount_ring | `samsung-nx/base` | 0° | 0° | 360° | 20 | 25 |
-| `lens-lug-1` | bayonet_lug | `samsung-nx/base` | 30° | 10° | 50° | 21 | 23.5 |
-| `lens-lug-2` | bayonet_lug | `samsung-nx/base` | 150° | 130° | 170° | 21 | 23.5 |
-| `lens-lug-3` | bayonet_lug | `samsung-nx/base` | 292° | 272° | 312° | 21 | 23.5 |
-| `lens-index-mark` | index_mark | `samsung-nx/base` | 240° | unknown | unknown | unknown | 25.5 |
-| `lens-lock-notch` | lock_notch | `samsung-nx/base` | 90° | unknown | unknown | unknown | 22 |
+| `lens-mount-ring` | lens_mount_ring | `samsung-nx/base` | 0° | 0° | 360° | 20 | 28.5 |
+| `lens-lug-1` | bayonet_lug | `samsung-nx/base` | 3.5° | 336° | 31° | 21 | 23.5 |
+| `lens-lug-2` | bayonet_lug | `samsung-nx/base` | 118.5° | 87° | 150° | 21 | 23.5 |
+| `lens-lug-3` | bayonet_lug | `samsung-nx/base` | 252.5° | 228° | 277° | 21 | 23.5 |
+| `lens-index-mark` | index_mark | `samsung-nx/base` | 300° | unknown | unknown | unknown | 29 |
+| `lens-lock-notch` | lock_notch | `samsung-nx/base` | 90° | unknown | unknown | unknown | 26.5 |
 
 #### Electrical contacts
 
 | Side | No. | Profile | Center angle | Radius | Function |
 |---|---|---|---|---|---|
-| body | 1 | `samsung-nx/base` | 330° | 19 |  |
-| body | 2 | `samsung-nx/base` | 338.5° | 19 |  |
-| body | 3 | `samsung-nx/base` | 347° | 19 |  |
-| body | 4 | `samsung-nx/base` | 355.5° | 19 |  |
-| body | 5 | `samsung-nx/base` | 4° | 19 |  |
-| body | 6 | `samsung-nx/base` | 12.5° | 19 |  |
-| body | 7 | `samsung-nx/base` | 21° | 19 |  |
-| body | 8 | `samsung-nx/base` | 29.5° | 19 |  |
-| lens | 1 | `samsung-nx/base` | 330° | 19 |  |
-| lens | 2 | `samsung-nx/base` | 338.5° | 19 |  |
-| lens | 3 | `samsung-nx/base` | 347° | 19 |  |
-| lens | 4 | `samsung-nx/base` | 355.5° | 19 |  |
-| lens | 5 | `samsung-nx/base` | 4° | 19 |  |
-| lens | 6 | `samsung-nx/base` | 12.5° | 19 |  |
-| lens | 7 | `samsung-nx/base` | 21° | 19 |  |
-| lens | 8 | `samsung-nx/base` | 29.5° | 19 |  |
+| body | 1 | `samsung-nx/base` | 328.5° | 18 | interface signal: one of SIO3_SCK, SIO3_MISO, SIO3_MOSI, LENS_SYNC, LENS_RB (per-pin order not established) |
+| body | 2 | `samsung-nx/base` | 337.5° | 18 | interface signal: one of SIO3_SCK, SIO3_MISO, SIO3_MOSI, LENS_SYNC, LENS_RB (per-pin order not established) |
+| body | 3 | `samsung-nx/base` | 346.5° | 18 | interface signal: one of SIO3_SCK, SIO3_MISO, SIO3_MOSI, LENS_SYNC, LENS_RB (per-pin order not established) |
+| body | 4 | `samsung-nx/base` | 355.5° | 18 | interface signal: one of SIO3_SCK, SIO3_MISO, SIO3_MOSI, LENS_SYNC, LENS_RB (per-pin order not established) |
+| body | 5 | `samsung-nx/base` | 4.5° | 18 | interface signal: one of SIO3_SCK, SIO3_MISO, SIO3_MOSI, LENS_SYNC, LENS_RB (per-pin order not established) |
+| body | 6 | `samsung-nx/base` | 13.5° | 18 | power group: one of GND, DP, MP (per-pin order not established) |
+| body | 7 | `samsung-nx/base` | 22.5° | 18 | power group: one of GND, DP, MP (per-pin order not established) |
+| body | 8 | `samsung-nx/base` | 31.5° | 18 | power group: one of GND, DP, MP (per-pin order not established) |
+| lens | 1 | `samsung-nx/base` | 328.5° | 18 | interface signal: one of SIO3_SCK, SIO3_MISO, SIO3_MOSI, LENS_SYNC, LENS_RB (per-pin order not established) |
+| lens | 2 | `samsung-nx/base` | 337.5° | 18 | interface signal: one of SIO3_SCK, SIO3_MISO, SIO3_MOSI, LENS_SYNC, LENS_RB (per-pin order not established) |
+| lens | 3 | `samsung-nx/base` | 346.5° | 18 | interface signal: one of SIO3_SCK, SIO3_MISO, SIO3_MOSI, LENS_SYNC, LENS_RB (per-pin order not established) |
+| lens | 4 | `samsung-nx/base` | 355.5° | 18 | interface signal: one of SIO3_SCK, SIO3_MISO, SIO3_MOSI, LENS_SYNC, LENS_RB (per-pin order not established) |
+| lens | 5 | `samsung-nx/base` | 4.5° | 18 | interface signal: one of SIO3_SCK, SIO3_MISO, SIO3_MOSI, LENS_SYNC, LENS_RB (per-pin order not established) |
+| lens | 6 | `samsung-nx/base` | 13.5° | 18 | power group: one of GND, DP, MP (per-pin order not established) |
+| lens | 7 | `samsung-nx/base` | 22.5° | 18 | power group: one of GND, DP, MP (per-pin order not established) |
+| lens | 8 | `samsung-nx/base` | 31.5° | 18 | power group: one of GND, DP, MP (per-pin order not established) |
 
 #### Mechanical couplings
 
-None — fully electronic.
+| Feature | Side | Profile | Function |
+|---|---|---|---|
+| `lens-detect-pin` | body | `samsung-nx/base` | pressed by the mounted lens so the body's lens-detect switch reports a lens is attached |
 
 #### Axial stack
 
 | Plane | z (mm) | Diameter (mm) |
 |---|---|---|
-| `flange_datum` | 0 | 52 |
+| `flange_datum` | 0 | 60 |
 | `bayonet_lug_engagement` | 1.2 | 47 |
-| `electrical_contact_plane` | 0.5 | 38 |
+| `electrical_contact_plane` | 0.5 | 36 |
 | `sensor_film_plane` | -25.5 | 28.35 |
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/samsung-nx.mount.ts` (39883 bytes, content hash `da9c7128`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/samsung-nx.mount.ts` (54327 bytes, content hash `17158446`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -3867,11 +4186,20 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 |---|---|---|---|---|---|
 | `snx-1` | secondary | “Samsung NX-mount,” Wikipedia. Accessed 2026-08-02. | [snapshot](http://web.archive.org/web/20260623060500/https://en.wikipedia.org/wiki/Samsung_NX-mount) | 2026-06-23 | medium |
 | `snx-2` | official | Samsung NX10 User Manual, version 1.3, pp. 17 and 21. Accessed 2026-08-02. | [snapshot](https://nxfiles.nx.tc/files/NX10/Manual/NX10_English.pdf) | 2026-08-02 | medium |
+| `snx-3` | service_manual | Samsung Electronics, NX200 Service Manual (NX200_ENG_SM_110921), 2011: p. 3-13 (PDF p. 26) front photo “Remove the 4 screws”, M.SCREW(M1.7X5/NI), and the mount-plate exploded photo; p. 7-4 (PDF p. 66) flange-back adjust value; p. 8-8 (PDF p. 81) Inner Mount Holder Assy exploded view and parts list. Accessed 2026-11-21. | [snapshot](https://nxfiles.nx.tc/files/NX200/Service-Manual/NX200_ENG_SM_110921.pdf) | 2026-11-21 | medium |
+| `snx-4` | service_manual | Samsung Electronics, NX300 Service Manual, 2013: p. 3-13 (PDF p. 27) Figs. 3-23 and 3-24, “Remove the 4 screws” and the PLATE-MOUNT LENS / MOUNT-INNER / SHAFT-LENS DETECT sequence; PDF p. 71 flange-back adjust specification; PDF pp. 9–10 body dimensions. Accessed 2026-11-21. | [snapshot](https://nxfiles.nx.tc/files/NX300/Service-Manual/Samsung_NX300_Service_manual.pdf) | 2026-11-21 | medium |
+| `snx-5` | service_manual | Samsung Electronics, NX10 Service Manual: pp. 3-6 and 3-7 (PDF pp. 23–24) Mount Holder Assembly exploded view and parts list (MOUNT LENS, SCREW 2.0*6.0 PAN x4, SHAFT LENS LOCK, SHAFT LENS DETECT, ASSY-BASE IF PIN); p. 7-5 (PDF p. 53) Lens PCB signal names. Accessed 2026-11-21. | [snapshot](https://nxfiles.nx.tc/files/NX10/Service-Manual/Samsung_NX10_Service_manual.pdf) | 2026-11-21 | high |
+| `snx-6` | service_manual | Samsung Electronics, NX Lens XL1103 (85 mm F1.4 ED SSA) Service Manual, 2011: p. 3-2 (PDF p. 11) Figs. 3-1 and 3-2, lens-rear photographs. Accessed 2026-11-21. | [snapshot](https://nxfiles.nx.tc/files/Lens/Service-Manual/XL1103_LENS_ENG_121024_85mm.pdf) | 2026-11-21 | medium |
+| `snx-7` | service_manual | Samsung Electronics, NX Lens XL1012 (30 mm F2) Service Manual, 2011: p. 1-1 (PDF p. 3) “Max. Diameter x Length 61.5x21.5mm”; p. 2-1 (PDF p. 4) “Align the red mark on the lens with the red mark on the camera body … Rotate the lens clockwise until it locks into place”; p. 4-2 (PDF p. 14) lens-rear photograph. Accessed 2026-11-21. | [snapshot](https://nxfiles.nx.tc/files/Lens/Service-Manual/XL1012_LENS_ENG_121015_30mm.pdf) | 2026-11-21 | low |
 
 #### Open questions
 
-- NX mount outer diameters, lug spans/angles, lock rotation, contact pitch, and screw circle are photo-scaled; no production mechanical drawing was located. _(Upgrade from a Samsung service drawing or measured NX body/lens sample.)_
-- The commonly published 42 mm mount diameter is secondary-sourced and should be checked against metrology. _(Confirm whether 42 mm denotes the clear throat or another mount-diameter convention.)_
+- No dimensioned drawing or patent with stated NX mount geometry was located, so lug and slot angles, lock rotation, index, lock pin, lens-detect pin, screw positions, contact pitch and both outer diameters are scaled from service-manual photographs (angles about +/-3-4 deg, diameters about +/-2 mm). Searched: Samsung NX10, NX200, NX300 and NX1 body service manuals and the 30 mm, 18-55 mm and 85 mm lens service manuals (parts lists and photos only, no mount drawings); Samsung patents KR10-2012-0138199 and KR10-2012-0138201 (lens communication, no geometry), KR101567816B1 / US8414204B2 lens adapter and US2010/0166417A1 (no dimensions or angles). _(Upgrade from a Samsung mechanical drawing, a mount patent with stated angles, or a measured NX body and lens.)_
+- Bayonet radial bands (21 to 23.5 mm), lug depth and thickness (1.8 mm), lens rear opening (20 mm radius), contact pad width, height and protrusion, lock-pin protrusion and the drawn screw diameter are unscaled stand-ins carried over from the first draft. Lens lugs are stored on their slot's centre angle; the lens photos put them within 2.5 deg of that. _(Measure a body mount plate, MOUNT-INNER ring and lens mount, or find a drawing.)_
+- The commonly published 42 mm mount diameter is secondary-sourced and it is unclear which diameter it denotes. Photo scaling puts the mount-plate opening near 45 mm and the claw-to-claw and lens-lug diameters near 40-42 mm. _(Confirm whether 42 mm denotes the clear throat or another mount-diameter convention.)_
+- The 25.5 mm register is secondary-sourced. The NX200 and NX300 service manuals give a mount-to-CMOS flange-back adjust value of 25.55 mm (-35/+15, printed “mm” but evidently micrometres), measured on a Kyoritsu RSM-5000; that band does not include 25.50 mm, so it may be a mechanical distance that allows for the sensor cover glass. _(Find a Samsung statement of the design register, or establish what the service adjust value measures.)_
+- Contact functions are known only as groups: five interface pins (contacts 1-5) and three power pins (contacts 6-8, release-button side), with signal names from the NX10 Lens PCB. Which pin carries which signal is not established; the lens-side sixth pad is wider than the rest. _(Trace an NX body contact block or lens flex to assign each signal to its pin.)_
+- Mount-plate screw thread differs by body: SCREW 2.0*6.0 PAN on the NX10, M1.7x5 on the NX200. The screw count (4) is from the parts lists; the pitch circle and 45 deg positions are photo-scaled, and the drawn diameter is a stand-in. _(Minor feature; settle with a measured body or drawing.)_
 
 ### `sigma-sa` — Sigma SA
 
@@ -3884,110 +4212,128 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 | MVP status | `renderable` |
 | Mount mechanism | `bayonet` (lock `sprung_detent`) |
 | Base profile | `sigma-sa/base` |
-| Selected MVP profile | `sigma-sa/base` |
-| Variant strategy | `base_only` |
+| Selected MVP profile | `sigma-sa/sa-ib` |
+| Variant strategy | `variant_profiles_defined` |
 
 #### Base and variant profile matrix
 
 | Profile ID | Type | Applies to | Adds | Removes | Changes |
 |---|---|---|---|---|---|
-| `sigma-sa/base` | base | Sigma SA autofocus lenses and bodies | three-lug bayonet; electrical contact bank; aperture actuation lever | — | geometry is represented at MVP level pending a dimensioned Sigma drawing |
+| `sigma-sa/base` | base | all Sigma SA bodies and lenses, 1992-2018 | three-lug inner bayonet (SA-IB); axial lock pin and lock groove; 12 o'clock mounting index; seven electrical contacts in a 5 + 2 grouping | mechanical aperture and metering couplings (the mount is all-electronic) | — |
+| `sigma-sa/sa-ib-ob` | variant | dual-bayonet bodies, 1992-2006: SA-300 through SD10 (the SD9 and SD10 manuals name both SA-IB and SA-OB) | outer bayonet (SA-OB) on the body mount ring periphery, never used by a Sigma lens; two extra body contact pins with no lens counterpart | — | outer bayonet geometry is not dimensioned by any source found |
+| `sigma-sa/sa-ib` | variant | inner-bayonet-only bodies, 2007-2018 (SD14 through sd Quattro H), and late SA lenses | extra pads on late lenses, extending the five-pad group; no body pin meets them | outer bayonet (SA-OB); the two extra body contact pins | — |
 
 #### Dimensional summary
 
 | Field | Value | Unit |
 |---|---|---|
 | Flange focal distance | 44 (`secondary`) | mm |
-| Nominal throat diameter | 44 (`secondary`) | mm |
-| Effective clear aperture | 44 (`secondary`) | mm |
-| Camera mount outer diameter | 54 (`photo_scaled`) | mm |
-| Lens mount outer diameter | 52 (`photo_scaled`) | mm |
-| Contact count | 8 (`photo_scaled`) | count |
+| Nominal throat diameter | 44.4 (`secondary`) | mm |
+| Effective clear aperture | 44.4 (`secondary`) | mm |
+| Camera mount outer diameter | 61 (`photo_scaled`) | mm |
+| Lens mount outer diameter | 62 (`photo_scaled`) | mm |
+| Contact count | 7 (`secondary`) | count |
 | Lock rotation | 60 (`photo_scaled`) | deg |
-| Lock direction | clockwise (`photo_scaled`) | — |
+| Lock direction | clockwise (`official`) | — |
 
-#### Figures (selected profile `sigma-sa/base`)
+#### Figures (selected profile `sigma-sa/sa-ib`)
 
-**Camera-side front view** — viewBox `-34 -35 68 69` · 55 elements in 5 layers · hash `494a4691` ([standalone SVG](mounts/sigma-sa-camera-front.svg))
+**Camera-side front view** — viewBox `-37 -39 74 76` · 50 elements in 4 layers · hash `b74ddcf5` ([standalone SVG](mounts/sigma-sa-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-32 -33 64 65` · 49 elements in 5 layers · hash `c6392460` ([standalone SVG](mounts/sigma-sa-lens-rear.svg))
+**Lens-side rear view** — viewBox `-38 -40 76 78` · 50 elements in 4 layers · hash `7a1b033f` ([standalone SVG](mounts/sigma-sa-lens-rear.svg))
 
-**Axial / register schematic** — viewBox `-50 -37 58 70` · 14 elements in 2 layers · hash `96bc2a5f` ([standalone SVG](mounts/sigma-sa-axial.svg))
+**Axial / register schematic** — viewBox `-51 -41 58 78` · 16 elements in 2 layers · hash `9fcb77e0` ([standalone SVG](mounts/sigma-sa-axial.svg))
 
 #### Camera-side front-view geometry
 
 | Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
 |---|---|---|---|---|---|---|---|
-| `body-throat` | body_throat | `sigma-sa/base` | 0° | 0° | 360° | 0 | 22 |
-| `body-mount-ring` | mount_ring | `sigma-sa/base` | 0° | 0° | 360° | 22 | 27 |
-| `body-slot-1` | bayonet_receiving_slot | `sigma-sa/base` | 30° | 11° | 49° | 22 | 24.5 |
-| `body-slot-2` | bayonet_receiving_slot | `sigma-sa/base` | 150° | 131° | 169° | 22 | 24.5 |
-| `body-slot-3` | bayonet_receiving_slot | `sigma-sa/base` | 270° | 251° | 289° | 22 | 24.5 |
-| `body-index-mark` | index_mark | `sigma-sa/base` | 0° | unknown | unknown | unknown | 27.5 |
-| `body-lock-pin` | lock_pin | `sigma-sa/base` | 90° | unknown | unknown | unknown | 23 |
+| `body-throat` | body_throat | `sigma-sa/base` | 0° | 0° | 360° | 0 | 22.2 |
+| `body-mount-ring` | mount_ring | `sigma-sa/base` | 0° | 0° | 360° | 22.2 | 30.5 |
+| `body-slot-1` | bayonet_receiving_slot | `sigma-sa/base` | 26.5° | 3° | 50° | 22.2 | 23.6 |
+| `body-slot-2` | bayonet_receiving_slot | `sigma-sa/base` | 157.5° | 132° | 183° | 22.2 | 23.6 |
+| `body-slot-3` | bayonet_receiving_slot | `sigma-sa/base` | 263.5° | 241° | 286° | 22.2 | 23.6 |
+| `body-index-mark` | index_mark | `sigma-sa/base` | 0° | unknown | unknown | unknown | 30.5 |
+| `body-lock-pin` | lock_pin | `sigma-sa/base` | 252° | unknown | unknown | unknown | 26.5 |
+| `body-outer-bayonet` | outer_bayonet_lug | `sigma-sa/sa-ib-ob` | unknown | unknown | unknown | unknown | unknown |
 
 #### Lens-side rear-view geometry
 
 | Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
 |---|---|---|---|---|---|---|---|
-| `lens-throat` | lens_throat | `sigma-sa/base` | 0° | 0° | 360° | 0 | 21 |
-| `lens-mount-ring` | lens_mount_ring | `sigma-sa/base` | 0° | 0° | 360° | 21 | 26 |
-| `lens-lug-1` | bayonet_lug | `sigma-sa/base` | 30° | 11° | 49° | 22 | 24.5 |
-| `lens-lug-2` | bayonet_lug | `sigma-sa/base` | 150° | 131° | 169° | 22 | 24.5 |
-| `lens-lug-3` | bayonet_lug | `sigma-sa/base` | 270° | 251° | 289° | 22 | 24.5 |
-| `lens-index-mark` | index_mark | `sigma-sa/base` | 0° | unknown | unknown | unknown | 26.5 |
-| `lens-lock-notch` | lock_notch | `sigma-sa/base` | 90° | unknown | unknown | unknown | 23 |
+| `lens-throat` | lens_throat | `sigma-sa/base` | 0° | 0° | 360° | 0 | 20.7 |
+| `lens-mount-ring` | lens_mount_ring | `sigma-sa/base` | 0° | 0° | 360° | 20.7 | 31 |
+| `lens-lug-1` | bayonet_lug | `sigma-sa/base` | 26.5° | 3° | 50° | 22.2 | 23.6 |
+| `lens-lug-2` | bayonet_lug | `sigma-sa/base` | 157.5° | 132° | 183° | 22.2 | 23.6 |
+| `lens-lug-3` | bayonet_lug | `sigma-sa/base` | 263.5° | 241° | 286° | 22.2 | 23.6 |
+| `lens-index-mark` | index_mark | `sigma-sa/base` | 0° | unknown | unknown | unknown | 26.6 |
+| `lens-lock-notch` | lock_notch | `sigma-sa/base` | 252° | unknown | unknown | unknown | 26.5 |
 
 #### Electrical contacts
 
 | Side | No. | Profile | Center angle | Radius | Function |
 |---|---|---|---|---|---|
-| body | 1 | `sigma-sa/base` | 230° | 23 |  |
-| body | 2 | `sigma-sa/base` | 237° | 23 |  |
-| body | 3 | `sigma-sa/base` | 244° | 23 |  |
-| body | 4 | `sigma-sa/base` | 251° | 23 |  |
-| body | 5 | `sigma-sa/base` | 258° | 23 |  |
-| body | 6 | `sigma-sa/base` | 265° | 23 |  |
-| body | 7 | `sigma-sa/base` | 272° | 23 |  |
-| body | 8 | `sigma-sa/base` | 279° | 23 |  |
-| lens | 1 | `sigma-sa/base` | 230° | 23 |  |
-| lens | 2 | `sigma-sa/base` | 237° | 23 |  |
-| lens | 3 | `sigma-sa/base` | 244° | 23 |  |
-| lens | 4 | `sigma-sa/base` | 251° | 23 |  |
-| lens | 5 | `sigma-sa/base` | 258° | 23 |  |
-| lens | 6 | `sigma-sa/base` | 265° | 23 |  |
-| lens | 7 | `sigma-sa/base` | 272° | 23 |  |
-| lens | 8 | `sigma-sa/base` | 279° | 23 |  |
+| body | 1 | `sigma-sa/base` | 159.6° | 20.2 |  |
+| body | 2 | `sigma-sa/base` | 165.4° | 20.2 |  |
+| body | 3 | `sigma-sa/base` | 171.1° | 20.2 |  |
+| body | 4 | `sigma-sa/base` | 176.9° | 20.2 |  |
+| body | 5 | `sigma-sa/base` | 182.6° | 20.2 |  |
+| body | 6 | `sigma-sa/base` | 194.4° | 20.2 |  |
+| body | 7 | `sigma-sa/base` | 202.9° | 20.2 |  |
+| body | 8 | `sigma-sa/sa-ib-ob` | 211.2° | 20.5 |  |
+| body | 9 | `sigma-sa/sa-ib-ob` | 215.6° | 18.1 |  |
+| lens | 1 | `sigma-sa/base` | 159.6° | 20.2 |  |
+| lens | 2 | `sigma-sa/base` | 165.4° | 20.2 |  |
+| lens | 3 | `sigma-sa/base` | 171.1° | 20.2 |  |
+| lens | 4 | `sigma-sa/base` | 176.9° | 20.2 |  |
+| lens | 5 | `sigma-sa/base` | 182.6° | 20.2 |  |
+| lens | 6 | `sigma-sa/base` | 194.4° | 20.2 |  |
+| lens | 7 | `sigma-sa/base` | 202.9° | 20.2 |  |
+| lens | 8 | `sigma-sa/sa-ib` | 153.5° | 20.1 |  |
+| lens | 9 | `sigma-sa/sa-ib` | 147.6° | 20.1 |  |
+| lens | 10 | `sigma-sa/sa-ib` | 141.7° | 20.1 |  |
 
 #### Mechanical couplings
 
-| Feature | Side | Profile | Function |
-|---|---|---|---|
-| `aperture-actuation-lever` | both | `sigma-sa/base` | body-driven aperture stop-down actuation |
+None — fully electronic.
 
 #### Axial stack
 
 | Plane | z (mm) | Diameter (mm) |
 |---|---|---|
-| `flange_datum` | 0 | 54 |
-| `bayonet_lug_engagement` | 1.2 | 49 |
-| `electrical_contact_plane` | 0.5 | 45 |
+| `flange_datum` | 0 | 61 |
+| `lens_locating_spigot` | -0.89 | 50.4 |
+| `bayonet_lug_engagement` | -3.05 | 47.2 |
+| `electrical_contact_plane` | unknown | 40.4 |
 | `sensor_film_plane` | -44 | 43.3 |
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/sigma-sa.mount.ts` (41229 bytes, content hash `1abfc097`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/sigma-sa.mount.ts` (57069 bytes, content hash `839f6e9d`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
 | Ref | Type | Citation | Archive | Captured | Confidence |
 |---|---|---|---|---|---|
 | `ssa-1` | secondary | “Flange focal distance,” Wikipedia. Accessed 2026-06-06. | [snapshot](http://web.archive.org/web/20260526152456/https://en.wikipedia.org/wiki/Flange_focal_distance) | 2026-05-26 | medium |
-| `ssa-2` | secondary | Sigma SA mount visual references and mount charts. Accessed 2026-06-06. | [snapshot](unknown) | unknown | low |
+| `ssa-2` | secondary | P. Buttler, “Lens Mounts: Sigma SA mount,” JAPB (japb.net), updated May 2025, with the annotated rear photograph of a Sigma 18-50mm 1:3.5-5.6 DC. Accessed 2026-11-21. | [snapshot](https://japb.net/wp-content/uploads/2025/05/ID-Sigma-SA.jpg) | 2026-11-21 | medium |
+| `ssa-3` | secondary | P. Buttler, photograph of a Sigma SA-300 body mount, in “Lens Mounts: Sigma SA mount,” JAPB (japb.net), updated May 2025. Accessed 2026-11-21. | [snapshot](https://japb.net/wp-content/uploads/2025/05/Sigma-sa-300-dual-mount.jpg) | 2026-11-21 | low |
+| `ssa-4` | secondary | P. Buttler, rear photograph of a Sigma 30 mm f/1.4 EX HSM, in “Lens Mounts: Sigma SA mount,” JAPB (japb.net), updated May 2025. Accessed 2026-11-21. | [snapshot](https://japb.net/wp-content/uploads/2025/05/SA-30f1.4-1-s-l1600.jpg) | 2026-11-21 | medium |
+| `ssa-5` | secondary | S. H. Westin, “Comparison: Sigma SA mount vs. Pentax K,” dimensioned section drawing dated 28 May 2004, Cornell University Program of Computer Graphics. Accessed 2026-11-21. | [snapshot](https://www.graphics.cornell.edu/~westin/misc/pentax-sigma-compare.png) | 2026-11-21 | medium |
+| `ssa-6` | official | Sigma Corporation, SD9 User's Manual (English), pp. 11 and 23-24. Accessed 2026-11-21. | [snapshot](https://www.sigma-global.com/en/support/download/SD9Users_Manual_Engl.pdf) | 2026-11-21 | high |
+| `ssa-7` | official | Sigma Corporation, SD14 User's Manual (English), pp. 11 and 24-25. Accessed 2026-11-21. | [snapshot](https://www.sigma-global.com/en/support/download/SD14Users_Manual_en.pdf) | 2026-11-21 | high |
+| `ssa-8` | field_photo | Morio, “Sigma sd Quattro front-left 2016 China P&E,” Wikimedia Commons, CC BY-SA 4.0, taken 2016-04-23. Accessed 2026-11-21. | [snapshot](https://upload.wikimedia.org/wikipedia/commons/c/cb/Sigma_sd_Quattro_front-left_2016_China_P%26E.jpg) | 2026-11-21 | medium |
+| `ssa-p1` | patent | M. Katayama (Sigma Corp.), “Mount lock device for camera,” JP H04-242732 A, filed 1990-12-28, published 1992-08-31 (granted as JP 3062957 B2). Accessed 2026-11-21. | [snapshot](https://www.j-platpat.inpit.go.jp/c1801/PU/JP-H04-242732/11/en) | 2026-11-21 | low |
 
 #### Open questions
 
-- SA lug geometry, exact throat, contact pitch, and aperture lever position need a measured sample. _(Upgrade with Sigma service documentation or calibrated body/lens measurements.)_
+- Lug and slot angles are photo-scaled from the bayonet outline JAPB drew on one lens rear photograph (about ±3°; the leading edge of lug 1 is hidden under an annotation marker). Body claw edges were not scaled. No Sigma drawing, service manual or patent with lug angles was found. _(Replace with a Sigma service drawing or a calibrated measurement of a body and lens. Searched: Google Patents (Sigma Corp, bayonet/mount, 1988-1996), J-PlatPat, Espacenet, Sigma support manuals, JAPB, Westin's mount pages, Wikimedia Commons.)_
+- Lock pin position (252°, radius 26.5 mm), the 60° lock rotation and the index position are photo-scaled. JP H04-242732 A describes the lock but gives no angles, and its figures could not be viewed (J-PlatPat document display was under maintenance and Espacenet was behind a bot check on 2026-11-21). _(Confirm against a dimensioned drawing or measured sample; view the patent figures 2 and 3.)_
+- Contact pitch (about 5.8° in the five-group, 8.5° in the pair), radius (about 20.2 mm) and pad size are photo-scaled; the pinout is unknown. JAPB's text gives late lenses a 7 + 2 grouping but its 30 mm F1.4 photograph shows 8 + 2, so the late-lens pad count is unsettled. The two extra SA-300 body pins are placed from one oblique photograph. _(Measure a body and an early and a late lens; document the signal on each contact.)_
+- The outer bayonet (SA-OB) of the SA-300 to SD10 bodies has no dimensioned source. JAPB's SA-300 photograph shows relief around the ring periphery near 45-130°, 205-245° and 295-325°, but the view is too oblique to store as geometry. _(Measure a dual-bayonet body or find a Sigma drawing of the SA-OB flange.)_
+- The throat is entered as Westin's measured lens bayonet barrel diameter (44.4 mm, ±0.3 mm); 44 mm is the commonly listed figure but no source found here states it, and the body bore was not measured. _(Measure the opening between the body claws.)_
+- Mount ring diameters and the screw pattern are photo-scaled: the body ring and its four screws from JAPB's oblique SA-300 photograph, the lens flange plate from two lens photographs. The sd Quattro photograph shows five screws, so the screw pattern is body-specific. _(Measure the ring of an SA-300-era body and of an SD14-or-later body.)_
+- Westin's section records a fixed lug inside the lens rear, between radii 17.3 mm and 20.7 mm and reaching 7 mm behind the flange. It is not drawn because its angular position and purpose are not documented. _(Identify the part on a lens sample and record its angle.)_
 
 ### `sony-a` — Sony A
 
@@ -4026,7 +4372,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 **Camera-side front view** — viewBox `-35 -37 70 72` · 57 elements in 5 layers · hash `11bb9ae0` ([standalone SVG](mounts/sony-a-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-35 -35 70 70` · 49 elements in 5 layers · hash `16f88ff0` ([standalone SVG](mounts/sony-a-lens-rear.svg))
+**Lens-side rear view** — viewBox `-35 -35 70 70` · 49 elements in 5 layers · hash `2a934ff4` ([standalone SVG](mounts/sony-a-lens-rear.svg))
 
 **Axial / register schematic** — viewBox `-51 -39 59 74` · 14 elements in 2 layers · hash `157549a6` ([standalone SVG](mounts/sony-a-axial.svg))
 
@@ -4147,7 +4493,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 **Camera-side front view** — viewBox `-34 -35 68 69` · 58 elements in 4 layers · hash `67767d85` ([standalone SVG](mounts/sony-fe-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-32 -33 64 65` · 50 elements in 4 layers · hash `3c2bcf77` ([standalone SVG](mounts/sony-fe-lens-rear.svg))
+**Lens-side rear view** — viewBox `-32 -33 64 65` · 50 elements in 4 layers · hash `41d28c2f` ([standalone SVG](mounts/sony-fe-lens-rear.svg))
 
 **Axial / register schematic** — viewBox `-24 -37 31 70` · 14 elements in 2 layers · hash `4b09e9a0` ([standalone SVG](mounts/sony-fe-axial.svg))
 
@@ -4236,7 +4582,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 |---|---|
 | Mount ID | `zeiss-contarex` |
 | Display label | Zeiss Contarex |
-| Project note | Zeiss Ikon Contarex SLR bayonet mount. |
+| Project note | Zeiss Ikon Contarex SLR bayonet (1959 to 1972): lugs on the body, aperture set from the body. |
 | Research status | `partial` |
 | MVP status | `renderable` |
 | Mount mechanism | `bayonet` (lock `sprung_detent`) |
@@ -4248,28 +4594,28 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 | Profile ID | Type | Applies to | Adds | Removes | Changes |
 |---|---|---|---|---|---|
-| `zeiss-contarex/base` | base | Zeiss Ikon Contarex SLR lenses and bodies | Contarex bayonet; aperture/metering coupling | rangefinder mount coupling | feature placement is photo-scaled |
+| `zeiss-contarex/base` | base | Zeiss Ikon Contarex I (Bullseye), Special, Professional, Super and Super Electronic bodies and Carl Zeiss Contarex-mount lenses | three outward lugs on the body with a female bayonet on the lens; lock pin and release button on the body; body-driven aperture ring coupling; lens-speed indexing nose | aperture ring on the lens | every drawn angle and radius is photo-scaled; no dimensioned source was found |
 
 #### Dimensional summary
 
 | Field | Value | Unit |
 |---|---|---|
 | Flange focal distance | 46 (`secondary`) | mm |
-| Nominal throat diameter | 46 (`secondary`) | mm |
-| Effective clear aperture | 46 (`secondary`) | mm |
+| Nominal throat diameter | 46 (`photo_scaled`) | mm |
+| Effective clear aperture | unknown (`unknown`) | mm |
 | Camera mount outer diameter | 58 (`photo_scaled`) | mm |
 | Lens mount outer diameter | 56 (`photo_scaled`) | mm |
 | Contact count | not_applicable (`not_applicable`) | count |
-| Lock rotation | 60 (`photo_scaled`) | deg |
-| Lock direction | clockwise (`photo_scaled`) | — |
+| Lock rotation | 90 (`photo_scaled`) | deg |
+| Lock direction | clockwise (`official`) | — |
 
 #### Figures (selected profile `zeiss-contarex/base`)
 
-**Camera-side front view** — viewBox `-36 -37 72 73` · 37 elements in 4 layers · hash `247d6ae9` ([standalone SVG](mounts/zeiss-contarex-camera-front.svg))
+**Camera-side front view** — viewBox `-36 -37 75 73` · 41 elements in 4 layers · hash `aa460970` ([standalone SVG](mounts/zeiss-contarex-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-35 -36 70 71` · 31 elements in 4 layers · hash `0ca5fb5a` ([standalone SVG](mounts/zeiss-contarex-lens-rear.svg))
+**Lens-side rear view** — viewBox `-35 -36 70 71` · 34 elements in 4 layers · hash `958b3184` ([standalone SVG](mounts/zeiss-contarex-lens-rear.svg))
 
-**Axial / register schematic** — viewBox `-53 -40 61 76` · 12 elements in 2 layers · hash `1e8a5cea` ([standalone SVG](mounts/zeiss-contarex-axial.svg))
+**Axial / register schematic** — viewBox `-53 -40 61 76` · 12 elements in 2 layers · hash `d3fc61d3` ([standalone SVG](mounts/zeiss-contarex-axial.svg))
 
 #### Camera-side front-view geometry
 
@@ -4277,52 +4623,66 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 |---|---|---|---|---|---|---|---|
 | `body-throat` | body_throat | `zeiss-contarex/base` | 0° | 0° | 360° | 0 | 23 |
 | `body-mount-ring` | mount_ring | `zeiss-contarex/base` | 0° | 0° | 360° | 23 | 29 |
-| `body-slot-1` | bayonet_receiving_slot | `zeiss-contarex/base` | 0° | 343° | 17° | 23 | 25.5 |
-| `body-slot-2` | bayonet_receiving_slot | `zeiss-contarex/base` | 120° | 103° | 137° | 23 | 25.5 |
-| `body-slot-3` | bayonet_receiving_slot | `zeiss-contarex/base` | 240° | 223° | 257° | 23 | 25.5 |
-| `body-index-mark` | index_mark | `zeiss-contarex/base` | 0° | unknown | unknown | unknown | 29.5 |
-| `body-lock-pin` | lock_pin | `zeiss-contarex/base` | 90° | unknown | unknown | unknown | 24 |
+| `body-lug-1` | bayonet_lug | `zeiss-contarex/base` | 51° | 34° | 68° | 23 | 25 |
+| `body-lug-2` | bayonet_lug | `zeiss-contarex/base` | 172° | 155° | 189° | 23 | 25 |
+| `body-lug-3` | bayonet_lug | `zeiss-contarex/base` | 303° | 286° | 320° | 23 | 25 |
+| `body-index-mark` | index_mark | `zeiss-contarex/base` | 45° | unknown | unknown | unknown | 29.5 |
+| `body-lock-pin` | lock_pin | `zeiss-contarex/base` | 82.5° | unknown | unknown | unknown | 26.5 |
+| `body-release-button` | lens_release_button | `zeiss-contarex/base` | 73° | unknown | unknown | unknown | 33 |
 
 #### Lens-side rear-view geometry
 
 | Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
 |---|---|---|---|---|---|---|---|
-| `lens-throat` | lens_throat | `zeiss-contarex/base` | 0° | 0° | 360° | 0 | 22 |
-| `lens-mount-ring` | lens_mount_ring | `zeiss-contarex/base` | 0° | 0° | 360° | 22 | 28 |
-| `lens-lug-1` | bayonet_lug | `zeiss-contarex/base` | 0° | 343° | 17° | 23 | 25.5 |
-| `lens-lug-2` | bayonet_lug | `zeiss-contarex/base` | 120° | 103° | 137° | 23 | 25.5 |
-| `lens-lug-3` | bayonet_lug | `zeiss-contarex/base` | 240° | 223° | 257° | 23 | 25.5 |
-| `lens-index-mark` | index_mark | `zeiss-contarex/base` | 0° | unknown | unknown | unknown | 28.5 |
-| `lens-lock-notch` | lock_notch | `zeiss-contarex/base` | 90° | unknown | unknown | unknown | 24 |
+| `lens-throat` | lens_throat | `zeiss-contarex/base` | 0° | 0° | 360° | 0 | 17.8 |
+| `lens-mount-ring` | lens_mount_ring | `zeiss-contarex/base` | 0° | 0° | 360° | 23.5 | 28 |
+| `lens-tab-1` | bayonet_tab | `zeiss-contarex/base` | 336° | 296° | 16° | 23.5 | 25 |
+| `lens-tab-2` | bayonet_tab | `zeiss-contarex/base` | 87.5° | 52° | 123° | 23.5 | 25 |
+| `lens-tab-3` | bayonet_tab | `zeiss-contarex/base` | 204° | 162° | 246° | 23.5 | 25 |
+| `lens-stop-key` | rotation_stop_key | `zeiss-contarex/base` | 283.5° | 281° | 286° | 23 | 25 |
+| `lens-index-mark` | index_mark | `zeiss-contarex/base` | 45° | unknown | unknown | unknown | 28.5 |
+| `lens-lock-notch` | lock_notch | `zeiss-contarex/base` | 82.5° | unknown | unknown | unknown | 26.5 |
 
 #### Mechanical couplings
 
 | Feature | Side | Profile | Function |
 |---|---|---|---|
-| `aperture-metering-coupler` | both | `zeiss-contarex/base` | communicates aperture/metering state |
+| `aperture-drive-ring` | both | `zeiss-contarex/base` | the body's aperture wheel, preselection store and spring drive turn the lens diaphragm through a ring gear around the optical axis |
+| `max-aperture-index` | both | `zeiss-contarex/base` | a nose on the lens mount, clocked by the lens's maximum aperture, moves a lever on the body's aperture index ring so the scale starts at that lens's speed |
 
 #### Axial stack
 
 | Plane | z (mm) | Diameter (mm) |
 |---|---|---|
 | `flange_datum` | 0 | 58 |
-| `bayonet_lug_engagement` | 1.2 | 52 |
+| `bayonet_lug_engagement` | 1.2 | 50 |
 | `sensor_film_plane` | -46 | 43.3 |
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/zeiss-contarex.mount.ts` (25485 bytes, content hash `de45b240`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/zeiss-contarex.mount.ts` (44134 bytes, content hash `82017310`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
 | Ref | Type | Citation | Archive | Captured | Confidence |
 |---|---|---|---|---|---|
-| `zcx-1` | secondary | “Flange focal distance,” Wikipedia. Accessed 2026-06-06. | [snapshot](http://web.archive.org/web/20260526152456/https://en.wikipedia.org/wiki/Flange_focal_distance) | 2026-05-26 | medium |
-| `zcx-2` | secondary | Contarex mount visual references. Accessed 2026-06-06. | [snapshot](unknown) | unknown | low |
+| `zcx-man1` | official | Zeiss Ikon AG, “Contarex 35 mm: Instructions for Use,” pp. 24–25 with Figs. 12–13 and the nomenclature fold-out (items 9, 10). Scan hosted by M. Butkus. Accessed 2026-11-21. | [snapshot](https://www.cameramanuals.org/zeiss_ikon/zeiss_ikon_contarex.pdf) | 2026-11-21 | medium |
+| `zcx-man2` | official | Zeiss Ikon AG, “Contarex Special: Instructions for Use,” p. 19 with Figs. 12–13 (PDF pp. 22–24). Scan hosted by M. Butkus. Accessed 2026-11-21. | [snapshot](https://www.cameramanuals.org/zeiss_ikon/zeiss_ikon_contarex_special.pdf) | 2026-11-21 | medium |
+| `zcx-man3` | official | Zeiss Ikon AG, “Contarex Professional” instructions, sections “Special flash lenses” and “Changing lenses” with Figs. 8–10 (PDF pp. 13–16). Scan hosted by M. Butkus. Accessed 2026-11-21. | [snapshot](https://cameramanuals.org/zeiss_ikon/zeiss_ikon_contarex_professional.pdf) | 2026-11-21 | medium |
+| `zcx-man4` | official | Zeiss Ikon / Voigtländer, Contarex Super Electronic instructions, nomenclature fold-outs. Scan hosted by M. Butkus. Accessed 2026-11-21. | [snapshot](https://cameramanuals.org/contax/contarex_elextronic_diagrams.pdf) | 2026-11-21 | low |
+| `zcx-p1` | patent | E. Sauer (Zeiss Ikon AG), DE1230309B, “Einäugige Spiegelreflexkamera mit Wechselobjektiven und mit einer kameraseitigen Blendeneinstell-, Vorwahl-, Speicher- und Abtasteinrichtung,” filed 1964-04-30, published 1966-12-08. Accessed 2026-11-21. | [snapshot](https://depatisnet.dpma.de/DepatisNet/depatisnet?action=pdf&docid=DE000001230309B) | 2026-11-21 | high |
+| `zcx-p1f` | patent_figure | DE1230309B, Fig. 2: front view of the camera mount. Undimensioned drawing, scaled for this spec. Accessed 2026-11-21. | [snapshot](https://depatisnet.dpma.de/DepatisNet/depatisnet?action=pdf&docid=DE000001230309B) | 2026-11-21 | low |
+| `zcx-japb` | secondary | P. Buttler, “Lens mounts: Contarex,” JAPB (japb.net), updated May 2025. Accessed 2026-11-21. | [snapshot](https://japb.net/wp-content/uploads/2025/05/ID-Contarex.jpg) | 2026-11-21 | medium |
+| `zcx-westin` | secondary | S. H. Westin, “Alphabetical List of Camera Mounts” (after W.-J. Markerink), Cornell University, last modified 2016-02-11. Accessed 2026-11-21. | [snapshot](https://www.graphics.cornell.edu/~westin/misc/mounts-by-register.html) | 2026-11-21 | medium |
 
 #### Open questions
 
-- Contarex bayonet and coupling geometry are photo-scaled. _(Upgrade with Zeiss service drawings or measured examples.)_
+- No source states any Contarex mount diameter. The 46 mm bore, 58 mm body ring and 56 mm lens rear ring are the first draft's stand-ins; JAPB's lens-rear photo only fixes proportions (tab bore 0.84, openings 0.89, aperture ring 0.64 to 0.77 of the rear ring's outer radius). The clear light opening is unknown. _(Needs the Zeiss Ikon factory service manual (a German-language Contarex service manual is sold by learncamerarepair.com; not obtained) or a calibrated measurement. Searched without result: Zeiss Ikon patents DE1230309B, DE1047005B, US2830513A, US3034411A, US2926576A, US3074331A, US3075442A, US3075444A; Carl Zeiss DE1179101B; Zeiss Ikon catalogues at pacificrimcamera.com (rl/00079, 00252, 02113, 02114); JAPB; Westin; Camera-wiki; Wikipedia.)_
+- Lug, lock pin, release button and index dot angles are scaled from two manual photos taken from above the lens axis; tab, stop key and lock groove angles from one third-party lens-rear photo (about +/-5 deg overall, +/-2 deg within the lens photo). Body lug 2 is hidden in both manual photos and is placed from the lens openings. The two visible lugs read 116 deg apart on the manuals against 108.5 deg between the matching openings on the JAPB photo; the lugs stand forward of the screw plane used to take off the foreshortening, which would open the reading that way, but this was not measured. _(Replace with dimensioned service-manual or patent values, or a straight-on photo of a bare body.)_
+- The lock rotation of about 90 deg is derived, not stated: the manuals give only the direction. It follows from the lock groove and openings on the JAPB photo against the lock pin and lugs on the manual photos (87.5 to 95 deg), and from the stop key reaching the next lug (89 to 91 deg). As stored, each body lug lies under only the spring-finger end of its tab (16, 27 and 24 deg of its 34 deg for lugs 1, 2 and 3) and stands partly in the next opening; that is what the measured edges give and it was not adjusted, so either the true turn is a few degrees short of 90 or the body angles are off by that much. _(Confirm on a camera or from the service manual.)_
+- Aperture coupling: the stored angle is the notch as photographed on a detached lens (diaphragm closed), in the locked frame; the ring turns with the aperture setting and shutter cocking, and the body-side driver is not shown in any source used. The lens-speed nose is drawn at the body lever's mid position; its angle per lens speed is not dimensioned. _(Needs the service manual or a patent on the bayonet coupling itself; none was found.)_
+- Flash (Blitz) lenses: DE1230309B puts a feeler pin through a recess in the lens mount face, working a lever that passes through the body's front wall. No source gives its angle or radius, and the Professional manual does not show whether production bodies carry the lever, so no variant profile is defined. The Super Electronic's differences seen in its manual are in the body electronics, not in the mount. _(Add a flash-lens variant profile once the pin and lever are located on a lens rear and a later body (Professional, Super).)_
+- Mount screws: five are visible at about 30, 90, 210, 270 and 330 deg; a sixth at 150 deg is likely but hidden in both photos. The 54 mm pitch circle and 2 mm size are the first draft's stand-ins. Lug thickness and the axial engagement plane are unsourced stand-ins as well. _(Minor; confirm from a bare body or the service manual.)_
 
 ## Appendix — JSON Schema reference
 

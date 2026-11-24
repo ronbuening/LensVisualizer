@@ -34,7 +34,7 @@ const LENS_DATA = {
   key: "sigma-15mm-f14-dg-dn-diagonal-fisheye-art",
   maker: "Sigma",
   name: "SIGMA 15mm f/1.4 DG DN DIAGONAL FISHEYE | Art",
-  subtitle: "JP 2025-099854 A, Example 3 — construction-based production correlation",
+  subtitle: "JP 2025-099854 A, Example 3 — production match by construction",
 
   catalog: {
     lensMounts: ["l-mount", "sony-fe"],

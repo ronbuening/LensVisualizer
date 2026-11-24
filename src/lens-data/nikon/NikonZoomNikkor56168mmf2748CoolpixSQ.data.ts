@@ -51,7 +51,7 @@ const LENS_DATA = {
   key: "nikon-zoom-nikkor-56-168-f27-48-coolpix-sq",
   maker: "Nikon",
   name: "NIKON ZOOM-NIKKOR 5.6-16.8mm f/2.7-4.8 (Nikon COOLPIX SQ)",
-  subtitle: "US 2003/0072085 A1 Example 1 — qualified COOLPIX SQ correlation",
+  subtitle: "US 2003/0072085 A1 Example 1 — tentative COOLPIX SQ match",
 
   catalog: {
     lensMounts: ["fixed-lens-camera"],

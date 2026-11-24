@@ -39,7 +39,7 @@ const TELECONVERTER_DATA = {
   key: "nikon-af-s-tc800-1-25e-ed",
   maker: "Nikon",
   name: "NIKON AF-S TELECONVERTER TC800-1.25E ED",
-  subtitle: "JP 2013-250290 A, Example 1 \u2014 production correlation",
+  subtitle: "JP 2013-250290 A, Example 1 \u2014 production match",
 
   catalog: {
     lensMounts: ["nikon-f"],

@@ -31,7 +31,7 @@ const LENS_DATA = {
   key: "pentax-fa-star-80-200mm-f28-ed-if",
   maker: "Pentax",
   name: "PENTAX SMC FA* 80-200mm f/2.8 ED [IF]",
-  subtitle: "US 5,572,276 A, Embodiment 1 \u2014 qualified production correlation",
+  subtitle: "US 5,572,276 A, Embodiment 1 \u2014 tentative production match",
   catalog: {
     lensMounts: ["pentax-k"],
     imageFormat: "135-full-frame",
