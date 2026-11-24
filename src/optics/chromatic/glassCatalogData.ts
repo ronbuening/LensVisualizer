@@ -631,6 +631,7 @@ const GLASS_CATALOG_SOURCE_ORDER = [
   "BAFN6",
   "N-PSK3",
   "BAFL2",
+  "BAFL4",
   "LACL1",
   "L-BAL43",
   "K-CSK120-M",
