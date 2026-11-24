@@ -8,8 +8,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * follow the printed table. Elements 5 and 6 are cemented at r10.
  * The iris splits the printed 20.02 mm central air space into 11.25 and 8.77 mm;
  * its position and derived opening are inferred. Clear semi-diameters follow
- * Figure 2's relative rim heights, with the f/2 axial beam preserved. Element 3
- * has a square 21 mm rim; the doublet and rear singlet retain larger clear
+ * Figure 2's relative rim heights, with the f/2 axial beam preserved. Elements
+ * 1 and 2 share a 28 mm rim height, and Element 3 has a square 21 mm rim.
+ * The doublet and rear singlet retain larger clear
  * radii than the schematic drawing to limit the loss of oblique illumination.
  * The image plane uses the calculated paraxial back focus of 55.44 mm.
  * The printed full field is 50 degrees. The Summicron family association does
@@ -68,7 +69,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: -126.39,
       glass: "SF12 (spectral proxy; patent nd 1.65017 / ν 33.7; supplier and melt unspecified)",
-      role: "Negative flint opposing the front collector's colour.",
+      role: "Negative member of the split front positive component.",
     },
     {
       id: 3,
@@ -130,7 +131,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 106.89,
       glass: "S-LAM3 (spectral proxy; patent nd 1.71715 / ν 47.9; supplier and melt unspecified)",
-      role: "Positive rear element following the cemented pair.",
+      role: "Rear positive lens, described as radiation-absorbing flint.",
     },
   ],
   surfaces: [
@@ -145,20 +146,20 @@ const LENS_DATA = {
       label: "2",
       R: -382.69,
       d: 0.54,
-      sd: 27,
+      sd: 28,
     },
     {
       label: "3",
       R: -328.33,
       d: 3.92,
-      sd: 27,
+      sd: 28,
       medium: 2,
     },
     {
       label: "4",
       R: 110.12,
       d: 0.2,
-      sd: 25,
+      sd: 28,
     },
     {
       label: "5",

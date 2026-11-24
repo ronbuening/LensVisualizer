@@ -33,12 +33,12 @@ The focal lengths below are calculated for each thick element in air. They descr
 | Element | Shape              |      nd |    ν | Glass identification           | Focal length (mm) | Optical role                                        |
 | ------- | ------------------ | ------: | ---: | ------------------------------ | ----------------: | --------------------------------------------------- |
 | 1       | Biconvex Positive  |  1.6923 | 54.7 | N-LAK9 (Schott), spectral proxy |             69.04 | Front collector of the split positive member        |
-| 2       | Biconcave Negative | 1.65017 | 33.7 | SF12 (Sumita), spectral proxy |           −126.39 | Flint element opposing the front collector's colour |
+| 2       | Biconcave Negative | 1.65017 | 33.7 | SF12 (Sumita), spectral proxy |           −126.39 | Negative member of the split front positive component |
 | 3       | Positive Meniscus  |  1.6923 | 54.7 | N-LAK9 (Schott), spectral proxy |            112.13 | Positive half of the front meniscus pair            |
 | 4       | Negative Meniscus  | 1.57501 | 41.3 | QF3, CDGM catalogue equivalent |            −71.96 | Negative meniscus facing the diaphragm              |
 | 5       | Biconcave Negative | 1.58217 | 38.0 | Unmatched                      |            −44.99 | Negative front element of the cemented pair         |
 | 6       | Biconvex Positive  |  1.6923 | 54.7 | N-LAK9 (Schott), spectral proxy |             54.38 | Positive rear element of the cemented pair          |
-| 7       | Biconvex Positive  | 1.71715 | 47.9 | S-LAM3 (Ohara), spectral proxy |            106.89 | Rear positive member                                |
+| 7       | Biconvex Positive  | 1.71715 | 47.9 | S-LAM3 (Ohara), spectral proxy |            106.89 | Rear positive lens described as radiation-absorbing flint |
 
 The cemented pair as a whole has a calculated focal length of −606.28 mm in air.
 
@@ -52,9 +52,9 @@ Element 4 matches the optical coordinates of CDGM QF3: its catalogue row gives n
 - Element 2: SF12 (Sumita), Δnd −0.00186 and Δν +0.07.
 - Element 7: S-LAM3 (Ohara), Δnd −0.00015 and Δν +0.03.
 
-These differences are catalogue minus printed values at the patent's d-line. Each proxy lies within 0.002 in index and 0.25 in Abbe number. The present-day catalogue curves supply only the shape of the dispersion curve, so colour analysis for these elements follows real glass rather than an Abbe-number estimate. Neither the coordinate match nor the proxies identify the historical supplier or melt. Element 5 remains unmatched because no catalogue row falls within both tolerances; its dispersion is inferred from nd and ν. The patent supplies no additional spectral indices or measured partial dispersions.
+These differences are catalogue minus printed values at the patent's d-line. Each proxy meets the site's spectral-proxy tolerance of 0.002 in index and 0.25 in Abbe number. The catalogue curves supply wavelength dependence anchored to the printed indices. Historical suppliers and melts remain unknown. Element 5 uses dispersion estimated from nd and ν because its pair falls outside the tolerance of the available catalogue curves. The same nd 1.58217 and ν 38.0 appear in Example 1. Both examples give only nd and ν for colour.
 
-The text discusses radiation from thorium-bearing optical glass and the use of flint glass to absorb it before it reaches the emulsion. This provides historical context for the Summicron association but does not identify the composition of every element in either numerical example or a production specimen.
+The patent discusses radiation from thorium-bearing optical glass and the use of flint to shield the emulsion. Claim 5 describes the last positive component as a radiation-absorbing flint. It gives no trade name or partial-dispersion data for that glass.
 
 ## Focus Mechanism and Aperture
 
@@ -64,7 +64,7 @@ The diaphragm position is inferred within the printed 20.02 mm central space: 11
 
 At nominal f/2 the paraxial stop radius is 15.468 mm. Finite rays give an entrance-equivalent aperture of about f/2.01 and an image-space sine equivalent of f/2.00. A finite marginal ray corresponding to f/2 would require a stop radius of about 15.532 mm. The f/2–f/22 stop sequence is illustrative; the patent prints no aperture ladder.
 
-All clear semi-diameters are estimates: r1–r13 use 28, 27, 27, 25, 21, 21, 20, 19, 20, 20, 20, 22.4 and 22.4 mm. Figure 2 is schematic: its thicknesses and air spaces do not share a consistent scale. Its relative rim heights support the square edge of Element 3 and the common doublet rim. Element 3 clears the f/2 axial ray at r5 by about 0.08 mm. The doublet and rear singlet remain larger than the drawn proportions to preserve oblique illumination. Wide-open geometric transmission is 100% on axis, 69.2% at 16.7°, 53.6% at 19.4° and 16.4% at 25°. The smallest common-radius glass thickness is 2.76 mm. The front 0.54 mm air space leaves 0.38 mm at 27 mm radius; the 0.39 mm space leaves 0.23 mm at 20 mm; the central gap leaves 4.73 mm at 19 mm. The stop plane clears the r8 and r9 rims by approximately 1.71 and 2.33 mm. No flat lands are inferred. Barrel dimensions remain unknown.
+The estimated clear semi-diameters for r1–r13 are 28, 28, 28, 28, 21, 21, 20, 19, 20, 20, 20, 22.4 and 22.4 mm. Figure 2 gives the two front elements nearly identical outer heights and square edges. Its thicknesses and air spaces vary in scale. Element 3 clears the f/2 axial ray at r5 by about 0.08 mm. The doublet and rear singlet remain larger than the drawn proportions to preserve oblique illumination. Wide-open geometric transmission is 100% on axis, 69.2% at 16.7°, 53.6% at 19.4° and 16.4% at 25°. The smallest common-radius glass thickness is 2.76 mm. The front 0.54 mm air space leaves 0.37 mm at 28 mm radius. The 0.39 mm space leaves 0.23 mm at 20 mm, and the central gap leaves 4.73 mm at 19 mm. The stop plane clears the r8 and r9 rims by approximately 1.71 and 2.33 mm. Barrel dimensions and the exact shape of the iris-facing chamfers are unknown.
 
 ## First-Order Properties and Stated Field
 
