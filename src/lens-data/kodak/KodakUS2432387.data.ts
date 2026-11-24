@@ -54,8 +54,9 @@ const LENS_DATA = {
   elements: [
     {
       id: 1,
-      name: "L1",
-      label: "Element 1",
+      name: "I",
+      diagramLabel: "I",
+      label: "Lens I",
       type: "Positive Meniscus",
       nd: 1.588,
       vd: 53.4,
@@ -66,8 +67,9 @@ const LENS_DATA = {
     },
     {
       id: 2,
-      name: "L2",
-      label: "Element 2",
+      name: "II",
+      diagramLabel: "II",
+      label: "Lens II",
       type: "Positive Meniscus",
       nd: 1.611,
       vd: 57.2,
@@ -78,8 +80,9 @@ const LENS_DATA = {
     },
     {
       id: 3,
-      name: "L3",
-      label: "Element 3",
+      name: "III",
+      diagramLabel: "III",
+      label: "Lens III",
       type: "Biconcave Negative",
       nd: 1.72,
       vd: 29.3,
@@ -90,8 +93,9 @@ const LENS_DATA = {
     },
     {
       id: 4,
-      name: "L4",
-      label: "Element 4",
+      name: "IV",
+      diagramLabel: "IV",
+      label: "Lens IV",
       type: "Biconvex Positive",
       nd: 1.697,
       vd: 56.1,
@@ -172,26 +176,26 @@ const LENS_DATA = {
   },
   focus: {
     closeFocusM: 1e15,
-    description: "Infinity focus only; the patent gives no close-focus data.",
+    description: "Infinity focus only. The patent gives no focusing mechanism or travel.",
   },
   groups: [
     {
-      text: "G1 · L1",
+      text: "I · +",
       fromSurface: "1",
       toSurface: "2",
     },
     {
-      text: "G2 · L2",
+      text: "II · +",
       fromSurface: "3",
       toSurface: "4",
     },
     {
-      text: "G3 · L3",
+      text: "III · −",
       fromSurface: "5",
       toSurface: "6",
     },
     {
-      text: "G4 · L4",
+      text: "IV · +",
       fromSurface: "7",
       toSurface: "8",
     },
