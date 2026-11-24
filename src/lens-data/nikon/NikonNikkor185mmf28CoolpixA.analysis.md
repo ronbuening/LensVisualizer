@@ -147,7 +147,7 @@ The patent relates these limits to coma and distortion control in a short lens. 
 
 Table 1 fixes the stop at surface 5. The printed f/2.88 gives a calculated iris radius of 3.935 mm. The clear radii
 and the outer lands at surfaces 2 and 9 are estimated from Figure 1. The camera has a seven-blade iris with
-third-stop settings from f/2.8 to f/22. [1, 3, 6]
+19 third-stop settings, from f/2.8 to f/22. [1, 3, 5]
 
 The printed 38.9° half-field gives a 14.615 mm image height, 3.3% beyond the 14.145 mm DX corner. The rims admit
 the axial beam. At the DX corner (about 38.0°), the chief ray clears the rims and about 97% of the pupil area
@@ -166,6 +166,4 @@ focus lies 0.698 mm behind that plate, about 0.007 mm in front of the printed pl
 4. DC Watch, [_An Interview About the Lens of the Nikon COOLPIX A_](https://dc.watch.impress.co.jp/docs/news/interview/593500.html),
    interview with Atsushi Suzuki and the camera development team.
 5. DPReview, [_Nikon Coolpix A Comparative Review_](https://www.dpreview.com/reviews/1257143006/nikon-coolpix-a/),
-   lens construction, aspherical element count, and measured macro magnification.
-6. Nikon, [_COOLPIX A User's Manual_ (Japanese)](https://nij.nikon.com/support/manual/coolpix/AFM_%2810%2902.pdf),
-   p. 51, aperture-priority mode.
+   lens construction, aspherical element count, smallest aperture setting, and measured macro magnification.

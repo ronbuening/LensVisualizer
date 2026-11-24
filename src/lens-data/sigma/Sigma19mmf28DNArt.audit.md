@@ -60,7 +60,7 @@ At 800 mm, interpolating the two printed rows alone places paraxial focus about 
 
 Sigma announced the 19mm F2.8 EX DN in January 2012 and the 19mm F2.8 DN | Art in January 2013. Both use a linear motor for inner focus, consistent with the movement of G2 in the patent. [Sigma's 2012 announcement](https://press.sigmaphoto.com/corporate/01/sigma-corporation-of-america-announces-prime-lenses-for-mirrorless-interchangeable-lens-cameras-at-ces-2012/), [Sigma France's 2013 announcement](https://www.sigma-photo.fr/content/111-nouveautes-cp-sigma-19mm-f28-dn).
 
-They share an eight-element, six-group layout with aspheres on L1, L6 and L8 and cemented pairs at L4–L5 and L7–L8. Both versions were sold in Sony E and Micro Four Thirds mounts and cover APS-C. Both are 19 mm, f/2.8–22, with a seven-blade rounded diaphragm and a 0.20 m minimum focus from the image plane at 1:7.4. Sigma gives diagonal fields of 73.5° on Sony E and 59.3° on Micro Four Thirds. [Sigma EX DN](https://www.sigma-global.com/en/lenses/19_28/), [Sigma DN Art](https://www.sigma-global.com/en/lenses/a_19_28/), [Sigma's focus-distance definition](https://www.sigma-global.com/en/shooting-with-sigma/a020-105-28-imp/).
+They share an eight-element, six-group layout with aspheres on L1, L6 and L8 and cemented pairs at L4–L5 and L7–L8. Both versions were sold in Sony E and Micro Four Thirds mounts and cover APS-C. Both are 19 mm, f/2.8–22, with a seven-blade rounded diaphragm and a 0.20 m minimum focus from the image plane at 1:7.4. Sigma gives diagonal fields of 73.5° on Sony E and 59.3° on Micro Four Thirds, and lists no compatible teleconverter. [Sigma EX DN](https://www.sigma-global.com/en/lenses/19_28/), [Sigma DN Art](https://www.sigma-global.com/en/lenses/a_19_28/), [Sigma's focus-distance definition](https://www.sigma-global.com/en/shooting-with-sigma/a020-105-28-imp/).
 
 Examples 3 and 4 are equally close to the production drawing. L3 thickness favours Example 4, and L6 thickness favours Example 3. The production drawing places the G2 doublet and meniscus about 1–1.5 mm farther back than either. Examples 1 and 2 have seven optical groups. Example 5 cements L2–L3 and separates the rear pair. Example 6 has a 21.94 mm focal length. Example 4 gives consistent gap labels. Example 3's spacing table calls its variable gaps d9 and d11, while the surface table places them after S7 and S12. [Patent tables](https://patents.google.com/patent/JP2013029658A/ja), [Sigma DN Art construction](https://www.sigma-global.com/en/lenses/a_19_28/).
 
@@ -74,15 +74,15 @@ Examples 3 and 4 are equally close to the production drawing. L3 thickness favou
 
 The printed glass pairs are retained. Added Hoya labels supply dispersion curves for seven elements. Differences below are the evaluated catalog curve minus the patent value, using d-line indices and C/d/F Abbe numbers. Hoya lists TAFD30 at νd 40.80 versus 40.81 in the patent. Its fitted curve gives 40.82.
 
-| Elements | Catalog equivalent | Δnd            | Δνd  |
-| -------- | ------------------ | -------------: | ---: |
-| L1, L8   | M-PCD51 (Hoya)      | +3.7 × 10⁻⁶   | 0.00 |
-| L2       | E-FL6 (Hoya)        | −3.5 × 10⁻⁷   | 0.00 |
-| L3       | TAFD30 (Hoya)       | +3.9 × 10⁻⁶   | +0.01 |
-| L4       | E-F2 (Hoya)         | −1.5 × 10⁻⁷   | 0.00 |
-| L5       | TAF3 (Hoya)         | −4.5 × 10⁻⁷   | 0.00 |
-| L6       | Unmatched           |              — | —    |
-| L7       | E-FD13 (Hoya)       | −2.3 × 10⁻⁷   | 0.00 |
+| Elements | Catalog equivalent |         Δnd |   Δνd |
+| -------- | ------------------ | ----------: | ----: |
+| L1, L8   | M-PCD51 (Hoya)     | +3.7 × 10⁻⁶ |  0.00 |
+| L2       | E-FL6 (Hoya)       | −3.5 × 10⁻⁷ |  0.00 |
+| L3       | TAFD30 (Hoya)      | +3.9 × 10⁻⁶ | +0.01 |
+| L4       | E-F2 (Hoya)        | −1.5 × 10⁻⁷ |  0.00 |
+| L5       | TAF3 (Hoya)        | −4.5 × 10⁻⁷ |  0.00 |
+| L6       | Unmatched          |           — |     — |
+| L7       | E-FD13 (Hoya)      | −2.3 × 10⁻⁷ |  0.00 |
 
 The completed model gives 18.908 mm EFL, f/2.88 and 22.289 mm paraxial back focus at infinity, with a 4.164 mm iris radius and 37.6° half-field.
 
@@ -90,4 +90,4 @@ The completed model gives 18.908 mm EFL, f/2.88 and 22.289 mm paraxial back focu
 
 - The factory prescription, production glass identities and melt data remain unpublished. L6 uses dispersion estimated from its printed nd of 1.77010 and νd of 49.34 because no catalog curve matches that pair.
 - The patent supplies no tabulated rim or iris diameters. The 14.20 mm printed image height corresponds to a 28.40 mm diameter, slightly wider than the 28.35 mm APS-C diagonal used for this model.
-- The production focus travel from 0.40 m to 0.20 m and the corresponding optical behaviour are undocumented in the patent. Sigma's specifications list no compatible teleconverter. [Sigma DN Art](https://www.sigma-global.com/en/lenses/a_19_28/).
+- The production focus travel from 0.40 m to 0.20 m and the corresponding optical behaviour are undocumented in the patent.

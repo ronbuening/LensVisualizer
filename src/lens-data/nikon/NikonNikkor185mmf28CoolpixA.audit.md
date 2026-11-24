@@ -8,11 +8,11 @@ JP 2013-029580 and JP 2013-029581 of February 19, 2013. The U.S. grant issued Ma
 Table 1 (PDF page 29), with the sag equation on PDF page 28 and Figures 1–2 on PDF pages 3–4.
 [US 9,915,803 B2](https://patents.google.com/patent/US9915803B2/en)
 
-Nikon's announcement dates to March 5, 2013. Nikon documents the lens construction, DX sensor, diaphragm and
-autofocus ranges. The Japanese manual shows the f/22 setting on page 51.
+Nikon's announcement dates to March 5, 2013. Nikon documents the lens construction, DX sensor, seven-blade
+diaphragm with 19 third-stop settings, and autofocus ranges. DPReview's lens test gives f/22 as the smallest setting.
 [Nikon announcement](https://www.nikon.com/company/news/2013/0305_cpx_01/)
 [Nikon specifications](https://nij.nikon.com/products/lineup/compact/a/spec.html)
-[Nikon user's manual](https://nij.nikon.com/support/manual/coolpix/AFM_%2810%2902.pdf)
+[DPReview lens test](https://www.dpreview.com/reviews/1257143006/nikon-coolpix-a/)
 
 ## Transcription Check
 
@@ -26,15 +26,15 @@ The two plates are 1.844 and 0.705 mm thick. Their physical air gaps are 13.355 
 
 ## First-Order Check
 
-| Quantity                                           | Table 1 at model scale |                          Model |
-| -------------------------------------------------- | ---------------------: | -----------------------------: |
-| Effective focal length                             |               18.50 mm |                      18.497 mm |
-| Widest f-number                                    |                   2.88 |                           2.88 |
-| Image height at 38.9° half-field                   |              14.615 mm |                      14.615 mm |
-| Air-equivalent back focus from the front of plate 1 |               3.867 mm |     3.861 mm to paraxial focus |
-| Air-equivalent length to the printed plane         |               42.42 mm |    42.42 mm (43.28 mm physical) |
-| Last plate to printed image plane                  |               0.705 mm |                       0.705 mm |
-| Last plate to paraxial focus                       |                      — |                       0.698 mm |
+| Quantity                                            | Table 1 at model scale |                        Model |
+| --------------------------------------------------- | ---------------------: | ---------------------------: |
+| Effective focal length                              |               18.50 mm |                    18.497 mm |
+| Widest f-number                                     |                   2.88 |                         2.88 |
+| Image height at 38.9° half-field                    |              14.615 mm |                    14.615 mm |
+| Air-equivalent back focus from the front of plate 1 |               3.867 mm |   3.861 mm to paraxial focus |
+| Air-equivalent length to the printed plane          |               42.42 mm | 42.42 mm (43.28 mm physical) |
+| Last plate to printed image plane                   |               0.705 mm |                     0.705 mm |
+| Last plate to paraxial focus                        |                      — |                     0.698 mm |
 
 Table 1's normalized back focus of 0.209 agrees with the air-equivalent distance from the front of plate 1 to the
 printed plane. From the last powered surface the air-equivalent distances are 17.223 mm to the printed plane
@@ -87,7 +87,7 @@ group. Nikon states that the camera has no optical low-pass filter.
   with separate dimensions for the outer lands.
 - The focus description and spacings cover the single printed infinity state. `focus.closeFocusM` is 10¹⁵ m,
   which stands for infinity. The 0.50 m normal autofocus limit describes the camera and is measured from the
-  front lens surface, as is the 0.10 m macro limit now recorded for the product. DPReview measured 0.20×
+  front lens surface, as is the 0.10 m macro limit recorded as the product's minimum focus. DPReview measured 0.20×
   magnification in macro mode. [Nikon specifications](https://nij.nikon.com/products/lineup/compact/a/spec.html)
   [DPReview macro test](https://www.dpreview.com/reviews/1257143006/nikon-coolpix-a/)
 - The lens entry pairs the COOLPIX A with Example 1 from the probable patent family. The fixed-lens camera and
@@ -96,7 +96,7 @@ group. Nikon states that the camera has no optical low-pass filter.
   to f/22 describe the camera. The patent's 29.23 mm field diameter exceeds the 28.29 mm DX diagonal.
   [Nikon announcement](https://www.nikon.com/company/news/2013/0305_cpx_01/)
   [Nikon specifications](https://nij.nikon.com/products/lineup/compact/a/spec.html)
-  [Nikon user's manual](https://nij.nikon.com/support/manual/coolpix/AFM_%2810%2902.pdf)
+  [DPReview lens test](https://www.dpreview.com/reviews/1257143006/nikon-coolpix-a/)
 - The patent designation now reads US 9,915,803 B2. The lens labels follow the patent's L1–L7 designations,
   with calculated in-air focal lengths and brackets for the two cemented pairs at surfaces 6–8 and 9–11.
 
@@ -104,13 +104,13 @@ Catalog equivalents replace unidentified glass labels where their optical consta
 The table gives catalog minus patent values. L1 and L7 retain the printed constants and use dispersion estimated
 from the Abbe number.
 
-| Position           | Catalog equivalent |        Δnd |      Δνd |
-| ------------------ | ------------------ | ---------: | -------: |
-| L2                 | J-LASF016 (Hikari)  | +1.7 × 10⁻⁸ | +0.0002 |
-| L3                 | J-LASF08A (Hikari)  | +2.5 × 10⁻⁸ |   +0.029 |
-| L4, L5             | S-TIM35 (Ohara)     | −3.2 × 10⁻⁶ |   −0.002 |
-| L6                 | J-LASKH2 (Hikari)   | +1.5 × 10⁻⁸ |   +0.006 |
-| Both filter plates | BSC7 (Hoya)         | −1.8 × 10⁻⁶ |   −0.002 |
+| Position           | Catalog equivalent |         Δnd |     Δνd |
+| ------------------ | ------------------ | ----------: | ------: |
+| L2                 | J-LASF016 (Hikari) | +1.7 × 10⁻⁸ | +0.0002 |
+| L3                 | J-LASF08A (Hikari) | +2.5 × 10⁻⁸ |  +0.029 |
+| L4, L5             | S-TIM35 (Ohara)    | −3.2 × 10⁻⁶ |  −0.002 |
+| L6                 | J-LASKH2 (Hikari)  | +1.5 × 10⁻⁸ |  +0.006 |
+| Both filter plates | BSC7 (Hoya)        | −1.8 × 10⁻⁶ |  −0.002 |
 
 The finished model gives 18.497 mm effective focal length at f/2.88, with a 3.935 mm iris radius and 0.698 mm
 paraxial back focus from the last plate.
