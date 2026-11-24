@@ -6,8 +6,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Table 1 gives three focus positions. Only G2 moves, toward the image, while the two gaps around it sum to 17.990 mm.
  * Fig. 1 provides rim estimates. The close clearances at surfaces 4–5, 6–7 and 17–18 follow the drawing; the
  * surface 11 rim clears the axial beam beyond the drawn arc. The 13.78 mm iris radius follows from F/1.44.
- * The image plane stays 0.522 mm behind the filter. Seven further spacings between
- * the two finite positions are calculated for paraxial focus on that plane, keeping the 17.990 mm sum.
+ * The image plane stays 0.522 mm behind the filter. Seven calculated positions between the two printed finite
+ * positions keep paraxial focus on that plane and preserve the 17.990 mm sum.
  */
 const LENS_DATA = {
   schema: 2,
@@ -31,9 +31,7 @@ const LENS_DATA = {
       "10 ELEMENTS / 8 GROUPS",
       "ALL SPHERICAL",
       "1 ED ELEMENT",
-      "DESIGN f = 85.01 mm",
-      "DESIGN F/1.44",
-      "INTERNAL FOCUS",
+      "INNER FOCUS",
     ],
     lensMounts: ["samsung-nx"],
     imageFormat: "aps-c",
@@ -62,7 +60,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "PCD4 (HOYA)",
       focalLengthMm: 89.48,
-      role: "Positive front crown of the fixed first group.",
+      role: "Front crown that starts converging the beam.",
     },
     {
       id: 2,
@@ -74,7 +72,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "TAF3 (HOYA)",
       focalLengthMm: 91.64,
-      role: "High-index positive meniscus paired across a narrow air gap with L131.",
+      role: "High-index meniscus that adds convergence ahead of L131.",
     },
     {
       id: 3,
@@ -86,7 +84,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "E-FD15 (HOYA)",
       focalLengthMm: -44.77,
-      role: "Dispersive negative meniscus between the two positive menisci in G1.",
+      role: "Dispersive negative meniscus that offsets chromatic power in the front group.",
     },
     {
       id: 4,
@@ -98,7 +96,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "FCD1 (HOYA)",
       focalLengthMm: 75.76,
-      role: "Extra-low-dispersion positive meniscus closing the fixed first group.",
+      role: "Extra-low-dispersion (ED) meniscus that restores convergence after L131.",
       apd: "inferred",
       apdNote:
         "Samsung's construction diagram marks this positive meniscus as ED, consistent with the patent's 1.49700 index and 81.6 Abbe number.",
@@ -165,7 +163,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "TAF1 (HOYA)",
       focalLengthMm: 113.42,
-      role: "Weak positive meniscus ahead of the final negative element in G3b.",
+      role: "Positive meniscus that converges the beam before the final negative element.",
     },
     {
       id: 10,
@@ -326,7 +324,7 @@ const LENS_DATA = {
       },
     ],
     description:
-      "PUBLISHED inner focus. G2 moves 1.08 mm toward the image at 4.41 m and 7.277 mm at 0.81 m, measured from object to image. The other groups, stop and image plane stay fixed. Seven calculated positions between the two printed finite positions keep the image on the fixed plane. At the nearest position, surface 4 limits the wide-open axial beam. Samsung specifies a 0.82 m minimum for the production lens.",
+      "PUBLISHED inner focus. The patent prints three positions at infinity, 4.41 m and 0.81 m. At the two finite distances, measured from object to image, G2 moves 1.08 mm and 7.28 mm toward the image. The other groups, iris and image plane stay fixed. Seven positions between the two printed finite positions are calculated for paraxial focus. At 0.81 m, surface 4 limits the wide-open axial beam. Samsung specifies a 0.82 m minimum.",
   },
   gaps: {
     "8": {

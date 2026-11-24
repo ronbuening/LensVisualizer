@@ -1,18 +1,20 @@
-# SAMSUNG 85mm f/1.4 ED SSA — audit
+# SAMSUNG 85mm f/1.4 ED SSA — Audit Log
 
 ## Source
 
-[US 8,498,063 B2, Telephoto lens system](https://patents.google.com/patent/US8498063B2/en), Shuji Yoneyama, Samsung Electronics Co., Ltd. Filed July 7, 2011, with Korean priority of September 8, 2010. Granted July 30, 2013. The first embodiment is shown in Fig. 1 (PDF p. 2), with the prescription and focus states on PDF p. 49. Table 7 gives the first-order conditions.
+[US 8,498,063 B2, Telephoto lens system](https://patents.google.com/patent/US8498063B2/en), Shuji Yoneyama, Samsung Electronics Co., Ltd. The application was filed July 7, 2011, with Korean priority KR 10-2010-0088052 of September 8, 2010. The patent was granted July 30, 2013. Fig. 1 shows the first embodiment (PDF p. 2), the prescription and Table 1 give its dimensions and focus positions (p. 49), and Table 7 gives the first-order values (p. 52).
 
-## Transcription
+Samsung's product specifications and lens manual give the NX mount, 85 mm focal length, f/1.4–22 aperture range, ten elements in eight groups with one extra-low-dispersion element, 18.8° field, 0.82 m minimum focus and approximately 0.13× magnification. The manual describes a nine-blade circular iris. [Samsung product specifications](https://www.samsung.com/sec/support/model/EX-T85NB/KR/) · [Samsung lens manual](https://www.manualslib.com/manual/540176/Samsung-Ext85nb.html)
 
-All 21 rows agree with the patent's signed radii, axial intervals, d-line indices and Abbe numbers. Row 12 is the iris, and rows 20 and 21 are the two faces of the unpowered filter. The spherical prescription is reproduced at the printed scale, including the 19.447 mm gap from the last lens to the 2.800 mm filter and the 0.522 mm air gap after it.
+## Transcription Check
 
-Both variable gaps follow Table 1 at all three positions. D1 after surface 8 is 3.925, 5.005 and 11.202 mm. D2 after surface 11 is 14.065, 12.985 and 6.788 mm. Their sum is 17.990 mm throughout. The cemented interfaces are at surfaces 10 and 14. The three lens groups are G1 (surfaces 1–8), G2 (9–11) and G3 (13–19).
+All 21 rows were reread against the patent page images. The signed radii, axial intervals, d-line indices and Abbe numbers agree. Row 12 is the iris and rows 20–21 are the faces of the unpowered filter. The spherical prescription retains the printed scale, including 19.447 mm of air between the last lens and the 2.800 mm filter, followed by 0.522 mm to the image plane.
 
-The finite object distances fit the first-vertex reference. At 4300.641 mm and 700 mm, the paraxial images lie 0.0022 mm and 0.0026 mm behind the printed plane, and the magnifications round to the printed −0.0200 and −0.1306. Using the image plane as the distance reference would instead leave 0.0473 mm and 2.2730 mm of defocus. All lens and filter indices match HOYA catalog entries at the printed index and within 0.05 in Abbe number.
+Table 1 prints three focus positions. The gaps D1 after surface 8 are 3.925, 5.005 and 11.202 mm, and D2 after surface 11 are 14.065, 12.985 and 6.788 mm. Each pair sums to 17.990 mm. The cemented interfaces are at surfaces 10 and 14. The three groups are G1 (surfaces 1–8), G2 (9–11) and G3 (13–19).
 
-## First-Order Values
+The finite object distances fit the first-vertex reference. At 4300.641 mm and 700 mm, the paraxial images lie 0.0022 mm and 0.0026 mm behind the printed plane, and the magnifications round to the printed −0.0200 and −0.1306. Measured from the image plane, those object distances would give 0.0473 mm and 2.273 mm of defocus.
+
+## First-Order Check
 
 | Quantity                                         |                Patent |          Model |
 | ------------------------------------------------ | --------------------: | -------------: |
@@ -26,13 +28,13 @@ The finite object distances fit the first-vertex reference. At 4300.641 mm and 7
 | Last powered surface power × system focal length |                 −1.29 |         −1.288 |
 | Closest magnification                            |               −0.1306 |       −0.13064 |
 
-Infinity paraxial focus lies 0.0025 mm behind the printed image plane. The d-line longitudinal spherical aberration at the nominal marginal ray is −0.041 mm relative to paraxial focus, consistent with Fig. 3.
+Infinity paraxial focus lies 0.0025 mm behind the printed plane. The d-line longitudinal spherical aberration at the full-aperture marginal ray is −0.041 mm relative to paraxial focus, consistent with Fig. 3.
 
-The surface geometry has positive edge thickness and no overlap. At infinity the iris sets the full aperture and the chief ray reaches the 14.175 mm APS-C corner at 9.50°. The image circle covers the format. The corner chief ray also clears every surface from the printed object points at 4300.641 mm and 700 mm. At all three positions, the chief ray reaches the 14.24 mm image height plotted in Fig. 3. From the 700 mm point a separate ray aimed at the open iris edge meets surface 4 beyond its rim.
+The surfaces have positive edge thickness and stay clear of each other. At infinity the iris sets the full aperture, and the 9.5° chief ray reaches the 14.175 mm APS-C corner. The corner chief ray also clears the rims at the two printed finite positions. At all three printed positions the chief ray reaches the 14.24 mm image height shown in the aberration plots. At 700 mm, a separate axial ray aimed at the open iris edge reaches surface 4 beyond its rim.
 
 ## Values Not Printed in the Patent
 
-The Fig. 1 infinity drawing gives a first-vertex-to-image scale of 15.45 px/mm along the axis and about 16.6 px/mm radially from the curvature of the drawn faces. The semi-diameters below follow the drawn rims, the nearby surface clearances and the axial beam.
+The axial scale of the Fig. 1 infinity drawing is 15.45 px/mm from first vertex to image. The face curvatures give about 16.6 px/mm radially, uncertain by about ±3%. The clear radii follow the drawn rims, face clearances and axial beam.
 
 | Surfaces | Semi-diameter (mm) | Basis                                                                              |
 | -------- | -----------------: | ---------------------------------------------------------------------------------- |
@@ -46,11 +48,11 @@ The Fig. 1 infinity drawing gives a first-vertex-to-image scale of 15.45 px/mm a
 | 18–19    |              13.85 | Drawn last element edge                                                            |
 | Filter   |               15.2 | Drawn filter edge                                                                  |
 
-The drawing shows edge contact at 4–5, 6–7 and 17–18. The modeled faces retain a narrow air clearance at these rims. The allowed sag intrusion is set to 95% of the vertex gap to accommodate the drawn geometry. The iris radius of 13.784 mm follows from f/1.44 and the paraxial entrance pupil. The patent prints the iris position.
+Fig. 1 shows edge contact at 4–5, 6–7 and 17–18. The model retains narrow air clearances at these rims, with up to 95% of the axial gap allowed for the combined surface sag. The 13.784 mm iris radius is calculated from f/1.44 and the paraxial entrance pupil. The iris position is printed.
 
-Adding the 109.871 mm track to the printed object distances gives 4.4105 m and 0.8099 m from object to image. The nearer distance is expressed as 0.81 m and the middle position falls at 0.1837 of the inverse-distance travel. Between infinity and 4.41 m the gap thicknesses vary linearly, which leaves the paraxial image at most 0.017 mm in front of the image plane. Between 4.41 m and 0.81 m a linear blend would leave it 0.50 mm in front, so seven intermediate positions were calculated (see Values Not Printed in the Patent).
+Adding the 109.871 mm track to the two finite distances printed in Table 1 gives 4.4105 m and 0.8099 m from object to image. The latter rounds to 0.81 m, and the middle position falls at 0.1837 of the inverse-distance travel. Linear spacing changes between infinity and 4.41 m leave at most 0.017 mm of defocus toward the lens. Between 4.41 m and 0.81 m, a linear change alone would leave up to 0.50 mm of defocus in the same direction.
 
-Seven focus positions between the printed 4.41 m and 0.81 m rows are calculated. For each, the gap after surface 8 is solved for paraxial focus on the fixed image plane and the gap after surface 11 is 17.990 mm less that value.
+Seven of the ten positions are calculated between the two finite printed rows. At each, D1 is chosen for paraxial focus at the fixed image plane and D2 takes the remainder of 17.990 mm. The table gives the object distances used to calculate the gaps.
 
 | Object distance from surface 1 (mm) | Gap after surface 8 (mm) | Gap after surface 11 (mm) |
 | ----------------------------------: | -----------------------: | ------------------------: |
@@ -62,20 +64,40 @@ Seven focus positions between the printed 4.41 m and 0.81 m rows are calculated.
 |                              907.84 |                    9.393 |                     8.597 |
 |                              792.13 |                   10.272 |                     7.718 |
 
-Each rounded gap focuses within 0.001 mm of the plane. Across the whole travel the paraxial image then stays within 0.017 mm of the plane, the largest departure lying between infinity and 4.41 m.
+Each rounded pair keeps the paraxial image within 0.001 mm of the fixed plane at its calculated position. The greatest departure along the full travel is 0.017 mm, between infinity and 4.41 m.
 
 ## Product Identification
 
-Samsung's drawing shows the same ten elements in eight air-spaced groups, the two cemented pairs, the stop between those pairs and the fourth element marked ED. It shows no asphere. Fig. 1 identifies the first doublet as the focusing group. Embodiments 2 and 5 have eleven elements, embodiments 3 and 6 have nine, and embodiment 4 contains two ED-class glasses. This leaves the first embodiment as the close match to the production construction. [Samsung specifications](https://www.samsung.com/sec/support/model/EX-T85NB/KR/) · [Construction drawing in Focus Review](https://focus-review.com/en/review-samsung-85mm-14/)
+Samsung's construction drawing matches Fig. 1 in the lens shapes, the ten elements in eight air-spaced groups, both cemented pairs and the iris between them. The fourth element alone is marked ED. The drawing shows no asphere markings, and the corresponding patent element is the only one with νd = 81.6. Fig. 1 identifies the first doublet as the focusing group. Embodiments 2 and 5 have eleven elements, and 3 and 6 have nine in their drawings and tables. Embodiment 4 has two ED-class elements. The first embodiment alone matches the production construction and ED count. [Samsung construction drawing](https://focus-review.com/en/review-samsung-85mm-14/) · [Patent, Figs. 1, 9, 16, 23, 30 and 37](https://patents.google.com/patent/US8498063B2/en)
 
-## Corrections
+Within the NX APS-C format, the 14.24 mm height in Fig. 3 gives a calculated diagonal field of about 19.0° versus Samsung's 18.8°. The modeled closest distance is 0.81 m from object to image, with −0.1306× magnification. Samsung lists 0.82 m and about 0.13×. The manual describes its distance scale as camera-to-subject, consistent with taking the product minimum from the image plane. [Samsung product specifications](https://www.samsung.com/sec/support/model/EX-T85NB/KR/) · [Samsung lens manual](https://www.manualslib.com/manual/540176/Samsung-Ext85nb.html) · [Imaging Resource specifications](https://www.imaging-resource.com/lenses/samsung-85mm-f-1-4-ed-ssa-nx/specifications/)
 
-### 2026-11-24
+## Corrections, 2026-11-24
 
-The table of radii, axial intervals, indices and Abbe numbers is reproduced as printed. The patent's 85.01 mm and f/1.44 design figures are listed alongside Samsung's nominal 85 mm and f/1.4 markings. The nearest modeled state is 0.81 m at −0.1306×, as implied by Table 1. Samsung lists 0.82 m and approximately 0.13×. The marked aperture series begins at f/1.4 and ends at f/22 with nine blades. At its widest setting the modeled iris opens to the patent's f/1.44.
+- The working aperture was opened from f/5.6 to the printed f/1.44 at infinity. The field extends from the former ±3.0° limit to the APS-C corner at 9.5° half-field, consistent with the 14.24 mm image height in Fig. 3. This corresponds to 28.48 mm across the image, larger than the 28.35 mm format diagonal.
+- The original narrow clear radii were replaced by the Fig. 1 estimates above to pass the full axial beam at infinity and reach the format corner. The rim at surface 11 extends to 15.2 mm past the drawn arc at about 14.1 mm to clear that beam. Surfaces 4–5, 6–7 and 17–18 retain small air gaps where the figure shows edge contact.
+- The three printed focus positions retain their spacings and fixed image plane. Seven calculated positions extend coverage between the two finite rows because linear spacing changes there would introduce 0.50 mm of defocus. The two cemented doublets are labeled C1 and C2 to distinguish them from the variable gaps D1 and D2.
+- The lens was identified as the Samsung 85 mm f/1.4 ED SSA for Samsung NX APS-C. The catalog records 85 mm, f/1.4, 0.82 m, ten elements in eight groups, one ED element and nine blades. The full-stop scale is f/1.4, 2, 2.8, 4, 5.6, 8, 11, 16 and 22, using Samsung's published endpoints. The fourth element carries the ED designation shown in the production drawing. [Samsung product specifications](https://www.samsung.com/sec/support/model/EX-T85NB/KR/) · [Samsung lens manual](https://www.manualslib.com/manual/540176/Samsung-Ext85nb.html) · [Construction drawing](https://focus-review.com/en/review-samsung-85mm-14/)
+
+HOYA catalog equivalents were added for dispersion, retaining the printed nd and νd. The differences below are catalog minus patent. Absolute differences are at most 0.0000032 in nd and about 0.05 in νd.
+
+| Elements   | HOYA label |          Δnd |    Δνd |
+| ---------- | ---------- | -----------: | -----: |
+| L111       | PCD4       |   −0.0000021 |   0.00 |
+| L121, L321 | TAF3       |  −0.00000045 |   0.00 |
+| L131, L311 | E-FD15     |  −0.00000020 |  −0.05 |
+| L141       | FCD1       |  −0.00000016 |  +0.01 |
+| L211       | FDS90      |   +0.0000032 |  −0.02 |
+| L221       | LAF2       |   +0.0000014 |   0.00 |
+| L331       | TAF1       | +0.000000029 |  +0.02 |
+| L341       | E-FD10     |  −0.00000022 |  +0.02 |
+| Filter     | BSC7       |   −0.0000018 |   0.00 |
+
+At infinity the finished model gives 85.014 mm EFL, f/1.44, 21.817 mm of back focus in air from surface 19, a 13.784 mm iris radius and a 9.5° APS-C corner half-field.
 
 ## Remaining Questions
 
-- Fig. 1's radial scale is uncertain by about ±3%. The external drawing and patent establish the layout, while the production clear apertures and glass supplier remain undocumented.
-- At the 700 mm object point the wide-open axial ray would reach 25.96 mm at surface 4. Surfaces 4 and 5 meet at about 25.32 mm if extended, so widening the rim enough to clear that ray would make the surfaces overlap. The 24.6 mm rim preserves the narrow drawn clearance and limits the usable axial beam at that focus.
-- The patent gives no focus schedule between its three printed positions. The seven intermediate spacings are calculated, not printed.
+- The production radii, spacings, clear apertures and glass supplier remain undocumented. The drawn radial scale carries about ±3% uncertainty.
+- At the 700 mm object point, the full-iris axial ray would reach 25.96 mm at surface 4. Surfaces 4 and 5 would meet at about 25.32 mm, so the 24.6 mm rim preserves clearance and limits the axial beam. Fig. 7's spherical aberration curve is consistent with the unrestricted beam. The production lens's clear aperture at its closest focus is undocumented.
+- Table 1 gives only three focus positions. The actual focus travel between those rows remains undocumented. The model's seven intervening positions follow paraxial focus.
+- A pre-release German Samsung sheet lists seven blades. The Korean product page and lens manual specify nine for EX-T85NB. Whether a seven-blade version was sold remains undocumented. [German product sheet](https://www.fotoskoda.cz/images-old/multi/popisobr/SAMSUNG/datasheetEXT85NB.pdf) · [Samsung product specifications](https://www.samsung.com/sec/support/model/EX-T85NB/KR/) · [Samsung lens manual](https://www.manualslib.com/manual/540176/Samsung-Ext85nb.html)
