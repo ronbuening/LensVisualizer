@@ -58,7 +58,7 @@ const LENS_DATA = {
       vd: 51.1,
       indexReference: "D",
       focalLengthMm: 53.94,
-      glass: "TAC4 (Hoya)",
+      glass: "TAC4 (spectral proxy; patent nD 1.734 / ν 51.1; supplier and melt unspecified)",
       role: "Front positive crown element",
     },
     {
@@ -82,7 +82,7 @@ const LENS_DATA = {
       vd: 51.1,
       indexReference: "D",
       focalLengthMm: 63.96,
-      glass: "TAC4 (Hoya)",
+      glass: "TAC4 (spectral proxy; patent nD 1.734 / ν 51.1; supplier and melt unspecified)",
       role: "Rear positive crown element",
     },
   ],
