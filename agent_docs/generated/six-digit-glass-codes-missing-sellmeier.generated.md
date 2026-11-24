@@ -9,12 +9,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **1212** lenses scanned
-- **1665** total code-only elements found
-- **290** elements in this report
-- **124** distinct lens files affected
+- **1218** lenses scanned
+- **1681** total code-only elements found
+- **306** elements in this report
+- **125** distinct lens files affected
 - **27** active unreviewed elements have no review-record hit or explicit disposition
-- **157** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
+- **173** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
 - **0** dispositions lack any review record
 
 ## Prioritized Unreviewed Queue
@@ -31,25 +31,25 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | C | 682419 | 2 / 1 | 1 | 2 | — | — | 1/1 | [CARL ZEISS JENA FLEKTOGON 50mm f/4](../../src/lens-data/carl-zeiss-jena/ZeissFlektogon50mmf4.data.ts) Element 3 (1.68169 / 41.90)<br>[CARL ZEISS JENA FLEKTOGON 50mm f/4](../../src/lens-data/carl-zeiss-jena/ZeissFlektogon50mmf4.data.ts) Element 4 (1.68169 / 41.90) |
 | D | 554522 | 1 / 1 | 1 | 1 | — | — | 1/1 | [CANON TS-E 24mm f/3.5 L II](../../src/lens-data/canon/CanonTSE24mmf35LII.data.ts) Element 11 (1.55400 / 52.20) |
 | D | 575391 | 1 / 1 | 1 | 1 | — | — | 1/1 | [MINOLTA AUTO TELE ROKKOR-PF 100mm f/2](../../src/lens-data/minolta/Minolta100mmf2AutoTeleRokkor.data.ts) Element 5 (1.57526 / 39.10) |
-| D | 576388 | 1 / 1 | 1 | 1 | — | — | 1/1 | [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) Element L77 (1.57567 / 38.80) |
-| D | 634299 | 1 / 1 | 1 | 1 | — | — | 1/1 | [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) Element L75 (1.63362 / 29.90) |
-| D | 646287 | 1 / 1 | 1 | 1 | — | — | 1/1 | [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) Element L711 (1.64579 / 28.70) |
-| D | 656277 | 1 / 1 | 1 | 1 | — | — | 1/1 | [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) Element L79 (1.65611 / 27.70) |
+| D | 576388 | 1 / 1 | 1 | 1 | — | — | 1/1 | [SONY FE 400-800mm f/6.3-8 G OSS (Prototype Design)](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) Element L77 (1.57567 / 38.80) |
+| D | 634299 | 1 / 1 | 1 | 1 | — | — | 1/1 | [SONY FE 400-800mm f/6.3-8 G OSS (Prototype Design)](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) Element L75 (1.63362 / 29.90) |
+| D | 646287 | 1 / 1 | 1 | 1 | — | — | 1/1 | [SONY FE 400-800mm f/6.3-8 G OSS (Prototype Design)](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) Element L711 (1.64579 / 28.70) |
+| D | 656277 | 1 / 1 | 1 | 1 | — | — | 1/1 | [SONY FE 400-800mm f/6.3-8 G OSS (Prototype Design)](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) Element L79 (1.65611 / 27.70) |
 | D | 668358 | 1 / 1 | 1 | 1 | — | — | 1/1 | [MINOLTA AUTO TELE ROKKOR-PF 100mm f/2](../../src/lens-data/minolta/Minolta100mmf2AutoTeleRokkor.data.ts) Element 4 (1.66797 / 35.80) |
-| D | 670266 | 1 / 1 | 1 | 1 | — | — | 1/1 | [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) Element L72 (1.66961 / 26.60) |
-| D | 673343 | 1 / 1 | 1 | 1 | — | — | 1/1 | [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) Element L52 (1.67300 / 34.30) |
+| D | 670266 | 1 / 1 | 1 | 1 | — | — | 1/1 | [SONY FE 400-800mm f/6.3-8 G OSS (Prototype Design)](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) Element L72 (1.66961 / 26.60) |
+| D | 673343 | 1 / 1 | 1 | 1 | — | — | 1/1 | [SONY FE 400-800mm f/6.3-8 G OSS (Prototype Design)](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) Element L52 (1.67300 / 34.30) |
 | D | 678314 | 1 / 1 | 1 | 1 | — | — | 1/1 | [CANON TS-E 24mm f/3.5 L II](../../src/lens-data/canon/CanonTSE24mmf35LII.data.ts) Element 9 (1.67769 / 31.40) |
 | D | 681472 | 1 / 1 | 1 | 1 | — | — | 1/1 | [CARL ZEISS JENA FLEKTOGON 50mm f/4](../../src/lens-data/carl-zeiss-jena/ZeissFlektogon50mmf4.data.ts) Element 7 (1.68078 / 47.20) |
 | D | 704408 | 1 / 1 | 1 | 1 | — | — | 1/1 | [MINOLTA AUTO TELE ROKKOR-PF 100mm f/2](../../src/lens-data/minolta/Minolta100mmf2AutoTeleRokkor.data.ts) Element 6 (1.70442 / 40.80) |
-| D | 721234 | 1 / 1 | 1 | 1 | — | — | 1/1 | [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) Element L61 (1.72146 / 23.40) |
-| D | 729364 | 1 / 1 | 1 | 1 | — | — | 1/1 | [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) Element L22 (1.72884 / 36.40) |
+| D | 721234 | 1 / 1 | 1 | 1 | — | — | 1/1 | [SONY FE 400-800mm f/6.3-8 G OSS (Prototype Design)](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) Element L61 (1.72146 / 23.40) |
+| D | 729364 | 1 / 1 | 1 | 1 | — | — | 1/1 | [SONY FE 400-800mm f/6.3-8 G OSS (Prototype Design)](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) Element L22 (1.72884 / 36.40) |
 | D | 772361 | 1 / 1 | 1 | 1 | — | — | 1/1 | [CANON TS-E 24mm f/3.5 L II](../../src/lens-data/canon/CanonTSE24mmf35LII.data.ts) Element 7 (1.77236 / 36.10) |
-| D | 827336 | 1 / 1 | 1 | 1 | — | — | 1/1 | [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) Element L76 (1.82673 / 33.60) |
-| D | 837333 | 1 / 1 | 1 | 1 | — | — | 1/1 | [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) Element L44 (1.83720 / 33.30) |
-| D | 839196 | 1 / 1 | 1 | 1 | — | — | 1/1 | [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) Element L32 (1.83909 / 19.60) |
+| D | 827336 | 1 / 1 | 1 | 1 | — | — | 1/1 | [SONY FE 400-800mm f/6.3-8 G OSS (Prototype Design)](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) Element L76 (1.82673 / 33.60) |
+| D | 837333 | 1 / 1 | 1 | 1 | — | — | 1/1 | [SONY FE 400-800mm f/6.3-8 G OSS (Prototype Design)](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) Element L44 (1.83720 / 33.30) |
+| D | 839196 | 1 / 1 | 1 | 1 | — | — | 1/1 | [SONY FE 400-800mm f/6.3-8 G OSS (Prototype Design)](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) Element L32 (1.83909 / 19.60) |
 | D | 842372 | 1 / 1 | 1 | 1 | — | — | 1/1 | [CANON TS-E 24mm f/3.5 L II](../../src/lens-data/canon/CanonTSE24mmf35LII.data.ts) Element 12 (1.84175 / 37.20) |
-| D | 868323 | 1 / 1 | 1 | 1 | — | — | 1/1 | [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) Element L33 (1.86758 / 32.30) |
-| D | 958300 | 1 / 1 | 1 | 1 | — | — | 1/1 | [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) Element L51 (1.95787 / 30.00) |
+| D | 868323 | 1 / 1 | 1 | 1 | — | — | 1/1 | [SONY FE 400-800mm f/6.3-8 G OSS (Prototype Design)](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) Element L33 (1.86758 / 32.30) |
+| D | 958300 | 1 / 1 | 1 | 1 | — | — | 1/1 | [SONY FE 400-800mm f/6.3-8 G OSS (Prototype Design)](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) Element L51 (1.95787 / 30.00) |
 
 ## Codes by Frequency
 
@@ -61,8 +61,10 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 545560 | 4 | 1 | patents/US20180364457A1.pdf | All rows explicitly disposed |
 | 662561 | 4 | 1 | patents/GB_850117_A.pdf | All rows have review records |
 | 544561 | 3 | 1 | patents/US20210149156A1.pdf | All rows explicitly disposed |
+| 640600 | 3 | 1 | patents/US5717527.pdf | All rows explicitly disposed |
 | 684313 | 3 | 2 | patents/US20150124127A1.pdf | All rows explicitly disposed |
 | 720521 | 3 | 3 | patents/US_4786152_A.pdf<br>patents/US4444473.pdf<br>patents/US4124276.pdf | All rows have review records |
+| 740282 | 3 | 1 | patents/US5717527.pdf | All rows explicitly disposed |
 | 781446 | 3 | 3 | patents/JPA 1987244010-000000.pdf<br>patents/JP2004109559A.pdf<br>patents/JPS60111215A.pdf | All rows have review records |
 | 840433 | 3 | 3 | patents/JPA 1994235857-000000.pdf<br>patents/US5530593.pdf<br>patents/US5528428.pdf | All rows have review records |
 | 841433 | 3 | 2 | patents/JP_S4871634_A.pdf<br>patents/US3771853.pdf | All rows explicitly disposed |
@@ -92,10 +94,13 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 750251 | 2 | 2 | patents/US_4560253_A.pdf<br>patents/US_4493536_A.pdf | All rows have review records |
 | 750501 | 2 | 2 | patents/US4277149.pdf<br>patents/JPA 1981150717-000000.pdf | All rows have review records |
 | 755516 | 2 | 1 | patents/JP2004109559A.pdf | All rows have review records |
+| 773495 | 2 | 1 | patents/US5717527.pdf | All rows explicitly disposed |
 | 774492 | 2 | 1 | patents/US3748022.pdf | All rows have review records |
 | 781445 | 2 | 2 | patents/US4277149.pdf<br>patents/US4182550.pdf | All rows have review records |
 | 803404 | 2 | 2 | patents/US20150177500A1.pdf<br>patents/US20140247506A1.pdf | All rows have review records |
 | 804238 | 2 | 2 | patents/WO2019131993A1.pdf | All rows have review records |
+| 804339 | 2 | 1 | patents/US5717527.pdf | All rows explicitly disposed |
+| 805255 | 2 | 1 | patents/US5717527.pdf | All rows explicitly disposed |
 | 806418 | 2 | 2 | patents/WO2019131993A1.pdf | All rows have review records |
 | 807316 | 2 | 2 | patents/US4764000.pdf<br>patents/US4871239.pdf | All rows have review records |
 | 815233 | 2 | 2 | patents/WO2019131993A1.pdf | All rows have review records |
@@ -109,6 +114,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 479587 | 1 | 1 | patents/US4773745.pdf | All rows explicitly disposed |
 | 489701 | 1 | 1 | patents/US2186621.pdf | All rows have review records |
 | 497816 | 1 | 1 | patents/CN211955963U.pdf | All rows explicitly disposed |
+| 498825 | 1 | 1 | patents/US5717527.pdf | All rows explicitly disposed |
 | 507589 | 1 | 1 | patents/JPA 1999231209-000000.pdf | All rows have review records |
 | 510619 | 1 | 1 | patents/DE_1980417_U.pdf | All rows explicitly disposed |
 | 512598 | 1 | 1 | patents/US3502393.pdf | All rows explicitly disposed |
@@ -192,6 +198,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 693495 | 1 | 1 | patents/US3552833.pdf | All rows explicitly disposed |
 | 693562 | 1 | 1 | patents/US2983193.pdf | All rows explicitly disposed |
 | 697555 | 1 | 1 | Missing from untracked local patents/ references (JP1978066222A, JP1978066222, 1978066222, JPA1978066222000000) | All rows explicitly disposed |
+| 697556 | 1 | 1 | patents/US5717527.pdf | All rows explicitly disposed |
 | 701301 | 1 | 1 | patents/US4277149.pdf | All rows have review records |
 | 704408 | 1 | 1 | patents/JPB 1963011590-000000.pdf | No review-record hit |
 | 712525 | 1 | 1 | patents/JP2021076829A.pdf | All rows explicitly disposed |
@@ -236,12 +243,14 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 773496 | 1 | 1 | No patent number parsed from lens metadata | All rows explicitly disposed |
 | 773501 | 1 | 1 | patents/US4258985.pdf | All rows have review records |
 | 780509 | 1 | 1 | patents/US20180164556A1.pdf | All rows explicitly disposed |
+| 785261 | 1 | 1 | patents/US5717527.pdf | All rows explicitly disposed |
 | 786275 | 1 | 1 | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | All rows have review records |
 | 786406 | 1 | 1 | patents/WO2019131993A1.pdf | All rows have review records |
 | 788474 | 1 | 1 | patents/JPA 2022012964-000000.pdf | All rows explicitly disposed |
 | 789457 | 1 | 1 | patents/US4182550.pdf | All rows have review records |
 | 792450 | 1 | 1 | patents/WO2020136749A1.pdf | All rows have review records |
 | 794255 | 1 | 1 | patents/US7542219.pdf | All rows explicitly disposed |
+| 797454 | 1 | 1 | patents/US5717527.pdf | All rows explicitly disposed |
 | 798453 | 1 | 1 | patents/US9651761.pdf | All rows explicitly disposed |
 | 800255 | 1 | 1 | patents/JP2015041012A.pdf | All rows have review records |
 | 803405 | 1 | 1 | patents/US20170351051A1.pdf | All rows have review records |
@@ -365,7 +374,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | L5 (Element 5) | 7 | `SSK / LaK (Jena in-house, 662/561)` | 1.66200 / 56.10 | No catalog entry | abbe | patents/GB_850117_A.pdf | Reviewed sidecar hit |
 | L6 (Element 6) | 9 | `SSK / LaK (Jena in-house, 662/561)` | 1.66200 / 56.10 | No catalog entry | abbe | patents/GB_850117_A.pdf | Reviewed sidecar hit |
 
-### [CARL ZEISS JENA PI-FLEKTOGON 30mm f/2.8 (1975 e-line reconstruction)](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaPIFlektogon30mmf28Printed1975ELine.data.ts)
+### [CARL ZEISS JENA PI-FLEKTOGON 30mm f/2.8 (Prototype Design)](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaPIFlektogon30mmf28Printed1975ELine.data.ts)
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
@@ -720,6 +729,27 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L6 (Element 6) | 11 | `Unmatched (683548 class; patent partial dispersion retained as dPgF)` | 1.68348 / 54.80 | No catalog entry | abbe | patents/JP2021036283A.pdf | Explicit disposition in data |
+
+### [NIKON AF ZOOM-MICRO NIKKOR 70-180mm f/4.5-5.6 D ED](../../src/lens-data/nikon/NikonAFZoomMicro70180mmf4556D.data.ts) - US 5,717,527
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
+|---|---|---|---|---|---|---|---|
+| L1 (Element 1) | 1 | `Unmatched (785261 dense flint)` | 1.78470 / 26.05 | No catalog entry | abbe | patents/US5717527.pdf | Explicit disposition in data |
+| L2 (Element 2) | 3 | `Unmatched (805255 dense flint)` | 1.80458 / 25.50 | No catalog entry | abbe | patents/US5717527.pdf | Explicit disposition in data |
+| L3 (Element 3) | 5 | `Unmatched (640600 crown)` | 1.64000 / 60.03 | No catalog entry | abbe | patents/US5717527.pdf | Explicit disposition in data |
+| L4 (Element 4) | 7 | `Unmatched (804339 high-index glass, dispersion unverified)` | 1.80384 / 33.89 | No catalog entry | abbe | patents/US5717527.pdf | Explicit disposition in data |
+| L5 (Element 5) | 9 | `Unmatched (740282 dense flint)` | 1.74001 / 28.19 | No catalog entry | abbe | patents/US5717527.pdf | Explicit disposition in data |
+| L6 (Element 6) | 11 | `Unmatched (773495 high-index crown)` | 1.77278 / 49.45 | No catalog entry | abbe | patents/US5717527.pdf | Explicit disposition in data |
+| L7 (Element 7) | 13 | `Unmatched (740282 dense flint)` | 1.74000 / 28.19 | No catalog entry | abbe | patents/US5717527.pdf | Explicit disposition in data |
+| L8 (Element 8) | 14 | `Unmatched (498825 ED-class glass)` | 1.49782 / 82.52 | No catalog entry | abbe | patents/US5717527.pdf | Explicit disposition in data |
+| L9 (Element 9) | 16 | `Unmatched (640600 crown)` | 1.64000 / 60.03 | No catalog entry | abbe | patents/US5717527.pdf | Explicit disposition in data |
+| L10 (Element 10) | 18 | `Unmatched (773495 high-index crown)` | 1.77278 / 49.45 | No catalog entry | abbe | patents/US5717527.pdf | Explicit disposition in data |
+| L11 (Element 11) | 19 | `Unmatched (805255 dense flint)` | 1.80458 / 25.50 | No catalog entry | abbe | patents/US5717527.pdf | Explicit disposition in data |
+| L12 (Element 12) | 21 | `Unmatched (697556 lanthanum crown, dispersion unverified)` | 1.69680 / 55.60 | No catalog entry | abbe | patents/US5717527.pdf | Explicit disposition in data |
+| L13 (Element 13) | 24 | `Unmatched (640600 crown)` | 1.64000 / 60.03 | No catalog entry | abbe | patents/US5717527.pdf | Explicit disposition in data |
+| L15 (Element 15) | 27 | `Unmatched (804339 high-index glass, dispersion unverified)` | 1.80384 / 33.89 | No catalog entry | abbe | patents/US5717527.pdf | Explicit disposition in data |
+| L17 (Element 17) | 30 | `Unmatched (740282 dense flint)` | 1.74000 / 28.19 | No catalog entry | abbe | patents/US5717527.pdf | Explicit disposition in data |
+| L18 (Element 18) | 32 | `Unmatched (797454 high-index glass)` | 1.79668 / 45.37 | No catalog entry | abbe | patents/US5717527.pdf | Explicit disposition in data |
 
 ### [NIKON AF-P DX NIKKOR 10-20mm f/4.5-5.6 G VR](../../src/lens-data/nikon/NikonAFPDX1020mmf4556G.data.ts) - WO 2021/039813 A1
 
@@ -1076,7 +1106,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 |---|---|---|---|---|---|---|---|
 | L6 (Element 8) | 13 | `Unmatched (479/587 low-index crown; vendor unspecified)` | 1.47870 / 58.70 | No catalog entry | abbe | patents/US4773745.pdf | Explicit disposition in data |
 
-### [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) - WO 2024/154461 A1
+### [SONY FE 400-800mm f/6.3-8 G OSS (Prototype Design)](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) - WO 2024/154461 A1
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|

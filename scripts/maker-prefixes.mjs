@@ -1,4 +1,5 @@
 export const MAKER_PREFIXES = [
+  { prefix: "7ARTISANS", display: "7Artisans", slug: "7artisans" },
   { prefix: "AEG", display: "AEG", slug: "aeg" },
   { prefix: "AGFA", display: "Agfa", slug: "agfa" },
   { prefix: "APPLE", display: "Apple", slug: "apple" },
@@ -71,6 +72,7 @@ export const MAKER_PREFIXES = [
   { prefix: "TOKINA", display: "Tokina", slug: "tokina" },
   { prefix: "VILTROX", display: "Viltrox", slug: "viltrox" },
   { prefix: "VIVITAR", display: "Vivitar", slug: "vivitar" },
+  { prefix: "WRAY", display: "Wray", slug: "wray" },
   { prefix: "YASHICA", display: "Yashica", slug: "yashica" },
   { prefix: "YONGNUO", display: "Yongnuo", slug: "yongnuo" },
   { prefix: "YASHINON", display: "Yashica", slug: "yashica" },
