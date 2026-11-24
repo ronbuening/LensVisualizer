@@ -56,6 +56,7 @@ describe("lensTaxonomy", () => {
       expect.arrayContaining([
         "agfa-ambi-silette",
         "agfa-ambiflex",
+        "argus-c",
         "bronica-etr",
         "bronica-gs",
         "bronica-sq",
@@ -98,6 +99,7 @@ describe("lensTaxonomy", () => {
         "samsung-nx",
         "samsung-nx-mini",
         "sigma-sa",
+        "wrayflex",
         "xpan",
         "zeiss-contaflex",
         "contax-yashica",
