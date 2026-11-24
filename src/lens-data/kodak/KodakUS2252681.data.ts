@@ -7,9 +7,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * The diaphragm lies between the inner menisci; its exact station is inferred, splitting the 17.8 mm gap
  * into 9.0 and 8.8 mm. Its radius is derived from the paraxial f/1.9 aperture. Clear rims are estimated from
  * the drawing on PDF page 1: the inner doublets have square outer rims of 26 and 23 mm, and the rear doublet
- * has a square 25 mm rim. The front singlet retains 30.08/30 mm rims and the diaphragm-facing curves end at
- * 18 mm. The axial beam and full 5° bundle clear these rims. The image plane is the computed paraxial back focus,
- * 63.27 mm behind R11. The ±5.0° display field is illustrative; the patent gives no numerical field.
+ * has a square 25 mm rim. The front singlet has a square 30.08 mm rim. The diaphragm-facing curves end at
+ * 18 mm (R5) and 19 mm (R6). The axial beam and full 5° bundle clear these rims. The image plane is the
+ * computed paraxial back focus, 63.27 mm behind R11. The ±5.0° display field is illustrative.
  */
 const LENS_DATA = {
   schema: 2,
@@ -49,6 +49,7 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1",
+      diagramLabel: "I",
       label: "Element 1",
       type: "Positive Meniscus",
       nd: 1.573,
@@ -62,6 +63,7 @@ const LENS_DATA = {
     {
       id: 2,
       name: "L2",
+      diagramLabel: "II",
       label: "Element 2",
       type: "Positive Meniscus",
       nd: 1.611,
@@ -75,6 +77,7 @@ const LENS_DATA = {
     {
       id: 3,
       name: "L3",
+      diagramLabel: "III",
       label: "Element 3",
       type: "Negative Meniscus",
       nd: 1.605,
@@ -89,6 +92,7 @@ const LENS_DATA = {
     {
       id: 4,
       name: "L4",
+      diagramLabel: "IV",
       label: "Element 4",
       type: "Negative Meniscus",
       nd: 1.689,
@@ -103,6 +107,7 @@ const LENS_DATA = {
     {
       id: 5,
       name: "L5",
+      diagramLabel: "V",
       label: "Element 5",
       type: "Positive Meniscus",
       nd: 1.744,
@@ -116,6 +121,7 @@ const LENS_DATA = {
     {
       id: 6,
       name: "L6",
+      diagramLabel: "VI",
       label: "Element 6",
       type: "Plano-Concave Negative",
       nd: 1.689,
@@ -130,6 +136,7 @@ const LENS_DATA = {
     {
       id: 7,
       name: "L7",
+      diagramLabel: "VII",
       label: "Element 7",
       type: "Biconvex Positive",
       nd: 1.744,
@@ -153,7 +160,7 @@ const LENS_DATA = {
       label: "2",
       R: 379.2,
       d: 1.9,
-      sd: 30,
+      sd: 30.08,
     },
     {
       label: "3",
@@ -184,7 +191,7 @@ const LENS_DATA = {
       label: "6",
       R: -27.4,
       d: 3.7,
-      sd: 18,
+      sd: 19,
       medium: 4,
     },
     {
@@ -233,7 +240,7 @@ const LENS_DATA = {
   },
   focus: {
     closeFocusM: 1e15,
-    description: "Infinity focus only; the patent gives no close-focus data.",
+    description: "Infinity focus only. The patent gives no focusing mechanism or travel.",
   },
   groups: [
     {
