@@ -48,12 +48,14 @@ const SOURCES = {
   leitzCanadaSale: "https://phsc.ca/camera/once-upon-a-time-in-canada/",
   leitzCineRename: "https://theasc.com/articles/leica-unveils-ernst-leitz-wetzlar-gmbh",
   mamiyaHistory: "https://www.mamiya-op.co.jp/en/company/history/",
+  meoptaHistory: "https://meopta.com/en/historical-milestones",
   nikonHistory: "https://www.nikon.com/company/corporate/history/",
   nittohHistory: "https://www.nittohkogaku.co.jp/en/company/history.html",
   olympusFounding: "https://www.olympus-global.com/company/milestones/founding.html?page=company",
   olympusImagingTransfer: "https://www.olympus-global.com/news/2021/nr02010.html",
   olympusImaging: "https://www.olympus-global.com/company/milestones/history/05.html?page=company",
   olympusAnnual2016: "https://www.olympus-global.com/ir/data/integratedreport/pdf/ar2016e_A3.pdf",
+  paillardHistory: "https://hls-dhs-dss.ch/fr/articles/025456/2018-02-21/",
   pentaconHistory: "https://de.wikipedia.org/wiki/Pentacon",
   panasonicHistory: "https://holdings.panasonic/global/corporate/about/history/chronicle/2008.html",
   panasonicIp: "https://www.panasonic.com/jp/company/pipm/company.html",
@@ -589,6 +591,25 @@ export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporat
     ],
     corporateFamily: [{ family: "Mamiya camera lineage", effectiveFrom: "1993-04", sourceUrl: SOURCES.mamiyaHistory }],
   },
+  "Meopta, spojene zavody pro jemnou mechaniku a optiku, narodni podnik": {
+    successorOf: [
+      {
+        organization: "Optikotechna",
+        effectiveDate: "1946",
+        sourceUrl: SOURCES.meoptaHistory,
+        note: "Optikotechna, founded in Přerov in 1933, was nationalised after the war and renamed Meopta national enterprise.",
+      },
+    ],
+    corporateFamily: [
+      {
+        family: "Meopta",
+        effectiveFrom: "1946",
+        effectiveTo: "1990",
+        sourceUrl: SOURCES.meoptaHistory,
+        note: "The national-enterprise period; the source records Meopta's division into joint-stock companies in 1990 and full privatisation in 1992.",
+      },
+    ],
+  },
   "Minolta Camera Co., Ltd.": {
     corporateFamily: [
       {
@@ -741,6 +762,24 @@ export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporat
         effectiveDate: "1926",
         sourceUrl: SOURCES.zeissIkon,
         note: "The museum record names Goerz among the four German camera companies, with Ica, Contessa Nettel and Ernemann, that Carl Zeiss Jena combined to form Zeiss Ikon.",
+      },
+    ],
+  },
+  "Paillard S.A.": {
+    acquiredBy: [
+      {
+        organization: "Olivetti",
+        effectiveDate: "1981",
+        sourceUrl: SOURCES.paillardHistory,
+        note: "The Historical Dictionary of Switzerland records Olivetti's takeover of control in 1981 and the firm's disappearance in 1989.",
+      },
+    ],
+    corporateFamily: [
+      {
+        family: "Paillard",
+        effectiveFrom: "1920",
+        sourceUrl: SOURCES.paillardHistory,
+        note: "E. Paillard & Cie, a Sainte-Croix business dating from 1814, became Paillard SA in 1920; it entered cine equipment under the Bolex brand in 1930 and ceded Bolex to Eumig in 1969 and 1974.",
       },
     ],
   },
