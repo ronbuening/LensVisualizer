@@ -1,318 +1,266 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
+/**
+ * US 2003/0103269 A1, Example 2, gives the spherical prescription in millimetres,
+ * d-line glass values, the stop position, and three focus settings. Clear radii
+ * come from Fig. 2(a), with the sixth element bounded by its air gap. The iris
+ * radius is calculated from f/1.83 at infinity.
+ * Object distances and intermediate group positions are calculated. The patent
+ * gives no focus cam.
+ */
+
 const LENS_DATA = {
-  "schema": 2,
-  "maker": null,
-  "visible": false,
-  "focus": {
-    "closeFocusM": 1000000000000000,
-    "description": "Static infinity only; no finite or moving-focus state is modeled."
+  schema: 2,
+  key: "olympus-zuiko-digital-ed-50mm-f2-macro",
+  maker: "Olympus",
+  name: "OLYMPUS ZUIKO DIGITAL ED 50mm f/2.0 Macro",
+  subtitle: "US 2003/0103269 A1, Example 2 — Olympus / Takato",
+  visible: true,
+
+  catalog: {
+    lensMounts: ["four-thirds"],
+    imageFormat: "four-thirds",
+    specs: ["11 ELEMENTS / 10 GROUPS", "DESIGN f = 51.01 mm", "DESIGN F/1.83", "ALL SPHERICAL", "1 ED ELEMENT"],
+    elementCount: 11,
+    groupCount: 10,
+    focalLengthMm: { marketing: 50, design: 51.01 },
+    fNumber: { marketing: 2, design: 1.83 },
+    closeFocusM: { marketing: 0.24 },
   },
-  "groups": [],
-  "aperture": {
-    "nominalFNumber": 4,
-    "fStops": [
-      4,
-      5.6,
-      8,
-      11,
-      16,
-      22,
-      32
-    ],
-    "maxFNumber": 32
+
+  source: {
+    patentNumber: "US 2003/0103269 A1",
+    example: { label: "Example 2", id: "2" },
+    patentYear: 2003,
+    authors: ["Hideyasu Takato"],
+    assignees: ["Olympus Optical Co., Ltd."],
   },
-  "projection": {
-    "kind": "rectilinear",
-    "fullFieldDeg": 16,
-    "maxTraceFieldDeg": 8
-  },
-  "rays": {
-    "offAxisFieldFrac": 0.98
-  },
-  "layout": {
-    "yScFill": 0.5
-  },
-  "key": "olympus-takato-us20030103269-example1-stopped-f4-infinity-reference",
-  "name": "OLYMPUS TAKATO US20030103269 EX1 STOPPED f/4",
-  "subtitle": "Strong production-correlated Zuiko Digital ED50f2 lineage patent representative; not factory exact",
-  "source": {
-    "patentNumber": "US 20030103269 A1",
-    "patentYear": 2003,
-    "example": {
-      "label": "Example 1",
-      "id": "1"
-    },
-    "authors": [
-      "Hideyasu Takato"
-    ],
-    "assignees": [
-      "Olympus Optical Co., Ltd."
-    ],
-    "sdSource": "heuristic"
-  },
-  "catalog": {
-    "elementCount": 11,
-    "groupCount": 10,
-    "focalLengthMm": {
-      "design": 51
-    },
-    "fNumber": {
-      "design": 1.83
-    },
-    "specs": [
-      "Only nativef4 +/-8deg d-line static infinity. Strong production-correlated ZuikoDigitalED50f2 lineage patent representative, not exactretail or uniqueExample1 familymatch; not filmOM50f2.",
-      "Exactsource S11 iris z25.12,split3.13/3.08 and35.18mm finalimageair. Irisbore andrims estimated; no trim,override orfit.",
-      "OEM50f2 closest240mm/0.52x differs from literalpatent51f1.83 closeendpoint; finite modes,wideopen,fullfield and broadband unqualified."
-    ]
-  },
-  "elements": [
+
+  elements: [
     {
-      "id": 1,
-      "name": "Source element 1",
-      "label": "L1",
-      "type": "Lens",
-      "nd": 1.64769,
-      "vd": 33.79,
-      "indexReference": "d"
+      id: 1,
+      name: "L1",
+      label: "L1",
+      type: "Negative Meniscus",
+      nd: 1.64769,
+      vd: 33.79,
+      indexReference: "d",
+      focalLengthMm: -115.93,
+      glass: "S-TIM22 (OHARA)",
+      role: "Negative front meniscus extends the back focus.",
     },
     {
-      "id": 2,
-      "name": "Source element 2",
-      "label": "L2",
-      "type": "Lens",
-      "nd": 1.7725,
-      "vd": 49.6,
-      "indexReference": "d"
+      id: 2,
+      name: "L2",
+      label: "L2",
+      type: "Positive Meniscus",
+      nd: 1.7725,
+      vd: 49.6,
+      indexReference: "d",
+      focalLengthMm: 70.87,
+      glass: "S-LAH66 (OHARA)",
+      role: "High-index positive meniscus behind the front negative element.",
     },
     {
-      "id": 3,
-      "name": "Source element 3",
-      "label": "L3",
-      "type": "Lens",
-      "nd": 1.72916,
-      "vd": 54.68,
-      "indexReference": "d"
+      id: 3,
+      name: "L3",
+      label: "L3",
+      type: "Positive Meniscus",
+      nd: 1.72916,
+      vd: 54.68,
+      indexReference: "d",
+      focalLengthMm: 59.93,
+      glass: "S-LAL18 (OHARA)",
+      role: "Strong front positive with an almost flat rear face.",
     },
     {
-      "id": 4,
-      "name": "Source element 4",
-      "label": "L4",
-      "type": "Lens",
-      "nd": 1.52249,
-      "vd": 59.84,
-      "indexReference": "d"
+      id: 4,
+      name: "L4",
+      label: "L4",
+      type: "Positive Meniscus",
+      nd: 1.52249,
+      vd: 59.84,
+      indexReference: "d",
+      focalLengthMm: 243.36,
+      glass: "S-NSL5 (OHARA)",
+      role: "Weak positive meniscus ahead of the stop-side negative pair.",
     },
     {
-      "id": 5,
-      "name": "Source element 5",
-      "label": "L5",
-      "type": "Lens",
-      "nd": 1.59551,
-      "vd": 39.24,
-      "indexReference": "d"
+      id: 5,
+      name: "L5",
+      label: "L5",
+      type: "Biconcave Negative",
+      nd: 1.59551,
+      vd: 39.24,
+      indexReference: "d",
+      focalLengthMm: -32.08,
+      glass: "S-TIM8 (OHARA)",
+      role: "Negative element immediately ahead of the iris.",
     },
     {
-      "id": 6,
-      "name": "Source element 6",
-      "label": "L6",
-      "type": "Lens",
-      "nd": 1.58144,
-      "vd": 40.75,
-      "indexReference": "d"
+      id: 6,
+      name: "L6",
+      label: "L6",
+      type: "Biconcave Negative",
+      nd: 1.58144,
+      vd: 40.75,
+      indexReference: "d",
+      focalLengthMm: -29.07,
+      glass: "S-TIL25 (OHARA)",
+      role: "Negative element immediately behind the iris.",
     },
     {
-      "id": 7,
-      "name": "Source element 7",
-      "label": "L7",
-      "type": "Lens",
-      "nd": 1.497,
-      "vd": 81.54,
-      "indexReference": "d"
+      id: 7,
+      name: "L7",
+      label: "L7",
+      type: "Positive Meniscus",
+      nd: 1.497,
+      vd: 81.54,
+      indexReference: "d",
+      focalLengthMm: 65.18,
+      glass: "S-FPL51 (OHARA)",
+      role: "Low-dispersion positive behind the iris for chromatic correction.",
+      apd: "inferred",
+      apdNote: "Olympus marks L7 as the ED element, and its d-line values match Ohara S-FPL51.",
     },
     {
-      "id": 8,
-      "name": "Source element 8",
-      "label": "L8",
-      "type": "Lens",
-      "nd": 1.7725,
-      "vd": 49.6,
-      "indexReference": "d"
+      id: 8,
+      name: "L8",
+      label: "L8",
+      type: "Biconvex Positive",
+      nd: 1.7725,
+      vd: 49.6,
+      indexReference: "d",
+      focalLengthMm: 37.27,
+      glass: "S-LAH66 (OHARA)",
+      role: "Strong converging element at the rear of the first group.",
     },
     {
-      "id": 9,
-      "name": "Source element 9",
-      "label": "L9",
-      "type": "Lens",
-      "nd": 1.51742,
-      "vd": 52.43,
-      "indexReference": "d"
+      id: 9,
+      name: "L9",
+      label: "L9",
+      type: "Biconcave Negative",
+      nd: 1.51742,
+      vd: 52.43,
+      indexReference: "d",
+      focalLengthMm: -70.21,
+      glass: "S-NSL36 (OHARA)",
+      role: "Nearly plano-concave negative at the front of the rear group.",
     },
     {
-      "id": 10,
-      "name": "Source element 10",
-      "label": "L10",
-      "type": "Lens",
-      "nd": 1.76182,
-      "vd": 26.52,
-      "indexReference": "d",
-      "cemented": "C1"
+      id: 10,
+      name: "L10",
+      label: "L10",
+      type: "Negative Meniscus",
+      nd: 1.76182,
+      vd: 26.52,
+      indexReference: "d",
+      focalLengthMm: -94.43,
+      glass: "S-TIH14 (OHARA)",
+      role: "Dispersive negative member of the rear cemented doublet.",
+      cemented: "C1",
     },
     {
-      "id": 11,
-      "name": "Source element 11",
-      "label": "L11",
-      "type": "Lens",
-      "nd": 1.741,
-      "vd": 52.64,
-      "indexReference": "d",
-      "cemented": "C1"
-    }
+      id: 11,
+      name: "L11",
+      label: "L11",
+      type: "Biconvex Positive",
+      nd: 1.741,
+      vd: 52.64,
+      indexReference: "d",
+      focalLengthMm: 31.84,
+      glass: "S-LAL61 (OHARA)",
+      role: "Converging member of the rear cemented doublet.",
+      cemented: "C1",
+    },
   ],
-  "surfaces": [
-    {
-      "label": "1",
-      "R": -35.629,
-      "d": 2,
-      "sd": 10.3,
-      "medium": 1
+
+  surfaces: [
+    { label: "1", R: -35.941, d: 2.0, sd: 18.0, medium: 1 },
+    { label: "2", R: -70.445, d: 1.4, sd: 18.0 },
+    { label: "3", R: -910.133, d: 3.99, sd: 18.1, medium: 2 },
+    { label: "4", R: -51.742, d: 0.1, sd: 18.1 },
+    { label: "5", R: 43.701, d: 4.34, sd: 16.75, medium: 3 },
+    { label: "6", R: 3929264.108, d: 0.1, sd: 16.75 },
+    { label: "7", R: 24.021, d: 2.8, sd: 14.3, medium: 4 },
+    { label: "8", R: 28.431, d: 5.16, sd: 14.3, rimCutDepthMm: 3.32 },
+    { label: "9", R: -861.896, d: 1.3, sd: 12.1, medium: 5 },
+    { label: "10", R: 19.55, d: 3.31, sd: 12.1, rimCutDepthMm: 3.23 },
+    { label: "STO", R: "flat", d: 5.78 },
+    { label: "12", R: -20.465, d: 1.35, sd: 11.36, medium: 6, rimCutDepthMm: 2.9 },
+    { label: "13", R: 99.536, d: 0.91, sd: 11.36 },
+    { label: "14", R: -257.77, d: 4.5, sd: 12.8, medium: 7 },
+    { label: "15", R: -28.944, d: 0.3, sd: 12.8 },
+    { label: "16", R: 53.287, d: 6.17, sd: 14.5, medium: 8 },
+    { label: "17", R: -59.475, sd: 14.5 },
+    { label: "18", R: -17636653.385, d: 1.38, sd: 13.35, medium: 9 },
+    { label: "19", R: 36.329, d: 1.73, sd: 13.35 },
+    { label: "20", R: 96.18, d: 1.68, sd: 13.2, medium: 10 },
+    { label: "21", R: 40.845, d: 4.86, sd: 13.2, medium: 11 },
+    { label: "22", R: -53.026, sd: 13.2 },
+  ],
+
+  focus: {
+    closeFocusM: 0.22906,
+    keyframes: [
+      0.0, 0.14871, 0.25892, 0.35813, 0.40513, 0.45081, 0.52625, 0.56296, 0.59908, 0.63465, 0.66974, 0.70437, 0.73858,
+      0.77241, 0.80586, 0.83897, 0.85541, 0.87175, 0.88803, 0.90424, 0.92038, 0.93643, 0.95242, 0.96835, 0.98421,
+      0.99211, 1.0,
+    ],
+    description:
+      "PUBLISHED: The front and rear groups both move toward the object, and the gap between them grows. The patent gives three positions from infinity to 0.52×. Intermediate positions are calculated.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 5,
+        objectDistanceMm: 525.75,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.1",
+        source: "Example 2 prints −0.1× and the two air gaps. The distance is calculated at the printed image plane.",
+      },
+      {
+        zoomStation: 0,
+        keyframe: 26,
+        objectDistanceMm: 110.36,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.52",
+        source: "Example 2 prints −0.52× and the two air gaps. The distance is calculated at the printed image plane.",
+      },
+    ],
+  },
+
+  gaps: {
+    17: {
+      label: "D17",
+      values: [
+        [
+          0.5, 0.761321, 1.045503, 1.359531, 1.529696, 1.71, 2.032186, 2.207469, 2.393652, 2.592192, 2.804797, 3.033567,
+          3.281184, 3.550924, 3.847039, 4.175384, 4.354076, 4.543973, 4.74684, 4.964523, 5.199461, 5.454649, 5.734322,
+          6.044248, 6.392246, 6.583915, 6.79,
+        ],
+      ],
     },
-    {
-      "label": "2",
-      "R": -74.905,
-      "d": 0.94,
-      "sd": 10.4
+    22: {
+      label: "D22",
+      values: [
+        [
+          35.06, 36.010259, 37.043647, 38.185568, 38.804348, 39.46, 40.683419, 41.349011, 42.055994, 42.809896,
+          43.61721, 44.485904, 45.426168, 46.450435, 47.574857, 48.821664, 49.500201, 50.221288, 50.991623, 51.818219,
+          52.710335, 53.679348, 54.741333, 55.918197, 57.23963, 57.967443, 58.75,
+        ],
+      ],
     },
-    {
-      "label": "3",
-      "R": -702.42,
-      "d": 4.03,
-      "sd": 10.35,
-      "medium": 2
-    },
-    {
-      "label": "4",
-      "R": -49.343,
-      "d": 0.1,
-      "sd": 10.3
-    },
-    {
-      "label": "5",
-      "R": 45.81,
-      "d": 5.06,
-      "sd": 9.9,
-      "medium": 3
-    },
-    {
-      "label": "6",
-      "R": -809755.657,
-      "d": 0.1,
-      "sd": 9.05
-    },
-    {
-      "label": "7",
-      "R": 26.15,
-      "d": 2.8,
-      "sd": 8.55,
-      "medium": 4
-    },
-    {
-      "label": "8",
-      "R": 32.77,
-      "d": 5.55,
-      "sd": 7.7
-    },
-    {
-      "label": "9",
-      "R": -311.668,
-      "d": 1.41,
-      "sd": 5.75,
-      "medium": 5
-    },
-    {
-      "label": "10",
-      "R": 21.286,
-      "d": 3.13,
-      "sd": 5.25
-    },
-    {
-      "label": "STO",
-      "R": "flat",
-      "d": 3.08
-    },
-    {
-      "label": "12",
-      "R": -21.101,
-      "d": 1.35,
-      "sd": 5.05,
-      "medium": 6
-    },
-    {
-      "label": "13",
-      "R": 93.106,
-      "d": 1.3,
-      "sd": 5.45
-    },
-    {
-      "label": "14",
-      "R": -323.07,
-      "d": 4.5,
-      "sd": 5.8,
-      "medium": 7
-    },
-    {
-      "label": "15",
-      "R": -30.291,
-      "d": 0.3,
-      "sd": 6.7
-    },
-    {
-      "label": "16",
-      "R": 56.785,
-      "d": 4.54,
-      "sd": 7.05,
-      "medium": 8
-    },
-    {
-      "label": "17",
-      "R": -56.785,
-      "d": 0.5,
-      "sd": 7.35
-    },
-    {
-      "label": "18",
-      "R": 5517.326,
-      "d": 1.52,
-      "sd": 7.35,
-      "medium": 9
-    },
-    {
-      "label": "19",
-      "R": 38.046,
-      "d": 1.93,
-      "sd": 7.4
-    },
-    {
-      "label": "20",
-      "R": 91.845,
-      "d": 1.55,
-      "sd": 7.65,
-      "medium": 10
-    },
-    {
-      "label": "21",
-      "R": 40.26,
-      "d": 4.87,
-      "sd": 7.7,
-      "medium": 11
-    },
-    {
-      "label": "22",
-      "R": -60.775,
-      "d": 35.18,
-      "sd": 7.9
-    }
-  ]
+  },
+
+  aperture: { nominalFNumber: 1.83, fStops: [2, 2.8, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22, blades: 7 },
+
+  groups: [
+    { text: "G1", fromSurface: "1", toSurface: "17" },
+    { text: "G2", fromSurface: "18", toSurface: "22" },
+  ],
+  doublets: [{ text: "C1", fromSurface: "20", toSurface: "22" }],
+  layout: { yScFill: 0.5 },
+  checks: { gapSagFrac: 0.99 },
 } satisfies LensDataV2Input;
 
 export default LENS_DATA;
