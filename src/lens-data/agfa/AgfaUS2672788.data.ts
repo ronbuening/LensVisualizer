@@ -5,9 +5,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * f = 100 mm and f/2.5. Radii, thicknesses, air spaces, d-line indices and
  * Abbe numbers follow the table on PDF page 4. Figure 1 places the diaphragm
  * in the 13.870 mm central gap; its 7.68/6.19 mm split is inferred. Clear
- * radii follow Figure 1, axial-beam clearance and off-axis light retention;
- * R3/R4 share a square rim. The iris radius follows f/2.5. The unprinted
- * image distance is the computed paraxial back focus, 70.93 mm.
+ * radii follow Figure 1, axial-beam clearance and off-axis light retention.
+ * R3/R4 and R8/R9 are square-cut, with R3/R4 slightly taller. The iris radius
+ * follows f/2.5. The unprinted image distance is the computed paraxial back
+ * focus, 70.93 mm.
  */
 const LENS_DATA = {
   schema: 2,
@@ -121,14 +122,14 @@ const LENS_DATA = {
       label: "3",
       R: 34.851,
       d: 11.392,
-      sd: 19.4,
+      sd: 19.55,
       medium: 2,
     },
     {
       label: "4",
       R: "flat",
       d: 1.905,
-      sd: 19.4,
+      sd: 19.55,
       medium: 3,
     },
     {
@@ -159,14 +160,14 @@ const LENS_DATA = {
       label: "8",
       R: "flat",
       d: 7.945,
-      sd: 19.6,
+      sd: 19.5,
       medium: 5,
     },
     {
       label: "9",
       R: -42.546,
       d: 70.930726,
-      sd: 19.6,
+      sd: 19.5,
     },
   ],
   aperture: {
@@ -181,7 +182,7 @@ const LENS_DATA = {
   },
   focus: {
     closeFocusM: 1e15,
-    description: "Infinity focus only; the patent gives no close-focus data.",
+    description: "Infinity focus only. The patent does not specify a focusing mechanism.",
   },
   groups: [
     {
