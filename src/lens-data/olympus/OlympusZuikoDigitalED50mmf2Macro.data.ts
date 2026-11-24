@@ -3,10 +3,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /**
  * US 2003/0103269 A1, Example 2, gives the spherical prescription in millimetres,
  * d-line glass values, the stop position, and three focus settings. Clear radii
- * come from Fig. 2(a), with the sixth element bounded by its air gap. The iris
- * radius is calculated from f/1.83 at infinity.
- * Object distances and intermediate group positions are calculated. The patent
- * gives no focus cam.
+ * are estimated from Fig. 2(a). The sixth element's rim is smaller than drawn
+ * to clear the seventh element. The iris radius follows the printed f/1.83 at
+ * infinity. Object distances and 24 intermediate positions are calculated.
+ * The patent gives no focus cam.
  */
 
 const LENS_DATA = {
@@ -40,7 +40,7 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1",
-      label: "L1",
+      label: "Element 1",
       type: "Negative Meniscus",
       nd: 1.64769,
       vd: 33.79,
@@ -52,31 +52,31 @@ const LENS_DATA = {
     {
       id: 2,
       name: "L2",
-      label: "L2",
+      label: "Element 2",
       type: "Positive Meniscus",
       nd: 1.7725,
       vd: 49.6,
       indexReference: "d",
       focalLengthMm: 70.87,
       glass: "S-LAH66 (OHARA)",
-      role: "High-index positive meniscus behind the front negative element.",
+      role: "Adds convergence behind the front negative meniscus.",
     },
     {
       id: 3,
       name: "L3",
-      label: "L3",
+      label: "Element 3",
       type: "Positive Meniscus",
       nd: 1.72916,
       vd: 54.68,
       indexReference: "d",
       focalLengthMm: 59.93,
       glass: "S-LAL18 (OHARA)",
-      role: "Strong front positive with an almost flat rear face.",
+      role: "Provides further convergence ahead of the iris.",
     },
     {
       id: 4,
       name: "L4",
-      label: "L4",
+      label: "Element 4",
       type: "Positive Meniscus",
       nd: 1.52249,
       vd: 59.84,
@@ -88,45 +88,45 @@ const LENS_DATA = {
     {
       id: 5,
       name: "L5",
-      label: "L5",
+      label: "Element 5",
       type: "Biconcave Negative",
       nd: 1.59551,
       vd: 39.24,
       indexReference: "d",
       focalLengthMm: -32.08,
       glass: "S-TIM8 (OHARA)",
-      role: "Negative element immediately ahead of the iris.",
+      role: "Supplies negative power on the object side of the iris.",
     },
     {
       id: 6,
       name: "L6",
-      label: "L6",
+      label: "Element 6",
       type: "Biconcave Negative",
       nd: 1.58144,
       vd: 40.75,
       indexReference: "d",
       focalLengthMm: -29.07,
       glass: "S-TIL25 (OHARA)",
-      role: "Negative element immediately behind the iris.",
+      role: "Supplies negative power on the image side of the iris.",
     },
     {
       id: 7,
       name: "L7",
-      label: "L7",
+      label: "Element 7",
       type: "Positive Meniscus",
       nd: 1.497,
       vd: 81.54,
       indexReference: "d",
       focalLengthMm: 65.18,
       glass: "S-FPL51 (OHARA)",
-      role: "Low-dispersion positive behind the iris for chromatic correction.",
+      role: "ED positive meniscus for chromatic correction behind the iris.",
       apd: "inferred",
-      apdNote: "Olympus marks L7 as the ED element, and its d-line values match Ohara S-FPL51.",
+      apdNote: "The element Olympus marks as ED has d-line values consistent with Ohara S-FPL51.",
     },
     {
       id: 8,
       name: "L8",
-      label: "L8",
+      label: "Element 8",
       type: "Biconvex Positive",
       nd: 1.7725,
       vd: 49.6,
@@ -138,19 +138,19 @@ const LENS_DATA = {
     {
       id: 9,
       name: "L9",
-      label: "L9",
+      label: "Element 9",
       type: "Biconcave Negative",
       nd: 1.51742,
       vd: 52.43,
       indexReference: "d",
       focalLengthMm: -70.21,
       glass: "S-NSL36 (OHARA)",
-      role: "Nearly plano-concave negative at the front of the rear group.",
+      role: "Offsets part of the rear doublet's positive power.",
     },
     {
       id: 10,
       name: "L10",
-      label: "L10",
+      label: "Element 10",
       type: "Negative Meniscus",
       nd: 1.76182,
       vd: 26.52,
@@ -163,7 +163,7 @@ const LENS_DATA = {
     {
       id: 11,
       name: "L11",
-      label: "L11",
+      label: "Element 11",
       type: "Biconvex Positive",
       nd: 1.741,
       vd: 52.64,
@@ -206,7 +206,7 @@ const LENS_DATA = {
       0.0, 0.09235, 0.1847, 0.27705, 0.32322, 0.3694, 0.44822, 0.48764, 0.52705, 0.56646, 0.60587, 0.64529, 0.68471, 0.72413, 0.76354, 0.80295, 0.82266, 0.84236, 0.86207, 0.88178, 0.90149, 0.92119, 0.94089, 0.9606, 0.98031, 0.99016, 1,
     ],
     description:
-      "PUBLISHED: The front and rear groups both move toward the object, and the gap between them grows. The patent gives three positions from infinity to 0.52×. Intermediate positions are calculated.",
+      "PUBLISHED: At closest focus, the front and rear groups move 29.98 mm and 23.69 mm toward the subject, widening the gap. The patent gives three positions from infinity to 0.52×. The other 24 are calculated. The model reaches 0.229 m from the image plane, compared with Olympus's 0.24 m.",
     conjugates: [
       {
         zoomStation: 0,
