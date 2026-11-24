@@ -2,7 +2,7 @@
 
 ## Source
 
-[CN 221175107 U](https://patents.google.com/patent/CN221175107U/en) is a utility model for a 40 mm f/5.6 full-frame lens, filed on 14 December 2023 and granted on 18 June 2024. The assignee is Shenzhen 7Artisans Photoelectric Technology Co., Ltd. (深圳市七工匠光电科技有限公司), and the inventor is Changjia Liu (刘昌家). The sole numerical example appears on PDF p. 6 at its printed millimetre scale. Claim 9 and paragraph 0036 name the glasses; Figs. 1–6 show construction and calculated performance.
+[CN 221175107 U](https://patents.google.com/patent/CN221175107U/en) is a utility model for a 40 mm f/5.6 full-frame lens, filed on 14 December 2023 and granted on 18 June 2024. The assignee is Shenzhen 7Artisans Photoelectric Technology Co., Ltd. (深圳市七工匠光电科技有限公司), and the inventor is Liu Changjia (刘昌家). The sole numerical example appears on PDF p. 6 at its printed millimetre scale. Claim 9 and paragraph 0036 name the glasses; Figs. 1–6 show construction and calculated performance.
 
 The material references are CDGM's [H-LaK53B](https://www.cdgmgd.com/webapp/pdf/H-LaK53B.pdf), [H-F4](https://www.cdgmgd.com/webapp/pdf/H-F4.pdf), [H-ZLaF92](https://www.cdgmgd.com/webapp/pdf/H-ZLaF92.pdf) sheets and [high-transmittance glass table](https://www.cdgmgd.com/go.htm?k=High_Transmittance_Optical_Glass&url=goods). The Zemax figure footers name “HPF40-III.ZMX” and “U.S.Patent 4143944” as a starting design; neither identifies a production lens.
 

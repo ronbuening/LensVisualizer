@@ -4,7 +4,7 @@
 
 **Patent:** [CN 221175107 U](https://patents.google.com/patent/CN221175107U/en), _A 40 mm F5.6 full-frame lens_
 
-**Inventors:** Changjia Liu (刘昌家)
+**Inventors:** Liu Changjia (刘昌家)
 
 **Assignee:** Shenzhen 7Artisans Photoelectric Technology Co., Ltd. (深圳市七工匠光电科技有限公司)
 

@@ -47,7 +47,7 @@ const LENS_DATA = {
       label: "Sole example",
       id: null,
     },
-    authors: ["Changjia Liu"],
+    authors: ["Liu Changjia"],
     assignees: ["Shenzhen 7Artisans Photoelectric Technology Co., Ltd."],
     errata: [
       {
