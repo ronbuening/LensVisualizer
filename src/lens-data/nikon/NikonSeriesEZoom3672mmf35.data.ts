@@ -12,11 +12,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ unchanged prescription traces to EFL 39.353836–69.653851 mm.   ║
  * ║ The wide-end source contradiction remains unresolved.          ║
  * ║                                                                    ║
- * ║  Focus status: NO_INTERNAL_RECONSTRUCTION. The patent publishes ║
- * ║  no finite-focus spacing rows, and the available Nikon sources   ║
- * ║  establish the 1.2 m minimum focus distance but not a uniquely   ║
- * ║  constrained internal focusing motion. Close-focus gap pairs     ║
- * ║  therefore remain identical to infinity.                         ║
+ * ║  Focus: infinity only. The patent publishes no close-focus           ║
+ * ║  spacing rows, and the available Nikon sources establish the         ║
+ * ║  1.2 m minimum focus distance but not a uniquely constrained         ║
+ * ║  internal focusing motion. Close-focus gap pairs therefore           ║
+ * ║  remain identical to infinity; focus travel is not modeled.          ║
  * ║                                                                    ║
  * ║  Stop: the patent omits a numerical stop position/diameter.       ║
  * ║  Nikon's production cross-section places the iris between L4/L5.  ║
@@ -40,7 +40,7 @@ const LENS_DATA = {
   key: "nikon-series-e-zoom-36-72mm-f35",
   maker: "Nikon",
   name: "NIKON SERIES E ZOOM 36-72mm f/3.5",
-  subtitle: "JP S55-163511 A Example 1 — Satoshi Mogami; production correlation by Nikon Tale 91",
+  subtitle: "JP S55-163511 A Example 1 — Satoshi Mogami; production match by Nikon Tale 91",
 
   catalog: {
     lensMounts: ["nikon-f"],
@@ -221,7 +221,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 1.2,
     description:
-      "NO_INTERNAL_RECONSTRUCTION: the patent publishes no finite-focus spacing rows. Nikon sources establish a 1.2 m minimum focusing distance, but the available source set does not uniquely constrain the internal focus motion, so close-focus spacing pairs remain equal to infinity.",
+      "Infinity focus only. The patent publishes no close-focus spacings, and Nikon sources give the 1.2 m minimum focus distance but not which group moves, so focus travel is not modeled; zoom movement is.",
   },
 
   gaps: {

@@ -43,7 +43,7 @@ const LENS_DATA = {
   key: "fujifilm-fujinon-xf-8-16mm-f28-r-lm-wr",
   maker: "Fujifilm",
   name: "FUJIFILM FUJINON XF 8-16mm f/2.8 R LM WR",
-  subtitle: "US 2019/0302431 A1 Example 1 — strong production-lens correlation; published focus states",
+  subtitle: "US 2019/0302431 A1 Example 1 — strong production match; published focus states",
 
   catalog: {
     lensMounts: ["fujifilm-x"],

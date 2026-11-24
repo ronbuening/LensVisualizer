@@ -49,7 +49,7 @@ const LENS_DATA = {
   key: "nikon-af-dc-nikkor-135mm-f2",
   maker: "Nikon",
   name: "NIKON AF DC-NIKKOR 135mm f/2 D",
-  subtitle: "US 4,908,639 A — Example 2; high-confidence production correlation",
+  subtitle: "US 4,908,639 A — Example 2; strong production match",
 
   catalog: {
     lensMounts: ["nikon-f"],

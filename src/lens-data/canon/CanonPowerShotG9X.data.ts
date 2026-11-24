@@ -9,9 +9,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ 8 elements / 3 zoom groups / 5 aspherical surfaces.                       ║
  * ║                                                                            ║
  * ║ Zoom-only gaps: D4, D5, D13, and D15. D5 reverses at the mid state.        ║
- * ║ Focus status: NO_INTERNAL_RECONSTRUCTION. Example 1 publishes no focus      ║
- * ║ trajectory. The required closeFocusM is the product-wide 0.05 m minimum;   ║
- * ║ all authored var pairs are identical within each zoom state.               ║
+ * ║ Focus: infinity only. Example 1 publishes no focus trajectory. closeFocusM ║
+ * ║ is the product-wide 0.05 m minimum; all focus pairs are identical within   ║
+ * ║ each zoom state.                                                           ║
  * ║                                                                            ║
  * ║ No geometric scaling is applied. Patent design endpoints are 10.50 and     ║
  * ║ 29.90 mm; production marketing endpoints are 10.2 and 30.6 mm, so one      ║
@@ -52,7 +52,7 @@ const LENS_DATA = {
   key: "canon-powershot-g9x",
   maker: "Canon",
   name: "CANON 10.2-30.6mm f/2-4.9 (Canon PowerShot G9 X)",
-  subtitle: "JP 2016-161889 A, Example 1 — PowerShot G9 X correlation; no geometric scaling",
+  subtitle: "JP 2016-161889 A, Example 1 — PowerShot G9 X match; no geometric scaling",
 
   catalog: {
     lensMounts: ["fixed-lens-camera"],
@@ -251,9 +251,9 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.05,
     description:
-      "NO_INTERNAL_RECONSTRUCTION: Example 1 publishes zoom spacings only. Canon specifies 5 cm (wide) and 35 cm " +
-      "(tele) focus ranges measured from the lens end, but those values do not determine an internal optical trajectory; " +
-      "the data model therefore keeps focus spacings unchanged.",
+      "Infinity focus only. The patent's Example 1 publishes zoom spacings only, so focus travel is not modeled; " +
+      "zoom movement is. Canon specifies 5 cm (wide) and 35 cm (tele) minimum focus distances measured from the " +
+      "lens end; these are product information and do not determine an internal focus movement.",
   },
 
   gaps: {

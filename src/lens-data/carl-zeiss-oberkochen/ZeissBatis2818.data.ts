@@ -40,7 +40,7 @@ const LENS_DATA = {
   key: "zeiss-batis-18f28",
   maker: "Carl Zeiss Oberkochen",
   name: "ZEISS BATIS 18mm f/2.8",
-  subtitle: "JP 2016-188967 A Example 1 — strong Batis 2.8/18 correlation; attribution not manufacturer-confirmed",
+  subtitle: "JP 2016-188967 A Example 1 — strong Batis 2.8/18 match; attribution not maker-confirmed",
 
   catalog: {
     lensMounts: ["sony-fe"],

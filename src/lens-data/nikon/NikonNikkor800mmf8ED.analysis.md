@@ -97,7 +97,7 @@ Catalog review covered OHARA, HOYA, SCHOTT, HIKARI, CDGM, and SUMITA records. Cl
 
 The production family uses a separate focusing unit. Nikon describes the focusing-unit super-telephoto lens heads as fixed barrels with the focusing and aperture mechanisms built into the focusing unit, and identifies the AU-1 as the new focusing unit released in 1975. Its distance scale provides 400/800 and 600/1200 settings. Nikon also describes this generation as moving the entire lens for focusing rather than using an internal moving optical group. [Nikon, Tale 50](https://imaging.nikon.com/imaging/information/story/0050/); [Nikon, Tale 66](https://imaging.nikon.com/imaging/information/story/0066/).
 
-The model therefore uses `NO_INTERNAL_RECONSTRUCTION`. It contains no variable internal air gap and represents only the patent infinity prescription. `closeFocusM = 20` is product metadata, not a reconstructed finite-object optical state.
+The model therefore shows the lens at infinity only. No internal air gap changes with focus, and the model represents only the patent infinity prescription. The 20 m close-focus figure is product information, not a modeled close-focus optical state.
 
 Nikon's June 1978 sales manual is internally inconsistent on minimum focus. The descriptive 800mm f/8 Auto-Nikkor & ED-Nikkor entry gives 70.0 ft / 20.0 m, whereas the later product-specific technical table gives 61.0 ft for both 800mm variants. The data uses 20.0 m for the AU-1 product context and preserves the 61.0 ft value as an unresolved manufacturer-source discrepancy. No close-focus spacing, magnification, or aberration state is inferred from either number.
 

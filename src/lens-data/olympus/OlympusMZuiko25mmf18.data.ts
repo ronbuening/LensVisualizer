@@ -27,7 +27,7 @@ const LENS_DATA = {
   key: "olympus-mzuiko-25mm-f18",
   maker: "Olympus",
   name: "OLYMPUS M.ZUIKO DIGITAL 25mm f/1.8",
-  subtitle: "JP 2015-075501 A, Numerical Example 1 (Sigma); selected Olympus correlation, not manufacturer-confirmed",
+  subtitle: "JP 2015-075501 A, Numerical Example 1 (Sigma); selected Olympus production match, not maker-confirmed",
 
   catalog: {
     lensMounts: ["micro-four-thirds"],

@@ -56,7 +56,7 @@ const lens = {
   key: "nikon-af-s-nikkor-50mm-f14g",
   maker: "Nikon",
   name: "NIKON AF-S NIKKOR 50mm f/1.4 G",
-  subtitle: "JP 2015-041003 A, master lens Gm — inferred AF-S NIKKOR 50mm f/1.4G correlation",
+  subtitle: "JP 2015-041003 A, master lens Gm — inferred AF-S NIKKOR 50mm f/1.4G match",
   visible: true,
   catalog: {
     lensMounts: ["nikon-f"],

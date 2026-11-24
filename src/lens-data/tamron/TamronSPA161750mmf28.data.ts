@@ -21,7 +21,7 @@ const LENS_DATA = {
   key: "tamron-sp-af-17-50mm-f28-a16",
   maker: "Tamron",
   name: "TAMRON SP AF 17-50mm f/2.8 XR Di II LD Aspherical [IF] (A16)",
-  subtitle: "JP 2007-133138 A, Example 2 — A16 production correlation (not maker-confirmed)",
+  subtitle: "JP 2007-133138 A, Example 2 — A16 production match (not maker-confirmed)",
 
   catalog: {
     lensMounts: ["canon-ef", "nikon-f", "sony-a", "pentax-k"],

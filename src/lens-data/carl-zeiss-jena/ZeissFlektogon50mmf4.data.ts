@@ -42,7 +42,7 @@ const LENS_DATA = {
   key: "zeiss-flektogon-50mm-f4",
   maker: "Carl Zeiss Jena",
   name: "CARL ZEISS JENA FLEKTOGON 50mm f/4",
-  subtitle: "DE 1 157 000 Example 1 — ×0.5 scaled patent model; production correlation inferred",
+  subtitle: "DE 1 157 000 Example 1 — ×0.5 scaled patent model; inferred production match",
 
   catalog: {
     lensMounts: ["pentacon-six"],

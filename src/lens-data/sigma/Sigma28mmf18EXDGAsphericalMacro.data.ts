@@ -30,7 +30,7 @@ const LENS_DATA = {
   key: "sigma-28mm-f18-ex-dg-aspherical-macro",
   maker: "Sigma",
   name: "SIGMA 28mm f/1.8 EX DG ASPHERICAL MACRO",
-  subtitle: "JP 2001-330771 A, Example 1 — construction-based production correlation",
+  subtitle: "JP 2001-330771 A, Example 1 — production match by construction",
 
   catalog: {
     lensMounts: ["sigma-sa", "canon-ef", "nikon-f", "pentax-k", "sony-a"],

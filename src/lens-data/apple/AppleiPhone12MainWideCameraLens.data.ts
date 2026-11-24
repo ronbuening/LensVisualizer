@@ -32,7 +32,7 @@ const LENS_DATA = {
   key: "apple-iphone-12-main-wide",
   maker: "Apple",
   name: "APPLE WIDE 4.36mm f/1.6 (Apple iPhone 12)",
-  subtitle: "US 2018/0364457 A1 Example 7 — plausible iPhone 12 Main correlation; not Apple-confirmed",
+  subtitle: "US 2018/0364457 A1 Example 7 — plausible iPhone 12 Main match; not Apple-confirmed",
 
   catalog: {
     lensMounts: ["fixed-lens-camera"],

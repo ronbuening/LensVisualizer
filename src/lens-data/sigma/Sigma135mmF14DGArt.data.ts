@@ -36,7 +36,7 @@ const LENS_DATA = {
   key: "sigma-135mm-f14-dg-art",
   maker: "Sigma",
   name: "SIGMA 135mm f/1.4 DG | Art",
-  subtitle: "US 2026/0086332 A1, Numerical Example 1 — correlated with the A025 production lens",
+  subtitle: "US 2026/0086332 A1, Numerical Example 1 — matched with the A025 production lens",
 
   catalog: {
     lensMounts: ["l-mount", "sony-fe"],

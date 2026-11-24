@@ -20,7 +20,7 @@ The association with the production Leica Super-Vario-Elmar-TL 11-23mm f/3.5-4.5
 6. Leica's 2014 engineering drawing at 11, 19, and 23 mm closely follows the Example 6 element sequence and zoom-state silhouette, including the large negative front group and compact rear groups.
 7. Leica announced the lens at photokina 2014 and stated dealer availability from January 2015. The patent application was filed shortly afterward, on 22 January 2015. This chronology is compatible with a development relationship but does not establish one.
 
-The principal limitation is attribution: the patent applicant is Konica Minolta, Inc., not Leica Camera AG, and no Leica primary source located in the dossier states that JP 2016-133764 A, Example 6 is the production prescription. The model therefore keeps the product identity and the patent source distinct. Leica's marketed 11–23 mm and f/3.5–4.5 specifications are product metadata; the optical prescription retains the Example 6 design scale.
+The principal limitation is attribution: the patent applicant is Konica Minolta, Inc., not Leica Camera AG, and no Leica primary source found states that JP 2016-133764 A, Example 6 is the production prescription. The model therefore keeps the product identity and the patent source distinct. Leica's marketed 11–23 mm and f/3.5–4.5 specifications are product metadata; the optical prescription retains the Example 6 design scale.
 
 The data file uses the current canonical production metadata `l-mount` and `aps-c`. Leica's 2014 document called the interface the Leica T quick-change bayonet; Leica's current product page identifies the same system under the Leica L bayonet naming.
 
@@ -136,7 +136,7 @@ L14 completes the weak negative Group 4 doublet. The cemented pair computes to a
 
 ## Glass Identification and Selection
 
-The patent supplies d-line refractive index and νd, not vendor glass names. The dossier therefore audits coordinates against authoritative OHARA, HOYA, SCHOTT, HIKARI, SUMITA, and CDGM catalogs but does not infer a production supplier from Leica branding. The final data file uses six-digit classes, plus one explicitly labelled spectral proxy for L2 where no exact catalog row exists.
+The patent supplies d-line refractive index and νd, not vendor glass names. This analysis therefore audits coordinates against authoritative OHARA, HOYA, SCHOTT, HIKARI, SUMITA, and CDGM catalogs but does not infer a production supplier from Leica branding. The final data file uses six-digit classes, plus one explicitly labelled spectral proxy for L2 where no exact catalog row exists.
 
 | Data-file glass label | nd | νd | Elements | Representative authoritative catalog evidence |
 |---|---:|---:|---|---|
@@ -158,11 +158,11 @@ The most explicit chromatic design statements come from the patent itself. In Gr
 
 ## Focus Mechanism
 
-The optical focus mechanism is **not reconstructed**. The model's focus status is `NO_INTERNAL_RECONSTRUCTION`.
+The model shows infinity focus only; the optical focus mechanism is **not modeled**.
 
 JP 2016-133764 A publishes the Example 6 wide, middle, and tele prescriptions as infinity-focus states and describes zoom motion, but it does not provide close-focus internal spacings for Example 6 (¶0082 and Example 6 data). Leica specifies a production focusing range of 0.2 m to infinity and electronic AF/M operation, but those product facts do not identify which internal element or group moves, the travel at each zoom position, or the coupled spacing law.
 
-Accordingly, the final data file repeats every zoom-variable spacing at both focus endpoints. Moving the LensVisualizer focus control therefore does not create an invented optical state. The stored `closeFocusM: 0.2` is production metadata only; it is not evidence that the modeled prescription reproduces the lens at 0.2 m.
+Accordingly, every spacing that changes with zoom stays at its infinity value at both ends of the focus control. Moving the focus control therefore does not create an invented optical state. The 0.2 m close-focus figure is product information only; it is not evidence that the modeled prescription reproduces the lens at 0.2 m.
 
 No focus travel, close-focus magnification, breathing value, or focus-group identity is claimed because the available primary sources do not determine them.
 
@@ -176,7 +176,7 @@ $$
 z(h)=\frac{c h^2}{1+\sqrt{1-(1+K)c^2h^2}}+\sum A_jh^j,
 $$
 
-where $c=1/R$. This is the same conic convention used by the data schema, so no conversion of `K` is required. Example 6 prints `K = 0` for all four aspheres, giving a spherical conic base plus even polynomial terms. No uniform dimensional scaling is applied, so the published coefficients are carried directly into the data file.
+where $c=1/R$. This is the same conic convention used by the model, so no conversion of `K` is required. Example 6 prints `K = 0` for all four aspheres, giving a spherical conic base plus even polynomial terms. No uniform dimensional scaling is applied, so the published coefficients are carried directly into the data file.
 
 | Surface | K | A4 | A6 | A8 | A10 | A12 | A14 | A16 |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|

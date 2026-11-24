@@ -30,7 +30,7 @@ const LENS_DATA = {
   key: "sigma-apo-macro-180mm-f35-ex-dg-hsm",
   maker: "Sigma",
   name: "SIGMA APO MACRO 180mm f/3.5 EX DG HSM",
-  subtitle: "JP 2001-033704 A, Example 1 — construction-based production correlation",
+  subtitle: "JP 2001-033704 A, Example 1 — production match by construction",
   visible: true,
   layout: {
     yScFill: 0.35,

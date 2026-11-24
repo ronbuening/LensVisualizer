@@ -9,10 +9,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  scaled ×40 to the marketed 40 mm lens.                            ║
  * ║  6 elements / 5 groups; all surfaces are spherical.                ║
  * ║                                                                    ║
- * ║  Focus status: NO_INTERNAL_RECONSTRUCTION.                          ║
+ * ║  Focus: infinity only.                                             ║
  * ║  The patent publishes only the infinity state. The production      ║
- * ║  closest taking distance is 0.45 m, but no finite-focus optical    ║
- * ║  spacing is invented here; var remains empty.                      ║
+ * ║  closest taking distance is 0.45 m, but no spacing changes with    ║
+ * ║  focus; focus travel is not modeled.                               ║
  * ║                                                                    ║
  * ║  Scaling: every patent length is multiplied by 40. There are no    ║
  * ║  aspheres, so no A_p scaling is required; indices and Abbe values  ║
@@ -176,7 +176,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.45,
     description:
-      "NO_INTERNAL_RECONSTRUCTION — infinity only; production MFD is 0.45 m; no internal focus spacing is modeled.",
+      "Infinity focus only. The patent publishes only the infinity state. The production minimum focus distance is 0.45 m, but focus travel is not modeled.",
   },
 
   /* ── Aperture configuration ── */

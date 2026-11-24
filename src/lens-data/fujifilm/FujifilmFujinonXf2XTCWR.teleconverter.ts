@@ -83,7 +83,7 @@ const TELECONVERTER_DATA = {
   key: "fujifilm-xf2x-tc-wr",
   maker: "Fujifilm",
   name: "FUJIFILM FUJINON TELECONVERTER XF2X TC WR",
-  subtitle: "JP 2017-173692 A Example 1 — rear converter; production correlation not manufacturer-confirmed",
+  subtitle: "JP 2017-173692 A Example 1 — rear converter; production match not maker-confirmed",
 
   catalog: {
     lensMounts: ["fujifilm-x"],

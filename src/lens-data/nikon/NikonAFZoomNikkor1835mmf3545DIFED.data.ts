@@ -51,7 +51,7 @@ const LENS_DATA = {
   key: "nikon-ai-af-zoom-nikkor-18-35mm-f3-5-4-5d-if-ed",
   maker: "Nikon",
   name: "NIKON AI AF ZOOM-NIKKOR 18-35mm f/3.5-4.5 D IF-ED",
-  subtitle: "US 2001/0030812 A1 Example 2 — production-correlated design",
+  subtitle: "US 2001/0030812 A1 Example 2 — production match for the design",
 
   catalog: {
     lensMounts: ["nikon-f"],

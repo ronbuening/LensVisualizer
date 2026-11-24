@@ -40,7 +40,7 @@ const LENS_DATA = {
   key: "nikon-new-nikkor-auto-28mm-f28",
   maker: "Nikon",
   name: "NIKON NIKKOR AUTO 28mm f/2.8",
-  subtitle: "US 3,635,546 — Example 2; uniformly scaled ×0.28; production correlation provisional",
+  subtitle: "US 3,635,546 — Example 2; uniformly scaled ×0.28; tentative production match",
 
   catalog: {
     lensMounts: ["nikon-f"],

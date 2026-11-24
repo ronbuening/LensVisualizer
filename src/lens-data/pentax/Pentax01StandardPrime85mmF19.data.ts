@@ -36,7 +36,7 @@ const LENS_DATA = {
   "key": "pentax-01-standard-prime-8p5-f19",
   "maker": "Pentax",
   "name": "PENTAX-01 STANDARD PRIME 8.5mm f/1.9",
-  "subtitle": "US 2012/0268834 A1, Numerical Embodiment 1 — production correlation",
+  "subtitle": "US 2012/0268834 A1, Numerical Embodiment 1 — production match",
   "catalog": {
     "imageFormat": "1-1.7-inch-type",
     "lensMounts": [
