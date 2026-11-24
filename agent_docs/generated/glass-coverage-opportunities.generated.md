@@ -9,9 +9,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **1209** lenses scanned (**1187** visible)
-- **12328 / 13374** non-air surfaces use strict catalog Sellmeier data (92.2%)
-- **12346 / 13374** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 92.3%)
+- **1215** lenses scanned (**1193** visible)
+- **12376 / 13432** non-air surfaces use strict catalog Sellmeier data (92.1%)
+- **12394 / 13432** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 92.3%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
 - **306** code-only missing-Sellmeier elements in Sweep 2: **27** active unreviewed, **173** self-recording explicit dispositions, **0** dispositions missing any review record
@@ -100,6 +100,7 @@ These lenses are missing trusted chromatic data only on glass elements. One or t
 | [MINOLTA AF 100mm f/2.8 Macro](../../src/lens-data/minolta/MinoltaAF100mmf28Macro.data.ts) | US 4,764,000 | [PDF](../../patents/US4764000.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 13 [glass] (Element 7: `807316 - dense lanthanum flint (patent nd=1.80741, vd=31.59; unresolved)`) | abbe: 1 |
 | [MINOLTA AF 135mm f/2.8 [T4.5] STF](../../src/lens-data/minolta/MinoltaSTF135mmf28T45.data.ts) | JP 1999-231209 A | [PDF](../../patents/JPA 1999231209-000000.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 9 [glass] (Element 5: `507589 — bulk absorbing ND glass (catalog unresolved; patent α=0.55)`) | abbe: 1 |
 | [SCHNEIDER-KREUZNACH SUPER-SYMMAR HM 120mm f/5.6](../../src/lens-data/schneider-kreuznach/SchneiderSuperSymmarHM120mmf56.data.ts) | US 4,773,745 | [PDF](../../patents/US4773745.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 13 [glass] (Element 8: `Unmatched (479/587 low-index crown; vendor unspecified)`) | abbe: 1 |
+| [SIGMA 19mm f/2.8 DN | Art](../../src/lens-data/sigma/Sigma19mmf28DNArt.data.ts) | JP 2013-029658 A | [PDF](../../patents/JP2013029658A.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 11 [glass] (Element 6: `Unmatched (nd 1.77010 / νd 49.34)`) | abbe: 1 |
 | [FUJIFILM FUJINON XF 18-135mm f/3.5-5.6 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmFujinonXf18135mmf3556RLMOISWR.data.ts) | US 9,651,761 B2 | [PDF](../../patents/US9651761.pdf) | 87.5% (14/16) | 87.5% (14/16) | 2 | 12A [glass] (L31: `Unmatched (798453; nd=1.79839, νd=45.28)`)<br>14A [glass] (L41: `Unmatched (569585; nd=1.56867, νd=58.50)`) | abbe: 2 |
 | [NIKON AF-S DX NIKKOR 10-24mm f/3.5-4.5 G ED](../../src/lens-data/nikon/NikonAFSDXNikkor1024mmf3545GED.data.ts) | US 8,169,718 B2 | [PDF](../../patents/US8169718.pdf) | 87.5% (14/16) | 87.5% (14/16) | 2 | 4 [glass] (Gr1B thin composite layer: `Unmatched (thin composite-asphere layer coordinate 536412; no public catalog identity established)`)<br>24A [glass] (Rear thin composite layer: `Unmatched (thin composite-asphere layer coordinate 515500; no public catalog identity established)`) | abbe: 2 |
 | [VILTROX AF 50mm f/1.4 PRO](../../src/lens-data/viltrox/ViltroxAF50mmf14Pro.data.ts) | CN 120871380 A | [PDF](../../patents/CN120871380A.pdf) | 86.7% (13/15) | 86.7% (13/15) | 2 | 6 [glass] (Element 4: `Unmatched (patent nd=1.949, νd=17.942; νd equals H-ZF88, so nd is probably a misprint of 1.946, unconfirmed; supplier unresolved)`)<br>21 [glass] (Element 12: `Unmatched (patent nd=1.7292, νd=56.685; supplier unresolved)`) | abbe: 2 |
@@ -107,6 +108,7 @@ These lenses are missing trusted chromatic data only on glass elements. One or t
 | [KODAK EKTAR 52mm f/1.5](../../src/lens-data/kodak/KodakEktar52mmf15.data.ts) | US 2,397,565 | [PDF](../../patents/US2397565.pdf) | 85.7% (6/7) | 85.7% (6/7) | 1 | 3 [glass] (Element II: `Unmatched (vintage barium-flint class, N_D=1.617, V=38.5)`) | abbe: 1 |
 | [KONICA HEXANON AR 57mm f/1.2](../../src/lens-data/konica/KonicaHexanonAR57mmf12.data.ts) | JP S47-19025 | [PDF](../../patents/JP_S4719025_Y1.pdf) | 85.7% (6/7) | 85.7% (6/7) | 1 | 8 [glass] (Element 5: `Unmatched (patent nd 1.83060 / νd 36.5; supplier not disclosed)`) | abbe: 1 |
 | [MINOLTA AF 100mm f/2](../../src/lens-data/minolta/MinoltaAF100mmf2.data.ts) | JP 1987-244010 A | [PDF](../../patents/JPA 1987244010-000000.pdf) | 85.7% (6/7) | 85.7% (6/7) | 1 | 8 [glass] (Element 5: `Unmatched (781446 high-index mid-dispersion glass; no compatible public coefficient row)`) | abbe: 1 |
+| [NIKON NIKKOR 18.5mm f/2.8 (Nikon COOLPIX A)](../../src/lens-data/nikon/NikonNikkor185mmf28CoolpixA.data.ts) | US 9,915,803 B2 | [PDF](../../patents/US9915803B2.pdf) | 85.7% (6/7) | 85.7% (6/7) | 1 | 12 [glass] (Element 7: `Unmatched (nd 1.79050 / νd 45.01)`) | abbe: 1 |
 | [NIKON W-NIKKOR 35mm f/1.8](../../src/lens-data/nikon/NikonWNikkor35mmf18.data.ts) | US 2,896,506 | [PDF](../../patents/US2896506.pdf) | 85.7% (6/7) | 85.7% (6/7) | 1 | 3 [glass] (Element 2: `Unmatched (vintage high-index crown, 662/577)`) | abbe: 1 |
 | [SCHNEIDER-KREUZNACH PA-CURTAGON-R 35mm f/4](../../src/lens-data/schneider-kreuznach/LeicaPACurtagonR35mmf4.data.ts) | US 3,410,632 | [PDF](../../patents/US3410632.pdf) | 85.7% (6/7) | 85.7% (6/7) | 1 | 7 [glass] (Element 4: `Unmatched (historical BaSF13-type e-line coordinate; no verified compatible catalog curve)`) | abbe: 1 |
 | [SIGMA 24mm f/2.8 (Sigma DP2x)](../../src/lens-data/sigma/SigmaDP2X24mmf28.data.ts) | JP 2010-101979 A | [PDF](../../patents/JP2010101979A.pdf) | 85.7% (6/7) | 85.7% (6/7) | 1 | 13 [glass] (Element 7: `BaCD / SK family (various)`) | abbe: 1 |
