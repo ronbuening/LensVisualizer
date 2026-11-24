@@ -164,7 +164,6 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "BSC7 (Hoya)",
       gapAfterMm: 1.48185,
-      sd: 14.84,
       source: "US 9,915,803 B2, Example 1, Table 1, surfaces 14–15",
     },
     {
@@ -175,7 +174,6 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "BSC7 (Hoya)",
       gapAfterMm: 0.70485,
-      sd: 15.67,
       source: "US 9,915,803 B2, Example 1, Table 1, surfaces 16–17",
     },
   ],

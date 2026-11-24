@@ -58,7 +58,6 @@ vertex sets the drawing scale, and the drawn curves follow the table radii at th
 | 9           |                     5.03 |
 | 10, 11      |                     6.29 |
 | 12, 13A     |                     6.96 |
-| Plates 1, 2 |             14.84, 15.67 |
 
 The entrance pupil for f/2.88 gives a paraxial stop radius of 3.935 mm. The drawing shows about 3.98 mm. The
 surfaces stay clear of each other. The rims pass the f/2.88 axial beam and the chief rays at the nominal APS-C
@@ -126,6 +125,8 @@ paraxial back focus from the last plate.
 - The other rims and the lands at surfaces 2 and 9 were compared again with Figure 1 and kept. Each drawn curve
   follows its table radius out to the listed semi-diameter, and L4 is drawn about 0.2 mm taller than L3, as
   modeled. Nikon publishes no section drawing of the lens for a second comparison.
+- The two filter plates no longer carry a clear radius: the patent prints none for them, and the corner
+  transmission is unchanged without one.
 
 2026-11-24 glass review:
 
