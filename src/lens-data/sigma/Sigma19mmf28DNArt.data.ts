@@ -1,269 +1,213 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
+/**
+ * JP 2013-029658 A, Numerical Example 4 (Sigma Corporation, Atsushi Yamazaki), in the printed millimetres.
+ * The radii, axial spacings, helium d-line glass values, stop position, aspheric coefficients and 22.2884 mm
+ * image gap follow the patent. It gives f/2.88 at infinity and f/2.94 at the 400 mm shooting distance.
+ * The lens semi-diameters are estimated from Fig. 16. The 4.164 mm iris radius is derived from f/2.88.
+ * The two printed focus positions bound the model. The intermediate spacings at 800 mm are calculated for
+ * paraxial focus at the fixed image plane, with the two moving gaps still totaling 6.9942 mm.
+ */
 const LENS_DATA = {
-  "schema": 2,
-  "key": "sigma-19dn-family-jp2013029658-example4-stopped-f4-infinity-reference",
-  "maker": null,
-  "name": "SIGMA 19 DN JP2013029658 EX4 STOPPED f/4",
-  "subtitle": "Strong EX/Art shared-family patent representative; not factory exact or DP1 Merrill",
-  "visible": false,
-  "source": {
-    "patentNumber": "JP 2013029658 A",
-    "patentYear": 2013,
-    "example": {
-      "label": "Numerical Example 4",
-      "id": "4"
-    },
-    "authors": [
-      "Atsushi Yamazaki"
-    ],
-    "assignees": [
-      "Sigma Corporation"
-    ],
-    "sdSource": "heuristic"
+  schema: 2,
+  key: "sigma-19mm-f28-dn-art",
+  maker: "Sigma",
+  name: "SIGMA 19mm f/2.8 DN | Art",
+  subtitle: "JP 2013-029658 A, Numerical Example 4 — Sigma / Yamazaki",
+  visible: true,
+  source: {
+    patentNumber: "JP 2013-029658 A",
+    patentYear: 2013,
+    example: { label: "Example 4", id: "4" },
+    authors: ["Atsushi Yamazaki"],
+    assignees: ["Sigma Corporation"],
+    sdSource: "figure-measured",
   },
-  "catalog": {
-    "elementCount": 8,
-    "groupCount": 6,
-    "focalLengthMm": {
-      "design": 18.91
-    },
-    "fNumber": {
-      "design": 2.88
-    },
-    "specs": [
-      "Only native f/4 through ±8° d-line static infinity. One strong patent representative for Sigma19mmf2.8EXDN/ArtDN shared8E/6G family, not a factory prescription or two distinct models; not DP1Merrill.",
-      "Exact source S7irisz12.4192 and imagez61.3642 fixed; no plate, source22.2884mm rear air. Three K0 source aspheres S1/S12/S15 literal. Iris and caps estimated; no trim, override or fit.",
-      "Source400mm row moves all of L2 S8–S12 (cement E4/5 plus E6) by−.5722 via d7/d12=4.4220/2.5722. Kept outside this isolated infinity import; any native/independent400 evidence is separately scoped, not a continuous cam.",
-      "OEM closest20cm and source wide-open/full field, retail finite performance,200mm extrapolation, broadband/color and full coverage remain unqualified."
-    ]
+  catalog: {
+    elementCount: 8,
+    groupCount: 6,
+    focalLengthMm: { marketing: 19, design: 18.91 },
+    fNumber: { marketing: 2.8, design: 2.88 },
+    closeFocusM: { marketing: 0.2 },
+    lensMounts: ["sony-fe", "micro-four-thirds"],
+    imageFormat: "aps-c",
+    specs: ["8 ELEMENTS / 6 GROUPS", "3 ASPHERICAL ELEMENTS", "DESIGN f = 18.91 mm", "DESIGN F/2.88", "INNER FOCUS"],
   },
-  "elements": [
+  elements: [
     {
-      "id": 1,
-      "name": "Source element 1",
-      "label": "E1",
-      "type": "Lens",
-      "nd": 1.59201,
-      "vd": 67.02,
-      "indexReference": "d"
+      id: 1,
+      name: "L1",
+      label: "Element 1",
+      type: "Negative Meniscus",
+      nd: 1.59201,
+      vd: 67.02,
+      indexReference: "d",
+      glass: "M-PCD51 (HOYA catalog equivalent, production supplier unspecified)",
+      focalLengthMm: -29.85,
+      role: "Front negative meniscus with an aspherical object-side face that reduces distortion.",
     },
     {
-      "id": 2,
-      "name": "Source element 2",
-      "label": "E2",
-      "type": "Lens",
-      "nd": 1.56732,
-      "vd": 42.84,
-      "indexReference": "d"
+      id: 2,
+      name: "L2",
+      label: "Element 2",
+      type: "Negative Meniscus",
+      nd: 1.56732,
+      vd: 42.84,
+      indexReference: "d",
+      glass: "E-FL6 (HOYA catalog equivalent, production supplier unspecified)",
+      focalLengthMm: -30.85,
+      role: "Second negative meniscus, sharing the fixed front group's diverging power.",
     },
     {
-      "id": 3,
-      "name": "Source element 3",
-      "label": "E3",
-      "type": "Lens",
-      "nd": 1.883,
-      "vd": 40.81,
-      "indexReference": "d"
+      id: 3,
+      name: "L3",
+      label: "Element 3",
+      type: "Positive Meniscus",
+      nd: 1.883,
+      vd: 40.81,
+      indexReference: "d",
+      glass: "TAFD30 (HOYA catalog equivalent, production supplier unspecified)",
+      focalLengthMm: 25.89,
+      role: "High-index positive meniscus that offsets part of the first two elements' negative power ahead of the iris.",
     },
     {
-      "id": 4,
-      "name": "Source element 4",
-      "label": "E4",
-      "type": "Lens",
-      "nd": 1.62004,
-      "vd": 36.3,
-      "indexReference": "d",
-      "cemented": "C1"
+      id: 4,
+      name: "L4",
+      label: "Element 4",
+      type: "Biconcave Negative",
+      nd: 1.62004,
+      vd: 36.3,
+      indexReference: "d",
+      glass: "E-F2 (HOYA catalog equivalent, production supplier unspecified)",
+      focalLengthMm: -26.95,
+      role: "Negative front member of the focusing doublet, with a shallow concave face toward the iris.",
+      cemented: "C1",
     },
     {
-      "id": 5,
-      "name": "Source element 5",
-      "label": "E5",
-      "type": "Lens",
-      "nd": 1.8042,
-      "vd": 46.5,
-      "indexReference": "d",
-      "cemented": "C1"
+      id: 5,
+      name: "L5",
+      label: "Element 5",
+      type: "Biconvex Positive",
+      nd: 1.8042,
+      vd: 46.5,
+      indexReference: "d",
+      glass: "TAF3 (HOYA catalog equivalent, production supplier unspecified)",
+      focalLengthMm: 17.79,
+      role: "High-index positive member that gives the focusing doublet its net converging power.",
+      cemented: "C1",
     },
     {
-      "id": 6,
-      "name": "Source element 6",
-      "label": "E6",
-      "type": "Lens",
-      "nd": 1.7701,
-      "vd": 49.34,
-      "indexReference": "d"
+      id: 6,
+      name: "L6",
+      label: "Element 6",
+      type: "Positive Meniscus",
+      nd: 1.7701,
+      vd: 49.34,
+      indexReference: "d",
+      glass: "Unmatched (nd 1.77010 / νd 49.34)",
+      focalLengthMm: 19.63,
+      role: "Rear element of the focusing group, with an aspherical image-side face that limits astigmatism changes during focus.",
     },
     {
-      "id": 7,
-      "name": "Source element 7",
-      "label": "E7",
-      "type": "Lens",
-      "nd": 1.74077,
-      "vd": 27.76,
-      "indexReference": "d",
-      "cemented": "C2"
+      id: 7,
+      name: "L7",
+      label: "Element 7",
+      type: "Biconcave Negative",
+      nd: 1.74077,
+      vd: 27.76,
+      indexReference: "d",
+      glass: "E-FD13 (HOYA catalog equivalent, production supplier unspecified)",
+      focalLengthMm: -19.24,
+      role: "Strongly dispersive negative front member of the fixed rear doublet.",
+      cemented: "C2",
     },
     {
-      "id": 8,
-      "name": "Source element 8",
-      "label": "E8",
-      "type": "Lens",
-      "nd": 1.59201,
-      "vd": 67.02,
-      "indexReference": "d",
-      "cemented": "C2"
-    }
+      id: 8,
+      name: "L8",
+      label: "Element 8",
+      type: "Biconvex Positive",
+      nd: 1.59201,
+      vd: 67.02,
+      indexReference: "d",
+      glass: "M-PCD51 (HOYA catalog equivalent, production supplier unspecified)",
+      focalLengthMm: 29.56,
+      role: "Low-dispersion positive partner in the rear doublet, with an aspherical image-side face.",
+      cemented: "C2",
+    },
   ],
-  "surfaces": [
+  surfaces: [
     {
-      "label": "1",
-      "R": 20.8128,
-      "d": 1.2,
-      "sd": 3.7,
-      "medium": 1,
-      "asphere": {
-        "K": 0,
-        "A4": 3.71314e-05,
-        "A6": 1.26369e-07,
-        "A8": -8.81328e-10,
-        "A10": 9.83774e-12
-      }
+      label: "1A",
+      R: 20.8128,
+      d: 1.2,
+      sd: 10.4,
+      medium: 1,
+      asphere: { K: 0, A4: 3.71314e-5, A6: 1.26369e-7, A8: -8.81328e-10, A10: 9.83774e-12 },
     },
+    { label: "2", R: 9.3513, d: 3.3434, sd: 7.45 },
+    { label: "3", R: 37.8156, d: 0.9, sd: 8.3, medium: 2 },
+    { label: "4", R: 11.8615, d: 0.7997, sd: 6.4 },
+    { label: "5", R: 17.5225, d: 2.481, sd: 7.3, medium: 3 },
+    { label: "6", R: 70.0319, d: 3.6951, sd: 7.3 },
+    { label: "STO", R: "flat" },
+    { label: "8", R: -66.5754, d: 0.85, sd: 6.5, medium: 4 },
+    { label: "9", R: 22.4165, d: 2.7812, sd: 6.5, medium: 5 },
+    { label: "10", R: -37.3785, d: 5.7525, sd: 6.5 },
+    { label: "11", R: -308.235, d: 4.4533, sd: 9.7, medium: 6 },
     {
-      "label": "2",
-      "R": 9.3513,
-      "d": 3.3434,
-      "sd": 3.45
+      label: "12A",
+      R: -14.5018,
+      sd: 9.6,
+      asphere: { K: 0, A4: 6.03409e-5, A6: 2.65895e-8, A8: -1.24719e-10, A10: 5.67838e-12 },
     },
+    { label: "13", R: -22.289, d: 1, sd: 9.3, medium: 7 },
+    { label: "14", R: 40.3119, d: 4.8254, sd: 11, medium: 8 },
     {
-      "label": "3",
-      "R": 37.8156,
-      "d": 0.9,
-      "sd": 3.4,
-      "medium": 2
+      label: "15A",
+      R: -29.5486,
+      d: 22.2884,
+      sd: 11,
+      asphere: { K: 0, A4: -8.21604e-6, A6: 8.43206e-8, A8: 6.20932e-10, A10: -2.2885e-12 },
     },
-    {
-      "label": "4",
-      "R": 11.8615,
-      "d": 0.7997,
-      "sd": 3.35
-    },
-    {
-      "label": "5",
-      "R": 17.5225,
-      "d": 2.481,
-      "sd": 3.4,
-      "medium": 3
-    },
-    {
-      "label": "6",
-      "R": 70.0319,
-      "d": 3.6951,
-      "sd": 3.3
-    },
-    {
-      "label": "STO",
-      "R": "flat",
-      "d": 4.9942
-    },
-    {
-      "label": "8",
-      "R": -66.5754,
-      "d": 0.85,
-      "sd": 4,
-      "medium": 4
-    },
-    {
-      "label": "9",
-      "R": 22.4165,
-      "d": 2.7812,
-      "sd": 4.2,
-      "medium": 5
-    },
-    {
-      "label": "10",
-      "R": -37.3785,
-      "d": 5.7525,
-      "sd": 4.4
-    },
-    {
-      "label": "11",
-      "R": -308.235,
-      "d": 4.4533,
-      "sd": 4.9,
-      "medium": 6
-    },
-    {
-      "label": "12",
-      "R": -14.5018,
-      "d": 2,
-      "sd": 5.1,
-      "asphere": {
-        "K": 0,
-        "A4": 6.03409e-05,
-        "A6": 2.65895e-08,
-        "A8": -1.24719e-10,
-        "A10": 5.67838e-12
-      }
-    },
-    {
-      "label": "13",
-      "R": -22.289,
-      "d": 1,
-      "sd": 4.7,
-      "medium": 7
-    },
-    {
-      "label": "14",
-      "R": 40.3119,
-      "d": 4.8254,
-      "sd": 4.7,
-      "medium": 8
-    },
-    {
-      "label": "15",
-      "R": -29.5486,
-      "d": 22.2884,
-      "sd": 4.7,
-      "asphere": {
-        "K": 0,
-        "A4": -8.21604e-06,
-        "A6": 8.43206e-08,
-        "A8": 6.20932e-10,
-        "A10": -2.2885e-12
-      }
-    }
   ],
-  "aperture": {
-    "nominalFNumber": 4,
-    "fStops": [
-      4,
-      5.6,
-      8,
-      11,
-      16,
-      22
+  aperture: {
+    nominalFNumber: 2.88,
+    fStops: [2.8, 4, 5.6, 8, 11, 16, 22],
+    maxFNumber: 22,
+    blades: 7,
+  },
+  projection: { kind: "rectilinear" },
+  focus: {
+    closeFocusM: 0.4,
+    keyframes: [0, 0.5, 1],
+    published: [2],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 2,
+        objectDistanceMm: 338.6359,
+        distanceReference: "first-surface",
+        source:
+          "JP 2013-029658 A, Numerical Example 4 (p. 15), 400 mm column. The object row gives 338.6359 mm to the first surface, with d7 at 4.4220 mm and d12 at 2.5722 mm.",
+      },
     ],
-    "maxFNumber": 22
+    description:
+      "PUBLISHED inner focus. The second group moves 0.5722 mm toward the object between infinity and the patent's 0.40 m position. The front group, iris and rear group stay fixed. The 0.80 m position is calculated. Sigma specifies 0.20 m for the production lens.",
   },
-  "projection": {
-    "kind": "rectilinear",
-    "fullFieldDeg": 16,
-    "maxTraceFieldDeg": 8
+  gaps: {
+    STO: { label: "d7", values: [[4.9942, 4.73283, 4.422]] },
+    "12A": { label: "d12", values: [[2, 2.26137, 2.5722]] },
   },
-  "rays": {
-    "offAxisFieldFrac": 0.98
-  },
-  "focus": {
-    "closeFocusM": 1000000000000000,
-    "description": "Isolated static infinity reference. Exact source400mm is separately assessed; no finite or continuous motion enabled."
-  },
-  "groups": [],
-  "layout": {
-    "yScFill": 0.5
-  }
+  groups: [
+    { text: "L1", fromSurface: "1A", toSurface: "6" },
+    { text: "L2", fromSurface: "8", toSurface: "12A" },
+    { text: "L3", fromSurface: "13", toSurface: "15A" },
+  ],
+  doublets: [
+    { text: "C1", fromSurface: "8", toSurface: "10" },
+    { text: "C2", fromSurface: "13", toSurface: "15A" },
+  ],
+  layout: { yScFill: 0.5 },
 } satisfies LensDataV2Input;
 
 export default LENS_DATA;
