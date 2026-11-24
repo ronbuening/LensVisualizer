@@ -26,6 +26,7 @@ const SOURCES = {
   fujifilmOverview: "https://global.fujifilm.com/en/about/corporate/overview",
   fujinonMerger: "https://av.watch.impress.co.jp/docs/news/357173.html",
   fujinonRename: "https://www.itmedia.co.jp/news/article/0407/01/1040701077/",
+  goerzHistory: "https://de.wikipedia.org/wiki/Optische_Anstalt_C._P._Goerz",
   hoyaHistory: "https://www.hoya.com/en/company/history/",
   hoyaPentaxMerger: "https://www.hoya.com/en/news/20111001/",
   iscoHistory: "https://de.wikipedia.org/wiki/ISCO_G%C3%B6ttingen",
@@ -76,6 +77,8 @@ const SOURCES = {
   vivitarNameChange: "https://uprp.gov.pl/sites/default/files/wup/1979/06/wup06_1979.pdf",
   voigtlanderRename: "https://patents.google.com/patent/US2662446A/en",
   voigtlanderHistory: "https://www.cosina.co.jp/voigtlander/",
+  wollensakHistory: "https://www.graflex.org/articles/kingslake/",
+  wollensakOwnership: "https://museumofmagneticsoundrecording.org/ManufacturersWollensak.html",
   yashicaHistory: "https://en.wikipedia.org/wiki/Yashica",
   zeissHistory: "https://www.zeiss.com/corporate/en/about-zeiss/past/history.html",
   zeissLocations: "https://www.zeiss.com/corporate/en/about-zeiss/past/history/locations.html",
@@ -127,6 +130,36 @@ export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporat
         effectiveTo: "2002-10-01",
         sourceUrl: SOURCES.pentaxHistory,
         note: "The source traces PENTAX to Asahi Optical Joint Stock Co.; this is the patent rendering of that lineage.",
+      },
+    ],
+  },
+  "C. P. Goerz": {
+    corporateFamily: [
+      {
+        family: "Goerz",
+        effectiveFrom: "1886",
+        effectiveTo: "1903",
+        sourceUrl: SOURCES.goerzHistory,
+        note: "Carl Paul Goerz's Berlin firm, founded in 1886 and converted into a stock company in 1903; DE 74437 (1894) names the patentee as C. P. Goerz in Schöneberg bei Berlin.",
+      },
+    ],
+  },
+  "C. P. Goerz American Optical Company": {
+    acquiredBy: [
+      {
+        organization: "Schneider Optics",
+        effectiveDate: "1972",
+        sourceUrl: SOURCES.goerzHistory,
+        note: "Taken over by Schneider Optics, the American subsidiary of Jos. Schneider Optische Werke.",
+      },
+    ],
+    corporateFamily: [
+      {
+        family: "Goerz",
+        effectiveFrom: "1895",
+        effectiveTo: "1972",
+        sourceUrl: SOURCES.goerzHistory,
+        note: "Lineage only: the source traces the company to the Berlin firm's New York branch of 1895, which existed as C. P. Goerz American Optical Company until 1972. This does not attribute its later patents to the Berlin company or to Zeiss Ikon.",
       },
     ],
   },
@@ -743,6 +776,15 @@ export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporat
         note: "The museum record names Goerz among the four German camera companies, with Ica, Contessa Nettel and Ernemann, that Carl Zeiss Jena combined to form Zeiss Ikon.",
       },
     ],
+    corporateFamily: [
+      {
+        family: "Goerz",
+        effectiveFrom: "1903",
+        effectiveTo: "1926",
+        sourceUrl: SOURCES.goerzHistory,
+        note: "From the 1903 conversion of Carl Paul Goerz's firm into a stock company to the 1926 merger that formed Zeiss Ikon AG.",
+      },
+    ],
   },
   "Panasonic AVC Networks Xiamen Co., Ltd.": {
     subsidiaryOf: [
@@ -1160,6 +1202,24 @@ export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporat
         effectiveFrom: "1953",
         sourceUrl: SOURCES.voigtlanderHistory,
         note: "The window starts with the first US grant printed under the shortened style; the brand lineage itself dates from 1756.",
+      },
+    ],
+  },
+  "Wollensak Optical Company": {
+    acquiredBy: [
+      {
+        organization: "Minnesota Mining and Manufacturing Company (3M)",
+        effectiveDate: "1960",
+        sourceUrl: SOURCES.wollensakOwnership,
+        note: "The museum page records 3M's acquisition of Revere and Wollensak in 1960; it names Revere Camera Company as an owner during the 1950s without giving a year, so no Revere period is recorded.",
+      },
+    ],
+    corporateFamily: [
+      {
+        family: "Wollensak",
+        effectiveFrom: "1899",
+        sourceUrl: SOURCES.wollensakHistory,
+        note: "Kingslake dates the founding to 1899 as Rauber and Wollensak, renamed Wollensak Optical Company after Rauber's death in 1901.",
       },
     ],
   },
