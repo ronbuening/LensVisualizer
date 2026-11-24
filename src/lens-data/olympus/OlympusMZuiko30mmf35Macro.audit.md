@@ -63,7 +63,10 @@ Surface 6 has a 5.3 mm clear radius and a flat land out to the 5.9 mm outer edge
 | 9A, 10A                    |                5.0, 5.1 |                       7.0 |
 | 11A, 12A                   |                3.9, 3.8 |                       7.5 |
 | 13, 14                     |                3.6, 3.6 |                      12.0 |
-| 15, 16 (camera-side plate) |                     2.2 |                      12.1 |
+| 15, 16 (camera-side plate) |                     2.2 |                      none |
+
+The camera-side plate has no clear radius. The patent prints none, and the plate is not part of the drawn lens
+section. Fig. 6A–C draws its edge 12.0–12.3 mm from the axis.
 
 The calculated iris radius is 4.686 mm at infinity. The printed close-range apertures imply about 4.13 mm at
 0.5× and 3.30 mm at 1×. The model uses the infinity iris throughout. At 1× the axial ray through its edge clears
@@ -128,6 +131,33 @@ in the model. [Olympus specifications](https://jp.omsystem.com/product/lens/macr
 At infinity the finished model has a 30.42 mm EFL, an f/3.56 aperture with a 4.686 mm iris radius, and
 20.775 mm of air-equivalent back focus to paraxial focus. The Four Thirds corner chief ray reaches the image
 at a 19.4° half-field.
+
+2026-11-24 rim review:
+
+- The rims were compared again with Fig. 6A–C and the maker's drawing. No lens rim changed. On the 300 dpi
+  page image the first and last lens vertices are 662–664 pixels apart in each panel, against 50.82 mm in the
+  table, which gives 13.03–13.06 pixels per millimetre. The arc of surface 6 confirms the scale across the
+  axis: it ends 1.73 mm deep at a height of 5.1 mm, where its 8.479 mm radius gives 5.13 mm.
+- Across the three panels the element edges read 6.48–6.65 mm for L1, 5.97–6.09 mm for L2, 5.83–5.99 mm for
+  L3, 6.41–6.59 mm for L4, 6.95–7.12 mm for L5, 7.45–7.68 mm for L6 and 12.01–12.21 mm for L7. The rims of
+  6.5, 6.0, 5.9, 6.5, 7.0, 7.5 and 12.0 mm fall inside these ranges. Fig. 6A and 6B are drawn about 2.5%
+  taller than Fig. 6C.
+- L1, L2, L4, L5, L6 and L7 are drawn with square edges, and each keeps one height on both faces. L3's concave
+  face ends 5.1–5.3 mm from the axis, and a flat land continues to its 5.9 mm edge. L3 ends 0.6 mm below L4.
+  Surface 7 keeps L3's height because a cemented face cannot carry a land. L4's edge therefore slopes from
+  5.9 mm to 6.5 mm where the figure draws a square shoulder.
+- The Olympus drawing gives L3 and L4 one outer height and draws L7 about 11.3 mm tall. The patent figure
+  governs in both places. [Olympus construction drawing](https://jp.omsystem.com/content/000083238.jpg)
+- The camera-side plate's 12.1 mm clear radius was removed. The patent prints no clear radius for the plate,
+  and its edge cut collimated light at the close-focus spacings. Illumination at the Four Thirds corner,
+  calculated with collimated light at each printed spacing, is 74.1% at infinity before and after. It rises
+  from 60.8% to 75.3% at the 0.5× spacing and from 41.3% to 75.5% at the 1× spacing. The half-field that the
+  rims allow rises from 21.5° to 23.0° and is now set by L7. The aperture stays f/3.56.
+
+2026-11-24 glass review:
+
+- The camera-side plate is labelled S-BSL7 (Ohara), whose catalog index and Abbe number equal the printed
+  1.51633 and 64.14. The catalog row supplies the plate's dispersion curve.
 
 ## Remaining Questions
 

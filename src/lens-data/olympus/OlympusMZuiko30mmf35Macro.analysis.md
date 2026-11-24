@@ -43,9 +43,9 @@ part of the patent's optical path, behind the seven powered elements.
 
 The prescription retains the printed radii, spacings, d-line glass values and aspheres. The plate and gaps put
 the image plane 73.69 mm behind the front vertex, 0.025 mm behind paraxial focus at infinity. The clear radii
-and the land on surface 6 are estimated from Fig. 6C. The calculated 4.686 mm iris radius follows the printed
-infinity aperture. At infinity the chief ray reaches the Four Thirds corner at 10.82 mm image height and
-19.4° half-field.
+and the land on surface 6 are estimated from Fig. 6C. The plate has no clear radius of its own because the
+patent prints none. The calculated 4.686 mm iris radius follows the printed infinity aperture. At infinity
+the chief ray reaches the Four Thirds corner at 10.82 mm image height and 19.4° half-field.
 
 ## Element-by-Element Analysis
 

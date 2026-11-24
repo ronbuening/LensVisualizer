@@ -5,6 +5,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * aspheres and camera-side plate follow the patent at its printed millimetre scale.
  * The image plane is 0.75 mm behind the plate. The clear radii and land on
  * surface 6 follow Fig. 6C, and the iris radius follows the infinity f/3.56.
+ * The plate has no clear radius, because the patent prints none.
  * The patent prints f/3.56, f/4.07 and f/5.04 at infinity, 0.5× and 1×.
  * With the iris held at its infinity size, surfaces 7, 8, 9A and 10A clip
  * the 1× axial beam. The moving gaps sum to 21.72 mm at every setting.
@@ -284,9 +285,9 @@ const LENS_DATA = {
       thicknessMm: 6.08,
       nd: 1.51633,
       vd: 64.14,
+      glass: "S-BSL7 (Ohara)",
       indexReference: "d",
       gapAfterMm: 0.75,
-      sd: 12.1,
       source: "US 9,791,677 B2, Example 6, surfaces 15–16.",
     },
   ],
