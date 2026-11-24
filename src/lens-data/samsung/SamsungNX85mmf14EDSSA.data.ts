@@ -4,8 +4,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * First embodiment of US 8,498,063 B2, reproduced at the printed scale. The prescription gives the spherical
  * radii, thicknesses, d-line indices and Abbe numbers, the stop at surface 12, and the rear filter and image spacing.
  * Table 1 gives three focus positions. Only G2 moves, toward the image, while the two gaps around it sum to 17.990 mm.
- * Fig. 1 provides rim estimates. The close clearances at surfaces 4–5, 6–7 and 17–18 follow the drawing; the
- * surface 11 rim clears the axial beam beyond the drawn arc. The 13.78 mm iris radius follows from F/1.44.
+ * Fig. 1 provides rim estimates (11.6 px/mm along the axis and about 12.2 px/mm radially on the 300 dpi sheet).
+ * Surfaces 4, 6, 11, 17 and 19 end short of their element edges and continue as flat lands, as drawn. Surfaces 4–5
+ * and 17–18 nearly touch at the rim, which takes checks.gapSagFrac 0.96. The surface 11 cap runs slightly past
+ * the drawn arc to clear the axial beam. The 13.78 mm iris radius follows from F/1.44.
  * The image plane stays 0.522 mm behind the filter. Seven calculated positions between the two printed finite
  * positions keep paraxial focus on that plane and preserve the 17.990 mm sum.
  */
@@ -204,6 +206,7 @@ const LENS_DATA = {
       R: 122.837,
       d: 2.314,
       sd: 24.6,
+      rimExtensionSd: 27.3,
     },
     {
       label: "5",
@@ -216,13 +219,14 @@ const LENS_DATA = {
       label: "6",
       R: 30.284,
       d: 0.988,
-      sd: 21.3,
+      sd: 20.3,
+      rimExtensionSd: 26.1,
     },
     {
       label: "7",
       R: 32.912,
       d: 8.768,
-      sd: 21.3,
+      sd: 21.5,
       medium: 4,
     },
     {
@@ -248,6 +252,7 @@ const LENS_DATA = {
       label: "11",
       R: 32.003,
       sd: 15.2,
+      rimExtensionSd: 18.55,
     },
     {
       label: "STO",
@@ -286,6 +291,7 @@ const LENS_DATA = {
       R: 49.321,
       d: 1.911,
       sd: 13.1,
+      rimExtensionSd: 14.95,
     },
     {
       label: "18",
@@ -298,7 +304,8 @@ const LENS_DATA = {
       label: "19",
       R: 48.072,
       d: 19.447,
-      sd: 13.85,
+      sd: 13,
+      rimExtensionSd: 13.85,
     },
   ],
   focus: {
@@ -353,7 +360,6 @@ const LENS_DATA = {
       vd: 64.2,
       indexReference: "d",
       gapAfterMm: 0.522,
-      sd: 15.2,
       source: "US 8,498,063 B2, first embodiment, filter 400 and surfaces 20–21.",
       glass: "BSC7 (HOYA)",
     },
@@ -391,7 +397,7 @@ const LENS_DATA = {
     yScFill: 0.7,
   },
   checks: {
-    gapSagFrac: 0.95,
+    gapSagFrac: 0.96,
   },
 } satisfies LensDataV2Input;
 

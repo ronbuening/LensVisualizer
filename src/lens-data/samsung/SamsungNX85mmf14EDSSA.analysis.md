@@ -26,7 +26,7 @@ The +45.82 mm doublet C2 forms G3a and converges the beam behind the iris. The p
 
 The patent prints the radii, axial spacings, d-line indices and Abbe numbers, stop position and rear filter. The model retains the printed scale, including the 2.800 mm filter and 0.522 mm of air to the image plane. At infinity, the calculated focal length is 85.014 mm and the paraxial back focus is 0.524 mm behind the filter, equivalent to 21.817 mm in air from the last lens. The first vertex is 109.871 mm from the printed plane.
 
-Rim radii are estimated from Fig. 1. Surface 11 extends beyond the drawn arc to clear the axial beam. The 13.78 mm iris radius is calculated from f/1.44. Samsung specifies a nine-blade circular diaphragm and a minimum aperture of f/22. [Samsung manual](https://www.manualslib.com/manual/540176/Samsung-Ext85nb.html)
+Rim radii are estimated from Fig. 1. As drawn, the rear faces of L121, L131, L221, L331 and L341 end short of their element edges and continue as flat lands, so L131 and the focusing doublet appear as square-cut blocks. The curved part of surface 11 runs slightly past the drawn arc to clear the axial beam. The 13.78 mm iris radius is calculated from f/1.44. Samsung specifies a nine-blade circular diaphragm and a minimum aperture of f/22. [Samsung manual](https://www.manualslib.com/manual/540176/Samsung-Ext85nb.html)
 
 ## Element-by-Element Analysis
 
