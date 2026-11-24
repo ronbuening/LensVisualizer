@@ -20,7 +20,7 @@ Example I specifies a 100 mm objective at f/3.2 with a 55° total angular field 
 
 The objective has four elements in three air-separated components: a positive front singlet, a negative middle singlet and a positive rear cemented doublet. This is a Tessar-type arrangement. The seven optical surfaces are spherical or plane; R2 is the plane refracting rear face of element 1. Elements 3 and 4 meet at R6 and form cemented group C1.
 
-The patent gives element diameters of 32, 27, 28 and 28 mm. It also specifies a 45° bevel on R4 beginning at a diameter of 25 mm. The model therefore uses semi-diameters of 16 mm at R1–R2, 13.5 mm at R3, 12.5 mm at R4 and 14 mm at R5–R7. Figure 1 agrees within about 3% and shows square outer edges on the front singlet and rear doublet, with the smaller R4 optical edge inside the middle element's bevel. Taking the bevel-start radius as R4's clear optical edge is a modeling choice; the patent does not give the bevel depth or complete edge profile. A flat extension would not describe the drawn 45° bevel.
+The patent gives element diameters of 32, 27, 28 and 28 mm. It also specifies a 45° bevel on R4 beginning at a diameter of 25 mm. The model therefore uses semi-diameters of 16 mm at R1–R2, 13.5 mm at R3, 12.5 mm at R4 and 14 mm at R5–R7. Figure 1 agrees within about 4% and shows square outer edges on the front singlet and rear doublet. The middle element's outline in the diagram joins the R3 and R4 optical edges with one straight segment. Figure 1 shows a level outer edge that ends in a short bevel at R4. The model uses the bevel-start radius as the clear optical boundary.
 
 The first-to-last vertex distance is 35.8 mm. The image plane lies at the computed paraxial focus, 82.91 mm behind R7, giving a total first-vertex-to-image distance of 118.71 mm. It is not moved to minimize a finite-aperture spot.
 
@@ -40,7 +40,7 @@ The middle component supplies negative power between the two positive components
 
 ### Element 3 — Negative Meniscus
 
-D-line index 1.605; Abbe number 38.0. Glass: F15 (Hoya), spectral proxy. Focal length in air: −83.63 mm.
+D-line index 1.605; Abbe number 38.0. Glass: E-F5 (Hoya), spectral proxy. Focal length in air: −83.63 mm.
 
 This is the negative front member of the rear doublet. Its weakly curved front face and stronger cemented rear face give negative power in air. It provides the more dispersive member of the rear pair.
 
@@ -54,7 +54,7 @@ Element 4 supplies the rear component's positive power. The cemented elements to
 
 The patent explicitly identifies the D line, taken here as sodium at 589.3 nm, and prints an index and Abbe number for each element. Those values remain unchanged. It supplies no trade names, suppliers, additional line indices or partial-dispersion data.
 
-Elements 1–3 use spectral proxies: Hoya M-PCD55AR for element 1 (ΔnD +0.00048, Δν +0.17), Ohara TIM11 for element 2 (ΔnD +0.00080, Δν −0.13) and Hoya F15 for element 3 (ΔnD +0.00051, Δν −0.11). Differences are catalog minus printed values at the sodium D line. Each row is within the proxy limits of 0.002 in index and 0.25 in Abbe number. The printed coordinates are retained; the catalog rows supply only the dispersion-curve shape, so colour analysis follows real glass curves rather than Abbe-based estimates.
+Elements 1–3 use spectral proxies. Hoya M-PCD55AR serves element 1 (ΔnD +0.00048, Δν +0.17), Ohara TIM11 serves element 2 (ΔnD +0.00080, Δν −0.13), and Hoya E-F5 serves element 3 (ΔnD −0.00172, Δν +0.002). Differences are catalog minus printed values at the sodium D line. Each row meets the site's spectral-proxy tolerance of 0.002 in index and 0.25 in Abbe number. The model keeps the printed coordinates and uses the catalog curves for wavelength dependence.
 
 Element 4 retains Ohara S-LAM51: nD = 1.69987 and a D-referenced Abbe number of 48.072. The index rounds to the printed 1.700 and the dispersion differs by +0.072. All four elements use catalog curves; none remains unmatched. These rows do not identify Wollensak's historical suppliers or melts, and the patent data do not establish broadband performance or secondary-spectrum accuracy.
 
@@ -78,4 +78,4 @@ The prescription and field statements do not establish a commercial mount, image
 
 1. Alan A. Cook and David C. Gilkeson, [US 2,769,372 A](https://patents.google.com/patent/US2769372A/en), Wollensak Optical Company, published 6 November 1956. PDF page 1: Figures 1–3; page 2: Example I, D-line convention, diameters, bevel, stop, aperture and field; page 3: claim 1 repeats Example I.
 2. Ohara, [optical-glass catalog](https://www.ohara-inc.co.jp/en/product/catalog/), TIM11 and S-LAM51 dispersion coefficients.
-3. Hoya, [optical-glass catalog](https://www.hoya-opticalworld.com/english/datadownload/index.html), M-PCD55AR and F15 dispersion coefficients.
+3. Hoya, [optical-glass catalog](https://www.hoya-opticalworld.com/english/datadownload/index.html), M-PCD55AR and E-F5 dispersion coefficients.

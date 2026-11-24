@@ -4,7 +4,9 @@
 
 [US 2,769,372 A, _Three Component Objectives for Photographic and Projection Purposes_](https://patents.google.com/patent/US2769372A/en), by Alan A. Cook and David C. Gilkeson, assigned to Wollensak Optical Company. The filing and priority date is 25 July 1955; publication was 6 November 1956. Example I appears in Figure 2 on PDF page 1, in the specification on page 2 and in claim 1 on page 3. Figure 1 shows the common construction. Example II is a separate f/3.5 design with a 50° total field and is not used here.
 
-The [Ohara optical-glass catalog](https://www.ohara-inc.co.jp/en/product/catalog/) supplies the TIM11 and S-LAM51 dispersion curves; the [Hoya optical-glass catalog](https://www.hoya-opticalworld.com/english/datadownload/index.html) supplies M-PCD55AR and F15. No production-lens source is documented for Example I.
+TIM11 and S-LAM51 dispersion coefficients come from the Ohara optical-glass catalog. [Ohara catalog](https://www.ohara-inc.co.jp/en/product/catalog/)
+
+M-PCD55AR, E-F5 and the earlier F15 proxy come from the Hoya optical-glass catalog. [Hoya catalog](https://www.hoya-opticalworld.com/english/datadownload/index.html)
 
 ## Transcription Check
 
@@ -63,9 +65,17 @@ After these corrections the model has EFL 99.99 mm, aperture f/3.20, paraxial ba
 - Element 3: `Unmatched (nD 1.605 / ν 38.0)` → `F15 (spectral proxy; patent nD 1.605 / ν 38.0; supplier and melt unspecified)` (Hoya); ΔnD +0.00051, Δν −0.11, catalog minus printed at the sodium D line; spectral proxy.
 - Spectral proxies are within 0.002 in index and 0.25 in Abbe number at the printed D line; the printed index and Abbe number are kept. Element 4 retains `S-LAM51 (Ohara)`, and historical glass identities remain unresolved.
 
+2026-11-24 diagram review:
+
+- Figure 1 on PDF page 1 and the live diagram agree on rim-height order and the square edges of the front singlet and rear doublet. The R1–R7 vertex span is about 1,431 px for 35.8 mm and the R1–R2 span about 262 px for 6.6 mm, both about 40 px/mm. At that scale the front rim, middle rim, R4 bevel start and rear rim read approximately 16.5, 13.9, 12.9 and 14.5 mm. The printed dimensions on PDF page 2 govern the retained 16, 13.5, 12.5 and 14 mm radii. The live diagram joins the middle element's optical edges with a single slope. Figure 1 shows a level rim before the short 45° bevel. A flat land would give the bevel a square corner.
+- At f/3.20 the admitted axial ray reaches R4 at 12.455 mm, leaving 0.045 mm to the optical edge. At 27.5° the chief ray clears the rims and reaches 51.524 mm at the image. The modeled aperture and half-field are f/3.20 and 27.5° before and after. Full-pupil transmission at the edge is 30.1%, relative illumination is 22.0%, and the largest transmission loss against the earlier rim dimensions is 0.0 percentage points. There are no rim lands or cuts relative to those dimensions.
+- Figure 1 uses the numerals 1–4, which are now explicit on the diagram. The inspectors retain L1–L4 and Element 1–4. Shapes, roles and in-air focal lengths agree with the prescription: +59.56, −38.32, −83.63 and +36.03 mm. The front, middle and rear captions span R1–R2, R3–R4 and R5–R7. C1 marks the R5–R7 doublet and STO sits 4.4 mm ahead of R5, as specified on PDF page 2. There are no aspheric or special-dispersion tags. The title, example and design specifications agree with Figures 1–2 and the text.
+- The three components have zero axial travel in the model. The focus control shows infinity alone, consistent with the single modeled conjugate and the lack of a focusing prescription in the patent.
+- Element 3 now uses Hoya E-F5 in place of F15. At the sodium D line, catalog minus print changes from ΔnD +0.00051 and Δν −0.109 to ΔnD −0.00172 and Δν +0.002, within the site's spectral-proxy tolerance. The inspector shows the revised glass label. All four elements retain catalog dispersion curves and the printed indices and Abbe numbers. PDF pages 2–3 supply no additional line indices, partial-dispersion values or spectral curves. The glass pairs for elements 2–4 recur in Example II. The assignee on PDF page 2 is Wollensak Optical Company, the catalog spelling.
+
 ## Remaining Questions
 
-- The printed diameters and R4 bevel-start diameter settle the clear-radius values. The bevel's axial depth and complete three-dimensional edge profile remain unknown.
+- R4's 45° bevel and Ø25 mm start are specified. The full edge profile remains unspecified, and the diagram approximates the bevel with a straight join between optical edges.
 - Historical glass identities, suppliers, melts and measured partial dispersion are unknown.
 - No production-lens association, marketed focal length or aperture, marketed minimum focus distance, mount, camera format, compatible teleconverter or production optical variant is documented.
 - Diaphragm blade count, blade shape, the physical stop range and finite-focus behavior are not documented.

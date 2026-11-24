@@ -4,7 +4,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * US 2,769,372 A, Example I (Figures 1–2): a 100 mm f/3.2 Tessar-type objective.
  * Radii, thicknesses, D-line indices, Abbe numbers and the stop position are printed.
  * The stop is 4.4 mm before element 3; its opening is derived from f/3.2.
- * Rims follow the printed element diameters and agree with Figure 1 within about 3%.
+ * Rims follow the printed element diameters and agree with Figure 1 within about 4%.
  * R4's optical radius is 12.5 mm where its printed 45-degree bevel starts;
  * the bevel depth is not specified, so no flat rim extension is imposed.
  * The image plane uses the computed paraxial back focus, 82.91 mm (printed: 82.9 mm).
@@ -47,6 +47,7 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1",
+      diagramLabel: "1",
       label: "Element 1",
       type: "Plano-Convex Positive",
       nd: 1.638,
@@ -59,6 +60,7 @@ const LENS_DATA = {
     {
       id: 2,
       name: "L2",
+      diagramLabel: "2",
       label: "Element 2",
       type: "Biconcave Negative",
       nd: 1.62,
@@ -71,12 +73,13 @@ const LENS_DATA = {
     {
       id: 3,
       name: "L3",
+      diagramLabel: "3",
       label: "Element 3",
       type: "Negative Meniscus",
       nd: 1.605,
       vd: 38,
       indexReference: "D",
-      glass: "F15 (spectral proxy; patent nD 1.605 / ν 38.0; supplier and melt unspecified)",
+      glass: "E-F5 (spectral proxy; patent nD 1.605 / ν 38.0; supplier and melt unspecified)",
       focalLengthMm: -83.63,
       role: "Dispersive negative member of the positive rear doublet",
       cemented: "C1",
@@ -84,6 +87,7 @@ const LENS_DATA = {
     {
       id: 4,
       name: "L4",
+      diagramLabel: "4",
       label: "Element 4",
       type: "Biconvex Positive",
       nd: 1.7,
