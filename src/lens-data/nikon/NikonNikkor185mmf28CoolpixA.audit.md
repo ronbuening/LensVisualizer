@@ -45,11 +45,11 @@ the image, cross-checked against the stop and plate positions. The vertical land
 | Surface     | Clear semi-diameter (mm) |
 | ----------- | -----------------------: |
 | 1           |                    10.05 |
-| 2           |                     7.15 |
+| 2           |                     8.07 |
 | 3, 4        |                     5.90 |
 | 6, 7        |                     4.59 |
 | 8           |                     4.83 |
-| 9           |                     5.37 |
+| 9           |                     5.03 |
 | 10, 11      |                     6.29 |
 | 12, 13A     |                     6.96 |
 | Plates 1, 2 |             14.84, 15.67 |
@@ -58,7 +58,7 @@ The stop semi-diameter is 3.935 mm from the paraxial entrance pupil required by 
 has a semi-diameter of about 3.98 mm. The surfaces retain physical clearance at their edges and show no
 overlap. The rims admit the f/2.88 axial beam and the chief ray at the nominal APS-C corner (14.175 mm,
 38.0°), the actual DX corner (14.145 mm, 38.0°), and the patent field (14.615 mm, 38.87°).
-Marginal rays in the outer field are vignetted, especially at surfaces 2 and 7. At 38.0°, about 89.8% of the
+Marginal rays in the outer field are vignetted, mainly at surfaces 6–8. At 38.0°, about 96.8% of the
 pupil area is transmitted before accounting for geometric illumination falloff.
 
 ## Product Identification

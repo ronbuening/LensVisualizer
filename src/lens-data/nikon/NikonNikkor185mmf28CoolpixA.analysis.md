@@ -28,11 +28,11 @@ The patent family is a probable match for the COOLPIX A. Three pieces of evidenc
 Example 1 is the first numerical design in the patent. Examples 1, 3, 5, 6, 7, and 8 all have seven elements in five
 groups and one aspherical surface. Examples 2 and 4 have eight elements in six groups. A production cross-section that would
 locate the asphere and cemented pairs remains unavailable. The asphere is on L7 in Example 1 and on L6 in
-Example 8. The public sources leave any ED placement and the identity of the focusing group undocumented. The exact production prescription remains unknown. [1–5]
+Example 8. The public sources leave the identity of the focusing group undocumented. The exact production prescription remains unknown. [1–5]
 
 ## Optical Architecture
 
-The patent describes a retrofocus-type layout. A front negative meniscus and a positive meniscus form a weak
+The patent describes a wide-angle single-focus lens. A front negative meniscus and a positive meniscus form a weak
 converging pair ahead of the stop. After the stop come a converging cemented pair (L3/L4, +22.43 mm), a diverging
 cemented pair (L5/L6, −33.67 mm), and a positive rear meniscus. The patent relates the weak power of the front pair
 and the stop position to control of coma and distortion with a small front lens. The five groups count the air-spaced
@@ -152,7 +152,7 @@ The camera has a seven-blade iris with third-stop settings from f/2.8 to f/22. [
 
 The printed half-field of 38.87° corresponds to a 14.615 mm image height at this scale, about 3.3% beyond the
 corner of the Nikon DX sensor. The 14.145 mm DX corner is reached at approximately 38.0°. The clear apertures
-admit the axial beam and the corner chief ray. At 38.0°, geometric vignetting leaves about 90% of the pupil area available.
+admit the axial beam and the corner chief ray. At 38.0°, geometric vignetting leaves about 97% of the pupil area available.
 
 The last plate sits 0.70485 mm in front of the printed image plane. The calculated paraxial focus is 0.6981 mm
 behind that plate, about 0.007 mm in front of the printed plane. The model uses the printed plane. [1]
