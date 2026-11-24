@@ -54,7 +54,7 @@ The low-index middle member of the triplet has radii +76.4/+707.3 mm and thickne
 
 nd = 1.6890, ν = 31.0. Glass: S-TIM28 (Ohara), a catalogue match. f = −33.48 mm.
 
-The strong negative rear member gives the complete triplet its net-negative power. Its +707.3/+22.3 mm faces enclose 2.8 mm of glass. The front clear radius follows the triplet's 22.8 mm outer height. At the rear, the 15.3 mm clear radius follows the end of the curved face, with an opaque land out to 22.8 mm to approximate the drawn bevel.
+The strong negative rear member gives the complete triplet its net-negative power. Its +707.3/+22.3 mm faces enclose 2.8 mm of glass. The front clear radius follows the triplet's 22.8 mm outer height. At the rear, the 15.3 mm clear radius follows the end of the curved face. A straight edge joins it to the front rim in place of the drawing's steep bevel.
 
 ### Element 5 — Biconcave Negative
 
@@ -92,7 +92,7 @@ The model is focused at infinity; the patent gives no close-focus data. No finit
 
 The nominal f/2 setting and the real-ray aperture differ. At the nominal entrance radius of 24.965 mm, the axial marginal ray reaches R6 at 15.774 mm, beyond its 15.3 mm clear radius. The largest passing entrance radius is about 24.124 mm, corresponding to a geometric entrance aperture of f/2.07. Opening the iris alone does not remove that limit.
 
-The inferred clear radii are 26/26 mm at R1/R2, 22.8/22.8/22.8 mm at R3–R5, 15.3 mm at R6, 15.8/18/18 mm at R7–R9 and 25/25 mm at R10/R11. The drawing supports outer semi-diameters of about 25.5 mm for the front singlet, 22.8 mm for the triplet, 17.6 mm for the doublet and 25.2 mm for the rear singlet. The flat lands at R6 and R7 preserve the drawn outer heights and approximate the slanted bevels. The R6 land lies about 0.25 mm ahead of the inferred iris plane. Wide-open geometric transmission is about 93.7% on axis and 93.1% at 6°.
+The inferred clear radii are 26/26 mm at R1/R2, 22.8/22.8/22.8 mm at R3–R5, 15.3 mm at R6, 15.8/18/18 mm at R7–R9 and 25/25 mm at R10/R11. The drawing supports outer semi-diameters of about 25.5 mm for the front singlet, 22.8 mm for the triplet, 17.6 mm for the doublet and 25.2 mm for the rear singlet. R6's clear zone ends about 0.25 mm ahead of the inferred iris plane. A straight edge joins it to R5 in place of the drawing's steeper bevel, leaving the air space around the iris open, as drawn. A flat land at R7 carries the doublet's front face out to its 18 mm outer height and approximates the smaller drawn bevel. Wide-open geometric transmission is about 93.7% on axis and 93.1% at 6°.
 
 No field angle, film format or image circle is printed. The displayed ±6° field is illustrative; its real chief ray reaches approximately 10.51 mm image height. That height is not a claimed format. The chief ray also clears every rim at 23°, but this does not establish an adequately corrected or fully illuminated field there. Some marginal rays are clipped even within the illustrative field.
 

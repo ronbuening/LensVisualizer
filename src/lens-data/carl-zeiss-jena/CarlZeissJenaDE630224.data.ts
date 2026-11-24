@@ -7,8 +7,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * and minus signs written in; the model follows those corrections.
  * The stop is inferred, 6.33 mm after R6 and 0.87 mm before R7. Clear radii
  * are estimated from the drawing and ray clearance. The triplet's R3–R5
- * rims share a height. Opaque lands approximate the illustrated R6 and R7
- * bevels. R7's clear radius is set just above the nominal f/2 ray height.
+ * rims share a height. A straight edge joins R5 to R6 in place of the drawn
+ * R6 bevel; a flat land at R6 would stand 0.25 mm ahead of the iris. An
+ * opaque land approximates the R7 bevel. R7's clear radius is set just above
+ * the nominal f/2 ray height.
  * R6 retains its 15.3 mm clear radius, limiting real-ray acceptance to about f/2.07.
  * The image plane is the computed paraxial one; the illustrative ±6° field
  * is not stated in the patent.
@@ -190,7 +192,6 @@ const LENS_DATA = {
       R: 22.3,
       d: 6.33,
       sd: 15.3,
-      rimExtensionSd: 22.8,
     },
     {
       label: "STO",
@@ -245,9 +246,6 @@ const LENS_DATA = {
     kind: "rectilinear",
     fullFieldDeg: 12,
     maxTraceFieldDeg: 6,
-  },
-  checks: {
-    gapSagFrac: 0.91,
   },
   groups: [
     {
