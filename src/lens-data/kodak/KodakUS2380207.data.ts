@@ -8,9 +8,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * both differences. The two tables give a 0.05 mm rear air space, retained
  * despite the prose's conflicting 0.005f (0.5 mm). Claim 5 gives only S2 < 0.01F.
  * The text places the diaphragm about 9 units behind R3. Its modeled station
- * uses that distance; its radius is derived from f/5.6. Clear rims are inferred
- * from the drawing on page 1, with larger front rims for the stated axial beam
- * and larger rear rims to preserve illumination through the 15-degree field.
+ * uses that distance. Its radius is derived from f/5.6. Clear rims follow the
+ * proportions of the drawing on page 1, including the bevels at R3 and R4,
+ * with larger semi-diameters to preserve the axial beam and field illumination.
  */
 const LENS_DATA = {
   schema: 2,
@@ -56,19 +56,21 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1",
+      diagramLabel: "I",
       label: "Element 1",
       type: "Biconvex Positive",
       nd: 1.498,
       vd: 67,
       indexReference: "D",
       focalLengthMm: 25.09,
-      glass: "N-BK10 (Schott)",
+      glass: "N-BK10 (spectral proxy; patent nD 1.498 / ν 67.0; supplier and melt unspecified)",
       role: "Positive front element of the collecting doublet",
       cemented: "C1",
     },
     {
       id: 2,
       name: "L2",
+      diagramLabel: "II",
       label: "Element 2",
       type: "Biconcave Negative",
       nd: 1.656,
@@ -82,6 +84,7 @@ const LENS_DATA = {
     {
       id: 3,
       name: "L3",
+      diagramLabel: "III",
       label: "Element 3",
       type: "Negative Meniscus",
       nd: 1.5,
@@ -95,6 +98,7 @@ const LENS_DATA = {
     {
       id: 4,
       name: "L4",
+      diagramLabel: "IV",
       label: "Element 4",
       type: "Positive Meniscus",
       nd: 1.755,
@@ -108,6 +112,7 @@ const LENS_DATA = {
     {
       id: 5,
       name: "L5",
+      diagramLabel: "V",
       label: "Element 5",
       type: "Biconvex Positive",
       nd: 1.755,
@@ -137,7 +142,7 @@ const LENS_DATA = {
       label: "3",
       R: 49.3,
       d: 9,
-      sd: 10,
+      sd: 8.8,
     },
     {
       label: "STO",
@@ -148,7 +153,7 @@ const LENS_DATA = {
       label: "4",
       R: -11,
       d: 1,
-      sd: 7.4,
+      sd: 6.5,
       medium: 3,
     },
     {
@@ -190,7 +195,7 @@ const LENS_DATA = {
   },
   focus: {
     closeFocusM: 1e15,
-    description: "Infinity focus only; the patent gives no close-focus data.",
+    description: "Modeled at infinity. The patent specifies no focusing mechanism.",
   },
   groups: [
     {
