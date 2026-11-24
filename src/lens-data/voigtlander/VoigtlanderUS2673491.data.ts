@@ -7,6 +7,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Radii, spacings, helium-d indices, Abbe numbers and the stop position are printed.
  * Clear semi-diameters follow Figure 2 proportions, subject to f/2 ray clearance
  * and off-axis illumination; they are estimates, not printed dimensions.
+ * Surfaces 3 and 4 share the level rim of Figure 2's element IIa.
  * The stop radius is inferred from f/2.
  * The image plane is the computed paraxial back focus, 107.156 mm, compared
  * with the printed 107.154 mm. The stated illumination field is 60 degrees full.
@@ -45,6 +46,7 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1",
+      diagramLabel: "I",
       label: "Element 1",
       type: "Positive Meniscus",
       nd: 1.67125,
@@ -57,6 +59,7 @@ const LENS_DATA = {
     {
       id: 2,
       name: "L2",
+      diagramLabel: "IIa",
       label: "Element 2",
       type: "Positive Meniscus",
       nd: 1.67125,
@@ -70,6 +73,7 @@ const LENS_DATA = {
     {
       id: 3,
       name: "L3",
+      diagramLabel: "IIb",
       label: "Element 3",
       type: "Negative Meniscus",
       nd: 1.69842,
@@ -83,6 +87,7 @@ const LENS_DATA = {
     {
       id: 4,
       name: "L4",
+      diagramLabel: "IIIa",
       label: "Element 4",
       type: "Biconcave Negative",
       nd: 1.60266,
@@ -96,6 +101,7 @@ const LENS_DATA = {
     {
       id: 5,
       name: "L5",
+      diagramLabel: "IIIb",
       label: "Element 5",
       type: "Biconvex Positive",
       nd: 1.65953,
@@ -109,6 +115,7 @@ const LENS_DATA = {
     {
       id: 6,
       name: "L6",
+      diagramLabel: "IV",
       label: "Element 6",
       type: "Biconvex Positive",
       nd: 1.7174,
@@ -137,14 +144,14 @@ const LENS_DATA = {
       label: "3",
       R: 57.831,
       d: 12.0795,
-      sd: 37,
+      sd: 36.53,
       medium: 2,
     },
     {
       label: "4",
       R: 122.3055,
       d: 9.825,
-      sd: 35,
+      sd: 36.53,
       medium: 3,
     },
     {
@@ -208,22 +215,22 @@ const LENS_DATA = {
   },
   groups: [
     {
-      text: "G1 · L1",
+      text: "I",
       fromSurface: "1",
       toSurface: "2",
     },
     {
-      text: "G2 · L2 + L3",
+      text: "II",
       fromSurface: "3",
       toSurface: "5",
     },
     {
-      text: "G3 · L4 + L5",
+      text: "III",
       fromSurface: "6",
       toSurface: "8",
     },
     {
-      text: "G4 · L6",
+      text: "IV",
       fromSurface: "9",
       toSurface: "10",
     },

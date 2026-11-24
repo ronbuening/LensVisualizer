@@ -22,15 +22,16 @@ The surfaces retain positive glass thickness and air clearance, no rim crosses t
 
 The stop position is printed, but its physical radius is inferred from f/2. Its plane lies 49.929 mm behind the first vertex. The image-plane distance is calculated rather than copied from the rounded printed back focus.
 
-The clear semi-diameters are estimates: R1/R2 are 43/41 mm; R3/R4/R5 are 37/35/26.5 mm; R6/R7/R8 are 26/32.5/32.5 mm; R9/R10 are 34.5/34.5 mm. Figure 2 supplies proportions rather than exact clear diameters: its overall length and front curvature agree with the prescription scale, but some individual thicknesses do not. Several rims exceed the drawn curve ends to preserve the f/2 axial beam and illumination through the 30.0° half-field. The stop radius remains inferred from f/2 rather than measured from the drawing.
+The estimated clear semi-diameters are 43/41 mm at R1/R2, 36.53/36.53/26.5 mm at R3/R4/R5, 26/32.5/32.5 mm at R6/R7/R8, and 34.5/34.5 mm at R9/R10. Figure 2 establishes the proportions, with local differences in axial scale. Several rims exceed the drawn curve ends to preserve the f/2 axial beam and illumination through the 30.0° half-field. The stop radius is inferred from f/2.
 
 The 60.0° full field is printed. The image-circle diameter is inferred from its 30.0° chief-ray height; it does not identify a camera format. The patent gives no close-focus data. `focus.closeFocusM` is 10¹⁵ m, which stands for infinity. The selectable f-stops extend from f/2 to f/22, but the source gives no minimum iris opening.
 
-No historical glass supplier, melt identity, individual C-, F- or g-line index, or partial dispersion is established. All six glasses retain the printed d-line indices and Abbe numbers. Elements 1, 2, 3 and 6 use catalog spectral proxies. Elements 4 and 5 remain Unmatched and use Abbe-based dispersion estimates: no catalog row falls within 0.002 in index and 0.25 in Abbe number at the d line. Their closest candidates exceed the Abbe-number tolerance; differences below are catalog minus printed values at the d line.
+No historical glass supplier, melt identity, individual C-, F- or g-line index, or partial dispersion is established. All six glasses retain the printed d-line indices and Abbe numbers. Elements 1, 2, 3 and 6 use catalog spectral proxies. Elements 4 and 5 remain Unmatched and use Abbe-based dispersion estimates. Their closest candidates exceed the site's spectral-proxy tolerance of 0.25 in Abbe number at the d line. Differences below are catalog minus printed values.
 
 | Elements | Candidate | Δnd | Δνd |
 | --- | --- | --- | --- |
 | L4 | F5 (Schott) | +0.000760 | −0.37 |
+| L5 | K-LaK11 (Sumita) | −0.001228 | +0.29 |
 | L5 | STK3 (LZOS) | −0.000030 | +0.37 |
 
 ## Product Identification
@@ -66,7 +67,17 @@ The resulting first-order values are EFL 150.00 mm, paraxial f/2.00, back focus 
   - L6: `Unmatched (nd 1.7174 / ν 48.1)` → `LAF3 (spectral proxy; patent nd 1.71740 / ν 48.1; supplier and melt unspecified)`; Δnd = −0.00040, Δνd = −0.12, catalog minus printed at the d line; spectral proxy.
   - Spectral proxies are within 0.002 in index and 0.25 in Abbe number at the printed helium-d line. The printed indices and Abbe numbers are kept; the catalog rows supply only dispersion-curve shapes and do not identify historical suppliers or melts.
 
+- 2026-11-24 diagram review:
+  - The 600 dpi Figure 2 image (PDF p. 1) gives about 15.7 px/mm over the 96.123 mm R1–R10 span and 15.6 px/mm over the 9.6645 mm R9–R10 span. Across the local axis, the R1 sag at 31.4 mm height is about 5.8 mm, consistent with the printed R1. The diaphragm crosses the axis about 50.0 mm behind R1, consistent with the printed 49.929 mm. Its drawn radius is about 26.7 mm, and the model's inferred f/2 radius is 25.894 mm.
+  - The drawing and the live section agree on the order of group heights, I, II, IV and III from tallest to shortest. Excluding leader lines, the drawing gives about 40.0/35.8 mm at R1/R2, 35.9/35.9/26.5 mm at R3/R4/R5, 25.0/29.4/29.4 mm at R6/R7/R8 and a level 31.7 mm outer rim for IV. The illustrated shoulders beside the diaphragm and the small chamfer on the front of IV are visible in the figure. The model joins the clear edges directly, and the required rear clearances put the modeled rear outlines above the drawn edges.
+  - R3/R4 changed from 37/35 mm to 36.53/36.53 mm. This gives IIa the level edge drawn in Figure 2, replacing the displayed bevel. The f/2 axial marginal heights are 34.56/32.51 mm and the 30° chief heights are 27.52/22.19 mm at those two surfaces. The surface and aperture checks found positive clearances, and the 30° chief ray reaches 83.67 mm at the image plane.
+  - The largest whole-pupil transmission loss from the original rims is 2.97 percentage points at 9°. A level 36.52 mm pair loses 3.10 points, beyond the three-point allowance. The full-field transmission is 9.6%, compared with 10.7% on the original rims. The modeled half-field is 30.0° before and after, the estimated tracing half-field is 29.20° in both cases, and the iris gives f/2.000 in both cases.
+  - The diagram element labels changed from 1–6 to I, IIa, IIb, IIIa, IIIb and IV. Group captions changed from G1–G4 with element lists to I–IV, using the patent's group notation (PDF p. 2, column 2). Inspectors retain Element 1–6 and L1–L6. All six shapes, roles, focal lengths and glass lines agree with the prescription. C1 spans R3–R5, C2 spans R6–R8, and STO sits between II and III. The patent gives six spherical elements in four groups and identifies no anomalous-dispersion glass. The live diagram shows both cemented pairs, the level IIa rim and the patent's element and group designations.
+  - Groups I–IV have 0 mm modeled travel at infinity, with fixed axial gaps. The focus control reports infinity and the movement panel shows zero modeled focus or zoom movement. A forced near-end URL moves the disabled thumb to the “Not modeled” endpoint while the distance and optics stay at infinity. PDF pp. 2–3 describe a remote object and an infinity back focus. They specify no focus mechanism.
+  - L1/L2, L3 and L6 retain compatible N-BAF10, S-TIM35 and LAF3 spectral proxies. PDF p. 3, column 3 gives only the d-line index and Abbe number for L4 and L5, with no other numerical example. The closest vendor-file alternative for L5, Hoya LAC11 (1.65830/57.26), still exceeds the spectral-proxy tolerance. All six glasses have Abbe numbers, and the live chromatic analysis compares all four modeled channels. The patent supplies no wavelength-specific aberration curves, additional line indices or partial dispersions.
+
 ## Remaining Questions
 
+- Exact clear diameters and chamfer dimensions remain unknown. Figure 2 shows their relative shapes.
 - Historical glass identities, suppliers and melts remain unknown. The patent supplies no measured partial dispersion or wide-field MTF performance.
 - Production use, mount, image format, blade count and shape, marketed specifications, minimum iris opening and close-focus mechanism remain undocumented.

@@ -24,6 +24,8 @@ No production lens is documented for this prescription. The Ultron 50mm f/2 in U
 
 The arrangement is a positive front meniscus, a cemented positive–negative pair, a central diaphragm, a cemented negative–positive pair, and a positive rear singlet. The cemented interfaces are R4 and R7. The two inner groups have computed focal lengths of −272.62 mm and −1466.83 mm; each contains elements of opposite individual power. All ten refracting surfaces are spherical.
 
+Figure 2 calls the four groups I, II, III and IV, and labels the elements I, IIa, IIb, IIIa, IIIb and IV from front to rear.
+
 The patent emphasizes glass-index distribution as a means of improving coma correction. The four positive elements have a mean index of 1.67986. Element 4, immediately behind the diaphragm, has index 1.60266, lower by 0.07720. The rear indices then increase to 1.65953 and 1.71740, with steps of 0.05687 and 0.05787 (PDF pp. 2–3).
 
 The diaphragm position is printed: R5 to stop is 16.3965 mm and stop to R6 is 14.2215 mm. Its plane lies 49.929 mm behind the first vertex. Its opening is inferred from the stated f/2 aperture, giving a radius of 25.89 mm.
@@ -78,7 +80,7 @@ The patent explicitly gives indices for the helium d line at 5876 Å, approximat
 | L3 | S-TIM35 (Ohara) | +0.00053 | +0.03 |
 | L6 | LAF3 (Hoya) | −0.00040 | −0.12 |
 
-Each proxy is within 0.002 in index and 0.25 in Abbe number at the d line. The catalog curves supply only the dispersion shape, so colour analysis follows real glass curves rather than Abbe-number estimates for these four elements. No exact catalog match is assigned, and the row names do not identify the historical suppliers or melts.
+The four proxies meet the site's spectral-proxy tolerance of 0.002 in refractive index and 0.25 in Abbe number at the d line. Each catalog curve supplies the wavelength dependence, anchored at the printed index. The historical suppliers and melts remain unknown.
 
 Elements 4 and 5 remain Unmatched because no catalog row falls within those tolerances; their dispersion still follows Abbe-number estimates. No individual C-, F-, or g-line indices or partial dispersions are published. Neither the proxies nor the estimates establish the patent's measured chromatic performance.
 
@@ -94,7 +96,7 @@ The patent states total illumination over a 60.0° field at f/2 for a remote obj
 
 The chief ray clears every current rim at 30°. Off-axis bundles are partly vignetted, so chief-ray coverage does not establish uniform illumination or image quality throughout the field. Quantitative wide-field MTF performance is not established by the patent or by this coverage result.
 
-The clear semi-diameters are estimated from Figure 2's proportions, with allowance for the f/2 axial beam and off-axis illumination: 43/41 mm for Element 1, 37/35/26.5 mm across the first cemented pair, 26/32.5/32.5 mm across the second pair, and 34.5/34.5 mm for Element 6. The drawing is not uniformly to scale, and several modeled rims exceed its curve ends to preserve light through the field. The rear cemented pair and rear singlet have level outer edges, while the front meniscus and the faces nearest the diaphragm have tapered edges. Wide-open geometric transmission is about 9.6% at 30°. The surfaces retain positive glass thickness and air clearance, and no rim crosses the stop plane.
+The clear semi-diameters follow Figure 2's proportions, with allowance for the f/2 axial beam and off-axis illumination. They are 43/41 mm for Element 1, 36.53/36.53/26.5 mm across the first cemented pair, 26/32.5/32.5 mm across the second pair, and 34.5/34.5 mm for Element 6. The drawing's scale varies locally, and several modeled rims extend beyond its curve ends to preserve light through the field. Element IIa has a level rim, as do Element IIIb and the rear singlet. The front meniscus and the faces nearest the diaphragm have tapered edges. Wide-open geometric transmission is about 9.6% at 30°. The surfaces retain positive glass thickness and air clearance, and no rim crosses the stop plane.
 
 ## Sources
 
