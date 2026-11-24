@@ -4,8 +4,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Olympus M.Zuiko Digital ED 12mm f/2.0
  * Data source: US 8,248,716 B2, Numerical Example 1 (Olympus Imaging Corp.).
  * Patent prescription: 11 elements / 9 air-spaced patent groups, four aspherical surfaces.
- * Production reconciliation: Olympus publishes 11 elements / 8 groups; the patent has a 0.189 mm
- * air gap between L6 and L7 that likely accounts for the counting mismatch.
+ * Production reconciliation: Olympus publishes 11 elements / 8 groups and draws L3-L4-L5 as one
+ * cemented group; the patent has a 0.635 mm air gap between L3 and L4, which accounts for the
+ * ninth group. Olympus's drawing also shows L6 and L7 separated, as in the patent (0.189 mm).
  * Focus: rear internal focus; only L11 / LRF moves. Variable gaps are surface 19A and BF at 21.
  *
  * R21 note: the rendered patent page reads -1000.000 mm. The OCR stream can collapse this
