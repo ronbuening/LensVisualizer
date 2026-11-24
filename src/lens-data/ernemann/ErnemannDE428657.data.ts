@@ -17,7 +17,7 @@ const LENS_DATA = {
   maker: "Ernemann",
   name: "ERNEMANN 100mm f/2 (DE 428,657 Design)",
   subtitle: "DE 428,657 C, Figure 2 — Ernemann / Bertele",
-  visible: false,
+  visible: true,
   source: {
     patentNumber: "DE 428,657 C",
     patentYear: 1926,
