@@ -15,7 +15,7 @@ Dimensions retain the patent's printed millimetre scale. All seven signed radii,
 
 ## Optical Architecture
 
-The three groups have positive–negative–positive power, with D-line focal lengths of approximately +73.44, −56.75 and +133.33 mm. The rear group consists of a biconcave negative element cemented to a biconvex positive element at R6. All powered surfaces are spherical.
+The three groups have positive–negative–positive power, with D-line focal lengths of approximately +73.44, −56.75 and +133.33 mm. The diagram uses the patent's element numerals I–IV. The rear group consists of a biconcave negative element cemented to a biconvex positive element at R6. All powered surfaces are spherical.
 
 The patent places diaphragm P 8.7 mm behind R4 and 6.2 mm before R5. These distances divide the 14.9 mm air space and put the diaphragm at 25.2 mm from the first vertex. The powered-vertex track is 44.9 mm. The iris diameter is estimated from the stated aperture.
 
@@ -27,7 +27,7 @@ The focal lengths below are individual thick-lens values in air at the D line. F
 
 nD = 1.6088, νD = 56.5. Glass: SK1 (Sumita), spectral proxy. f = +73.44 mm.
 
-The positive front collector has a strongly curved front face and a weakly curved rear face. Its 7.8 mm center thickness and 5.4 mm air space to element 2 are printed. Both clear semi-diameters are estimated at 23.5 mm; the minimum modeled edge thickness is about 1.22 mm.
+The positive front collector has a strongly curved front face and a weakly curved rear face. Its 7.8 mm center thickness and 5.4 mm air space to element 2 are printed. Both clear semi-diameters are estimated at 22.63 mm, giving a modeled edge thickness of about 1.73 mm.
 
 ### Element 2 — Biconcave Negative
 
@@ -47,7 +47,7 @@ The front face is 6.2 mm behind the diaphragm. Both estimated semi-diameters are
 
 nD = 1.6165, νD = 55.0. Glass: K-SSK4 (Sumita), spectral proxy. f = +48.28 mm.
 
-The positive rear member supplies the stronger positive power of the cemented pair. Its center thickness is 9.7 mm and both estimated semi-diameters are 21.5 mm. The combined rear group has f = +133.33 mm; the minimum modeled edge thickness of element 4 is about 1.34 mm.
+The positive rear member supplies the stronger positive power of the cemented pair. The specification names high-index baryta crown as its preferred glass family. Its center thickness is 9.7 mm and both estimated semi-diameters are 21.5 mm. The combined rear group has f = +133.33 mm, and the minimum modeled edge thickness of element 4 is about 1.34 mm.
 
 ## Glass Identification and G′ Indices
 
@@ -62,7 +62,7 @@ All four elements use present-day Sumita spectral proxies: SK1 for element 1 (Δ
 | 3       | 1.5602 | 1.5763 | 45.3 |
 | 4       | 1.6165 | 1.6309 | 55.0 |
 
-The printed G′ designation is kept distinct from the mercury g line. The model uses the D-line indices and Abbe numbers; the G′ values above support a separate first-order calculation. Anchored at the printed D indices, the three proxy curves reproduce these G′ indices within 0.0001. The spectral proxies still do not establish the historical glasses' complete spectral curves or anomalous partial dispersion.
+The model uses the D-line indices and Abbe numbers. The printed G′ indices support a separate first-order calculation, and the patent gives no wavelength for G′. Evaluated at 434.047 nm and anchored at the printed D indices, the proxy curves come within 0.0001 of the tabulated G′ indices. The historical glasses' complete dispersion curves remain unknown.
 
 ## Focus Mechanism
 
@@ -89,7 +89,7 @@ The printed 188 mm is closer to the G′ result (+0.1%) than the D-line result (
 
 The rear-pair index difference is 0.0563, within the patent's 0.05–0.06 range. Element 4 has nD = 1.6165, meeting the text's minimum of 1.615. The calculated power ratio of the air-spaced front pair to the rear cemented pair is about 0.171 against the stated 0.16; it lies within the broader stated range of 0.10–0.35.
 
-The clear semi-diameters are estimated at 23.5 mm for the front singlet, 22.1 mm for the middle singlet and 21.5 mm throughout the rear doublet. Each group has a square rim, following the drawing's nearly equal heights. The drawing suggests about 22 mm at the overall axial scale, but its individual spacings and curvatures are approximate; it establishes proportions rather than exact manufactured apertures. All glass edges and air spaces remain open, with minimum clearances of about 3.75 and 8.51 mm across the two air intervals. Wide-open geometric transmission is 100% through 8°, 99.4% at 10° and 97.5% at the illustrative 12° field. No measured MTF or complete spectral performance is established by the source.
+The clear semi-diameters are estimated at 22.63 mm for the front singlet, 22.1 mm for the middle singlet and 21.5 mm throughout the rear doublet. Each group has a square rim, following the drawing's nearly equal heights. The drawing suggests about 22 mm at the overall axial scale, with local variation in spacings and curvatures. All glass edges and air spaces remain open, with minimum clearances of about 3.75 and 8.51 mm across the two air intervals. Wide-open geometric transmission at 0°, 2°, 4° and 6° is 100%, falling to 98.9% at 8°, 97.2% at 10° and 94.5% at the illustrative 12° field. Measured MTF and complete spectral performance remain unknown.
 
 ## Sources
 

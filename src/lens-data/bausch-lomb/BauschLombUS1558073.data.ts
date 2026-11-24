@@ -8,7 +8,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * The printed 188 mm is closer to the G′-line EFL of 188.21 mm than the D-line EFL of 188.64 mm.
  * Stop position is printed, 8.7 mm after R4 and 6.2 mm before R5; its diameter is inferred from f/4.5.
  * Estimated clear semi-diameters follow the drawing's nearly equal, square rims, checked against the f/4.5 beam:
- * 23.5 mm at R1/R2, 22.1 mm at R3/R4 and 21.5 mm at R5–R7, preserving off-axis illumination.
+ * 22.63 mm at R1/R2, 22.1 mm at R3/R4 and 21.5 mm at R5–R7.
+ * The front singlet is slightly taller to preserve most of the original off-axis transmission.
  * The drawing gives proportions rather than exact manufactured apertures.
  * The image plane is the computed D-line paraxial back focus,
  * 166.98 mm after R7. The 12.0° half-field is illustrative and is not printed.
@@ -50,6 +51,7 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1",
+      diagramLabel: "I",
       label: "Element 1",
       type: "Biconvex Positive",
       nd: 1.6088,
@@ -62,6 +64,7 @@ const LENS_DATA = {
     {
       id: 2,
       name: "L2",
+      diagramLabel: "II",
       label: "Element 2",
       type: "Biconcave Negative",
       nd: 1.5602,
@@ -69,11 +72,12 @@ const LENS_DATA = {
       indexReference: "D",
       focalLengthMm: -56.75,
       glass: "LLF4 (spectral proxy; patent nD 1.5602 / ν 45.3; supplier and melt unspecified)",
-      role: "Negative middle singlet between the positive front and rear groups",
+      role: "Negative middle singlet",
     },
     {
       id: 3,
       name: "L3",
+      diagramLabel: "III",
       label: "Element 3",
       type: "Biconcave Negative",
       nd: 1.5602,
@@ -87,6 +91,7 @@ const LENS_DATA = {
     {
       id: 4,
       name: "L4",
+      diagramLabel: "IV",
       label: "Element 4",
       type: "Biconvex Positive",
       nd: 1.6165,
@@ -94,7 +99,7 @@ const LENS_DATA = {
       indexReference: "D",
       focalLengthMm: 48.28,
       glass: "K-SSK4 (spectral proxy; patent nD 1.6165 / ν 55.0; supplier and melt unspecified)",
-      role: "Positive rear member of the rear doublet",
+      role: "Positive rear member of the cemented doublet",
       cemented: "C1",
     },
   ],
@@ -103,14 +108,14 @@ const LENS_DATA = {
       label: "1",
       R: 49.01,
       d: 7.8,
-      sd: 23.5,
+      sd: 22.63,
       medium: 1,
     },
     {
       label: "2",
       R: -478.7,
       d: 5.4,
-      sd: 23.5,
+      sd: 22.63,
     },
     {
       label: "3",
@@ -153,7 +158,7 @@ const LENS_DATA = {
   ],
   focus: {
     closeFocusM: 1e15,
-    description: "Infinity focus only; the patent gives no close-focus data.",
+    description: "Infinity only. The patent gives no focusing mechanism or close-focus distance.",
   },
   aperture: {
     nominalFNumber: 4.5,
@@ -167,17 +172,17 @@ const LENS_DATA = {
   },
   groups: [
     {
-      text: "Front singlet",
+      text: "Front",
       fromSurface: "1",
       toSurface: "2",
     },
     {
-      text: "Negative middle singlet",
+      text: "Middle",
       fromSurface: "3",
       toSurface: "4",
     },
     {
-      text: "Rear cemented doublet",
+      text: "Rear",
       fromSurface: "5",
       toSurface: "7",
     },
