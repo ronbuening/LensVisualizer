@@ -56,8 +56,9 @@ const LENS_DATA = {
   elements: [
     {
       id: 1,
-      name: "L1",
-      label: "Element 1",
+      name: "I",
+      diagramLabel: "I",
+      label: "Front element",
       type: "Biconvex Positive",
       role: "Front positive collector",
       focalLengthMm: 52.83,
@@ -69,8 +70,9 @@ const LENS_DATA = {
     },
     {
       id: 2,
-      name: "L2",
-      label: "Element 2",
+      name: "II",
+      diagramLabel: "II",
+      label: "Middle element",
       type: "Biconcave Negative",
       role: "Central negative element with greater dispersion",
       focalLengthMm: -32.53,
@@ -78,12 +80,13 @@ const LENS_DATA = {
       vd: 38.0,
       indexReference: "D",
       glass:
-        "F15 (spectral proxy; patent nD 1.605 / ν 38.0; supplier and melt unspecified)",
+        "E-F5 (spectral proxy; patent nD 1.605 / ν 38.0; supplier and melt unspecified)",
     },
     {
       id: 3,
-      name: "L3",
-      label: "Element 3",
+      name: "III",
+      diagramLabel: "III",
+      label: "Rear element",
       type: "Plano-Convex Positive",
       role: "Rear positive element ahead of the diaphragm",
       focalLengthMm: 52.7,
@@ -142,7 +145,7 @@ const LENS_DATA = {
   ],
   focus: {
     closeFocusM: 1e15,
-    description: "Infinity focus only; the patent gives no close-focus data.",
+    description: "The patent describes front-element focusing. Only infinity is modeled.",
   },
   aperture: {
     nominalFNumber: 8,
@@ -160,17 +163,17 @@ const LENS_DATA = {
   subtitle: "US 2,388,869 A, Example II — Eastman Kodak / Reiss",
   groups: [
     {
-      text: "Front positive element",
+      text: "Front +",
       fromSurface: "1",
       toSurface: "2",
     },
     {
-      text: "Central negative element",
+      text: "Middle −",
       fromSurface: "3",
       toSurface: "4",
     },
     {
-      text: "Rear positive element",
+      text: "Rear +",
       fromSurface: "5",
       toSurface: "6",
     },
