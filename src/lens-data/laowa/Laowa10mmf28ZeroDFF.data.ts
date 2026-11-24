@@ -1,441 +1,529 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
+/**
+ * CN 221303696 U, Example 1, gives the prescription in millimetres at its original scale,
+ * with infinity and 500 mm focus spacings, a 129.2° field, and a 13.143 mm final air gap.
+ * The table's ε equals 1 + K, as established by the sphere-based aspheres in Examples 2 and 3
+ * and by the aberration curves in Fig. 2.
+ * Clear radii follow Fig. 1 with allowances for neighbouring caps, edge thickness and the
+ * last asphere's profile. The 5.23 mm stop radius follows from the printed f/2.87.
+ * The 500 mm distance is measured from the first surface, as indicated by the paraxial focus.
+ */
 const LENS_DATA = {
-  "schema": 2,
-  "key": "private-laowa-10-cn221303696-e1-inferred-f8-infinity",
-  "name": "PRIVATE Laowa 10mm family — inferred conic E1, f8 infinity",
-  "maker": "Laowa",
-  "visible": false,
-  "subtitle": "CN221303696U Example1 reconstruction; K=epsilon−1 explicitly inferred from parent/scout signed PA review, not publication-defined. Dline f8±3deg infinity only.",
-  "source": {
-    "patentNumber": "CN 221303696 U",
-    "authors": [],
-    "assignees": [],
-    "example": {
-      "label": "Example 1",
-      "id": "1"
+  schema: 2,
+  key: "laowa-10mm-f28-zero-d-ff",
+  name: "LAOWA 10mm f/2.8 Zero-D FF",
+  maker: "Laowa",
+  visible: true,
+  subtitle: "CN 221303696 U, Example 1 — Anhui Changgeng Optics Technology / Li",
+  catalog: {
+    lensMounts: ["sony-fe", "nikon-z", "canon-rf", "l-mount"],
+    imageFormat: "135-full-frame",
+    imageCircleMm: 43.2,
+    elementCount: 15,
+    groupCount: 9,
+    focalLengthMm: {
+      marketing: 10,
+      design: 10.28,
     },
-    "sdSource": "heuristic",
-    "omissions": [
+    fNumber: {
+      marketing: 2.8,
+      design: 2.87,
+    },
+    closeFocusM: {
+      marketing: 0.12,
+    },
+    specs: ["15 ELEMENTS / 9 GROUPS", "2 ASPHERICAL ELEMENTS", "3 ED ELEMENTS", "DESIGN f = 10.28 mm", "DESIGN F/2.87"],
+  },
+  source: {
+    patentNumber: "CN 221303696 U",
+    example: {
+      label: "Example 1",
+      id: "1",
+    },
+    patentYear: 2024,
+    authors: ["Dayong Li"],
+    assignees: ["Anhui Changgeng Optics Technology Co., Ltd."],
+  },
+  elements: [
+    {
+      id: 1,
+      name: "L1",
+      label: "Element 1",
+      type: "Negative Meniscus",
+      nd: 1.883,
+      vd: 45,
+      indexReference: "d",
+      glass: "Unmatched (nd 1.88300 / νd 45.00)",
+      focalLengthMm: -31.37,
+      role: "Front element of G1, spreading the wide field into the lens",
+    },
+    {
+      id: 2,
+      name: "L2",
+      label: "Element 2",
+      type: "Neg. Meniscus (2× Asph)",
+      nd: 1.81667,
+      vd: 45.18,
+      indexReference: "d",
+      glass: "Unmatched (nd 1.81667 / νd 45.18)",
+      focalLengthMm: -15.14,
+      role: "Strong negative element of G1 with two aspherical surfaces that shape the wide-field beam",
+    },
+    {
+      id: 3,
+      name: "L3",
+      label: "Element 3",
+      type: "Negative Meniscus",
+      nd: 1.92286,
+      vd: 20.88,
+      indexReference: "d",
+      glass: "E-FDS1 (Hoya)",
+      cemented: "C1",
+      focalLengthMm: -23.76,
+      role: "Dispersive negative member of the first focusing doublet",
+    },
+    {
+      id: 4,
+      name: "L4",
+      label: "Element 4",
+      type: "Biconvex Positive",
+      nd: 1.64769,
+      vd: 33.84,
+      indexReference: "d",
+      glass: "H-ZF1 (CDGM)",
+      cemented: "C1",
+      focalLengthMm: 13.45,
+      role: "Positive member that sets the converging power of the first focusing doublet",
+    },
+    {
+      id: 5,
+      name: "L5",
+      label: "Element 5",
+      type: "Biconcave Negative",
+      nd: 1.497,
+      vd: 81.61,
+      indexReference: "d",
+      glass: "H-FK61 (CDGM)",
+      cemented: "C2",
+      focalLengthMm: -12.56,
+      role: "ED negative member of the second focusing doublet",
+      apd: "inferred",
+      apdNote: "Laowa's construction diagram marks element 5 as ED glass.",
+    },
+    {
+      id: 6,
+      name: "L6",
+      label: "Element 6",
+      type: "Biconvex Positive",
+      nd: 1.52306,
+      vd: 60.8,
+      indexReference: "d",
+      glass: "Unmatched (nd 1.52306 / νd 60.80)",
+      cemented: "C2",
+      focalLengthMm: 13.84,
+      role: "Positive member of the second focusing doublet, immediately before the stop",
+    },
+    {
+      id: 7,
+      name: "L7",
+      label: "Element 7",
+      type: "Negative Meniscus",
+      nd: 1.83437,
+      vd: 41.98,
+      indexReference: "d",
+      glass: "Unmatched (nd 1.83437 / νd 41.98)",
+      cemented: "C3",
+      focalLengthMm: -12.06,
+      role: "Negative member of the first doublet behind the stop",
+    },
+    {
+      id: 8,
+      name: "L8",
+      label: "Element 8",
+      type: "Positive Meniscus",
+      nd: 1.92286,
+      vd: 20.88,
+      indexReference: "d",
+      glass: "E-FDS1 (Hoya)",
+      cemented: "C3",
+      focalLengthMm: 14.5,
+      role: "Dense-flint positive member of the first rear doublet",
+    },
+    {
+      id: 9,
+      name: "L9",
+      label: "Element 9",
+      type: "Negative Meniscus",
+      nd: 1.92286,
+      vd: 20.88,
+      indexReference: "d",
+      glass: "E-FDS1 (Hoya)",
+      cemented: "C4",
+      focalLengthMm: -39.38,
+      role: "Negative front member of the rear triplet",
+    },
+    {
+      id: 10,
+      name: "L10",
+      label: "Element 10",
+      type: "Biconvex Positive",
+      nd: 1.497,
+      vd: 81.61,
+      indexReference: "d",
+      glass: "H-FK61 (CDGM)",
+      cemented: "C4",
+      focalLengthMm: 10.55,
+      role: "Positive ED core of the rear triplet",
+      apd: "inferred",
+      apdNote: "Laowa's construction diagram marks element 10 as ED glass.",
+    },
+    {
+      id: 11,
+      name: "L11",
+      label: "Element 11",
+      type: "Negative Meniscus",
+      nd: 1.90325,
+      vd: 27.29,
+      indexReference: "d",
+      glass: "Unmatched (nd 1.90325 / νd 27.29)",
+      cemented: "C4",
+      focalLengthMm: -26.25,
+      role: "Negative rear member of the triplet, paired with the ED core",
+    },
+    {
+      id: 12,
+      name: "L12",
+      label: "Element 12",
+      type: "Biconvex Positive",
+      nd: 1.497,
+      vd: 81.61,
+      indexReference: "d",
+      glass: "H-FK61 (CDGM)",
+      focalLengthMm: 20.17,
+      role: "Positive ED singlet behind the triplet",
+      apd: "inferred",
+      apdNote: "Laowa's construction diagram marks element 12 as ED glass.",
+    },
+    {
+      id: 13,
+      name: "L13",
+      label: "Element 13",
+      type: "Biconcave Negative",
+      nd: 1.89249,
+      vd: 33.04,
+      indexReference: "d",
+      glass: "Unmatched (nd 1.89249 / νd 33.04)",
+      cemented: "C5",
+      focalLengthMm: -7.82,
+      role: "Strong negative member of the last cemented doublet",
+    },
+    {
+      id: 14,
+      name: "L14",
+      label: "Element 14",
+      type: "Biconvex Positive",
+      nd: 1.61202,
+      vd: 39.42,
+      indexReference: "d",
+      glass: "Unmatched (nd 1.61202 / νd 39.42)",
+      cemented: "C5",
+      focalLengthMm: 21.97,
+      role: "Positive member of the last cemented doublet, ahead of the final asphere",
+    },
+    {
+      id: 15,
+      name: "L15",
+      label: "Element 15",
+      type: "Pos. Meniscus (2× Asph)",
+      nd: 1.72665,
+      vd: 48.06,
+      indexReference: "d",
+      glass: "Unmatched (nd 1.72665 / νd 48.06)",
+      focalLengthMm: 25.73,
+      role: "Final positive element with two aspherical surfaces that shape the beam at the image",
+    },
+  ],
+  surfaces: [
+    {
+      label: "1",
+      R: 28.154,
+      d: 1.4,
+      sd: 18.6,
+      medium: 1,
+    },
+    {
+      label: "2",
+      R: 13.638,
+      d: 4.912,
+      sd: 12.2,
+    },
+    {
+      label: "3A",
+      R: 18.332,
+      d: 1.5,
+      sd: 13.6,
+      asphere: {
+        K: 0.556,
+        A4: -4.78279e-5,
+        A6: -6.46806e-7,
+        A8: 5.11403e-9,
+        A10: -2.11626e-11,
+        A12: 2.28211e-14,
+      },
+      medium: 2,
+    },
+    {
+      label: "4A",
+      R: 7.112,
+      sd: 9.75,
+      asphere: {
+        K: -0.5949,
+        A4: -7.61249e-5,
+        A6: -1.9431e-6,
+        A8: -2.11408e-9,
+        A10: 1.29423e-10,
+        A12: -1.20492e-12,
+      },
+    },
+    {
+      label: "5",
+      R: 30.083,
+      d: 1.2,
+      sd: 10.5,
+      medium: 3,
+    },
+    {
+      label: "6",
+      R: 12.44,
+      d: 10,
+      sd: 9.8,
+      medium: 4,
+    },
+    {
+      label: "7",
+      R: -19.901,
+      d: 0.371,
+      sd: 9.8,
+    },
+    {
+      label: "8",
+      R: -16.7,
+      d: 0.8,
+      sd: 7.7,
+      medium: 5,
+    },
+    {
+      label: "9",
+      R: 10.121,
+      d: 8.023,
+      sd: 8.9,
+      medium: 6,
+    },
+    {
+      label: "10",
+      R: -18.488,
+      sd: 8.9,
+    },
+    {
+      label: "STO",
+      R: "flat",
+      d: 0.7,
+    },
+    {
+      label: "12",
+      R: 125.07,
+      d: 1,
+      sd: 6.27,
+      medium: 7,
+    },
+    {
+      label: "13",
+      R: 9.279,
+      d: 3.065,
+      sd: 6.27,
+      medium: 8,
+    },
+    {
+      label: "14",
+      R: 25.475,
+      d: 0.15,
+      sd: 6.27,
+    },
+    {
+      label: "15",
+      R: 12.686,
+      d: 0.85,
+      sd: 7.19,
+      medium: 9,
+    },
+    {
+      label: "16",
+      R: 9.101,
+      d: 7.25,
+      sd: 7.1,
+      medium: 10,
+    },
+    {
+      label: "17",
+      R: -9.101,
+      d: 0.85,
+      sd: 7.1,
+      medium: 11,
+    },
+    {
+      label: "18",
+      R: -15.425,
+      d: 0.168,
+      sd: 8.47,
+    },
+    {
+      label: "19",
+      R: 22.06,
+      d: 5.95,
+      sd: 9.75,
+      medium: 12,
+    },
+    {
+      label: "20",
+      R: -16.724,
+      d: 2.369,
+      sd: 9.75,
+    },
+    {
+      label: "21",
+      R: -14.798,
+      d: 1.2,
+      sd: 7.94,
+      medium: 13,
+    },
+    {
+      label: "22",
+      R: 13.721,
+      d: 8,
+      sd: 10.25,
+      medium: 14,
+    },
+    {
+      label: "23",
+      R: -524.263,
+      d: 1.454,
+      sd: 10.8,
+    },
+    {
+      label: "24A",
+      R: -150,
+      d: 5.104,
+      sd: 12.5,
+      asphere: {
+        K: -19.2397,
+        A4: -4.78759e-5,
+        A6: 3.93432e-7,
+        A8: -4.32022e-9,
+        A10: 4.30674e-11,
+        A12: -1.40008e-13,
+      },
+      medium: 15,
+    },
+    {
+      label: "25A",
+      R: -16.86,
+      d: 13.143,
+      sd: 14.05,
+      asphere: {
+        K: -10.0303,
+        A4: -0.000212229,
+        A6: 2.5721e-6,
+        A8: -2.25833e-8,
+        A10: 1.24147e-10,
+        A12: -2.71573e-13,
+      },
+    },
+  ],
+  focus: {
+    closeFocusM: 0.58955,
+    keyframes: [0, 1],
+    description:
+      "The patent gives infinity and a near setting at 0.590 m from the image plane. G2 moves 0.157 mm toward the image at the near setting. The production lens focuses to 0.12 m.",
+    conjugates: [
       {
-        "kind": "asphere-equation",
-        "surfaces": [
-          "3",
-          "4",
-          "24",
-          "25"
-        ],
-        "note": "The publication gives a standard1+K sag equation but labels the signed table column epsilon without binding that symbol toK. This reconstruction uses native K=epsilon−1, inferred by parent and independent scout from original Fig2signeddline longitudinalSA/PA behavior. All printed polynomials/radii/spacing/glass/detector remain unchanged. The source PDF is in parent/scout custody, not locally possessed. Curves are conditional on this interpretation, not exact factory evidence."
-      }
-    ]
-  },
-  "elements": [
-    {
-      "id": 1,
-      "name": "E1",
-      "label": "Reconstructed source element 1",
-      "type": "Patent medium",
-      "nd": 1.883,
-      "vd": 45,
-      "indexReference": "d",
-      "glass": "Source d-line nd/Vd relayed after independent original-source reviews; vendor/melt/production identity unspecified"
-    },
-    {
-      "id": 2,
-      "name": "E2",
-      "label": "Reconstructed source element 2",
-      "type": "Patent medium",
-      "nd": 1.81667,
-      "vd": 45.18,
-      "indexReference": "d",
-      "glass": "Source d-line nd/Vd relayed after independent original-source reviews; vendor/melt/production identity unspecified"
-    },
-    {
-      "id": 3,
-      "name": "E3",
-      "label": "Reconstructed source element 3",
-      "type": "Patent medium",
-      "nd": 1.92286,
-      "vd": 20.88,
-      "indexReference": "d",
-      "glass": "Source d-line nd/Vd relayed after independent original-source reviews; vendor/melt/production identity unspecified",
-      "cemented": "D1"
-    },
-    {
-      "id": 4,
-      "name": "E4",
-      "label": "Reconstructed source element 4",
-      "type": "Patent medium",
-      "nd": 1.64769,
-      "vd": 33.84,
-      "indexReference": "d",
-      "glass": "Source d-line nd/Vd relayed after independent original-source reviews; vendor/melt/production identity unspecified",
-      "cemented": "D1"
-    },
-    {
-      "id": 5,
-      "name": "E5",
-      "label": "Reconstructed source element 5",
-      "type": "Patent medium",
-      "nd": 1.497,
-      "vd": 81.61,
-      "indexReference": "d",
-      "glass": "Source d-line nd/Vd relayed after independent original-source reviews; vendor/melt/production identity unspecified",
-      "cemented": "D2"
-    },
-    {
-      "id": 6,
-      "name": "E6",
-      "label": "Reconstructed source element 6",
-      "type": "Patent medium",
-      "nd": 1.52306,
-      "vd": 60.8,
-      "indexReference": "d",
-      "glass": "Source d-line nd/Vd relayed after independent original-source reviews; vendor/melt/production identity unspecified",
-      "cemented": "D2"
-    },
-    {
-      "id": 7,
-      "name": "E7",
-      "label": "Reconstructed source element 7",
-      "type": "Patent medium",
-      "nd": 1.83437,
-      "vd": 41.98,
-      "indexReference": "d",
-      "glass": "Source d-line nd/Vd relayed after independent original-source reviews; vendor/melt/production identity unspecified",
-      "cemented": "D3"
-    },
-    {
-      "id": 8,
-      "name": "E8",
-      "label": "Reconstructed source element 8",
-      "type": "Patent medium",
-      "nd": 1.92286,
-      "vd": 20.88,
-      "indexReference": "d",
-      "glass": "Source d-line nd/Vd relayed after independent original-source reviews; vendor/melt/production identity unspecified",
-      "cemented": "D3"
-    },
-    {
-      "id": 9,
-      "name": "E9",
-      "label": "Reconstructed source element 9",
-      "type": "Patent medium",
-      "nd": 1.92286,
-      "vd": 20.88,
-      "indexReference": "d",
-      "glass": "Source d-line nd/Vd relayed after independent original-source reviews; vendor/melt/production identity unspecified",
-      "cemented": "T1"
-    },
-    {
-      "id": 10,
-      "name": "E10",
-      "label": "Reconstructed source element 10",
-      "type": "Patent medium",
-      "nd": 1.497,
-      "vd": 81.61,
-      "indexReference": "d",
-      "glass": "Source d-line nd/Vd relayed after independent original-source reviews; vendor/melt/production identity unspecified",
-      "cemented": "T1"
-    },
-    {
-      "id": 11,
-      "name": "E11",
-      "label": "Reconstructed source element 11",
-      "type": "Patent medium",
-      "nd": 1.90325,
-      "vd": 27.29,
-      "indexReference": "d",
-      "glass": "Source d-line nd/Vd relayed after independent original-source reviews; vendor/melt/production identity unspecified",
-      "cemented": "T1"
-    },
-    {
-      "id": 12,
-      "name": "E12",
-      "label": "Reconstructed source element 12",
-      "type": "Patent medium",
-      "nd": 1.497,
-      "vd": 81.61,
-      "indexReference": "d",
-      "glass": "Source d-line nd/Vd relayed after independent original-source reviews; vendor/melt/production identity unspecified"
-    },
-    {
-      "id": 13,
-      "name": "E13",
-      "label": "Reconstructed source element 13",
-      "type": "Patent medium",
-      "nd": 1.89249,
-      "vd": 33.04,
-      "indexReference": "d",
-      "glass": "Source d-line nd/Vd relayed after independent original-source reviews; vendor/melt/production identity unspecified",
-      "cemented": "D4"
-    },
-    {
-      "id": 14,
-      "name": "E14",
-      "label": "Reconstructed source element 14",
-      "type": "Patent medium",
-      "nd": 1.61202,
-      "vd": 39.42,
-      "indexReference": "d",
-      "glass": "Source d-line nd/Vd relayed after independent original-source reviews; vendor/melt/production identity unspecified",
-      "cemented": "D4"
-    },
-    {
-      "id": 15,
-      "name": "E15",
-      "label": "Reconstructed source element 15",
-      "type": "Patent medium",
-      "nd": 1.72665,
-      "vd": 48.06,
-      "indexReference": "d",
-      "glass": "Source d-line nd/Vd relayed after independent original-source reviews; vendor/melt/production identity unspecified"
-    }
-  ],
-  "surfaces": [
-    {
-      "label": "1",
-      "R": 28.154,
-      "d": 1.4,
-      "sd": 1.5,
-      "medium": 1
-    },
-    {
-      "label": "2",
-      "R": 13.638,
-      "d": 4.912,
-      "sd": 1.4
-    },
-    {
-      "label": "3",
-      "R": 18.332,
-      "d": 1.5,
-      "sd": 1.4,
-      "asphere": {
-        "K": 0.556,
-        "A4": -4.78279e-05,
-        "A6": -6.46806e-07,
-        "A8": 5.11403e-09,
-        "A10": -2.11626e-11,
-        "A12": 2.28211e-14
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 500,
+        distanceReference: "first-surface",
+        source:
+          "CN 221303696 U, Example 1, PDF p. 7. The printed 500 mm distance gives closer paraxial focus when measured to the first surface.",
       },
-      "medium": 2
+    ],
+    published: [1],
+  },
+  gaps: {
+    "4A": {
+      label: "D4",
+      values: [[6.484, 6.641]],
+    },
+    "10": {
+      label: "D10",
+      values: [[3.607, 3.45]],
+    },
+  },
+  aperture: {
+    nominalFNumber: 2.87,
+    fStops: [2.8, 4, 5.6, 8, 11, 16, 22],
+    maxFNumber: 22,
+  },
+  projection: {
+    kind: "rectilinear",
+    fullFieldDeg: 129.2,
+    maxTraceFieldDeg: 64.6,
+  },
+  layout: {
+    yScFill: 0.6,
+  },
+  groups: [
+    {
+      text: "G1",
+      fromSurface: "1",
+      toSurface: "4A",
     },
     {
-      "label": "4",
-      "R": 7.112,
-      "d": 6.484,
-      "sd": 1.3,
-      "asphere": {
-        "K": -0.5949,
-        "A4": -7.61249e-05,
-        "A6": -1.9431e-06,
-        "A8": -2.11408e-09,
-        "A10": 1.29423e-10,
-        "A12": -1.20492e-12
-      }
+      text: "G2",
+      fromSurface: "5",
+      toSurface: "10",
     },
     {
-      "label": "5",
-      "R": 30.083,
-      "d": 1.2,
-      "sd": 1.7,
-      "medium": 3
+      text: "G3",
+      fromSurface: "12",
+      toSurface: "25A",
     },
-    {
-      "label": "6",
-      "R": 12.44,
-      "d": 10,
-      "sd": 1.7,
-      "medium": 4
-    },
-    {
-      "label": "7",
-      "R": -19.901,
-      "d": 0.371,
-      "sd": 2
-    },
-    {
-      "label": "8",
-      "R": -16.7,
-      "d": 0.8,
-      "sd": 2,
-      "medium": 5
-    },
-    {
-      "label": "9",
-      "R": 10.121,
-      "d": 8.023,
-      "sd": 2,
-      "medium": 6
-    },
-    {
-      "label": "10",
-      "R": -18.488,
-      "d": 3.607,
-      "sd": 2.2
-    },
-    {
-      "label": "STO",
-      "R": "flat",
-      "d": 0.7
-    },
-    {
-      "label": "12",
-      "R": 125.07,
-      "d": 1,
-      "sd": 2.1,
-      "medium": 7
-    },
-    {
-      "label": "13",
-      "R": 9.279,
-      "d": 3.065,
-      "sd": 2.1,
-      "medium": 8
-    },
-    {
-      "label": "14",
-      "R": 25.475,
-      "d": 0.15,
-      "sd": 2.1
-    },
-    {
-      "label": "15",
-      "R": 12.686,
-      "d": 0.85,
-      "sd": 2.1,
-      "medium": 9
-    },
-    {
-      "label": "16",
-      "R": 9.101,
-      "d": 7.25,
-      "sd": 2.1,
-      "medium": 10
-    },
-    {
-      "label": "17",
-      "R": -9.101,
-      "d": 0.85,
-      "sd": 2.1,
-      "medium": 11
-    },
-    {
-      "label": "18",
-      "R": -15.425,
-      "d": 0.168,
-      "sd": 2.1
-    },
-    {
-      "label": "19",
-      "R": 22.06,
-      "d": 5.95,
-      "sd": 2.1,
-      "medium": 12
-    },
-    {
-      "label": "20",
-      "R": -16.724,
-      "d": 2.369,
-      "sd": 1.9
-    },
-    {
-      "label": "21",
-      "R": -14.798,
-      "d": 1.2,
-      "sd": 1.6,
-      "medium": 13
-    },
-    {
-      "label": "22",
-      "R": 13.721,
-      "d": 8,
-      "sd": 1.6,
-      "medium": 14
-    },
-    {
-      "label": "23",
-      "R": -524.263,
-      "d": 1.454,
-      "sd": 1.5
-    },
-    {
-      "label": "24",
-      "R": -150,
-      "d": 5.104,
-      "sd": 1.5,
-      "asphere": {
-        "K": -19.2397,
-        "A4": -4.78759e-05,
-        "A6": 3.93432e-07,
-        "A8": -4.32022e-09,
-        "A10": 4.30674e-11,
-        "A12": -1.40008e-13
-      },
-      "medium": 15
-    },
-    {
-      "label": "25",
-      "R": -16.86,
-      "d": 13.143,
-      "sd": 1.5,
-      "asphere": {
-        "K": -10.0303,
-        "A4": -0.000212229,
-        "A6": 2.5721e-06,
-        "A8": -2.25833e-08,
-        "A10": 1.24147e-10,
-        "A12": -2.71573e-13
-      }
-    }
   ],
-  "focus": {
-    "closeFocusM": 0.5,
-    "keyframes": [
-      0,
-      1
-    ],
-    "published": [],
-    "description": "INFINITY ONLY constant prescription. Required positive close metadata mirrors the unqualified printed500mm row, with no certified distance datum, finite travel or conjugate. It is not a modeled close-focus distance/range. Native finiteMTF remains unavailable; keep focus at infinity. Original nearrow retained separately as analytical evidence only."
-  },
-  "aperture": {
-    "nominalFNumber": 8,
-    "fStops": [
-      8,
-      11,
-      16,
-      22
-    ],
-    "maxFNumber": 22
-  },
-  "projection": {
-    "kind": "rectilinear",
-    "fullFieldDeg": 6,
-    "maxTraceFieldDeg": 3
-  },
-  "layout": {
-    "yScFill": 0.6
-  },
-  "catalog": {
-    "focalLengthMm": {
-      "design": 10.2855,
-      "marketing": 10
+  doublets: [
+    {
+      text: "C1",
+      fromSurface: "5",
+      toSurface: "7",
     },
-    "fNumber": {
-      "design": 2.87,
-      "marketing": 2.8
+    {
+      text: "C2",
+      fromSurface: "8",
+      toSurface: "10",
     },
-    "elementCount": 15,
-    "groupCount": 9,
-    "specs": [
-      "Source-based, explicitly reconstructed Laowa10mmf2.8 family representative; not exact retail AF/MF/factory optics. NativeconicK=epsilon−1 is inferred, not explicitly defined in publication.",
-      "All signed source radii/spacings/indices/polynomials and fixed89.55mm detector retained; no fit, scaling, spacer, plate addition, detector registration or correctionshim.",
-      "Qualified only at infinity, Dline, nativef8control withfixedestimatediris,±3degrees. Sourcef2.87/129.2deg and retail~f2.8/130.4deg are provenance, not full-aperture/full-field claims.",
-      "Source500mmrowD4/D10 is held for unverified distance reference. No interpolation, factory0.12m close-focus or finite performance claim. Required .5m schema metadata is nonoperational and does not certify a conjugate.",
-      "Estimated clearcaps/iris are scoped ray-envelope inferences, not manufacturer mechanical dimensions. No broadband or measuredMTF claim."
-    ]
-  }
+    {
+      text: "C3",
+      fromSurface: "12",
+      toSurface: "14",
+    },
+    {
+      text: "C4",
+      fromSurface: "15",
+      toSurface: "18",
+    },
+    {
+      text: "C5",
+      fromSurface: "21",
+      toSurface: "23",
+    },
+  ],
 } satisfies LensDataV2Input;
 
 export default LENS_DATA;
