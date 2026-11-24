@@ -26,7 +26,7 @@ const LENS_DATA = {
     },
     authors: ["Milo A. Durand"],
     assignees: ["C. P. Goerz American Optical Company"],
-    sdSource: "heuristic",
+    sdSource: "figure-measured",
   },
   catalog: {
     focalLengthMm: {

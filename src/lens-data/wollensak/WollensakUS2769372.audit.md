@@ -4,9 +4,7 @@
 
 [US 2,769,372 A, _Three Component Objectives for Photographic and Projection Purposes_](https://patents.google.com/patent/US2769372A/en), by Alan A. Cook and David C. Gilkeson, assigned to Wollensak Optical Company. The filing and priority date is 25 July 1955; publication was 6 November 1956. Example I appears in Figure 2 on PDF page 1, in the specification on page 2 and in claim 1 on page 3. Figure 1 shows the common construction. Example II is a separate f/3.5 design with a 50° total field and is not used here.
 
-TIM11 and S-LAM51 dispersion coefficients come from the Ohara optical-glass catalog. [Ohara catalog](https://www.ohara-inc.co.jp/en/product/catalog/)
-
-M-PCD55AR, E-F5 and the earlier F15 proxy come from the Hoya optical-glass catalog. [Hoya catalog](https://www.hoya-opticalworld.com/english/datadownload/index.html)
+The [Ohara optical-glass catalog](https://www.ohara-inc.co.jp/en/product/catalog/) supplies the TIM11 and S-LAM51 dispersion curves; the [Hoya optical-glass catalog](https://www.hoya-opticalworld.com/english/datadownload/index.html) supplies M-PCD55AR, E-F5 and the earlier F15 proxy. No production-lens source is documented for Example I.
 
 ## Transcription Check
 
