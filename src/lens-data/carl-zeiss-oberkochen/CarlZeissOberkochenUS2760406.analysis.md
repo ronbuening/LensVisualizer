@@ -28,14 +28,14 @@ The diaphragm lies between the second and third components, as the text states a
 
 ## Element-by-Element Analysis
 
-The indices and Abbe numbers below retain the printed values. The d-line interpretation is explained in the following section. Individual focal lengths describe each element in air; the rear component's power is computed with the cemented interface intact.
+The Roman numerals identify the elements as labeled in the patent drawing. The indices and Abbe numbers retain the printed values. Individual focal lengths describe each element in air. The rear component's power is computed with the cemented interface intact.
 
 | Element | Shape and role                                        | Printed index / Abbe number | Glass label                           | Focal length in air |
 | ------- | ----------------------------------------------------- | --------------------------- | ------------------------------------- | ------------------: |
-| 1       | Positive meniscus; front converging component         | 1.69100 / 54.8              | S-LAL9 (Ohara), exact match            |           +65.57 mm |
-| 2       | Biconcave negative; balances the positive components  | 1.64831 / 33.8              | SF12 (Sumita), exact match            |           −32.65 mm |
-| 3       | Biconvex positive; front member of the rear component | 1.69100 / 54.8              | S-LAL9 (Ohara), exact match            |           +29.08 mm |
-| 4       | Negative meniscus; rear member of the rear component  | 1.60729 / 49.2              | BAF5 (Hoya), exact match               |           −61.68 mm |
+| 1 (I)   | Positive meniscus, front converging component         | 1.69100 / 54.8              | S-LAL9 (Ohara), exact match            |           +65.57 mm |
+| 2 (II)  | Biconcave negative, balances the positive components  | 1.64831 / 33.8              | SF12 (Sumita), exact match            |           −32.65 mm |
+| 3 (III) | Biconvex positive, front member of the rear doublet    | 1.69100 / 54.8              | S-LAL9 (Ohara), exact match            |           +29.08 mm |
+| 4 (IV)  | Negative meniscus in the positive rear doublet        | 1.60729 / 49.2              | BAF5 (Hoya), exact match               |           −61.68 mm |
 
 The cemented rear component has a combined focal length of +51.80 mm. Its positive net power differs from the standalone powers of its two members.
 
@@ -57,7 +57,7 @@ No back focus is printed. The image plane is the computed paraxial plane, 69.02 
 
 The full field is 28.0°, matching the patent's ±14.0°. A real chief ray at 14.0° reaches an image height of 24.80 mm at the paraxial image plane, giving the 49.6 mm image circle. This diameter follows the patent's field at the adopted millimetre scale; no film format or lens mount is identified.
 
-The estimated clear semi-diameters at R1–R7 are 28, 26, 20.6, 17.3, 21.1, 21.1 and 21.1 mm. The page 1 drawing supports the middle element's unequal rims and a common rim across the rear cemented pair. The front element remains larger than its drawn clear radii of about 25.3 and 23.7 mm to retain corner light; the rear pair's common radius is slightly above the approximately 20.7 mm drawn value for the same reason. All rims pass the axial f/2 beam and the 14° chief ray. Wide-open geometric transmission is 100% on axis and 75.2% at 14°. Portions of the off-axis bundle are vignetted, so chief-ray coverage does not imply complete pupil transmission.
+The estimated clear semi-diameters at R1–R7 are 28, 26, 20.6, 17.3, 21.1, 21.1 and 21.1 mm. The diagram joins the front and middle clear rims with straight edges that approximate the flats and chamfers on PDF page 1. The rear cemented pair has the common rim shown in the drawing. The front clear radii and the rear pair's common radius exceed the drawing to retain corner light. The clear apertures admit the axial f/2 beam and the 14° chief ray. Wide-open geometric transmission is 100% on axis and 75.2% at 14°.
 
 ## Patent Conditions
 

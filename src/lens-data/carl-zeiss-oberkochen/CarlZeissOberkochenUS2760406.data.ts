@@ -5,8 +5,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * The unitless prescription is represented in millimetres, without changing
  * its numerical scale. The prescription gives EFL 100.89 mm against
  * the stated "about f = 100".
- * The text names D, but the printed glass coordinates are d-line values;
- * the model uses d and retains every printed index and Abbe number.
+ * The text names D. The printed glass coordinates match d-line catalogue
+ * values, so the model uses d with the reference line unresolved.
  * The stop is inferred from the drawing, 9.0 mm after R4 and 2.3 mm before R5;
  * its opening is derived for f/2. Clear rims are estimated from the page 1
  * drawing, checked against the axial f/2 beam and 14-degree chief ray.
@@ -54,6 +54,7 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1",
+      diagramLabel: "I",
       label: "Element 1",
       type: "Positive Meniscus",
       nd: 1.691,
@@ -67,6 +68,7 @@ const LENS_DATA = {
     {
       id: 2,
       name: "L2",
+      diagramLabel: "II",
       label: "Element 2",
       type: "Biconcave Negative",
       nd: 1.64831,
@@ -80,6 +82,7 @@ const LENS_DATA = {
     {
       id: 3,
       name: "L3",
+      diagramLabel: "III",
       label: "Element 3",
       type: "Biconvex Positive",
       nd: 1.691,
@@ -94,6 +97,7 @@ const LENS_DATA = {
     {
       id: 4,
       name: "L4",
+      diagramLabel: "IV",
       label: "Element 4",
       type: "Negative Meniscus",
       nd: 1.60729,
@@ -102,7 +106,7 @@ const LENS_DATA = {
       indexReferenceNote: "The text names D, but the printed glass coordinates are d-line catalogue values.",
       glass: "BAF5 (Hoya)",
       focalLengthMm: -61.68,
-      role: "Negative rear member balancing the rear cemented component",
+      role: "Negative rear member of the positive cemented doublet",
       cemented: "C1",
     },
   ],
@@ -171,7 +175,7 @@ const LENS_DATA = {
   },
   focus: {
     closeFocusM: 1e15,
-    description: "Infinity focus only; the patent gives no close-focus data.",
+    description: "The model shows infinity focus only. The patent gives no focusing mechanism or close-focus data.",
   },
   groups: [
     {

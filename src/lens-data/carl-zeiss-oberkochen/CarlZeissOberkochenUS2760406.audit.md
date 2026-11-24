@@ -22,7 +22,7 @@ The claim's geometric conditions hold. R2 is shorter than ten focal lengths; |R3
 
 The exact iris station, bore, clear semi-diameters and image-plane distance are not tabulated. The drawing supports an estimated iris station 9.0 mm after R4 and 2.3 mm before R5, preserving the printed 11.3 mm separation. This places the stop 39.0 mm behind R1. Its radius follows the f/2 entrance pupil and is close to the approximately 17.7 mm opening read from the drawing.
 
-The estimated clear semi-diameters at R1–R7 are 28, 26, 20.6, 17.3, 21.1, 21.1 and 21.1 mm. The drawing suggests approximately 25.3, 23.7, 20.6, 17.2, 20.7, 20.7 and 20.7 mm. The middle element follows the drawn unequal rims, and the rear cemented pair has a common rim. The larger front rims and slightly larger rear pair retain corner light. These dimensions pass the axial f/2 beam and the 14.0° chief ray. No clear diameter is printed.
+The estimated clear semi-diameters at R1–R7 are 28, 26, 20.6, 17.3, 21.1, 21.1 and 21.1 mm. The drawing suggests approximately 25–26 and 24–25 mm at the chamfered front element, 20.6 and 17.2 mm at the middle element, and a common radius near 20.7 mm at the rear pair. The larger front and rear radii retain corner light. These dimensions admit the axial f/2 beam and the 14.0° chief ray. No clear diameter is printed.
 
 The 49.6 mm image circle is twice the calculated 14.0° chief-ray image height, using the patent's stated field at the adopted millimetre scale. It is not a printed image-circle diameter or a production film format.
 
@@ -67,9 +67,17 @@ After these corrections, EFL is 100.89 mm, aperture is f/2.00 and back focus is 
 - Element 4: Unmatched (nd 1.60729 / ν 49.2) → BAF5 (Hoya); Δn = 0.00000, Δν = +0.14; exact match.
 - Exact matches use |Δn| ≤ 0.0001 and |Δν| ≤ 0.15; spectral proxies stay within 0.002 in index and 0.25 in Abbe number and supply only the dispersion shape. Differences are catalogue minus printed values at the adopted d line; the source's D designation remains unresolved. Every printed index and Abbe number is kept, and historical suppliers and melts remain unidentified.
 
+2026-11-24 diagram review:
+
+- The live labels changed from 1–4 to I–IV to match the leaders on PDF page 1. The inspectors retain Element 1–4 and L1–L4. Their shapes and in-air focal lengths agree with the prescription (+65.57, −32.65, +29.08 and −61.68 mm). Element IV's description now identifies it as the negative rear member of the positive cemented doublet. The three captions span R1–R2, R3–R4 and R5–R7. C1 marks the rear doublet at R5–R7. The STO marker is between II and III. The header gives four spherical elements in three groups at about 100 mm and f/2, consistent with PDF page 2. There are no special-dispersion or aspheric designations in the patent.
+- The 600 dpi section gives approximately 15.85 pixels/mm from the R1–R7 span (about 1,114 px over 70.3 mm). The R1–R2 span gives about 15.7 pixels/mm, and the R1 sag near 19 mm height is about 4.4 mm against 4.6 mm from the stated radius. The live section preserves the tall front element, shorter middle element and level rear edge. The front and middle joins approximate drawn flats and chamfers. Extending R4 as a square land would replace the drawn chamfer with a vertical edge. Extending its spherical cap to the R3 height would take the edge beyond the drawn stop station.
+- The existing clear rims give 75.2% geometric transmission at 14.0° versus 78.2% with the original rims, a maximum decrease of 2.974 percentage points. Taking the front and rear rims directly from the figure would cost 15.7 points at 14.0°. The axial f/2 beam and 14.0° chief ray remain clear, with 0.30 mm axial clearance at R4 and 100% of the specified image-circle radius reached. The aperture is f/2.00 and the half-field is 14.0° before and after the label changes.
+- The focus control shows infinity only. All three groups have zero modeled travel, with fixed gaps and no zoom or focus stations. The focus description now states that the patent gives no focusing mechanism or close-focus data.
+- All four glass labels resolve within the exact window at the adopted d line. PDF page 2 gives only the reference index and Abbe number for each element. It supplies no additional line indices, partial dispersions, named glasses or chromatic curves. Each element has an Abbe number and a catalogue curve. The printed D designation remains unresolved. The assignee on PDF page 2 is Carl Zeiss, Heidenheim (Brenz). The record uses Carl-Zeiss-Stiftung, the standard catalogue spelling.
+
 ## Remaining Questions
 
 - The source's D designation conflicts with the d-line glass coordinates. The historical glass suppliers, melts and partial dispersions remain unknown.
-- Exact clear rims and iris dimensions are not printed. The estimated front rims exceed the drawing to retain light; full off-axis pupil transmission is not established.
+- Exact clear rims and iris dimensions are undocumented. The front rim sizes are constrained by corner light, and the straight front and middle joins approximate the drawn flats and chamfers.
 - The physical length unit, any production-lens identity, marketed specifications, lens mount, production image format, diaphragm blade count and shape, and minimum aperture are undocumented.
 - No close-focus prescription, focus travel, measured MTF or transmission data is supplied.
