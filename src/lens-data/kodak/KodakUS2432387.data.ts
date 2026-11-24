@@ -101,7 +101,7 @@ const LENS_DATA = {
       vd: 56.1,
       indexReference: "D",
       focalLengthMm: 55.36,
-      glass: "H-LaK12 (CDGM)",
+      glass: "H-LaK12 (spectral proxy; patent nD 1.697 / ν 56.1; supplier and melt unspecified)",
       role: "Strong rear positive element that brings the beam to the image.",
     },
   ],
