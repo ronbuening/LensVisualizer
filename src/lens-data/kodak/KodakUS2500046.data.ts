@@ -45,6 +45,7 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1",
+      diagramLabel: "I",
       label: "Element 1",
       type: "Biconvex Positive",
       nd: 1.523,
@@ -58,6 +59,7 @@ const LENS_DATA = {
     {
       id: 2,
       name: "L2",
+      diagramLabel: "II",
       label: "Element 2",
       type: "Plano-Concave Negative",
       nd: 1.617,
@@ -71,6 +73,7 @@ const LENS_DATA = {
     {
       id: 3,
       name: "L3",
+      diagramLabel: "III",
       label: "Element 3",
       type: "Negative Meniscus",
       nd: 1.649,
@@ -83,13 +86,14 @@ const LENS_DATA = {
     {
       id: 4,
       name: "L4",
+      diagramLabel: "IV",
       label: "Element 4",
       type: "Biconvex Positive",
       nd: 1.697,
       vd: 56.1,
       indexReference: "D",
       focalLengthMm: 58.21,
-      glass: "H-LaK12 (CDGM)",
+      glass: "H-LaK12 (spectral proxy; patent nD 1.697 / ν 56.1; supplier and melt unspecified)",
       role: "Positive rear member of the air-spaced rear pair",
     },
   ],
