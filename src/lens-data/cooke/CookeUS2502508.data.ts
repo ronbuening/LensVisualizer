@@ -59,7 +59,7 @@ const LENS_DATA = {
       name: "L2",
       label: "Element 2",
       type: "Biconcave Negative",
-      role: "Negative middle component between the positive components",
+      role: "Negative middle component",
       focalLengthMm: -30.96,
       nd: 1.62266,
       vd: 36,
@@ -158,7 +158,7 @@ const LENS_DATA = {
   },
   focus: {
     closeFocusM: 1e15,
-    description: "Infinity focus only; the patent gives no close-focus data.",
+    description: "Infinity focus only. The patent gives no focusing mechanism or near-focus prescription.",
   },
   groups: [
     {
