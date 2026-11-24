@@ -15,7 +15,7 @@ The R-Biotar family association rests on Edward K. Kaprelian's July 1949 account
 
 ## Optical Architecture and Orientation
 
-The optical order is L1 | L2 | diaphragm A | L3 | cemented L4+L5. L1, L3 and the rear doublet are converging members; L2 is dispersive and negative. All curved faces are spherical, R6 is plane, and R8 is the cemented interface. The first air lens is a dispersive meniscus, while the other two air lenses are convergent, as the patent describes.
+The four air-separated members are L1, L2, L3 and cemented L4+L5, in that order. The first, third and fourth members are converging, and the second is negative. Diaphragm A lies between the second and third members. All curved faces are spherical, R6 is plane, and R8 is the cemented interface. The first air lens is a dispersive meniscus, while the other two air lenses are convergent, as the patent describes.
 
 The printed stop intervals are 43.80 mm behind R4 and 16.59 mm before R5, placing A 95.26 mm behind the first vertex. The first-to-last vertex length is 176.81 mm, within the patent's preferred range of three quarters to twice the focal length. The stop station is printed; its physical opening is inferred.
 
@@ -31,11 +31,11 @@ nd = 1.63753, νd = 56.1. Glass: Unmatched. Focal length in air: +126.56 mm.
 
 The front collector has radii +135.14 and −182.95 mm and a center thickness of 29.98 mm. Its inferred front and rear clear radii are both 61 mm, giving a square rim with about 5 mm of edge thickness.
 
-### L2 — Negative Meniscus
+### L2 — Negative Meniscus, Concave to Object
 
 nd = 1.75823, νd = 27.4. Glass: Unmatched. Focal length in air: −183.65 mm.
 
-The −128.96 mm front face is more strongly curved than the −1813.8 mm rear face. This 11.70 mm thick negative member uses the patent's high-dispersion glass, with νd below 35, ahead of the diaphragm. Its inferred clear radii are 61 and 52.6 mm. An opaque rear land extends to 61 mm, approximating the raised shoulder and chamfer in the drawing.
+The −128.96 mm front face is more strongly curved than the −1813.8 mm rear face. This 11.70 mm thick negative member uses the patent's high-dispersion glass, with νd below 35, ahead of the diaphragm. Its inferred clear radii are 61 and 52.6 mm. The front curve continues to the outer edge in the model. At the rear, an opaque land extends to 61 mm. The outline thus retains the drawn full-height shoulder with square corners where the drawing shows short chamfers.
 
 ### L3 — Plano-Convex Positive
 
@@ -49,7 +49,7 @@ nd = 1.62203, νd = 53.1. Glass: SSK2 (Sumita), spectral proxy. Focal length in 
 
 The +60.22 mm front face and −59.78 mm cemented face enclose 15.10 mm of glass. L4 supplies the positive power of the rear doublet. Its inferred front and cemented clear radii are both 26 mm.
 
-### L5 — Negative Meniscus in the Rear Doublet
+### L5 — Negative Meniscus, Concave to Object, in the Rear Doublet
 
 nd = 1.75823, νd = 27.4. Glass: Unmatched. Focal length in air: −94.52 mm.
 
@@ -61,7 +61,7 @@ Both tables print nd with a lowercase d, and claim 3 explicitly names the d-line
 
 L3 matches the Schott FK3 catalog row at nd = 1.46450 and νd = 65.77: catalog minus printed differences are Δnd +0.00001 and Δνd −0.03. It uses the catalog dispersion curve.
 
-L4 uses Sumita SSK2 as a spectral proxy, with catalog minus printed differences of Δnd +0.00027 and Δνd +0.04 at helium d. The printed index and Abbe number are retained. Within the tolerance of 0.002 in index and 0.25 in Abbe number, the catalog row supplies only the shape of the dispersion curve, so colour analysis follows a real glass instead of an Abbe-number estimate. Neither catalog row identifies the historical supplier or melt.
+L4 uses Sumita SSK2 as a spectral proxy, with catalog minus printed differences of Δnd +0.00027 and Δνd +0.04 at helium d. These differences fall within the site's spectral-proxy tolerance of 0.002 in index and 0.25 in Abbe number. The printed index and Abbe number are retained. The catalog row supplies the shape of the dispersion curve, and the historical supplier and melt are unknown for both catalog assignments.
 
 L1, L2 and L5 retain Unmatched labels because no catalog row falls within those tolerances. Their spectral behavior is estimated from the printed index and Abbe number; measured partial dispersion and broadband performance remain unknown.
 
