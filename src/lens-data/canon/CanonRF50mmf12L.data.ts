@@ -23,7 +23,7 @@ const LENS_DATA = {
   key: "canon-rf-50-f12-l",
   maker: "Canon",
   name: "CANON RF 50mm f/1.2 L USM",
-  subtitle: "US 2019/0265441 A1, Numerical Data 2 — production correlation",
+  subtitle: "US 2019/0265441 A1, Numerical Data 2 — production match",
 
   catalog: {
     lensMounts: ["canon-rf"],

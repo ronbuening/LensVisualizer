@@ -13,7 +13,7 @@ const LENS_DATA = {
   "key": "panasonic-lumix-g-x-vario-pz-45-175mm-f4-56-asph-power-ois",
   "maker": "Panasonic",
   "name": "PANASONIC LUMIX G X VARIO PZ 45-175mm f/4-5.6 ASPH. POWER O.I.S.",
-  "subtitle": "JP 5649252 B2, Example 1 — strong production correlation, not manufacturer-confirmed",
+  "subtitle": "JP 5649252 B2, Example 1 — strong production match, not maker-confirmed",
   "catalog": {
     "lensMounts": [
       "micro-four-thirds"

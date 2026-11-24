@@ -55,7 +55,7 @@ const LENS_DATA = {
   key: "sony-vario-tessar-te-1670f4-za-oss",
   maker: "Sony",
   name: "SONY VARIO-TESSAR T* E 16-70mm f/4 ZA OSS",
-  subtitle: "US 9,538,088 B2 Numerical Example 1 — high-confidence SEL1670Z correlation",
+  subtitle: "US 9,538,088 B2 Numerical Example 1 — strong SEL1670Z match",
 
   catalog: {
     lensMounts: ["sony-fe"],

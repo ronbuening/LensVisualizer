@@ -45,7 +45,7 @@ const LENS_DATA = {
   key: "sony-fe-50mm-f12-gm",
   maker: "Sony",
   name: "SONY FE 50mm f/1.2 GM",
-  subtitle: "JP 2022-140076 A - Example 1; strong production correlation, not manufacturer-confirmed",
+  subtitle: "JP 2022-140076 A - Example 1; strong production match, not maker-confirmed",
 
   catalog: {
     lensMounts: ["sony-fe"],

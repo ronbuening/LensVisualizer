@@ -41,7 +41,7 @@ const lens = {
   "key": "angenieux-type-m1-25mm-f095",
   "maker": "P. Angénieux",
   "name": "P. ANGÉNIEUX TYPE M1 25mm f/0.95",
-  "subtitle": "US 2,701,982, sole example — correlated to the 1953 Type M1 cine lens",
+  "subtitle": "US 2,701,982, sole example — matched to the 1953 Type M1 cine lens",
   "visible": true,
   "catalog": {
     "lensMounts": ["c-mount"],

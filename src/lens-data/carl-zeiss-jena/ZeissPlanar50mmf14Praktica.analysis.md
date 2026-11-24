@@ -21,7 +21,7 @@ The production correlation is strong but inferential. The evidence converges on 
 3. The patent's 46° full field closely brackets the manufacturer's 45° marketed field for the 24×36 mm PRAKTICA-B system.
 4. The patent dates are compatible with the secondary historical chronology, and that secondary source attributes the early PRAKTICAR 1.4/50 form to Dietzsch and Siegert, both named inventors on the patent.
 
-No primary manufacturer source located for this dossier explicitly identifies **Example 4** as the exact production prescription. The fixed job-card word “Planar” is therefore not treated as a manufacturer-verified product designation; the manufacturer brochure uses **PRAKTICAR**.
+No primary manufacturer source found explicitly identifies **Example 4** as the exact production prescription. The fixed job-card word “Planar” is therefore not treated as a manufacturer-verified product designation; the manufacturer brochure uses **PRAKTICAR**.
 
 ## Optical Architecture
 
@@ -113,9 +113,9 @@ The missing K-LaK12 curve is supplied by the [official SUMITA datasheet](https:/
 
 ## Focus Mechanism
 
-The selected patent embodiment publishes only one optical prescription state and no focus-spacing table. The implemented focus status is therefore **NO_INTERNAL_RECONSTRUCTION**. No `var` gaps are authored, and no internal motion law is inferred from the product's minimum focusing distance.
+The selected patent embodiment publishes only one optical prescription state and no focus-spacing table. The model therefore shows the lens at infinity only. No spacing changes with focus, and no internal movement is inferred from the product's minimum focusing distance.
 
-The manufacturer brochure's **0.36 m** minimum focusing distance is retained as production metadata only. It does not establish whether the manufactured lens focuses by pure unit extension or by any internal relative motion, nor does it determine a close-focus prescription. The model should therefore be read as the patent's nominal optical state, not as a reconstructed focus trajectory.
+The manufacturer brochure's **0.36 m** minimum focusing distance is kept as product information only. It does not establish whether the manufactured lens focuses by pure unit extension or by any internal relative motion, nor does it determine a close-focus prescription. The model should therefore be read as the patent's nominal optical state, not as a modeled focus movement.
 
 ## Air Lenses
 
@@ -145,7 +145,7 @@ The surface-by-surface Petzval sum, calculated as `φ/(n·n′)` at each of the 
 
 The inferred stop gives an entrance-pupil semi-diameter of **17.855258 mm** and a modeled f-number of **1.400000005**. This agreement is intentionally labeled a calibration: the stop diameter was chosen to reproduce the patent's f/1.4 target, so it is not independent evidence for a production diaphragm diameter.
 
-The revised model passes the repository surface and image-circle audits. Exact on-axis rays sampled through the full modeled entrance pupil pass the authored apertures. The earlier dossier’s 19-ray off-axis sample is not treated as validation of the revised rear rim; full-field pupil illumination remains unproven.
+The revised model passes the repository surface and image-circle audits. Exact on-axis rays sampled through the full modeled entrance pupil pass the authored apertures. The earlier 19-ray off-axis sample is not treated as validation of the revised rear rim; full-field pupil illumination remains unproven.
 
 
 ## Sources and References

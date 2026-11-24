@@ -11,7 +11,7 @@ const LENS_DATA = {
   key: "canon-ef-28-105mm-f4-56",
   maker: "Canon",
   name: "CANON EF 28-105mm f/4-5.6",
-  subtitle: "US 2004/0223070 A1 — Numerical Example 4 (strong production correlation)",
+  subtitle: "US 2004/0223070 A1 — Numerical Example 4 (strong production match)",
   catalog: {
     lensMounts: ["canon-ef"],
     imageFormat: "135-full-frame",

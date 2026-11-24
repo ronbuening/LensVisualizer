@@ -45,7 +45,7 @@ const LENS_DATA = {
   key: "pentax-smc-24mm-f28",
   maker: "Pentax",
   name: "PENTAX SMC PENTAX 24mm f/2.8",
-  subtitle: "US 3,938,883, sole example — F = 100 design scaled 0.24× to 24 mm; probable production correlation",
+  subtitle: "US 3,938,883, sole example — F = 100 design scaled 0.24× to 24 mm; probable production match",
   catalog: {
     lensMounts: ["pentax-k"],
     imageFormat: "135-full-frame",

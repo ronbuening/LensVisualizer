@@ -21,7 +21,7 @@ const LENS_DATA = {
   "key": "canon-ef-s-60mm-f28-macro-usm",
   "maker": "Canon",
   "name": "CANON EF-S 60mm f/2.8 Macro USM",
-  "subtitle": "JP 2006-153942 A, Example 2 — probable production correlation",
+  "subtitle": "JP 2006-153942 A, Example 2 — probable production match",
   "catalog": {
     "lensMounts": [
       "canon-ef-s"

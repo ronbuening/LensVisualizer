@@ -42,7 +42,7 @@ const LENS_DATA = {
   key: "zeiss-sonnar-35f2-sony-rx1",
   maker: "Sony",
   name: "SONY ZEISS SONNAR T* 35mm f/2 (Sony DSC-RX1 family)",
-  subtitle: "US 2014/0071333 A1, Numerical Example 4 — RX1-family correlation (inferred)",
+  subtitle: "US 2014/0071333 A1, Numerical Example 4 — inferred RX1-family match",
 
   catalog: {
     lensMounts: ["fixed-lens-camera"],

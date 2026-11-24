@@ -45,7 +45,7 @@ const LENS_DATA = {
   key: "panasonic-lumix-s-pro-16-35f4",
   maker: "Panasonic",
   name: "PANASONIC LUMIX S PRO 16-35mm f/4",
-  subtitle: "JP 2021-076829 A, NUMERICAL EXAMPLE 1 — STRONG PRODUCT CORRELATION",
+  subtitle: "JP 2021-076829 A, NUMERICAL EXAMPLE 1 — STRONG PRODUCTION MATCH",
 
   catalog: {
     lensMounts: ["l-mount"],

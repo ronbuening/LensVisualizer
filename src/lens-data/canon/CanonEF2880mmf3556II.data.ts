@@ -21,7 +21,7 @@ const LENS_DATA = {
   key: "canon-ef-28-80mm-f35-56-ii",
   maker: "Canon",
   name: "CANON EF 28-80mm f/3.5-5.6 II",
-  subtitle: "US 5,899,585 — Numerical Example 1 (production-correlated patent prescription)",
+  subtitle: "US 5,899,585 — Numerical Example 1 (patent prescription matched to the production lens)",
 
   catalog: {
     lensMounts: ["canon-ef"],
@@ -210,8 +210,9 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.38,
     description:
-      "NO_INTERNAL_RECONSTRUCTION: the patent identifies L1 front-unit focus, but no finite-focus spacings are " +
-      "published; 0.38 m is the rounded production MFD only.",
+      "Infinity focus only. The patent names the front unit L1 as the focusing group, but publishes no close-focus " +
+      "spacings, so focus travel is not modeled; zoom movement is. Canon's rounded 0.38 m minimum focus distance " +
+      "is product information only.",
   },
 
   gaps: {

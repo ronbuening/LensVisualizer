@@ -52,7 +52,7 @@ const LENS_DATA = {
   key: "voigtlander-apo-lanthar-210mm-f45",
   maker: "Voigtländer",
   name: "VOIGTLÄNDER APO-LANTHAR 210mm f/4.5",
-  subtitle: "US 2,645,154 sole example — production-correlated 210mm f/4.5 scale",
+  subtitle: "US 2,645,154 sole example — production match at 210mm f/4.5 scale",
 
   catalog: {
     lensMounts: ["large-format-lens-board"],

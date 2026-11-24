@@ -33,7 +33,7 @@ const LENS_DATA = {
   key: "sigma-35mm-f12-dg-ii-art",
   maker: "Sigma",
   name: "SIGMA 35mm f/1.2 DG II | Art",
-  subtitle: "US 2025/0334778 A1 — Numerical Example 2; production construction correlation",
+  subtitle: "US 2025/0334778 A1 — Numerical Example 2; production match by construction",
 
   catalog: {
     lensMounts: ["l-mount", "sony-fe"],

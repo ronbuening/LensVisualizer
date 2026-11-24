@@ -334,18 +334,17 @@ aberration changes with focus. This rationale is source-stated; the present
 model does not measure actual motor wobble or finite-focus aberrations.
 [1, abstract, ¶¶0001–0009, 0063]
 
-Focus status is NO_INTERNAL_RECONSTRUCTION. Only infinity spacings are
-published for the three zoom stations: the variable-spacing table heads all
-three columns with an infinite shooting distance, as do the tables of the
-other four examples, and Figures 1 to 7 are all infinity states. The focus
-arrow under G2 in Figure 1 points toward the image, in agreement with the
-text. The model repeats each infinity spacing
-at both endpoints of the schema’s focus dimension, so it adds no internal
-near-focus motion. The production 0.28 m MFD is product metadata only; no
-finiteConjugates record certifies it. Neither focus travel nor close-focus
-magnification can be claimed from this implementation. Sigma’s stepping-motor
-description establishes production mechanism context, not
-the missing numerical focus law. [2,3]
+The model shows infinity focus only. Only infinity spacings are published for
+the three zoom stations: the variable-spacing table heads all three columns
+with an infinite shooting distance, as do the tables of the other four
+examples, and Figures 1 to 7 are all infinity states. The focus arrow under G2
+in Figure 1 points toward the image, in agreement with the text. The model
+keeps every spacing at its infinity value at both ends of the focus control,
+so focus travel is not modeled; zoom movement is. Sigma’s 0.28 m minimum focus
+distance is product information only and is not checked by the model. Neither
+focus travel nor close-focus magnification can be claimed from this model.
+Sigma’s stepping-motor description establishes production mechanism context,
+not the missing numerical focus law. [2,3]
 
 ## Aspherical Surfaces
 

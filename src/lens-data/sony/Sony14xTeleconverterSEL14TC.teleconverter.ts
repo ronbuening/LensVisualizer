@@ -55,7 +55,7 @@ const TELECONVERTER_DATA = {
   key: "sony-14x-teleconverter-sel14tc",
   maker: "Sony",
   name: "SONY 1.4x TELECONVERTER SEL14TC",
-  subtitle: "WO 2017/134928 A1, Example 6 — production correlation",
+  subtitle: "WO 2017/134928 A1, Example 6 — production match",
 
   catalog: {
     lensMounts: ["sony-fe"],

@@ -307,16 +307,15 @@ spectral data are added later.
 
 ## Focus Mechanism
 
-The data file intentionally uses **NO_INTERNAL_RECONSTRUCTION**. JP 1994-082698 A publishes the zoom
-states at the design/infinity condition but does not publish an object-distance table, close-focus
-gaps, magnification states, or an internal focusing law. The production minimum focus distance is
-recorded as 0.85 m, but that external specification does not uniquely determine which internal
-components move or by how much.
+JP 1994-082698 A publishes the zoom states at the design/infinity condition but does not publish an
+object-distance table, close-focus gaps, magnification states, or a description of the focusing
+movement. The production minimum focus distance is recorded as 0.85 m, but that external specification
+does not uniquely determine which internal components move or by how much.
 
-Accordingly, every authored focus pair in `var` has identical infinity and close values at each zoom
-position. The model exposes the three published zoom states but does not synthesize a close-focus
-prescription. No unit-focus, inner-focus, rear-focus, or floating-focus designation is assigned from
-this numerical patent example alone.
+Accordingly, every spacing that changes with focus keeps the same value at infinity and close focus at
+each zoom position. The model shows the three published zoom states but does not model a close-focus
+prescription. No unit-focus, inner-focus, rear-focus, or floating-focus designation is assigned from this
+numerical patent example alone.
 
 ## Aspherical Surfaces
 

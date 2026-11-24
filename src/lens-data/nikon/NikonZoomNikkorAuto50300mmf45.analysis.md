@@ -43,7 +43,7 @@ These are component powers, not sums of the standalone element powers. Cementing
 
 The published W/M/T spacing states are retained exactly. Relative to W, the verified M state has `x = 13.77 mm` and `y = 24.23 mm`; at T the corresponding values are `x = 32.53 mm` and `y = 42.47 mm`, matching the patent's printed tele-end motion values. The invariant `d5 + d10 = 79.72 mm` is retained at all three source states. [1, PDF pp. 5 and 8]
 
-The LensVisualizer zoom schema linearly interpolates between authored control points. A three-control-point W/M/T implementation was therefore insufficient for this patent: between M and T it produced as much as 2.879095 mm of Gaussian image-plane error and 26.358422 mm of error between the interpolated focal-length coordinate and the actual paraxial EFL. The audited data retains W/M/T unchanged and adds 47 code-solved intermediate zoom controls. At each non-source control point, the reconstruction preserves `d5 + d10 = 79.72 mm`, keeps components I and III coupled and component IV fixed, and solves the component-III-to-IV motion against the fixed modeled image plane. These added rows are a mechanism-constrained numerical representation of the patent's fixed-image zoom law, not measured production-cam positions.
+The model's zoom control linearly interpolates between authored control points. A three-control-point W/M/T implementation was therefore insufficient for this patent: between M and T it produced as much as 2.879095 mm of Gaussian image-plane error and 26.358422 mm of error between the interpolated focal-length coordinate and the actual paraxial EFL. The audited data retains W/M/T unchanged and adds 47 code-solved intermediate zoom controls. At each non-source control point, the reconstruction preserves `d5 + d10 = 79.72 mm`, keeps components I and III coupled and component IV fixed, and solves the component-III-to-IV motion against the fixed modeled image plane. These added rows are a mechanism-constrained numerical representation of the patent's fixed-image zoom law, not measured production-cam positions.
 
 The published-state Gaussian effective focal lengths remain 51.598309 mm at W, 112.731783 mm at M, and 300.029963 mm at T. The patent gives 51.6 mm and 300.1 mm for the endpoints, so the calculated endpoint residuals remain within the source precision of the rounded prescription. Across dense samples of the final 50-control-point interpolation, the maximum absolute image-plane residual is 0.019636 mm, the maximum focal-coordinate residual is 0.046116 mm, and the maximum modeled f-number departure from f/4.5 is 0.000267.
 
@@ -225,11 +225,11 @@ All 20 elements currently resolve to coordinate-compatible coefficient-backed ca
 
 ## Focus Mechanism
 
-The patent publishes zoom movement but does not publish a finite-object focusing prescription for Example 3. No close-focus spacing table, object-distance series, moving-focus group law, or finite-focus magnification state is given. The final data therefore uses the status **`NO_INTERNAL_RECONSTRUCTION`**.
+The patent publishes zoom movement but does not publish a close-focus prescription for Example 3. No close-focus spacing table, object-distance series, moving-focus group law, or close-focus magnification state is given. The model therefore shows infinity focus only.
 
-All focus-pair entries in the zoom `var` object are deliberately duplicated: each W/M/T zoom gap has the same “infinity” and “close” value. This preserves the published zoom mechanism without inventing an underdetermined internal-focus model.
+At every zoom position, each spacing that changes with zoom deliberately keeps the same value at both ends of the focus control. This preserves the published zoom mechanism without inventing an underdetermined internal-focus model; zoom movement is modeled, focus travel is not.
 
-The data field `closeFocusM = 2.5` m is production metadata only. Nippon Kogaku's 1969 *Nikon F Instructions* lens table gives the Zoom NIKKOR Auto 50–300mm f/4.5 a closest focus of 2.5 m / 8.5 ft and a minimum aperture of f/22. [3, PDF p. 36] The 2.5 m value is not used as an optical conjugate constraint and does not authorize reconstructed close-focus spacings.
+The 2.5 m close-focus figure is product information only. Nippon Kogaku's 1969 *Nikon F Instructions* lens table gives the Zoom NIKKOR Auto 50–300mm f/4.5 a closest focus of 2.5 m / 8.5 ft and a minimum aperture of f/22. [3, PDF p. 36] The 2.5 m value is not used as an optical object-distance constraint and does not support any modeled close-focus spacings.
 
 The published zoom mechanism remains distinct from focusing: components I and III move together during zoom, component II moves in the opposite direction, and component IV stays fixed. Nothing in the final model asserts which internal group, if any, shifts during real finite-distance focusing.
 
@@ -249,7 +249,7 @@ The final-model principal-plane sum corresponding to condition (13) is 110.05190
 
 ## Verification Summary
 
-The final `.data.ts` was loaded through the TypeScript Compiler API and independently cross-checked by the dossier's strict literal parser. The latter rejects unsupported runtime expressions, duplicate keys, and trailing unparsed content. All numerical quantities below were recomputed from the parsed final data rather than from a separate hard-coded copy.
+The final `.data.ts` was loaded through the TypeScript Compiler API and independently cross-checked by a separate strict literal parser. The latter rejects unsupported runtime expressions, duplicate keys, and trailing unparsed content. All numerical quantities below were recomputed from the parsed final data rather than from a separate hard-coded copy.
 
 | Quantity | Verified result | Interpretation |
 |---|---:|---|
@@ -277,7 +277,7 @@ The integration review below adds project type checking, validation, runtime gla
 
 ## Sources / References
 
-1. Takashi Higuchi, **“Four Component Zoom Lens,” US Patent 3,481,666**, assigned to Nippon Kogaku K.K., granted 1969-12-02. Primary source in this dossier as `US3481666.pdf`. Example 3 appears on PDF p. 8; its claim-3 repeat appears on PDF p. 11. Figure 2 on PDF p. 2 is the sectional view of Example 1 and Figure 5 on PDF p. 1 is an alternative fourth component; no figure draws Example 3. Google Patents: https://patents.google.com/patent/US3481666A/en
+1. Takashi Higuchi, **“Four Component Zoom Lens,” US Patent 3,481,666**, assigned to Nippon Kogaku K.K., granted 1969-12-02. Primary source, consulted as `US3481666.pdf`. Example 3 appears on PDF p. 8; its claim-3 repeat appears on PDF p. 11. Figure 2 on PDF p. 2 is the sectional view of Example 1 and Figure 5 on PDF p. 1 is an alternative fourth component; no figure draws Example 3. Google Patents: https://patents.google.com/patent/US3481666A/en
 2. Nikon Imaging, **“NIKKOR — The Thousand and One Nights No.62: Zoom-Nikkor Auto 50-300mm f/4.5.”** https://imaging.nikon.com/imaging/information/story/0062/
 3. Nippon Kogaku K.K., **Nikon F Instructions** (English, 1969), p. 36 lens specification table. The Zoom NIKKOR Auto 50–300mm f/4.5 row lists 13 groups / 20 elements, 2.5 m / 8.5 ft closest focus, f/22 minimum aperture, 2270 g weight, 95 mm screw-in filter, and a revolving tripod socket. Manufacturer document preserved as an archival scan: https://www.marcocavina.com/brochure_foto/nikon_f-instructions_03_1969_en.pdf
 4. OHARA INC., **Optical Glass / Glass Type data.** https://www.ohara-inc.co.jp/en/product/01000/

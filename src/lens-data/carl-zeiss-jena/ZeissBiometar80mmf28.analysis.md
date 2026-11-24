@@ -115,13 +115,13 @@ All five elements resolve to coefficient-backed catalog proxies. Element II uses
 
 ## Focus Mechanism
 
-The source provides one fixed numerical prescription and no focus-dependent spacing table. The implemented focus status is
-therefore **NO_INTERNAL_RECONSTRUCTION**: the optical stack remains fixed and `var` is empty.
+The source provides one fixed numerical prescription and no focus-dependent spacing table. The model therefore shows the
+lens at infinity only: the optical stack stays fixed and no spacing changes with focus.
 
-The correlated production catalog gives a minimum focusing distance of `1.0 m`, and that value is retained as product
-metadata (`closeFocusM`). It does not determine how the production barrel moved the lens, how much image-plane travel was
-required, or whether any internal spacing changed. The analysis therefore makes no claim for an internally reconstructed
-close-focus state.
+The correlated production catalog gives a minimum focusing distance of 1.0 m, and the model records that value as
+product information. It does not determine how the production barrel moved the lens, how much image-plane travel was
+required, or whether any internal spacing changed. The analysis therefore makes no claim for a modeled close-focus
+state.
 
 ## Conditional Expressions
 
@@ -169,7 +169,7 @@ revision and do not substitute for measured field-curvature performance.
 
 1. Harry Zöllner, **US Patent 2,968,221**, *Photographic Five-Element Lenses of the Modified Gauss Type*, filed March 17,
    1959, granted January 17, 1961. See Figure 1 on PDF p. 1; descriptive text and Example I on PDF p. 2; Claim 1 on PDF
-   p. 3. The source PDF is included with this dossier as [`US2968221.pdf`](US2968221.pdf).
+   p. 3. The source PDF is included here as [`US2968221.pdf`](US2968221.pdf).
 2. **PENTACON / VEB Carl Zeiss Jena lens catalog**, circa 1978, entry for “ZEISS MC BIOMETAR 2,8/80” for PENTACON six TL
    and PRAKTISIX; five-element construction, 54° utilized image angle, 1.0 m minimum focus, M58×0.75 filter thread.
    Archival scan: <https://www.ihagee.org/Lenzen/pentaconczjobj1978.pdf>.

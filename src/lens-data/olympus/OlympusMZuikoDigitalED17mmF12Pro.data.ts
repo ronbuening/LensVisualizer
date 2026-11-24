@@ -35,7 +35,7 @@ const LENS_DATA = {
   key: "olympus-mzuiko-digital-ed-17mm-f12-pro",
   maker: "Olympus",
   name: "OLYMPUS M.ZUIKO DIGITAL ED 17mm f/1.2 PRO",
-  subtitle: "US 10,073,255 B2, Example 4 — production correlation inferred",
+  subtitle: "US 10,073,255 B2, Example 4 — inferred production match",
 
   catalog: {
     lensMounts: ["micro-four-thirds"],

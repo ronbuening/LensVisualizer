@@ -33,7 +33,7 @@ const LENS_DATA = {
   key: "leica-summilux-tl-35mm-f14-asph",
   maker: "Leica",
   name: "LEICA SUMMILUX-TL 35mm f/1.4 ASPH.",
-  subtitle: "EP 3 029 504 A1 · Example 4 · strong production correlation; attribution unconfirmed",
+  subtitle: "EP 3 029 504 A1 · Example 4 · strong production match; attribution not maker-confirmed",
 
   catalog: {
     lensMounts: ["l-mount"],

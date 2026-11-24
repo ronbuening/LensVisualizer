@@ -168,9 +168,9 @@ The available evidence does not support an APO or anomalous-partial-dispersion p
 
 The patent publishes zoom-compensation states, not finite-object focus states. Manufacturer literature describes focusing by the front knurled ring and gives a production focusing range down to 180 cm, but it does not provide enough optical spacings to identify uniquely which internal optical surfaces move during focusing or by how much.
 
-The LensVisualizer model therefore uses `NO_INTERNAL_RECONSTRUCTION`. `closeFocusM: 1.8` is retained as product metadata, while every zoom-controlled `var` pair repeats the same infinity and close values. The viewer does not invent an internal close-focus state from the minimum-focus distance alone. Consequently, the analysis makes no quantitative claim about focus-group travel, close-focus EFL, breathing, or close-focus aberration behavior.
+The model therefore shows the published zoom states at infinity focus only. The 1.8 m close-focus figure is kept as product information, while every spacing that changes with zoom keeps the same value at both ends of the focus control. The model does not work out an internal close-focus state from the minimum-focus distance alone. Consequently, the analysis makes no quantitative claim about focus-group travel, close-focus EFL, breathing, or close-focus aberration behavior.
 
-This distinction is separate from the published zoom motion. Components II′ and III′ do move for focal-length variation; the absence of a finite-focus reconstruction does not remove or simplify that zoom mechanism.
+This distinction is separate from the published zoom motion. Components II′ and III′ do move for focal-length variation; the absence of modeled close-focus movement does not remove or simplify that zoom mechanism.
 
 ## Conditional Expressions
 
@@ -208,7 +208,7 @@ The all-spherical prescription has no aspherical surfaces or diffractive phase t
 
 ## Sources / References
 
-1. Karl Heinrich Macher, *Varifocal Teleobjective with Movable Negative Components*, US Patent 3,336,094, filed 16 January 1963, German priority 20 January 1962, granted 15 August 1967. Primary prescription: Figure 2 / Table B and the Figure 2 variable-spacing table. Dossier copy: [US3336094A.pdf](US3336094A.pdf).
+1. Karl Heinrich Macher, *Varifocal Teleobjective with Movable Negative Components*, US Patent 3,336,094, filed 16 January 1963, German priority 20 January 1962, granted 15 August 1967. Primary prescription: Figure 2 / Table B and the Figure 2 variable-spacing table. Local copy: [US3336094A.pdf](US3336094A.pdf).
 2. Schneider-Kreuznach, “What Is a Variogon Zoom Lens? Vario-Optics Explained,” historical manufacturer overview: https://schneiderkreuznach.com/en/industrial-optics/knowledge-hub/what-is-a-variogon-lens
 3. Schneider-Kreuznach, *Variogon - Zoom Lenses*, manufacturer historical publication: https://schneiderkreuznach.com/application/files/6115/0781/8896/variogon-zoom-lenses.pdf
 4. Schneider / Burleigh Brooks Inc., *Schneider Vario Lens Systems for SLR Cameras*, archived manufacturer brochure: https://www.pacificrimcamera.com/rl/00068/00068.pdf

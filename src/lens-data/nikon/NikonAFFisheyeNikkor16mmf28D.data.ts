@@ -54,7 +54,7 @@ const LENS_DATA = {
   key: "nikon-af-fisheye-nikkor-16mm-f28d",
   maker: "Nikon",
   name: "NIKON AF FISHEYE-NIKKOR 16mm f/2.8 D",
-  subtitle: "US 5,434,713 A — Example 1 / First Embodiment; strong production correlation",
+  subtitle: "US 5,434,713 A — Example 1 / First Embodiment; strong production match",
 
   catalog: {
     lensMounts: ["nikon-f"],
