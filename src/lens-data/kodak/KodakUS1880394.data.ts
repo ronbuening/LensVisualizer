@@ -9,8 +9,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * lists the printed G′ indices and small element/component focal-length differences.
  * The stop divides the 7.54 mm doublet gap into 3.11/4.43 mm, inferred from the
  * drawing and the astigmatic node below 15°; its opening follows f/6. Rims are estimated
- * from the drawing's proportions, including the tapers toward the iris at R5/R6;
- * the drawing is not uniformly to scale. The axial f/6 beam and 15° chief ray clear them.
+ * from the drawing's proportions. Both doublets taper toward the iris and the rear
+ * doublet is taller than the middle one. The drawing is not uniformly to scale, and
+ * the rear crown's edge thickness limits its diameter. The axial f/6 beam and 15° chief ray clear the rims.
  * The 15° field is read as a half-angle; its real chief-ray height sets the image circle.
  * The image plane is at paraxial back focus, 88.64 mm. No back focus or close-focus data is printed.
  */
@@ -49,6 +50,7 @@ const LENS_DATA = {
       id: 1,
       name: "L1",
       label: "Element 1",
+      diagramLabel: "1",
       type: "Biconvex Positive",
       nd: 1.61088,
       vd: 57.2,
@@ -61,6 +63,7 @@ const LENS_DATA = {
       id: 2,
       name: "L2",
       label: "Element 2",
+      diagramLabel: "2",
       type: "Positive Meniscus",
       nd: 1.61088,
       vd: 57.2,
@@ -74,6 +77,7 @@ const LENS_DATA = {
       id: 3,
       name: "L3",
       label: "Element 3",
+      diagramLabel: "3",
       type: "Biconcave Negative",
       nd: 1.54995,
       vd: 45.8,
@@ -87,6 +91,7 @@ const LENS_DATA = {
       id: 4,
       name: "L4",
       label: "Element 4",
+      diagramLabel: "4",
       type: "Biconcave Negative",
       nd: 1.52301,
       vd: 50.5,
@@ -100,6 +105,7 @@ const LENS_DATA = {
       id: 5,
       name: "L5",
       label: "Element 5",
+      diagramLabel: "5",
       type: "Biconvex Positive",
       nd: 1.61088,
       vd: 57.2,
@@ -128,21 +134,21 @@ const LENS_DATA = {
       label: "3",
       R: -35.24,
       d: 1.96,
-      sd: 9.2,
+      sd: 8.9,
       medium: 2,
     },
     {
       label: "4",
       R: -15.7,
       d: 0.56,
-      sd: 9.2,
+      sd: 8.9,
       medium: 3,
     },
     {
       label: "5",
       R: 22.26,
       d: 3.11,
-      sd: 8.1,
+      sd: 7.8,
     },
     {
       label: "STO",
@@ -153,21 +159,21 @@ const LENS_DATA = {
       label: "6",
       R: -136.41,
       d: 0.84,
-      sd: 7.7,
+      sd: 8,
       medium: 4,
     },
     {
       label: "7",
       R: 21.69,
       d: 3.35,
-      sd: 8.6,
+      sd: 9,
       medium: 5,
     },
     {
       label: "8",
       R: -32.73,
       d: 88.635299,
-      sd: 8.6,
+      sd: 9,
     },
   ],
   aperture: {
