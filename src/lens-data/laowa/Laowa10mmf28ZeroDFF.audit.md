@@ -24,20 +24,22 @@ The sag equation in ¶0027 uses $1+K$, given as $\varepsilon$ in the tables. Exa
 | Final air gap                |                    13.143 mm |                          13.143 mm |
 | Paraxial back focal distance |                            — |                          13.182 mm |
 
-The image plane is 0.039 mm ahead of the paraxial infinity focus, near the focus of the 0.7 pupil zone. The surfaces retain positive edge thickness and separation, and the iris admits the full axial f/2.87 beam. At infinity the chief ray reaches the 43.20 mm circle from Fig. 2 with all rims clear. At the near setting it reaches 21.40 mm at 64.6°, or 99.1% of the patent image height. A near-setting chief ray at about 64.9° reaches the 21.65 mm full-frame corner with all rims clear. At the 64.6° edge about 50% of the geometric pupil clears the rims at infinity and about 53% at near focus.
+The image plane is 0.039 mm ahead of the paraxial infinity focus, near the focus of the 0.7 pupil zone. The surfaces retain positive edge thickness and separation, and the iris admits the full axial f/2.87 beam. At infinity the chief ray reaches the 43.20 mm circle from Fig. 2 with all rims clear. At the near setting it reaches 21.40 mm at 64.6°, or 99.1% of the patent image height. A near-setting chief ray at about 64.9° reaches the 21.65 mm full-frame corner with all rims clear. At the 64.6° edge about 60% of the geometric pupil clears the rims at infinity and about 63% at near focus.
 
 ## Values Not Printed in the Patent
 
-The iris radius of 5.23 mm follows from the entrance pupil at f/2.87 and the paraxial ray height at the printed stop. The clear radii come from the optical profile endpoints in the lower half of Fig. 1, scaled to the 89.55 mm first-vertex-to-image distance. Flat lands and barrel outlines establish the outer contour where they extend beyond the optical profiles.
+The iris radius of 5.23 mm follows from the entrance pupil at f/2.87 and the paraxial ray height at the printed stop. The clear radii come from the optical profile endpoints on both sides of the axis in Fig. 1. The figure is a 150 dpi image drawn at 8.19 px/mm, measured over the 76.407 mm between the first and last lens vertices. The image plane falls at the same scale. The arc of surface 1 confirms the scale radially: its sag reads 2.90 mm at a height of 12.45 mm and 6.73 mm at 18.31 mm, against 2.90 mm and 6.77 mm from the prescription. One pixel spans 0.12 mm. Flat lands and barrel outlines establish the outer contour where they extend beyond the optical profiles.
 
-| Surface | Clear radius and figure comparison                                                                                       |
-| ------- | ------------------------------------------------------------------------------------------------------------------------ |
-| 2       | 12.20 mm, reduced from the drawn 12.46 mm to preserve clearance to surface 3A                                             |
-| 4A      | 9.75 mm, at the rear land of L2                                                                                          |
-| 8       | 7.70 mm, reduced from the drawn 8.05 mm to preserve clearance to surface 7. The two profiles meet at about 8.08 mm.       |
-| 16–17   | 7.10 mm, inside the roughly 7.2 mm visible at surface 16. The two profiles of L10 would meet at 7.27 mm.                 |
-| 21      | 7.94 mm, at the front land of L13 inside its 10.25 mm outer outline                                                       |
-| 24A     | 12.50 mm, where the polynomial begins to depart from the drawn curve inside the 14.05 mm outline                       |
+| Surface | Clear radius and figure comparison                                                                                                         |
+| ------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| 2       | 12.45 mm, where the curve meets the rear land of L1 (about 12.5 mm in the drawing). The land runs out to the 18.6 mm rim.                  |
+| 4A      | 9.75 mm, at the rear land of L2, which runs out to the 13.6 mm rim                                                                         |
+| 8       | 7.95 mm, at the front land of L5 (about 8.07 mm in the drawing), which runs out to the 8.9 mm rim. Surfaces 7 and 8 meet at about 8.08 mm. |
+| 16–17   | 7.10 mm, inside the roughly 7.2 mm visible at surface 16. The two profiles of L10 would meet at 7.27 mm.                                   |
+| 21      | 7.94 mm, at the front land of L13, which runs out to its 10.25 mm rim                                                                      |
+| 24A     | 12.50 mm, where the polynomial begins to depart from the drawn curve. A flat land runs out to the 14.05 mm rim.                            |
+
+Surfaces 2 and 8 end 0.18 mm and 0.014 mm from the surfaces facing them, so the cross-gap limit is 0.97 of the gap. Surface 2 meets its land at a slope of 65.9°, so the rim-slope limit is 66°. Fig. 1 also draws short flat lands at the cemented faces of L3, L9 and L11. Those are left out, and the three elements end at their cemented radii.
 
 The patent's 500 mm row does not identify its distance reference. At 500 mm from the first surface, the paraxial focus lies 0.045 mm behind the printed image plane, with approximately −0.020× magnification. With 500 mm measured from the image plane, that offset is 0.089 mm. Both are within a 0.242 mm paraxial defocus tolerance. The offsets relative to the infinity paraxial focus are +0.006 mm and +0.049 mm, respectively. The smaller residual supports the first-surface reading, which puts the object 589.55 mm from the printed image plane.
 
@@ -65,6 +67,14 @@ Three optical-glass equivalents replace unidentified labels on seven elements. T
 | L5, L10, L12 | H-FK61 (CDGM) | −1.1×10⁻⁸ | +0.0028 |
 
 L1, L2, L6, L7, L11, L13, L14 and L15 retain unidentified glasses with their printed index and Abbe number. At infinity the finished model gives 10.285 mm EFL, f/2.87, a 5.231 mm stop radius, 13.182 mm paraxial back focus and a 64.6° half field.
+
+2026-11-24 rim review:
+
+- Surface 2 rises from 12.20 to 12.45 mm and gains a flat land out to 18.6 mm. In Fig. 1 its curve meets the rear land of L1 at about 12.5 mm on both sides of the axis. The land lies 9.64 mm behind the first vertex in the drawing and 9.47 mm in the model. The cross-gap limit rises from 0.90 to 0.97 and the rim-slope limit from 64.2° to 66° to admit the radius.
+- Surface 8 rises from 7.70 to 7.95 mm and gains a flat land out to 8.9 mm. The figure ends its curve at about 8.07 mm on the front land of L5, where L4 and L5 nearly touch.
+- Surfaces 4A, 21 and 24A keep their radii and gain flat lands out to 13.6, 10.25 and 14.05 mm. These give L2, L13 and L15 the square rims of Fig. 1, in keeping with the stepped front elements and flat-rimmed last element of [Laowa's drawing][diagram].
+- Every other radius stays, each within about 0.15 mm of the figure.
+- At the 64.6° field edge the clear share of the geometric pupil rises from 49.9% to 59.7% at infinity and from 52.7% to 62.8% at the near setting. No field loses light, and the lands cost none. The half field remains 64.6° and the aperture f/2.87.
 
 ## Remaining Questions
 

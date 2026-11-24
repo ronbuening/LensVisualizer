@@ -5,8 +5,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * with infinity and 500 mm focus spacings, a 129.2° field, and a 13.143 mm final air gap.
  * The table's ε equals 1 + K, as established by the sphere-based aspheres in Examples 2 and 3
  * and by the aberration curves in Fig. 2.
- * Clear radii follow Fig. 1, with allowances for surface clearance, edge thickness and
- * the shape of surface 24A. The 5.23 mm stop radius follows from f/2.87 at surface 11.
+ * Clear radii follow Fig. 1, with allowances for edge thickness and the shape of surface 24A.
+ * Surfaces 2, 4A, 8, 21 and 24A end in the flat lands the figure draws out to each element's rim.
+ * Surfaces 2 and 8 stop where they nearly meet surfaces 3A and 7, so the gap limit is 0.97, and
+ * surface 2 is steep at its edge, so the rim-angle limit is 66°.
+ * The 5.23 mm stop radius follows from f/2.87 at surface 11.
  * Paraxial focus favours reading the unreferenced 500 mm distance from the first surface.
  */
 const LENS_DATA = {
@@ -256,7 +259,8 @@ const LENS_DATA = {
       label: "2",
       R: 13.638,
       d: 4.912,
-      sd: 12.2,
+      sd: 12.45,
+      rimExtensionSd: 18.6,
     },
     {
       label: "3A",
@@ -277,6 +281,7 @@ const LENS_DATA = {
       label: "4A",
       R: 7.112,
       sd: 9.75,
+      rimExtensionSd: 13.6,
       asphere: {
         K: -0.5949,
         A4: -7.61249e-5,
@@ -310,7 +315,8 @@ const LENS_DATA = {
       label: "8",
       R: -16.7,
       d: 0.8,
-      sd: 7.7,
+      sd: 7.95,
+      rimExtensionSd: 8.9,
       medium: 5,
     },
     {
@@ -395,6 +401,7 @@ const LENS_DATA = {
       R: -14.798,
       d: 1.2,
       sd: 7.94,
+      rimExtensionSd: 10.25,
       medium: 13,
     },
     {
@@ -415,6 +422,7 @@ const LENS_DATA = {
       R: -150,
       d: 5.104,
       sd: 12.5,
+      rimExtensionSd: 14.05,
       asphere: {
         K: -19.2397,
         A4: -4.78759e-5,
@@ -524,6 +532,10 @@ const LENS_DATA = {
       toSurface: "23",
     },
   ],
+  checks: {
+    gapSagFrac: 0.97,
+    maxRimAngleDeg: 66,
+  },
 } satisfies LensDataV2Input;
 
 export default LENS_DATA;
