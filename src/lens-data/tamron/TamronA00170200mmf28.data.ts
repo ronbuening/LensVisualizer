@@ -46,7 +46,7 @@ const LENS_DATA = {
   maker: "Tamron",
   name: "TAMRON SP AF 70-200mm f/2.8 Di LD [IF] MACRO",
   subtitle:
-    "US 2008/0212200 A1 Example 1 — inferred A001 correlation; constrained focus reconstruction",
+    "US 2008/0212200 A1 Example 1 — inferred A001 match; focus travel modeled under constraints",
 
   catalog: {
     lensMounts: ["canon-ef", "nikon-f", "pentax-k", "sony-a"],

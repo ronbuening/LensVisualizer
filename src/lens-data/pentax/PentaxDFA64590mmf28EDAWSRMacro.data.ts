@@ -40,7 +40,7 @@ const LENS_DATA = {
   key: "pentax-dfa645-90f28-ed-aw-sr-macro",
   maker: "Pentax",
   name: "PENTAX HD D FA645 MACRO 90mm f/2.8 ED AW SR",
-  subtitle: "US 2013/0222925 A1 - Numerical Embodiment 4; strong production correlation",
+  subtitle: "US 2013/0222925 A1 - Numerical Embodiment 4; strong production match",
 
   catalog: {
     lensMounts: ["pentax-645"],

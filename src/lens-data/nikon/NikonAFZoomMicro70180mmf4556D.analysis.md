@@ -2,212 +2,138 @@
 
 ## Patent Reference and Design Identification
 
-**Patent:** US 5,717,527  
-**Application Number:** US 08/756,770  
-**Title:** Zoom Lens  
-**Filed:** November 26, 1996  
-**Granted:** February 10, 1998  
-**Priority:** JP 7-350703, JP 8-175920, and JP 8-175923  
-**Inventor:** Atsushi Shibayama  
-**Assignee:** Nikon Corporation  
-**Example details:** Table 8, Fig. 43
+**Patent:** US 5,717,527\
+**Application Number:** US 08/756,770\
+**Title:** Zoom Lens\
+**Filed:** November 26, 1996\
+**Granted:** February 10, 1998\
+**Priority:** JP 7-350703, JP 8-175920 and JP 8-175923\
+**Inventor:** Atsushi Shibayama\
+**Assignee:** Nikon Corporation\
+**Example details:** Table 7, Fig. 36 and Figs. 37–42, at the patent's original scale
 
-The prescription transcribed here is the seventh embodiment of US 5,717,527. It is the closest patent example to the Nikon AF Zoom-Micro Nikkor ED 70–180mm f/4.5–5.6D, but it should be treated as a patent prescription rather than a literal production bill of materials. The patent example gives $f = 82.40$–135.00–194.00 mm and $F = 4.14$–5.10–5.73, while the production lens is marketed as 70–180mm f/4.5–5.6.
+Embodiments 5 and 6 are near-identical candidates for the Nikon AF Zoom-Micro Nikkor ED 70–180mm f/4.5–5.6D. This model uses Embodiment 6, which fits Nikon's published section more closely. The exact factory prescription remains unverified. [1–4]
 
-The identification rests on several converging points. Nikon's own design retrospective describes the production lens as a four-group negative–positive–negative–positive macro zoom in which the third and fourth groups move toward each other during zooming, the first group moves forward for close focus, and the first and second groups are effectively fixed for zooming [2]. Table 8 has the same four-group architecture, 18 elements in 14 air-separated groups, a five-element negative first group used for focusing, a G3/G4 zoom pair approaching each other, and a close-focus telephoto magnification of β = −0.74988.
-
-There is one important mismatch. Nikon's production literature states that the lens uses an ED element [2], but Table 8 contains no material with $ν_d$ above 70.41. The highest-Abbe glass in the patent table is the FK5-class material used in L9, L14, and L16. Therefore, Table 8 is a close optical and kinematic match, but its published glass list is not a literal production ED-glass disclosure.
+1. Both examples have 18 spherical elements in 14 air-spaced groups. Each has one ED-class element at L8, the positive member of the first cemented doublet. Nikon's drawing marks the same element as ED.
+2. Both have a 0.37 m minimum focus distance. Embodiment 6 gives reproduction ratios of about 1:3.21 at wide and 1:1.33 at telephoto, close to Nikon's 1:3.2 and 1:1.32.
+3. At wide and infinity, the large gap ahead of the stop matches the layout in Nikon's Fig. 1. When the first and last glass vertices are aligned, the stop and the two faces of the separated rear positive singlet in Embodiment 6 fall within about one pixel of the published drawing. Embodiment 5 places those landmarks about 7–12 pixels forward. Nikon's caption gives no zoom or focus setting.
+4. Embodiment 6 covers 72.05–174.60 mm at f/4.45–5.81. Nikon marketed the production lens as 70–180 mm f/4.5–5.6. Nikon released it in September 1997 with a 62 mm filter thread and a nine-blade diaphragm. Photons to Photos associates Embodiment 5 with this lens. [2–5]
 
 ## Optical Architecture
 
-The seventh embodiment is a four-group macro zoom for 135 format with negative–positive–negative–positive group powers.
+This 35 mm format macro zoom has four optical assemblies with negative, positive, negative and positive powers. The table uses Nikon's four-assembly labels. Fig. 36 calls the front two assemblies G11 and G12 and groups them under G1. It calls the two zoom assemblies G2 and G3.
 
-| Group | Power | Elements | Air-separated groups | Thick-lens focal length | Function |
-|---|---:|---:|---:|---:|---|
-| G1 | negative | 5 | 5 | −100.0 mm | Focusing group, fixed for zoom |
-| G2 | positive | 4 | 3 | +48.0 mm | Positive relay, nearly fixed for zoom |
-| G3 | negative | 3 | 2 | −36.6 mm | Variator, moves image-ward |
-| G4 | positive | 6 | 4 | +48.1 mm | Compensator / rear relay, moves object-ward |
+| Assembly | Elements | Air-spaced groups | Focal length in air | Function                                            |
+| -------- | -------- | ----------------: | ------------------: | --------------------------------------------------- |
+| G1       | L1–L5    |                 5 |           −89.46 mm | Moves forward to focus                              |
+| G2       | L6–L9    |                 3 |           +52.34 mm | Stationary positive relay                           |
+| G3       | L10–L12  |                 2 |           −43.00 mm | Moves toward the image when zoomed toward telephoto |
+| G4       | L13–L18  |                 4 |           +49.23 mm | Moves toward the object with the stop               |
 
-The first two groups form the close-focus subsystem. The negative first group is moved object-ward for focusing, while G2 remains fixed during focusing and moves only slightly during zooming. The third and fourth groups form the zoom subsystem. The aperture stop is between G3 and G4 and moves integrally with G4.
-
-The infinity-focus optical track is essentially constant at 212.213 mm across the three published zoom positions. At the telephoto end the ratio $TL/EFL = 212.213/194.001 = 1.094$, so this is not a true telephoto design in the strict optical sense. It is better described as a compact internal macro zoom with a long back focal distance for an SLR camera.
+G1 and G2 form the close-focus section. The negative first assembly focuses by extending forward, while the positive second assembly stays fixed. This arrangement keeps the front lens diameter manageable and leaves the rear assemblies free to compensate focus as the zoom changes. The optical track at infinity is 210.11 mm, about 1.20 times the telephoto focal length. The rear assembly leaves 74.05 mm from the last glass vertex to the image at the telephoto end.
 
 ## Element-by-Element Analysis
 
-### G1 — Five-element negative focusing group
+The focal lengths below describe the elements in air. The focal lengths of the cemented assemblies use the shared glass interfaces.
 
-G1 is the unit focusing group. It moves forward by 38.653 mm at the closest published setting, increasing the G1–G2 air gap $d_{10}$ from approximately 2.01 mm to 40.66 mm. The group has negative power, which keeps the front clear diameter manageable during the large focus extension. The patent's background discussion makes this negative-front-group rationale explicit by comparing oblique chief-ray behavior for positive and negative first groups [1].
+### G1 — Negative focusing assembly
 
-**L1 — Negative meniscus, convex to object.** $n_d = 1.86074$, $ν_d = 23.01$. Glass: Hikari J-SFH2 coordinate successor to patent code 861/230. Standalone $f = -130.5$ mm.
+**L1 — Negative meniscus, convex to the object.** $n_d = 1.78470$, $\nu_d = 26.05$. Unmatched dense flint. $f = -115.4$ mm. The tighter rear surface provides most of the negative bend.
 
-L1 supplies the first negative bend in the focusing group. Its rear radius is much shorter than its front radius, so most of the element power comes from the rear surface. The very high refractive index keeps the radii from becoming still steeper.
+**L2 — Biconvex positive.** $n_d = 1.80458$, $\nu_d = 25.50$. Unmatched dense flint. $f = +63.0$ mm. L2 offsets L1 so their air-spaced pair is positive overall, at +129.32 mm.
 
-**L2 — Biconvex positive.** $n_d = 1.86074$, $ν_d = 23.01$. Glass: the same J-SFH2 / patent-code 861/230 coordinate as L1. Standalone $f = +63.1$ mm.
+**L3 — Negative meniscus, convex to the object.** $n_d = 1.64000$, $\nu_d = 60.03$. Unmatched crown. $f = -85.8$ mm. A gently curved front and a steeper rear furnish negative power in the rear part of the focusing assembly.
 
-L2 is nearly symmetric, with equal-magnitude front and rear radii. It offsets part of L1's negative power while keeping the front focusing group compact. Because L1 and L2 share the same high-dispersion glass family, their opposite powers partly balance first-order chromatic power, leaving the later cemented groups to handle residual correction.
+**L4 — Negative meniscus, concave to the object.** $n_d = 1.80384$, $\nu_d = 33.89$. Unmatched for dispersion. $f = -75.3$ mm. Its strongest curvature faces forward and adds negative power behind L3.
 
-**L3 — Negative meniscus, convex to object.** $n_d = 1.61720$, $ν_d = 54.01$. Glass: HOYA BACED1 catalog equivalent for patent 617/540; production supplier unspecified. Standalone $f = -89.8$ mm.
+**L5 — Positive meniscus, convex to the object.** $n_d = 1.74001$, $\nu_d = 28.19$. Unmatched dense flint. $f = +160.2$ mm. Its weak positive power balances part of L3 and L4 before the changing focus gap.
 
-The patent table image reads $R_5 = 1559.0379$ mm. The searchable text may drop the leading digit, but the 1559 mm value is required to reproduce the patent's stated $f_1 = -100.000$ mm for G1. L3 has a nearly flat front surface and a strong rear surface, concentrating negative power near the L3–L4 air space.
+### G2 — Stationary positive relay
 
-**L4 — Negative meniscus, concave to object.** $n_d = 1.79504$, $ν_d = 28.56$. Glass: Hikari J-LAFH3 catalog equivalent for patent 795/286; production supplier unspecified. Standalone $f = -78.9$ mm.
+**L6 — Biconvex positive.** $n_d = 1.77278$, $\nu_d = 49.45$. Unmatched high-index crown. $f = +84.8$ mm. L6 begins the positive relay action as light leaves the negative focusing assembly.
 
-L4 is the second strong negative element in the rear part of G1. Its stronger front curvature faces the object side. Together with L3 it forms the main negative-power core of the focusing group.
+**L7 and L8 — Cemented doublet.** The negative meniscus L7 has $n_d = 1.74000$, $\nu_d = 28.19$, and $f = -73.0$ mm. The biconvex L8 has $n_d = 1.49782$, $\nu_d = 82.52$, and $f = +61.9$ mm. Both optical glasses are unmatched. Nikon marks the second member as ED. The combination has only weak positive power ($f = +403.2$ mm). The two elements' opposing powers and dispersion give the designer a way to correct colour while adding little net power.
 
-**L5 — Positive meniscus, convex to object.** $n_d = 1.78472$, $ν_d = 25.80$. Glass: SF11-class dense flint. Standalone $f = +191.3$ mm.
+**L9 — Positive meniscus, convex to the object.** $n_d = 1.64000$, $\nu_d = 60.03$. Unmatched crown. $f = +184.0$ mm. This weak lens closes the relay ahead of the moving variator.
 
-L5 is weakly positive and closes G1. It reduces the net negative power of L3–L4 and moderates the beam before the large variable G1–G2 air space. The earlier S-TIH53 identification is not retained: current OHARA S-TIH53 is an 847/238 glass and does not match the patent's 785/258 code.
+### G3 — Negative variator
 
-### G2 — Positive relay group
+**L10 and L11 — Cemented doublet.** The almost plano-front biconcave L10 has $n_d = 1.77278$, $\nu_d = 49.45$, and $f = -38.5$ mm. The positive meniscus L11 has $n_d = 1.80458$, $\nu_d = 25.50$, and $f = +52.6$ mm. Both glasses are unmatched. Their cemented combination remains negative ($f = -135.2$ mm), with opposing dispersive powers.
 
-G2 has a computed thick-lens focal length of +48.0 mm. It is fixed during focusing and nearly fixed during zooming; the G1–G2 spacing changes non-monotonically from 2.011 mm to 2.904 mm and back to 2.011 mm across the three zoom positions.
+**L12 — Biconcave negative.** $n_d = 1.69680$, $\nu_d = 55.60$. Unmatched lanthanum crown. $f = -64.0$ mm. It adds negative power to the variator and moves with the doublet as the gap to the stop closes.
 
-**L6 — Biconvex positive.** $n_d = 1.74810$, $ν_d = 52.30$. Glass: 748523 — discontinued Hikari E-LAKH1 catalog equivalent; production supplier unspecified. Standalone $f = +83.4$ mm.
+### G4 — Positive compensator and rear relay
 
-L6 begins the positive relay action after the strongly negative first group. Its symmetric biconvex form limits coma and distortion contribution in this nearly stationary group.
+**L13 — Biconvex positive.** $n_d = 1.64000$, $\nu_d = 60.03$. Unmatched crown. $f = +72.7$ mm. It begins the positive rear relay 1 mm behind the stop.
 
-**L7 + L8 — Cemented doublet.** Combined focal length $f = +274.8$ mm.
+**L14–L16 — Cemented triplet.** The biconvex L14 and positive meniscus L16 share $n_d = 1.48749$ and $\nu_d = 70.41$, consistent with the Schott N-FK5 optical equivalent. Their focal lengths in air are +35.1 and +110.5 mm. The biconcave center element L15 has $n_d = 1.80384$, $\nu_d = 33.89$, unmatched dispersion, and $f = -23.5$ mm. The crown–flint–crown combination has weak negative power ($f = -504.0$ mm) inside the positive relay.
 
-L7 is a negative meniscus with $n_d = 1.78472$, $ν_d = 25.80$, SF11-class dense flint, and standalone $f = -69.4$ mm. L8 is a positive meniscus with $n_d = 1.64000$, $ν_d = 60.03$, S-BSM81-class crown, and standalone $f = +54.4$ mm.
+**L17 — Biconvex positive.** $n_d = 1.74000$, $\nu_d = 28.19$. Unmatched dense flint. $f = +49.8$ mm. It contributes positive power behind the triplet across a 15.60 mm air space.
 
-The doublet has little net power compared with the group focal length, so its main function is chromatic and aberration correction rather than magnification. This is the structurally plausible region for the production ED substitution, but Table 8 itself does not identify an ED material here.
+**L18 — Negative meniscus, concave to the object.** $n_d = 1.79668$, $\nu_d = 45.37$. Unmatched high-index glass. $f = -40.6$ mm. Its strong concave front and weaker rear complete the relay before the long back focus.
 
-**L9 — Positive meniscus, convex to object.** $n_d = 1.48749$, $ν_d = 70.41$. Glass: N-FK5 / FK5. Standalone $f = +174.9$ mm.
+## Glass Identification
 
-L9 is a weak positive high-Abbe crown element. It completes the positive relay group and contributes low-dispersion positive power before the variator group.
+Table 7 gives helium d-line indices at 587.6 nm and Abbe numbers. The patent gives no glass trade names or spectral indices for this example. L14 and L16 use the Schott N-FK5 dispersion curve because it matches the printed coordinates. An optical equivalent leaves the production supplier and melt unknown. The other elements use their printed index and Abbe number to estimate dispersion. Nikon identifies L8 as ED, with its $\nu_d$ of 82.52 supporting that identification. The exact material and its partial dispersion remain unknown. [1–3, 6]
 
-### G3 — Negative variator group
-
-G3 is the negative variator and has a computed thick-lens focal length of −36.6 mm. From wide to telephoto it moves 9.403 mm toward the image side.
-
-**L10 + L11 — Cemented doublet.** Combined focal length $f = -94.0$ mm.
-
-L10 is a negative meniscus with $n_d = 1.80411$, $ν_d = 46.54$, S-LAH65V-class glass, and standalone $f = -28.3$ mm. L11 is a positive meniscus with $n_d = 1.80458$, $ν_d = 25.50$, SF6-class dense flint, and standalone $f = +38.2$ mm.
-
-The doublet uses a high-index, relatively lower-dispersion negative member and a high-dispersion positive member. This reversed chromatic pairing allows the cemented unit to remain negative while controlling axial color generated by the variator.
-
-**L12 — Biconcave negative.** $n_d = 1.80411$, $ν_d = 46.54$. Glass: S-LAH65V class. Standalone $f = -61.5$ mm.
-
-L12 adds distributed negative power to G3. Its biconcave form shares power across both surfaces and keeps the group compact.
-
-### G4 — Positive compensator and rear relay group
-
-G4 has a computed thick-lens focal length of +48.1 mm. It moves object-ward during zooming and carries the aperture stop with it.
-
-**L13 — Biconvex positive.** $n_d = 1.69680$, $ν_d = 55.60$. Glass: S-LAL14. Standalone $f = +84.7$ mm.
-
-L13 is the first powered lens after the stop. It begins the positive compensation needed to bring the image plane back to the fixed rear location as G3 changes magnification.
-
-**L14 + L15 + L16 — Cemented triplet.** Combined focal length $f = +1048.2$ mm.
-
-L14 is a biconvex FK5-class crown element with $n_d = 1.48749$, $ν_d = 70.41$, standalone $f = +36.0$ mm. L15 is a biconcave Hikari E-LAFH2 dense flint with $n_d = 1.80384$, $ν_d = 33.89$, exact code 804/339, and standalone $f = -23.2$ mm. L16 is a positive meniscus FK5-class crown element with $n_d = 1.48749$, $ν_d = 70.41$, standalone $f = +75.1$ mm.
-
-The triplet has very weak net power because the two crown positives are largely balanced by the central flint. Its role is correction: chromatic control, spherical correction, and off-axis aberration balancing in the rear relay.
-
-**L17 — Biconvex positive.** $n_d = 1.74077$, $ν_d = 27.63$. Glass: HOYA E-FD13 catalog equivalent for patent 741/276; production supplier unspecified. Standalone $f = +47.8$ mm.
-
-L17 supplies substantial positive power late in the system. The high index allows a relatively compact rear relay, while the high dispersion is balanced by the adjacent triplet and final negative element.
-
-**L18 — Negative meniscus, concave to object.** $n_d = 1.80411$, $ν_d = 46.54$. Glass: S-LAH65V class. Standalone $f = -36.8$ mm.
-
-L18 is the final negative element. Its position near the image side makes it effective for field curvature and ray-angle control. It also shortens the back focal distance relative to what the positive rear relay would otherwise require.
-
-## Glass Identification and Selection
-
-The patent does not name glass manufacturers. The identifications below are catalog or class matches from published $n_d$ / $ν_d$ values and should be read as material-class annotations, not as Nikon production procurement claims.
-
-| Patent code | Catalog / class annotation | Elements | Confidence | Notes |
-|---|---|---:|---|---|
-| 861/230 | J-SFH2 (Hikari coordinate successor) | L1, L2 | high coordinate confidence | Current J-SFH2 retains `nd=1.86074`; its code 861/231 and `νd=23.08` differ only in the final rounded digit from the patent row. |
-| 617/540 | BACED1 (HOYA optical equivalent) | L3 | Catalog-backed equivalent | Official row 1.617203 / 53.945664; supplier unspecified. |
-| 795/286 | J-LAFH3 (Hikari optical equivalent) | L4 | Catalog-backed equivalent | Same index; catalog $ν_d=28.692277$; supplier unspecified. |
-| 785/258 | SF11-class dense flint | L5, L7 | close | Schott SF11 is 1.78472 / 25.76; patent table uses 25.80. |
-| 748523 | E-LAKH1 catalog equivalent (Hikari) | L6 | exact catalog coordinate | Discontinued source row; production supplier unspecified. |
-| 640/600 | S-BSM81 class | L8 | close | OHARA S-BSM81 is 1.64000 / 60.08. |
-| 487/704 | N-FK5 / FK5 | L9, L14, L16 | exact | Schott N-FK5 is 1.48749 / 70.41. |
-| 804/466 | S-LAH65V class | L10, L12, L18 | close | OHARA S-LAH65V is 1.80400 / 46.58. |
-| 805/255 | SF6-class dense flint | L11 | close | Schott SF6 is 1.80518 / 25.43. |
-| 697/556 | S-LAL14 | L13 | close | OHARA S-LAL14 is 1.69680 / 55.53; patent table uses 55.60. |
-| 804/339 | E-LAFH2 (Hikari) | L15 | exact | Exact catalog code and `nd`/`νd` coordinate. |
-| 741/276 | E-FD13 (HOYA optical equivalent) | L17 | Catalog-backed equivalent | Same index; catalog $ν_d=27.76$; supplier unspecified. |
-
-The key chromatic correction pattern is not a single anomalous-dispersion material in Table 8, but repeated pairing of high-index flints with higher-Abbe crowns in the nearly stationary G2 and rear G4 correction groups. The production lens's stated ED element is therefore a production-level fact, while Table 8's exact glass list remains a patent disclosure with no ED-class Abbe number.
+The ED doublet combines low-dispersion positive power at L8 with a higher-dispersion negative member at L7. The second doublet and the rear triplet also pair opposing powers and dispersions. The patent plots only the d and violet g lines in the longitudinal spherical-aberration figures. The model reproduces the d-line shape, but its estimated g-line focus differs visibly, particularly toward the telephoto end. Red C-line focus has no published curve for comparison, and the colour analyses are estimates.
 
 ## Focus Mechanism
 
-The focus mechanism is front-group unit focusing. G1 moves object-ward; all other optical groups and the back focal distance remain fixed for a given zoom position.
+To reach the published close setting, G1 advances 34.55051 mm, increasing $d_{10}$ from 2.63000 to 37.18051 mm. The other spacings remain fixed during focusing at each zoom station. At 0.37 m the subject lies 125.34 mm in front of the first glass vertex across the zoom range. This optical working distance excludes the barrel.
 
-| Quantity | Wide | Intermediate | Telephoto |
-|---|---:|---:|---:|
-| Infinity $d_{10}$ | 2.011 mm | 2.904 mm | 2.011 mm |
-| Close $d_{10}$ | 40.665 mm | 41.557 mm | 40.664 mm |
-| G1 focus travel | 38.653 mm | 38.653 mm | 38.653 mm |
-| Close-focus β | −0.31850 | −0.52182 | −0.74988 |
-| Patent object-to-image distance $R$ | 391.9 mm | 391.9 mm | 391.9 mm |
+| At 0.37 m                               |     Wide | Intermediate | Telephoto |
+| --------------------------------------- | -------: | -----------: | --------: |
+| Patent magnification                    | −0.31106 |     −0.45330 |  −0.75378 |
+| Calculated magnification                | −0.31106 |     −0.45330 |  −0.75376 |
+| Calculated focal length at this spacing | 50.15 mm |     62.85 mm |  71.20 mm |
+| Patent numerical aperture, at image     |     0.11 |         0.10 |      0.09 |
+| Traced numerical aperture, at image     |   0.1120 |       0.0991 |    0.0854 |
 
-The paraxial effective focal length of the focused optical configuration decreases strongly at close focus: 55.4 mm at the wide position, 70.7 mm at the intermediate position, and 75.6 mm at the telephoto position. This is not a contradiction of the 70–180mm marketed range; it is the expected consequence of a macro zoom whose negative front group is extended far forward.
+Focal length shortens markedly toward close focus, especially at the telephoto end. Around the published closest setting the working f-numbers from the modeled cones remain close to their infinity values, consistent with Nikon's effective-aperture table. [1–2]
 
-Nikon's retrospective table states that the production lens maintains its effective f-number with focus distance at the listed focal lengths, unlike ordinary macro lenses whose effective aperture darkens substantially as magnification increases [2].
+## Zoom and Aperture
 
-## Zoom Mechanism
+| Gap or measured quantity at infinity   |        Wide | Intermediate |   Telephoto |
+| -------------------------------------- | ----------: | -----------: | ----------: |
+| $d_{17}$, stationary relay to variator |  2.70000 mm |  10.73027 mm | 20.52761 mm |
+| $d_{22}$, variator to stop             | 43.91000 mm |  26.44398 mm |  2.65425 mm |
+| Back focus, as printed                 | 50.62048 mm |  60.05622 mm | 74.04862 mm |
+| Calculated iris radius                 |   12.346 mm |    12.292 mm |   12.295 mm |
 
-The zoom is internal in the sense that the image plane and patent total track remain fixed at infinity focus. G1 is fixed, G2 is nearly fixed and reverses slightly, G3 moves toward the image, and G4 plus the stop move toward the object. The close-focus telephoto TL row in Table 8 appears to print 250.66589 mm, but adding the printed d10 focus extension to the infinity-focus TL gives 250.86587 mm; that value is also consistent with the wide and intermediate close-focus TL values.
+The first two assemblies stay fixed while zooming at a fixed focus setting. From wide to telephoto, the variator moves 17.83 mm toward the image while the rear assembly and stop move 23.43 mm toward the object. This holds the infinity track at 210.11 mm. Focus extends that track to 244.66 mm at the published 0.37 m setting.
 
-| Gap / position | Wide 82.4 mm | Intermediate 135 mm | Telephoto 194 mm |
-|---|---:|---:|---:|
-| $d_{10}$, G1→G2 | 2.011 mm | 2.904 mm | 2.011 mm |
-| $d_{17}$, G2→G3 | 2.053 mm | 6.743 mm | 11.456 mm |
-| $d_{22}$, G3→stop/G4 | 40.316 mm | 17.416 mm | 1.749 mm |
-| Back focus | 51.033 mm | 68.349 mm | 80.196 mm |
-| Total track | 212.213 mm | 212.213 mm | 212.213 mm |
+Table 7 places the stop between the variator and rear relay. The patent specifies the wide-open f-numbers, from which the iris radii are calculated. Each zoom setting keeps the same iris as focus changes. Clear radii are estimated from Fig. 36 and Nikon's section, with smaller caps where the drawn outlines would intersect at the printed gaps. The section keeps the visible lands on the rear faces of L1 and L3. The on-axis bundle clears the estimated rims at full aperture. Toward the format corner, the model clips some of the oblique bundle while its chief ray still reaches the image.
 
-From wide to telephoto, G3 moves 9.403 mm image-ward. G4 and the stop move 29.164 mm object-ward. The movement ratio is therefore approximately 3.10, matching the patent text that the G3/G4 movement-ratio relation is constant during zooming.
+## Patent Conditions
 
-## Conditional Expressions
+Table 7 lists conditions (6)–(10) for this arrangement. The first two compare the powers of the focusing assembly G11 and its positive front pair GF. The remaining three compare telephoto at infinity with telephoto at 1:2. At 1:2 the calculation gives 475.934 mm object to image, an 88.928 mm focal length and a 233.028 mm optical track.
 
-Table 8 belongs to the patent's four-group negative–positive–negative–positive architecture. The relevant conditions are:
+| Condition                     | Limit         | Calculated |
+| ----------------------------- | ------------- | ---------: |
+| (6) $\lvert f_{11}\rvert/f_w$ | 0.8 to 1.6    |      1.242 |
+| (7) $f_F/\lvert f_{11}\rvert$ | 0.9 to 1.9    |      1.446 |
+| (8) $R'/f_t$                  | less than 4   |      2.726 |
+| (9) $f_t'/f_t$                | less than 0.7 |      0.509 |
+| (10) $TL'/TL$                 | 1.05 to 1.4   |      1.109 |
 
-| Condition | Patent expression | Table 8 value | Result |
-|---|---|---:|---|
-| (11) | $0.8 < |f_1|/f_w < 1.6$ | 1.214 | satisfied |
-| (12) | $D_{12W}/f_w < 0.1$ | 0.024 | satisfied |
-| (13) | $Δ1/f_w < 0.1$ | 0.000 | satisfied |
+All five agree with Table 7 to its displayed ratio precision.
 
-Condition (11) controls the front negative group power. Condition (12) keeps the G1–G2 spacing small at the wide end. Condition (13) reflects the patent preference that the first group be fixed, or almost fixed, during zooming.
+## Verification
 
-## Verification Summary
+| Infinity setting | Patent / calculated focal length | Patent / calculated back focus | Patent / traced f-number |
+| ---------------- | -------------------------------: | -----------------------------: | -----------------------: |
+| Wide             |           72.05204 / 72.05131 mm |         50.62048 / 50.61909 mm |              4.45 / 4.45 |
+| Intermediate     |         105.00000 / 104.99791 mm |         60.05622 / 60.05398 mm |              5.01 / 5.01 |
+| Telephoto        |         174.60000 / 174.59274 mm |         74.04862 / 74.04437 mm |              5.81 / 5.81 |
 
-An independent paraxial y–$n u$ ray trace was run from the transcribed Table 8 values. The trace uses surface powers $Φ = (n' - n)/R$ and translations $d/n$ in reduced-angle coordinates.
-
-| Parameter | Patent | Computed | Difference |
-|---|---:|---:|---:|
-| Wide EFL | 82.400 mm | 82.401 mm | +0.001 mm |
-| Intermediate EFL | 135.000 mm | 135.002 mm | +0.002 mm |
-| Telephoto EFL | 194.000 mm | 194.001 mm | +0.001 mm |
-| G1 focal length | −100.000 mm | −100.000 mm | 0.000 mm |
-| Wide back focus | 51.033 mm | 51.033 mm | 0.000 mm |
-| Intermediate back focus | 68.349 mm | 68.350 mm | +0.001 mm |
-| Telephoto back focus | 80.196 mm | 80.196 mm | 0.000 mm |
-| Infinity total track | 212.212 mm | 212.213 mm | +0.001 mm |
-
-The Petzval sum, computed surface-by-surface as $Σ Φ/(n n')$, is +0.000504 mm$^{-1}$ for the Table 8 prescription. The weak net value is consistent with the extensive crown/flint correction groups in G2 and G4. Semi-diameters in the companion data file are not patent values; they are inferred visualization apertures constrained by paraxial ray height, edge thickness, same-element diameter ratios, and cross-gap sag clearance. The apparent 0.200 mm error in the Table 8 close-focus telephoto TL row is not used as an optical spacing; every modeled spacing comes from the surface table and the d10/d17/d22/Bf rows.
-
-## Fresh Source Reinspection
-
-The 2026-10-30 review directly inspected local `US5717527.pdf`: seventh-embodiment Figure 43 on PDF page 44 at 600 dpi and in its native 300 dpi raster; Table 8 on page 69; the d-line definition on page 68; and Figures 44A/45A/46A on pages 45–47. The table and all three plots agree on FNO 4.14/5.10/5.73. The design stations are corrected from 4.5/5.3/5.6 to those source values, with marketing f/4.5 and user stop choices retained. The eighteen source material pairs are exact and unchanged; all eighteen current curves are qualified spectral proxies, without a source partial-dispersion table or production supplier identity.
-
-Figure 43 resolves the short exposed rear land of the first negative meniscus. S2's continuous cap increases from 24.0 to 27.8 mm and draws a land to the existing 29.5 mm outer rim. Native q≈0.94±0.007 at an approximately 292-pixel edge radius agrees with adopted q=0.942. Every other exposed/cemented face was inspected; the staggered body ends and bonded steps do not justify speculative extra trimming. No cemented land or inferred axial cut is added.
-
-The telephoto source f/5.73 beam remains limited by inferred S20/S21 caps of 12.8 mm. The aperture audit reports f/5.89647 (2.905% slower, within its existing 3% reporting band); that numeric pass does not mean the literal source beam clears. The minimum rounded raise is 13.2 mm on both faces, but the unchanged 2.900 mm gap and source radii give 2.750 mm combined sag versus the existing 2.610 mm intrusion budget. The common cap bound under that guard is 12.852515 mm. The trial is rejected without relaxing the guard or changing source geometry. Wide and middle are iris-limited at the corrected source apertures. The tele limitation also existed under the earlier f/5.6 setting.
-
-Surface/circle audits pass, all three format corners reach at least 99%, and nine actual SVG states have eighteen finite, untrimmed paths. At the source close R=391.9 mm conjugate, the current full iris passes 25/25 aimed axial samples at wide and middle, and 13/25 at tele (outer samples clip S20). These are discrete sample counts under the modeled iris, not flux measurements or production-lens vignetting. The production 0.37 m control label, source spacings, and previously documented TL discrepancy are retained. Source/catalog checks and shared glass suites pass (94 tests).
+At the published 0.37 m close states, the paraxial image lies 0.0010, 0.0015 and 0.0021 mm ahead of the printed plane. At infinity the modeled half fields to a 21.60 mm image height are 16.64°, 11.43° and 6.91°, matching the angles in Figs. 37–39 to their precision. The d-line trace follows the shapes in Figs. 37A–42A, including the change from negative wide-end spherical aberration to a positive intermediate zone and the sign change across the telephoto pupil.
 
 ## Sources
 
-[1] Atsushi Shibayama, Nikon Corporation, US Patent 5,717,527, “Zoom Lens,” granted February 10, 1998.  
-[2] Kouichi Ohshita, Nikon Corporation, “NIKKOR — The Thousand and One Nights, No. 18: AF Zoom-Micro Nikkor ED 70–180mm F4.5–5.6D.” https://imaging.nikon.com/imaging/information/story/0018/  
-[3] SCHOTT AG optical glass datasheets: SF11, SF6, and N-FK5.  
-[4] OHARA Corporation optical glass datasheets: S-BSM81, S-LAL14, and S-LAH65V.  
-[5] Patent Table 8 glass-code rows, cross-checked against current Hikari J-SFH2 and historical E-LAFH2 catalog data.
-[6] Nikon AF Zoom-Micro Nikkor ED 70–180mm f/4.5–5.6D Instruction Manual, manufacturer manual mirror. https://www.manualslib.com/manual/111235/Nikon-Af-Zoom-Micro-Nikkor-Ed-70-180mm-F-4-5-5-6d.html
+1. [US 5,717,527, “Zoom Lens,” Table 7 and Figs. 36–42](https://patents.google.com/patent/US5717527A/en).
+2. [Nikon, The Thousand and One Nights, Tale 18, Fig. 1 and effective f-number table](https://imaging.nikon.com/imaging/information/story/0018/).
+3. [Nikon Japan, AF Zoom-Micro Nikkor ED 70–180mm f/4.5–5.6D specifications](https://nij.nikon.com/products/lineup/nikkor/fmount/ai_af_zoom_micro_nikkor_ed_70-180mm_f45-f56d/#spec).
+4. [Nikon Japan, Tale 18, release history](https://nij.nikon.com/enjoy/life/historynikkor/0018/).
+5. [Photons to Photos, Optical Bench, independent attribution to Embodiment 5](https://www.photonstophotos.net/GeneralTopics/Lenses/OpticalBench/OpticalBench.htm#Data/US005717527_Example05_Tale18.txt).
+6. [Schott, N-FK5 optical glass data sheet](https://us.shop.schott.com/advanced-optics/en/Optical-Glass/N-FK5/c/glass-N-FK5).

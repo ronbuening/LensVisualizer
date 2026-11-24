@@ -62,7 +62,7 @@ const LENS_DATA = {
   key: "canon-ef-400mm-f28-l-is-ii-usm",
   maker: "Canon",
   name: "CANON EF 400mm f/2.8 L IS II USM",
-  subtitle: "US 2011/0090576 A1 Example 2 — production correlation; constrained L16 focus reconstruction",
+  subtitle: "US 2011/0090576 A1 Example 2 — production match; L16 focus travel modeled under constraints",
 
   catalog: {
     lensMounts: ["canon-ef"],

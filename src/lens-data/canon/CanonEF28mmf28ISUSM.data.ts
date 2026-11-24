@@ -23,7 +23,7 @@ const LENS_DATA = {
   key: "canon-ef-28mm-f28-is-usm",
   maker: "Canon",
   name: "CANON EF 28mm f/2.8 IS USM",
-  subtitle: "JP 2013-054269 A — Numerical Example 1; production correlation inferred",
+  subtitle: "JP 2013-054269 A — Numerical Example 1; inferred production match",
 
   catalog: {
     lensMounts: ["canon-ef"],

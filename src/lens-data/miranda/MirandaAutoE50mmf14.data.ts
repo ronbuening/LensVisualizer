@@ -16,7 +16,7 @@ const LENS_DATA = {
   key: "miranda-auto-e-50mm-f14",
   maker: "Miranda",
   name: "MIRANDA AUTO E 50mm f/1.4",
-  subtitle: "US 3,634,001 A Example 1 — Kunio Shimada; production correlation unconfirmed",
+  subtitle: "US 3,634,001 A Example 1 — Kunio Shimada; production match not maker-confirmed",
 
   catalog: {
     lensMounts: ["miranda-bayonet"],

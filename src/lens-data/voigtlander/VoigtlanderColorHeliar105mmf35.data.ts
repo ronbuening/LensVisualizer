@@ -18,9 +18,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  independently traced infinity BFD of 86.1262944374 mm; the scaled rounded ║
  * ║  patent p0′ is 86.1315 mm.                                                 ║
  * ║                                                                            ║
- * ║  FOCUS STATUS — NO_INTERNAL_RECONSTRUCTION: The patent publishes only an  ║
- * ║  infinity prescription. The Bessa II's 1.0 m scale endpoint is retained as ║
- * ║  product metadata, but no internal or unit-focus spacing is invented.      ║
+ * ║  FOCUS: Infinity only. The patent publishes only an infinity               ║
+ * ║  prescription. The Bessa II's 1.0 m scale endpoint is recorded as          ║
+ * ║  product information; no internal or unit-focus spacing is modeled.        ║
  * ║                                                                            ║
  * ║  GLASS: Historical yellow-light index/Abbe coordinates are retained in    ║
  * ║  the schema's nd/vd slots. No nC, nF, ng, or dPgF values are published.   ║
@@ -150,7 +150,8 @@ const LENS_DATA = {
 
   focus: {
     closeFocusM: 1.0,
-    description: "NO_INTERNAL_RECONSTRUCTION: patent gives infinity only; 1.0 m close-focus metadata is not modeled.",
+    description:
+      "Infinity focus only. The patent gives one prescription and no close-focus data. The Bessa II's 1.0 m focusing-scale endpoint is product information; focus travel is not modeled.",
   },
 
   aperture: { nominalFNumber: 3.5, fStops: [3.5, 4, 5.6, 8, 11, 16] },

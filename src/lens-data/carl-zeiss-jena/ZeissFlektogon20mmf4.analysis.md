@@ -206,9 +206,9 @@ GB 978,797 Example 1 publishes one fixed prescription and no focus-spacing table
 The production catalog gives a minimum focusing distance of 0.16 m for the Flektogon 4/20, but that single external
 observable does not determine which optical group moves or how far.
 
-The data therefore uses **NO_INTERNAL_RECONSTRUCTION**. `closeFocusM: 0.16` is retained as product metadata, while `var`
-is empty and no unit-focus, inner-focus, or floating-group motion is invented. All computed optical quantities in this
-analysis refer to the published fixed prescription state.
+The model therefore shows the lens at infinity only. The 0.16 m close-focus figure is kept as product information, while
+no spacing changes with focus and no unit-focus, inner-focus, or floating-group movement is modeled. All computed
+optical quantities in this analysis refer to the published fixed prescription state.
 
 ## Conditional Expressions
 

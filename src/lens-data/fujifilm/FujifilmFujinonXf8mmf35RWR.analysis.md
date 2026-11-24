@@ -140,7 +140,7 @@ L25 supplies the Example-7 value for patent condition (10), approximately `0.027
 
 ## Glass Identification and Selection
 
-The patent publishes `nd`, `νd`, `θgF`, and its own abnormal-dispersion value for each optical material but does not name glass suppliers. The final data consequently stores class/code descriptions rather than asserting proprietary melt identities. The dossier glass review compared the coordinates against authoritative OHARA, HOYA, SCHOTT, HIKARI/Nikon, CDGM, and SUMITA catalogs; selected candidate rows are catalog comparisons only.
+The patent publishes `nd`, `νd`, `θgF`, and its own abnormal-dispersion value for each optical material but does not name glass suppliers. The final data consequently stores class/code descriptions rather than asserting proprietary melt identities. The glass review for this analysis compared the coordinates against authoritative OHARA, HOYA, SCHOTT, HIKARI/Nikon, CDGM, and SUMITA catalogs; selected candidate rows are catalog comparisons only.
 
 | Implemented class/code label | Elements | `nd` | `νd` | `dPgF` | Recorded catalog comparison | Status |
 |---|---|---:|---:|---:|---|---|
@@ -154,7 +154,7 @@ The patent publishes `nd`, `νd`, `θgF`, and its own abnormal-dispersion value 
 | 457903 fluorophosphate/ED class | L22 | 1.45650 | 90.27 | +0.04303414 | CDGM H-FK71 | near-exact spectral match; supplier unconfirmed |
 | 497816 fluorophosphate/ED class | L25 | 1.49700 | 81.54 | +0.03085028 | OHARA S-FPL51 | exact spectral match; supplier unconfirmed |
 
-The `dPgF` values above are LensVisualizer's Schott-normal-line deviation, not Fujifilm's printed `ΔθgF`. Fujifilm defines `ΔθgF = θgF + 0.001618νd - 0.6415`, whereas the current LensVisualizer field is computed as `dPgF = θgF - (0.6438 - 0.001682νd)`. The raw patent values are preserved in the dossier; the schema field uses the Schott convention so the two definitions are not conflated.
+The `dPgF` values above are LensVisualizer's Schott-normal-line deviation, not Fujifilm's printed `ΔθgF`. Fujifilm defines `ΔθgF = θgF + 0.001618νd - 0.6415`, whereas the current LensVisualizer field is computed as `dPgF = θgF - (0.6438 - 0.001682νd)`. The raw patent values are kept with the sources used here; the model's stored value uses the Schott convention so the two definitions are not conflated.
 
 All twelve elements now resolve to coefficient-backed catalog curves, including the newly cataloged CDGM H-TF5 proxy for L17. Catalog-derived `nC/nF/ng` overrides were removed from L13, L14, L21, L22, and L25 so the runtime can use the compatible curve and retain each patent-derived `dPgF` at the g-line. These are spectral proxies, not identified production suppliers.
 
@@ -164,7 +164,7 @@ Example 7 uses single-element inner focusing. Paragraph ¶0100 and Figure 20 sho
 
 The patent publishes only the infinity prescription. It does not provide a close-focus L15 displacement, close-focus adjacent air gaps, object distance for the numerical close state, or an intermediate focus law. The production 0.18 m minimum focus distance is a manufacturer specification and does not uniquely solve those internal spacings.
 
-The LensVisualizer focus status is therefore `NO_INTERNAL_RECONSTRUCTION`. The data file contains no `var` endpoints and renders the published infinity prescription for all internal geometry. `closeFocusM = 0.18` is retained only as product metadata; it is not used to invent an optical state.
+The model therefore shows the lens at infinity only. No spacing changes with focus, and the model renders the published infinity prescription for all internal geometry. The 0.18 m close-focus figure is recorded only as product information; it is not used to work out any close-focus optical state.
 
 | State | Source status | Internal prescription in the model |
 |---|---|---|
@@ -198,7 +198,7 @@ No manufacturing process for the aspheres is established by the patent record us
 
 The strongest source-grounded chromatic feature is the rear group's use of two positive low-dispersion elements with positive abnormal-partial-dispersion values: L22 and L25. Fujifilm's patent explicitly defines conditions (9) and (10) around such rear positive elements and states that the ranges make correction of secondary chromatic spectrum easier (¶0050–¶0051).
 
-For Example 7, the patent-condition values are approximately `0.03957` for L22 and `0.02791` for L25. The final LensVisualizer schema additionally stores Schott-normal-line `dPgF` values of `+0.04303414` and `+0.03085028`, respectively. Those two conventions must not be substituted for one another.
+For Example 7, the patent-condition values are approximately `0.03957` for L22 and `0.02791` for L25. The final model additionally stores Schott-normal-line `dPgF` values of `+0.04303414` and `+0.03085028`, respectively. Those two conventions must not be substituted for one another.
 
 L22 is cemented to the high-index negative L21, and L25 is cemented to the high-index negative L24. This pairing gives each low-dispersion positive element a local negative partner, but the analysis does not infer a complete achromatization balance from `nd`, `νd`, and power signs alone. The full lens does not have complete explicit line indices for every element, and no apochromatic performance claim is made.
 
@@ -257,7 +257,7 @@ The prescription, all modeled rims, the stop calibration, and the physical PP ch
 
 ## Sources and References
 
-1. **Japan Patent Office.** JP 2023-001878 A, *撮像レンズ及び撮像装置*, published 2023-01-06. Example 7: ¶0100–¶0106; Tables 19–22; Figure 20 on patent p. 38. General conventions and design discussion: ¶0029–¶0030, ¶0035–¶0068. Source file in dossier: `JP2023001878A.pdf`.
+1. **Japan Patent Office.** JP 2023-001878 A, *撮像レンズ及び撮像装置*, published 2023-01-06. Example 7: ¶0100–¶0106; Tables 19–22; Figure 20 on patent p. 38. General conventions and design discussion: ¶0029–¶0030, ¶0035–¶0068. Source file consulted: `JP2023001878A.pdf`.
 2. **FUJIFILM.** “XF8mmF3.5 R WR Specifications.” https://www.fujifilm-x.com/en-us/products/lenses/xf8mmf35-r-wr/specifications/
 3. **FUJIFILM Corporation.** “Fujifilm Launches FUJINON Lens XF8mmF3.5 R WR,” 2023-05-24. https://www.fujifilm.com/be/en/news/Fujifilm_Launches_FUJINON_LensXF8mmF3.5_R_WR
 4. **OHARA.** *Optical Glass Pocket Catalog*, 2023-05, used for the recorded S-PHM53 and S-FPL51 coordinate/spectral comparisons. https://oharacorp.com/wp-content/uploads/2023/06/ohara-pocket-catalog-2023-05.pdf

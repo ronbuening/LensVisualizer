@@ -35,7 +35,7 @@ const LENS_DATA = {
   key: "canon-rfs-18-45mm-f45-63-is-stm",
   maker: "Canon",
   name: "CANON RF-S 18-45mm f/4.5-6.3 IS STM",
-  subtitle: "JP 2021-86024 A — Numerical Example 2; strong production correlation, unscaled",
+  subtitle: "JP 2021-86024 A — Numerical Example 2; strong production match at patent scale",
 
   catalog: {
     lensMounts: ["canon-rf"],
@@ -215,7 +215,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.2,
     description:
-      "NO_INTERNAL_RECONSTRUCTION: JP 2021-86024 A Example 2 publishes only infinity-focus zoom spacings and states that B3 moves image-side toward close focus. Canon's 0.20 m AF MFD applies at 18 mm and is retained as product metadata; no finite-focus internal spacing is modeled.",
+      "Infinity focus only. JP 2021-86024 A Example 2 states that B3 moves toward the image for close focus but publishes only infinity-focus zoom spacings, so focus travel is not modeled; zoom movement is. Canon's 0.20 m autofocus minimum focus distance, at 18 mm, is product information.",
   },
 
   /* (moved from var) ── Published infinity-focus zoom spacings; no finite-focus reconstruction ── */

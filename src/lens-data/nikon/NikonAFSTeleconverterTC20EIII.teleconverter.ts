@@ -32,7 +32,7 @@ const TELECONVERTER_DATA = {
   key: "nikon-af-s-tc-20e-iii",
   maker: "Nikon",
   name: "NIKON AF-S TELECONVERTER TC-20E III",
-  subtitle: "JP 2010-191211 A, Example 2 — production correlation",
+  subtitle: "JP 2010-191211 A, Example 2 — production match",
 
   catalog: {
     lensMounts: ["nikon-f"],

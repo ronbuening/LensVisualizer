@@ -90,9 +90,9 @@ No `nC`, `nF`, `ng`, or `dPgF` values are authored. Consequently, the analysis d
 
 ## Focus Mechanism
 
-The patent example contains only one optical prescription and gives no focus-state spacing table, moving-group identity, or mechanical focusing law. The implemented focus status is therefore **NO_INTERNAL_RECONSTRUCTION**: `var` is empty and the model represents the static infinity prescription only.
+The patent example contains only one optical prescription and gives no focus-state spacing table, moving-group identity, or mechanical focusing law. The model therefore shows the static infinity prescription only; no spacing changes with focus and no group moves.
 
-The 1958 VEB Carl Zeiss JENA brochure lists the 60 × 60 Biometar 2.8/120 as focusing from infinity to 1.3 m. That 1.3 m value is retained as product metadata (`closeFocusM`) but is not converted into an invented internal lens motion. The available manufacturer document does not provide enough information to state whether the production lens achieved close focus by unit extension or by any specific internal mechanism, so no such mechanism is asserted here.
+The 1958 VEB Carl Zeiss JENA brochure lists the 60 × 60 Biometar 2.8/120 as focusing from infinity to 1.3 m. The model records that 1.3 m value as product information but does not use it to work out any close-focus movement. The available manufacturer document does not provide enough information to state whether the production lens achieved close focus by unit extension or by any specific internal mechanism, so no such mechanism is asserted here.
 
 ## Conditional Expressions
 

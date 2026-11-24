@@ -49,7 +49,7 @@ const LENS_DATA = {
   key: "tokina-at-x-70-200mm-f4-pro-fx-vcm-s",
   maker: "Tokina",
   name: "TOKINA AT-X 70-200mm f/4 PRO FX VCM-S",
-  subtitle: "JP 5857306 B2, Example 1 — qualified production correlation",
+  subtitle: "JP 5857306 B2, Example 1 — tentative production match",
 
   catalog: {
     lensMounts: ["nikon-f"],

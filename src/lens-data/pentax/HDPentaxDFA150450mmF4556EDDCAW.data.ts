@@ -48,7 +48,7 @@ const LENS_DATA = {
   key: "hd-pentax-d-fa-150-450-f45-56-ed-dc-aw",
   maker: "Pentax",
   name: "PENTAX HD D FA 150-450mm f/4.5-5.6 ED DC AW",
-  subtitle: "US 2016/0327774 A1 Numerical Embodiment 1 — production correlation",
+  subtitle: "US 2016/0327774 A1 Numerical Embodiment 1 — production match",
 
   catalog: {
     lensMounts: ["pentax-k"],

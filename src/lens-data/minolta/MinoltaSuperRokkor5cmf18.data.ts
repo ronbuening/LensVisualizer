@@ -41,7 +41,7 @@ const LENS_DATA = {
   key: "minolta-super-rokkor-5cm-f18",
   maker: "Minolta",
   name: "MINOLTA SUPER ROKKOR 5cm f/1.8",
-  subtitle: "JP S38-11587 B, sole example — probable correlation with the 1958 Super Rokkor 5cm f/1.8",
+  subtitle: "JP S38-11587 B, sole example — probable match with the 1958 Super Rokkor 5cm f/1.8",
   visible: true,
   catalog: {
     lensMounts: ["leica-ltm"],

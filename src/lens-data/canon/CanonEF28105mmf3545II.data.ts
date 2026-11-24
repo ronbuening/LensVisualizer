@@ -29,7 +29,7 @@ const LENS_DATA = {
   key: "canon-ef-28-105mm-f35-45-ii-usm",
   maker: "Canon",
   name: "CANON EF 28-105mm f/3.5-4.5 II USM",
-  subtitle: "JP 2002-365547 A — Numerical Example 1 (correlated patent prescription)",
+  subtitle: "JP 2002-365547 A — Numerical Example 1 (patent prescription matched to the production lens)",
 
   catalog: {
     lensMounts: ["canon-ef"],

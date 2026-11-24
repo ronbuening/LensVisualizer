@@ -120,9 +120,9 @@ The patent supplies one optical prescription and no finite-focus spacing table o
 Orestor material lists a closest focusing distance of `1.50 m`, but it does not describe whether focusing is pure unit
 extension or includes any internal optical movement.
 
-The implemented model therefore has `NO_INTERNAL_RECONSTRUCTION`. The `1.50 m` value is production metadata only; no
-`var` spacing table is authored, and no finite-focus optical state, focus travel, breathing value, or close-focus
-magnification is claimed from the patent.
+The model therefore shows the lens at infinity only and moves no group. The 1.50 m close-focus figure is product
+information only; no spacing changes with focus, and no close-focus optical state, focus travel, breathing value, or
+close-focus magnification is claimed from the patent.
 
 ## Patent Conditions and Model Verification
 

@@ -327,25 +327,25 @@ lens.
 
 ## Focus Mechanism
 
-The focus model is intentionally limited to the published infinity-focus states. Its status is
-`NO_INTERNAL_RECONSTRUCTION`.
+The model is intentionally limited to the published infinity-focus states: it shows the lens at infinity focus only,
+and focus travel is not modeled.
 
 Paragraph ¶0032 states that focusing from infinity toward shorter object distances is performed by moving L4 toward the
 object side and L6 toward the image side. The two groups move on different loci. Their neighboring gap sums are
 conserved at each zoom position, which is consistent with translating internal units within fixed surrounding optical
 stations.
 
-The patent does not publish finite-focus spacing rows, cam ratios, close-focus magnifications for the numerical example,
+The patent does not publish close-focus spacing rows, cam ratios, close-focus magnifications for the numerical example,
 or another constraint sufficient to determine both group translations at all three zoom positions. Consequently, every
-close-focus member of the data-file `var` pairs duplicates its infinity value. The focus slider must not be interpreted
-as a reconstructed close-focus optical prescription.
+spacing that changes with focus keeps its infinity value at both ends of the focus control. The focus slider must not be
+interpreted as a modeled close-focus optical prescription.
 
 Canon's production specification gives minimum focusing distances of 0.9 m at 100 mm, 1.0 m at 300 mm, and 1.2 m at
-500 mm, with maximum magnification reaching 0.33× at 500 mm. The data file uses `closeFocusM: 0.9` only as required
-product metadata. Those commercial endpoints do not uniquely solve the two independent L4/L6 translations and are not
-used to manufacture a finite-focus patent state.
+500 mm, with maximum magnification reaching 0.33× at 500 mm. The model records the 0.9 m figure only as product
+information. Those commercial endpoints do not uniquely solve the two independent L4/L6 translations and are not used to
+build a close-focus patent state.
 
-Canon specifies Dual Nano USM as the production AF actuator. That is product mechanical metadata, not a prescription
+Canon specifies Dual Nano USM as the production AF actuator. That is mechanical product information, not a prescription
 parameter and not evidence that the patent discloses the production focus-drive implementation.
 
 ## Chromatic Correction Strategy

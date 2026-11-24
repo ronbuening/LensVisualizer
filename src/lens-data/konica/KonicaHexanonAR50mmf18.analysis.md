@@ -101,9 +101,9 @@ No element in the selected example carries patent-published `nC`, `nF`, `ng`, or
 
 ## Focus Mechanism
 
-The selected patent example publishes only one optical state. It provides no finite-focus surface-spacing table, object-distance prescription, magnification row, or internal-group movement law. The data file consequently uses **NO_INTERNAL_RECONSTRUCTION**: `var` is empty and no internal focus trajectory is invented.
+The selected patent example publishes only one optical state. It provides no finite-focus surface-spacing table, object-distance prescription, magnification row, or internal-group movement law. The model consequently shows the lens **at infinity only**: no spacing changes with focus and no focus movement is modeled.
 
-Konica's production lens table gives a minimum focusing distance of **0.55 m from the film plane**.[1] That value is retained as product metadata only. It does not define an object distance from S1 or a principal plane, and it is not used to manufacture a close-focus optical state that the patent does not supply.
+Konica's production lens table gives a minimum focusing distance of **0.55 m from the film plane**.[1] The model records that value as product information only. It does not define an object distance from S1 or a principal plane, and it is not used to manufacture a close-focus optical state that the patent does not supply.
 
 ## Conditional Expressions
 

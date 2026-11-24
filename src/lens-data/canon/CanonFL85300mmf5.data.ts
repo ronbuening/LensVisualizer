@@ -21,7 +21,7 @@ const LENS_DATA = {
   key: "canon-fl-85-300mm-f5",
   maker: "Canon",
   name: "CANON FL 85-300mm f/5",
-  subtitle: "US 3,377,119 A, detailed description — probable production correlation",
+  subtitle: "US 3,377,119 A, detailed description — probable production match",
   visible: true,
   catalog: {
     lensMounts: ["canon-fl"],

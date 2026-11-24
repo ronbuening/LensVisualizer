@@ -189,9 +189,9 @@ No `nC`, `nF`, `ng`, or `dPgF` fields are authored. Consequently, the analysis d
 
 ## Focus Mechanism
 
-The focus status is **NO_INTERNAL_RECONSTRUCTION**. Example 2 publishes zoom spacings at infinity but does not provide a focus-group designation, an object-distance spacing table, a close-focus prescription, or a mechanism constraint sufficient to solve internal focus travel.[1]
+The model shows infinity focus only; focus travel is not modeled. Example 2 publishes zoom spacings at infinity but does not provide a focus-group designation, an object-distance spacing table, a close-focus prescription, or a mechanism constraint sufficient to solve internal focus travel.[1]
 
-Tamron publishes a 1.5 m minimum object distance and a 1:4 maximum magnification ratio at 300 mm for the production A005.[2] The data retain `closeFocusM: 1.5` because the schema requires that production metadata, but the value is not used to generate a close-focus optical state. Every authored zoom-variable pair has identical infinity and close entries.
+Tamron publishes a 1.5 m minimum object distance and a 1:4 maximum magnification ratio at 300 mm for the production A005.[2] The model records the 1.5 m figure as product information, but the value is not used to generate a close-focus optical state. Every zoom-dependent spacing keeps its infinity value at both ends of the focus control.
 
 Accordingly, no moving focus group, focus travel, close-focus EFL, breathing value, or close-focus aberration result is asserted. Those quantities would require mechanism-constraining primary evidence beyond the available patent example and production MOD specification.
 

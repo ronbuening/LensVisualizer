@@ -48,7 +48,7 @@ const LENS_DATA = {
   key: "konica-uc-hexanon-ar-28mm-f1-8",
   maker: "Konica",
   name: "KONICA UC HEXANON AR 28mm f/1.8",
-  subtitle: "JP 1976-026535 Example 1 — patent f/2.0 design correlated to the production 28mm f/1.8",
+  subtitle: "JP 1976-026535 Example 1 — patent f/2.0 design matched to the production 28mm f/1.8",
 
   catalog: {
     lensMounts: ["konica-ar"],

@@ -92,9 +92,9 @@ Consequently, the lens should not be described as apochromatic, as using anomalo
 
 ## Focus Mechanism
 
-FR 1,045,076 publishes a static prescription and gives no internal focusing table, variable spacing, finite-object state, magnification state, or minimum focusing distance for this embodiment. The data file therefore has no focus `var` entries and is explicitly classified `NO_INTERNAL_RECONSTRUCTION`.
+FR 1,045,076 publishes a static prescription and gives no internal focusing table, spacing that changes with focus, close-focus state, magnification state, or minimum focusing distance for this embodiment. The model therefore shows the lens at infinity only, and no spacing changes with focus.
 
-The required `closeFocusM` value of 1.0 m is only a finite schema/UI placeholder. It does not represent a published or reconstructed minimum focus distance and does not create a second optical state. For the documented board/shutter-mounted 6×9 application, camera-side standard or bellows displacement is outside the internal optical prescription represented here.
+The 1.0 m value stored for the close end of the focus control is only a placeholder. It does not represent a published or modeled minimum focus distance and does not create a second optical state. For the documented board/shutter-mounted 6×9 application, camera-side standard or bellows displacement is outside the internal optical prescription represented here.
 
 No focusing motor, helical travel, or internal moving group is asserted because none is documented by the selected patent or the cited production sources.
 

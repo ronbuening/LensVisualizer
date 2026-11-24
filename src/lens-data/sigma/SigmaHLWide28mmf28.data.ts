@@ -24,7 +24,7 @@ const LENS_DATA = {
   key: "sigma-hl-wide-28mm-f28",
   maker: "Sigma",
   name: "SIGMA H.L. WIDE 28mm f/2.8",
-  subtitle: "JP S60-181715 A, Example 1 — design-goal and construction correlation",
+  subtitle: "JP S60-181715 A, Example 1 — production match by design goal and construction",
   visible: true,
   layout: {
     yScFill: 0.35,

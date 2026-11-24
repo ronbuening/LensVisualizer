@@ -36,7 +36,7 @@ const LENS_DATA = {
   key: "nikon-nikkor-600mm-f56-ed",
   maker: "Nikon",
   name: "NIKON NIKKOR 600mm f/5.6 ED",
-  subtitle: "US 3,774,991 Example 2 — Shimizu / Nippon Kogaku K.K.; strong production correlation",
+  subtitle: "US 3,774,991 Example 2 — Shimizu / Nippon Kogaku K.K.; strong production match",
 
   catalog: {
     lensMounts: ["nikon-f"],

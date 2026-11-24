@@ -120,11 +120,11 @@ No nC, nF, ng, partial-dispersion deviation or supplier Sellmeier curve is assig
 
 ## Focus Mechanism
 
-The focus disposition is NO_INTERNAL_RECONSTRUCTION. Table 2 supplies one design prescription and no internal-motion law, finite-conjugate spacing table or measured focus travel. Every authored spacing is therefore fixed at the published infinity configuration.
+Table 2 supplies one design prescription and no description of how the lens moves to focus, no close-focus spacing table and no measured focus travel. Every spacing in the model therefore stays at the published infinity value, and no group moves.
 
 The complete patent, printed columns 7–8, expressly places the actual useful focal plane behind the paraxial plane and explains that zonal-to-marginal rays form the image because the center is obscured. That paragraph is missing from the supplied ten-page PDF but was visually checked in the separately retrieved eleven-page patent scan. No numerical focus offset is published. The implemented image plane is therefore a paraxial reference, not a reconstruction of the patent's actual best-focus plane; no arbitrary axial shift is introduced.
 
-The manufacturer's 2.5 m minimum focus distance is retained only as product metadata. It is not evidence for which lens groups move, their travel, or the conjugate accuracy of this model at that distance. No reconstructed close-focus state is presented.
+The manufacturer's 2.5 m minimum focus distance is recorded only as product information. It is not evidence for which lens groups move, how far they travel, or how accurate this model would be at that distance. No modeled close-focus state is presented.
 
 All source optical surfaces are spherical. There is no asphere equation, conic conversion, diffractive phase or aspheric departure claim in this embodiment.
 

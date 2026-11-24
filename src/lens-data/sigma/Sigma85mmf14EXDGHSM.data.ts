@@ -55,7 +55,7 @@ const LENS_DATA = {
   key: "sigma-85mm-f14-ex-dg-hsm",
   maker: "Sigma",
   name: "SIGMA 85mm f/1.4 EX DG HSM",
-  subtitle: "JP 2011-170128 A, Example 5 — construction-based production correlation",
+  subtitle: "JP 2011-170128 A, Example 5 — production match by construction",
 
   catalog: {
     lensMounts: ["sigma-sa", "canon-ef", "nikon-f", "pentax-k", "sony-a"],

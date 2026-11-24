@@ -135,9 +135,10 @@ The selected patent example is a single fixed prescription. It contains no focus
 and no variable spacing law. The production brochure gives a 0.45 m minimum focus distance ([3]), but that boundary
 observable does not uniquely determine an internal optical movement.
 
-The data therefore use `NO_INTERNAL_RECONSTRUCTION`: `var` is empty and no close-focus prescription is invented. The
-0.45 m value is retained only as marketed product metadata. Because the available sources do not establish which optical
-unit moves during focusing, this analysis does not assign the production lens to unit, inner, rear, or floating focus.
+The model therefore shows the lens at infinity only: no spacing changes with focus and no close-focus prescription is
+modeled. The 0.45 m figure is recorded only as product information. Because the available sources do not establish which
+optical unit moves during focusing, this analysis does not assign the production lens to unit, inner, rear, or floating
+focus.
 
 ## Air Lens and Patent Power Balance
 
@@ -154,7 +155,7 @@ manufacturer specification.
 ## Conditional Expressions
 
 The patent gives five base conditions and additional recommended ranges for compactness, distortion, and glass selection
-([1], PDF pp. 9–10). The dossier verifier evaluates those expressions directly from the Example 5 transcription. Uniform
+([1], PDF pp. 9–10). The verifier evaluates those expressions directly from the Example 5 transcription. Uniform
 scaling does not change the dimensionless results.
 
 | Condition | Normalized requirement | Example 5 result |
@@ -205,14 +206,14 @@ chief ray at the patent's ±23° half-field. The model does not claim that the c
 23° field edge.
 
 Real LensVisualizer project typechecking, `buildLens()` / `validateLensData()`, runtime glass resolution, Prettier, and
-production render diagnostics were not available in this dossier runtime and remain integration-scoped checks. The
+production render diagnostics were not available in this standalone check and remain integration-scoped checks. The
 portable analysis therefore does not describe those repository-only checks as having passed.
 
 ## Sources
 
 1. Yoshinobu Kudo, **US Patent 4,444,473, “Gauss Type Lens System,”** assigned to Minolta Camera Kabushiki Kaisha,
    granted April 24, 1984. Example 5: TABLE 5 on PDF pp. 11–12; FIG. 9 on PDF p. 6; design conditions and explanatory
-   text on PDF pp. 8–10. Local dossier copy: [`US4444473.pdf`](./US4444473.pdf).
+   text on PDF pp. 8–10. Local copy: [`US4444473.pdf`](./US4444473.pdf).
 2. Minolta, **“Minolta Lenses — 512817 — 12.81,”** manufacturer-origin brochure scan.
    <https://www.massimoscottinelweb.com/Immagini%20ridotte%20per%20SITO%20web/Minolta%20Cataloghi%20e%20Pieghevoli%20in%20pdf/Minolta%20Lenses%20-%20512817%20-%2012.81.pdf>
 3. Minolta, **“Obiettivi Intercambiabili Minolta — 532822 — 1.84,”** manufacturer-origin lens brochure scan.

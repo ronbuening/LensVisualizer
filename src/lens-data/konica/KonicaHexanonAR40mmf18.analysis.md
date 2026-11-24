@@ -178,10 +178,9 @@ finite-object spacing table, group travel, focus cam relation, back-focus change
 manual gives a closest taking distance of 0.45 m, but that mechanical/product specification does not determine how the
 optical groups move.
 
-The data file therefore uses `NO_INTERNAL_RECONSTRUCTION`: `var` and `varLabels` are empty, and no unit-focus,
-inner-focus, rear-focus, or floating mechanism is invented. The 0.45 m value is retained only as the marketed closest-
-focus distance. Any later finite-focus optical state would require an independent source that constrains the actual
-motion.
+The model therefore shows the lens at infinity only. No spacing changes with focus, and no unit-focus, inner-focus,
+rear-focus, or floating mechanism is modeled. The 0.45 m figure is recorded only as the marketed closest-focus
+distance. Any later close-focus optical state would require an independent source that constrains the actual motion.
 
 ## Conditional Expressions
 

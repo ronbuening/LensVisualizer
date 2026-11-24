@@ -138,13 +138,13 @@ support an APO or anomalous-partial-dispersion claim.
 
 ## Focus Mechanism
 
-The selected patent example publishes only the nominal/infinity prescription. It gives no finite-object spacing table,
-focus-group motion, floating-element law, or magnification state. The model therefore uses
-`NO_INTERNAL_RECONSTRUCTION`: `var` is empty and no optical spacing changes with the focus control.
+The selected patent example publishes only the nominal/infinity prescription. It gives no close-focus spacing table,
+focus-group motion, floating-element law, or magnification state. The model therefore shows the lens at infinity only:
+no spacing changes with the focus control and no group moves.
 
-The `0.3 m` minimum-focus value is production metadata from Minolta product literature for the MD 28 mm f/2.8 family and
+The 0.3 m minimum-focus value is product information from Minolta product literature for the MD 28 mm f/2.8 family and
 secondary reporting of the later variant. It is not used to infer an internal focusing mechanism or close-focus optical
-prescription. Any finite-distance performance prediction would require additional source constraints not present in this
+prescription. Any close-focus performance prediction would require additional source constraints not present in this
 embodiment.
 
 ## Conditional Expressions
@@ -165,7 +165,7 @@ The detailed description and claims use the following eight conditions. Values b
 
 The patent is internally inconsistent about three lower bounds. The Summary of the Invention prints `N1 > 1.68`,
 `0.67 < d5/(d6+d7+d8+d9)`, and `0.13 < d5/f`, while the abstract, detailed preferred-embodiment discussion, and claims
-use `1.69`, `0.72`, and `0.14`. Both versions are preserved in the dossier; the repeated detailed/claim values govern the
+use `1.69`, `0.72`, and `0.14`. Both versions are recorded here; the repeated detailed/claim values govern the
 main check. Example 1 satisfies both sets, so this source discrepancy does not require a prescription correction.
 (US 4,493,536, PDF pp. 1, 6–9.)
 

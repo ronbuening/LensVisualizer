@@ -39,7 +39,7 @@ const LENS_DATA = {
   key: "laowa-argus-45mm-f095-ff",
   maker: "Laowa",
   name: "LAOWA ARGUS 45mm f/0.95 FF",
-  subtitle: "CN 112285890 B, Example 2 — construction-based production correlation",
+  subtitle: "CN 112285890 B, Example 2 — production match by construction",
 
   catalog: {
     lensMounts: ["sony-fe", "nikon-z", "canon-rf"],
