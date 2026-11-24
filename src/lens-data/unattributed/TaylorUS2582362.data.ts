@@ -46,6 +46,7 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1",
+      diagramLabel: "1",
       label: "Element 1",
       type: "Biconvex Positive",
       role: "Positive front element that begins convergence toward the image",
@@ -60,6 +61,7 @@ const LENS_DATA = {
     {
       id: 2,
       name: "L2",
+      diagramLabel: "2",
       label: "Element 2",
       type: "Biconcave Negative",
       role: "Dispersive negative middle element that balances the positive crowns",
@@ -74,6 +76,7 @@ const LENS_DATA = {
     {
       id: 3,
       name: "L3",
+      diagramLabel: "3",
       label: "Element 3",
       type: "Biconvex Positive",
       role: "Positive rear element that completes image formation",

@@ -20,7 +20,7 @@ No production lens or camera is documented for this prescription. Northrop Aircr
 
 ## Optical Architecture
 
-Three air-spaced singlets form three groups in a positive–negative–positive arrangement. The first and third lenses are biconvex collectors; the middle lens is a biconcave dispersive element. All six optical surfaces are spherical, and no elements are cemented.
+Three air-spaced singlets form three groups in a positive–negative–positive arrangement. The patent drawing labels them 1, 2 and 3 from front to rear. The first and third lenses are biconvex collectors, and the middle lens is a biconcave dispersive element. All six optical surfaces are spherical.
 
 The aperture stop lies between the first and second elements, as both the drawing and the numerical description specify. The patent attributes correction of spherical aberration, astigmatism, field curvature, coma, distortion and the sine condition to this arrangement (PDF p. 2). Its statements describe the design's intended correction rather than measured performance of a production lens.
 
@@ -48,11 +48,11 @@ The rear crown completes image formation, with most of its power at the more str
 
 The patent explicitly defines ND as the sodium D line at 5893 Å, NF as the hydrogen F line at 4861 Å, and NC as the hydrogen C line at 6563 Å. Each element retains the printed D-line index, Abbe number, and C/F indices. The D-line reference applies throughout, without substituting helium d.
 
-L1's BSC-2 remains unmatched because no catalog row is within index 0.002 and Abbe number 0.25 at sodium D. L2's DF-2 uses F4 (Sumita) as a spectral proxy, with catalog-minus-printed differences ΔnD = −0.00056 and ΔνD = +0.01 at sodium D. The printed index, Abbe number and C/F indices are kept; beyond those wavelengths, the proxy supplies the dispersion shape of a real glass instead of an Abbe-number estimate.
+L1's BSC-2 has no catalog row within the site's spectral-proxy tolerance of 0.002 in index and 0.25 in Abbe number at sodium D. The DF-2 label for L2 identifies F4 (Sumita) as a spectral proxy, with catalog-minus-printed differences ΔnD = −0.00056 and ΔνD = +0.01 at sodium D.
 
-L3's LBC-2 matches S-BAL11 (Ohara) within the printed precision. At sodium D, the catalog row gives approximately nD = 1.57241 and νD = 57.73, differing from the printed values by −0.00009 and −0.07. Neither catalog curve identifies the historical supplier or melt.
+L3's LBC-2 matches S-BAL11 (Ohara) within the site's exact-match tolerance. At sodium D, the catalog row gives approximately nD = 1.57241 and νD = 57.73, differing from the printed values by −0.00009 and −0.07. The historical suppliers and melts are unknown.
 
-The patent supplies no g-line index or anomalous-dispersion designation. Its C/F indices support comparisons at those wavelengths, but do not establish the historical glass's complete dispersion curve or apochromatic performance.
+The model traces all three glasses using the printed C/D/F indices. It estimates each g-line index from the C–F span and interpolates between these lines. The patent supplies no g-line indices or anomalous-dispersion designations.
 
 Using those printed indices, the calculated C-line EFL/BFD are 179.69/143.83 mm, and the F-line values are 179.43/143.39 mm. These are paraxial wavelength comparisons, not measured image-quality results.
 
