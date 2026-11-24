@@ -135,7 +135,7 @@ const LENS_DATA = {
       label: "3",
       R: 38.1,
       d: 9.52,
-      sd: 23.5,
+      sd: 23,
       medium: 2,
     },
     {
@@ -191,7 +191,7 @@ const LENS_DATA = {
   ],
   focus: {
     closeFocusM: 1e15,
-    description: "Infinity focus only; the patent gives no close-focus data.",
+    description: "Fixed spacings at infinity. The patent gives no focusing mechanism.",
   },
   aperture: {
     nominalFNumber: 2,

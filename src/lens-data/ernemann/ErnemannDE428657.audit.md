@@ -58,9 +58,16 @@ No production lens is documented for this prescription. Figure 2 is an Ernostar-
 
 The resulting first-order values are EFL 100.03 mm, paraxial f/2.00, BFD 56.18 mm, stop radius 15.385 mm and illustrative half-field 5.0°.
 
+- 2026-11-24 diagram review:
+  - Compared Figure 2 on page 2 with the infinity cross-section. The R1–R10 vertices span about 686 pixels for 63.82 mm, and R1–R3 spans 97 pixels for 9.05 mm. The R1 and R10 arcs support approximately 11 pixels/mm radially. The drawing places the R3 outer rim at about 22.9 mm and the L4 rim at about 23.3 mm. The model had shown both at 23.5 mm. R3 changes from 23.5 to 23.0 mm, restoring the small height step below L4. The other rim readings support the existing order and the shortened R4 and R6 curves. The straight edge joins approximate the drawn bevels.
+  - At R3 the nominal f/2 axial ray reaches 21.78 mm and the 5.0° chief ray reaches 3.94 mm. The chief ray reaches image height 8.75 mm. All surfaces and adjacent gaps clear. The cuts at R3, R4 and R6 have a combined full-pupil transmission loss of 0.0 percentage points across 0–5.0° relative to the earlier rims, with 93.4% transmission at 5.0°. There are no added lands. The calculated half-field remains 5.0°, the traced chief-ray limit 22.89°, and the paraxial f-number f/2.00. The iris remains the axial limit, about f/2.04 by exact tracing. The source gives no format for format-based coverage checks.
+  - Figure 2 and its table support the L1–L5 labels, the five spherical air-separated elements and the bracket across the split rear member. The five element details show the correct glass labels and signed focal lengths of +76.41, +221.10, −37.56, −129.75 and +46.57 mm. No cemented or special-dispersion positions are designated. The page shows the inferred STO in the R6–R7 gap. The title and specification chips describe the 100 mm f/2 projection objective.
+  - The model has one infinity state with fixed spacings. The focus text now states that the patent gives no focusing mechanism. Figure 2 gives the 19.05 mm central gap without a drawn or dimensioned iris.
+  - All five elements resolve to Sellmeier dispersion curves. K-SK7 and SF2 have the smallest sodium D Abbe-number differences among the rows within the site's spectral-proxy tolerance. The two examples give nD and ν only. Every element has an Abbe number, and there are no additional line indices, partial-dispersion values or aberration curves to compare. The front-page Ernemann-Werke A.-G. agrees with the catalog spelling Ernemann-Werke AG.
+
 ## Remaining Questions
 
-- Figure 2 supports the approximate rim proportions and shorter R4/R6 curves; exact manufactured clear apertures and corner profiles remain unknown.
+- Figure 2 establishes the relative rim heights and the shorter R4/R6 curves. Manufactured clear apertures and exact corner profiles remain unknown.
 - The historical iris position, diameter, blade geometry and minimum opening are not documented.
 - Finite film-to-screen distances, magnification, focus movement and close-focus behavior are not given.
 - Historical glass identities, suppliers, partial dispersion and measured spectral performance remain unresolved.

@@ -38,7 +38,7 @@ The front converging element is 8.57 mm thick, with radii +48.57 and −952.45 m
 
 nD = 1.6068, ν = 59.5. Glass: K-SK7 (Sumita), spectral proxy. Standalone focal length = +221.10 mm.
 
-This second converging element precedes the central diverging lens. Its thickness is 9.52 mm and its radii are +38.10 and +48.19 mm. Clear radii of 23.5 and 20.5 mm follow Figure 2 approximately, with the rear curve ending below the front rim; they do not establish a factory rim shape.
+This second converging element precedes the central diverging lens. Its thickness is 9.52 mm and its radii are +38.10 and +48.19 mm. Clear radii of 23.0 and 20.5 mm approximate Figure 2. The rear curve ends below the front rim, and the element is slightly shorter than L4.
 
 ### L3 / Element 3 — Biconcave Negative
 
@@ -62,7 +62,7 @@ The positive part of the rear component faces the film. It is 14.29 mm thick wit
 
 The table prints nD and ν, with D taken as sodium, 589.3 nm. L1, L2, L4 and L5 retain 1.6068 / 59.5 and use Sumita K-SK7 as a spectral proxy (ΔnD = +0.00040, ΔνD = −0.04). L3 retains 1.6477 / 33.9 and uses Schott SF2 as a spectral proxy (ΔnD = −0.00018, ΔνD = −0.06). Differences are catalog minus printed at the sodium D line.
 
-All five elements use catalog curves within index 0.002 and Abbe number 0.25 of the printed pair. The printed index and Abbe number are kept; the curves supply only the shape of dispersion for colour analysis instead of an Abbe-number estimate. Neither row is an exact match, and neither identifies the historical supplier or melt. The patent gives no individual C-, F- or g-line indices, partial dispersion or transmission; historical spectral performance remains unknown.
+All five elements meet the site's spectral-proxy tolerance of 0.002 in refractive index and 0.25 in Abbe number at the sodium D line. The printed index and Abbe number are kept; the curves supply only the shape of dispersion for colour analysis instead of an Abbe-number estimate. Neither row is an exact match, and neither identifies the historical supplier or melt. The patent gives no individual C-, F- or g-line indices, partial dispersion or transmission; historical spectral performance remains unknown.
 
 ## Focus Mechanism
 
@@ -74,7 +74,7 @@ No iris is drawn or dimensioned. The stop is placed halfway through the 19.05 mm
 
 The ±5.0° field is illustrative because the patent gives neither a numerical field angle nor a format. Its 5.0° chief ray reaches an image height of 8.75 mm and clears every rim. No catalog image circle is assigned from that chosen field.
 
-The clear radii follow Figure 2 approximately: 25.5 mm at R1/R2, 23.5/20.5 mm at R3/R4, 19.5/17.5 mm at R5/R6, 23.5 mm at R7/R8 and 24 mm at R9/R10. The shorter R4 and R6 curves preserve the drawn taper of L2 and L3. At f/2 and the illustrative 5.0° edge, their full-bundle extremes are 19.90 and 16.25 mm, leaving about 0.6 and 1.3 mm of rim clearance. Geometric transmission is about 93.4% at that edge; front-rim vignetting remains. This construction does not establish full-field illumination or the dimensions of a manufactured barrel. All element edges and adjacent clearances remain positive, and no glass crosses the stop plane.
+The clear radii follow Figure 2 approximately: 25.5 mm at R1/R2, 23.0/20.5 mm at R3/R4, 19.5/17.5 mm at R5/R6, 23.5 mm at R7/R8 and 24 mm at R9/R10. The shorter R4 and R6 curves preserve the drawn taper of L2 and L3. At f/2 and the illustrative 5.0° edge, their full-bundle extremes are 19.90 and 16.25 mm, leaving about 0.6 and 1.3 mm of rim clearance. Geometric transmission is about 93.4% at that edge; front-rim vignetting remains. This construction does not establish full-field illumination or the dimensions of a manufactured barrel. All element edges and adjacent clearances remain positive, and no glass crosses the stop plane.
 
 ## Model Scope and Limitations
 
