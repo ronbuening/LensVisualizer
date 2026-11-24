@@ -58,7 +58,7 @@ The table prints n′ and ν without identifying a spectral line. Helium d, 587.
 
 L3 matches Schott LF5 at the adopted d reference, with catalogue-minus-printed Δn = +0.00004 and Δν = +0.05. L4 matches Sumita LF3, with tabulated Δn = −0.00005 and Δν = 0.00; its dispersion curve gives Δν ≈ +0.03. These matches lie within the printed precision and do not establish the historical supplier or melt.
 
-L1, L2, L5, L6 and L7 retain the printed 1.6202/60.4 pair and use Hoya BACD16 as a spectral proxy. At the adopted d reference, its catalogue-minus-printed differences are Δn = +0.00021 and Δν = −0.06, within the proxy limits of 0.002 in index and 0.25 in Abbe number. The present-day row supplies only the dispersion-curve shape, allowing colour analysis to follow a real glass rather than an Abbe-number estimate. It does not identify Leitz's historical glass, supplier or melt. The patent's spectral line remains uncertain.
+L1, L2, L5, L6 and L7 retain the printed 1.6202/60.4 pair and use Hoya BACD16 as a spectral proxy. At the adopted d reference, its catalogue-minus-printed differences are Δn = +0.00021 and Δν = −0.06, within the site's spectral-proxy tolerance of 0.002 in index and 0.25 in Abbe number. The present-day row supplies the dispersion-curve shape. Leitz's historical glass, supplier and melt remain unknown, as does the patent's spectral line.
 
 No individual C-, F- or g-line indices or partial-dispersion values are printed. All seven elements use catalogue dispersion curves, with the five crowns using spectral proxies. These calculations do not establish the production lens's measured chromatic performance.
 
@@ -70,7 +70,7 @@ The model is focused at infinity. The patent gives no close-focus distance, move
 
 The patent depicts no iris and prints no stop diameter or axial station. The inferred stop divides A2 into 12.0 mm after R5 and 9.75 mm before R6, placing it 47.36 mm behind the front vertex. A midpoint stop would intersect the R5 rim sag; the adopted position leaves about 0.92 mm and 1.93 mm clearance to the adjacent glass boundaries.
 
-All clear semi-diameters are inferred. In surface order, excluding the stop, they are 36, 36, 32, 31, 21.4, 21.4, 27, 27, 28, 28, 29.7 and 29.7 mm. The square-cut rear elements follow the section drawing's approximate 28 mm and 29.7 mm radii. The front collector and cemented members retain the drawing's relative heights and tapered ends; its short air gaps and chamfers are schematic. The minimum glass edge thickness at the common clear radius is about 3.16 mm, and the central air space remains open. All rims clear the f/1.5 axial beam and the illustrative 10° chief ray.
+All clear semi-diameters are inferred. In surface order, excluding the stop, they are 36, 36, 31, 31, 21.4, 21.4, 27, 27, 28, 28, 29.7 and 29.7 mm. The square rims of L2, L6 and L7 follow the section drawing's approximate radii of 31 mm, 28 mm and 29.7 mm. The stop-facing ends of the cemented members taper inward. The model approximates the drawn chamfers with straight rim joins. The minimum glass edge thickness at the common clear radius is about 3.16 mm, and the central air space remains open. All rims clear the f/1.5 axial beam and the illustrative 10° chief ray.
 
 The calculated EFL is 99.994 mm, 0.006 mm below the printed F = 100 at the chosen scale. The unprinted image plane is the paraxial infinity back focus, 53.65 mm behind R12, giving a total front-vertex-to-image distance of 155.01 mm.
 
@@ -78,7 +78,7 @@ The paraxial iris radius is 19.687 mm at nominal f/1.5; exact axial acceptance a
 
 ## Field and Performance Limits
 
-The patent states no field angle or image format. The model's ±10° field is illustrative, and no image-circle diameter or camera format is assigned. At 10° the chief ray reaches the image plane at about 17.64 mm height and clears every rim. About 2–6% of the meridional beam width is clipped at R7/R8 and up to 11% at R10. Across the full pupil, wide-open geometric transmission is about 95.8% at 5°, 87.9% at 8.3° and 81.5% at 10°.
+The patent states no field angle or image format. The model's ±10° field is illustrative, and no image-circle diameter or camera format is assigned. At 10° the chief ray reaches the image plane at about 17.64 mm height and clears every rim. About 2–6% of the meridional beam width is clipped at R7/R8 and up to 11% at R10. Across the full pupil, wide-open geometric transmission is about 95.7% at 5°, 87.9% at 8.3° and 81.5% at 10°.
 
 The patent publishes no measured MTF or aberration plots. Calculated image quality at the paraxial plane describes this inferred stop and rim geometry. It does not establish the physical Xenon aperture, full-field illumination or production performance.
 
