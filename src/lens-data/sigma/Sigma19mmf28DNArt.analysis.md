@@ -11,19 +11,19 @@
 **Title:** 結像光学系 (Imaging optical system)\
 **Example details:** 数値実施例4, PDF pp. 14–15. Figure 16 shows the lens section at infinity, and Figures 17–20 show aberrations at infinity and at a 400 mm shooting distance.
 
-Sigma announced the 19mm F2.8 EX DN in January 2012 and announced the 19mm F2.8 DN | Art in January 2013. The Art version retained the optics. Sigma's construction drawings for the two versions show the same section. [Sigma's EX DN announcement](https://www.dpreview.com/articles/4688001151/sigmadigitalneo/), [Sigma's Art announcement](https://www.sigma-photo.fr/content/111-nouveautes-cp-sigma-19mm-f28-dn), [Sigma's EX DN drawing](https://www.sigma-global.com/lenses/19_28_specification_01_01.jpg), [Sigma's Art drawing](https://www.sigma-global.com/lenses/a_19_28_specification_01_01.jpg).
+Sigma announced the 19mm F2.8 EX DN in January 2012 and the 19mm F2.8 DN | Art in January 2013. The Art retained the optics. Both versions cover APS-C and were sold in Sony E and Micro Four Thirds mounts. [Sigma's EX DN announcement](https://press.sigmaphoto.com/corporate/01/sigma-corporation-of-america-announces-prime-lenses-for-mirrorless-interchangeable-lens-cameras-at-ces-2012/), [Sigma France's Art announcement](https://www.sigma-photo.fr/content/111-nouveautes-cp-sigma-19mm-f28-dn), [Sigma EX DN and construction](https://www.sigma-global.com/en/lenses/19_28/), [Sigma DN Art and construction](https://www.sigma-global.com/en/lenses/a_19_28/).
 
-1. **Construction.** Both drawings show eight elements in six groups, with three single elements ahead of the iris, a cemented pair and a singlet behind it, and a cemented rear pair. Examples 3 and 4 share this layout and place the cemented interfaces between elements 4 and 5 and between elements 7 and 8. Examples 1 and 2 have seven optical groups, and Example 5 cements elements 2 and 3 and separates the rear pair.
-2. **Aspheres and focus.** The drawings mark elements 1, 6 and 8 as aspherical, matching Examples 3 and 4. Sigma describes three glass-moulded aspherical elements and internal focus driven by a linear motor. The patent moves the doublet immediately behind the iris together with the following aspherical meniscus. Sigma's drawing shows the same two parts, and the announcement confirms internal focusing. The drawing alone gives no travel dimensions. [Sigma construction and specifications](https://www.sigma-global.com/en/lenses/a_19_28/), [Sigma France's 2013 Art announcement](https://www.sigma-photo.fr/content/111-nouveautes-cp-sigma-19mm-f28-dn).
-3. **Focal length and field.** Example 4 gives 18.91 mm, f/2.88 and a 75.2° full field at an image height of 14.20 mm. Sigma specifies 19 mm, f/2.8 and a diagonal field of 73.5° on Sony E and 59.3° on Micro Four Thirds. Example 6 gives 21.94 mm. [Sigma specifications](https://www.sigma-global.com/en/lenses/a_19_28/).
+1. **Construction.** Both Sigma drawings show eight elements in six groups. Examples 3 and 4 share the same layout of three singlets before the iris, a cemented L4–L5 pair and a singlet behind it, and a cemented L7–L8 rear pair. Examples 1 and 2 have seven optical groups. Example 5 cements L2–L3 and separates the rear pair. [Sigma EX DN construction](https://www.sigma-global.com/en/lenses/19_28/), [Sigma DN Art construction](https://www.sigma-global.com/en/lenses/a_19_28/).
+2. **Aspheres and focus.** Both drawings mark L1, L6 and L8 as aspherical, matching Examples 3 and 4. Sigma describes three glass-moulded aspheres and a linear motor for internal focus. The patent moves the doublet immediately behind the iris together with the following meniscus. The same two parts appear in Sigma's drawings, which give no travel dimensions. [Sigma DN Art construction](https://www.sigma-global.com/en/lenses/a_19_28/), [Sigma France's Art announcement](https://www.sigma-photo.fr/content/111-nouveautes-cp-sigma-19mm-f28-dn).
+3. **Focal length, aperture and field.** Example 4 gives 18.91 mm, f/2.88 and a 75.2° full field at an image height of 14.20 mm. Sigma specifies 19 mm, f/2.8–22, a seven-blade rounded diaphragm, and 73.5° on Sony E and 59.3° on Micro Four Thirds for both versions. Example 6 gives 21.94 mm. [Sigma EX DN specifications](https://www.sigma-global.com/en/lenses/19_28/), [Sigma DN Art specifications](https://www.sigma-global.com/en/lenses/a_19_28/).
 
-The shared construction and field strongly link the patent to this lens. Examples 3 and 4 fit Sigma's drawing about equally. The thickness of element 3 favours Example 4, while that of element 6 favours Example 3. Sigma's drawing places the focusing doublet and the following meniscus roughly 1–1.5 mm farther back than either example. Example 4 supplies the prescription here because its variable-gap labels agree with its surface table. The factory prescription remains unpublished.
+The shared construction and field strongly link the patent to the lens. Examples 3 and 4 fit Sigma's drawing about equally. L3 thickness favours Example 4, and L6 thickness favours Example 3. The production drawing places the doublet and meniscus in G2 about 1–1.5 mm farther back than either example. Example 4 supplies this prescription because its variable-gap labels agree with its surface table. The factory prescription remains unpublished. [Sigma DN Art construction](https://www.sigma-global.com/en/lenses/a_19_28/).
 
 ## Optical Architecture
 
-The wide-angle design has a negative–positive–negative power distribution across the patent's three groups. These are distinct from the six groups in the construction count, which treats each air-spaced singlet or cemented pair as one group.
+The wide-angle design has a negative–positive–negative power distribution across G1–G3, which the patent labels L1–L3. Here L1–L8 number the elements from object to image. The six-group construction count treats each air-spaced singlet or cemented pair as one group.
 
-| Patent group | Elements | Focal length | Function                                                                                          |
+| Group        | Elements | Focal length | Function                                                                                          |
 | ------------ | -------- | -----------: | ------------------------------------------------------------------------------------------------- |
 | G1           | L1–L3    |    −38.05 mm | Fixed diverging front group, with two negative menisci and a positive meniscus ahead of the iris. |
 | G2           | L4–L6    |    +15.85 mm | Moving positive group, comprising the cemented doublet G2F and the aspherical meniscus G2R.       |
@@ -31,11 +31,11 @@ The wide-angle design has a negative–positive–negative power distribution ac
 
 The negative front group and the positive central group give a back focus longer than the focal length. The patent splits the central power between a +48.55 mm doublet and a +19.63 mm meniscus. This division limits the power required at either component and helps control changes in off-axis aberrations as G2 moves (¶0036–0044).
 
-The patent gives the radii, axial spacings, glass constants, aspheric coefficients, stop position and 22.2884 mm image gap. At infinity the model gives an effective focal length of 18.9085 mm, a paraxial back focus of 22.2886 mm and a total track of 61.3642 mm. Clear semi-diameters are estimated from Fig. 16. The physical iris radius of 4.164 mm follows from the printed f/2.88. At 37.6° the chief ray reaches the printed image height of 14.20 mm to the precision of the table. The axial beam and the APS-C corner chief ray clear the rims at both printed focus positions. At the edge of the infinity field about 75% of the geometrically sampled pupil is transmitted at full aperture.
+The patent prints radii, axial spacings, glass constants, aspheric coefficients, stop position and a 22.2884 mm image gap. At infinity the model gives 18.91 mm EFL, 22.289 mm paraxial back focus and a 61.36 mm total track. Clear radii are estimated from Fig. 16, and the 4.164 mm iris radius follows from the printed f/2.88. The 37.6° chief ray reaches the printed 14.20 mm image height. The axial beam and the APS-C corner chief ray clear the rims at both printed focus positions. Geometric pupil transmission at the infinity field edge is about 75% wide open.
 
 ## Element-by-Element Analysis
 
-The focal lengths below describe the individual elements in air. L1–L8 number the elements from object to image; G1–G3 are the three groups the patent itself labels L1, L2 and L3.
+The focal lengths below describe the individual elements in air.
 
 ### L1 — Negative meniscus, aspherical
 
@@ -77,7 +77,7 @@ The dense-flint L7 supplies the stronger negative power. L8 contributes positive
 
 ## Glass Identification
 
-Paragraph 0107 specifies the helium d line at 587.56 nm. Seven elements have Hoya catalog equivalents at the printed indices and within 0.01 in Abbe number. These matches supply dispersion curves. The patent leaves the manufacturer and melt of each glass unspecified.
+Paragraph 0107 specifies the helium d line at 587.56 nm. Seven elements use Hoya dispersion curves. The catalog entries agree at the printed index precision and differ by at most 0.01 in tabulated Abbe number. The patent leaves the glass suppliers and melts unspecified.
 
 | Elements | Catalog equivalent | Patent nd | Patent νd |
 | -------- | ------------------ | --------: | --------: |
@@ -89,7 +89,7 @@ Paragraph 0107 specifies the helium d line at 587.56 nm. Seven elements have Hoy
 | L6       | Unmatched          |   1.77010 |     49.34 |
 | L7       | Hoya E-FD13        |   1.74077 |     27.76 |
 
-L6 uses dispersion estimated from its printed nd and νd. The maker identifies the three aspherical elements by position and gives no ED, SLD or FLD designation for them or the other elements. [Sigma construction drawing](https://www.sigma-global.com/lenses/a_19_28_specification_01_01.jpg), [Sigma France's 2013 Art announcement](https://www.sigma-photo.fr/content/111-nouveautes-cp-sigma-19mm-f28-dn).
+L6 uses dispersion estimated from its printed nd and νd. Sigma's construction key identifies the three aspheres. Its specifications give no ED, SLD or FLD designation. [Sigma DN Art construction](https://www.sigma-global.com/en/lenses/a_19_28/), [Sigma France's Art announcement](https://www.sigma-photo.fr/content/111-nouveautes-cp-sigma-19mm-f28-dn).
 
 ## Focus Mechanism
 
@@ -101,7 +101,7 @@ The patent focuses internally. Group G2 moves 0.5722 mm toward the object from i
 | 800 mm                             |     4.73283 mm |    2.26137 mm | Calculated for paraxial focus |
 | 400 mm                             |      4.4220 mm |     2.5722 mm | Printed                       |
 
-At the closest printed state, the object lies 338.6359 mm ahead of the first vertex. The model gives 18.9466 mm effective focal length, against the printed 18.95 mm, and −0.0554× transverse magnification, about 1:18. The patent lists f/2.94 at this distance. The model keeps the iris fixed and gives a paraxial working f-number of 2.93. The model ends at 400 mm. Sigma specifies 200 mm at 1:7.4 for the production lens. [Sigma specifications](https://www.sigma-global.com/en/lenses/a_19_28/).
+At the closest printed state, the object is 338.636 mm ahead of the first vertex. The model gives 18.95 mm EFL, matching the printed value, and −0.0554× magnification, about 1:18. The fixed iris gives a paraxial working f/2.93 versus the printed f/2.94. The model ends at 400 mm from the image plane. Sigma specifies 200 mm from the image plane at 1:7.4 for both production versions. [Sigma EX DN specifications](https://www.sigma-global.com/en/lenses/19_28/), [Sigma DN Art specifications](https://www.sigma-global.com/en/lenses/a_19_28/), [Sigma's focus-distance definition](https://www.sigma-global.com/en/shooting-with-sigma/a020-105-28-imp/).
 
 ## Aspherical Surfaces
 
@@ -128,7 +128,7 @@ The three ratios in ¶0122 agree with the printed values to two decimals.
 ## Sources
 
 - [JP 2013-029658 A](https://patents.google.com/patent/JP2013029658A/ja), ¶0022–0044, ¶0076–0085, ¶0107–0111, ¶0119, ¶0122 and Figs. 16–20.
-- [Sigma 19mm F2.8 DN | Art specifications and construction](https://www.sigma-global.com/en/lenses/a_19_28/).
-- [Sigma EX DN construction drawing](https://www.sigma-global.com/lenses/19_28_specification_01_01.jpg) and [Sigma DN | Art construction drawing](https://www.sigma-global.com/lenses/a_19_28_specification_01_01.jpg).
-- [Sigma's 2012 EX DN announcement, reproduced by DPReview](https://www.dpreview.com/articles/4688001151/sigmadigitalneo/) and [Sigma France's 2013 Art announcement](https://www.sigma-photo.fr/content/111-nouveautes-cp-sigma-19mm-f28-dn).
-- [LensTip's EX DN review and construction comparison](https://www.lenstip.com/338.3-Lens_review-Sigma_19_mm_f_2.8_EX_DN__Build_quality.html) and [EX DN construction illustration](https://www.lenstip.com/upload3/3615_sig19bud.jpg).
+- [Sigma EX DN specifications and construction](https://www.sigma-global.com/en/lenses/19_28/) and [Sigma DN Art specifications and construction](https://www.sigma-global.com/en/lenses/a_19_28/).
+- [Sigma's 2012 EX DN announcement](https://press.sigmaphoto.com/corporate/01/sigma-corporation-of-america-announces-prime-lenses-for-mirrorless-interchangeable-lens-cameras-at-ces-2012/) and [Sigma France's 2013 Art announcement](https://www.sigma-photo.fr/content/111-nouveautes-cp-sigma-19mm-f28-dn).
+- [Sigma's definition of minimum focus distance](https://www.sigma-global.com/en/shooting-with-sigma/a020-105-28-imp/).
+- [LensTip's EX DN review and construction diagram](https://www.lenstip.com/338.3-Lens_review-Sigma_19_mm_f_2.8_EX_DN__Build_quality.html) and [Imaging Resource's EX DN full-stop series](https://www.imaging-resource.com/lenses/sigma-19mm-f-2-8-ex-dn/).

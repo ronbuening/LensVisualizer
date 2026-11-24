@@ -3,7 +3,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /**
  * JP 2013-029658 A, Numerical Example 4 (Sigma Corporation, Atsushi Yamazaki), in the printed millimetres.
  * The radii, axial spacings, helium d-line glass values, stop position, aspheric coefficients and 22.2884 mm
- * image gap follow the patent. It gives f/2.88 at infinity and f/2.94 at the 400 mm shooting distance.
+ * image gap follow the patent. It gives a 75.2° full field and f/2.88 at infinity and f/2.94 at 400 mm.
  * The lens semi-diameters are estimated from Fig. 16. The 4.164 mm iris radius is derived from f/2.88.
  * The two printed focus positions bound the model. The intermediate spacings at 800 mm are calculated for
  * paraxial focus at the fixed image plane, with the two moving gaps still totaling 6.9942 mm.
@@ -13,7 +13,7 @@ const LENS_DATA = {
   key: "sigma-19mm-f28-dn-art",
   maker: "Sigma",
   name: "SIGMA 19mm f/2.8 DN | Art",
-  subtitle: "JP 2013-029658 A, Numerical Example 4 — Sigma / Yamazaki",
+  subtitle: "JP 2013-029658 A, Example 4 — Sigma / Yamazaki",
   visible: true,
   source: {
     patentNumber: "JP 2013-029658 A",
@@ -31,7 +31,7 @@ const LENS_DATA = {
     closeFocusM: { marketing: 0.2 },
     lensMounts: ["sony-fe", "micro-four-thirds"],
     imageFormat: "aps-c",
-    specs: ["8 ELEMENTS / 6 GROUPS", "3 ASPHERICAL ELEMENTS", "DESIGN f = 18.91 mm", "DESIGN F/2.88", "INNER FOCUS"],
+    specs: ["8 ELEMENTS / 6 GROUPS", "3 ASPHERICAL ELEMENTS", "DESIGN F/2.88", "INNER FOCUS"],
   },
   elements: [
     {
@@ -175,6 +175,7 @@ const LENS_DATA = {
     fStops: [2.8, 4, 5.6, 8, 11, 16, 22],
     maxFNumber: 22,
     blades: 7,
+    bladeRoundedness: 1,
   },
   projection: {
     kind: "rectilinear",
@@ -196,7 +197,7 @@ const LENS_DATA = {
       },
     ],
     description:
-      "PUBLISHED inner focus. The second group moves 0.5722 mm toward the object between infinity and the patent's 0.40 m position. The front group, iris and rear group stay fixed. The 0.80 m position is calculated. Sigma specifies 0.20 m for the production lens.",
+      "PUBLISHED inner focus. G2 moves 0.5722 mm toward the object between infinity and the patent's 0.40 m position. G1, the iris and G3 stay fixed. The 0.80 m position is calculated. Sigma specifies a 0.20 m minimum from the image plane for both production versions.",
   },
   gaps: {
     STO: { label: "d7", values: [[4.9942, 4.73283, 4.422]] },
