@@ -126,7 +126,7 @@ the fixed image plane. Thirty-three intermediate gap pairs are likewise calculat
 focus near that plane. The production lens's 1.25× position lies beyond the last printed state.
 
 The model holds the iris at its infinity size. Before clipping, the calculated image-side f-numbers at 0.5× and
-1× are about 3.58 and 3.55, respectively. The larger 1× beam is slightly clipped by the cemented component,
+1× are about 3.58 and 3.55, respectively. The larger 1× beam is slightly clipped by the cemented pair and L5,
 whose rims follow Fig. 6C. The printed f/4.07 and f/5.04 describe narrower close-range beams.
 
 ## Aspherical Surfaces

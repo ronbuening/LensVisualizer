@@ -56,15 +56,15 @@ optical outlines. The flat land at S6 extends from 5.3 mm clear radius to a 5.9 
 | 15, 16 (camera-side plate) |                     12.1 |
 
 The calculated iris radius is 4.686 mm at f/3.56. The patent's f/4.07 and f/5.04 at 0.5× and 1× imply iris
-radii of about 4.13 and 3.30 mm. The model holds the infinity iris at all focus settings. At 1× the paraxial
-axial ray aimed at that rim exceeds the clear radii of S6 and S8, and the exact marginal ray used for the working
-f-number is clipped at S7.
+radii of about 4.13 and 3.30 mm. The model holds the infinity iris at all focus settings. At 1× the exact
+axial ray through the iris edge clears S6 and exceeds the clear radii of S7, S8, 9A and 10A by 0.04 to 0.14 mm;
+10A is the tightest and passes about 96.5% of the iris area.
 
 The object distances of 54.80 and 23.92 mm ahead of S1 are solved at the fixed image plane from the printed
 spacings and magnifications. Interpolating the two gaps directly between printed positions gives midpoint
 defocus of 3.01 and 2.00 mm at the corresponding reciprocal object-to-image distances. Thirty-three calculated
 intermediate positions keep the gap sum at 21.72 mm and bring the largest remaining segment-midpoint residual
-to 0.0175 mm. Residuals at the calculated positions are within 0.00002 mm after rounding their gaps.
+to 0.0175 mm. Residuals at the calculated positions are within 0.0002 mm after rounding their gaps.
 
 ## Product Identification
 

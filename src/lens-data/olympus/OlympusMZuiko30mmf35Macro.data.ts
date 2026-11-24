@@ -8,7 +8,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Clear radii and the land on surface 6 are estimated from Fig. 6C.
  * The iris radius is calculated from the infinity f/3.56. The patent prints
  * f/3.56, f/4.07 and f/5.04 at infinity, 0.5× and 1×. The model holds the
- * iris at its infinity size, so the 1× axial beam reaches the rims at 6 and 8.
+ * iris at its infinity size, so the 1× axial beam reaches the rims of the
+ * cemented pair and L5 (surfaces 7, 8, 9A and 10A).
  *
  * The three printed gap pairs are preserved. Finite object distances and
  * 33 intermediate gap pairs are solved for paraxial focus at the fixed
