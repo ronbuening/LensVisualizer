@@ -5,9 +5,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * with infinity and 500 mm focus spacings, a 129.2° field, and a 13.143 mm final air gap.
  * The table's ε equals 1 + K, as established by the sphere-based aspheres in Examples 2 and 3
  * and by the aberration curves in Fig. 2.
- * Clear radii follow Fig. 1 with allowances for neighbouring caps, edge thickness and the
- * last asphere's profile. The 5.23 mm stop radius follows from the printed f/2.87.
- * The 500 mm distance is measured from the first surface, as indicated by the paraxial focus.
+ * Clear radii follow Fig. 1, with allowances for surface clearance, edge thickness and
+ * the shape of surface 24A. The 5.23 mm stop radius follows from f/2.87 at surface 11.
+ * Paraxial focus favours reading the unreferenced 500 mm distance from the first surface.
  */
 const LENS_DATA = {
   schema: 2,
@@ -15,7 +15,7 @@ const LENS_DATA = {
   name: "LAOWA 10mm f/2.8 Zero-D FF",
   maker: "Laowa",
   visible: true,
-  subtitle: "CN 221303696 U, Example 1 — Anhui Changgeng Optics Technology / Li",
+  subtitle: "CN 221303696 U, Example 1 — Anhui Changgeng Optics / Li",
   catalog: {
     lensMounts: ["sony-fe", "nikon-z", "canon-rf", "l-mount"],
     imageFormat: "135-full-frame",
@@ -33,7 +33,7 @@ const LENS_DATA = {
     closeFocusM: {
       marketing: 0.12,
     },
-    specs: ["15 ELEMENTS / 9 GROUPS", "2 ASPHERICAL ELEMENTS", "3 ED ELEMENTS", "DESIGN f = 10.28 mm", "DESIGN F/2.87"],
+    specs: ["15 ELEMENTS / 9 GROUPS", "2 ASPHERICAL ELEMENTS", "3 ED ELEMENTS", "DESIGN F/2.87"],
   },
   source: {
     patentNumber: "CN 221303696 U",
@@ -56,7 +56,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "Unmatched (nd 1.88300 / νd 45.00)",
       focalLengthMm: -31.37,
-      role: "Front element of G1, spreading the wide field into the lens",
+      role: "Ultra-high-refraction front meniscus that spreads the wide-field bundles into G1",
     },
     {
       id: 2,
@@ -81,7 +81,7 @@ const LENS_DATA = {
       glass: "E-FDS1 (Hoya)",
       cemented: "C1",
       focalLengthMm: -23.76,
-      role: "Dispersive negative member of the first focusing doublet",
+      role: "Ultra-high-refraction negative member that supplies the stronger dispersion in the first focusing doublet",
     },
     {
       id: 4,
@@ -107,9 +107,9 @@ const LENS_DATA = {
       glass: "H-FK61 (CDGM)",
       cemented: "C2",
       focalLengthMm: -12.56,
-      role: "ED negative member of the second focusing doublet",
+      role: "Extra-low-dispersion negative member that balances the positive element in the second focusing doublet",
       apd: "inferred",
-      apdNote: "Laowa's construction diagram marks element 5 as ED glass.",
+      apdNote: "Laowa's construction diagram marks element 5 as extra-low-dispersion (ED) glass.",
     },
     {
       id: 6,
@@ -148,7 +148,7 @@ const LENS_DATA = {
       glass: "E-FDS1 (Hoya)",
       cemented: "C3",
       focalLengthMm: 14.5,
-      role: "Dense-flint positive member of the first rear doublet",
+      role: "Ultra-high-refraction positive member that offsets part of L7's negative power",
     },
     {
       id: 9,
@@ -161,7 +161,7 @@ const LENS_DATA = {
       glass: "E-FDS1 (Hoya)",
       cemented: "C4",
       focalLengthMm: -39.38,
-      role: "Negative front member of the rear triplet",
+      role: "Ultra-high-refraction negative front member that pairs with the triplet's ED core",
     },
     {
       id: 10,
@@ -174,9 +174,9 @@ const LENS_DATA = {
       glass: "H-FK61 (CDGM)",
       cemented: "C4",
       focalLengthMm: 10.55,
-      role: "Positive ED core of the rear triplet",
+      role: "Extra-low-dispersion core that supplies most of the rear triplet's positive power",
       apd: "inferred",
-      apdNote: "Laowa's construction diagram marks element 10 as ED glass.",
+      apdNote: "Laowa's construction diagram marks element 10 as extra-low-dispersion (ED) glass.",
     },
     {
       id: 11,
@@ -189,7 +189,7 @@ const LENS_DATA = {
       glass: "Unmatched (nd 1.90325 / νd 27.29)",
       cemented: "C4",
       focalLengthMm: -26.25,
-      role: "Negative rear member of the triplet, paired with the ED core",
+      role: "Ultra-high-refraction negative rear member that pairs with the triplet's ED core",
     },
     {
       id: 12,
@@ -201,9 +201,9 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "H-FK61 (CDGM)",
       focalLengthMm: 20.17,
-      role: "Positive ED singlet behind the triplet",
+      role: "Extra-low-dispersion singlet that adds converging power behind the triplet",
       apd: "inferred",
-      apdNote: "Laowa's construction diagram marks element 12 as ED glass.",
+      apdNote: "Laowa's construction diagram marks element 12 as extra-low-dispersion (ED) glass.",
     },
     {
       id: 13,
@@ -216,7 +216,7 @@ const LENS_DATA = {
       glass: "Unmatched (nd 1.89249 / νd 33.04)",
       cemented: "C5",
       focalLengthMm: -7.82,
-      role: "Strong negative member of the last cemented doublet",
+      role: "Ultra-high-refraction member that supplies strong negative power ahead of the final asphere",
     },
     {
       id: 14,
@@ -444,7 +444,7 @@ const LENS_DATA = {
     closeFocusM: 0.58955,
     keyframes: [0, 1],
     description:
-      "The patent gives infinity and a near setting at 500 mm, read as measured from the first surface (0.590 m from the image plane). G2 moves 0.157 mm toward the image at the near setting. The production lens focuses to 0.12 m.",
+      "The patent gives gaps at infinity and 500 mm. At 500 mm, G2 moves 0.157 mm toward the image. The distance is inferred to be measured from the first surface, or 0.590 m from the image plane. Intermediate gaps are interpolated. Laowa specifies a 0.12 m minimum from the image plane.",
     conjugates: [
       {
         zoomStation: 0,

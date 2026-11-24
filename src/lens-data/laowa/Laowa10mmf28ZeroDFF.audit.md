@@ -1,64 +1,79 @@
-# LAOWA 10mm f/2.8 Zero-D FF — audit
+# LAOWA 10mm f/2.8 Zero-D FF — Audit Log
 
 ## Source
 
-[CN 221303696 U](https://patents.google.com/patent/CN221303696U/zh), Example 1, Anhui Changgeng Optics Technology Co., Ltd., inventor Dayong Li. Filed 2023-12-13 and granted 2024-07-09. The prescription and focus table are on PDF p. 7 (¶0064). Fig. 1 on PDF p. 12 shows the construction, and Fig. 2 on PDF p. 13 shows the infinity and near-field aberrations.
+[CN 221303696 U, _Compact Ultra-Wide-Angle Lens_ (小型化超级广角镜头)][patent], names Dayong Li (李大勇) and Anhui Changgeng Optics Technology Co., Ltd. The filing and priority date is 2023-12-13. The utility model was granted and published on 2024-07-09. Example 1's prescription and focus table appear in ¶0064 (PDF p. 7), the construction in Fig. 1 (p. 12), and the infinity and near aberration plots in Fig. 2 (p. 13).
 
-## Transcription
+Laowa publishes the [product specifications][laowa-en], [aperture range and focus specifications][laowa-cn], and [colour-coded construction drawing][diagram].
 
-The radii and spacings of all 25 surfaces, the 15 helium d-line index and Abbe-number pairs, the stop at surface 11, and all 20 polynomial coefficients agree with the printed table. The final air gap is 13.143 mm at both focus settings. The two variable gaps follow surfaces 4A and 10 and sum to 10.091 mm in both states.
+## Transcription Check
 
-The asphere table gives $\varepsilon=1+K$, where $K$ is the conic constant in the sag equation in ¶0027. Examples 2 and 3 give $\varepsilon=1$ for sphere-based aspheres. The four conic constants for surfaces 3A, 4A, 24A and 25A are 0.556, −0.5949, −19.2397 and −10.0303. With this convention, longitudinal spherical aberration at f/2.87 is −0.009, −0.038, −0.038 and −0.024 mm at pupil fractions 1, 0.85, 0.7 and 0.5. Distortion is +0.53% at 40° and −0.15% at 64.6°, in agreement with Fig. 2. Reading $\varepsilon$ as $K$ would give +0.565 mm at the full pupil and about −20% distortion at 40°. It would also make surface 4’s conic undefined beyond about 6.0 mm, where Fig. 1 shows a 9.75 mm clear radius.
+The radii and spacings of all 25 surfaces, all 15 helium d-line index and Abbe-number pairs, the stop at surface 11, and all 20 aspheric polynomial coefficients agree with the patent page images. The prescription retains the printed scale. The last gap is 13.143 mm at both focus settings. The variable gaps after surfaces 4A and 10 sum to 10.091 mm in both rows.
 
-## First-Order Values
+The sag equation in ¶0027 uses $1+K$, given as $\varepsilon$ in the tables. Examples 2 and 3 print $\varepsilon=1$ for aspheres with a spherical base. Subtracting one gives $K$ of 0.556, −0.5949, −19.2397 and −10.0303 at surfaces 3A, 4A, 24A and 25A. At f/2.87 these conics reproduce the curves in Fig. 2. The d-line longitudinal spherical aberration is −0.009, −0.038, −0.038 and −0.024 mm at pupil fractions 1, 0.85, 0.7 and 0.5, and distortion is +0.53% at 40° and −0.15% at 64.6°. Using $\varepsilon$ directly for $K$ produces +0.565 mm at the full pupil and about −20% distortion at 40°. It also ends the profile of surface 4A at about 6.0 mm, short of the 9.75 mm clear radius in Fig. 1.
 
-| Quantity at infinity         |                      Patent |                                 Model |
-| ---------------------------- | --------------------------: | ------------------------------------: |
-| Effective focal length       |                  10.2855 mm |                            10.2849 mm |
-| Full-aperture f-number       |                        2.87 |                                  2.87 |
-| Half field                   |                       64.6° |                        64.6° declared |
-| Image height                 |           21.60 mm (Fig. 2) | 21.60 mm at 64.57°, 21.63 mm at 64.6° |
-| First surface to image       | 89.550 mm (sum of spacings) |                             89.550 mm |
-| Final air gap                |                   13.143 mm |                             13.143 mm |
-| Paraxial back focal distance |                           — |                             13.182 mm |
+## First-Order Check
 
-The paraxial infinity focus lies 0.039 mm behind the printed image plane. The 0.7 pupil zone focuses close to the printed plane. Surface geometry clears the edge-thickness and separation checks. The iris admits the full axial beam at f/2.87. The chief ray reaches the 43.20 mm patent circle at infinity with all rims clear. At the near setting it reaches 21.40 mm at the 64.6° cap, 99.1% of the patent’s image height. At the near setting, a ray at about 64.86° reaches the nominal 21.65 mm full-frame corner with all rims clear. About 50% of the geometric pupil clears the rims at the infinity field edge and about 53% at the near field edge.
+| Quantity at infinity         | Patent                       | Model                              |
+| ---------------------------- | ---------------------------: | ---------------------------------: |
+| Effective focal length       |                   10.2855 mm |                         10.2849 mm |
+| Full-aperture f-number       |                         2.87 |                               2.87 |
+| Half field                   |                        64.6° |                     64.6° maximum |
+| Image height                 |            21.60 mm (Fig. 2) | 21.60 mm at 64.57°, 21.63 mm at 64.6° |
+| First surface to image       |   89.550 mm (sum of spacings) |                          89.550 mm |
+| Final air gap                |                    13.143 mm |                          13.143 mm |
+| Paraxial back focal distance |                            — |                          13.182 mm |
+
+The image plane is 0.039 mm ahead of the paraxial infinity focus, near the focus of the 0.7 pupil zone. The surfaces retain positive edge thickness and separation, and the iris admits the full axial f/2.87 beam. At infinity the chief ray reaches the 43.20 mm circle from Fig. 2 with all rims clear. At the near setting it reaches 21.40 mm at 64.6°, or 99.1% of the patent image height. A near-setting chief ray at about 64.9° reaches the 21.65 mm full-frame corner with all rims clear. At the 64.6° edge about 50% of the geometric pupil clears the rims at infinity and about 53% at near focus.
 
 ## Values Not Printed in the Patent
 
-The 5.23 mm stop radius follows from the f/2.87 entrance pupil and its paraxial height at the printed stop. Fig. 1 supplies the clear radii. The lower silhouette is scaled using the 89.550 mm axial length from the first surface to the image plane. Radii are read at the ends of optical profiles, with the flat lands and barrel outlines distinguished from those profiles.
+The iris radius of 5.23 mm follows from the entrance pupil at f/2.87 and the paraxial ray height at the printed stop. The clear radii come from the optical profile endpoints in the lower half of Fig. 1, scaled to the 89.55 mm first-vertex-to-image distance. Flat lands and barrel outlines establish the outer contour where they extend beyond the optical profiles.
 
-| Surface | Figure-based allowance                                                                                                 |
-| ------- | ---------------------------------------------------------------------------------------------------------------------- |
-| 2       | 12.20 mm, compared with 12.46 mm in the drawing, to keep clearance to surface 3A                                       |
-| 4A      | 9.75 mm, ending at the rear land of L2                                                                                 |
-| 8       | 7.70 mm, compared with 8.05 mm in the drawing, to keep clearance to surface 7. The two profiles meet at about 8.08 mm. |
-| 16–17   | 7.10 mm. The drawing suggests about 7.2 mm at surface 16, and the two profiles would meet at 7.27 mm.                  |
-| 21      | 7.94 mm at the front land of L13, inside the 10.25 mm outer outline                                                    |
-| 24A     | 12.50 mm. The polynomial departs from the drawn profile beyond about 12.5 mm, inside the 14.05 mm outline.             |
+| Surface | Clear radius and figure comparison                                                                                       |
+| ------- | ------------------------------------------------------------------------------------------------------------------------ |
+| 2       | 12.20 mm, reduced from the drawn 12.46 mm to preserve clearance to surface 3A                                             |
+| 4A      | 9.75 mm, at the rear land of L2                                                                                          |
+| 8       | 7.70 mm, reduced from the drawn 8.05 mm to preserve clearance to surface 7. The two profiles meet at about 8.08 mm.       |
+| 16–17   | 7.10 mm, inside the roughly 7.2 mm visible at surface 16. The two profiles of L10 would meet at 7.27 mm.                 |
+| 21      | 7.94 mm, at the front land of L13 inside its 10.25 mm outer outline                                                       |
+| 24A     | 12.50 mm, where the polynomial begins to depart from the drawn curve inside the 14.05 mm outline                       |
 
-The near row gives 500 mm without naming a reference plane. From the first surface, the paraxial focus lies 0.045 mm behind the printed image plane with approximately −0.020× magnification. Measuring instead from the image plane gives a 0.089 mm offset. Both offsets fall within a 0.242 mm paraxial defocus tolerance. The smaller first-surface offset supports using that distance, which puts the object 589.55 mm from the image. Measured from the infinity paraxial focus, the two offsets are +0.006 mm and +0.049 mm, respectively.
+The patent's 500 mm row does not identify its distance reference. At 500 mm from the first surface, the paraxial focus lies 0.045 mm behind the printed image plane, with approximately −0.020× magnification. With 500 mm measured from the image plane, that offset is 0.089 mm. Both are within a 0.242 mm paraxial defocus tolerance. The offsets relative to the infinity paraxial focus are +0.006 mm and +0.049 mm, respectively. The smaller residual supports the first-surface reading, which puts the object 589.55 mm from the printed image plane.
 
-At half travel, the paraxial focus lies 0.035 mm behind the printed plane and 0.004 mm ahead of the infinity paraxial focus. Relative to the trend between the end states, the departure is 0.007 mm. The two printed positions describe the travel within 0.02 mm after accounting for the infinity image-plane offset.
+Intermediate gaps are interpolated between the two printed rows. At half travel, the paraxial focus is 0.035 mm behind the printed plane and 0.004 mm ahead of the infinity paraxial focus. Its departure from the trend between the endpoints is 0.007 mm. With the infinity offset accounted for, the two rows describe the travel within 0.02 mm.
 
 ## Product Identification
 
-[Laowa’s construction drawing](https://www.venuslens.net/wp-content/uploads/2024/02/Laowa-10mm-F2.8-Optical-Structure.jpg) shows the same 15 elements in nine air-separated groups, including the four doublets and the triplet. Its aspherical markings align with L2 and L15, and its ED markings with L5, L10 and L12. The two doublets ahead of the stop correspond to the patent’s moving group. Example 2 has 16 elements at 12.35 mm. Example 3 has a 14.3 mm focal length and aspheres on both front elements. The drawing strongly identifies Example 1 with the 10 mm production design.
+The [Laowa drawing][diagram] matches all 15 elements in nine air-separated groups, including four cemented doublets and the triplet. Its aspherical markings align with L2 and L15, and its ED markings with L5, L10 and L12. The drawing marks L1, L3, L8, L9, L11 and L13 as ultra-high-refraction glass and shows both doublets of the patent's moving group ahead of the stop. Example 2 has 16 elements at 12.35 mm. Example 3 has a 14.3 mm focal length and aspheres on both front elements. The correspondence identifies Example 1 as the published design of the 10 mm lens.
 
-Laowa specifies 10 mm, f/2.8–f/22, 130.4°, 0.12 m minimum focus, 0.24× magnification and a 77 mm filter thread. Its five-blade version has autofocus on Sony E and Nikon Z, and manual focus on Canon RF and L-mount. The 14-blade version is manual focus on all four mounts. [Laowa product page](https://www.venuslens.net/product/laowa-10mm-f-2-8-ff-zero-d/), [Laowa specifications](https://www.venuslens.com/camera-lens-80).
+The full-frame lens is specified at 10 mm, f/2.8–f/22, 130.4°, 0.12 m minimum focus from the image plane, 0.24× maximum magnification and a 77 mm filter thread. The five-blade version has stepping-motor autofocus on Sony E and Nikon Z and manual focus on Canon RF and L-Mount. The 14-blade version is manual focus on all four mounts. Both versions are covered here. [Laowa product page][laowa-en], [Laowa specifications][laowa-cn].
 
-## Corrections
+## Corrections, 2026-11-24
 
-### 2026-11-24
+- Opened the aperture from f/8 to the printed f/2.87 at the original stop position. The stop radius is derived from the specified entrance pupil. The marked full stops run from the marketed f/2.8 through f/22.
+- Restored the printed 129.2° field from a 6° field and used the 43.20 mm circle from the 21.60 mm height in Fig. 2. The original 1.3–2.2 mm clear radii clipped the wide field. Fig. 1 supplies the replacement radii, with clearances and profile allowances as listed above.
+- Added the printed 500 mm focus row to the infinity spacing. D4 increases from 6.484 to 6.641 mm and D10 decreases from 3.607 to 3.450 mm as G2 moves 0.157 mm toward the image. The intervening positions are interpolated. The near row gives about 0.590 m object to image, short of the production lens's range to 0.12 m.
+- Identified Example 1 with the Laowa 10mm f/2.8 Zero-D FF and recorded the patent bibliography, full-frame format, four mounts and marketed focal length, aperture and minimum focus. The shared description uses both diaphragm versions, which have different blade counts. The element descriptions give their in-air focal lengths, optical roles and maker designations.
 
-- The $\varepsilon$ column is expressed as $K=\varepsilon-1$ to match the printed sag equation. The polynomial coefficients follow the table at their original scale.
-- The clear radii and stop size are derived as described above. The aperture is f/2.87, with marked stops from the production f/2.8 through f/22. Blade count depends on version.
-- The model uses the patent’s 129.2° field and 43.20 mm image circle. The near position uses the printed gaps and the first-surface reading of the 500 mm object distance. The listed 0.12 m production minimum is outside the modeled focus range.
-- Catalog glasses reproduce the printed coordinates for E-FDS1 (Hoya) at L3/L8/L9, H-ZF1 (CDGM) at L4 and H-FK61 (CDGM) at L5/L10/L12. The other eight elements retain their printed indices and Abbe numbers with unidentified glasses.
+Three optical-glass equivalents replace unidentified labels on seven elements. The differences below are catalog minus printed values, using the d-line index and C/d/F Abbe number.
+
+| Elements     | Glass label   |       Δnd |     Δνd |
+| ------------ | ------------- | --------: | ------: |
+| L3, L8, L9   | E-FDS1 (Hoya) | −4.0×10⁻⁷ | +0.0004 |
+| L4           | H-ZF1 (CDGM)  | +3.2×10⁻⁶ | +0.0023 |
+| L5, L10, L12 | H-FK61 (CDGM) | −1.1×10⁻⁸ | +0.0028 |
+
+L1, L2, L6, L7, L11, L13, L14 and L15 retain unidentified glasses with their printed index and Abbe number. At infinity the finished model gives 10.285 mm EFL, f/2.87, a 5.231 mm stop radius, 13.182 mm paraxial back focus and a 64.6° half field.
 
 ## Remaining Questions
 
-- The printed condition summary gives a stop-position ratio, $\mathrm{ST}_L/L$, of 0.489. The prescription gives 0.428 and agrees with Fig. 1. The summary’s $|F_2/F_1|$ is 0.881, while the prescription gives 2.903. Its $|F_2/F_3|$ is 0.879, close to the printed ratio. The stated values are retained in the comparison.
-- The same-day invention application CN 117706739 A has yet to be compared with this utility model.
-- The exact production rim sizes, glass suppliers and melts are unconfirmed. The first-surface distance datum is inferred from the nearer paraxial focus. An explicit distance reference would resolve the ambiguity.
-- The printed image plane lies 0.039 mm inside the paraxial focus, at the focus of the 0.7 pupil zone. At a 10 mm focal length that offset moves the paraxial conjugate of the near setting from the printed 500 mm to about 0.73 m from the image plane, which is the distance a paraxial focus readout gives at the near end.
+- The printed condition summary gives $\mathrm{ST}_L/L$ as 0.489. The spacings and Fig. 1 give 0.428. The summary gives $|F_2/F_1|$ as 0.881, while the prescription gives 2.903. Its $|F_2/F_3|$ is 0.879, close to the printed ratio. The reason for the discrepancies is unknown.
+- Whether the reported same-day invention application CN 117706739 A carries the same prescription remains unconfirmed.
+- Exact production rim sizes, glass suppliers and melts are unknown. The published specifications give the two blade counts, with diaphragm shape and detachable teleconverter compatibility unspecified.
+- The 500 mm datum remains inferred. The printed image plane lies 0.039 mm ahead of the infinity paraxial focus at about the 0.7 pupil-zone focus. At the near setting a paraxial readout using the printed image plane gives about 0.73 m object to image. The patent's 500 mm figure corresponds to about 0.590 m object to image under the inferred datum.
+
+[patent]: https://patents.google.com/patent/CN221303696U/zh
+[laowa-en]: https://www.venuslens.net/product/laowa-10mm-f-2-8-ff-zero-d/
+[laowa-cn]: https://www.venuslens.com/camera-lens-80
+[diagram]: https://www.venuslens.net/wp-content/uploads/2024/02/Laowa-10mm-F2.8-Optical-Structure.jpg

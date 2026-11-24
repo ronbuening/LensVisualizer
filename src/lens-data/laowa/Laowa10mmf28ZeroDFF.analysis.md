@@ -10,15 +10,15 @@
 **Title:** 小型化超级广角镜头 (Compact Ultra-Wide-Angle Lens)\
 **Example details:** 第一实施例, ¶0056–0064, Figs. 1–2
 
-Laowa’s construction drawing matches Example 1 element for element. Both have 15 elements in nine air-separated groups, with four cemented doublets and one cemented triplet. The second and last elements are aspherical, and the maker’s three ED markings fall on elements 5, 10 and 12, all of which have the same low-dispersion coordinates in the patent. The drawing also shows the two doublets between the front asphere and the stop that form the patent’s moving group G2. It shows a single position, so the motion and travel come from the patent’s description and spacing table. Example 2 uses 16 elements and has a focal length of 12.35 mm. Example 3 has a focal length of 14.3 mm and places aspheres on both front elements. The match identifies Example 1 as the published design of the 10 mm lens. The production prescription and tolerances are unpublished.
+Laowa’s drawing identifies Example 1 as the 10 mm design, matching all 15 elements in nine air-separated groups, including four cemented doublets and a triplet. L2 and L15 are aspherical. The three ED markings align with L5, L10 and L12, which share a low-dispersion glass pair in the patent. Laowa also marks L1, L3, L8, L9, L11 and L13 as ultra-high-refraction glass. The drawing shows the two doublets of G2 at one position. Their travel comes from the patent. Example 2 has 16 elements and a focal length of 12.35 mm. Example 3 has a focal length of 14.3 mm and puts aspheres on both front elements. Production prescription and tolerances are unpublished. [Laowa construction drawing][diagram], [patent][patent].
 
-The patent prints 10.2855 mm, f/2.87 and a 129.2° full field. Laowa specifies 10 mm, f/2.8 and a 130.4° angle of view, with a 77 mm filter thread. Its specified aperture range is f/2.8–f/22. The five-blade version has autofocus on Sony E and Nikon Z, and manual focus on Canon RF and L-mount. The 14-blade version is manual focus on all four mounts. Laowa specifies a stepping motor for autofocus. [Laowa product page][laowa-en], [Laowa specifications][laowa-cn], [Laowa construction drawing][diagram].
+The patent prints 10.286 mm, f/2.87 and a 129.2° full field. Laowa lists 10 mm, f/2.8–f/22, a 130.4° angle of view on full frame and a 77 mm filter thread. The five-blade version has autofocus with a stepping motor on Sony E and Nikon Z, and manual focus on Canon RF and L-Mount. The 14-blade version is manual focus on all four mounts. [Laowa product page][laowa-en], [Laowa specifications][laowa-cn].
 
 ## Optical Architecture
 
 The lens is rectilinear and uses a retrofocus layout. The patent divides its nine air-separated groups into three optical assemblies. Fixed G1 consists of two negative menisci (elements 1–2), which spread the broad field into the lens. Positive G2 consists of the two cemented pairs immediately ahead of the stop (elements 3–6). It moves toward the image for closer focus. The stop lies at surface 11. Fixed positive G3 (elements 7–15) contains two doublets, a triplet and two singlets. The strongly negative front assembly and positive rear assemblies give a 13.182 mm paraxial back focus for a 10.285 mm effective focal length.
 
-The model uses the patent’s original scale, printed glass coordinates, two focus spacings and 13.143 mm image gap. The paraxial infinity focus is 0.039 mm behind that plane, which lies near the focus of the 0.7 pupil zone. The 5.23 mm stop radius is calculated from f/2.87. The clear radii are based on Fig. 1, with allowances for adjacent surfaces, edge thickness and the rear aspheric profile. At infinity the chief ray reaches the 21.60 mm image height marked in Fig. 2. About half the geometrically sampled pupil remains clear at the edge at full aperture.
+The model uses the patent’s scale, glass coordinates, two focus settings and 13.143 mm image gap. That plane lies near the 0.7 pupil-zone focus, 0.039 mm ahead of paraxial infinity focus. The 5.23 mm stop radius follows from f/2.87. Clear radii are estimated from Fig. 1, with allowances for surface clearance, edge thickness and the rear aspheric profile. At infinity the chief ray reaches Fig. 2’s printed 21.60 mm image height, corresponding to a 43.20 mm circle. About half the geometric pupil remains clear at the field edge at full aperture.
 
 ## Element-by-Element Analysis
 
@@ -89,18 +89,18 @@ The three ED positions distribute low-dispersion glass across the moving group a
 
 ## Focus Mechanism
 
-Only G2 (surfaces 5–10) moves. From infinity to the printed near setting it travels 0.157 mm toward the image, with G1, the stop and G3 fixed. The two changing gaps always sum to 10.091 mm.
+Inner focus moves G2 (surfaces 5–10) 0.157 mm toward the image from infinity to the printed near setting. G1, the stop and G3 stay fixed. The two gaps sum to 10.091 mm, with intermediate values interpolated between the printed rows.
 
 | Patent setting | D4, after surface 4A | D10, before the stop |
 | -------------- | -------------------: | -------------------: |
 | Infinity       |             6.484 mm |             3.607 mm |
 | 500 mm         |             6.641 mm |             3.450 mm |
 
-The 500 mm row fits a distance from the front vertex better than one from the image plane. It corresponds to 0.590 m object to image and about 0.020× paraxial magnification. The model’s focus range ends there. Laowa specifies 0.12 m and 0.24× for the production lens. At the printed near setting the chief ray clears the rims at 64.6° and reaches 21.40 mm, or 99.1% of the 21.60 mm patent image height. [Laowa specifications][laowa-cn].
+The patent leaves the 500 mm distance reference unspecified. Measuring from the front vertex gives the closer paraxial focus, equivalent to 0.590 m object to image and about 0.020× magnification. The model ends there. Laowa specifies 0.12 m from the image plane and 0.24× for the production lens. At the patent’s near setting the 64.6° chief ray clears the rims and reaches 21.40 mm, or 99.1% of the printed image height. [Laowa specifications][laowa-cn].
 
 ## Aspherical Surfaces
 
-Both surfaces of L2 and L15 are aspherical. The sag equation in ¶0027 contains $1+K$. The table gives that quantity as $\varepsilon$, so $K=\varepsilon-1$. Examples 2 and 3 give $\varepsilon=1$ for sphere-based aspheres. At f/2.87, the d-line longitudinal spherical aberration is −0.009, −0.038, −0.038 and −0.024 mm at pupil fractions 1, 0.85, 0.7 and 0.5. Distortion is approximately +0.53% at 40° and −0.15% at 64.6°. Both agree with Fig. 2. Substituting the table’s $\varepsilon$ directly for $K$ gives +0.565 mm at the full pupil and about −20% distortion at 40°. It also ends the mathematical profile of surface 4 at roughly 6.0 mm, short of the 9.75 mm rim in Fig. 1.
+Both surfaces of L2 and L15 are aspherical. The sag equation in ¶0027 uses $1+K$, which the table lists as $\varepsilon$, so $K=\varepsilon-1$. Examples 2 and 3 give $\varepsilon=1$ for sphere-based aspheres. This reading reproduces Fig. 2 at f/2.87. The d-line longitudinal spherical aberration is −0.009, −0.038, −0.038 and −0.024 mm at pupil fractions 1, 0.85, 0.7 and 0.5, and distortion is about +0.53% at 40° and −0.15% at 64.6°. Using $\varepsilon$ for $K$ gives +0.565 mm at the full pupil and about −20% distortion at 40°. It also truncates surface 4A at about 6.0 mm, short of the 9.75 mm rim in Fig. 1.
 
 | Surface | Printed $\varepsilon$ |      $K$ |        $A_4$ |        $A_6$ |        $A_8$ |     $A_{10}$ |     $A_{12}$ |
 | ------- | --------------------: | -------: | -----------: | -----------: | -----------: | -----------: | -----------: |
