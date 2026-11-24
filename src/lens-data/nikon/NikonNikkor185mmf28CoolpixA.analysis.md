@@ -11,10 +11,10 @@
 **Title:** Optical System, Optical Apparatus, and Method for Manufacturing the Optical System\
 **Example details:** Table 1 and Figures 1–2
 
-The patent gives a normalized focal length of 1.00 and allows proportional scaling. The model uses a factor of 18.5
-for radii, thicknesses, spacings, and image-plane distance. It divides each aspheric coefficient of order $n$ by the
-scale factor raised to $n-1$, with the same base conic. The resulting effective focal length is 18.4966 mm, which
-rounds to Nikon's marked 18.5 mm. The model opens to the patent's f/2.88. The camera is marked f/2.8. [1–3]
+The patent gives a normalized focal length of 1.00 and allows proportional scaling. The model multiplies the radii,
+thicknesses and gaps, including the image gap, by 18.5. Each order-$n$ aspheric coefficient is divided by
+$18.5^{n-1}$, with the same base conic. The 18.497 mm effective focal length rounds to Nikon's marked 18.5 mm.
+The model opens to the patent's f/2.88. Nikon marks the camera f/2.8. [1–3]
 
 The patent family is a probable match for the COOLPIX A. Three pieces of evidence support that identification.
 
@@ -25,22 +25,21 @@ The patent family is a probable match for the COOLPIX A. Three pieces of evidenc
 3. Nikon announced the camera on March 5, 2013, two weeks after the priority filings. The patent describes a
    retractable lens for a slim compact camera with an aperture near f/2.8 and a field near 75°. [1, 2]
 
-Example 1 is the first numerical design in the patent. Examples 1, 3, 5, 6, 7, and 8 all have seven elements in five
-groups and one aspherical surface. Examples 2 and 4 have eight elements in six groups. A production cross-section that would
-locate the asphere and cemented pairs remains unavailable. The asphere is on L7 in Example 1 and on L6 in
-Example 8. The public sources leave the identity of the focusing group undocumented. The exact production prescription remains unknown. [1–5]
+Examples 1, 3, 5, 6, 7, and 8 all have seven elements in five groups and one aspherical surface. Examples 2 and 4
+have eight elements in six groups. Example 1 is the first numerical design. It places the asphere on L7, while
+Example 8 places it on L6. A public Nikon section drawing is unavailable for locating the asphere and cemented
+pairs, so the exact production prescription remains unknown. [1–5]
 
 ## Optical Architecture
 
-The patent describes a wide-angle single-focus lens. A front negative meniscus and a positive meniscus form a weak
+Example 1 is a wide-angle prime. A front negative meniscus and a positive meniscus form a weak
 converging pair ahead of the stop. After the stop come a converging cemented pair (L3/L4, +22.43 mm), a diverging
 cemented pair (L5/L6, −33.67 mm), and a positive rear meniscus. The patent relates the weak power of the front pair
 and the stop position to control of coma and distortion with a small front lens. The five groups count the air-spaced
 optical components, including each cemented pair as one. [1]
 
-Two plane-parallel plates follow L7. The patent shows them together as a filter group. Nikon states that the
-production camera has no optical low-pass filter, and the composition of its sensor stack cannot be established
-from the patent plates. [1, 2]
+Two plane-parallel plates follow L7 in the patent's filter group FL. Nikon states that the camera has no optical
+low-pass filter. The composition of the production sensor stack remains unknown. [1, 2]
 
 ## Element-by-Element Analysis
 
@@ -97,8 +96,8 @@ the surface, where oblique rays pass well away from the axis. [1]
 
 ## Glass Identification and Selection
 
-The model preserves the patent's d-line coordinates. The named catalog glasses supply dispersion curves based on
-those coordinates. The production glass suppliers and melts are unknown.
+The model preserves the patent's d-line coordinates. Catalog glasses with similar coordinates supply dispersion
+curves. The production glass suppliers and melts are unknown.
 
 | Position           |      nd |    νd | Catalog equivalent |
 | ------------------ | ------: | ----: | ------------------ |
@@ -115,10 +114,10 @@ The model estimates dispersion from the Abbe number for L1 and L7. [1]
 
 ## Focus Mechanism
 
-Table 1 supplies an infinity prescription with fixed gaps and no focusing travel, so the model shows infinity
-focus only. The production camera uses contrast-detect autofocus from about 0.50 m in normal mode and 0.10 m in
-macro mode. Nikon measures both distances from the center of the front lens surface. The Nikon team describes allowing extra room for focus travel at close range. The moving group, its travel,
-and close-focus magnification remain unspecified. [1, 3, 4, 6]
+Table 1 gives only the infinity spacings, the model's single focus state. The camera uses contrast-detect autofocus
+to about 0.50 m in normal mode and 0.10 m in macro mode, both measured from the center of the front lens surface.
+Nikon's team describes making room for close-focus travel. The moving group and its travel remain unspecified.
+DPReview measured 0.20× magnification in macro mode. [1, 3–5]
 
 ## Aspherical Surface
 
@@ -146,16 +145,16 @@ The patent relates these limits to coma and distortion control in a short lens. 
 
 ## Aperture, Field, and Image Plane
 
-Table 1 fixes the axial stop position at surface 5. Its specified f/2.88 gives a paraxial iris radius of 3.935 mm.
-Figure 1 supplies the clear radii of the lens surfaces and both plates, along with outer lands at surfaces 2 and 9.
-The camera has a seven-blade iris with third-stop settings from f/2.8 to f/22. [1–3, 6]
+Table 1 fixes the stop at surface 5. The printed f/2.88 gives a calculated iris radius of 3.935 mm. The clear radii
+and the outer lands at surfaces 2 and 9 are estimated from Figure 1. The camera has a seven-blade iris with
+third-stop settings from f/2.8 to f/22. [1, 3, 6]
 
-The printed half-field of 38.87° corresponds to a 14.615 mm image height at this scale, about 3.3% beyond the
-corner of the Nikon DX sensor. The 14.145 mm DX corner is reached at approximately 38.0°. The clear apertures
-admit the axial beam and the corner chief ray. At 38.0°, geometric vignetting leaves about 97% of the pupil area available.
+The printed 38.9° half-field gives a 14.615 mm image height, 3.3% beyond the 14.145 mm DX corner. The rims admit
+the axial beam. At the DX corner (about 38.0°), the chief ray clears the rims and about 97% of the pupil area
+is transmitted. [1, 3]
 
-The last plate sits 0.70485 mm in front of the printed image plane. The calculated paraxial focus is 0.6981 mm
-behind that plate, about 0.007 mm in front of the printed plane. The model uses the printed plane. [1]
+The model places the image plane at the printed gap of 0.705 mm behind the last plate. The calculated paraxial
+focus lies 0.698 mm behind that plate, about 0.007 mm in front of the printed plane. [1]
 
 ## Sources
 
@@ -167,6 +166,6 @@ behind that plate, about 0.007 mm in front of the printed plane. The model uses 
 4. DC Watch, [_An Interview About the Lens of the Nikon COOLPIX A_](https://dc.watch.impress.co.jp/docs/news/interview/593500.html),
    interview with Atsushi Suzuki and the camera development team.
 5. DPReview, [_Nikon Coolpix A Comparative Review_](https://www.dpreview.com/reviews/1257143006/nikon-coolpix-a/),
-   lens construction and aspherical element count.
-6. Nikon, [_COOLPIX A Reference Manual_](https://download.nikonimglib.com/archive1/LmdWU00s97sd00D2WYR5351V1E78/ARM_%28En%2903.pdf),
-   Aperture-Priority Auto and Specifications.
+   lens construction, aspherical element count, and measured macro magnification.
+6. Nikon, [_COOLPIX A User's Manual_ (Japanese)](https://nij.nikon.com/support/manual/coolpix/AFM_%2810%2902.pdf),
+   p. 51, aperture-priority mode.

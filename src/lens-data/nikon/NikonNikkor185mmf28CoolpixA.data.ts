@@ -85,7 +85,7 @@ const LENS_DATA = {
       focalLengthMm: -13.47,
       glass: "S-TIM35 (Ohara)",
       cemented: "C1",
-      role: "Negative, more dispersive rear member of the first doublet.",
+      role: "Higher-dispersion negative lens that reduces the power of the first doublet.",
     },
     {
       id: 5,
@@ -98,7 +98,7 @@ const LENS_DATA = {
       focalLengthMm: -11.94,
       glass: "S-TIM35 (Ohara)",
       cemented: "C2",
-      role: "Negative, more dispersive front member of the second doublet.",
+      role: "Higher-dispersion lens that gives the second doublet its negative power.",
     },
     {
       id: 6,
@@ -111,7 +111,7 @@ const LENS_DATA = {
       focalLengthMm: 20.12,
       glass: "J-LASKH2 (Hikari)",
       cemented: "C2",
-      role: "Positive rear member of the diverging doublet ahead of L7.",
+      role: "Positive lens that offsets some of L5's power before the rear meniscus.",
     },
     {
       id: 7,
