@@ -6,8 +6,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * It computes to EFL 100.68 mm and paraxial BF 49.10 mm; the printed BF is used for
  * the image plane because it agrees more closely with the Figures 2 and 3 rim-ray curves.
  * The stop is inferred 9.35 mm after R5, leaving 4.55 mm before R6; its opening is
- * derived from f/1.5. Inferred rims follow Figure 1's proportions: R3/R4 share a
- * square edge at 31.6 mm; R10–R12 retain 27.2 mm. Axial and chief rays clear the rims.
+ * derived from f/1.5. The inferred rims preserve Figure 1's square edges at 37 mm
+ * on R1/R2 and 31.6 mm on R3/R4. R10–R12 share a 27.2 mm clear radius.
+ * The plotted oblique rim rays support the front opening. Axial and chief rays clear the rims.
  * The patent names the D line, taken as sodium at 589.3 nm. No production lens is documented.
  */
 const LENS_DATA = {
@@ -54,6 +55,7 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1",
+      diagramLabel: "I",
       label: "Element 1",
       type: "Positive Meniscus",
       nd: 1.755,
@@ -66,6 +68,7 @@ const LENS_DATA = {
     {
       id: 2,
       name: "L2",
+      diagramLabel: "II",
       label: "Element 2",
       type: "Biconvex Positive",
       nd: 1.617,
@@ -79,6 +82,7 @@ const LENS_DATA = {
     {
       id: 3,
       name: "L3",
+      diagramLabel: "III",
       label: "Element 3",
       type: "Biconcave Negative",
       nd: 1.649,
@@ -92,6 +96,7 @@ const LENS_DATA = {
     {
       id: 4,
       name: "L4",
+      diagramLabel: "IV",
       label: "Element 4",
       type: "Biconcave Negative",
       nd: 1.558,
@@ -105,6 +110,7 @@ const LENS_DATA = {
     {
       id: 5,
       name: "L5",
+      diagramLabel: "V",
       label: "Element 5",
       type: "Biconvex Positive",
       nd: 1.511,
@@ -118,6 +124,7 @@ const LENS_DATA = {
     {
       id: 6,
       name: "L6",
+      diagramLabel: "VI",
       label: "Element 6",
       type: "Positive Meniscus",
       nd: 1.755,
@@ -131,6 +138,7 @@ const LENS_DATA = {
     {
       id: 7,
       name: "L7",
+      diagramLabel: "VII",
       label: "Element 7",
       type: "Negative Meniscus",
       nd: 1.617,
@@ -144,6 +152,7 @@ const LENS_DATA = {
     {
       id: 8,
       name: "L8",
+      diagramLabel: "VIII",
       label: "Element 8",
       type: "Biconvex Positive",
       nd: 1.755,
@@ -167,7 +176,7 @@ const LENS_DATA = {
       label: "2",
       R: 903,
       d: 0.4,
-      sd: 36,
+      sd: 37,
     },
     {
       label: "3",
@@ -254,7 +263,7 @@ const LENS_DATA = {
   },
   focus: {
     closeFocusM: 1e15,
-    description: "Infinity focus only; the patent gives no close-focus data.",
+    description: "The patent describes the objective at infinity and gives no focusing travel.",
   },
   groups: [
     {
