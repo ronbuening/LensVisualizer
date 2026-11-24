@@ -144,7 +144,7 @@ const LENS_DATA = {
   },
   focus: {
     closeFocusM: 1e15,
-    description: "Infinity focus only; the patent gives no close-focus data.",
+    description: "Modeled at infinity. The patent gives no focusing instructions for Example 2.",
   },
   groups: [
     {
