@@ -20,7 +20,7 @@ The Ross Wide Angle Xpres f/4, dating from around 1928 and associated with aeria
 
 ## Optical Architecture
 
-Six elements form four components: a front cemented doublet, a positive meniscus on each side of the stop, and a rear cemented doublet. R2 and R9 are the cemented interfaces, marked C1 and C2. Both menisci turn their concave faces toward the stop. The doublets have weak net negative power, while the two menisci provide positive power.
+Six elements form four components: a front cemented doublet, a positive meniscus on each side of the stop, and a rear cemented doublet. The diagram uses the patent's element numerals I–VI. R2 and R9 are the cemented interfaces, marked C1 and C2. Both menisci turn their concave faces toward the stop. The doublets have weak net negative power, while the two menisci provide positive power.
 
 The front doublet has a computed focal length of −794.94 mm, compared with −4859.31 mm for the rear doublet. The front meniscus is also stronger than the rear: +120.31 versus +135.19 mm. These asymmetries follow the patent's stated approach to controlling coma while keeping the two complete halves at approximately equal focal lengths, about 167 and 161 mm.
 
@@ -52,7 +52,9 @@ The patent explicitly identifies its Nd and Ng columns as the helium and mercury
 | 2 and 5  |   1.55065 |    1.56616 |
 | 3 and 4  |   1.51776 |    1.52839 |
 
-No catalogue row has been established that reproduces both indices for any of the three glasses. Each remains labelled Unmatched with its printed nd/ng pair. No Abbe numbers or F/C indices are printed. The mercury values remain documented evidence; they do not supply a full dispersion curve. This model is monochromatic at helium d, approximately 587.6 nm, and cannot establish the patent's claimed chromatic correction.
+The two menisci (III and IV) use Sumita's BALK3 curve as a spectral proxy. The model keeps the printed helium d index of 1.51776 and borrows BALK3's wavelength dependence. The anchored curve gives a mercury g index of 1.52838, about 0.00001 below the printed 1.52839. The original supplier and melt are unknown.
+
+The doublet glasses (I/VI and II/V) remain labelled Unmatched. The closest catalog curves miss their printed mercury g indices by about 0.00065 and 0.00020, respectively, even after anchoring at the printed d indices. The patent gives no Abbe numbers or F/C indices. The unresolved doublet glasses limit the lens-wide results to helium d, approximately 587.6 nm, so the model cannot establish the patent's claimed chromatic correction.
 
 ## Focus Mechanism
 

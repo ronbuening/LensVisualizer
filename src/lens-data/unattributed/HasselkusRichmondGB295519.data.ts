@@ -10,7 +10,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * R7 remains 12 mm, within the drawing's reading uncertainty; opaque lands extend R3/R8 to 13.1 mm to approximate the doublets' shoulders without changing their clear apertures.
  * The R3/R4 gap closes near 10.90 mm, while the f/4 marginal needs 10.63 mm; a 94% sag allowance preserves the beam with positive air clearance.
  * The 140.2 mm image circle is twice the real chief-ray height at the printed field's 35° half-angle, rounded to 0.1 mm; off-axis bundles are vignetted.
- * Mercury g-line indices are printed without Abbe numbers, so the model traces only helium d. No close-focus prescription is printed.
+ * The printed helium d-line indices anchor the model. L3 and L4 borrow the BALK3 dispersion curve, while the four doublet elements lack resolved curves.
+ * Lens-wide colour tracing is unavailable. The patent gives no close-focus data.
  * A Ross Wide Angle Xpres f/4 connection is likely but unconfirmed; the cited product record supplies no production prescription.
  */
 const LENS_DATA = {
@@ -52,6 +53,7 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1",
+      diagramLabel: "I",
       label: "Element 1",
       type: "Biconvex Positive",
       nd: 1.61071,
@@ -64,6 +66,7 @@ const LENS_DATA = {
     {
       id: 2,
       name: "L2",
+      diagramLabel: "II",
       label: "Element 2",
       type: "Biconcave Negative",
       nd: 1.55065,
@@ -76,28 +79,31 @@ const LENS_DATA = {
     {
       id: 3,
       name: "L3",
+      diagramLabel: "III",
       label: "Element 3",
       type: "Positive Meniscus",
       nd: 1.51776,
       indexReference: "d",
-      glass: "Unmatched (nd 1.51776 / ng 1.52839)",
+      glass: "BALK3 (spectral proxy; patent nd 1.51776 / ng 1.52839; supplier and melt unspecified)",
       focalLengthMm: 120.31,
       role: "Positive meniscus in front of the stop, concave toward it",
     },
     {
       id: 4,
       name: "L4",
+      diagramLabel: "IV",
       label: "Element 4",
       type: "Positive Meniscus",
       nd: 1.51776,
       indexReference: "d",
-      glass: "Unmatched (nd 1.51776 / ng 1.52839)",
+      glass: "BALK3 (spectral proxy; patent nd 1.51776 / ng 1.52839; supplier and melt unspecified)",
       focalLengthMm: 135.19,
       role: "Positive meniscus behind the stop, concave toward it",
     },
     {
       id: 5,
       name: "L5",
+      diagramLabel: "V",
       label: "Element 5",
       type: "Biconcave Negative",
       nd: 1.55065,
@@ -110,6 +116,7 @@ const LENS_DATA = {
     {
       id: 6,
       name: "L6",
+      diagramLabel: "VI",
       label: "Element 6",
       type: "Biconvex Positive",
       nd: 1.61071,
@@ -197,7 +204,7 @@ const LENS_DATA = {
   ],
   focus: {
     closeFocusM: 1e15,
-    description: "Infinity focus only; the patent gives no close-focus data.",
+    description: "The model has fixed spacings at infinity. The patent gives no close-focus data.",
   },
   aperture: {
     nominalFNumber: 4,
@@ -216,12 +223,12 @@ const LENS_DATA = {
       toSurface: "3",
     },
     {
-      text: "Front meniscus",
+      text: "Meniscus",
       fromSurface: "4",
       toSurface: "5",
     },
     {
-      text: "Rear meniscus",
+      text: "Meniscus",
       fromSurface: "6",
       toSurface: "7",
     },
