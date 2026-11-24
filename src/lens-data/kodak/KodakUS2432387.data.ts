@@ -88,7 +88,7 @@ const LENS_DATA = {
       vd: 29.3,
       indexReference: "D",
       focalLengthMm: -41.56,
-      glass: "S-TIH18 (spectral proxy; patent nD 1.720 / ν 29.3; supplier and melt unspecified)",
+      glass: "FD20 (Hoya)",
       role: "Dispersive negative element that balances the surrounding positive elements.",
     },
     {
