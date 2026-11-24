@@ -9,8 +9,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * The patent gives no iris station, diameter or clear radii. Rims are estimated
  * from Figure 1 with axial-beam and off-axis illumination checks: C1 has a
  * 30.4 mm outer rim; C2 and both rear singlets have 24.3 mm outer rims.
- * The front singlet retains 37 mm to preserve edge light; R5/R6 retain
- * 21.1/22 mm. No lands are inferred; the facing concave rims remain tapered.
+ * The front singlet retains a 37 mm rim to preserve edge light. The facing
+ * concave rims at R5/R6 taper to 21.1/20.6 mm without flat lands.
  * The inferred iris lies 11.10 mm after R5 and 8.96 mm before R6, preserving
  * their 20.06 mm gap; its opening gives paraxial f/1.5. The image plane is
  * 57.32 mm after R12 at paraxial focus, against 57.31 mm printed back focus.
@@ -127,7 +127,7 @@ const LENS_DATA = {
       name: "L7",
       label: "Element 7",
       type: "Biconvex Positive",
-      role: "Final positive collector, with its shallower face towards the front",
+      role: "Dense barium crown rear collector",
       focalLengthMm: 237.57,
       nd: 1.6135,
       vd: 59.3,
@@ -178,7 +178,7 @@ const LENS_DATA = {
       label: "6",
       R: -35.68,
       d: 4.14,
-      sd: 22,
+      sd: 20.6,
       medium: 4,
     },
     {
