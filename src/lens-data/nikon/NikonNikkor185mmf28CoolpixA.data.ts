@@ -46,7 +46,7 @@ const LENS_DATA = {
       vd: 53.74,
       indexReference: "d",
       focalLengthMm: -23.65,
-      glass: "Unmatched (nd 1.57957 / νd 53.74)",
+      glass: "BAFL4 (Hoya)",
       role: "Negative front element that spreads the incoming bundle for the wide field.",
     },
     {
@@ -131,7 +131,7 @@ const LENS_DATA = {
     { label: "1", R: 44.98275, d: 1.2099, sd: 10.05, medium: 1 },
     { label: "2", R: 10.4007, d: 7.7922, sd: 8.07, rimExtensionSd: 10.05 },
     { label: "3", R: 11.5292, d: 2.89155, sd: 5.9, medium: 2 },
-    { label: "4", R: 25.32835, d: 2.31805, sd: 5.9 },
+    { label: "4", R: 25.32835, d: 2.31805, sd: 5, rimExtensionSd: 5.9 },
     { label: "STO", R: "flat", d: 1.18585 },
     { label: "6", R: 17.2975, d: 2.41055, sd: 4.59, medium: 3 },
     { label: "7", R: -13.29595, d: 0.60495, sd: 4.59, medium: 4 },

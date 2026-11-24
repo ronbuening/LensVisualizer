@@ -43,15 +43,16 @@ the printed plane, 0.007 mm behind paraxial focus.
 
 ## Values Not Printed in the Patent
 
-The clear semi-diameters are estimated from Figure 1. The distance from the front vertex to the image sets the
-drawing scale, with the stop and plate positions as additional references. The lands at surfaces 2 and 9 extend
-beyond the clear curves to 10.05 and 6.29 mm, respectively.
+The clear semi-diameters are estimated from Figure 1. The 25.19 mm distance from the first to the last lens
+vertex sets the drawing scale, and the drawn curves follow the table radii at that scale. The lands at surfaces
+2, 4 and 9 extend beyond the clear curves to 10.05, 5.90 and 6.29 mm, respectively.
 
 | Surface     | Clear semi-diameter (mm) |
 | ----------- | -----------------------: |
 | 1           |                    10.05 |
 | 2           |                     8.07 |
-| 3, 4        |                     5.90 |
+| 3           |                     5.90 |
+| 4           |                     5.00 |
 | 6, 7        |                     4.59 |
 | 8           |                     4.83 |
 | 9           |                     5.03 |
@@ -62,7 +63,7 @@ beyond the clear curves to 10.05 and 6.29 mm, respectively.
 The entrance pupil for f/2.88 gives a paraxial stop radius of 3.935 mm. The drawing shows about 3.98 mm. The
 surfaces stay clear of each other. The rims pass the f/2.88 axial beam and the chief rays at the nominal APS-C
 corner (14.175 mm, about 38.0°), the Nikon DX corner (14.145 mm, about 38.0°) and the patent field (14.615 mm,
-38.9°). Outer-field vignetting occurs mainly at surfaces 6–8. At 38.0°, the rims transmit 96.8% of the pupil area
+38.9°). Outer-field vignetting occurs mainly at surfaces 6–8. At 38.0°, the rims transmit 96.7% of the pupil area
 before geometric illumination falloff.
 
 ## Product Identification
@@ -101,11 +102,12 @@ group. Nikon states that the camera has no optical low-pass filter.
   with calculated in-air focal lengths and brackets for the two cemented pairs at surfaces 6–8 and 9–11.
 
 Catalog equivalents replace unidentified glass labels where their optical constants agree closely with Table 1.
-The table gives catalog minus patent values. L1 and L7 retain the printed constants and use dispersion estimated
+The table gives catalog minus patent values. L7 retains the printed constants and uses dispersion estimated
 from the Abbe number.
 
 | Position           | Catalog equivalent |         Δnd |     Δνd |
 | ------------------ | ------------------ | ----------: | ------: |
+| L1                 | BAFL4 (Hoya)       | +2.0 × 10⁻⁶ |  −0.034 |
 | L2                 | J-LASF016 (Hikari) | +1.7 × 10⁻⁸ | +0.0002 |
 | L3                 | J-LASF08A (Hikari) | +2.5 × 10⁻⁸ |  +0.029 |
 | L4, L5             | S-TIM35 (Ohara)    | −3.2 × 10⁻⁶ |  −0.002 |
@@ -115,9 +117,25 @@ from the Abbe number.
 The finished model gives 18.497 mm effective focal length at f/2.88, with a 3.935 mm iris radius and 0.698 mm
 paraxial back focus from the last plate.
 
+2026-11-24 rim review:
+
+- Surface 4: the clear semi-diameter changed from 5.90 to 5.00 mm, with a flat land out to the 5.90 mm rim. In
+  Figure 1 the rear curve of L2 follows the 25.33 mm table radius to about 5.0 mm on both sides of the axis and
+  then runs flat to the edge. The drawn edge of L2 is about 1.78 mm thick. The land gives 1.77 mm, and the
+  full-height curve gave 1.96 mm. Pupil transmission at the DX corner (38.0°) is 96.8% before and 96.7% after.
+- The other rims and the lands at surfaces 2 and 9 were compared again with Figure 1 and kept. Each drawn curve
+  follows its table radius out to the listed semi-diameter, and L4 is drawn about 0.2 mm taller than L3, as
+  modeled. Nikon publishes no section drawing of the lens for a second comparison.
+
+2026-11-24 glass review:
+
+- L1: the label changed from unmatched to BAFL4 (Hoya), a discontinued glass whose catalog values lie 2 × 10⁻⁶
+  above the printed index and 0.034 below the printed Abbe number. The printed index and Abbe number are kept;
+  the catalog row supplies the dispersion curve.
+
 ## Remaining Questions
 
 The production cross-section, focusing group and travel, degree of iris rounding and composition of the sensor
-stack remain undocumented. L1 has no matching Hikari, Ohara or Hoya entry. Schott N-BALF4 lies near its printed
-coordinates. L7 has no matching catalog entry. Exact clear apertures and iris diameter remain unknown because
+stack remain undocumented. L1 matches the discontinued Hoya BAFL4; Schott N-BALF4 lies almost as near, so the maker of the
+production glass is not established. L7 has no matching catalog entry. Exact clear apertures and iris diameter remain unknown because
 Table 1 gives no rim or stop diameters.

@@ -47,7 +47,7 @@ The focal lengths below are for each element in air.
 
 ### L1 — Negative meniscus
 
-**nd = 1.57957, νd = 53.74. Glass unidentified. f = −23.65 mm.**
+**nd = 1.57957, νd = 53.74. Glass equivalent BAFL4 (Hoya). f = −23.65 mm.**
 
 The front meniscus is convex toward the object and spreads the incoming bundle. Its concave rear face and the weak
 combined power of L1 and L2 help control off-axis coma and distortion. [1]
@@ -101,7 +101,7 @@ curves. The production glass suppliers and melts are unknown.
 
 | Position           |      nd |    νd | Catalog equivalent |
 | ------------------ | ------: | ----: | ------------------ |
-| L1                 | 1.57957 | 53.74 | Unmatched          |
+| L1                 | 1.57957 | 53.74 | BAFL4 (Hoya)       |
 | L2                 | 1.77250 | 49.62 | J-LASF016 (Hikari) |
 | L3                 | 1.88300 | 40.66 | J-LASF08A (Hikari) |
 | L4, L5             | 1.69895 | 30.13 | S-TIM35 (Ohara)    |
@@ -110,7 +110,7 @@ curves. The production glass suppliers and melts are unknown.
 | Both filter plates | 1.51680 | 64.20 | BSC7 (Hoya)        |
 
 The two cemented pairs each combine a more dispersive negative member with a less dispersive positive member.
-The model estimates dispersion from the Abbe number for L1 and L7. [1]
+BAFL4 is a discontinued Hoya glass. The model estimates dispersion from the Abbe number for L7. [1]
 
 ## Focus Mechanism
 
@@ -146,7 +146,7 @@ The patent relates these limits to coma and distortion control in a short lens. 
 ## Aperture, Field, and Image Plane
 
 Table 1 fixes the stop at surface 5. The printed f/2.88 gives a calculated iris radius of 3.935 mm. The clear radii
-and the outer lands at surfaces 2 and 9 are estimated from Figure 1. The camera has a seven-blade iris with
+and the outer lands at surfaces 2, 4 and 9 are estimated from Figure 1. The camera has a seven-blade iris with
 19 third-stop settings, from f/2.8 to f/22. [1, 3, 5]
 
 The printed 38.9° half-field gives a 14.615 mm image height, 3.3% beyond the 14.145 mm DX corner. The rims admit
