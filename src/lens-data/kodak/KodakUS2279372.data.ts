@@ -49,9 +49,9 @@ const LENS_DATA = {
   elements: [
     {
       id: 1,
-      name: "I",
+      name: "L1",
       diagramLabel: "I",
-      label: "Front element",
+      label: "Element 1",
       type: "Positive Meniscus",
       focalLengthMm: 59.39,
       nd: 1.616,
@@ -62,9 +62,9 @@ const LENS_DATA = {
     },
     {
       id: 2,
-      name: "II",
+      name: "L2",
       diagramLabel: "II",
-      label: "Middle element",
+      label: "Element 2",
       type: "Biconcave Negative",
       focalLengthMm: -33.47,
       nd: 1.649,
@@ -75,9 +75,9 @@ const LENS_DATA = {
     },
     {
       id: 3,
-      name: "III",
+      name: "L3",
       diagramLabel: "III",
-      label: "Rear element",
+      label: "Element 3",
       type: "Biconvex Positive",
       focalLengthMm: 52.29,
       nd: 1.616,

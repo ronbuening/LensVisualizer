@@ -56,9 +56,9 @@ const LENS_DATA = {
   elements: [
     {
       id: 1,
-      name: "I",
+      name: "L1",
       diagramLabel: "I",
-      label: "Front element",
+      label: "Element 1",
       type: "Biconvex Positive",
       role: "Front positive collector",
       focalLengthMm: 52.83,
@@ -70,9 +70,9 @@ const LENS_DATA = {
     },
     {
       id: 2,
-      name: "II",
+      name: "L2",
       diagramLabel: "II",
-      label: "Middle element",
+      label: "Element 2",
       type: "Biconcave Negative",
       role: "Central negative element with greater dispersion",
       focalLengthMm: -32.53,
@@ -84,9 +84,9 @@ const LENS_DATA = {
     },
     {
       id: 3,
-      name: "III",
+      name: "L3",
       diagramLabel: "III",
-      label: "Rear element",
+      label: "Element 3",
       type: "Plano-Convex Positive",
       role: "Rear positive element ahead of the diaphragm",
       focalLengthMm: 52.7,

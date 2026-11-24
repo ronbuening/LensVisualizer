@@ -51,8 +51,8 @@ const LENS_DATA = {
   elements: [
     {
       id: 1,
-      name: "I",
-      label: "Element I",
+      name: "L1",
+      label: "Element 1",
       diagramLabel: "I",
       type: "Plano-Convex Positive",
       nd: 1.697,
@@ -65,8 +65,8 @@ const LENS_DATA = {
     },
     {
       id: 2,
-      name: "II",
-      label: "Element II",
+      name: "L2",
+      label: "Element 2",
       diagramLabel: "II",
       type: "Biconcave Negative",
       nd: 1.605,
@@ -79,8 +79,8 @@ const LENS_DATA = {
     },
     {
       id: 3,
-      name: "III",
-      label: "Element III",
+      name: "L3",
+      label: "Element 3",
       diagramLabel: "III",
       type: "Biconcave Negative",
       nd: 1.621,
@@ -94,8 +94,8 @@ const LENS_DATA = {
     },
     {
       id: 4,
-      name: "IV",
-      label: "Element IV",
+      name: "L4",
+      label: "Element 4",
       diagramLabel: "IV",
       type: "Biconvex Positive",
       nd: 1.744,

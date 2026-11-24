@@ -51,9 +51,9 @@ const LENS_DATA = {
   elements: [
     {
       id: 1,
-      name: "I",
+      name: "L1",
       diagramLabel: "I",
-      label: "Element I",
+      label: "Element 1",
       type: "Plano-Convex Positive",
       role: "Positive front collector with a planar rear surface",
       nd: 1.611,
@@ -64,9 +64,9 @@ const LENS_DATA = {
     },
     {
       id: 2,
-      name: "II",
+      name: "L2",
       diagramLabel: "II",
-      label: "Element II",
+      label: "Element 2",
       type: "Positive Meniscus",
       role: "Shifts marginal rays inward before the biconcave element",
       nd: 1.605,
@@ -77,9 +77,9 @@ const LENS_DATA = {
     },
     {
       id: 3,
-      name: "III",
+      name: "L3",
       diagramLabel: "III",
-      label: "Element III",
+      label: "Element 3",
       type: "Biconcave Negative",
       role: "Negative dispersive element ahead of the aperture stop",
       nd: 1.649,
@@ -90,9 +90,9 @@ const LENS_DATA = {
     },
     {
       id: 4,
-      name: "IV",
+      name: "L4",
       diagramLabel: "IV",
-      label: "Element IV",
+      label: "Element 4",
       type: "Biconvex Positive",
       role: "Positive rear element that brings the beam to the image plane",
       nd: 1.62,
