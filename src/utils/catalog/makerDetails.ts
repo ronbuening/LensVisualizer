@@ -673,16 +673,6 @@ export const MAKER_DETAILS: Record<string, MakerDetails> = {
     notableDesigns:
       "25mm f/0.95, 35mm f/1.7, 50mm f/1.2, Mini Prime 25mm T2.2, FF Prime 35mm T2.1, AF 85mm f/1.8 STM, AF 85mm f/1.4 STM, AF 55mm f/1.4",
   },
-  "7artisans": {
-    founded: 2016,
-    headquarters: "Shenzhen, China",
-    summary:
-      "Chinese lens maker producing manual-focus and autofocus photographic lenses and cinema lenses for mirrorless cameras.",
-    history:
-      "Shenzhen 7Artisans Photoelectric Technology Co., Ltd. was established in Shenzhen in 2016. The company traces its beginnings to a gathering of photography enthusiasts in 2015, whose interests included optical design, factory production and Leica lenses. Its name refers to the seven members who remained through development of the first 50mm f/1.1 lens.\n\nThe M-mount 50mm f/1.1 reached the market in 2017. The subsequent manual-focus range included lenses such as the 35mm f/1.2 and M-mount 28mm f/1.4. In 2021 the company introduced its Vision cinema-lens series; it later expanded into autofocus photographic lenses, including the 50mm f/1.8, 27mm f/2.8 and 85mm f/1.8.\n\nThe company holds CN 221175107 U, a seven-element, five-group 40mm f/5.6 full-frame design granted in 2024. No marketed 7Artisans lens using that prescription is documented.",
-    notableDesigns:
-      "M 50mm f/1.1, 35mm f/1.2, M 28mm f/1.4, Vision cinema lenses, AF 50mm f/1.8, AF 27mm f/2.8, AF 85mm f/1.8",
-  },
   pentax: {
     founded: 1919,
     headquarters: "Tokyo, Japan (Ricoh Imaging Company since 2011)",
