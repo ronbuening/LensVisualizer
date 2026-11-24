@@ -4,8 +4,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * US 1,156,743 A (Lionel Barton Booth, 1915), Example 2 and Figure 2.
  * The approximately 12-unit focal length at 25 mm/unit is nominally 300 mm.
  * The printed prescription gives EFL 302.10 mm (+0.7%); no source value is adjusted.
- * The patent prints D, F and hydrogen Hγ indices but no Abbe numbers. Tracing
- * uses only sodium D (589.3 nm), without dispersion.
+ * The patent prints D, F and hydrogen Hγ indices but no Abbe numbers. Three
+ * glasses use catalog dispersion anchored at sodium D (589.3 nm). L2 has
+ * only its D-line index in the trace, which limits full-lens colour analysis.
  * The inferred stop is 15 mm behind R3 and 20.175 mm before R4. Estimated clear
  * radii follow Figure 2 proportions, retaining off-axis light: 20.9 mm for the
  * front pair and 13.5 mm for both rear singlets. No clear diameters are printed.
@@ -52,7 +53,7 @@ const LENS_DATA = {
       nd: 1.5899,
       indexReference: "D",
       focalLengthMm: 46.74,
-      glass: "Unmatched (nD 1.5899, nF 1.5967, nG′ 1.6022)",
+      glass: "S-BAL35R (spectral proxy; patent nD 1.5899, nF 1.5967, nG′ 1.6022; supplier and melt unspecified)",
       role: "Positive front lens of the cemented collecting pair",
       cemented: "C1",
     },
@@ -66,7 +67,7 @@ const LENS_DATA = {
       indexReference: "D",
       focalLengthMm: -76.07,
       glass: "Unmatched (nD 1.6259, nF 1.6381, nG′ 1.6485)",
-      role: "Negative lens balancing the positive front pair",
+      role: "Negative partner to L1 in the cemented front pair",
       cemented: "C1",
     },
     {
@@ -78,7 +79,7 @@ const LENS_DATA = {
       nd: 1.6129,
       indexReference: "D",
       focalLengthMm: 65,
-      glass: "Unmatched (nD 1.6129, nF 1.6247, nG′ 1.6348)",
+      glass: "F3 (spectral proxy; patent nD 1.6129, nF 1.6247, nG′ 1.6348; supplier and melt unspecified)",
       role: "Positive leading lens of the rear negative assembly",
     },
     {
@@ -90,7 +91,7 @@ const LENS_DATA = {
       nd: 1.6119,
       indexReference: "D",
       focalLengthMm: -35.49,
-      glass: "Unmatched (nD 1.6119, nF 1.61965, nG′ 1.62593)",
+      glass: "BACD8 (spectral proxy; patent nD 1.6119, nF 1.61965, nG′ 1.62593; supplier and melt unspecified)",
       role: "Negative rear lens extending focal length relative to lens length",
     },
   ],
@@ -149,7 +150,7 @@ const LENS_DATA = {
   ],
   focus: {
     closeFocusM: 1e15,
-    description: "Infinity focus only; the patent gives no close-focus data.",
+    description: "Infinity focus only. The patent allows the spacing between the front and rear assemblies to vary but gives no travel or focus distances.",
   },
   aperture: {
     nominalFNumber: 8,
