@@ -37,20 +37,19 @@ The paraxial image lies 0.15 µm behind the specified plane at infinity and 0.23
 
 ## Values Not Printed in the Patent
 
-Clear semi-diameters follow the optical outlines in Fig. 16. The 616-pixel span from S1 to the image line corresponds to a 61.364 mm axial track, giving about 10.04 pixels/mm. The iris radius is calculated as 4.164 mm to give f/2.88 at infinity. The drawn opening is about 4.35 mm in radius.
+Clear semi-diameters follow the optical outlines in Fig. 16. The 392-pixel span from the first to the last lens vertex corresponds to 39.076 mm, giving about 10.03 pixels/mm along the axis. The drawn arcs of S2 and S13 give about 10.1 pixels/mm radially. Where the figure ends a concave face short of its element's edge, a flat land continues to the edge. The iris radius is calculated as 4.164 mm to give f/2.88 at infinity. The drawn opening is about 4.35 mm in radius.
 
-| Surfaces | Semi-diameter (mm) |
-| -------- | -----------------: |
-| S1       |              10.40 |
-| S2       |               7.45 |
-| S3       |               8.30 |
-| S4       |               6.40 |
-| S5–S6    |               7.30 |
-| S8–S10   |               6.50 |
-| S11      |               9.70 |
-| S12      |               9.60 |
-| S13      |               9.30 |
-| S14–S15  |              11.00 |
+| Surfaces | Semi-diameter (mm) | Flat land out to (mm) |
+| -------- | -----------------: | --------------------: |
+| S1       |              10.40 |                     — |
+| S2       |               7.45 |                 10.40 |
+| S3       |               8.30 |                     — |
+| S4       |               6.40 |                  8.30 |
+| S5–S6    |               7.30 |                     — |
+| S8–S10   |               6.50 |                     — |
+| S11–S12  |               9.60 |                     — |
+| S13      |               9.30 |                 11.00 |
+| S14–S15  |              11.00 |                     — |
 
 The surfaces stay clear of each other. The iris passes the full axial beam at all three focus positions. The chief ray reaches the 14.175 mm APS-C corner at half-fields of about 37.6°, 37.4° and 37.2° at infinity, 800 mm and 400 mm. Outer off-axis rays are partly vignetted. Geometric pupil transmission is about 75% at the 37.6° infinity field edge.
 
@@ -85,6 +84,15 @@ The printed glass pairs are retained. Added Hoya labels supply dispersion curves
 | L7       | E-FD13 (Hoya)      | −2.3 × 10⁻⁷ |  0.00 |
 
 The completed model gives 18.908 mm EFL, f/2.88 and 22.289 mm paraxial back focus at infinity, with a 4.164 mm iris radius and 37.6° half-field.
+
+2026-11-24 rim review:
+
+- S2 gained a flat land from its 7.45 mm cap end to the 10.40 mm edge of L1. Fig. 16 ends the concave face 75–76 pixels from the axis (7.4–7.5 mm) and continues square to the axis out to the edge at 104 pixels. Sigma's construction drawing shows the same land.
+- S4 gained a flat land from 6.40 mm to the 8.30 mm edge of L2. Fig. 16 ends the cap at 66 pixels (6.5 mm) and draws the stroke to the edge at 82–83 pixels. Sigma's drawing also steps this face.
+- S13 gained a flat land from 9.30 mm to the 11.00 mm edge of the rear doublet. Fig. 16 ends the cap at 91–93 pixels (9.0–9.2 mm) and draws the stroke to the edge at 110 pixels. Sigma's drawing shows a land here too.
+- S11 went from 9.70 to 9.60 mm. Fig. 16 draws L6 square-cut with its edge 97 pixels from the axis (9.6 mm), so both faces end at one height.
+- The other radii agree with Fig. 16 within 2.5% and stay. Sigma's drawing of the production lens shows L6 and the rear doublet about 10% smaller relative to L1 and steps the edge of the L4–L5 pair. Fig. 16 governs where the two differ.
+- Geometric pupil transmission at the field edge is the same before and after: 75.3% at infinity (37.6°), 78.4% at 800 mm (37.4°) and 81.8% at 400 mm (37.2°). The lands lie outside the clear apertures, and the neighbouring rims already stop every ray the lowered S11 rim stops.
 
 ## Remaining Questions
 

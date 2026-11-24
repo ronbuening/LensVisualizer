@@ -31,7 +31,7 @@ The wide-angle design has a negative–positive–negative power distribution ac
 
 The negative front group and the positive central group give a back focus longer than the focal length. The patent splits the central power between a +48.55 mm doublet and a +19.63 mm meniscus. This division limits the power required at either component and helps control changes in off-axis aberrations as G2 moves (¶0036–0044).
 
-The patent prints radii, axial spacings, glass constants, aspheric coefficients, stop position and a 22.2884 mm image gap. At infinity the model gives 18.91 mm EFL, 22.289 mm paraxial back focus and a 61.36 mm total track. Clear radii are estimated from Fig. 16, and the 4.164 mm iris radius follows from the printed f/2.88. The 37.6° chief ray reaches the printed 14.20 mm image height. The axial beam and the APS-C corner chief ray clear the rims at both printed focus positions. Geometric pupil transmission at the infinity field edge is about 75% wide open.
+The patent prints radii, axial spacings, glass constants, aspheric coefficients, stop position and a 22.2884 mm image gap. At infinity the model gives 18.91 mm EFL, 22.289 mm paraxial back focus and a 61.36 mm total track. Clear radii are estimated from Fig. 16, and the 4.164 mm iris radius follows from the printed f/2.88. As in that figure, the concave rear faces of L1 and L2 and the concave front face of L7 end short of their elements' edges in flat lands. The 37.6° chief ray reaches the printed 14.20 mm image height. The axial beam and the APS-C corner chief ray clear the rims at both printed focus positions. Geometric pupil transmission at the infinity field edge is about 75% wide open.
 
 ## Element-by-Element Analysis
 

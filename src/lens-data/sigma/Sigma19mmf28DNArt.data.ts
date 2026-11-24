@@ -4,7 +4,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * JP 2013-029658 A, Numerical Example 4 (Sigma Corporation, Atsushi Yamazaki), in the printed millimetres.
  * The radii, axial spacings, helium d-line glass values, stop position, aspheric coefficients and 22.2884 mm
  * image gap follow the patent. It gives a 75.2° full field and f/2.88 at infinity and f/2.94 at 400 mm.
- * The lens semi-diameters are estimated from Fig. 16. The 4.164 mm iris radius is derived from f/2.88.
+ * The lens semi-diameters are estimated from Fig. 16 (about 10.0 px/mm along the axis and 10.1 px/mm radially).
+ * The figure ends the concave faces of surfaces 2, 4 and 13 short of their elements' edges with flat lands, drawn
+ * here out to 10.4, 8.3 and 11.0 mm. The 4.164 mm iris radius is derived from f/2.88.
  * The two printed focus positions bound the model. The intermediate spacings at 800 mm are calculated for
  * paraxial focus at the fixed image plane, with the two moving gaps still totaling 6.9942 mm.
  */
@@ -144,23 +146,23 @@ const LENS_DATA = {
       medium: 1,
       asphere: { K: 0, A4: 3.71314e-5, A6: 1.26369e-7, A8: -8.81328e-10, A10: 9.83774e-12 },
     },
-    { label: "2", R: 9.3513, d: 3.3434, sd: 7.45 },
+    { label: "2", R: 9.3513, d: 3.3434, sd: 7.45, rimExtensionSd: 10.4 },
     { label: "3", R: 37.8156, d: 0.9, sd: 8.3, medium: 2 },
-    { label: "4", R: 11.8615, d: 0.7997, sd: 6.4 },
+    { label: "4", R: 11.8615, d: 0.7997, sd: 6.4, rimExtensionSd: 8.3 },
     { label: "5", R: 17.5225, d: 2.481, sd: 7.3, medium: 3 },
     { label: "6", R: 70.0319, d: 3.6951, sd: 7.3 },
     { label: "STO", R: "flat" },
     { label: "8", R: -66.5754, d: 0.85, sd: 6.5, medium: 4 },
     { label: "9", R: 22.4165, d: 2.7812, sd: 6.5, medium: 5 },
     { label: "10", R: -37.3785, d: 5.7525, sd: 6.5 },
-    { label: "11", R: -308.235, d: 4.4533, sd: 9.7, medium: 6 },
+    { label: "11", R: -308.235, d: 4.4533, sd: 9.6, medium: 6 },
     {
       label: "12A",
       R: -14.5018,
       sd: 9.6,
       asphere: { K: 0, A4: 6.03409e-5, A6: 2.65895e-8, A8: -1.24719e-10, A10: 5.67838e-12 },
     },
-    { label: "13", R: -22.289, d: 1, sd: 9.3, medium: 7 },
+    { label: "13", R: -22.289, d: 1, sd: 9.3, rimExtensionSd: 11, medium: 7 },
     { label: "14", R: 40.3119, d: 4.8254, sd: 11, medium: 8 },
     {
       label: "15A",
