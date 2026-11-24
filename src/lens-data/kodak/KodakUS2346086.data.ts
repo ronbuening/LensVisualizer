@@ -51,20 +51,23 @@ const LENS_DATA = {
   elements: [
     {
       id: 1,
-      name: "L1",
-      label: "Element 1",
+      name: "I",
+      label: "Element I",
+      diagramLabel: "I",
       type: "Plano-Convex Positive",
       nd: 1.697,
       vd: 56.1,
       indexReference: "D",
-      glass: "H-LaK12 (CDGM)",
+      glass:
+        "H-LaK12 (spectral proxy; patent nD 1.697 / ν 56.1; supplier and melt unspecified)",
       focalLengthMm: 37.88,
       role: "Positive front element collecting light into the central negative element.",
     },
     {
       id: 2,
-      name: "L2",
-      label: "Element 2",
+      name: "II",
+      label: "Element II",
+      diagramLabel: "II",
       type: "Biconcave Negative",
       nd: 1.605,
       vd: 43.6,
@@ -76,8 +79,9 @@ const LENS_DATA = {
     },
     {
       id: 3,
-      name: "L3",
-      label: "Element 3",
+      name: "III",
+      label: "Element III",
+      diagramLabel: "III",
       type: "Biconcave Negative",
       nd: 1.621,
       vd: 36.2,
@@ -90,8 +94,9 @@ const LENS_DATA = {
     },
     {
       id: 4,
-      name: "L4",
-      label: "Element 4",
+      name: "IV",
+      label: "Element IV",
+      diagramLabel: "IV",
       type: "Biconvex Positive",
       nd: 1.744,
       vd: 45.8,
@@ -171,12 +176,12 @@ const LENS_DATA = {
   },
   groups: [
     {
-      text: "FRONT POSITIVE",
+      text: "FRONT (+)",
       fromSurface: "1",
       toSurface: "2",
     },
     {
-      text: "MIDDLE NEGATIVE",
+      text: "MIDDLE (−)",
       fromSurface: "3",
       toSurface: "4",
     },
