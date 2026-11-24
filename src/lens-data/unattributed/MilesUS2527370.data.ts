@@ -50,7 +50,8 @@ const LENS_DATA = {
   elements: [
     {
       id: 1,
-      name: "E1",
+      name: "L1",
+      diagramLabel: "a",
       label: "Element 1",
       type: "Biconvex Positive",
       nd: 1.516,
@@ -58,12 +59,13 @@ const LENS_DATA = {
       indexReference: "D",
       glass: "Unmatched (ordinary window glass; nD 1.516 / ν 59.1)",
       focalLengthMm: 41.43,
-      role: "Positive front element supplying image-forming power and field flattening.",
+      role: "Positive crown for image formation, chromatic correction and field flattening.",
       cemented: "C1",
     },
     {
       id: 2,
-      name: "E2",
+      name: "L2",
+      diagramLabel: "b",
       label: "Element 2",
       type: "Biconcave Negative",
       nd: 1.617,
@@ -115,7 +117,7 @@ const LENS_DATA = {
   },
   focus: {
     closeFocusM: 1e15,
-    description: "Infinity focus only; the patent gives no close-focus data.",
+    description: "Infinity focus only. The patent gives no focusing mechanism or close-focus data.",
   },
   groups: [
     {
