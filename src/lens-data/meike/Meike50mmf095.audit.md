@@ -43,7 +43,6 @@ Engine numbers before and after this pass are identical: EFL 50.48152158616866 m
 Open:
 
 - No Meike construction diagram was found; the element shapes, the glasses and the single low-dispersion position are the patent's, not confirmed for the production lens.
-- The company link between Chengdu Weizheng Digital Technology and Meike rests on one trade-directory page; a registry or maker source would settle it.
 - (Closed 2026-11-15 by the semi-diameter pass below.) Rims are the printed clear diameters and were not compared with Fig. 1 edge by edge. The real axial beam at the paraxial pupil overfills surface 6 by 0.05 mm, and F/0.95 is not reachable inside the printed rims of surfaces 5 to 7.
 - `aperture.fStops` begins at the design 0.9846. (Blade count entered 2026-11-15, see below; the maker's range ends at f/16, the schema default.)
 - Infinity only; the production focusing movement and the 0.45 m state are not modelled.
@@ -100,3 +99,8 @@ Open:
 - The inspector shows νd to six decimals (for example 42.725177) because the values were computed from catalog dispersion formulas; the catalogs print two decimals. Not changed here.
 - L3 (FCD515, νd 68.62) carries no `apd` tag. It stays untagged unless a maker source marks a low-dispersion element.
 
+## 2026-11-24 — production-match review
+
+- Company link settled: the USPTO registers the MEIKE trademark (registration 7,492,283, serial 98134510, filed 15 August 2023, goods including lenses for cameras) to Chengdu Weizheng Digital Technology Co. Ltd., the patentee. The earlier open item about the single trade-directory page is closed.
+- PhotonsToPhotos Optical Bench lists CN 216526483, Example 1, under "7Artisans APS-C 50mm F0.95". The patentee and the low-dispersion count (one element in Table 1, two in the 7Artisans diagram) contradict that label, so the Meike attribution stands.
+- The lens is classed as a production match in the Lens Library. No Meike section drawing was found, so element shapes and glasses remain the patent's.

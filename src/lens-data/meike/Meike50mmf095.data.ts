@@ -7,7 +7,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * an APS-C lens. Seven spherical glass elements in five groups: L3 + L4 and L5 + L6 are the two cemented pairs the
  * patent calls the first and second cemented lenses, and the stop lies between them.
  *
- * PRODUCT LINK: by assignee and construction. The patentee is reported as the company behind the Meike brand, and
+ * PRODUCT LINK: by assignee and construction. The patentee owns the MEIKE trademark (US registration 7,492,283), and
  * the Meike 50mm f/0.95 for APS-C (announced June 2022, seven elements in five groups) followed the filing by seven
  * months. No maker construction diagram was found to compare with Fig. 1.
  *

@@ -12,7 +12,7 @@
 
 The patent describes a seven-element, all-spherical double-Gauss derivative for the APS-C format with a stated focal length of 50 mm and a relative aperture of F = 0.95 (¶0053). Its stated aims are a very large aperture at low cost, using spherical glass only (¶0021–0023).
 
-The link to the Meike 50mm f/0.95 rests on the assignee and the construction, not on a maker drawing. Chengdu Weizheng Digital Technology is reported as the company behind the Meike brand, and Meike announced a manual-focus 50mm f/0.95 for APS-C mirrorless cameras at the end of June 2022, seven months after the filing, with seven elements in five groups, a 0.45 m minimum focus distance and Sony E, Fujifilm X, Nikon Z, Canon EF-M and Micro Four Thirds mounts. No Meike construction diagram was found to compare with Fig. 1, so the element shapes and glasses of the production lens are not confirmed. The table is the patent's embodiment and may differ from the lens as built.
+The link to the Meike 50mm f/0.95 rests on the assignee and the construction, not on a maker drawing. Chengdu Weizheng Digital Technology owns the MEIKE trademark for camera lenses (US registration 7,492,283), and Meike announced a manual-focus 50mm f/0.95 for APS-C mirrorless cameras at the end of June 2022, seven months after the filing, with seven elements in five groups, a 0.45 m minimum focus distance and Sony E, Fujifilm X, Nikon Z, Canon EF-M and Micro Four Thirds mounts. No Meike construction diagram was found to compare with Fig. 1, so the element shapes and glasses of the production lens are not confirmed. The table is the patent's embodiment and may differ from the lens as built.
 
 ## Optical Architecture
 
@@ -78,5 +78,5 @@ The patent reports, for its design, a centre MTF above 0.7 at 12 cycles/mm (¶00
 
 - CN 216526483 U, Table 1, ¶0049–0053, Figs. 1–5: https://patents.google.com/patent/CN216526483U/en
 - Meike 50mm f/0.95 announcement and specifications (June 30, 2022): https://photorumors.com/2022/06/30/another-week-another-new-meike-lens-50mm-f-0-95-aps-c-manual-focus-lens-for-m43-e-x-z-efm-mount/
-- Chengdu Weizheng Digital Technology as the company behind Meike: https://www.broadcastbeat.com/manufacturers/meike
+- Chengdu Weizheng Digital Technology as owner of the MEIKE trademark: USPTO registration 7,492,283 (serial 98134510), goods including lenses for cameras; also https://www.broadcastbeat.com/manufacturers/meike
 - CDGM and HOYA optical glass catalogs for the named glasses.

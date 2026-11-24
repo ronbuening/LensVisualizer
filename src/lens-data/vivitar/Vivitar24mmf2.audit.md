@@ -153,3 +153,8 @@ Open:
 
 - L4 and L6 would be better labelled FD1 and FD6 (HOYA) if leaded HOYA rows for those two glasses are ever added to the glass catalog.
 - Surface 4's curved cap (11.4 mm) is above the figure's drawn curve end (about 10.5 mm at the top, 9.0 mm at the bottom of a hand-drawn figure); it is the earlier value and lowering it would be a cut, so it stays.
+
+## 2026-11-24 — production-match review
+
+- PhotonsToPhotos Optical Bench lists "Vivitar 24mm f2 Compact", US 4,258,980, Example 1: the same patent and example as this model. This validates the choice of source; it is not a maker confirmation.
+- The lens is classed as a production match in the Lens Library.

@@ -123,3 +123,8 @@ Open:
 - All six glasses tie with HOYA rows of the same printed values (TAFD30, FDS90, BACD5, NBFD10, LAC7); the OHARA names are kept, and the supplier is unknown.
 - Surface 5A has no axial margin beyond the stored 2.35mm.
 - The camera's aperture steps are unconfirmed.
+
+## 2026-11-24 — production-match review
+
+- PhotonsToPhotos Optical Bench lists "Ricoh Pentax 5.8-17.4mm F2.6-4.8 [Pentax Optio S]", US 2003/0197949, Example 6: the same patent and example as this model. This validates the choice of source; it is not a maker confirmation.
+- The lens is classed as a production match in the Lens Library.

@@ -133,3 +133,8 @@ Open:
 - Closed 2026-11-15: L1 and L3 were relabelled from the modern Schott names N-BK7 and N-FK5 to the equally exact period Hoya rows BSC7 (1.51680 / 64.20) and FC5 (1.48749 / 70.45), and all eight labels now use the "catalog equivalent" wording. The set still mixes Hoya, Schott (SF4, SF6) and Sumita (K-LaK11), because no single vendor has an exact row for every element.
 - Only the Pentax K mount is sourced.
 - The earlier open items stand (paraxial stop, unverified front-group rims, low corner light, 1:10 state not modeled).
+
+## 2026-11-24 — production-match review
+
+- PhotonsToPhotos Optical Bench lists "Vivitar 28mm f2", US 4,258,980, Example 2: the same patent and example as this model. This validates the choice of source; it is not a maker confirmation.
+- The lens is classed as a production match in the Lens Library.

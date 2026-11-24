@@ -241,3 +241,8 @@ Open:
   overshoot of 2.57 mm between middle and tele).
 - The built lens reports an engine half-field of 46.18° at the wide end, while the chief ray reaches the corner at
   56.1°; not changed by this review and not investigated further.
+
+## 2026-11-24 — production-match review
+
+- PhotonsToPhotos Optical Bench lists "Olympus M.Zuiko Digital ED 8-25mm F4.0 Pro", WO 2022/137385, Example 2: the same patent and example as this model. This validates the choice of source; it is not a maker confirmation.
+- The lens is classed as a production match in the Lens Library.
