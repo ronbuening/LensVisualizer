@@ -77,7 +77,8 @@ const LENS_DATA = {
       vd: 56.1,
       indexReference: "D",
       focalLengthMm: 55.23,
-      glass: "H-LaK12 (CDGM)",
+      glass:
+        "H-LaK12 (spectral proxy; patent nD 1.697 / ν 56.1; supplier and melt unspecified)",
       role: "Positive front component of the rear member",
     },
     {
