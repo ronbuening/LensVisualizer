@@ -35,7 +35,7 @@ const LENS_DATA = {
   key: "olympus-zuiko-digital-ed-50-200mm-f28-35-swd",
   maker: "Olympus",
   name: "OLYMPUS ZUIKO DIGITAL ED 50-200mm f/2.8-3.5 SWD",
-  subtitle: "US 2004/0042087 A1, Embodiment 3 — probable production correlation",
+  subtitle: "US 2004/0042087 A1, Embodiment 3 — probable production match",
   catalog: {
     lensMounts: ["four-thirds"],
     imageFormat: "four-thirds",

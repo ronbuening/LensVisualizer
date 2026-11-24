@@ -115,9 +115,9 @@ K10 reproduces L5's patent coordinate within the catalog guard, bringing all eig
 
 ## Focus Mechanism
 
-The selected patent example publishes only an infinity prescription. It contains no finite-conjugate spacing table, no moving-group diagram, and no numerical close-focus state. The modeled prescription therefore contains no finite-focus movement state and carries the focus status **NO_INTERNAL_RECONSTRUCTION**.
+The selected patent example publishes only an infinity prescription. It contains no close-focus spacing table, no moving-group diagram, and no numerical close-focus state. The model therefore shows the lens at infinity only and moves no group during focusing.
 
-The model records **0.3 m** as closest-focus catalog metadata from a later Nikon instruction manual for a same-name PC-Nikkor 35mm f/2.8. That manual also specifies a 7-element / 7-group optical construction, in direct conflict with the eight-element 1968 generation identified by Nikon's historical account and with the fixed patent embodiment used here. The 0.3 m value is therefore not used to infer group travel, back-focus change, magnification, or any finite-focus prescription for Example III.
+The model records **0.3 m** as the closest-focus figure from a later Nikon instruction manual for a same-name PC-Nikkor 35mm f/2.8. That manual also specifies a 7-element / 7-group optical construction, in direct conflict with the eight-element 1968 generation identified by Nikon's historical account and with the fixed patent embodiment used here. The 0.3 m value is therefore not used to infer group travel, back-focus change, magnification, or any close-focus prescription for Example III.
 
 The later manual documents 11 mm shift travel, which is now encoded as product-family movement metadata so the viewer can demonstrate the PC function. It does not alter the patent prescription or introduce a decentered optical state into the source data. Tilt remains disabled because Nikon states that the production PC-NIKKOR omitted the trial-model tilt mechanism.
 

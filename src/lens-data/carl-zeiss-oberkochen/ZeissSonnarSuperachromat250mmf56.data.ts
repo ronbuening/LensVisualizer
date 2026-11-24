@@ -47,7 +47,7 @@ const LENS_DATA = {
   key: "zeiss-sonnar-superachromat-250f56",
   maker: "Carl Zeiss Oberkochen",
   name: "CARL ZEISS SONNAR SUPERACHROMAT 250mm f/5.6 (Hasselblad V)",
-  subtitle: "US 3,883,229, Example II — research correlation to the C, CF and CFE versions",
+  subtitle: "US 3,883,229, Example II — likely production match to the C, CF and CFE versions",
 
   catalog: {
     lensMounts: ["hasselblad-v"],

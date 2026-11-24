@@ -19,7 +19,7 @@ const LENS_DATA = {
   key: "canon-ef-28mm-f2-8",
   maker: "Canon",
   name: "CANON EF 28mm f/2.8",
-  subtitle: "JP S62-078520 A, Numerical Example 1 — production correlation",
+  subtitle: "JP S62-078520 A, Numerical Example 1 — production match",
 
   catalog: {
     lensMounts: ["canon-ef"],
@@ -141,7 +141,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.3,
     description:
-      "NO_INTERNAL_RECONSTRUCTION: the patent publishes only one infinity prescription and no moving-group or spacing states; the production 0.3 m MFD is retained as metadata without invented internal motion.",
+      "Infinity focus only. The patent gives one infinity prescription and names no focusing group or close-focus spacings, so focus travel is not modeled. Canon's 0.3 m minimum focus distance is product information.",
   },
 
   aperture: { nominalFNumber: 2.8, fStops: [2.8, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22, blades: 5 },

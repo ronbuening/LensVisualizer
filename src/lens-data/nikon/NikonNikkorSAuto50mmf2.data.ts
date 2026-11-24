@@ -44,7 +44,7 @@ const LENS_DATA = {
   key: "nikon-nikkor-s-auto-50f2",
   maker: "Nikon",
   name: "NIKON NIKKOR-S AUTO 5cm f/2",
-  subtitle: "JP 1964-025754, sole example — correlated to the June 1959 production lens",
+  subtitle: "JP 1964-025754, sole example — matched to the June 1959 production lens",
 
   catalog: {
     lensMounts: ["nikon-f"],

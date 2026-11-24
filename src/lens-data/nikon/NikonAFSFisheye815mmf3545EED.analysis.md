@@ -8,7 +8,7 @@
 **Title:** Fisheye Zoom Lens, Optical Apparatus, and Method for Manufacturing Fisheye Zoom Lens
 **Example details:** 第1実施例; Tables 1–4; Figures 1–3
 
-This analysis adopts **Example 1** as the fixed production correlation specified for the project. The correlation is not presented as manufacturer-confirmed, and the numerical example is not asserted to be the exact production prescription. The companion data file therefore preserves the patent’s published numerical prescription at 1:1 scale while keeping the marketed product specifications in separate metadata fields.
+This analysis treats **Example 1** as a prototype design for the production lens. It is not the production prescription: Nikon lists 15 elements in 13 groups with two aspherical and three ED elements, and Example 1 has 18 elements in 13 groups with one aspherical surface. The companion data file therefore preserves the patent’s published numerical prescription at 1:1 scale while keeping the marketed product specifications in separate metadata fields.
 
 The strongest points of correspondence are the focal range, variable maximum aperture, fisheye field, two-group zoom architecture, internal focusing within the positive rear group, Nikon authorship, and the short interval between patent publication and product release. Nikon markets the production lens as an F-mount, FX-format 8–15 mm f/3.5–4.5 fisheye zoom. The patent example computes to 8.17997–15.45007 mm and publishes f/3.56351–4.67681. Nikon announced the production lens on 2017-05-31, less than two months after publication of the Japanese application.
 

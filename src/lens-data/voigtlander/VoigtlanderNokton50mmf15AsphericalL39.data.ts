@@ -36,7 +36,7 @@ const LENS_DATA = {
   key: "voigtlander-nokton-50mm-f15-aspherical-l39",
   maker: "Voigtländer",
   name: "VOIGTLÄNDER NOKTON 50mm f/1.5 Aspherical L39",
-  subtitle: "JP 2000-330014 A, Example 2 — supported but unconfirmed L39 production correlation",
+  subtitle: "JP 2000-330014 A, Example 2 — supported but unconfirmed L39 production match",
 
   catalog: {
     lensMounts: ["leica-ltm"],

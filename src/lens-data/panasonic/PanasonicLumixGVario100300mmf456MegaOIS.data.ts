@@ -50,7 +50,7 @@ const LENS_DATA = {
   key: "panasonic-lumix-g-vario-100-300mm-f4-56-mega-ois",
   maker: "Panasonic",
   name: "PANASONIC LUMIX G VARIO 100-300mm f/4.0-5.6 MEGA O.I.S.",
-  subtitle: "US 8,451,542 B2, Numerical Example 1 — probable production correlation",
+  subtitle: "US 8,451,542 B2, Numerical Example 1 — probable production match",
   catalog: {
     lensMounts: ["micro-four-thirds"],
     imageFormat: "four-thirds",

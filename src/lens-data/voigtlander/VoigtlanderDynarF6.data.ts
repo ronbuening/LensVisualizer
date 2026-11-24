@@ -21,9 +21,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * the patent's effective 16.7 mm entrance-pupil diameter rather than the rounded
  * f/6 designation.
  *
- * FOCUS STATUS — NO_INTERNAL_RECONSTRUCTION: Only an infinity prescription is
- * published. No variable gap or finite-focus state is invented; closeFocusM =
- * 1.0 is only the schema-required UI placeholder. External bed, bellows, plate,
+ * FOCUS: Infinity only. Only an infinity prescription is published. No
+ * close-focus spacing or state is modeled; closeFocusM = 1.0 is only a
+ * placeholder, not a patent or product figure. External bed, bellows, plate,
  * or whole-cell translation lies outside this optical model.
  *
  * SEMI-DIAMETERS: The patent publishes no clear apertures. SDs were inferred
@@ -143,7 +143,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 1.0,
     description:
-      "Static published infinity prescription (NO_INTERNAL_RECONSTRUCTION); external camera/bed/bellows translation is outside the model.",
+      "Infinity focus only. The patent publishes one infinity prescription and no close-focus data, so focus travel is not modeled. Focusing by camera bed or bellows is outside the model.",
   },
 
   aperture: { nominalFNumber: 6.059522085587566, fStops: [6.059522085587566, 8, 11, 16] },

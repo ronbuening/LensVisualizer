@@ -46,7 +46,7 @@ const LENS_DATA = {
   schema: 2,
   key: "fujifilm-fujinon-85mm-f4-sf-ebc",
   maker: "Fujifilm",
-  name: "FUJIFILM EBC FUJINON 85mm f/4 SOFT-FOCUS",
+  name: "FUJIFILM EBC FUJINON 85mm f/4 SOFT-FOCUS (Prototype Design)",
   subtitle: "JP S55-560 A Example 1 — fixed embodiment; patent f/2.8 vs marketed f/4",
 
   catalog: {

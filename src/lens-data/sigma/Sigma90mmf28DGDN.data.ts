@@ -23,7 +23,7 @@ const LENS_DATA = {
   key: "sigma-90mm-f28-dg-dn-contemporary",
   maker: "Sigma",
   name: "SIGMA 90mm f/2.8 DG DN | Contemporary",
-  subtitle: "JP 2022-061515 A, Example 2 — construction-based production correlation",
+  subtitle: "JP 2022-061515 A, Example 2 — production match by construction",
 
   catalog: {
     lensMounts: ["l-mount", "sony-fe"],

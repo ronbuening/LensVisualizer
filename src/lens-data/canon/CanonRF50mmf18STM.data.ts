@@ -40,7 +40,7 @@ const LENS_DATA = {
   maker: "Canon",
   name: "CANON RF 50mm f/1.8 STM",
   subtitle:
-    "JP 2021-131499 A Numerical Example 1 — constrained unit-focus reconstruction; production correlation inferred",
+    "JP 2021-131499 A Numerical Example 1 — unit-focus travel modeled under constraints; inferred production match",
 
   catalog: {
     lensMounts: ["canon-rf"],

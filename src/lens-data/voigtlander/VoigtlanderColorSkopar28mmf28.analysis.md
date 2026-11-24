@@ -114,9 +114,9 @@ Cosina's production diagram marks the L3 and L4 positions as extraordinary-parti
 
 ## Focus Mechanism
 
-Example 3 is an infinity-only optical prescription. It contains no object-distance table, variable spacing, focus magnification, moving-group diagram, or mechanical constraint from which a unique focus model can be reconstructed. The data therefore uses `NO_INTERNAL_RECONSTRUCTION`, with an empty `var` object and no modeled focus motion.
+Example 3 is an infinity-only optical prescription. It contains no object-distance table, spacing that changes with focus, focus magnification, moving-group diagram, or mechanical constraint from which a unique focus movement could be worked out. The model therefore shows the lens at infinity only and moves no group.
 
-The production family has different minimum-focus endpoints. Cosina specifies 0.5m for VM Type II and 0.7m for VM Type I and L(L39); rangefinder coupling is limited to 0.7m. The data's `closeFocusM: 0.5` records the shortest marketed endpoint across the represented optical family. It does not imply that the Type I or L39 variants focus to 0.5m, nor does it impose a unit-focus, inner-focus, or floating-focus law on the patent prescription.
+The production family has different minimum-focus endpoints. Cosina specifies 0.5m for VM Type II and 0.7m for VM Type I and L(L39); rangefinder coupling is limited to 0.7m. The model's 0.5m close-focus figure records the shortest marketed endpoint across the represented optical family. It does not imply that the Type I or L39 variants focus to 0.5m, nor does it impose a unit-focus, inner-focus, or floating-focus law on the patent prescription.
 
 The presence of a manual helicoid and rangefinder coupling establishes the mechanical user interface, not the internal optical motion. A rigid-unit-focus diagnostic can be made mathematically, but the patent does not establish it, so no such reconstruction is included.
 
@@ -136,7 +136,7 @@ where $c=1/R$ and $h$ is radial height. The published $K$ is already the standar
 | 13A | 0 | $-5.44398\times10^{-5}$ | $+8.91290\times10^{-8}$ | $+1.02105\times10^{-9}$ | $-6.55705\times10^{-12}$ | 0 | 0 |
 | 14A | 0 | $+8.38722\times10^{-6}$ | $+1.42099\times10^{-7}$ | $+1.61890\times10^{-9}$ | $-1.25184\times10^{-11}$ | $+2.04616\times10^{-14}$ | 0 |
 
-The blank $A_{12}$ cell for 13A is stored as zero. $A_{14}=0$ is schema padding; the patent publishes terms only through $A_{12}$. No uniform scale is applied, so the coefficients are transcribed without the $A_p/s^{p-1}$ transformation that a scaled prescription would require.
+The blank $A_{12}$ cell for 13A is stored as zero. $A_{14}=0$ is a placeholder zero; the patent publishes terms only through $A_{12}$. No uniform scale is applied, so the coefficients are transcribed without the $A_p/s^{p-1}$ transformation that a scaled prescription would require.
 
 At the validated modeling semi-diameter of 11.2mm, surface 13A departs from its $K=0$ base sphere by $-0.631540$mm and surface 14A by $+0.504202$mm. These are independently computed model values at the inferred semi-diameter, not manufacturer or patent clear-aperture specifications. The opposite-sign departures reshape the two faces of the final meniscus as a coupled correction rather than simply adding net lens power.
 

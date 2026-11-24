@@ -27,7 +27,7 @@ const LENS_DATA = {
   "key": "yongnuo-yn-56mm-f14s-da-dsm-wl-pro",
   "maker": "Yongnuo",
   "name": "YONGNUO YN 56mm f/1.4 S DA DSM WL PRO",
-  "subtitle": "CN 220171327 U, Sole example \u2014 strong production correlation",
+  "subtitle": "CN 220171327 U, Sole example \u2014 strong production match",
   "catalog": {
     "lensMounts": [
       "sony-fe"

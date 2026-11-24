@@ -104,9 +104,9 @@ The catalog matches are not substituted into the patent prescription. In particu
 
 ## Focus Mechanism
 
-The optical model has `NO_INTERNAL_RECONSTRUCTION`. US 3,635,546 Example 2 supplies one base prescription and no finite-focus spacing table, moving-group law, or close-focus magnification. The data file therefore has no variable optical gaps and makes no claim that any internal group moves during focusing.
+US 3,635,546 Example 2 supplies one base prescription and no close-focus spacing table, moving-group law, or close-focus magnification. The model therefore shows the lens at infinity only: no spacing changes with focus, and the model makes no claim that any internal group moves during focusing.
 
-Nikon manufacturer literature gives 0.3 m as the production lens's minimum focusing distance. [N3] That value is retained as product metadata because `closeFocusM` is required by the application, but it does not define a modeled close-focus optical state. No 0.3 m conjugate, focus travel, or internal spacing is inferred from it. The later 1981 eight-element AI-S close-range-correction design is a different optical construction and is not imported into this seven-element model. [N1]
+Nikon manufacturer literature gives 0.3 m as the production lens's minimum focusing distance. [N3] The model records that value as product information, but it does not define a modeled close-focus optical state. No 0.3 m conjugate, focus travel, or internal spacing is inferred from it. The later 1981 eight-element AI-S close-range-correction design is a different optical construction and is not imported into this seven-element model. [N1]
 
 ## Model Representation and Source Discrepancies
 

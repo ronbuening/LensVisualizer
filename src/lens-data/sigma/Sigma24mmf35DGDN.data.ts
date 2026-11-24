@@ -30,7 +30,7 @@ const LENS_DATA = {
   key: "sigma-24mm-f35-dg-dn",
   maker: "Sigma",
   name: "SIGMA 24mm f/3.5 DG DN | Contemporary",
-  subtitle: "JP 2022-067328 A — NUMERICAL EXAMPLE 1 — RESEARCH CORRELATION",
+  subtitle: "JP 2022-067328 A — NUMERICAL EXAMPLE 1 — LIKELY PRODUCTION MATCH",
 
   catalog: {
     lensMounts: ["l-mount", "sony-fe"],

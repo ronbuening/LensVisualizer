@@ -69,7 +69,7 @@ const LENS_DATA = {
   key: "minolta-md-zoom-24-50-f4",
   maker: "Minolta",
   name: "MINOLTA MD ZOOM 24-50mm f/4",
-  subtitle: "US 4,147,410 Embodiment 1 — Minolta / Shimomura, Horimoto; production correlation",
+  subtitle: "US 4,147,410 Embodiment 1 — Minolta / Shimomura, Horimoto; production match",
 
   catalog: {
     lensMounts: ["minolta-sr"],

@@ -43,6 +43,7 @@ import type { LensSummary } from "../../utils/catalog/lensSummaries.js";
 import type { ImageFormatId, LensMountId } from "../../utils/catalog/lensTaxonomy.js";
 import { catalogCollator } from "../../utils/catalog/collation.js";
 import { groupByNamedParty } from "../../utils/catalog/groupByNamedParty.js";
+import { hasProductionMatch } from "../../utils/catalog/lensProductionMatch.js";
 
 const FOCAL_BUCKETS: ReadonlyArray<{ label: string; maxFl: number }> = [
   { label: "Ultrawide (≤24mm)", maxFl: 24 },
@@ -53,9 +54,14 @@ const FOCAL_BUCKETS: ReadonlyArray<{ label: string; maxFl: number }> = [
   { label: "Ultra Tele (≥200mm)", maxFl: Infinity },
 ] as const;
 
+const UNKNOWN_FOCAL_BUCKET = "Unknown Focal Length";
+const FOCAL_BUCKET_LABELS = [...FOCAL_BUCKETS.map(({ label }) => label), UNKNOWN_FOCAL_BUCKET];
+
 function focalBucketLabel(fl: number): string {
+  // The labels name whole millimetres, so a 24.2 mm lens belongs with 24 mm.
+  const rounded = Math.round(fl);
   for (const { label, maxFl } of FOCAL_BUCKETS) {
-    if (fl <= maxFl) return label;
+    if (rounded <= maxFl) return label;
   }
   return FOCAL_BUCKETS[FOCAL_BUCKETS.length - 1].label;
 }
@@ -89,7 +95,7 @@ export const SOURCE_KIND_LABELS: Readonly<Record<LensSourceKind, string>> = {
   "maker-document": "Maker documents",
   literature: "Published literature",
 };
-const SOURCE_KIND_ORDER = Object.keys(SOURCE_KIND_LABELS) as LensSourceKind[];
+export const SOURCE_KIND_ORDER = Object.keys(SOURCE_KIND_LABELS) as LensSourceKind[];
 
 /** Whether a string names a lens source kind. */
 export function isLensSourceKind(value: string): value is LensSourceKind {
@@ -118,6 +124,7 @@ function buildCatalogEntries(keys: readonly string[]): CatalogLensEntry[] {
       aperture: lensAperture(data),
       patentYear: data.patentYear ?? null,
       sourceKind: lensSourceKind(data),
+      productionMatch: hasProductionMatch(data),
       lensMounts,
       imageFormat,
     };
@@ -165,6 +172,7 @@ export function defaultCustomFilter(bounds: FilterBounds): CustomFilterState {
     lensMountIds: [],
     imageFormatIds: [],
     sourceKinds: [],
+    productionMatch: "all",
   };
 }
 
@@ -251,6 +259,8 @@ export function matchesCustomFilter(entry: CatalogLensEntry, filter: CustomFilte
     (entry.imageFormat !== null && filter.imageFormatIds.includes(entry.imageFormat.id));
   const sourceMatch =
     filter.sourceKinds.length === 0 || (entry.sourceKind !== null && filter.sourceKinds.includes(entry.sourceKind));
+  const productionMatch =
+    filter.productionMatch === "all" || entry.productionMatch === (filter.productionMatch === "matched");
   const focalMatch =
     entry.focalRange === null
       ? filter.focalMin === bounds.focalMin && filter.focalMax === bounds.focalMax
@@ -264,7 +274,16 @@ export function matchesCustomFilter(entry: CatalogLensEntry, filter: CustomFilte
       ? filter.patentYearMin === bounds.patentYearMin && filter.patentYearMax === bounds.patentYearMax
       : entry.patentYear >= filter.patentYearMin && entry.patentYear <= filter.patentYearMax;
 
-  return makerMatch && mountMatch && imageFormatMatch && sourceMatch && focalMatch && apertureMatch && patentYearMatch;
+  return (
+    makerMatch &&
+    mountMatch &&
+    imageFormatMatch &&
+    sourceMatch &&
+    productionMatch &&
+    focalMatch &&
+    apertureMatch &&
+    patentYearMatch
+  );
 }
 
 /**
@@ -275,7 +294,14 @@ export function matchesCustomFilter(entry: CatalogLensEntry, filter: CustomFilte
  * @returns true when any filter constraint is active
  */
 export function hasActiveCustomFilters(filter: CustomFilterState, bounds: FilterBounds): boolean {
+  return filter.sourceKinds.length > 0 || filter.productionMatch !== "all" || hasActivePanelFilters(filter, bounds);
+}
+
+/** These filters need the custom panel to display their active selections. */
+export function hasActivePanelFilters(filter: CustomFilterState, bounds: FilterBounds): boolean {
   return (
+    // The toolbar shows one source by name; only the panel shows which sources a multiple selection holds.
+    filter.sourceKinds.length > 1 ||
     filter.focalMin !== bounds.focalMin ||
     filter.focalMax !== bounds.focalMax ||
     filter.apertureMin !== bounds.apertureMin ||
@@ -284,8 +310,7 @@ export function hasActiveCustomFilters(filter: CustomFilterState, bounds: Filter
     filter.patentYearMax !== bounds.patentYearMax ||
     filter.makerSlugs.length > 0 ||
     filter.lensMountIds.length > 0 ||
-    filter.imageFormatIds.length > 0 ||
-    filter.sourceKinds.length > 0
+    filter.imageFormatIds.length > 0
   );
 }
 
@@ -351,14 +376,14 @@ export function groupByFocalLength(entries: CatalogLensEntry[]): PrimeZoomSectio
 
   for (const entry of entries) {
     const fl = groupingFocalLength(entry.data);
-    const label = fl !== null ? focalBucketLabel(fl) : "Unknown";
+    const label = fl !== null ? focalBucketLabel(fl) : UNKNOWN_FOCAL_BUCKET;
     const buckets = isZoomLens(entry.data) ? zoomBuckets : primeBuckets;
     if (!buckets.has(label)) buckets.set(label, []);
     buckets.get(label)!.push(entry);
   }
 
   const toSections = (buckets: Map<string, CatalogLensEntry[]>): FocalSubGroup[] =>
-    FOCAL_BUCKETS.map(({ label }) => ({ label, lenses: buckets.get(label) ?? [] })).filter(
+    FOCAL_BUCKET_LABELS.map((label) => ({ label, lenses: buckets.get(label) ?? [] })).filter(
       (group) => group.lenses.length > 0,
     );
 

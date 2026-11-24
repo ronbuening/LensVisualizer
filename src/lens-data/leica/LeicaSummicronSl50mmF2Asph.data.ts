@@ -32,7 +32,7 @@ const LENS_DATA = {
   key: "leica-summicron-sl-50mm-f2-asph",
   maker: "Leica",
   name: "LEICA SUMMICRON-SL 50mm f/2 ASPH.",
-  subtitle: "JP 2022-182997 A, Example 1 — construction-based production correlation",
+  subtitle: "JP 2022-182997 A, Example 1 — production match by construction",
 
   catalog: {
     lensMounts: ["l-mount"],

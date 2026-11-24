@@ -232,14 +232,13 @@ a speculative supplier assignment.
 
 ## Focus Mechanism
 
-No finite-focus internal prescription is published in US 3,584,935. The model therefore uses
-`NO_INTERNAL_RECONSTRUCTION`: it preserves the three infinity zoom states and does not invent a focus-group law, close-
-focus air gaps, or finite-conjugate calibration.
+No close-focus internal prescription is published in US 3,584,935. The model therefore shows the lens at infinity only:
+it keeps the three infinity zoom states and models no focus-group law, close-focus air gaps, or close-focus calibration.
 
-The 1972 Konica catalog gives a single minimum-focus specification of 10½ in, represented as 0.2667 m in product metadata.
-That value does not alter any internal spacing in the optical model. In particular, every focus endpoint stored for d5,
-d12, and the split d17 gap repeats the corresponding infinity spacing, so the focus control introduces no synthetic
-internal motion. [Konica, *Hexanon Lenses for Autoreflex Cameras* (1972), p. 3.](https://www.pacificrimcamera.com/rl/01702/01702.pdf)
+The 1972 Konica catalog gives a single minimum-focus specification of 10½ in, recorded as 0.2667 m of product
+information. That value does not alter any internal spacing in the optical model. In particular, the d5, d12, and split
+d17 spacings keep their infinity values at both ends of the focus control, so the focus control moves no group.
+[Konica, *Hexanon Lenses for Autoreflex Cameras* (1972), p. 3.](https://www.pacificrimcamera.com/rl/01702/01702.pdf)
 
 The published zoom motion is separate from finite focusing. At the three source stations, C2 moves monotonically toward
 the image and C3 moves monotonically toward the object, with C4 and the stop fixed. The patent describes C3's small

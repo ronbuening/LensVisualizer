@@ -39,7 +39,7 @@ const LENS_DATA = {
   key: "fujifilm-gf250mm-f4-r-lm-ois-wr",
   maker: "Fujifilm",
   name: "FUJIFILM FUJINON GF 250mm f/4 R LM OIS WR",
-  subtitle: "US 2019/0094496 A1 Example 1 — production-correlated patent design",
+  subtitle: "US 2019/0094496 A1 Example 1 — patent design matched to the production lens",
 
   catalog: {
     lensMounts: ["fujifilm-g"],

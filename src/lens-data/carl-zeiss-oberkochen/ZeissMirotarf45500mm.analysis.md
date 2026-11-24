@@ -152,12 +152,11 @@ Named curves pass the catalog coordinate guard without changing the patent coord
 
 ## Focus Mechanism
 
-The focus status is **NO_INTERNAL_RECONSTRUCTION**. GB 975,446 supplies one nominal internal prescription and no finite-focus
-spacing table. No internal element or group movement is therefore authored: `var` is empty and the published internal
-spacings remain fixed.
+GB 975,446 supplies one nominal internal prescription and no close-focus spacing table. The model therefore shows the
+lens at infinity only: no internal element or group moves, and the published internal spacings stay fixed.
 
 The ZEISS production datasheet describes a tube mount with attached bellows and gives a focusing range from infinity to
-3.5 m. The data file retains `closeFocusM: 3.5` as production metadata, but that value does not create a calculated
+3.5 m. The model records the 3.5 m figure as product information, but that value does not create a calculated
 close-focus optical state. No bellows extension law, finite-object magnification, or close-focus aberration result is claimed
 because the source material does not determine those quantities uniquely.
 

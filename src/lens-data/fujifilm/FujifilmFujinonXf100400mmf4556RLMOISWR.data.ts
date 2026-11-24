@@ -47,7 +47,7 @@ const LENS_DATA = {
   key: "fujifilm-fujinon-xf-100-400mm-f45-56-r-lm-ois-wr",
   maker: "Fujifilm",
   name: "FUJIFILM FUJINON XF 100-400mm f/4.5-5.6 R LM OIS WR",
-  subtitle: "US 2017/0090170 A1, Example 1 - unscaled patent prescription; production correlation inferred",
+  subtitle: "US 2017/0090170 A1, Example 1 - unscaled patent prescription; inferred production match",
 
   catalog: {
     lensMounts: ["fujifilm-x"],

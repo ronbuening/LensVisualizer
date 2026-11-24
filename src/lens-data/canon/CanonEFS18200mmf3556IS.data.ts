@@ -46,7 +46,7 @@ const LENS_DATA = {
   key: "canon-ef-s-18-200mm-f35-56-is",
   maker: "Canon",
   name: "CANON EF-S 18-200mm f/3.5-5.6 IS",
-  subtitle: "JP 2009-175324 A, Numerical Example 1 — production correlation",
+  subtitle: "JP 2009-175324 A, Numerical Example 1 — production match",
   catalog: {
     lensMounts: ["canon-ef-s"],
     imageFormat: "aps-c",

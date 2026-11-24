@@ -44,7 +44,7 @@ const LENS_DATA = {
   key: "sigma-60-600mm-f45-63-dg-dn-os-sports",
   maker: "Sigma",
   name: "SIGMA 60-600mm f/4.5-6.3 DG DN OS | Sports",
-  subtitle: "JP 2023-180574 A, Numerical Example 5 — probable production correlation",
+  subtitle: "JP 2023-180574 A, Numerical Example 5 — probable production match",
   catalog: {
     lensMounts: ["l-mount", "sony-fe"],
     imageFormat: "135-full-frame",

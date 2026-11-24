@@ -86,7 +86,7 @@ L5 is the first lens after the large diaphragm space and begins component II. It
 
 L6 is the positive partner of L5. The isolated D56 pair has **+0.0262769 mm⁻¹** power. The strong Abbe-number separation between L5 and L6 is consistent with an achromatizing cemented pair, but the patent does not publish line-by-line performance that would justify a stronger claim about secondary-spectrum correction.
 
-The retained class label follows the coordinate evidence retained in the dossier. A CDGM H-ZK1 row is close to the patent coordinate, with historical cross-vendor equivalents noted in the evidence; supplier identity remains unproven.
+The class label follows the coordinate evidence in the sources consulted. A CDGM H-ZK1 row is close to the patent coordinate, with historical cross-vendor equivalents noted in the evidence; supplier identity remains unproven.
 
 ### L7 — Biconvex Positive
 
@@ -130,9 +130,9 @@ For the eight class-matched elements, compatible catalog dispersion is resolved 
 
 ## Focus Mechanism
 
-The patent supplies a single fixed optical prescription and no numerical focus movement law. The model consequently uses **NO_INTERNAL_RECONSTRUCTION**: `var` is empty and no internal group travel is invented.
+The patent supplies a single fixed optical prescription and no numerical focus movement law. The model therefore shows the lens at infinity only: no spacing changes with focus and no group moves.
 
-The 1961 period product listing gives an 8-inch closest focusing distance, represented as **0.2032 m** product metadata. That number does not determine whether the production lens focused by whole-unit translation, internal movement, mount helicoid travel, or another mechanical implementation, and it is not used to generate an optical close-focus state.
+The 1961 period product listing gives an 8-inch closest focusing distance, recorded in the model as **0.2032 m** product information. That number does not determine whether the production lens focused by whole-unit translation, internal movement, mount helicoid travel, or another mechanical implementation, and it is not used to generate an optical close-focus state.
 
 The analysis therefore applies all computed focal length, BFD, pupil, Petzval, field, and geometry results to the single modeled infinity/reference prescription only.
 
@@ -172,7 +172,7 @@ No aspherical surfaces, diffractive structures, cover glass, filter plate, dummy
 4. **SCHOTT Optical Glass** catalog and datasheets, used for retained coordinate-class comparisons: https://www.schott.com/en-us/products/optical-glass-p1000267/downloads
 5. **CDGM Optical Glass Database**, used for the retained H-ZK1 coordinate comparison: https://www.cdgmgd.com/database/toWebDatabase.htm?typeId=7&url=database
 6. **SUMITA Optical Glass** downloads, used for the retained K-LaK6 / LAK6 coordinate comparison: https://www.sumita-opt.co.jp/en/download/
-7. Additional catalog coverage recorded in the dossier: OHARA, HOYA, and HIKARI current optical-glass catalogs. Their absence from the retained class labels should not be read as evidence that they were excluded as possible historical suppliers.
+7. Additional catalogs consulted: OHARA, HOYA, and HIKARI current optical-glass catalogs. Their absence from the retained class labels should not be read as evidence that they were excluded as possible historical suppliers.
 
 
 ## Production mount assignment

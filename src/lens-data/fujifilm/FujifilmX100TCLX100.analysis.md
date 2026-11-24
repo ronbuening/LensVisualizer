@@ -210,14 +210,14 @@ secondary-spectrum behavior to a vendor.
 
 ## Focus Mechanism
 
-**Focus status: `NO_INTERNAL_RECONSTRUCTION`.**
+**Focus: infinity only; focus travel is not modeled.**
 
-The patent gives one static prescription and does not publish object-distance states, variable air gaps, focusing-group
-identity, or mechanical travel. Accordingly, the data file contains no `var` entries and represents only the published
-infinity state. No unit-focus, inner-focus, rear-focus, or floating-focus mechanism is invented.
+The patent gives one fixed prescription and does not publish object-distance states, variable air gaps, focusing-group
+identity, or mechanical travel. Accordingly, no spacing in the model changes with focus, and the model represents only
+the published infinity state. No unit-focus, inner-focus, rear-focus, or floating-focus mechanism is modeled.
 
 Fujifilm publishes a 0.14 m minimum focusing distance with the converter attached. That value is measured from the front
-of the accessory and is retained as product metadata only. It does not define a sensor-referenced object distance or
+of the accessory and is recorded as product information only. It does not define a sensor-referenced object distance or
 constrain how the master lens moves internally. The analysis therefore gives no close-focus spacing table, focus travel,
 or computed close-focus magnification.
 

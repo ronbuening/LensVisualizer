@@ -22,7 +22,7 @@ const LENS_DATA = {
   key: "canon-ef-m-55-200mm-f45-63-is-stm",
   maker: "Canon",
   name: "CANON EF-M 55-200mm f/4.5-6.3 IS STM",
-  subtitle: "JP 2014-219616 A, Example 1 — strong production correlation",
+  subtitle: "JP 2014-219616 A, Example 1 — strong production match",
   catalog: {
     lensMounts: ["canon-ef-m"],
     imageFormat: "aps-c",

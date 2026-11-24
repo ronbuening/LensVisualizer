@@ -47,7 +47,7 @@ const LENS_DATA = {
   key: "panasonic-lumix-s-pro-24-70mm-f28",
   maker: "Panasonic",
   name: "PANASONIC LUMIX S PRO 24-70mm f/2.8",
-  subtitle: "US 2021/0055531 A1 — First Embodiment / Numerical Example 1 (strong correlation)",
+  subtitle: "US 2021/0055531 A1 — First Embodiment / Numerical Example 1 (strong production match)",
 
   catalog: {
     lensMounts: ["l-mount"],

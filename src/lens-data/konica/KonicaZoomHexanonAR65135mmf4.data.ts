@@ -48,7 +48,7 @@ const LENS_DATA = {
   key: "konica-zoom-hexanon-ar-65-135mm-f4",
   maker: "Konica",
   name: "KONICA ZOOM-HEXANON AR 65-135mm f/4",
-  subtitle: "JPS58-149014A Example 3 — later focusing-method disclosure; production correlation",
+  subtitle: "JPS58-149014A Example 3 — later focusing-method disclosure; production match",
 
   catalog: {
     lensMounts: ["konica-ar"],

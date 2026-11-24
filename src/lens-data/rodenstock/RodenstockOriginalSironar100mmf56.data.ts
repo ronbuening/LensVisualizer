@@ -24,7 +24,7 @@ const LENS_DATA = {
   key: "rodenstock-sironar-100mm-f56-convertible",
   maker: "Rodenstock",
   name: "RODENSTOCK SIRONAR 100mm f/5.6 (original convertible)",
-  subtitle: "DE 1 258 134 B, Example I — qualified production correlation",
+  subtitle: "DE 1 258 134 B, Example I — tentative production match",
   visible: true,
   catalog: {
     lensMounts: ["large-format-lens-board"],
