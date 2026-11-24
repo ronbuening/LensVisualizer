@@ -444,7 +444,7 @@ const LENS_DATA = {
     closeFocusM: 0.58955,
     keyframes: [0, 1],
     description:
-      "The patent gives infinity and a near setting at 0.590 m from the image plane. G2 moves 0.157 mm toward the image at the near setting. The production lens focuses to 0.12 m.",
+      "The patent gives infinity and a near setting at 500 mm, read as measured from the first surface (0.590 m from the image plane). G2 moves 0.157 mm toward the image at the near setting. The production lens focuses to 0.12 m.",
     conjugates: [
       {
         zoomStation: 0,

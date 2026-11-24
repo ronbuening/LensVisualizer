@@ -22,7 +22,7 @@ The asphere table gives $\varepsilon=1+K$, where $K$ is the conic constant in th
 | Final air gap                |                   13.143 mm |                             13.143 mm |
 | Paraxial back focal distance |                           — |                             13.182 mm |
 
-The paraxial infinity focus lies 0.039 mm behind the printed image plane. The 0.7 pupil zone focuses close to the printed plane. Surface geometry clears the edge-thickness and separation checks. The iris admits the full axial beam at f/2.87. The chief ray reaches the 43.20 mm patent circle at infinity with all rims clear. At the near setting it reaches 21.40 mm at the 64.6° cap, 99.1% of the patent’s image height. A ray at about 64.86° reaches the nominal 21.65 mm full-frame corner with all rims clear. About 50% of the geometric pupil clears the rims at the infinity field edge and about 54% at the near field edge.
+The paraxial infinity focus lies 0.039 mm behind the printed image plane. The 0.7 pupil zone focuses close to the printed plane. Surface geometry clears the edge-thickness and separation checks. The iris admits the full axial beam at f/2.87. The chief ray reaches the 43.20 mm patent circle at infinity with all rims clear. At the near setting it reaches 21.40 mm at the 64.6° cap, 99.1% of the patent’s image height. At the near setting, a ray at about 64.86° reaches the nominal 21.65 mm full-frame corner with all rims clear. About 50% of the geometric pupil clears the rims at the infinity field edge and about 53% at the near field edge.
 
 ## Values Not Printed in the Patent
 
