@@ -48,7 +48,21 @@ The Fig. 1 infinity drawing gives a first-vertex-to-image scale of 15.45 px/mm a
 
 The drawing shows edge contact at 4–5, 6–7 and 17–18. The modeled faces retain a narrow air clearance at these rims. The allowed sag intrusion is set to 95% of the vertex gap to accommodate the drawn geometry. The iris radius of 13.784 mm follows from f/1.44 and the paraxial entrance pupil. The patent prints the iris position.
 
-Adding the 109.871 mm track to the printed object distances gives 4.4105 m and 0.8099 m from object to image. The nearer distance is expressed as 0.81 m and the middle position falls at 0.1837 of the inverse-distance travel. Between the three printed positions, the gap thicknesses vary linearly. At the segment midpoints, the paraxial image is 0.017 mm and 0.500 mm in front of the image plane at the indicated object distances.
+Adding the 109.871 mm track to the printed object distances gives 4.4105 m and 0.8099 m from object to image. The nearer distance is expressed as 0.81 m and the middle position falls at 0.1837 of the inverse-distance travel. Between infinity and 4.41 m the gap thicknesses vary linearly, which leaves the paraxial image at most 0.017 mm in front of the image plane. Between 4.41 m and 0.81 m a linear blend would leave it 0.50 mm in front, so seven intermediate positions were calculated (see Values Not Printed in the Patent).
+
+Seven focus positions between the printed 4.41 m and 0.81 m rows are calculated. For each, the gap after surface 8 is solved for paraxial focus on the fixed image plane and the gap after surface 11 is 17.990 mm less that value.
+
+| Object distance from surface 1 (mm) | Gap after surface 8 (mm) | Gap after surface 11 (mm) |
+| ----------------------------------: | -----------------------: | ------------------------: |
+|                             2725.27 |                    5.648 |                    12.342 |
+|                             1978.83 |                    6.322 |                    11.668 |
+|                             1543.87 |                    7.030 |                    10.960 |
+|                             1258.83 |                    7.775 |                    10.215 |
+|                             1057.44 |                    8.562 |                     9.428 |
+|                              907.84 |                    9.393 |                     8.597 |
+|                              792.13 |                   10.272 |                     7.718 |
+
+Each rounded gap focuses within 0.001 mm of the plane. Across the whole travel the paraxial image then stays within 0.017 mm of the plane, the largest departure lying between infinity and 4.41 m.
 
 ## Product Identification
 
@@ -64,4 +78,4 @@ The table of radii, axial intervals, indices and Abbe numbers is reproduced as p
 
 - Fig. 1's radial scale is uncertain by about ±3%. The external drawing and patent establish the layout, while the production clear apertures and glass supplier remain undocumented.
 - At the 700 mm object point the wide-open axial ray would reach 25.96 mm at surface 4. Surfaces 4 and 5 meet at about 25.32 mm if extended, so widening the rim enough to clear that ray would make the surfaces overlap. The 24.6 mm rim preserves the narrow drawn clearance and limits the usable axial beam at that focus.
-- The 0.50 mm midpoint defocus between the two finite states reflects the interpolation of the printed gaps. The patent gives no intervening focus schedule.
+- The patent gives no focus schedule between its three printed positions. The seven intermediate spacings are calculated, not printed.

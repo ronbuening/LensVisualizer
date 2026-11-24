@@ -6,7 +6,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Table 1 gives three focus positions. Only G2 moves, toward the image, while the two gaps around it sum to 17.990 mm.
  * Fig. 1 provides rim estimates. The close clearances at surfaces 4–5, 6–7 and 17–18 follow the drawing; the
  * surface 11 rim clears the axial beam beyond the drawn arc. The 13.78 mm iris radius follows from F/1.44.
- * The image plane stays 0.522 mm behind the filter. Spacings between printed focus positions are interpolated.
+ * The image plane stays 0.522 mm behind the filter. Seven further spacings between
+ * the two finite positions are calculated for paraxial focus on that plane, keeping the 17.990 mm sum.
  */
 const LENS_DATA = {
   schema: 2,
@@ -304,8 +305,8 @@ const LENS_DATA = {
   ],
   focus: {
     closeFocusM: 0.81,
-    keyframes: [0, 0.1837, 1],
-    published: [1, 2],
+    keyframes: [0, 0.1837, 0.2857, 0.3878, 0.4898, 0.5918, 0.6939, 0.7959, 0.898, 1],
+    published: [1, 9],
     conjugates: [
       {
         zoomStation: 0,
@@ -317,7 +318,7 @@ const LENS_DATA = {
       },
       {
         zoomStation: 0,
-        keyframe: 2,
+        keyframe: 9,
         objectDistanceMm: 700,
         distanceReference: "first-surface",
         source:
@@ -325,16 +326,16 @@ const LENS_DATA = {
       },
     ],
     description:
-      "PUBLISHED inner focus. G2 moves 1.08 mm toward the image at 4.41 m and 7.277 mm at 0.81 m, measured from object to image. The other groups, stop and image plane stay fixed. Travel between the three printed positions is interpolated. At the nearest position, surface 4 limits the wide-open axial beam. Samsung specifies a 0.82 m minimum for the production lens.",
+      "PUBLISHED inner focus. G2 moves 1.08 mm toward the image at 4.41 m and 7.277 mm at 0.81 m, measured from object to image. The other groups, stop and image plane stay fixed. Seven calculated positions between the two printed finite positions keep the image on the fixed plane. At the nearest position, surface 4 limits the wide-open axial beam. Samsung specifies a 0.82 m minimum for the production lens.",
   },
   gaps: {
     "8": {
       label: "D1",
-      values: [[3.925, 5.005, 11.202]],
+      values: [[3.925, 5.005, 5.648, 6.322, 7.03, 7.775, 8.562, 9.393, 10.272, 11.202]],
     },
     "11": {
       label: "D2",
-      values: [[14.065, 12.985, 6.788]],
+      values: [[14.065, 12.985, 12.342, 11.668, 10.96, 10.215, 9.428, 8.597, 7.718, 6.788]],
     },
   },
   aperture: {
