@@ -178,6 +178,43 @@ field and image plane retain their original numerical values.
   index and Abbe number are kept; the catalogue supplies only the dispersion
   curve's shape without identifying the historical supplier or melt.
 
+2026-11-24 diagram review:
+
+- Figure 2 on PDF page 1 spans about 653 pixels from R1 to R7 when the
+  300 dpi scan is rendered at 600 dpi. Example I's 20.798 mm track gives
+  about 31.4 pixels/mm. The separate
+  front and rear spans give about 32 pixels/mm, and the front arc gives
+  a radius near 22 mm, consistent with Example I's 21.8 mm. At that scale,
+  the triplet body, R4 curve ends and rear doublet measure about 690, 550
+  and 565 pixels high. Their relative heights of 1, 0.80 and 0.82 agree
+  with the estimated 17.5–18, 14 and 14.5 mm clear radii. The planar R2
+  and R5, longer track and thicker rear element follow Example II's table.
+  Figure 2's rear doublet has a bevel at the edge of the curved R5.
+  Example II's planar R5 is shown square. No rim or land change is
+  supported for Example II.
+- The optical rims clear the f/3.5 axial beam and the 12° chief ray,
+  which reaches 21.09 mm image height. The greatest wide-open transmission
+  loss versus the original rims is 0.2 percentage points at 12°
+  (100.0% to 99.8%). The half-field is 12.0°, the paraxial aperture is
+  f/3.50, and the exact-ray entrance aperture is f/3.52.
+- “Front cemented triplet” and “Rear cemented doublet” touched beneath the
+  section. “Front triplet” and “Rear doublet” leave a space between them.
+  C1 and C2 still span R1–R4 and R5–R7. The L1–L5 marks agree with Figure 2.
+  All five element panels show the shapes, optical roles, glass labels
+  and calculated focal lengths in air. The patent identifies neither
+  aspheres nor anomalous-dispersion glasses.
+- The stop is in the diaphragm space between the groups. In Figure 2 it
+  lies about 60% of the way from R4 to R5, equivalent to a 6.5/4.4 mm split
+  if applied proportionally to Example II. Page 2 gives only the total
+  10.9 mm for Example II. The 7.6/3.3 mm inferred split remains in use.
+- Both groups are fixed at infinity, with no variable spacings, movement
+  directions or travel distances given. The focus control shows infinity only.
+- All five glasses have Abbe numbers and resolve to catalogue curves.
+  L2 remains within the site's spectral-proxy tolerance, and L1/L3/L4/L5
+  meet the 0.0001 index and 0.15 Abbe-number limits at the inferred helium
+  d line. Page 2 supplies no glass names, additional line indices,
+  partial-dispersion values or aberration plots for Example II.
+
 ## Remaining Questions
 
 - The exact spectral line intended by “yellow ray” remains unidentified;
@@ -185,7 +222,7 @@ field and image plane retain their original numerical values.
 - Original glass suppliers and melts, including L2's material identity,
   are unknown.
 - Example II's historical iris station, diameter, blade count, blade shape
-  and stop range are not given.
+  and stop range are not given. Figure 2 shows the iris for the f/5 form.
 - Example II's absolute clear rims, useful field and image format remain
   unspecified; the estimated rims follow Figure 2's relative proportions.
 - A production lens association, marketed focal length and aperture, mount,

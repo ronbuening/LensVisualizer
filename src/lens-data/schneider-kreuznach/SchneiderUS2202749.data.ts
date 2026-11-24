@@ -191,12 +191,12 @@ const LENS_DATA = {
   },
   groups: [
     {
-      text: "Front cemented triplet",
+      text: "Front triplet",
       fromSurface: "1",
       toSurface: "4",
     },
     {
-      text: "Rear cemented doublet",
+      text: "Rear doublet",
       fromSurface: "5",
       toSurface: "7",
     },

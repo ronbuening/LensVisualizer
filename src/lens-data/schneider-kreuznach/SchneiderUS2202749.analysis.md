@@ -99,14 +99,15 @@ and L4 matches F7 (Δn = −0.000037, Δν = −0.02) from the
 [Hoya catalogue](https://www.hoya-opticalworld.com/english/datadownload/index.html).
 L3 matches SF9 (Δn = −0.000040, Δν = +0.06) from the
 [Hikari catalogue](https://www.hikari-g.co.jp/optical_glass/catalog/).
-These pairs agree within the printed precision.
+These pairs meet the catalogue matching tolerances of 0.0001 in index
+and 0.15 in Abbe number.
 
 L2 uses [Ohara's S-FSL5](https://www.ohara-inc.co.jp/en/product/catalog/)
-as a spectral proxy (Δn = −0.00001, Δν = +0.24), within the limits of
-0.002 in index and 0.25 in Abbe number. Differences are catalogue minus
-printed values at the inferred helium-d line. The present-day curve supplies
-only the dispersion shape for colour analysis, keeping L2's printed index
-and Abbe number rather than using an Abbe-based dispersion estimate.
+as a spectral proxy (Δn = −0.00001, Δν = +0.24), within the site's
+spectral-proxy tolerance of 0.002 in index and 0.25 in Abbe number.
+Differences are catalogue minus printed values at the inferred helium-d
+line. The model retains L2's printed index and Abbe number and uses the
+catalogue curve for wavelength dependence.
 All five elements use catalogue curves; none remains unmatched. These rows
 do not identify historical suppliers or melts. No partial-dispersion data or
 measured MTF curves are published.
