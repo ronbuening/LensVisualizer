@@ -49,6 +49,7 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1",
+      diagramLabel: "10",
       label: "Element 1",
       type: "Positive Meniscus",
       role: "Positive front meniscus supplying converging power",
@@ -61,6 +62,7 @@ const LENS_DATA = {
     {
       id: 2,
       name: "L2",
+      diagramLabel: "14",
       label: "Element 2",
       type: "Negative Meniscus",
       role: "Negative front inner meniscus balancing the positive outer elements",
@@ -73,6 +75,7 @@ const LENS_DATA = {
     {
       id: 3,
       name: "L3",
+      diagramLabel: "15",
       label: "Element 3",
       type: "Negative Meniscus",
       role: "Negative rear inner meniscus forming the symmetric partner of Element 2",
@@ -85,6 +88,7 @@ const LENS_DATA = {
     {
       id: 4,
       name: "L4",
+      diagramLabel: "11",
       label: "Element 4",
       type: "Positive Meniscus",
       role: "Positive rear meniscus supplying converging power toward the image",
