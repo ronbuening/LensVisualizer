@@ -15,7 +15,7 @@ const LENS_DATA = {
   maker: "Cooke",
   name: "COOKE 27mm f/1.5 (US 1,955,617 Design)",
   subtitle: "US 1,955,617 A, Figure 1 — Kapella / Warmisham",
-  visible: false,
+  visible: true,
   source: {
     patentNumber: "US 1,955,617 A",
     patentYear: 1934,

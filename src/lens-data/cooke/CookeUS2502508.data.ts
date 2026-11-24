@@ -18,7 +18,7 @@ const LENS_DATA = {
   maker: "Cooke",
   name: "COOKE 100mm f/2.67 (US 2,502,508 Design)",
   subtitle: "US 2,502,508 A, Example I — Taylor Hobson / Cook",
-  visible: false,
+  visible: true,
   source: {
     patentNumber: "US 2,502,508 A",
     patentYear: 1950,
