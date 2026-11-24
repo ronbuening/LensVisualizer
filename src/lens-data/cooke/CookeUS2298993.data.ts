@@ -6,9 +6,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * f = 100 mm. Its printed values give EFL 99.62 mm; rounding may explain the
  * difference, but no particular correction is supported.
  * The stop is inferred in S3, 3.51 mm after R6 and 0.49 mm before R7; its bore
- * is inferred. Rims follow Figure 4's approximately 21 mm heights, with a
- * 16.65 mm clear radius and 21 mm outer land at R6 to keep the iris in air;
- * R9/R10 retain 20.2 mm, within 5% of the drawing. The image
+ * is inferred. Rims follow Figure 4's approximately 21 mm heights, including
+ * the 21.1 mm rear pair. R6 has a 16.65 mm clear radius and a 21 mm outer
+ * land that keeps the iris in air. The image
  * plane is the computed paraxial back focus, 76.97 mm after R10. The ±10.0°
  * field is illustrative; the patent gives no field for Example IV.
  */
@@ -171,14 +171,14 @@ const LENS_DATA = {
       label: "9",
       R: 84.03,
       d: 8,
-      sd: 20.2,
+      sd: 21.1,
       medium: 5,
     },
     {
       label: "10",
       R: -55.9,
       d: 76.966226,
-      sd: 20.2,
+      sd: 21.1,
     },
   ],
   aperture: {
