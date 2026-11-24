@@ -12,7 +12,7 @@
 **Published:** June 5, 2003\
 **Example details:** ¶¶0093–0095 and ¶0102, with sections in Fig. 2 and aberration plots in Fig. 5.
 
-The patent is a close match for the Four Thirds macro lens Olympus announced on June 24, 2003. Olympus's section shows the same 11 elements in 10 air-separated groups, the stop between the fifth and sixth elements, the ED glass in the seventh position, and the cemented pair at the rear. It marks no aspheres, in agreement with the spherical prescription. Olympus also describes a floating focus mechanism. The patent's 11.1 mm image height is close to the 10.82 mm Four Thirds corner, and the patent was filed before the announcement.
+The patent is a close match for the Four Thirds macro lens Olympus announced on June 24, 2003. Olympus's section shows the same 11 elements in 10 air-separated groups, the stop between the fifth and sixth elements, the ED glass in the seventh position, and the cemented pair at the rear. It marks no aspheres, in agreement with the spherical prescription. The patent's 11.1 mm image height is close to the 10.82 mm Four Thirds corner, and the patent was filed before the announcement.
 
 All three examples use the same 11-element layout and glass values. Examples 1 and 2 divide the optics into two moving groups. Example 3 splits the front assembly and varies a third gap. Example 2 fits the production drawing most closely. The drawn air space between the fifth and sixth elements is about 9 mm. Example 2 gives 9.09 mm around the stop, compared with 6.21 mm in Examples 1 and 3. The axial positions differ from the drawing by about 0.39 mm RMS for Example 2 and about 0.78 mm for the other two. The drawing's eighth-element thickness is slightly nearer Example 1. At the closest printed setting, Example 2 gives −0.5191×, which agrees in magnitude with Olympus's 0.52×. The factory prescription remains unpublished.
 
@@ -123,6 +123,6 @@ The patent gives a 13.3° half-field for condition (6). At its stated image heig
 - [US 6,747,817 B2](https://patents.google.com/patent/US6747817B2/en) — assignee and related grant.
 - [Olympus announcement, June 24, 2003](https://www.olympus.co.jp/jp/news/2003a/nr030624zuikoj.html) — launch announcement and product specifications.
 - [Olympus instruction manual](https://learnandsupport.getolympus.com/sites/default/files/media/files/2018/03/Zuiko%20Digital%2050mm%20f2.0%20Macro%20Manual.pdf) — Four Thirds mount and diaphragm range.
-- [Olympus America specification sheet](https://biofos.com/esystem/_img/elenses/50mm.pdf) — floating focus and optical construction.
+- [Olympus America specification sheet](https://biofos.com/esystem/_img/elenses/50mm.pdf) — specifications and optical construction.
 - [Olympus construction diagram reproduced by LensTip](https://www.lenstip.com/upload3/2967_olympus_50mm_bud.jpg) — element arrangement and ED position.
 - [Ohara optical glass catalog](https://www.ohara-inc.co.jp/en/product/catalog/) — catalog dispersion data.
