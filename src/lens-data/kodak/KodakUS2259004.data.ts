@@ -7,9 +7,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Dimensions use the printed 100 mm focal-length scale.
  * The stop lies in the printed 14.61 mm gap after surface 7; its 12.50/2.11 mm
  * split and all clear radii are inferred. The stop radius is derived for f/1.5.
- * R6's 26.4 mm clear radius follows Figure 1's height relative to the retained
- * 37 mm front rim. The drawing is not uniformly to scale; other rims retain
- * their inferred values. The axial beam and 20-degree chief ray clear them.
+ * Figure 1 gives the relative rim heights for R4/R5 (29.4 mm, square edge)
+ * and R6 (26.4 mm), using the 37 mm front rim as the reference. The drawing
+ * has no uniform scale. The axial beam and 20-degree chief ray clear every rim.
  * The image plane is at the calculated paraxial back focus of 47.00 mm, which
  * is not printed. Calculated EFL is 100.03 mm against the stated 100 mm.
  * The 20.0° half-field lies within the patent's stated covering power.
@@ -52,8 +52,9 @@ const LENS_DATA = {
   elements: [
     {
       id: 1,
-      name: "L1",
-      label: "Element 1",
+      name: "I",
+      label: "I",
+      diagramLabel: "I",
       type: "Positive Meniscus",
       nd: 1.618,
       vd: 53.8,
@@ -64,8 +65,9 @@ const LENS_DATA = {
     },
     {
       id: 2,
-      name: "L2",
-      label: "Element 2",
+      name: "II",
+      label: "II",
+      diagramLabel: "II",
       type: "Negative Meniscus",
       nd: 1.568,
       vd: 42.7,
@@ -77,8 +79,9 @@ const LENS_DATA = {
     },
     {
       id: 3,
-      name: "L3",
-      label: "Element 3",
+      name: "III",
+      label: "III",
+      diagramLabel: "III",
       type: "Positive Meniscus",
       nd: 1.637,
       vd: 55.7,
@@ -90,8 +93,9 @@ const LENS_DATA = {
     },
     {
       id: 4,
-      name: "L4",
-      label: "Element 4",
+      name: "IV",
+      label: "IV",
+      diagramLabel: "IV",
       type: "Biconcave Negative",
       nd: 1.672,
       vd: 32.2,
@@ -102,8 +106,9 @@ const LENS_DATA = {
     },
     {
       id: 5,
-      name: "L5",
-      label: "Element 5",
+      name: "V",
+      label: "V",
+      diagramLabel: "V",
       type: "Biconvex Positive",
       nd: 1.637,
       vd: 55.7,
@@ -115,8 +120,9 @@ const LENS_DATA = {
     },
     {
       id: 6,
-      name: "L6",
-      label: "Element 6",
+      name: "VI",
+      label: "VI",
+      diagramLabel: "VI",
       type: "Biconcave Negative",
       nd: 1.522,
       vd: 50.7,
@@ -128,8 +134,9 @@ const LENS_DATA = {
     },
     {
       id: 7,
-      name: "L7",
-      label: "Element 7",
+      name: "VII",
+      label: "VII",
+      diagramLabel: "VII",
       type: "Biconvex Positive",
       nd: 1.671,
       vd: 47,
@@ -165,14 +172,14 @@ const LENS_DATA = {
       label: "4",
       R: 33.7,
       d: 15.38,
-      sd: 29.5,
+      sd: 29.4,
       medium: 3,
     },
     {
       label: "5",
       R: 151.3,
       d: 5.17,
-      sd: 30,
+      sd: 29.4,
     },
     {
       label: "6",
@@ -236,22 +243,22 @@ const LENS_DATA = {
   },
   groups: [
     {
-      text: "G1 · L1",
+      text: "G1 · I",
       fromSurface: "1",
       toSurface: "2",
     },
     {
-      text: "G2 · L2+L3",
+      text: "G2 · II+III",
       fromSurface: "3",
       toSurface: "5",
     },
     {
-      text: "G3 · L4",
+      text: "G3 · IV",
       fromSurface: "6",
       toSurface: "7",
     },
     {
-      text: "G4 · L5+L6+L7",
+      text: "G4 · V+VI+VII",
       fromSurface: "8",
       toSurface: "11",
     },
