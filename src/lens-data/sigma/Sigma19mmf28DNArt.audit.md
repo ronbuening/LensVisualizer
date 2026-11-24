@@ -8,7 +8,7 @@
 
 The 15 surfaces use the printed radii, thicknesses, helium d-line glass constants and axial air gaps in millimetres at their original scale. The stop is S7. S9 and S14 are the cemented interfaces. The three conics have K = 0 as printed, and all twelve polynomial coefficients follow the table. The fixed image gap is 22.2884 mm in both configurations. The prescription has no cover plate.
 
-At infinity, d7 and d12 are 4.9942 and 2.0000 mm. At the 400 mm shooting distance, they are 4.4220 and 2.5722 mm and the object is 338.6359 mm ahead of S1. Both gap pairs sum to 6.9942 mm. Only L2 moves, by 0.5722 mm toward the object.
+At infinity, d7 and d12 are 4.9942 and 2.0000 mm. At the 400 mm shooting distance, they are 4.4220 and 2.5722 mm and the object is 338.6359 mm ahead of S1. Both gap pairs sum to 6.9942 mm. Only G2 moves, by 0.5722 mm toward the object.
 
 ## First-Order Values
 
@@ -22,8 +22,8 @@ At infinity, d7 and d12 are 4.9942 and 2.0000 mm. At the 400 mm shooting distanc
 | Rear air gap at 400 mm                    |                                 22.29 mm |                      22.2884 mm to the image plane |
 | Total track at both states                |                                 61.36 mm |                                         61.3642 mm |
 | Infinity image height at 37.6° half-field |                                 14.20 mm |                                           14.20 mm |
-| L1 / L2 / L3 focal lengths                |              −38.05 / +15.85 / −69.78 mm |                        −38.05 / +15.85 / −69.78 mm |
-| L2F / L2R focal lengths                   |                       +48.55 / +19.63 mm |                                 +48.55 / +19.63 mm |
+| G1 / G2 / G3 focal lengths                |              −38.05 / +15.85 / −69.78 mm |                        −38.05 / +15.85 / −69.78 mm |
+| G2F / G2R focal lengths                   |                       +48.55 / +19.63 mm |                                 +48.55 / +19.63 mm |
 | Conditional ratios (1) / (2) / (3)        |                       0.55 / 0.40 / 0.24 |                                 0.55 / 0.40 / 0.24 |
 
 The axial paraxial image lies 0.00015 mm behind the fixed plane at infinity and 0.00023 mm behind it at the printed object distance. Magnification at 400 mm is −0.0554×. The outermost axial ray at infinity focuses about 0.021 mm ahead of the plane, consistent with Fig. 17.
@@ -45,17 +45,17 @@ The semi-diameters come from the optical outlines in Fig. 16. The drawing scale 
 | S13      |               9.30 |
 | S14–S15  |              11.00 |
 
-The surface geometry clears the edge-thickness and overlap checks. At the 14.175 mm APS-C corner the chief ray clears all rims at infinity, 800 mm and 400 mm. The corresponding object-space half-fields are about 37.6°, 37.7° and 37.8°. The full axial beam reaches the image in all three configurations. The outer off-axis bundle is partly vignetted. At the printed infinity field of 37.6° the geometric pupil transmission is approximately 75%.
+The surface geometry clears the edge-thickness and overlap checks. At the 14.175 mm APS-C corner the chief ray clears all rims at infinity, 800 mm and 400 mm. The corresponding object-space half-fields are about 37.6°, 37.4° and 37.2°. The full axial beam reaches the image in all three configurations. The outer off-axis bundle is partly vignetted. At the printed infinity field of 37.6° the geometric pupil transmission is approximately 75%.
 
 Interpolating only the two printed spacing rows places the paraxial image 0.0453 mm ahead of the fixed plane at 800 mm. The two gaps at that distance are calculated as 4.73283 and 2.26137 mm, preserving their 6.9942 mm sum. The rounded spacings leave less than 0.000001 mm of paraxial defocus at 800 mm. With this intermediate position, the largest calculated residual between positions is about 0.0128 mm.
 
-The Hoya equivalents are M-PCD51 (E1, E8), E-FL6 (E2), TAFD30 (E3), E-F2 (E4), TAF3 (E5) and E-FD13 (E7). Their listed indices match the printed nd values. TAFD30 is 0.01 lower in νd, and the other Abbe values match. E6 retains its printed 1.77010 and 49.34 with an estimated dispersion curve.
+The Hoya equivalents are M-PCD51 (L1, L8), E-FL6 (L2), TAFD30 (L3), E-F2 (L4), TAF3 (L5) and E-FD13 (L7). Their listed indices match the printed nd values. TAFD30 is 0.01 lower in νd, and the other Abbe values match. L6 retains its printed 1.77010 and 49.34 with an estimated dispersion curve.
 
 ## Product Identification
 
-Sigma's diagrams show an eight-element, six-group construction with two cemented pairs and aspheres on E1, E6 and E8. The EX DN was announced in January 2012 and the DN Art in January 2013 with the same optics. Sigma describes internal focus, consistent with the moving group in the patent. [Sigma Art specifications](https://www.sigma-global.com/en/lenses/a_19_28/), [Sigma EX DN drawing](https://www.sigma-global.com/lenses/19_28_specification_01_01.jpg), [Sigma Art drawing](https://www.sigma-global.com/lenses/a_19_28_specification_01_01.jpg), [Sigma 2012 announcement](https://www.dpreview.com/articles/4688001151/sigmadigitalneo/), [Sigma 2013 announcement](https://www.sigma-photo.fr/content/111-nouveautes-cp-sigma-19mm-f28-dn).
+Sigma's diagrams show an eight-element, six-group construction with two cemented pairs and aspheres on L1, L6 and L8. The EX DN was announced in January 2012 and the DN Art in January 2013 with the same optics. Sigma describes internal focus, consistent with the moving group in the patent. [Sigma Art specifications](https://www.sigma-global.com/en/lenses/a_19_28/), [Sigma EX DN drawing](https://www.sigma-global.com/lenses/19_28_specification_01_01.jpg), [Sigma Art drawing](https://www.sigma-global.com/lenses/a_19_28_specification_01_01.jpg), [Sigma 2012 announcement](https://www.dpreview.com/articles/4688001151/sigmadigitalneo/), [Sigma 2013 announcement](https://www.sigma-photo.fr/content/111-nouveautes-cp-sigma-19mm-f28-dn).
 
-Examples 3 and 4 are comparably close. Example 4 better matches E3 thickness, and Example 3 better matches E6 thickness. The production drawing places the focusing parts about 1–1.5 mm farther back than either. Examples 1–2 have seven groups, Example 5 cements E2–E3 and separates the rear pair, and Example 6 is 21.94 mm. Example 4's spacing labels agree with its surface table. In Example 3 the spacing table labels the variable gaps d9 and d11, while its surface table places them after S7 and S12.
+Examples 3 and 4 are comparably close. Example 4 better matches L3 thickness, and Example 3 better matches L6 thickness. The production drawing places the focusing parts about 1–1.5 mm farther back than either. Examples 1–2 have seven groups, Example 5 cements L2–L3 and separates the rear pair, and Example 6 is 21.94 mm. Example 4's spacing labels agree with its surface table. In Example 3 the spacing table labels the variable gaps d9 and d11, while its surface table places them after S7 and S12.
 
 ## Corrections
 
@@ -66,4 +66,4 @@ Examples 3 and 4 are comparably close. Example 4 better matches E3 thickness, an
 
 ## Remaining Questions
 
-The factory prescription and glass identities are unpublished. In particular, E6 has no matching catalog row at the printed index and dispersion. The clear semi-diameters and iris radius have no tabulated dimensions. The available focus rows give no basis for the production lens's travel from 0.40 m to 0.20 m.
+The factory prescription and glass identities are unpublished. In particular, L6 has no matching catalog row at the printed index and dispersion. The clear semi-diameters and iris radius have no tabulated dimensions. The available focus rows give no basis for the production lens's travel from 0.40 m to 0.20 m.

@@ -176,7 +176,11 @@ const LENS_DATA = {
     maxFNumber: 22,
     blades: 7,
   },
-  projection: { kind: "rectilinear" },
+  projection: {
+    kind: "rectilinear",
+    fullFieldDeg: 75.2,
+    maxTraceFieldDeg: 37.6,
+  },
   focus: {
     closeFocusM: 0.4,
     keyframes: [0, 0.5, 1],
@@ -199,9 +203,9 @@ const LENS_DATA = {
     "12A": { label: "d12", values: [[2, 2.26137, 2.5722]] },
   },
   groups: [
-    { text: "L1", fromSurface: "1A", toSurface: "6" },
-    { text: "L2", fromSurface: "8", toSurface: "12A" },
-    { text: "L3", fromSurface: "13", toSurface: "15A" },
+    { text: "G1", fromSurface: "1A", toSurface: "6" },
+    { text: "G2 IF", fromSurface: "8", toSurface: "12A" },
+    { text: "G3", fromSurface: "13", toSurface: "15A" },
   ],
   doublets: [
     { text: "C1", fromSurface: "8", toSurface: "10" },
