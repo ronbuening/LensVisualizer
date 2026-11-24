@@ -95,11 +95,11 @@ None of the six distinct printed pairs has an exact catalog match. Six elements 
 | L4 | H-ZF6 (CDGM) | −0.00200 | +0.03 |
 | L8 | J-SK16 (Hikari) | −0.00119 | +0.05 |
 
-These rows fall within 0.002 in index and 0.25 in Abbe number at the printed line. The printed index and Abbe number are kept; each proxy supplies only the dispersion-curve shape so colour analysis follows a real glass. L6 (1.6738/47.0) and L7 (1.6480/47.8) remain Unmatched because no catalog row falls within both tolerances, and retain Abbe-based dispersion estimates. The patent supplies no additional line indices or partial-dispersion values. The proxies do not identify the historical suppliers or melts, or establish the historical glasses' secondary spectrum or measured broadband performance.
+These rows meet the site's spectral-proxy tolerance of 0.002 in index and 0.25 in Abbe number at the printed line. Each proxy supplies the dispersion-curve shape while retaining the printed index and Abbe number. L6 (1.6738/47.0) and L7 (1.6480/47.8) use Abbe-based dispersion because no compatible catalog row meets both tolerances. The patent supplies no additional line indices or partial-dispersion values. Historical suppliers, melts, secondary spectrum and measured broadband performance remain unknown.
 
 ## Focus Mechanism
 
-The model is focused at infinity. The patent supplies no close-focus distances, displacement law or alternate focus spacing. No production minimum-focus specification is transferred to this design.
+All four groups have fixed spacings at infinity. The patent supplies no focusing mechanism, close-focus distances or alternate focus spacings.
 
 ## First-Order Properties and Model Limits
 
@@ -109,7 +109,7 @@ The nominal f/1.3 aperture produces a paraxial stop radius of 20.09 mm. Exact ax
 
 The patent discusses picture angles up to about 45° for the lens class, without assigning a numerical field to Figure 1. The model retains an illustrative ±10.0° field. The chief ray clears the inferred rims there, but part of the off-axis pupil is vignetted. No image format or image-circle diameter is assigned from this illustrative field.
 
-The clear radii are estimates supported by Figure 1's proportions and axial-beam clearance, rather than measurements of finished lens blanks. They are 39 mm at R1/R2, 33/32/32/23 mm through the front triplet, 21/21/21/26 mm through the rear triplet, and 27 mm at R11/R12. Flat opaque lands extend R6 and R7 to outer radii of 29 and 23.5 mm, retaining their 23 and 21 mm optical caps. The drawing is schematic; its stop-side bevels and small shoulders at the cemented joins are approximated by straight rim joins. Wide-open geometric transmission is about 84% at the illustrative 10° field. The radii, glass thicknesses, air spaces, stop position and paraxial image plane have not been adjusted to improve image quality. Any calculated MTF describes this inferred aperture geometry rather than measured production performance.
+The clear radii are estimated from Figure 1's proportions and checked against the axial beam. They are 39 mm at R1/R2, 33/33/33/23 mm through the front triplet, 21/21/21/27 mm through the rear triplet, and 27 mm at R11/R12. The equal heights at R3–R5 follow the level front-triplet edge, and R10 reaches the height of the rear singlet. Flat opaque lands extend R6 and R7 to outer radii of 29 and 23.5 mm, retaining their 23 and 21 mm optical caps. Straight rim joins approximate the drawing's stop-side bevels and small shoulders at the cemented interfaces. Wide-open geometric transmission is about 84% at the illustrative 10° field. Calculated MTF depends on this inferred aperture geometry.
 
 ## Sources
 

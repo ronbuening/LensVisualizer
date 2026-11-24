@@ -9,7 +9,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Its radius follows nominal f/1.3; exact axial tracing gives about f/1.34.
  * Clear rims follow Figure 1's proportions and pass the stated axial beam.
  * Flat lands extend R6/R7 to 29/23.5 mm outside their 23/21 mm optical caps.
- * The 33 mm R3 rim avoids a reversed edge on L2; no clear diameter is printed.
+ * R3–R5 share a 33 mm rim, below L2's knife edge. R10–R12 reach 27 mm.
+ * The patent prints no clear diameters.
  * The unprinted image distance is the paraxial back focus, 44.02 mm.
  * The ±10.0° field is illustrative, with no published image format.
  * Figure 2 has a separate R10 sign conflict between its two tables.
@@ -47,7 +48,7 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1",
-      label: "L1",
+      label: "Element 1",
       diagramLabel: "L1",
       type: "Positive Meniscus",
       role: "Positive front singlet",
@@ -60,7 +61,7 @@ const LENS_DATA = {
     {
       id: 2,
       name: "L2",
-      label: "L2",
+      label: "Element 2",
       diagramLabel: "L2",
       type: "Positive Meniscus",
       role: "Positive front element of the front cemented triplet",
@@ -74,7 +75,7 @@ const LENS_DATA = {
     {
       id: 3,
       name: "L3",
-      label: "L3",
+      label: "Element 3",
       diagramLabel: "L3",
       type: "Biconvex Positive",
       role: "Positive middle element of the front cemented triplet",
@@ -88,7 +89,7 @@ const LENS_DATA = {
     {
       id: 4,
       name: "L4",
-      label: "L4",
+      label: "Element 4",
       diagramLabel: "L4",
       type: "Biconcave Negative",
       role: "Negative rear element of the front cemented triplet",
@@ -102,7 +103,7 @@ const LENS_DATA = {
     {
       id: 5,
       name: "L5",
-      label: "L5",
+      label: "Element 5",
       diagramLabel: "L5",
       type: "Biconcave Negative",
       role: "Negative front element of the rear cemented triplet",
@@ -116,7 +117,7 @@ const LENS_DATA = {
     {
       id: 6,
       name: "L6",
-      label: "L6",
+      label: "Element 6",
       diagramLabel: "L6",
       type: "Biconvex Positive",
       role: "Positive middle element of the rear cemented triplet",
@@ -130,7 +131,7 @@ const LENS_DATA = {
     {
       id: 7,
       name: "L7",
-      label: "L7",
+      label: "Element 7",
       diagramLabel: "L7",
       type: "Negative Meniscus",
       role: "Negative rear element of the rear cemented triplet",
@@ -144,7 +145,7 @@ const LENS_DATA = {
     {
       id: 8,
       name: "L8",
-      label: "L8",
+      label: "Element 8",
       diagramLabel: "L8",
       type: "Biconvex Positive",
       role: "Positive rear singlet",
@@ -180,14 +181,14 @@ const LENS_DATA = {
       label: "4",
       R: 139.83,
       d: 8.3,
-      sd: 32,
+      sd: 33,
       medium: 3,
     },
     {
       label: "5",
       R: -212.19,
       d: 2.6,
-      sd: 32,
+      sd: 33,
       medium: 4,
     },
     {
@@ -228,7 +229,7 @@ const LENS_DATA = {
       label: "10",
       R: -77,
       d: 0.4,
-      sd: 26,
+      sd: 27,
     },
     {
       label: "11",
@@ -246,7 +247,7 @@ const LENS_DATA = {
   ],
   focus: {
     closeFocusM: 1e15,
-    description: "Infinity focus only; the patent gives no close-focus data.",
+    description: "Fixed spacings at infinity. The patent gives no focusing mechanism or close-focus data.",
   },
   aperture: {
     nominalFNumber: 1.3,
