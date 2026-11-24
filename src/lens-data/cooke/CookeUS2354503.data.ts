@@ -8,6 +8,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * has been identified, and rounding as the cause remains unproven. The image gap
  * is the computed paraxial back focus, 50.28 mm. Clear rims are estimated from
  * the printed rear/front aperture ratio of 1.20 and rear air-gap clearance.
+ * R3 ends just inside R1 and R2, following the drawn front-member bevel.
  * The drawing on PDF p. 1 is schematic at the rear gap and aperture outlines;
  * its larger rims cannot all follow the printed curves without overlap.
  * The stop 1.5 mm behind R3 is inferred; the iris gives paraxial f/6.3.
@@ -120,7 +121,7 @@ const LENS_DATA = {
       label: "3",
       R: 46.2,
       d: 1.5,
-      sd: 8.3,
+      sd: 8.1,
     },
     {
       label: "STO",
@@ -170,12 +171,12 @@ const LENS_DATA = {
   },
   groups: [
     {
-      text: "Front cemented member",
+      text: "Front convergent member",
       fromSurface: "1",
       toSurface: "3",
     },
     {
-      text: "Rear air-spaced member",
+      text: "Rear divergent member",
       fromSurface: "4",
       toSurface: "7",
     },
