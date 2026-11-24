@@ -46,13 +46,13 @@ Figure 2(a) supplies the rim proportions. At 300 dpi, the 53.66 mm span from fir
 | 5–6 | 16.95 | 16.95 |
 | 7–8 | 14.45 | 14.45 |
 | 9–10 | 12.25 | 12.25 |
-| 12–13 | 12.2 | 11.36 |
+| 12–13 | 12.2 | 11.30 |
 | 14–15 | 12.95 | 12.95 |
 | 16–17 | 14.65 | 14.65 |
 | 18–19 | 13.5 | 13.50 |
 | 20–22 | 13.35 | 13.35 |
 
-Surfaces 8, 10 and 12 show lands. The estimated ratios of curved-face radius to outer radius are 0.932, 0.889 and 0.871, with about ±0.008 uncertainty from a one-pixel reading. The resulting cut depths are 3.32, 3.23 and 2.90 mm. The land on surface 10 ends 0.08 mm before the iris plane. Surface 12 keeps its estimated curved-face radius within the smaller L6 rim.
+Surfaces 8, 10 and 12 show lands. On the drawing the curved faces end at 0.928, 0.864 and 0.877 of the outer radius, with about ±0.008 uncertainty from a one-pixel reading at 19.3 pixels/mm. The two sides of surface 12 differ by 0.027. The curved faces reach 13.41, 10.58 and 10.66 mm, which gives cut depths of 3.36, 3.11 and 3.00 mm. The land on surface 10 ends 0.20 mm before the iris plane, and the drawing also sets it ahead of that plane. Surface 12 keeps its drawn curved-face radius within the smaller L6 rim.
 
 The drawn iris radius is about 10.9 mm. The model uses 10.02 mm, calculated from the paraxial entrance pupil at f/1.83, and holds it fixed at the widest setting through focus.
 
@@ -70,7 +70,7 @@ The patent's two moving groups change separation through focus. Olympus also spe
 
 - Example 2 replaces the initial Example 1 prescription because its stop space, axial fit and closest magnification better match the Olympus lens. The Example 2 table sets the iris position and all three gap pairs. The model keeps the 35.06 mm printed infinity image distance despite the 0.009 mm paraxial offset.
 - The infinity aperture opens from f/4 to the patent's f/1.83. The original 8.0° half-field cap is removed to cover the full Four Thirds frame. At infinity the format corner is reached at 12.04°, and the patent's 11.1 mm image height is reached at 12.34°.
-- Figure 2(a) proportions replace estimated rims sized for the restricted aperture and field. The three lands follow the drawing. The 12.2 mm drawn L6 rim would let surfaces 13 and 14 intersect. The 11.36 mm rim on both L6 faces is the largest hundredth-millimetre value that preserves 1% of the 0.91 mm axial gap at the common rim, leaving about 0.009 mm of clearance. A 10% allowance would limit the radius to 10.83 mm. The other outer rims follow the section.
+- Figure 2(a) proportions replace estimated rims sized for the restricted aperture and field. The three lands follow the drawing. The 12.2 mm drawn L6 rim would let surfaces 13 and 14 intersect. The 11.30 mm rim on both L6 faces preserves 2% of the 0.91 mm axial gap at the common rim, leaving about 0.019 mm of clearance. A 10% allowance would limit the radius to 10.83 mm. The other outer rims follow the section.
 - The three printed states and 24 calculated intermediate positions replace infinity-only focus. Group labels mark G1 and G2, and a bracket marks the cemented pair at surfaces 20–22.
 - The named Olympus product replaces the generic patent title. The catalog records the Four Thirds mount and format, 11 elements in 10 groups, 50 mm, f/2 and 0.24 m as product values. The selectable full stops run from f/2 to f/22 with seven blades. The patent's 11.1 mm image height exceeds the Four Thirds half-diagonal, so the format sets the catalog coverage.
 - The originally unnamed glasses now have catalog labels for their matching d-line properties. The tabulated index and Abbe values are retained, with L7 identified as ED from the Olympus drawing. [Ohara catalog](https://www.ohara-inc.co.jp/en/product/catalog/)
@@ -92,9 +92,18 @@ Differences are catalog minus patent, with Δνd rounded to 0.01.
 
 The finished model gives 51.007 mm EFL, f/1.83, a 10.02 mm iris radius, and 35.069 mm paraxial back focus at infinity.
 
+2026-11-24 rim review:
+
+- Surface 8 land: cut depth 3.32 → 3.36 mm, so the curved face reaches 13.41 mm. Fig. 2(a) ends the curve at 0.928 of the 14.45 mm rim on both sides of the axis.
+- Surface 10 land: cut depth 3.23 → 3.11 mm, so the curved face reaches 10.58 mm. The drawing ends the curve at 0.864 of the rim and sets the flat rear face of L5 ahead of the iris plane.
+- Surface 12 land: cut depth 2.90 → 3.00 mm, so the curved face reaches 10.66 mm, its drawn radius.
+- Surfaces 12 and 13: 11.36 → 11.30 mm. The clearance kept between surfaces 13 and 14 at the rim rises from 1% to 2% of the 0.91 mm gap. The two faces meet at 11.42 mm, and the drawing shows L6 and L7 touching from about 10 mm outward.
+- The other rims were compared again with Fig. 2(a) and Olympus's drawing and kept. Every element is drawn with a square edge and no further land. The drawn curves follow the tabulated radii at 19.3 pixels/mm along and across the axis.
+- Corner transmission at the widest aperture is unchanged at 79.0% at infinity and 83.0% at −0.1×, and moves from 94.8% to 94.6% at −0.52×. No field changes by more than 0.4 points. At −0.52× the fully open axial beam now passes to an object-side numerical aperture of 0.1038, previously 0.1043.
+
 ## Remaining Questions
 
 - The factory prescription, exact clear apertures, glass supplier and mechanical focus cam remain undocumented. The rim readings from Fig. 2(a) have about ±0.2 mm reading uncertainty. Olympus specifies seven blades and leaves their curvature unspecified.
-- At −0.52×, the fully open iris requires 11.53 mm at surface 13 and 11.52 mm at surface 14. The two spherical faces meet at about 11.42 mm under the printed spacing. The patent gives no finite-distance iris opening.
+- At −0.52×, the fully open iris requires 11.53 mm at surface 13 and 11.52 mm at surface 14. The two spherical faces meet at about 11.42 mm under the printed spacing. The patent gives no finite-distance iris opening. Its close-range aberration plot is drawn for an object-side numerical aperture of 0.101, whose marginal ray needs 10.97 mm at surface 13 and passes the 11.30 mm rim.
 - Condition (6) lists a 13.3° half-field. The 11.1 mm image height gives 12.28° by the paraxial estimate and 12.34° by chief-ray tracing. Condition (10) lists 3.15, while 35.06/11.1 is 3.159. Its inequality at 2.8 points the other way from the accompanying prose.
 - Several shape descriptions in ¶0093 disagree with the numerical radii. The table gives L2 positive power, an image-facing convex surface on L7 and two concave faces on L9, with surface 18 nearly plane.

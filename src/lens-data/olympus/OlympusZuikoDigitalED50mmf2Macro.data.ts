@@ -183,12 +183,12 @@ const LENS_DATA = {
     { label: "5", R: 43.701, d: 4.34, sd: 16.95, medium: 3 },
     { label: "6", R: 3929264.108, d: 0.1, sd: 16.95 },
     { label: "7", R: 24.021, d: 2.8, sd: 14.45, medium: 4 },
-    { label: "8", R: 28.431, d: 5.16, sd: 14.45, rimCutDepthMm: 3.32 },
+    { label: "8", R: 28.431, d: 5.16, sd: 14.45, rimCutDepthMm: 3.36 },
     { label: "9", R: -861.896, d: 1.3, sd: 12.25, medium: 5 },
-    { label: "10", R: 19.55, d: 3.31, sd: 12.25, rimCutDepthMm: 3.23 },
+    { label: "10", R: 19.55, d: 3.31, sd: 12.25, rimCutDepthMm: 3.11 },
     { label: "STO", R: "flat", d: 5.78 },
-    { label: "12", R: -20.465, d: 1.35, sd: 11.36, medium: 6, rimCutDepthMm: 2.9 },
-    { label: "13", R: 99.536, d: 0.91, sd: 11.36 },
+    { label: "12", R: -20.465, d: 1.35, sd: 11.3, medium: 6, rimCutDepthMm: 3.0 },
+    { label: "13", R: 99.536, d: 0.91, sd: 11.3 },
     { label: "14", R: -257.77, d: 4.5, sd: 12.95, medium: 7 },
     { label: "15", R: -28.944, d: 0.3, sd: 12.95 },
     { label: "16", R: 53.287, d: 6.17, sd: 14.65, medium: 8 },
@@ -239,7 +239,7 @@ const LENS_DATA = {
       ],
     },
     22: {
-      label: "D22",
+      label: "BF",
       values: [
         [
           35.06, 36.010259, 37.043647, 38.185568, 38.804348, 39.46, 40.683419, 41.349011, 42.055994, 42.809896,
@@ -258,7 +258,7 @@ const LENS_DATA = {
   ],
   doublets: [{ text: "C1", fromSurface: "20", toSurface: "22" }],
   layout: { yScFill: 0.5 },
-  checks: { gapSagFrac: 0.99 },
+  checks: { gapSagFrac: 0.98 },
 } satisfies LensDataV2Input;
 
 export default LENS_DATA;
