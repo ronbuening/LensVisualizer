@@ -51,10 +51,10 @@ The full-frame lens is specified at 10 mm, f/2.8–f/22, 130.4°, 0.12 m minimum
 
 ## Corrections, 2026-11-24
 
-- Opened the aperture from f/8 to the printed f/2.87 at the original stop position. The stop radius is derived from the specified entrance pupil. The marked full stops run from the marketed f/2.8 through f/22.
-- Restored the printed 129.2° field from a 6° field and used the 43.20 mm circle from the 21.60 mm height in Fig. 2. The original 1.3–2.2 mm clear radii clipped the wide field. Fig. 1 supplies the replacement radii, with clearances and profile allowances as listed above.
-- Added the printed 500 mm focus row to the infinity spacing. D4 increases from 6.484 to 6.641 mm and D10 decreases from 3.607 to 3.450 mm as G2 moves 0.157 mm toward the image. The intervening positions are interpolated. The near row gives about 0.590 m object to image, short of the production lens's range to 0.12 m.
-- Identified Example 1 with the Laowa 10mm f/2.8 Zero-D FF and recorded the patent bibliography, full-frame format, four mounts and marketed focal length, aperture and minimum focus. The shared description uses both diaphragm versions, which have different blade counts. The element descriptions give their in-air focal lengths, optical roles and maker designations.
+- The aperture opens from f/8 to the printed f/2.87 at the original stop position. The stop radius is derived from the specified entrance pupil. The marked full stops run from the marketed f/2.8 through f/22.
+- The printed 129.2° field replaces a 6° field, with the 43.20 mm image circle taken from the 21.60 mm height in Fig. 2. The original 1.3–2.2 mm clear radii clipped the wide field. Fig. 1 supplies the replacement radii, with clearances and profile allowances as listed above.
+- The printed 500 mm focus row joins the infinity spacing. D4 increases from 6.484 to 6.641 mm and D10 decreases from 3.607 to 3.450 mm as G2 moves 0.157 mm toward the image. The intervening positions are interpolated. The near row gives about 0.590 m object to image, short of the production lens's range to 0.12 m.
+- Example 1 is identified with the Laowa 10mm f/2.8 Zero-D FF, and the patent bibliography, full-frame format, four mounts and marketed focal length, aperture and minimum focus are recorded. No blade count is recorded because the five-blade and 14-blade versions share these optics. The element descriptions give their in-air focal lengths, optical roles and maker designations.
 
 Three optical-glass equivalents replace unidentified labels on seven elements. The differences below are catalog minus printed values, using the d-line index and C/d/F Abbe number.
 

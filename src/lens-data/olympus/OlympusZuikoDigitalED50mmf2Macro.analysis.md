@@ -103,7 +103,7 @@ Examples 1 and 2 use two-group floating focus. At close focus, G2 advances 23.69
 | −0.1× | 1.71 | 39.46 | 525.75 | 620.08 | −0.09945× |
 | −0.52× | 6.79 | 58.75 | 110.36 | 229.06 | −0.51909× |
 
-The patent prints three magnifications and gap pairs. The distances are calculated at the printed image planes. The 24 intermediate positions keep the displayed distance close to paraxial focus using a linear relation between group separation and back focus in each interval. The patent gives no cam profile. The model reaches 0.229 m from the image plane, compared with 0.24 m for the product, and agrees with the rated 0.52× to two decimal places.
+The patent prints three magnifications and gap pairs. The distances are calculated at the printed image planes. The 24 intermediate positions keep the image close to paraxial focus between the printed settings, using a linear relation between group separation and back focus in each interval. The patent gives no cam profile. The model reaches 0.229 m from the image plane, compared with 0.24 m for the product, and agrees with the rated 0.52× to two decimal places.
 
 ## Clear Apertures and Field
 
