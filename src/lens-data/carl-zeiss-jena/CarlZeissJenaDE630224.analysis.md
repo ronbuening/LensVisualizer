@@ -30,7 +30,7 @@ The patent gives no stop position or opening. The inferred iris lies 6.33 mm aft
 
 ## Element-by-Element Analysis
 
-The focal lengths below describe each element considered separately in air. Cemented-component powers include the shared interfaces and differ from those individual values.
+The drawing and prescription table identify the elements as L1–L7. The focal lengths below describe each element considered separately in air. Cemented-component powers include the shared interfaces and differ from those individual values.
 
 ### Element 1 — Positive Meniscus
 
@@ -42,25 +42,25 @@ The front collector has radii +51.8/+179.3 mm and thickness 8.0 mm. Its estimate
 
 nd = 1.6716, ν = 47.2. Glass: BAF10 (Hoya), spectral proxy. f = +84.13 mm.
 
-This is the positive front member of the cemented triplet. Its +34.0/+76.4 mm surfaces enclose 8.9 mm of glass, with estimated clear radii of 24/24 mm. R4 is the cemented interface to element 3.
+This is the positive front member of the cemented triplet. Its +34.0/+76.4 mm surfaces enclose 8.9 mm of glass, with estimated clear radii of 22.8/22.8 mm. R4 is the cemented interface to element 3.
 
 ### Element 3 — Positive Meniscus
 
 nd = 1.5163, ν = 64.0. Glass: K-BK7 (Sumita), a catalogue match. f = +165.45 mm.
 
-The low-index middle member of the triplet has radii +76.4/+707.3 mm and thickness 5.0 mm. Its clear radii are estimated as 24/22.2 mm. R5 is the cemented interface to element 4. The catalogue name does not establish the historical supplier.
+The low-index middle member of the triplet has radii +76.4/+707.3 mm and thickness 5.0 mm. Its clear radii are estimated as 22.8/22.8 mm. R5 is the cemented interface to element 4. The catalogue name does not establish the historical supplier.
 
 ### Element 4 — Negative Meniscus
 
 nd = 1.6890, ν = 31.0. Glass: S-TIM28 (Ohara), a catalogue match. f = −33.48 mm.
 
-The strong negative rear member gives the complete triplet its net-negative power. Its +707.3/+22.3 mm faces enclose 2.8 mm of glass. The estimated front clear radius is 22.2 mm; the 15.3 mm rear radius follows the clear zone ending before the drawing's chamfer.
+The strong negative rear member gives the complete triplet its net-negative power. Its +707.3/+22.3 mm faces enclose 2.8 mm of glass. The front clear radius follows the triplet's 22.8 mm outer height. At the rear, the 15.3 mm clear radius follows the end of the curved face, with an opaque land out to 22.8 mm to approximate the drawn bevel.
 
 ### Element 5 — Biconcave Negative
 
 nd = 1.5017, ν = 56.5. Glass: S-FTL10 (Ohara), spectral proxy. f = −54.45 mm.
 
-The negative front member of the rear doublet has radii −298.6/+30.2 mm and thickness 3.9 mm. Its front clear radius is 17.8 mm from the drawing; the shared R8 radius is estimated as 18 mm.
+The negative front member of the rear doublet has radii −298.6/+30.2 mm and thickness 3.9 mm. The front clear radius is 15.8 mm to admit the nominal axial marginal ray. A flat, opaque land approximates the drawn bevel and reaches 18 mm, matching the shared R8 radius.
 
 ### Element 6 — Positive Meniscus
 
@@ -80,7 +80,7 @@ The table prints n_d and ν without defining a wavelength. The printed lowercase
 
 Element 3 matches Sumita K-BK7 (about 1.51633/64.062, Δn +0.000030, Δν +0.062) and element 4 matches Ohara S-TIM28 (about 1.68893/31.075, Δn −0.000069, Δν +0.075) within the printed precision. Sumita lists ν = 64.1. All offsets are catalogue minus printed at d.
 
-The other five elements use spectral proxies: Hoya BACD16 for element 1 (Δn +0.00011, Δν −0.06), Hoya BAF10 for elements 2, 6 and 7 (Δn −0.00157, Δν 0.00), and Ohara S-FTL10 for element 5 (Δn −0.00033, Δν −0.08). Each is within 0.002 in index and 0.25 in Abbe number at d. These present-day rows supply only the dispersion-curve shape for colour calculations, retaining the printed index and Abbe number. All seven elements use catalogue curves; none remains unmatched. Neither matches nor proxies identify the 1930s suppliers or melts.
+The spectral proxies are Hoya BACD16 for element 1 (Δn +0.00011, Δν −0.06), Hoya BAF10 for elements 2, 6 and 7 (Δn −0.00157, Δν 0.00), and Ohara S-FTL10 for element 5 (Δn −0.00033, Δν −0.08). Each is within the site's spectral-proxy tolerance of 0.002 in index and 0.25 in Abbe number at d. These present-day rows supply the dispersion-curve shape for colour calculations while retaining the printed index and Abbe number. All seven elements use catalogue curves, with the 1930s suppliers and melts unspecified.
 
 The patent supplies no individual C-, F- or g-line indices or partial-dispersion data. The prescription does not establish apochromatic performance, coatings, transmission or measured MTF.
 
@@ -92,7 +92,7 @@ The model is focused at infinity; the patent gives no close-focus data. No finit
 
 The nominal f/2 setting and the real-ray aperture differ. At the nominal entrance radius of 24.965 mm, the axial marginal ray reaches R6 at 15.774 mm, beyond its 15.3 mm clear radius. The largest passing entrance radius is about 24.124 mm, corresponding to a geometric entrance aperture of f/2.07. Opening the iris alone does not remove that limit.
 
-The inferred clear radii are 26/26 mm at R1/R2, 24/24/22.2 mm at R3–R5, 15.3 mm at R6, 17.8/18/18 mm at R7–R9 and 25/25 mm at R10/R11. The drawing supports approximately 25.5 mm for the front singlet, 22.8 mm for the triplet's outer height, 17.6–17.8 mm for the doublet and 25.2 mm for the rear singlet. These heights are consistent with the retained estimates. R6's clear zone ends before the drawn bevel, which the model shows as a straight join to R5. It lies about 0.25 mm ahead of the inferred iris plane. Wide-open geometric transmission is about 93.7% on axis and 93.1% at 6°. Surface geometry is consistent with the rims and inferred iris position.
+The inferred clear radii are 26/26 mm at R1/R2, 22.8/22.8/22.8 mm at R3–R5, 15.3 mm at R6, 15.8/18/18 mm at R7–R9 and 25/25 mm at R10/R11. The drawing supports outer semi-diameters of about 25.5 mm for the front singlet, 22.8 mm for the triplet, 17.6 mm for the doublet and 25.2 mm for the rear singlet. The flat lands at R6 and R7 preserve the drawn outer heights and approximate the slanted bevels. The R6 land lies about 0.25 mm ahead of the inferred iris plane. Wide-open geometric transmission is about 93.7% on axis and 93.1% at 6°.
 
 No field angle, film format or image circle is printed. The displayed ±6° field is illustrative; its real chief ray reaches approximately 10.51 mm image height. That height is not a claimed format. The chief ray also clears every rim at 23°, but this does not establish an adequately corrected or fully illuminated field there. Some marginal rays are clipped even within the illustrative field.
 

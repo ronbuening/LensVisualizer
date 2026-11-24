@@ -5,10 +5,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Radii, thicknesses, air separations, indices and Abbe numbers follow the table.
  * On the DPMA copy, the printed plus signs at R7 and R11 are struck through
  * and minus signs written in; the model follows those corrections.
- * The stop is inferred, 6.33 mm after R6 and 0.87 mm before R7. R6, R7 and the
- * rear singlet rims follow the drawing; the other clear radii are estimates.
- * The drawing's steep R6 bevel is shown as a straight join from R5; the
- * drawing scale was checked by vertex spacings and surface sags.
+ * The stop is inferred, 6.33 mm after R6 and 0.87 mm before R7. Clear radii
+ * are estimated from the drawing and ray clearance. The triplet's R3–R5
+ * rims share a height. Opaque lands approximate the illustrated R6 and R7
+ * bevels. R7's clear radius is set just above the nominal f/2 ray height.
  * R6 retains its 15.3 mm clear radius, limiting real-ray acceptance to about f/2.07.
  * The image plane is the computed paraxial one; the illustrative ±6° field
  * is not stated in the patent.
@@ -42,6 +42,7 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1",
+      diagramLabel: "L1",
       label: "Element 1",
       type: "Positive Meniscus",
       nd: 1.6203,
@@ -56,6 +57,7 @@ const LENS_DATA = {
     {
       id: 2,
       name: "L2",
+      diagramLabel: "L2",
       label: "Element 2",
       type: "Positive Meniscus",
       nd: 1.6716,
@@ -71,6 +73,7 @@ const LENS_DATA = {
     {
       id: 3,
       name: "L3",
+      diagramLabel: "L3",
       label: "Element 3",
       type: "Positive Meniscus",
       nd: 1.5163,
@@ -86,6 +89,7 @@ const LENS_DATA = {
     {
       id: 4,
       name: "L4",
+      diagramLabel: "L4",
       label: "Element 4",
       type: "Negative Meniscus",
       nd: 1.689,
@@ -101,6 +105,7 @@ const LENS_DATA = {
     {
       id: 5,
       name: "L5",
+      diagramLabel: "L5",
       label: "Element 5",
       type: "Biconcave Negative",
       nd: 1.5017,
@@ -116,6 +121,7 @@ const LENS_DATA = {
     {
       id: 6,
       name: "L6",
+      diagramLabel: "L6",
       label: "Element 6",
       type: "Positive Meniscus",
       nd: 1.6716,
@@ -131,6 +137,7 @@ const LENS_DATA = {
     {
       id: 7,
       name: "L7",
+      diagramLabel: "L7",
       label: "Element 7",
       type: "Biconvex Positive",
       nd: 1.6716,
@@ -161,21 +168,21 @@ const LENS_DATA = {
       label: "3",
       R: 34,
       d: 8.9,
-      sd: 24,
+      sd: 22.8,
       medium: 2,
     },
     {
       label: "4",
       R: 76.4,
       d: 5,
-      sd: 24,
+      sd: 22.8,
       medium: 3,
     },
     {
       label: "5",
       R: 707.3,
       d: 2.8,
-      sd: 22.2,
+      sd: 22.8,
       medium: 4,
     },
     {
@@ -183,6 +190,7 @@ const LENS_DATA = {
       R: 22.3,
       d: 6.33,
       sd: 15.3,
+      rimExtensionSd: 22.8,
     },
     {
       label: "STO",
@@ -193,7 +201,8 @@ const LENS_DATA = {
       label: "7",
       R: -298.6,
       d: 3.9,
-      sd: 17.8,
+      sd: 15.8,
+      rimExtensionSd: 18,
       medium: 5,
     },
     {
@@ -236,6 +245,9 @@ const LENS_DATA = {
     kind: "rectilinear",
     fullFieldDeg: 12,
     maxTraceFieldDeg: 6,
+  },
+  checks: {
+    gapSagFrac: 0.91,
   },
   groups: [
     {
