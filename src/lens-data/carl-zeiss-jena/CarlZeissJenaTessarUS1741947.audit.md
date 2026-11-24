@@ -26,11 +26,11 @@ The stated curvature conditions hold: the outer absolute radii sum to 79.30 mm a
 
 The diaphragm position is printed, but its diameter is not. The stop radius follows the paraxial f/3.50 aperture. The image plane is calculated, and the approximately 103.28 mm image circle follows the printed 55.0° field and the chief-ray image height. It is not a published film format.
 
-All clear semi-diameters are estimates: R1/R2 15.8, R3–R5 13.7 and R6/R7 15.5 mm. The drawing suggests outer clear radii of about 13.7 mm and clear faces near R4/R5 of about 11.7 mm before the chamfers. The front singlet and rear positive element have square-cut rims. Their clear radii exceed the drawing to preserve peripheral illumination; the drawn front rim is also about 4.0% smaller than the nominal f/3.5 axial beam's 14.29 mm radius. The chamfer dimensions remain unprinted.
+The estimated clear semi-diameters are 15.8 mm at R1/R2, 13.7 mm at R3/R5, 12.0 mm at R4 and 15.5 mm at R6/R7. The drawing shows outer rims of about 13.7 mm, with the R4 and R5 chamfers starting near 11.7 mm. A flat land extends R4 to the drawn outer height. The front singlet and rear positive element have square-cut rims. Their clear radii exceed the drawing to preserve peripheral illumination; the drawn front rim is also about 4.0% smaller than the nominal f/3.5 axial beam's 14.29 mm radius. The chamfer dimensions remain unprinted.
 
 `focus.closeFocusM` is 10¹⁵ m, which stands for infinity. No close-focus distances, movement law or production focusing mechanism are given. The selectable aperture range extends from f/3.5 to f/22; the patent gives no minimum iris opening.
 
-Historical glass suppliers, melt identities, additional spectral indices and partial-dispersion data are unprinted. K-SK7 (Sumita) and FL57 (Hoya) match I and II within printed precision; N-SK10 (Schott) supplies a spectral proxy for IV. These catalog curves establish no historical glass identity. III uses an Abbe-based estimate. Calculated colour correction and simulated MTF are not measured performance of a production lens; the patent supplies no MTF curve.
+Historical glass suppliers, melt identities, additional spectral indices and partial-dispersion data are unprinted. K-SK7 (Sumita) and FL57 (Hoya) meet the site's exact-match limits for I and II at sodium D. N-SK10 (Schott) supplies a spectral proxy for IV. These catalog curves establish no historical glass identity. III uses an Abbe-based estimate. Calculated colour correction and simulated MTF are not measured performance of a production lens; the patent supplies no MTF curve.
 
 ## Product Identification
 
@@ -66,8 +66,16 @@ No production mount, image format, diaphragm blade count or shape, marketed foca
 
 The resulting model has EFL 100.05 mm, paraxial f/3.50, BFD 85.284 mm, stop radius 11.900 mm and half-field 27.5°. The printed diaphragm station and field are retained. The calculated image plane is approximately 85.284 mm behind R7, and the inferred image-circle diameter is approximately 103.28 mm.
 
+2026-11-24 diagram review:
+
+- On PDF page 1, the R1–R7 vertex span measures about 934 pixels at 600 dpi for 29.99 mm, or 31.1 pixels/mm. The middle singlet and rear doublet centre thicknesses give 31.4 and 31.1 pixels/mm. The outer edges are 850–855 pixels across, giving about 13.7 mm in semi-diameter. Both chamfers begin near 11.7 mm. The live section shows taller front and rear rims and a sloped outer edge on III. The recorded ZEISS Tessar comparison agrees with the four-element, three-group construction.
+- R4 changed from 13.7 to 12.0 mm clear semi-diameter. A 13.7 mm flat land preserves the middle singlet's drawn outer height while bringing the end of the curved face closer to the drawing. The nominal f/3.5 axial beam reaches 11.92 mm at R4 and 12.26 mm at R5, so both drawn chamfer starts would clip it. R5 remains at 13.7 mm. A 12.3 mm R5 opening under a flat land would increase the largest illumination loss to 6.5 percentage points at 22.0°.
+- The revised diagram shows the flat R4 land at the same outer height as R3. Compared with the preceding rims, the land reduces transmission by 0.1 percentage point at 8.2°. The largest loss relative to the original rims is 2.9 percentage points at 27.5°. Corner transmission remains 64.7%, with 100% axial transmission and clear chief rays through 27.5°. The paraxial aperture remains f/3.50 and the half-field remains 27.5°.
+- The displayed I–IV and inspector L1–L4 designations, element shapes, standalone focal lengths and C1 bracket agree with the prescription. The STO marker is between II and III at the printed 4.42/2.29 mm split. The diagram shows three group captions and the focus control displays infinity only. PDF pages 2–3 give no movement law.
+- All four elements have Abbe numbers. PDF pages 1–2 give no further glass identification or spectral data. III retains the Abbe estimate at the typed 51.4. No catalog curve for III meets the site's spectral-proxy tolerance. The other three glass lines resolve as labeled, with no source-designated special dispersion.
+
 ## Remaining Questions
 
-- The R4/R5 chamfers have no numerical dimensions, so their exact outlines remain uncertain.
+- The R4 and R5 chamfers have no numerical dimensions. The flat land approximates R4 and the R5 chamfer remains unmodeled.
 - The historical identities of all four glasses, a matching catalog curve for III, and measured spectral performance remain unknown.
 - No source establishes a specific production lens, mount, image format, diaphragm blade count or shape, minimum iris opening, marketed specifications or close-focus mechanism.

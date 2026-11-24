@@ -36,7 +36,7 @@ The +32.08 mm front surface and flat rear surface provide the front group's posi
 
 nD = 1.57596, νD = 41.3. Glass: FL57 (Hoya), a catalogue match to the printed coordinates; historical supplier unknown. Standalone focal length in air: −35.16 mm.
 
-The −71.13 and +28.85 mm surfaces supply negative power between the converging front and rear groups. The centre thickness is 3.73 mm; both estimated clear semi-diameters are 13.7 mm.
+The −71.13 and +28.85 mm surfaces supply negative power between the converging front and rear groups. The centre thickness is 3.73 mm. R3 has a 13.7 mm clear semi-diameter. R4 has a 12.0 mm clear semi-diameter and a flat rim land out to 13.7 mm, approximating the drawn chamfer.
 
 ### III / Element 3 — Plano-Concave Negative
 
@@ -61,7 +61,7 @@ The patent prints nD and Abbe numbers. The model retains those coordinates and u
 | III     | Unmatched (nD 1.52648 / ν 51.4)    |          — |     — |
 | IV      | N-SK10 (Schott), spectral proxy     |   −0.00109 | +0.07 |
 
-I and II match their catalogue rows within printed precision. IV uses a spectral proxy within index 0.002 / Abbe number 0.25 at sodium D. Its catalogue curve supplies only the dispersion shape while the printed index and Abbe number are kept. III has no row within those tolerances and uses an Abbe-based estimate. Catalogue names identify neither historical suppliers nor melts. The patent gives no additional spectral indices or partial-dispersion data; calculated colour correction is not measured production performance.
+I and II meet the site's exact-match limits of 0.0001 in index and 0.15 in Abbe number at sodium D. IV meets the site's spectral-proxy tolerance of 0.002 in index and 0.25 in Abbe number at the same line. Its catalogue curve supplies only the dispersion shape while the printed index and Abbe number are kept. III has no row within those tolerances and uses an Abbe-based estimate. Catalogue names identify neither historical suppliers nor melts. The patent gives no additional spectral indices or partial-dispersion data; calculated colour correction is not measured production performance.
 
 ## Focus Mechanism
 
@@ -73,7 +73,7 @@ The patent specifies the diaphragm's position but not its diameter. The paraxial
 
 The patent's stated full field of 55.0° gives a 27.5° half-field. Its real chief ray reaches an image height of 51.64 mm at the paraxial image plane, giving an approximately 103.28 mm image circle. This diameter is derived from the stated field, rather than a published film format. Chief rays clear the estimated rims through 27.5°, while peripheral pupil rays are vignetted; chief-ray coverage does not imply full-pupil illumination.
 
-Every clear semi-diameter is inferred from the sole drawing on PDF page 1 and checked against the nominal f/3.5 axial beam. The drawing supports roughly 13.7 mm outer rims, with undimensioned chamfers near R4 and R5. R3–R5 use 13.7 mm; R1/R2 use 15.8 mm and R6/R7 use 15.5 mm to preserve peripheral illumination. The front singlet and rear positive element have square-cut rims. The drawn front rim is smaller than the nominal axial beam's 14.29 mm radius. Wide-open geometric pupil transmission is approximately 91.0% at 16.5°, 80.7% at 22.0° and 64.7% at 27.5°; these figures exclude absorption and obliquity falloff.
+Every clear semi-diameter is inferred from the sole drawing on PDF page 1 and checked against the nominal f/3.5 axial beam. The drawing supports roughly 13.7 mm outer rims, with undimensioned chamfers beginning near 11.7 mm on R4 and R5. The nominal axial beam reaches 11.92 mm at R4 and 12.26 mm at R5. R4 uses a 12.0 mm opening under a flat rim land, and R3 and R5 use 13.7 mm clear semi-diameters. R1/R2 use 15.8 mm and R6/R7 use 15.5 mm to preserve peripheral illumination. The front singlet and rear positive element have square-cut rims. The drawn front rim is smaller than the nominal axial beam's 14.29 mm radius. Wide-open geometric pupil transmission is approximately 91.0% at 16.5°, 80.7% at 22.0° and 64.7% at 27.5°; these figures exclude absorption and obliquity falloff.
 
 ## Patent Conditions and Model Limits
 

@@ -7,7 +7,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * The typed table gives element III's Abbe number as 51.4; the drawing gives 51.
  * Clear semi-diameters are inferred from the sole drawing on PDF page 1 and
  * checked against the f/3.5 axial beam. Front and rear rims exceed the drawing
- * to preserve peripheral illumination.
+ * to preserve peripheral illumination. A flat rim land approximates the R4
+ * chamfer and retains the drawn outer height.
  * The iris diameter is derived from the paraxial aperture, and the image plane
  * is the computed infinity paraxial plane.
  */
@@ -128,7 +129,8 @@ const LENS_DATA = {
       label: "4",
       R: 28.85,
       d: 4.42,
-      sd: 13.7,
+      sd: 12.0,
+      rimExtensionSd: 13.7,
     },
     {
       label: "STO",
