@@ -26,7 +26,7 @@ Front and rear clear semi-diameters of 9.9 and 7.2 mm are estimates. The drawing
 
 The ±10.0° field and paraxial image plane are inferred. The patent gives no numerical field for Figure 2, image format, back focus or close-focus data. Its 30.0° field at f/5.6 describes prior art. No image-circle diameter is assigned from the illustrative field. `focus.closeFocusM` is 10¹⁵ m, which stands for infinity. All relative element spacings are fixed. The selectable f-stops extend from f/5.6 to f/22; the patent supplies no minimum iris opening.
 
-Elements 2–4 use catalog spectral proxies while retaining the printed index/Abbe pairs; element 1 remains unmatched. The curves do not identify a historical supplier or melt. No additional line indices or partial-dispersion data are supplied. The patent gives no measured MTF or detailed chromatic performance for comparison.
+Elements 2 and 3 use catalog spectral proxies, and element 4 has a catalog match at the printed precision. All elements retain their printed index and Abbe pairs. Element 1 remains unmatched and uses an Abbe-number estimate. The patent supplies no glass names, suppliers, melts, additional line indices, partial-dispersion data or measured MTF.
 
 ## Product Identification
 
@@ -39,7 +39,7 @@ No product is documented as using this prescription. Bausch & Lomb's wartime aer
 - The subtitle is “US 2,390,387 A, Figure 2 — Bausch & Lomb / Rayton & Hudson.” The specifications are “4 ELEMENTS / 2 GROUPS”, “ALL SPHERICAL”, “DESIGN f = 100 mm”, “DESIGN F/5.6” and “TELEPHOTO”, giving the construction and printed design values.
 - Generic element captions became Element 1–4 with the drawing's shapes: Biconvex Positive, Biconcave Negative, Negative Meniscus and Positive Meniscus. Optical roles and calculated in-air focal lengths of +24.47, −40.62, −33.44 and +79.02 mm were added to explain the power distribution.
 - C1 and C2 annotations were added for elements 1–2 and 3–4, with brackets spanning each cemented doublet. Group captions identify the positive front and negative rear components. The shared interfaces and 21.08 mm air space were retained.
-- Glass captions retain the printed pairs: 1.5170/64.5, 1.6210/36.2, 1.5286/51.6 and 1.7200/29.3. The stored indices and Abbe numbers match the patent exactly. No catalog row matches both coordinates within the printed precision, and no historical supplier is assigned; elements 2–4 now use the spectral proxies listed below. The D-line reference is retained.
+- Glass captions retain the printed pairs: 1.5170/64.5, 1.6210/36.2, 1.5286/51.6 and 1.7200/29.3. The stored indices and Abbe numbers match the patent exactly. At the time, elements 2–4 were assigned the spectral proxies listed below. The D-line reference is retained.
 - The inferred `catalog.imageCircleMm` of about 35.83 mm was removed because it came from the illustrative field rather than a field or format printed in a source. The ±10.0° field remains illustrative.
 
 The preceding corrections changed no radii, thicknesses, refractive indices, Abbe numbers, stop position, clear semi-diameters, field angles, focus spacings or image-plane distance. The resulting EFL is 100.003 mm, paraxial f-number 5.60 and BFD 50.30 mm, with stop radius 6.085 mm and half-field 10.0°.
@@ -61,9 +61,18 @@ The preceding corrections changed no radii, thicknesses, refractive indices, Abb
   - Element 4: `Unmatched (nD 1.7200 / ν 29.3)` → `S-TIH18 (spectral proxy; patent nD 1.7200 / ν 29.3; supplier and melt unspecified)` (Ohara); Δn = +0.00129, Δν = −0.08, spectral proxy.
   - All three are spectral proxies within index 0.002 / Abbe number 0.25 at the printed sodium D line; differences are catalog minus printed. The printed index and Abbe number are kept. Catalog curves supply dispersion shape without identifying historical suppliers or melts.
 
+- 2026-11-24 diagram review:
+  - The page section and Figure 2 (PDF page 1) both show a taller, square-rimmed front doublet and a shorter, square-rimmed rear doublet. The 955-pixel vertex span over 29.88 mm gives 31.96 pixels/mm. The 21.08 mm air gap and front-surface sag support that scale. The Figure 2 optical edges give about 9.4 mm for surfaces 1–3 and 5.5 mm for surfaces 4–6. The 9.9 and 7.2 mm model radii preserve the ordering and square edges. No flat rim extensions are used. No production construction drawing is documented.
+  - The 7.2 mm rear rims reduce wide-open transmission from 88.2% at the original 7.5 mm rims to 85.6% at 10.0°, a maximum loss of 2.7 percentage points before rounding the transmission values. A 5.5 mm rear rim would transmit 61.1% at 10.0°, a loss of 27.1 points. The axial marginal and 10.0° chief rays clear every glass rim. The paraxial aperture is f/5.60 and the illustrative half-field is 10.0° before and after the annotation and glass changes.
+  - The diagram's 1–4 captions now use the patent's L₁–L₄. The four inspectors identify a biconvex positive, a biconcave negative, a negative meniscus and a positive meniscus, with in-air focal lengths of +24.47, −40.62, −33.44 and +79.02 mm. C1 and G1 (+) span surfaces 1–3, and C2 and G2 (−) span surfaces 4–6. The elements are spherical and Figure 2 designates no anomalous-dispersion glass. The construction and design values shown above the section agree with the patent.
+  - STO lies between the doublets. The figure supports an approximate split of 10.5 mm before the diaphragm and 10.58 mm after it, compared with the modeled 10.9 and 10.18 mm. Neither distance is tabulated. Both groups are fixed at infinity with 21.08 mm between them and no zoom. The page offers infinity only and states that the patent gives no focusing mechanism or close-focus data.
+  - Element 4 changed from the Ohara S-TIH18 proxy to `FD20 (Hoya)`. FD20 gives nD = 1.720011 and νD = 29.2917 (Δn = +0.000011 and Δν = −0.0083 at sodium D), which round to 1.7200 and 29.3. Element 2's S-TIM2 and element 3's SBF2 remain within the site's spectral-proxy tolerance.
+  - Element 1's 1.5170/64.5 pair recurs in Figure 1 (PDF pages 1–2). The closest catalog Abbe number within the index tolerance is about 64.19, outside the spectral-proxy tolerance. The available vendor tables yielded no match for element 1. The patent gives all four Abbe numbers, with no extra line indices, partial dispersion or chromatic plots (PDF pages 1–3).
+  - The specification first page (PDF page 2) and the other assignee entry under this maker both give Bausch & Lomb Optical Company.
+
 ## Remaining Questions
 
 - Neither doublet's historical clear aperture is specified numerically. The rear estimate remains larger than the drawing because a closer match would lose substantially more off-axis light.
-- The exact diaphragm station, diameter, blade count, blade shape and smallest opening are not documented.
-- The four historical glass identities, suppliers, melts and detailed dispersion remain unknown.
+- The exact diaphragm station and opening are undocumented. Figure 2 suggests a stop about 0.4 mm closer to the front doublet than the model's estimated station. Blade count, blade shape and smallest opening are unknown.
+- The four historical glass identities, suppliers, melts and detailed dispersion remain unknown. Element 1 is the only element without a catalog curve.
 - No production use, mount, image format, published field for Figure 2, marketed specifications or close-focus mechanism is documented.

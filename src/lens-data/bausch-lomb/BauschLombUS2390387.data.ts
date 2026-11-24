@@ -43,6 +43,7 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1",
+      diagramLabel: "L₁",
       label: "Element 1",
       type: "Biconvex Positive",
       nd: 1.517,
@@ -56,6 +57,7 @@ const LENS_DATA = {
     {
       id: 2,
       name: "L2",
+      diagramLabel: "L₂",
       label: "Element 2",
       type: "Biconcave Negative",
       nd: 1.621,
@@ -69,6 +71,7 @@ const LENS_DATA = {
     {
       id: 3,
       name: "L3",
+      diagramLabel: "L₃",
       label: "Element 3",
       type: "Negative Meniscus",
       nd: 1.5286,
@@ -82,13 +85,14 @@ const LENS_DATA = {
     {
       id: 4,
       name: "L4",
+      diagramLabel: "L₄",
       label: "Element 4",
       type: "Positive Meniscus",
       nd: 1.72,
       vd: 29.3,
       indexReference: "D",
       focalLengthMm: 79.02,
-      glass: "S-TIH18 (spectral proxy; patent nD 1.7200 / ν 29.3; supplier and melt unspecified)",
+      glass: "FD20 (Hoya)",
       role: "Positive member of the negative rear doublet",
       cemented: "C2",
     },
@@ -142,7 +146,7 @@ const LENS_DATA = {
   ],
   focus: {
     closeFocusM: 1e15,
-    description: "Infinity focus only; the patent gives no close-focus data.",
+    description: "The model uses fixed spacings at infinity. The patent gives no focusing mechanism or close-focus data.",
   },
   aperture: {
     nominalFNumber: 5.6,
