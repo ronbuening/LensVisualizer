@@ -191,7 +191,7 @@ const LENS_DATA = {
   ],
   focus: {
     closeFocusM: 1e15,
-    description: "Infinity focus only; the patent gives no close-focus data.",
+    description: "Infinity focus only. The patent gives no focusing mechanism or close-focus data.",
   },
   aperture: {
     nominalFNumber: 1.5,
@@ -210,7 +210,7 @@ const LENS_DATA = {
       toSurface: "2",
     },
     {
-      text: "Front cemented doublet",
+      text: "Front converging doublet",
       fromSurface: "3",
       toSurface: "5",
     },
