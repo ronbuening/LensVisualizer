@@ -7,8 +7,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * groups; only elements 3 and 4 are cemented, at R6, and R2 is plane.
  * Printed 100 mm f/2.5 gives D-line EFL 99.90 mm and back focus 78.28 mm;
  * the infinity image plane uses this calculated, unprinted back focus.
- * Rims are inferred from the drawing's relative heights and axial-ray clearance;
- * the front singlet is square-cut at 22 mm and the negative singlet at 19 mm.
+ * Rims are inferred from the drawing's relative heights and axial-ray clearance.
+ * The front and rear singlets have square 22 mm rims. R4 and R5 terminate at
+ * 17.0 and 16.6 mm, following the bevels beside the inferred stop.
  * The inferred stop at z = 26.4 mm divides the printed
  * 9.2 mm gap into 5.4 + 3.8 mm. Paraxial f/2.5 sets its radius; the finite beam is f/2.58.
  * The 10.0° half-field and f-stop list are chosen; no field, format or close focus is printed.
@@ -47,6 +48,7 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1",
+      diagramLabel: "I",
       label: "Element 1",
       type: "Plano-Convex Positive",
       nd: 1.658,
@@ -59,6 +61,7 @@ const LENS_DATA = {
     {
       id: 2,
       name: "L2",
+      diagramLabel: "II",
       label: "Element 2",
       type: "Biconcave Negative",
       nd: 1.6741,
@@ -71,6 +74,7 @@ const LENS_DATA = {
     {
       id: 3,
       name: "L3",
+      diagramLabel: "III",
       label: "Element 3",
       type: "Biconcave Negative",
       nd: 1.5821,
@@ -84,6 +88,7 @@ const LENS_DATA = {
     {
       id: 4,
       name: "L4",
+      diagramLabel: "IV",
       label: "Element 4",
       type: "Biconvex Positive",
       nd: 1.658,
@@ -97,6 +102,7 @@ const LENS_DATA = {
     {
       id: 5,
       name: "L5",
+      diagramLabel: "V",
       label: "Element 5",
       type: "Biconvex Positive",
       nd: 1.6513,
@@ -132,7 +138,7 @@ const LENS_DATA = {
       label: "4",
       R: 42.9,
       d: 5.4,
-      sd: 19,
+      sd: 17,
     },
     {
       label: "STO",
@@ -143,7 +149,7 @@ const LENS_DATA = {
       label: "5",
       R: -213.1,
       d: 2.4,
-      sd: 20,
+      sd: 16.6,
       medium: 3,
     },
     {
@@ -185,7 +191,7 @@ const LENS_DATA = {
   },
   focus: {
     closeFocusM: 1e15,
-    description: "Infinity focus only; the patent gives no close-focus data.",
+    description: "The model is fixed at infinity. The patent gives no focusing mechanism or close-focus distance.",
   },
   groups: [
     {

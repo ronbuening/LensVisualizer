@@ -28,7 +28,7 @@ The first-to-last surface distance is 48.1 mm. At the D line the printed prescri
 
 ## Element-by-Element Analysis
 
-The element numbers 1–5 correspond to the patent's I–V. All refractive indices below refer to the printed D line, taken as sodium at 589.3 nm.
+The diagram uses the patent's element designations I–V, in order from object to image. All refractive indices below refer to the printed D line, taken as sodium at 589.3 nm.
 
 ### Element 1 — Plano-Convex Positive
 
@@ -62,7 +62,7 @@ The rear singlet supplies weak positive power through equal and opposite radii o
 
 ## Glass Identification and Selection
 
-The patent prints D-line and G-line indices and Abbe numbers for every element, but no glass trade names or suppliers. Historical glass identities remain unknown.
+The patent prints D-line and G-line indices and Abbe numbers for every element. Its discussion identifies the 1.6580 / 51.4 pair shared by elements I and IV as high-index baryta crown. The stocks and suppliers are unspecified.
 
 | Element |     nD | nG, as printed |    ν |
 | ------- | -----: | -------------: | ---: |
@@ -74,7 +74,7 @@ The patent prints D-line and G-line indices and Abbe numbers for every element, 
 
 Element 3 matches LF3 (Sumita) within printed precision: ΔnD = −0.00007 and Δν = +0.02. Elements 2 and 5 use spectral proxies: S-TIM25 (Ohara), ΔnD = −0.00158 and Δν = +0.09; and BASF4 (Sumita), ΔnD = −0.00017 and Δν = +0.02. These differences are catalog minus printed values at sodium D.
 
-The printed indices and Abbe numbers are kept. Catalog curves supply the dispersion shape for elements 2, 3 and 5; the spectral proxies replace an Abbe-only estimate with a real-glass curve. No row identifies the historical supplier or melt. Elements 1 and 4 remain Unmatched because no row falls within the index 0.002 / Abbe number 0.25 tolerance at sodium D.
+The model uses the printed D-line indices and Abbe numbers. Catalog curves supply the dispersion shape for elements 2, 3 and 5. The spectral proxies are within the site's spectral-proxy tolerance of 0.002 in index and 0.25 in Abbe number at sodium D. Elements 1 and 4 use Abbe-based dispersion because no catalog row falls within that tolerance.
 
 The G-line values retain their printed designation. The patent gives no wavelength for G, so the model does not treat them as indices at 435.8 nm. Neither the printed values nor the catalog curves establish the complete dispersion curves or secondary spectrum of the historical glasses.
 
@@ -88,7 +88,7 @@ Nominal f/2.5 gives an inferred stop radius of 15.269 mm. The admitted axial bea
 
 ## Model Scope and Limitations
 
-All clear semi-diameters are inferred from the drawing's relative heights and ray clearance. The front and rear singlets have 22 mm rims; the negative singlet is square-cut at 19 mm. The cemented group has a 20 mm front rim and 19 mm rims at its shared and rear faces. The drawing's local thicknesses are inconsistent with the table, so its proportions do not establish exact clear diameters. The front element's edge is 1.01 mm thick. No rim obstructs the axial beam or the chief ray at the displayed 10.0° half-field. Some off-axis marginal rays are vignetted by the front element; geometric pupil transmission is 98.9% at 8.3° and 96.7% at 10.0°. Neither the selected ±10.0° field nor the f-stop list is stated in the patent, and no image format or image circle is assigned.
+All clear semi-diameters are inferred from the drawing's relative heights and ray clearance. The front and rear singlets have 22 mm rims. On either side of the inferred stop, the drawing tapers the negative singlet from its outer shoulder to R4 and the front of the cemented pair from its outer shoulder to R5. The modeled semi-diameters are 19/17 mm at R3/R4 and 16.6/19/19 mm at R5/R6/R7. Straight joins between the modeled rim heights approximate the drawn shoulders and bevels. The drawing's local thicknesses differ from the table, so the semi-diameters are approximate. The front element's edge is 1.01 mm thick. No rim obstructs the axial beam or the chief ray at the displayed 10.0° half-field. Some off-axis marginal rays are vignetted by the front element. Geometric pupil transmission is 98.9% at 8.3° and 96.7% at 10.0°. The ±10.0° field and f-stop list are chosen for the model. The source gives no image format or image circle.
 
 The model preserves the printed prescription and uses its paraxial infinity image plane. Geometric image-quality calculations describe this modeled aperture and field; measured production performance and full spectral behavior are not established.
 

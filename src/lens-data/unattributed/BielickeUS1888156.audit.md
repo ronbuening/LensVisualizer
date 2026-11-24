@@ -24,9 +24,9 @@ The 10.0° chief ray reaches image height 17.584 mm without blockage. Marginal o
 
 ## Values Not Printed in the Patent
 
-The stop position, bore, clear semi-diameters, back focus, selected ±10.0° field and f-stop list are inferred or chosen. The stop lies 26.4 mm after the first vertex, within the R4–R5 air space, about 1 mm beyond the R4 rim sag; its placement follows the earlier four-singlet design. The drawing shows no iris. The stop radius follows paraxial f/2.5, and the image plane follows calculated paraxial infinity focus.
+The stop position, bore, clear semi-diameters, back focus, selected ±10.0° field and f-stop list are inferred or chosen. The stop lies 26.4 mm after the first vertex, within the R4–R5 air space, about 1.89 mm beyond the R4 rim. Its placement follows the earlier four-singlet design. The drawing shows no iris. The stop radius follows paraxial f/2.5, and the image plane follows calculated paraxial infinity focus.
 
-The surfaces stay clear of each other. The front element's edge is about 1.01 mm thick; the minimum glass edge thickness is about 0.711 mm, at element 4's common rim. The largest air-gap sag consumption is about 57.5% of the axial gap, and no glass crosses the stop plane.
+The surfaces stay clear of each other. The front element's edge is about 1.01 mm thick. The minimum glass edge thickness is about 0.711 mm at element 4's common rim. At the largest radius shared by R4 and R5, their combined sag occupies about 43.4% of the 9.2 mm axial air space. No glass crosses the stop plane.
 
 `focus.closeFocusM` is 10¹⁵ m, which stands for infinity. No close-focus distance, focusing mechanism, field angle, image format or image circle is printed. The selectable apertures span f/2.5 to f/22 without a published minimum iris opening. No image circle is assigned because the field is illustrative and no cited source supplies a field angle or format for this design.
 
@@ -67,8 +67,17 @@ After these corrections, EFL is 99.90 mm, paraxial aperture f/2.50, BFD 78.28 mm
 - Element 5: `Unmatched (nD 1.6513 / ν 38.3)` → `BASF4 (spectral proxy; patent nD 1.6513 / ν 38.3; supplier and melt unspecified)`; spectral proxy, sodium-D ΔnD = −0.00017 and Δν = +0.02.
 - LF3 matches within printed precision (index 0.0001 / Abbe number 0.15); spectral proxies stay within index 0.002 / Abbe number 0.25 at the printed sodium-D line. Printed indices and Abbe numbers are kept; catalog rows identify no historical supplier or melt.
 
+2026-11-24 diagram review:
+
+- Compared the rendered section with both halves of the sole example's 600 dpi cross-section. The R1–R9 vertex span is about 747 px for 48.1 mm. The R2–R3 air space and R6–R7 glass thickness give the same scale to within 1%. The front and rear singlets have near-equal outer heights, with both visibly taller than the inner groups.
+- R4 changed from 19 to 17.0 mm. Its curved face ends at the bevel, about 525 px from edge to edge, below the negative singlet's roughly 580 px outer shoulder. R5 changed from 20 to 16.6 mm. Its curved face ends at about 516 px from edge to edge, below the cemented pair's roughly 590 px outer shoulder. The two bevels face the inferred stop. The 19 mm shoulders and continuous R6 cemented junction preserve the relative group heights.
+- The axial f/2.5 test ray reaches 15.54 mm at R4 and 16.18 mm at R5. The 10.0° chief ray reaches 1.26 and 0.89 mm there and lands at 17.584 mm. The edges and gaps stay clear. The modeled half-field and paraxial aperture remain 10.0° and f/2.50. Wide-open pupil transmission at 10.0° is 96.716%, versus 99.690% with the original rims. The two bevels add no measurable loss at the compared field angles. The worst loss remains 2.974 percentage points, from the earlier front-rim cut.
+- The diagram now shows I–V as printed, with Element 1–Element 5 and L1–L5 in the inspectors. The five spherical elements, four group captions, R5–R7 cemented bracket, glass labels, in-air focal lengths and STO between II and III agree with the modeled construction. The specification chips reflect the patent's 100 mm f/2.5 design. The patent designates no anomalous-dispersion glasses or aspheric surfaces. A production drawing is unavailable.
+- All four groups have one fixed infinity state. The focus control shows infinity and has no travel. The patent specifies no focusing mechanism or variable spacings.
+- The three catalog curves meet their sodium-D match or proxy tolerances. Elements I and IV share the baryta-crown pair from specification page 1, lines 33–42, with no commercial identifier or catalog match. All elements have Abbe numbers. The drawing sheet and specification page 1 give G-line indices I–V of 1.6741, 1.7015, 1.5998, 1.6741 and 1.6732. The wavelength meant by G is unspecified. No other line indices, partial dispersions or colour curves are printed.
+
 ## Remaining Questions
 
-- Historical glass identities, suppliers, full dispersion curves and the wavelength meant by G are unknown.
+- The wavelength meant by G, the historical glass stocks and suppliers, and their full dispersion curves are unknown.
 - Physical iris position and diameter, blade count and shape, aperture range, field, image format, close-focus distance and focusing mechanism are undocumented.
 - The Astrar attribution lacks a matching construction or prescription. A confirmed production association, maker, mount and marketed specifications remain unknown.
