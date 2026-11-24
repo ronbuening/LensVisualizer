@@ -208,21 +208,21 @@ const LENS_DATA = {
   },
   focus: {
     closeFocusM: 1e15,
-    description: "Infinity focus only; the patent gives no close-focus data.",
+    description: "The model holds all element spacings fixed at infinity. The patent gives no focusing mechanism or close-focus prescription.",
   },
   groups: [
     {
-      text: "First convergent doublet",
+      text: "Front convergent member",
       fromSurface: "1",
       toSurface: "3",
     },
     {
-      text: "Second convergent doublet",
+      text: "Second convergent member",
       fromSurface: "4",
       toSurface: "6",
     },
     {
-      text: "Divergent rear doublet",
+      text: "Divergent rear member",
       fromSurface: "7",
       toSurface: "9",
     },
