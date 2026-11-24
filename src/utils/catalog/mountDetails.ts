@@ -37,6 +37,13 @@ export const MOUNT_DETAILS: Record<LensMountId, MountDetails> = {
     description:
       "Pignons’ ALPA reflex cameras used a dedicated bayonet and lenses supplied by specialist optical makers, including Kern, Angénieux and Kinoptik. This historical film-camera interface is distinct from the later ALPA medium-format technical-camera system.",
   },
+  "argus-c": {
+    era: "Argus C-series 35 mm rangefinders, from the Model C of 1938 to the last Match-Matic of 1966",
+    formatNotes: "35 mm film rangefinder",
+    summary: "The screw mount of the Argus C2, C3 and later C-series rangefinders.",
+    description:
+      "Argus kept one interchangeable-lens screw mount, roughly 33 mm across, through the whole C-series. From the C2 onward the lens focusing mount carries a gear that meshes with the camera's rangefinder, so a lens has to be screwed in with its gear engaged. Lenses other than the 50 mm Cintar needed an accessory viewfinder.\n\nThe accessory range was mostly German: Enna-Werk of Munich made the Sandmar 35 mm f/4.5 and Tele-Sandmar 100 mm f/4.5, sold in the United States through Geiss-America, and smaller runs came from Bausch & Lomb and other suppliers. The thread does not fit Leica, M42 or other common screw mounts.",
+  },
   "arri-pl": {
     era: "Professional cinema mount",
     formatNotes: "Cinema film and digital; lens coverage varies",
@@ -120,6 +127,13 @@ export const MOUNT_DETAILS: Record<LensMountId, MountDetails> = {
     summary: "The twist-locked bayonet of the East German Werra rangefinders, for a three-lens system.",
     description:
       "From the Werra III of 1958, VEB Carl Zeiss Jena fitted its Werra rangefinders with a bayonet: the lens pushes on from the front and a ring on the camera locks it. Museum and collector sources call it the Werra bayonet or a screw bayonet. The aperture ring stays on the camera while the iris and helicoid sit in the lens, so the two work together. The system stayed small, with the Flektogon 2.8/35, Tessar 2.8/50 and Cardinar 4/100. No public source gives a flange distance or throat diameter.",
+  },
+  wrayflex: {
+    era: "Wray Wrayflex 35 mm SLRs, 1951 to about 1961",
+    formatNotes: "35 mm film SLR; 24 × 32 mm on the Wrayflex I, 24 × 36 mm from the Ia",
+    summary: "The M41.2 screw mount of the British Wrayflex single-lens reflex cameras.",
+    description:
+      "Wray (Optical Works) of Bromley built the Wrayflex, the first British 35 mm single-lens reflex. The Wrayflex I of 1951 exposed 24 × 32 mm frames and used a mirror finder instead of a pentaprism; the Ia moved to the 24 × 36 mm frame, and the Wrayflex II of 1959 added a pentaprism.\n\nThe lens mount is a screw thread of 41.2 mm by 26 threads per inch with a 42.05 mm flange distance, close to but not interchangeable with M42. Wray supplied its own optics for it, including the Unilite 50 mm f/2 and Unilux 50 mm f/2.8 standard lenses and the Lustrar telephotos.",
   },
   "canon-ef": {
     era: "Canon EOS SLR and DSLR mount, introduced in 1987",

@@ -14,6 +14,7 @@
 export const LENS_MOUNTS = [
   { id: "agfa-ambi-silette", label: "Agfa Ambi Silette", sortOrder: 50 },
   { id: "alpa", label: "ALPA (35 mm SLR)", sortOrder: 55 },
+  { id: "argus-c", label: "Argus C-series", sortOrder: 57 },
   { id: "arri-pl", label: "ARRI PL", sortOrder: 60 },
   { id: "arri-standard", label: "ARRI Standard", sortOrder: 65 },
   { id: "c-mount", label: "C-mount", sortOrder: 70 },
@@ -91,6 +92,7 @@ export const LENS_MOUNTS = [
   { id: "sony-fe", label: "Sony E", sortOrder: 810 },
   { id: "voigtlander-prominent", label: "Voigtländer Prominent", sortOrder: 830 },
   { id: "werra", label: "Werra", sortOrder: 840 },
+  { id: "wrayflex", label: "Wrayflex", sortOrder: 845 },
   { id: "bronica-etr", label: "Zenza Bronica ETR", sortOrder: 850 },
   { id: "bronica-gs", label: "Zenza Bronica GS", sortOrder: 860 },
   { id: "bronica-sq", label: "Zenza Bronica SQ", sortOrder: 870 },
