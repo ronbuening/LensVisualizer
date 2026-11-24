@@ -6,8 +6,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Signed radii, thicknesses, air spaces and six index/Abbe pairs follow the table;
  * D/C/F corrections support sodium D (589.3 nm). No supplier is established.
  * Clear semi-diameters are inferred from Figure 1 and checked against real rays.
- * The second doublet has level r4/r5 rims; r6/r8 lands follow its drawn edges.
- * The r8 optical rim stays ahead of the inferred iris; Figure 1 draws no iris.
+ * The second doublet has level r4/r5 rims. Lands at r6 and r8 follow the drawn edges.
+ * The 22.7 mm r8 optical rim stays ahead of the inferred iris, absent from Figure 1.
  * The stop is 11.75 mm after r8 and 1.07 mm before r9 in the printed 12.82 mm gap.
  * The image gap is rounded paraxial back focus, 34.879 mm (printed: 34.875).
  * Zonal distances agree with r10-vertex intercepts despite emergence-point wording.
@@ -52,6 +52,7 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1",
+      diagramLabel: "A1",
       label: "Element 1",
       type: "Biconvex Positive",
       nd: 1.5338,
@@ -65,6 +66,7 @@ const LENS_DATA = {
     {
       id: 2,
       name: "L2",
+      diagramLabel: "A2",
       label: "Element 2",
       type: "Negative Meniscus",
       nd: 1.7283,
@@ -78,6 +80,7 @@ const LENS_DATA = {
     {
       id: 3,
       name: "L3",
+      diagramLabel: "A3",
       label: "Element 3",
       type: "Biconvex Positive",
       nd: 1.623,
@@ -91,6 +94,7 @@ const LENS_DATA = {
     {
       id: 4,
       name: "L4",
+      diagramLabel: "A4",
       label: "Element 4",
       type: "Biconcave Negative",
       nd: 1.7283,
@@ -104,6 +108,7 @@ const LENS_DATA = {
     {
       id: 5,
       name: "L5",
+      diagramLabel: "A5",
       label: "Element 5",
       type: "Plano-Concave Negative",
       nd: 1.6073,
@@ -116,6 +121,7 @@ const LENS_DATA = {
     {
       id: 6,
       name: "L6",
+      diagramLabel: "A6",
       label: "Element 6",
       type: "Biconvex Positive",
       nd: 1.6074,
@@ -179,7 +185,7 @@ const LENS_DATA = {
       label: "8",
       R: 28.6,
       d: 11.75,
-      sd: 22,
+      sd: 22.7,
       rimExtensionSd: 30,
     },
     {
