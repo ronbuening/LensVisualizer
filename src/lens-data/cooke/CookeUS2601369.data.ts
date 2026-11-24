@@ -77,7 +77,7 @@ const LENS_DATA = {
       id: 3,
       name: "L3",
       label: "Element 3",
-      type: "Negative Meniscus",
+      type: "Negative Meniscus (convex to object)",
       role: "Negative front element of the converging rear doublet",
       focalLengthMm: -31.98,
       nd: 1.7,
@@ -165,7 +165,7 @@ const LENS_DATA = {
   },
   focus: {
     closeFocusM: 1e15,
-    description: "Infinity focus only; the patent gives no close-focus data.",
+    description: "Infinity focus only. The patent gives no focusing mechanism or variable spacings.",
   },
   groups: [
     {
