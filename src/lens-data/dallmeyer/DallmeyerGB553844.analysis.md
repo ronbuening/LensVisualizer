@@ -60,7 +60,7 @@ The final collecting singlet is separated from the rear doublet by 2 mm. Its rad
 
 ## Glass Identification and Selection
 
-The patent explicitly specifies the D line, taken as sodium at 589.3 nm, and Abbe V numbers. All seven printed pairs are retained. L4, L5 and L7 use modern catalog rows as spectral proxies within index 0.002 and Abbe number 0.25 at sodium D. The rows supply only the shape of the dispersion curve, so colour analysis follows real glass curves. They do not identify Dallmeyer's historical suppliers or melts.
+The patent specifies the D line, taken as sodium at 589.3 nm, and Abbe V numbers for all seven elements. L4, L5 and L7 use catalog rows within the site's spectral-proxy tolerance of 0.002 in index and 0.25 in Abbe number at sodium D. The model keeps the printed indices and borrows the proxies' wavelength dependence. Historical suppliers and melts are unknown.
 
 | Elements | Printed nD | Printed νD | Glass label                       | ΔnD      | ΔνD   |
 | -------- | ---------: | ---------: | --------------------------------- | -------: | ----: |
@@ -71,7 +71,7 @@ The patent explicitly specifies the D line, taken as sodium at 589.3 nm, and Abb
 | L6       |     1.6435 |       48.3 | Unmatched                         |        — |     — |
 | L7       |     1.6142 |       56.3 | BACD6 (Hoya), spectral proxy       | −0.00054 | +0.07 |
 
-The differences are catalog minus printed values at sodium D. L1–L3 and L6 remain Unmatched because no catalog row lies within both tolerances; their colour calculations retain Abbe-number estimates. The patent gives no C-, F- or g-line indices or partial dispersion. D-line tracing provides the direct comparison with the printed prescription.
+The differences are catalog minus printed values at sodium D. L1–L3 and L6 remain Unmatched because no catalog row lies within both tolerances. Their printed Abbe numbers still support colour calculations using estimated dispersion. The sole example on page 2 provides no glass names, additional line indices or partial dispersion.
 
 ## Focus Mechanism
 
@@ -82,6 +82,8 @@ The model is focused at infinity. The patent supplies no close-focus distances, 
 The stop position is inferred within the 21.5 mm R6–R7 air space: 11.4 mm behind R6 and 10.1 mm before R7, at 44.4 mm from the first vertex. Its computed semi-diameter is 19.679 mm for a paraxial f-number of 1.50. The real-ray aperture is about f/1.51. A nominal f/1.5 marginal ray would reach a stop radius of 19.821 mm.
 
 All clear semi-diameters are inferred from the proportions of the section drawing on page 3. The front singlet has a 35 mm clear radius. The triplet has a level 32 mm outer edge at R3–R5, tapering to the 21 mm R6 cap. The rear doublet has a 21 mm R7 cap and a level 26 mm edge at R8/R9; the final singlet has a 31 mm radius. Local differences in the drawing's scale prevent treating these as dimensioned diameters. The smallest edge thickness is 1.65 mm (L7), and the central gap retains 4.66 mm clearance. At the 21 mm central rims, the adjacent glass surfaces clear the inferred stop plane by 1.97 mm and 2.69 mm. Wide-open geometric transmission is about 80.0% at 13.9° and 13.6% at 25.0°.
+
+The diagram joins the R7 cap directly to the R8 rim with a straight edge. Page 3 shows a shorter bevel followed by a shoulder at the doublet's outer height.
 
 The patent's approximately 50° useful field is treated as a full angle. At the 25.0° half-field, the chief ray reaches an image height of approximately 45.62 mm and clears every inferred rim. The 91.23 mm image circle is twice that real chief-ray height, rounded to two decimals. It describes field extent at this model's scale, without specifying a film format. Peripheral bundles are vignetted, particularly at R8 and the final singlet; chief-ray coverage does not imply uniform illumination.
 

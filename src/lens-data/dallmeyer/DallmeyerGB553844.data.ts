@@ -224,7 +224,7 @@ const LENS_DATA = {
   ],
   focus: {
     closeFocusM: 1e15,
-    description: "Infinity focus only; the patent gives no close-focus data.",
+    description: "Infinity only. The patent gives no focusing mechanism or travel.",
   },
   aperture: {
     nominalFNumber: 1.5,
