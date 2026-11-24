@@ -80,7 +80,7 @@ const LENS_DATA = {
       vd: 51.1,
       indexReference: "D",
       focalLengthMm: 54.73,
-      glass: "TAC4 (Hoya)",
+      glass: "TAC4 (spectral proxy; patent nD 1.734 / ν 51.1; supplier and melt unspecified)",
       role: "Rear positive element that converges the beam toward the image",
     },
   ],
