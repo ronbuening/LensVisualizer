@@ -6,11 +6,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * for nominal f = 100 mm. Six spherical elements form five air-spaced groups;
  * the front doublet is cemented and the rear pair has a 0.5 mm air gap.
  * The patent prints f/3.5 and a 25-degree half-field; its approximately central
- * stop is placed halfway across the R5-R6 space. Rims follow the suggested
- * diameters except inferred R4/R7/R9 and R3/R5, set to 11.3/11.05 mm to clear
- * the axial beam (the patent says its diameters exceed the axial need).
- * Figure 7 supports the rim proportions but is not uniformly to scale; its
- * chamfers do not establish exact clear radii or bevel depths.
+ * stop is placed halfway across the R5-R6 space. R4/R7/R9 clear radii are
+ * inferred at 12.3/12.6/13 mm. R3/R5 use 11.3/11.05 mm to clear the f/3.5
+ * axial beam. Other rims follow the suggested diameters. Figure 7 supports
+ * the rim proportions and leaves the detailed chamfers and bevel depths open.
  * The repeated R8 in the rear-diameter list is probably a misprint for R9. The
  * image is at the computed paraxial back focus, 80.32 mm; no back focus or close
  * focus is printed. Glass indices refer to sodium D.
@@ -223,27 +222,27 @@ const LENS_DATA = {
   },
   groups: [
     {
-      text: "Front cemented pair",
+      text: "G1",
       fromSurface: "1",
       toSurface: "3",
     },
     {
-      text: "Inner positive meniscus",
+      text: "G2",
       fromSurface: "4",
       toSurface: "5",
     },
     {
-      text: "Inner positive meniscus",
+      text: "G3",
       fromSurface: "6",
       toSurface: "7",
     },
     {
-      text: "Rear negative meniscus",
+      text: "G4",
       fromSurface: "8",
       toSurface: "9",
     },
     {
-      text: "Rear positive meniscus",
+      text: "G5",
       fromSurface: "10",
       toSurface: "11",
     },
