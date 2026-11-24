@@ -39,7 +39,7 @@ const LENS_DATA = {
   key: "carl-zeiss-biogon-35f28-contax",
   maker: "Carl Zeiss Oberkochen",
   name: "CARL ZEISS BIOGON 35mm f/2.8 (post-war Contax)",
-  subtitle: "JP S30-4837 B SOLE EXAMPLE (r6 CORRECTED) — CARL ZEISS / BERTELE · POST-WAR CONTAX RF BIOGON (CORRELATION)",
+  subtitle: "JP S30-4837 B SOLE EXAMPLE (r6 CORRECTED) — CARL ZEISS / BERTELE · POST-WAR CONTAX RF BIOGON (PRODUCTION MATCH)",
 
   catalog: {
     lensMounts: ["contax-rf"],

@@ -45,7 +45,7 @@ const LENS_DATA = {
   key: "leica-dc-vario-summilux-47-177mm-f14-23-panasonic-lx7",
   maker: "Panasonic",
   name: "PANASONIC LEICA DC VARIO-SUMMILUX 4.7-17.7mm f/1.4-2.3 (Panasonic Lumix DMC-LX7; Leica D-Lux 6)",
-  subtitle: "US 2015/0124127 A1 · Numerical Example 1 · LX7 correlation is inferential",
+  subtitle: "US 2015/0124127 A1 · Numerical Example 1 · inferred LX7 match",
 
   catalog: {
     lensMounts: ["fixed-lens-camera"],

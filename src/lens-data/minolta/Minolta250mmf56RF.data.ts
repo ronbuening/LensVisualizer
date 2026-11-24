@@ -20,7 +20,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * central light; no extra mechanical baffle or invented filter is included.
  * STO is inferred 0.25 mm before r1 and calibrated to source f/4.5, not marketed
  * f/5.6. The modeled aperture geometry is not a measured production prescription.
- * NO_INTERNAL_RECONSTRUCTION: fixed infinity only; MFD is product metadata.
+ * Focus: infinity only; the 2.5 m minimum focus distance is product information. Focus travel is not modeled.
  * Element fl is standalone refractive-pass EFL, not mirror or in-situ power.
  * Glass labels identify qualified catalog spectral proxies; source coordinates are retained.
  * The source leaves the spectral reference line unnamed; d-line interpretation remains a model assumption.
@@ -193,7 +193,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 2.5,
     description:
-      "NO_INTERNAL_RECONSTRUCTION: the fixed prescription uses a calculated paraxial image plane. The patent places actual useful focus behind this plane without a numerical offset. The 2.5 m close-focus value is manufacturer metadata; no internal movement or finite-focus optical result is claimed.",
+      "Infinity focus only, at a calculated paraxial image plane; the patent places the actual useful focus behind this plane but gives no numerical offset. Minolta's 2.5 m minimum focus distance is product information; focus travel and close-focus performance are not modeled.",
   },
 
   aperture: { nominalFNumber: 4.5, fStops: [4.5], maxFNumber: 4.5 },

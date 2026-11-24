@@ -162,11 +162,11 @@ secondary-spectrum strategy beyond what follows from the published `nd/νd` coor
 ## Focus Mechanism
 
 The selected patent example publishes only the infinity prescription. It contains no focus-spacing table, object-distance
-series, magnification series, or source-supported internal focusing mechanism. The final data therefore uses
-`NO_INTERNAL_RECONSTRUCTION`: `var` and `varLabels` are empty, and no moving internal group is modeled.
+series, magnification series, or source-supported internal focusing mechanism. The model therefore shows the lens at
+infinity only: no spacing changes with focus and no group moves.
 
-The production sales sheet specifies a minimum focusing distance of 0.25 m measured from the film plane. That value is
-stored as marketing metadata in `closeFocusM`, but it is not used to infer any optical movement. The available sources do
+The production sales sheet specifies a minimum focusing distance of 0.25 m measured from the film plane. The model
+records that value as product information, but it is not used to infer any optical movement. The available sources do
 not support a quantitative statement about focus travel or changing internal gaps.
 
 ## Conditional Expressions

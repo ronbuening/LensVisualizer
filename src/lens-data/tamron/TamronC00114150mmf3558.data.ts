@@ -70,7 +70,7 @@ const LENS_DATA = {
   key: "tamron-c001-14-150mm-f3p5-5p8",
   maker: "Tamron",
   name: "TAMRON 14-150mm f/3.5-5.8 Di III (C001)",
-  subtitle: "US 2014/0347522 A1 Example 3 — strong C001 correlation; constrained 0.5 m focus reconstruction",
+  subtitle: "US 2014/0347522 A1 Example 3 — strong C001 match; 0.5 m focus travel modeled under constraints",
 
   catalog: {
     lensMounts: ["micro-four-thirds"],

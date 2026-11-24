@@ -12,7 +12,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  Variable gaps D5, D13, D18, and BF are zoom-only. The viewer's between-endpoint interpolation is    ║
  * ║  a display interpolation, not a reconstruction of the patent's explicitly non-linear G3 cam path.   ║
  * ║                                                                                                      ║
- * ║  Focus status: NO_INTERNAL_RECONSTRUCTION. Example 3 publishes no finite-focus spacing state.       ║
+ * ║  Focus: infinity only. Example 3 publishes no close-focus spacing state.                             ║
  * ║  closeFocusM = 1.5 records Nikon's production MFD only; every focus pair below is identical.         ║
  * ║                                                                                                      ║
  * ║  Stop: patent surface 24 is S3 and is stored as the sole STO. The patent does not publish a stop     ║
@@ -324,8 +324,8 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 1.5,
     description:
-      "NO_INTERNAL_RECONSTRUCTION: US 5,579,171 A Example 3 publishes only infinity-focus zoom states. " +
-      "The 1.5 m value is Nikon's production MFD metadata; no internal close-focus spacings are invented.",
+      "Infinity focus only. US 5,579,171 A Example 3 publishes only infinity-focus zoom states, so focus travel " +
+      "is not modeled; zoom movement is. The 1.5 m minimum focus distance is Nikon's product specification.",
   },
 
   /* (moved from var) ── Published zoom-only air spacings; no close-focus reconstruction ── */

@@ -56,7 +56,7 @@ const LENS_DATA = {
   key: "pentax-06-telephoto-zoom-15-45-f28",
   maker: "Pentax",
   name: "PENTAX-06 TELEPHOTO ZOOM 15-45mm f/2.8",
-  subtitle: "US 9,784,950 B2 Example 1 — production correlation; constrained finite-focus reconstruction",
+  subtitle: "US 9,784,950 B2 Example 1 — production match; close focus modeled under constraints",
 
   catalog: {
     lensMounts: ["pentax-q"],

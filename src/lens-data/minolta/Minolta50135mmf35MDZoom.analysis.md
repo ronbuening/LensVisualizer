@@ -183,10 +183,10 @@ conventional arrangement for this zoom type and is an inference here. Example 1 
 prescription. There is no finite-object spacing table, no front-group focus travel, and no focus-dependent image-distance
 law from which a unique close-focus model could be reconstructed. [1, specification; Table 1]
 
-The production lens is specified by Minolta to focus to 1.5 m. [2; 3] That value is retained as product metadata, but it is
-not used to invent internal spacings. The model therefore has focus status **NO_INTERNAL_RECONSTRUCTION**: every authored
-focus pair repeats the same infinity spacing at each zoom endpoint. The visualization does not claim to reproduce the
-production lens at 1.5 m.
+The production lens is specified by Minolta to focus to 1.5 m. [2; 3] That figure is recorded as product information,
+but it is not used to work out close-focus spacings. The model therefore shows the lens at infinity only: every spacing
+that would change with focus stays at its infinity value at each zoom endpoint. The visualization does not claim to
+reproduce the production lens at 1.5 m.
 
 ## Conditional Expressions
 

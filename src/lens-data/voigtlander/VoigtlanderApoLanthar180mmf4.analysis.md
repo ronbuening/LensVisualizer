@@ -2,226 +2,156 @@
 
 ## Patent Reference and Design Identification
 
-**Patent:** JP 2003-270529 A (P2003-270529A)
-**Application Number:** 特願2002-069772
-**Filed:** March 14, 2002 (Heisei 14)
-**Published:** September 25, 2003 (Heisei 15)
-**Inventor:** 蓬田 祥寿 (romanization uncertain; possibly Yomogida Yoshitoshi or similar)
-**Applicant:** Cosina Co., Ltd. (株式会社コシナ), Nakano, Nagano, Japan
-**Title:** Telephoto Lens (望遠レンズ)
-**Example details:** 第1実施例, Table 1 (表1)
+**Patent:** JP 2003-270529 A (P2003-270529A)\
+**Application Number:** 特願2002-069772\
+**Filed:** March 14, 2002\
+**Published:** September 25, 2003\
+**Inventor:** Yoshihisa Yomogida (蓬田 祥寿)\
+**Applicant:** Cosina Co., Ltd. (株式会社コシナ)\
+**Title:** Telephoto Lens (望遠レンズ)\
+**Example details:** 第2実施例, Table 2 (表2), Figs. 3–4, ¶0014–0017. Dimensions are at the patent's original scale.
 
-The prescription transcribes **Example 1** (第1実施例, Table 1 / 表1), the primary embodiment in the patent filed for the Cosina Voigtländer APO-Lanthar 180mm f/4 SL Close Focus. The following evidence links the patent to the production lens, though questions remain about which of the two examples was manufactured:
+Example 2 is the closer of the two published designs to Cosina's APO-Lanthar 180mm f/4 SL Close Focus. The attribution rests on four points.
 
-1. **Element and group count.** 9 elements in 7 air-separated groups — matching the manufacturer's published specifications for the production lens.
-2. **ED glass usage.** In Example 1, all three front-group meniscus elements use S-FPL51 (νd = 81.6), a fluorophosphate ED glass. In Example 2, only two of the three front elements use S-FPL51; the outermost meniscus uses S-FSL5 (νd = 70.4) instead. Some third-party sources describe the production lens as having "two low dispersion elements," which is consistent with Example 2. The patent's claims require three positive meniscus lenses with Abbe number ≥ 70 in the first lens group (¶0005, Claim 2) — a condition both examples satisfy, since S-FSL5 (νd = 70.4) qualifies.
-3. **Focal length and aperture.** The patent states f = 197 mm, F~no~ = 4 for Example 1. The production lens is marketed as 180mm f/4. A design EFL of ~198 mm is approximately 10% above the 180 mm nominal — a larger discrepancy than typical marketing rounding (which is usually 2–5%). The patent also provides Example 2 at f = 178 mm, which is much closer to the marketed value. Physical dimension analysis (see below) suggests Example 2 may be the closer match to the production design, though both examples share the same three-group telephoto architecture and satisfy the patent's conditional expressions. The analysis below examines Example 1's optical prescription in full, as it represents the patent's primary embodiment and the stronger design (three S-FPL51 elements vs. two in Example 2).
-4. **Compact telephoto ratio.** The patent's stated design goal is D/f < 0.5 (¶0004), where D is the barrel length and f the focal length. The production lens measures ~79–80 mm from front of barrel to mount flange, giving D/f ≈ 80/180 ≈ 0.44, comfortably within the target. At the Example 1 patent scale, the computed front-vertex-to-flange distance (Nikon F, 46.5 mm) is 94.0 mm, giving D/f = 0.475 — also within the target. However, the 94 mm optical length substantially exceeds the production's 79 mm barrel. By contrast, Example 2's front-vertex-to-flange distance is 76.4 mm, closely matching the production barrel length and reinforcing Example 2 as the likely production candidate.
-5. **Patent timing.** Filed March 2002, published September 2003 — the production lens was announced August 2003 and released in the same window.
-6. **Unit focus with close-focus capability.** The entire lens extends ~44 mm to reach the production MFD of 1.2 m — consistent with unit focus at this focal length and speed.
-7. **Aperture placement.** The stop sits in the 19.04 mm air gap between surface 12 and surface 13, between the negative second group G2 and the weakly positive third group G3, consistent with the cross-section drawing in Fig. 1.
+1. **Construction.** Both have nine elements in seven air-spaced groups. The sections show three front menisci, two middle cemented doublets and two rear singlets in that order.
+2. **Special glass.** Cosina highlights the second and third elements from the front. Those are the two elements at νd = 81.6 in Example 2. The outermost element is at νd = 70.4. Example 1 gives all three front elements νd = 81.6. Cosina identifies the glass category and its positions in the production lens. The patent supplies the d-line index and Abbe number at each position.
+3. **Focal length and aperture.** Example 2 is specified as 178 mm f/4 with a 13.6° full field. Cosina lists 180 mm f/4 and 14° for the production lens. The model's 76.36 mm from the front optical vertex to a Nikon F mount flange is consistent with a front element recessed in Cosina's 79.0 mm Ai-S barrel.
+4. **Section drawing.** Aligning the optical axis and the first and last glass vertices puts Example 2's middle doublets and rear singlets closer to Cosina's drawing than Example 1's. The outlines overlap only in part. Several curves, including the middle interfaces and the rear faces, visibly depart from the maker's drawing.
 
-**A note on production identification.** The physical dimension analysis favors Example 2 (f = 178 mm) as the production design: its front-vertex-to-flange distance of 76.4 mm (Nikon F) closely matches the production barrel length of ~79 mm, and its two S-FPL51 elements (with one S-FSL5) match third-party descriptions of "two low dispersion elements." Example 1 (f = 197.9 mm) produces a front-vertex-to-flange distance of 94.0 mm — 15 mm too long — and if linearly scaled to 180 mm, its image circle shrinks to 39.1 mm, which cannot cover 35mm full frame. Nevertheless, Example 1 is optically the more ambitious of the two embodiments (three S-FPL51 elements vs. two), and it is the primary embodiment in the patent. The following analysis examines Example 1 on its own terms as a complete, verified optical prescription. Where conclusions depend on the assumption that Example 1 is the production design, this is noted.
+Cosina's drawing does not confirm the exact production prescription. It has no stated scale or focus setting, and the available documents leave the production radii, clear apertures and glass identities unverified. [Cosina specifications](https://www.cosina.co.jp/discontinued/apo-lanthar-180mm-f4-close-focus-sl/) · [Cosina construction drawing](https://www.cosina.co.jp/wp/wp-content/uploads/2024/01/SL-180_40-LD.svg).
 
 ## Optical Architecture
 
-The APO-Lanthar 180mm f/4 is a **compact telephoto** of the three-group positive–negative–positive type. It uses 9 elements arranged in 3 design groups (7 air-separated groups in the marketing convention):
+Example 2 is an all-spherical compact telephoto with a positive front group, a strong negative middle group and a weakly negative rear group. The patent's three functional groups include seven air-spaced components.
 
-- **G1 (Front Collector, positive):** Three air-spaced positive meniscus elements L11–L13, all convex to object. Combined focal length f₁ = 44.4 mm. This group provides the primary converging power and carries the entire chromatic burden of the ED correction, with all three elements made from the same ultra-low-dispersion fluorophosphate glass (S-FPL51, νd = 81.6).
+- **G4, front collector.** Three positive menisci face their convex sides toward the object. They split the converging power across six refracting faces. The two inner menisci are the highest-Abbe elements in the system.
+- **G5, negative middle group.** Two cemented doublets each pair a negative front element with a positive rear element. Together they reduce the convergence from G4 so the system has a long focal length relative to its track. The index drops at both cemented interfaces, but the first doublet pairs its negative element with a lower-dispersion positive glass while the second reverses that dispersion order.
+- **G6, rear corrector.** A positive biconvex singlet and a negative meniscus contribute opposing powers. Their combined group is weakly negative, leaving two separately bent elements behind the stop to balance residual aberrations.
 
-- **G2 (Negative Middle, negative):** Two cemented doublets (L21+L22 and L23+L24). Combined focal length f₂ = −26.7 mm. This group diverges the converging bundle from G1, creating the telephoto effect — the lens's total track is substantially shorter than its effective focal length. The two doublets are also responsible for achromatizing the system and managing the secondary spectrum.
+| Infinity-focus quantity      |                Patent |                          Model |
+| ---------------------------- | --------------------: | -----------------------------: |
+| Effective focal length       |                178 mm |                      177.84 mm |
+| Nominal f-number             |                   f/4 |                            f/4 |
+| Half-field angle             |                  6.8° | 6.81° to the full-frame corner |
+| G4 focal length              |             +41.53 mm |                      +41.53 mm |
+| G5 focal length              |             −29.68 mm |                      −29.68 mm |
+| G6 focal length              |            −293.50 mm |                     −293.40 mm |
+| Last surface to image        |      Blank in Table 2 |                       54.76 mm |
+| First to last glass vertex   | 68.10 mm from Table 2 |                       68.10 mm |
+| First vertex to image        |                     — |                      122.86 mm |
+| Optical track divided by EFL |                     — |                          0.691 |
 
-- **G3 (Rear Corrector, weakly positive):** Two air-spaced singlets L31 and L32, a positive meniscus followed by a negative meniscus. Combined focal length f₃ = 554 mm. This near-afocal group serves primarily as an aberration corrector — it contributes negligible power to the system but corrects field curvature, astigmatism, and residual lateral chromatic aberration.
+The stop sits between G5 and G6 (¶0014). Figure 3 places it about 5.00 mm behind the second doublet, leaving 17.74 mm to the first rear singlet. The stop diameter is unspecified. The f/4 specification implies a paraxial entrance-pupil diameter of 44.46 mm and an iris diameter of 20.55 mm at this position.
 
-The aperture stop lies in the air gap between G2 and G3, between surfaces 12 and 13 (19.04 mm spacing at the patent scale).
-
-**Power distribution summary (computed):**
-
-| Parameter | Value |
-|-----------|-------|
-| System EFL | 197.9 mm |
-| G1 focal length (f₁) | +44.4 mm |
-| G2 focal length (f₂) | −26.7 mm |
-| G3 focal length (f₃) | +554 mm |
-| f₁ / \|f₂\| | 1.66 (condition: 1.0 < x < 2.0 ✓) |
-| f / \|f₂\| | 7.41 (condition: 3.5 < x < 10 ✓) |
-| BFD (from last surface) | 70.5 mm |
-| Total track | 140.5 mm |
-| Telephoto ratio (total track / EFL) | 0.71 |
-
-Both conditional expressions from the patent claims (¶0005–0007) are satisfied. The first condition ensures the front group's power is 1.0–2.0× the magnitude of the negative group's power, balancing compactness against aberration growth. The second condition ensures the negative group's power is strong enough relative to the system focal length to achieve the desired telephoto compression, but not so strong that higher-order aberration correction becomes impractical.
+The tables give no clear diameters. Figure 3 and the maker drawing show descending front-rim heights, a step at each middle doublet, and rear singlets of nearly equal height. The modeled clear radii are inferred compromises between the two drawings and axial-beam clearance. The two negative doublet elements are drawn with tapered rims; the model does not reproduce the square shoulders shown in either drawing. Off-axis clipping remains. At infinity and f/4, approximately 49% of the geometric pupil area passes at the diagonal corner. This figure describes the modeled clear apertures.
 
 ## Element-by-Element Analysis
 
-### L11 — Positive Meniscus, convex to object (G1)
+The focal lengths below describe each thick element on its own in air. The cemented elements share a refracting surface in the assembled lens.
 
-nd = 1.49700, νd = 81.6. Glass: S-FPL51 (OHARA) — ED fluorophosphate crown. f = +179.2 mm (thick-lens), +180.0 mm (thin-lens).
+### L41 — Positive meniscus, convex to object
 
-L11 is the front element and the weakest of the three front-group menisci (R₁ = +75.791, R₂ = +496.439, d = 5.31 mm). Its gently curved meniscus shape gives it the least power of the three, contributing modestly to the group's convergence while keeping the marginal ray height manageable for the downstream elements. As the first surface the light encounters, it operates at the largest beam diameter and therefore has the greatest leverage over spherical aberration. The weak curvature minimizes both the surface contribution to spherical aberration and the zone sensitivity that a stronger first surface would introduce.
+nd = 1.48749, νd = 70.4. Glass model uses FK5 (Sumita). f = +186.54 mm.
 
-The choice of S-FPL51 for all three front elements is the defining feature of this design. With νd = 81.6, it contributes minimal primary chromatic aberration per unit of refracting power — each element's φ/ν contribution is only 0.068–0.113 × 10⁻³ mm⁻¹, roughly an order of magnitude smaller than the chromatic contributions from the flint elements in G2.
+The front element has the largest clear aperture and the weakest power in G4. Its front surface is substantially steeper than its rear, so it begins the convergence before the beam reaches the two higher-Abbe menisci. It meets the patent's νd ≥ 70 condition without occupying either of the positions marked as anomalous low-dispersion glass by Cosina.
 
-### L12 — Positive Meniscus, convex to object (G1)
+### L42 — Positive meniscus, convex to object
 
-nd = 1.49700, νd = 81.6. Glass: S-FPL51 (OHARA) — ED fluorophosphate crown. f = +116.5 mm (thick-lens), +123.5 mm (thin-lens).
+nd = 1.49700, νd = 81.6. Glass model uses FCD1 (HOYA). f = +103.55 mm.
 
-L12 is the middle element of the front group and carries more power than L11 (R₁ = +34.299, R₂ = +77.742, d = 7.87 mm). The steeper curvatures increase the convergence contribution, and the thicker center section (7.87 mm) provides the glass path length needed for the S-FPL51 material to exert its ultra-low-dispersion effect over a significant portion of the converging wavefront.
+The second element has G4's steepest front curvature. Its low dispersion allows it to carry more power than L41 for relatively little primary colour. A 0.20 mm vertex gap between the first two menisci leaves their mating curves free to have different radii.
 
-The 0.30 mm air gap between L11 and L12 (and between L12 and L13) is a design choice that favors aberration correction flexibility over the compactness of a cemented triplet. Air-spacing the three ED elements allows each meniscus to carry a slightly different bending, distributing the spherical aberration and coma contributions across three independently optimizable surfaces rather than constraining them to the shared curvatures of a cemented stack.
+### L43 — Positive meniscus, convex to object
 
-### L13 — Positive Meniscus, convex to object (G1)
+nd = 1.49700, νd = 81.6. Glass model uses FCD1 (HOYA). f = +97.49 mm.
 
-nd = 1.49700, νd = 81.6. Glass: S-FPL51 (OHARA) — ED fluorophosphate crown. f = +106.2 mm (thick-lens), +108.1 mm (thin-lens).
+The third meniscus has the strongest positive power in G4. Its rear curvature is flatter than L42's, giving it greater net power even with a gentler front curvature. It delivers the converging bundle across 2.17 mm of air to G5. The gap between L42 and L43 is again 0.20 mm at the vertices.
 
-L13 is the strongest of the three front menisci (R₁ = +40.526, R₂ = +165.053, d = 6.81 mm), providing the largest single contribution to G1's converging power. Its rear radius (R₂ = +165.053) is considerably flatter than its front, giving the element a strongly asymmetric meniscus profile. The steepening power gradient across G1 — from L11 (weakest) to L13 (strongest) — distributes the refraction load progressively, minimizing zonal spherical aberration that would result from concentrating all the convergence in a single strong element.
+### L51 — Negative meniscus, convex to object
 
-Together, the three S-FPL51 menisci provide a combined group focal length of f₁ = +44.4 mm while generating only 0.28 × 10⁻³ mm⁻¹ of total primary chromatic aberration (Σ φ/ν for G1). This is remarkably low for a group of this power — the same convergence achieved with conventional crown glass (νd ≈ 60) would produce roughly 35% more primary color.
+nd = 1.83400, νd = 37.3. Glass model uses NBFD10 (HOYA). f = −31.99 mm.
 
-### L21 — Negative Meniscus, convex to object (G2, cemented with L22)
+The front element of the first doublet has a relatively mild entry curve and a steep cemented surface. At that junction the refractive index drops by 0.31720, producing a strong negative refraction. The outer rim extends farther than the positive member behind it in both drawings.
 
-nd = 1.83400, νd = 37.3. Glass: S-LAH60 (OHARA) — lanthanum dense flint. f = −33.5 mm (thin-lens).
+### L52 — Positive meniscus, convex to object
 
-L21 forms the front element of the first cemented doublet in G2 (R₁ = +124.264, R₂ = +22.803, d = 2.00 mm). Despite its high refractive index (1.834), it functions as the "flint" role in this doublet — its relatively low Abbe number (37.3) makes it the dispersive partner to L22's low-dispersion crown. The high index allows strong curvature at the cemented interface (R = 22.803 mm) while keeping the surface sag manageable.
+nd = 1.51680, νd = 64.2. Glass model uses BSC7 (HOYA). f = +52.98 mm.
 
-The meniscus shape — with both radii positive but R₂ ≪ R₁ — means the element acts as a strongly negative meniscus with both surfaces convex toward the object. This bending choice places the steepest curvature at the cemented interface (R = 22.803 mm), where the large refractive-index step (Δn = 1.834 − 1.487 = 0.347) generates the strong negative power that diverges the beam and creates the telephoto shortening effect, while minimizing the coma contribution at that interface.
+The positive crown partners L51 across the shared +21.675 mm radius. Its exit surface returns the beam to air on a shallower curve. The combined doublet has a focal length of −75.29 mm. Its positive member reduces the net negative power while providing a lower-dispersion contribution.
 
-### L22 — Positive Meniscus, convex to object (G2, cemented with L21)
+### L53 — Biconcave negative element
 
-nd = 1.48749, νd = 70.4. Glass: S-FSL5 (OHARA) — fluorine crown. f = +63.6 mm (thin-lens).
+nd = 1.80610, νd = 40.7. Glass model uses NBFD13 (HOYA). f = −21.52 mm.
 
-L22 is the "crown" partner of the first cemented doublet (cemented face at R = 22.803 mm, exit at R = +86.224, d = 6.87 mm). Its low index (1.487) and high Abbe number (70.4) make it the chromatic counterweight to L21's dispersion. The doublet as a whole has a net focal length of −70.4 mm and is nearly achromatic in the primary spectrum: its combined φ/ν residual is only −0.58 × 10⁻³ mm⁻¹.
+The first face is nearly planar, with a radius of −497.540 mm. The radius at the cemented junction is +18.000 mm. This much stronger curvature and the high index give L53 the largest isolated negative power of the nine elements.
 
-The choice of S-FSL5 rather than a more common crown (e.g., S-BSL7 / N-BK7) is notable. S-FSL5's low refractive index (1.487) maximizes the index step at the cemented junction with S-LAH60 (Δn = 1.834 − 1.487 = 0.347), producing strong negative power at the interface without requiring extreme curvatures. A higher-index crown would reduce this Δn and necessitate steeper curves to achieve the same divergence. The compatible S-FSL5 spectrum supplies a qualified low-dispersion crown proxy. The source does not specify an actual partial ratio or establish the historical melt's anomalous-dispersion behavior.
+### L54 — Positive meniscus, convex to object
 
-### L23 — Near-Plano-Concave Negative (G2, cemented with L24)
+nd = 1.72825, νd = 28.3. Glass model uses E-FD10 (HOYA). f = +33.35 mm.
 
-nd = 1.80610, νd = 40.7. Glass: S-LAH53 (OHARA) — lanthanum-aluminosilicate dense crown. f = −20.4 mm (thin-lens).
+The positive partner has the lower Abbe number in this doublet. The cemented pair has a focal length of −54.55 mm and supplies more negative power than the first pair. The positive power in a more dispersive glass gives the second pair a different chromatic balance.
 
-L23 forms the front element of the second cemented doublet in G2 (R₁ = −5733.840, R₂ = +16.465, d = 2.00 mm). The front surface is essentially flat (R ≈ −5734 mm), making this a near-plano-concave element with all its refracting power concentrated at the steeply curved cemented interface. This is the strongest single element in the entire system — its −20.4 mm focal length contributes the largest share of G2's diverging power.
+### L61 — Positive biconvex singlet
 
-The element's role is primarily telephoto compression: it takes the converging bundle from G1 and sharply diverges it, creating a virtual object for G3 that lies far behind the physical lens, thereby extending the effective focal length well beyond the total track.
+nd = 1.72825, νd = 28.3. Glass model uses E-FD10 (HOYA). f = +66.69 mm.
 
-### L24 — Positive Meniscus, convex to object (G2, cemented with L23)
+The first rear singlet is the same d-line index and Abbe number as L54. Its +54.531 mm front radius supplies most of its power. Its shallow negative rear radius makes it biconvex and gives the rear pair an additional independent surface for bending the beam.
 
-nd = 1.72825, νd = 28.3. Glass: S-TIH10 (OHARA) — titanium-flint dense glass. f = +34.6 mm (thin-lens).
+### L62 — Negative meniscus, concave to object
 
-L24 is the "positive flint" partner of the second doublet (cemented at R = +16.465, exit at R = +47.510, d = 6.39 mm). This is an unconventional doublet architecture: the high-dispersion glass (S-TIH10, νd = 28.3) carries the *positive* power, while the lower-dispersion glass (S-LAH53, νd = 40.7) carries the *negative* power. In a conventional achromat, the crown (low dispersion) is positive and the flint (high dispersion) is negative. Here the roles are reversed.
+nd = 1.77250, νd = 49.6. Glass model uses LAH66 (OHARA). f = −51.91 mm.
 
-This reversed arrangement is deliberate. A standard doublet produces undercorrected secondary spectrum — the residual focus shift between the blue-green and red wavelengths that cannot be eliminated by Abbe-number matching alone. By reversing the dispersion–power pairing, the L23+L24 doublet generates *overcorrected* primary chromatic aberration, which, when combined with the undercorrected residual from G1's three S-FPL51 elements, achieves a net secondary-spectrum correction that approaches apochromatic performance. The doublet's net achromatic residual (φ₁/ν₁ + φ₂/ν₂ = −0.18 × 10⁻³) is small, confirming that it is nearly self-achromatized despite the reversed architecture.
-
-The combined focal length of the L23+L24 doublet is −48.8 mm — shorter (more powerful) than the L21+L22 doublet's −70.4 mm. Together the two doublets produce G2's net focal length of f₂ = −26.7 mm.
-
-### L31 — Positive Meniscus, convex to object (G3)
-
-nd = 1.80518, νd = 25.5. Glass: S-TIH6 (OHARA) — titanium-flint dense glass (equivalent to Schott SF6). f = +95.4 mm (thick-lens).
-
-L31 is the first element of the rear corrector group (R₁ = +71.108, R₂ = +947.917, d = 2.15 mm). It is a weakly positive meniscus made from a dense flint with very high refractive index (1.805) and very low Abbe number (25.5). This is the most dispersive glass in the entire system, yet it carries *positive* power — another instance of the reversed-dispersion architecture that characterizes this design's secondary-spectrum strategy.
-
-L31 sits just behind the aperture stop and operates at a relatively small beam diameter. At this location, its primary function is to introduce controlled amounts of overcorrected longitudinal chromatic aberration and Petzval-flattening curvature. The high index contributes a positive Petzval term (φ/n) that partially offsets the strong negative Petzval contribution from G2's dense elements, helping to flatten the field.
-
-### L32 — Negative Meniscus, concave to object (G3)
-
-nd = 1.80610, νd = 40.7. Glass: S-LAH53 (OHARA) — lanthanum-aluminosilicate dense crown (same glass as L23). f = −113.2 mm (thick-lens).
-
-L32 is the final optical element (R₁ = −33.161, R₂ = −53.488, d = 2.00 mm). Its concave-to-object meniscus shape gives it weak negative power, and together with L31 the pair forms a near-afocal corrector group (f₃ = +554 mm). L32's primary function is field correction: its negative meniscus shape, positioned far from the stop, generates astigmatism of the opposite sign to the astigmatism accumulated by the front and middle groups, flattening the tangential and sagittal focal surfaces.
-
-The use of S-LAH53 (the same glass as L23) in the rear group is notable — it creates a partial-dispersion pairing with L31's S-TIH6 that mirrors the L23/L24 pairing in G2. This symmetry of glass-pair architecture across the stop is a hallmark of designs that aim for uniform chromatic correction across the field, reducing lateral chromatic aberration (lateral color) at the field edges.
+The last singlet has a much steeper front face than rear face, both concave toward the object. Its negative power more than offsets the preceding singlet after their 1.84 mm separation is taken into account. The full prescription has a Petzval sum of about −0.000118 mm⁻¹. The small sum describes the balance of surface powers. The sagittal and tangential focal surfaces can still differ at the field edge.
 
 ## Glass Identification and Selection
 
-All nine source d-line pairs resolve compatible OHARA coefficient curves. These six catalog families are qualified spectral proxies; the patent names no supplier or production melt and supplies no C/F/g or actual partial ratios. Glass-family descriptions throughout this analysis refer to those proxies.
+Paragraph 0011 specifies the helium d line at 587.6 nm. Table 2 supplies nd and νd for each element and omits glass names, individual line indices and partial-dispersion ratios. The modeled catalog spectra agree with those coordinates at the printed precision. Each spectrum provides a wavelength-dependent approximation. The supplier and melt used for the production lens remain unknown.
 
-| Element(s) | Glass | nd | νd | Type | Role |
-|------------|-------|----|----|------|------|
-| L11, L12, L13 | S-FPL51 (OHARA) | 1.49700 | 81.6 | ED fluorophosphate crown | Ultra-low dispersion front group; primary APO contributor |
-| L21 | S-LAH60 (OHARA) | 1.83400 | 37.3 | Lanthanum dense flint | High-index flint role in D1; telephoto divergence |
-| L22 | S-FSL5 (OHARA) | 1.48749 | 70.4 | Fluorine crown | Low-index crown in D1; maximizes Δn at cemented interface |
-| L23, L32 | S-LAH53 (OHARA) | 1.80610 | 40.7 | Lanthanum dense crown | Negative power in reversed doublets; telephoto + APO |
-| L24 | S-TIH10 (OHARA) | 1.72825 | 28.3 | Titanium dense flint | Positive flint in reversed D2; secondary-spectrum correction |
-| L31 | S-TIH6 (OHARA) | 1.80518 | 25.5 | Titanium dense flint (≡ Schott SF6) | Positive rear corrector; Petzval flattening + APO |
-
-The glass palette clusters into two functional families:
-
-**Ultra-low-dispersion crowns (νd > 70):** S-FPL51 and S-FSL5 provide the low-dispersion refractive power that anchors the chromatic correction. The compatible S-FPL51 coefficient spectrum has anomalous partial dispersion; this is a proxy property rather than a patent measurement or production identity. This anomalous dispersion is the mechanism by which the design attacks the secondary spectrum — the residual longitudinal color shift between the C-line, d-line, and F-line focuses that an ordinary achromat cannot eliminate.
-
-**Dense flints and dense crowns (νd < 42):** S-LAH60, S-LAH53, S-TIH10, and S-TIH6 provide the high-dispersion counterweights. The lanthanum glasses combine high index with moderate Abbe numbers (37–41), making them effective at creating large refractive-index steps at cemented interfaces without requiring extremely thick elements. The titanium flints (νd = 25–28) provide the strongest dispersion in the system and are deployed in the unusual positive-flint configuration that drives the secondary-spectrum correction.
+The three converging menisci have νd ≥ 70, as specified in Claim 2. Cosina's anomalous low-dispersion markings apply to L42 and L43 by position. FCD1 supplies comparison curves there. The remaining elements use higher-dispersion glasses in both positive and negative roles. The first doublet uses a denser, more dispersive negative element, while the second puts its more dispersive glass on the positive side. This gives G5 two different ways to balance colour while retaining its strong negative power.
 
 ## Focus Mechanism
 
-The APO-Lanthar 180mm f/4 SL uses **unit focus** — the entire optical assembly translates forward along the axis as the focus distance decreases. There is no internal focusing group; all air spacings remain constant during focus. The focusing ring provides approximately 350° of rotation from infinity to the minimum focus distance of 1.2 m, with the barrel extending approximately 44 mm at closest focus.
+The patent publishes one fixed-focal-length prescription and omits finite-distance spacings. The model uses unit focus. All three groups and the stop move together toward the object as the lens focuses closer, so only the gap from the last surface to the image increases. The close state is calculated at Cosina's 1.2 m minimum distance, measured from object to image.
 
-At the patent's design focal length of 197.9 mm, the thin-lens focus extension for an object at 1.2 m is approximately 39 mm. However, in a telephoto of this class the thin-lens formula substantially underestimates the actual extension. The rear principal plane H′ lies approximately 57 mm ahead of (to the left of) the front vertex, and the front principal plane H lies approximately 148 mm ahead — far outside the physical lens body. When the thick-system conjugate equation is solved exactly using the ABCD-derived principal plane positions, the predicted extension is approximately 60 mm at the patent focal length. The production barrel extension of approximately 44 mm is substantially shorter, which is consistent with Example 2's shorter focal length (f = 178 mm) producing a correspondingly shorter focus throw.
+| Quantity                                   |  Infinity |           Close focus |
+| ------------------------------------------ | --------: | --------------------: |
+| Object to image                            |         ∞ |               1.200 m |
+| Back focus                                 |  54.76 mm |             101.24 mm |
+| First vertex to image                      | 122.86 mm |             169.34 mm |
+| Forward extension                          |      0 mm |              46.48 mm |
+| Nominal f-number                           |       f/4 |                   f/4 |
+| Paraxial working f-number at full aperture |    f/4.00 |                f/6.53 |
+| Paraxial magnification, magnitude          |         0 | 0.261× (about 1:3.83) |
 
-The production lens achieves a maximum magnification ratio stated by the manufacturer as 1:4 at 1.2 m MFD. The paraxial thin-lens calculation at the patent EFL yields approximately 1:5, while the thick-system conjugate at the patent EFL gives approximately 1:3.3 — noticeably higher than both the thin-lens estimate and the manufacturer's claimed ratio. The production design (likely Example 2, with EFL ≈ 178 mm) would produce a thick-system magnification closer to 1:4 at the same MFD, consistent with the manufacturer's specification.
+At close focus the iris stays fully open and the image-side cone narrows as the assembly moves farther from the image. The working f-number reflects this finite conjugate. Cosina gives a maximum magnification of 1:4 for the production lens. The modeled magnification and travel follow from the assumed unit movement and the patent's optics. Production travel and near-focus performance are unverified.
 
-Unit focus in a telephoto of this class is the mechanically simplest and optically most predictable approach. Because no internal spacings change, the aberration balance established at infinity is preserved at all focus distances — there is no focus breathing, no group-motion-induced coma shift, and no change in the telephoto ratio during focusing. The tradeoff is increased barrel extension and a larger, heavier helicoid assembly, but at f/4 and 180 mm the tube diameter and extension remain compact enough for the lens to achieve its 79 mm overall length at infinity — shorter than many 135 mm primes.
+## Chromatic and Off-Axis Correction
 
-## Aspherical Surfaces
+The low-dispersion positive power in G4 and the different glass pairings in G5 limit the separation of the d- and F-line axial foci. In Fig. 4(a), F is about 0.025 mm in front of the central d focus near the axis and about 0.05 mm behind the d curve at the pupil edge. With the catalog spectra, the model gives −0.027 mm near the axis and a marginal F–d separation of +0.053 mm at the stated paraxial pupil radius. Its d-line marginal crossing shifts +0.024 mm from the axis, compared with about +0.05 mm in the plot. The calculated and plotted curves have similar trends with a small marginal difference.
 
-This is an **all-spherical design**. No aspherical surfaces are used anywhere in the optical system. All 16 refracting surfaces are standard spherical or near-planar (surface 10, R = −5733.8 mm).
+The C and g lines are absent from Fig. 4. At small pupil height the model puts C about +0.086 mm and g about −0.012 mm relative to d. These shifts depend on the catalog dispersions. The available patent curves establish neither the C- and g-line residuals of the design nor the production lens's full spectral correction.
 
-The absence of aspherical elements is consistent with Cosina's manufacturing approach for the SL lens series (early 2000s production), which relied on traditional glass grinding and polishing rather than glass-molded or hybrid aspherical technology. It is also a point of note for the lens's bokeh character — spherical surfaces produce smoother out-of-focus rendition than aspherical surfaces, which can introduce concentric ring artifacts ("onion ring" bokeh). Multiple reviewers have commented on the APO-Lanthar 180mm's smooth and natural bokeh quality, a characteristic that is directly attributable to the all-spherical optical formula.
-
-## Chromatic Correction Strategy
-
-The "APO" (apochromatic) designation is the lens's defining optical claim. An achromatic lens brings two wavelengths to a common focus; an apochromatic lens brings three. The mechanism by which this design achieves apochromatic correction is worth examining in detail, as it differs from the conventional approach.
-
-### The conventional approach and its limitation
-
-In a standard achromatic telephoto, a positive crown-glass front group is paired with a negative flint-glass diverging group. The achromatic condition requires:
-
-$$\sum_i \frac{\varphi_i}{\nu_{d,i}} = 0$$
-
-where φᵢ is the power and νd,ᵢ is the Abbe number of each element. This eliminates the primary longitudinal chromatic aberration (the F-line and C-line focus difference). However, it leaves a residual called the **secondary spectrum** — the difference between the common F–C focus and the d-line focus. The secondary spectrum arises because real glasses do not disperse linearly with wavelength; the ratio of partial dispersions ($P_{g,F} = (n_g - n_F)/(n_F - n_C)$) varies from glass to glass. In a conventional crown–flint achromat, the secondary spectrum is proportional to the difference in partial dispersions ΔPgF between the two glasses, and it cannot be reduced below a floor set by the available glass types — roughly 1/2500 of the focal length for standard glasses.
-
-### This design's strategy
-
-The APO-Lanthar 180mm uses three independent mechanisms to suppress the secondary spectrum:
-
-1. **Ultra-low-dispersion front group.** All three G1 elements use S-FPL51, whose compatible catalog proxy has anomalous partial dispersion. Because the front group generates the primary converging power, using an anomalous-dispersion glass here shifts the secondary-spectrum balance of the entire system. The very high Abbe number (81.6) also means each element contributes minimal primary color per unit of power, reducing the total chromatic load that the negative group must compensate.
-
-2. **Reversed-dispersion doublets in G2.** The second doublet (L23+L24) uses the unusual positive-flint/negative-crown architecture. The "flint" element (S-TIH10, νd = 28.3) carries positive power, while the "crown" (S-LAH53, νd = 40.7) carries negative power. This reversal flips the sign of the doublet's secondary-spectrum contribution relative to a conventional achromatic doublet of the same net power. When combined with G1's anomalous-dispersion contribution, the reversed secondary spectrum from D2 enables a three-wavelength correction that a conventional glass pairing cannot achieve.
-
-3. **Rear corrector pairing.** G3 uses S-TIH6 (positive, νd = 25.5) paired with S-LAH53 (negative, νd = 40.7), mirroring the reversed-dispersion architecture of D2. Because G3 operates behind the stop at a different beam geometry than G2, it corrects the lateral component of chromatic aberration (lateral color, which affects the image height rather than the focus position) while contributing a small reinforcement to the longitudinal APO correction established by G1 and G2.
-
-### Computed chromatic residuals
-
-The total first-order chromatic residual Σ(φ/ν) for the full system is −0.30 × 10⁻³ mm⁻¹, which is −5.9% of the system power. This is not zero because the Abbe-number-based first-order sum does not capture the secondary-spectrum correction — it only measures the primary (F–C) achromatism. The true APO performance depends on the partial-dispersion matching across all three wavelength pairs, which requires full spectral ray tracing beyond the scope of a first-order analysis. The patent's aberration diagrams (Fig. 2) show the d-line and F-line spherical aberration curves converging to within ±0.2 mm across the full pupil, consistent with well-corrected longitudinal color.
-
-### Petzval sum
-
-The computed Petzval sum is −0.000185 mm⁻¹, corresponding to a Petzval radius of −5411 mm — essentially flat. This near-zero Petzval sum is achieved through the balance of positive and negative powers across high-index glasses: the strong negative elements in G2 (S-LAH60, S-LAH53) contribute large negative Petzval terms that offset the positive contributions from the front group and rear corrector. The extremely flat Petzval surface is favorable for a telephoto lens, as it reduces the field curvature that would otherwise require the photographer to stop down significantly for sharp corners.
+Figure 4(b) shows the sagittal and tangential foci moving toward the lens off axis, with the tangential focus moving farther. At the full-frame corner the model gives about −0.028 mm sagittal and −0.119 mm tangential shifts. The plotted values at 21.64 mm image height are approximately −0.04 and −0.13 mm. Model distortion is about +1.9% at the corner, consistent with the positive pincushion curve in Fig. 4(c), whose edge is about +1.8%.
 
 ## Conditional Expressions
 
-The patent specifies two inequalities governing the power distribution (¶0005–0007):
+Claim 1 bounds the relationship between the front and middle groups and between the middle group and the entire lens (¶0005–0007).
 
-1. $1.0 < f_1 / |f_2| < 2.0$
+| Condition                | Model | Result       |
+| ------------------------ | ----: | ------------ |
+| 1.0 < f₁ / abs(f₂) < 2.0 | 1.399 | Within range |
+| 3.5 < f / abs(f₂) < 10   | 5.992 | Within range |
 
-   Computed: f₁/|f₂| = 1.66. ✓
+The first ratio measures how much stronger the negative middle group's power is than the positive front group's. The second measures the negative power relative to the whole lens. The patent explains that stronger negative power shortens the lens but makes aberrations harder to control. The all-spherical pair of doublets and the high-Abbe front group address that tradeoff.
 
-   This condition balances the front group's convergence against the middle group's divergence. Below 1.0, the front group would be too weak relative to the diverging group, inflating the lens's total length and defeating the telephoto compression. Above 2.0, the front group would be twice as powerful as the negative group, creating severe aberration growth in G1 that would require more elements to compensate (¶0006).
+Paragraph 0004 describes a separate compactness goal using barrel length divided by focal length. Cosina's 79.0 mm Ai-S barrel gives a ratio of 0.439 at the marketed 180 mm. This dimension runs to the mount flange. The 0.691 optical track ratio runs to the image plane.
 
-2. $3.5 < f / |f_2| < 10$
+## Production Context
 
-   Computed: f/|f₂| = 7.41. ✓
-
-   This condition ensures the negative group's power is strong enough to achieve a useful telephoto ratio. Below 3.5, the negative group would be too weak and the lens would be too long. Above 10, the negative group's power would dominate, making higher-order aberration correction impractical and reducing the back focal distance to the point where SLR mirror clearance becomes difficult (¶0007).
-
-## Design Heritage and Context
-
-The Cosina Voigtländer APO-Lanthar 180mm f/4 SL Close Focus was part of the SL lens series — a short-lived line of high-quality manual-focus primes for SLR cameras, released by Cosina under the Voigtländer brand in the early 2000s. The series also included the APO-Lanthar 90mm f/3.5 SL and the APO-Lanthar 125mm f/2.5 Macro SL, both of which shared the apochromatic design philosophy and compact form factor.
-
-The 180mm was the longest lens in the SL lineup. It was offered in Nikon AI-S, Canon FD, Pentax K, Contax/Yashica, Olympus OM, Minolta SR, and M42 mounts. Production numbers were small — estimated at 700–1000 units in Nikon mount alone — and the lens was discontinued around 2004–2005 as Cosina transitioned its factory capacity to manufacturing the Carl Zeiss ZF/ZS lens series.
-
-The optical formula is notable for its era. In 2003, most 180–200 mm telephotos for SLR cameras used 5–6 elements and achieved D/f ratios around 0.65. The APO-Lanthar's 9-element design with ED elements, all-spherical surfaces, and a production D/f of approximately 0.44 was an outlier in compactness and chromatic correction. The only comparable apochromatic telephoto at this focal length was the Leica APO-Telyt-R 180mm f/3.4, which used a fundamentally different optical architecture (apochromatic triplet front group with fluorite) at a significantly larger size and price point.
-
-The designer's approach in Example 1 — using three matched S-FPL51 menisci rather than one or two ED elements paired with conventional glass — represents an aggressive solution to the secondary-spectrum problem in compact telephotos. Whether the production lens uses all three S-FPL51 elements (Example 1) or substitutes one S-FSL5 (Example 2), the core architecture is the same: a triple-meniscus front group with ultra-low-dispersion glass, paired with reversed-dispersion doublets in G2 that attack the secondary spectrum from a direction that conventional flint–crown achromats cannot reach.
+Cosina introduced the manual-focus SL lens in August 2003 and lists April 2007 as the end of production. The lens takes 49 mm filters and has a nine-blade diaphragm stopping down to f/22. Cosina lists Nikon Ai-S, Canon FD, Minolta MD, Olympus OM, Pentax PK-A/R, Contax/Yashica and M42 SLR versions. [Cosina product specifications and sales record](https://www.cosina.co.jp/discontinued/apo-lanthar-180mm-f4-close-focus-sl/).
 
 ## Sources
 
-- JP 2003-270529 A (P2003-270529A), 「望遠レンズ」, Cosina Co., Ltd. / 蓬田 祥寿. Published 2003-09-25. Primary source for optical prescription, group architecture, conditional expressions, and aberration diagrams.
-- Cosina Co., Ltd. product specifications for the Voigtländer APO-Lanthar 180mm f/4 SL Close Focus. Manufacturer source for production specifications: 9 elements / 7 groups, f/4, MFD 1.2 m, 9 aperture blades, 49 mm filter thread, overall length ~79 mm.
-- OHARA Inc. optical glass catalog (current edition). Referenced for S-FPL51, S-LAH60, S-FSL5, S-LAH53, S-TIH10, S-TIH6 refractive indices, Abbe numbers, and partial-dispersion data.
-
-Fresh Figure 1 measurements and native-beam checks give continuous paired front radii of 25/24/23 mm. The prior 23 mm front cap clipped the source model’s stated F4 beam; the repaired model is iris-limited. These dimensions belong to selected Example 1 at literal scale and cannot be certified as mechanical clearance of the retail 180 mm lens with its 49 mm filter. Paragraph 0012 prints 197 mm while the rounded prescription derives about 197.9 mm; the residual is retained. No numerical end cut is inferred from the short compound steps.
+- JP 2003-270529 A, _Telephoto Lens_, Cosina Co., Ltd. and Yoshihisa Yomogida. Table 2 and ¶0014–0017 give the selected prescription, Fig. 3 shows its section and Fig. 4 gives its aberration plots.
+- Cosina Co., Ltd., _APO-LANTHAR 180mm F4 Close Focus SL_. [Product specifications](https://www.cosina.co.jp/discontinued/apo-lanthar-180mm-f4-close-focus-sl/) · [Construction drawing](https://www.cosina.co.jp/wp/wp-content/uploads/2024/01/SL-180_40-LD.svg) · [SL catalog, p. 7](https://www.cosina.co.jp/wp-content/uploads/2024/01/SL.pdf#page=7).
+- Sumita, HOYA and OHARA optical-glass catalogs supply the comparison spectra, including discontinued grades. [HOYA glass data](https://www.hoya-opticalworld.com/english/datadownload/index.html) · [OHARA cross-reference](https://www.ohara-inc.co.jp/en/product/01002/).

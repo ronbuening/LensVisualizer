@@ -92,11 +92,9 @@ The catalog curves supply the C/F/g indices and partial dispersions; the patent 
 
 ## Focus Mechanism
 
-The focus status is `NO_INTERNAL_RECONSTRUCTION`.
+The patent provides one prescription and no focus-distance table, magnification state, moving-group designation, or spacings that change with focus. The model therefore shows the lens at infinity only, moves no group, and makes no claim of unit, inner, rear, or floating focus.
 
-The patent provides one prescription and no focus-distance table, magnification state, moving-group designation, or variable spacing. The data file accordingly contains no `var` entries and makes no claim of unit, inner, rear, or floating focus.
-
-Canon's product record gives mechanical manual focusing, a closest focusing distance of `0.3 m`, and maximum magnification of `0.13×`. The mechanical designation does not identify which optical group moves, and the rounded production specifications do not determine an internal trajectory or an optical object distance measured from a defined reference plane. The analysis therefore does not convert them into invented close-focus spacings.
+Canon's product record gives mechanical manual focusing, a closest focusing distance of `0.3 m`, and maximum magnification of `0.13×`. The mechanical designation does not identify which optical group moves, and the rounded production specifications do not determine an internal trajectory or an optical object distance measured from a defined reference plane. The analysis therefore does not convert them into modeled close-focus spacings.
 
 ## Aspherical Surface
 
@@ -114,7 +112,7 @@ LensVisualizer has no independent quadratic polynomial coefficient. The `AH²` t
 - `K = −1`,
 - the patent's `B`, `C`, `D`, and `E` terms stored as `A4`, `A6`, `A8`, and `A10`.
 
-The `K = −1` value is a schema reparameterization. It does not mean that the patent identifies its original plane-plus-polynomial surface as a paraboloid.
+The `K = −1` value is a reparameterization to fit the model's surface format. It does not mean that the patent identifies its original plane-plus-polynomial surface as a paraboloid.
 
 The data uses the uniform scale `s = 28`. All radii, spacings, semi-diameters, and image-plane distances are multiplied by 28. Each polynomial coefficient of order `p` is transformed as
 

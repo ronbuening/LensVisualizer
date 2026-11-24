@@ -47,7 +47,7 @@ const LENS_DATA = {
   key: "pentax-fa-star-28-70mm-f28-al",
   maker: "Pentax",
   name: "PENTAX SMC FA* 28-70mm f/2.8 AL",
-  subtitle: "US 5,568,323 A, Example 3 — qualified production correlation",
+  subtitle: "US 5,568,323 A, Example 3 — tentative production match",
   catalog: {
     lensMounts: ["pentax-k"],
     imageFormat: "135-full-frame",

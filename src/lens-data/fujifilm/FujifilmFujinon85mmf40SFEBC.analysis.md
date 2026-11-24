@@ -1,4 +1,4 @@
-# FUJIFILM EBC FUJINON 85mm f/4 SOFT-FOCUS
+# FUJIFILM EBC FUJINON 85mm f/4 SOFT-FOCUS (Prototype Design)
 
 ## Patent Reference and Design Identification
 
@@ -81,9 +81,9 @@ The crown/flint contrast is sufficient to discuss ordinary first-order chromatic
 
 ## Focus Mechanism
 
-The focus status is **NO_INTERNAL_RECONSTRUCTION**. JP S55-560 A Example 1 provides no focus-spacing table, finite-object prescription, magnification row, or mechanical description that determines which element or group moves during focusing. The analysis therefore does not classify the optical movement as unit focus, inner focus, or rear focus.
+The model shows the lens at infinity only; focus travel is not modeled. JP S55-560 A Example 1 provides no focus-spacing table, close-focus prescription, magnification row, or mechanical description that determines which element or group moves during focusing. The analysis therefore does not classify the optical movement as unit focus, inner focus, or rear focus.
 
-Fuji's production literature gives a focusing range of **1 m to infinity**, and the data retains `closeFocusM: 1` as product metadata. That value does not create a close-focus optical state: `var` and `varLabels` are empty, and the modeled prescription remains the published infinity-style state. No principal-plane object distance, internal travel, or close-focus magnification is inferred from the 1 m marketing specification.
+Fuji's production literature gives a focusing range of **1 m to infinity**, and the model records the 1 m close-focus figure as product information. That value does not create a close-focus optical state: no spacing changes with focus, and the modeled prescription remains the published infinity-style state. No principal-plane object distance, internal travel, or close-focus magnification is inferred from the 1 m marketing specification.
 
 ## Aberration Correction Strategy and Soft-Focus Design
 

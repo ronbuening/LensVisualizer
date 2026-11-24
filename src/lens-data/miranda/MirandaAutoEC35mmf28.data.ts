@@ -30,9 +30,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * chief ray clears, but peripheral pupil
  * vignetting remains modeled. See the audit sidecar for the before/after values.
  *
- * ║  FOCUS: NO_INTERNAL_RECONSTRUCTION. The manufacturer publishes     ║
- * ║  0.30 m closest focus, but neither source gives an optical spacing  ║
- * ║  law; this file retains the patent static/infinity prescription.    ║
+ * ║  FOCUS: infinity only. The manufacturer publishes 0.30 m closest   ║
+ * ║  focus, but neither source gives close-focus spacings; the model   ║
+ * ║  keeps the patent static/infinity prescription.                    ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -42,7 +42,7 @@ const LENS_DATA = {
   key: "miranda-auto-ec-35mm-f28",
   maker: "Miranda",
   name: "MIRANDA AUTO EC 35mm f/2.8",
-  subtitle: "JP1976-053823 Example 1 — scaled ×0.35; strong research correlation",
+  subtitle: "JP1976-053823 Example 1 — scaled ×0.35; strong production match",
 
   catalog: {
     lensMounts: ["miranda-bayonet"],
@@ -158,7 +158,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.3,
     description:
-      "NO_INTERNAL_RECONSTRUCTION — manufacturer closest focus is 0.30 m, but no internal optical spacing law is published; model remains at the patent static/infinity state.",
+      "Infinity focus only. Miranda gives a 0.30 m closest focus, but no close-focus spacings are published, so focus travel is not modeled; the model stays at the patent's static infinity state.",
   },
 
   aperture: { nominalFNumber: 2.8, fStops: [2.8, 4, 5.6, 8, 11, 16] },

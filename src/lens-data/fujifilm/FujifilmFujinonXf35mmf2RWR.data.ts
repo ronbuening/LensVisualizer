@@ -32,7 +32,7 @@ const LENS_DATA = {
   key: "fujifilm-fujinon-xf-35mm-f2-r-wr",
   maker: "Fujifilm",
   name: "FUJIFILM FUJINON XF 35mm f/2 R WR",
-  subtitle: "US 2017/0010441 A1 Example 1 — strong research correlation; not manufacturer-confirmed",
+  subtitle: "US 2017/0010441 A1 Example 1 — strong production match; not maker-confirmed",
 
   catalog: {
     lensMounts: ["fujifilm-x"],

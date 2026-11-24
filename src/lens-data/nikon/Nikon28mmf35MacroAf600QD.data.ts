@@ -30,7 +30,7 @@ const LENS_DATA = {
   key: "nikon-af600-28mm-f35",
   maker: "Nikon",
   name: "NIKON 28mm f/3.5 (Nikon AF600 / AF600 QD)",
-  subtitle: "JP H06-235857 A Example 2 — scaled ×0.28; AF600/AF600 QD correlation",
+  subtitle: "JP H06-235857 A Example 2 — scaled ×0.28; AF600/AF600 QD match",
 
   catalog: {
     lensMounts: ["fixed-lens-camera"],

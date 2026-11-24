@@ -20,7 +20,7 @@ const LENS_DATA = {
   key: "olympus-zuiko-mc-auto-zoom-35-70mm-f36",
   maker: "Olympus",
   name: "OLYMPUS ZUIKO MC AUTO-ZOOM 35-70mm f/3.6",
-  subtitle: "US 4,153,338 A, Example 3 — probable production correlation; normalized example scaled to 35 mm",
+  subtitle: "US 4,153,338 A, Example 3 — probable production match; example scaled to 35 mm",
   visible: true,
   catalog: {
     lensMounts: ["olympus-om"],

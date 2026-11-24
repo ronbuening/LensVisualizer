@@ -62,7 +62,7 @@ const LENS_DATA = {
   key: "canon-ef-135mm-f28-soft-focus",
   maker: "Canon",
   name: "CANON EF 135mm f/2.8 Soft Focus",
-  subtitle: "US 4,826,301 — Numerical Example 4 production correlation",
+  subtitle: "US 4,826,301 — Numerical Example 4 production match",
 
   catalog: {
     lensMounts: ["canon-ef"],

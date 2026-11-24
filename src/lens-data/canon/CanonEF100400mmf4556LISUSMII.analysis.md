@@ -317,14 +317,15 @@ side for the main focus action, while L4 moves slightly toward the object side. 
 movement chiefly corrects focus-induced field-curvature variation at the wide-angle end, while L6 provides the main focus
 sensitivity (¶0075-0077).
 
-The data file intentionally has `NO_INTERNAL_RECONSTRUCTION` status. The patent publishes two L6 travel constraints at the
+The model deliberately shows the lens at infinity focus only. The patent publishes two L6 travel constraints at the
 telephoto end—16.753 mm at the 1,000 mm image-plane-referenced object distance and 9.090 mm at an object distance of
-5 fT—but it does not publish the corresponding L4 travel magnitude or a complete set of finite-focus air spacings. A
+5 fT—but it does not publish the corresponding L4 travel magnitude or a complete set of close-focus air spacings. A
 unique two-unit focus model therefore cannot be recovered from the source.
 
-Accordingly, every close-focus member of the `var` arrays repeats its infinity value. The production 0.98 m MFD
-is stored as product metadata (`closeFocusM`) but does not move any internal surface in LensVisualizer. Any L4 displacement obtained by imposing paraxial conjugacy would be a diagnostic solution rather than a published focus
-state, so it is excluded from the model.
+Accordingly, every spacing that changes with zoom keeps its infinity value at both ends of the focus control, and focus
+travel is not modeled. The production 0.98 m MFD is recorded as product information but does not move any internal
+surface in the model. Any L4 displacement obtained by imposing paraxial conjugacy would be a diagnostic solution rather
+than a published focus state, so it is excluded from the model.
 
 This distinction also resolves the reference-plane issue. The patent defines object distance from the image plane
 (¶0036), whereas Canon's 0.98 m product specification is a camera/lens shooting-distance specification. Those values are

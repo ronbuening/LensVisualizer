@@ -56,7 +56,7 @@ const LENS_DATA = {
   key: "canon-ef-180mm-f35l-macro-usm",
   maker: "Canon",
   name: "CANON EF 180mm f/3.5 L Macro USM",
-  subtitle: "JP 1997-211319 A, Numerical Example 1 — production correlation",
+  subtitle: "JP 1997-211319 A, Numerical Example 1 — production match",
 
   catalog: {
     lensMounts: ["canon-ef"],

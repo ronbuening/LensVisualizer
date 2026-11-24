@@ -98,9 +98,9 @@ The principal dispersion contrast is between the high-Abbe G1/G3 pair and the lo
 
 ## Focus Mechanism
 
-The patent publishes only the infinity prescription. It contains no finite-object spacing table, focus travel, magnification, or internal-group movement. The data file therefore uses `NO_INTERNAL_RECONSTRUCTION`, with empty `var` and `varLabels` objects and one defined optical state.
+The patent publishes only the infinity prescription. It contains no close-focus spacing table, focus travel, magnification, or internal-group movement. The model therefore shows one infinity state and moves no group.
 
-The manufacturer manual lists a minimum focusing distance of 0.4 m, also printed as 1.5 ft. Those rounded values are not exact conversions and the manual does not define the measurement reference plane. The 0.4 m value is retained only as catalog metadata required by the data schema. It is not used to reconstruct unit extension, floating movement, close-focus magnification, or a second prescription state.
+The manufacturer manual lists a minimum focusing distance of 0.4 m, also printed as 1.5 ft. Those rounded values are not exact conversions and the manual does not define the measurement reference plane. The 0.4 m value is recorded only as product information. It is not used to model unit extension, floating movement, close-focus magnification, or a second prescription state.
 
 ## Conditional Expressions
 

@@ -170,13 +170,13 @@ The patent itself calls the high-νd outer positive elements L41 and L44 anomalo
 
 ## Focus Mechanism
 
-The optical focus status is **NO_INTERNAL_RECONSTRUCTION**.
+The model shows the lens **at infinity focus only**.
 
-Example 1 publishes only infinity-focus zoom states. It does not provide a close-focus spacing table, a focusing-group identity, a motion law, object-distance series, or magnification series from which an internal focus model could be uniquely reconstructed. Therefore the four variable spacings in the data file are zoom-only: D5, D15, D23, and back focus. At every zoom position their `[infinity, close]` pairs are intentionally identical.
+Example 1 publishes only infinity-focus zoom states. It does not provide a close-focus spacing table, a focusing-group identity, a motion law, object-distance series, or magnification series from which a unique focusing movement could be worked out. Therefore the four spacings in the model that change are zoom-only: D5, D15, D23, and back focus. At every zoom position each keeps its infinity value at both ends of the focus control.
 
-The production lens's **0.35 m** closest focusing distance and **0.26×** maximum reproduction ratio are manufacturer specifications and remain product metadata. Ricoh Imaging also documents Quick-Shift Focus and a built-in DC autofocus motor. These mechanical/operational facts do not identify which optical group moves during close focusing and are not used to invent one.
+The production lens's **0.35 m** closest focusing distance and **0.26×** maximum reproduction ratio are manufacturer specifications, recorded as product information only. Ricoh Imaging also documents Quick-Shift Focus and a built-in DC autofocus motor. These mechanical/operational facts do not identify which optical group moves during close focusing and are not used to model one.
 
-Accordingly, the LensVisualizer focus control does not represent an internal close-focus optical reconstruction for this lens. Any future focus model would require a separate primary source that constrains the optical mechanism.
+Accordingly, the focus control does not show modeled close-focus movement for this lens. Any future focus model would require a separate primary source that constrains the optical mechanism.
 
 ## Aspherical Surfaces
 

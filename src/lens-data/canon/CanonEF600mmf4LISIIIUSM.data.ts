@@ -36,7 +36,7 @@ const LENS_DATA = {
   key: "canon-ef-600f4l-is-iii-usm",
   maker: "Canon",
   name: "CANON EF 600mm f/4 L IS III USM",
-  subtitle: "US 2019/0041605 A1 Example 4 — production correlation inferred",
+  subtitle: "US 2019/0041605 A1 Example 4 — inferred production match",
 
   catalog: {
     lensMounts: ["canon-ef"],

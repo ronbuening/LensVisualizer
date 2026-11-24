@@ -30,7 +30,7 @@ const LENS_DATA = {
   key: "samsung-nx-20mm-f28",
   maker: "Samsung",
   name: "SAMSUNG 20mm f/2.8",
-  subtitle: "US 2012/0056976 A1 Example 1 — strong production correlation; no scaling",
+  subtitle: "US 2012/0056976 A1 Example 1 — strong production match; no scaling",
 
   catalog: {
     lensMounts: ["samsung-nx"],

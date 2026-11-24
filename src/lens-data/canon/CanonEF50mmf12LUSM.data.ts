@@ -50,7 +50,7 @@ const LENS_DATA = {
   key: "canon-ef-50mm-f1p2l-usm",
   maker: "Canon",
   name: "CANON EF 50mm f/1.2 L USM",
-  subtitle: "JP2007333790A Example 1 — production correlation; constrained unit-focus reconstruction",
+  subtitle: "JP2007333790A Example 1 — production match; unit-focus travel modeled under constraints",
 
   catalog: {
     lensMounts: ["canon-ef"],

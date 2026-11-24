@@ -38,7 +38,7 @@ const LENS_DATA = {
   "key": "sigma-18-50mm-f28-45-dc-os-hsm",
   "maker": "Sigma",
   "name": "SIGMA 18-50mm f/2.8-4.5 DC OS HSM",
-  "subtitle": "JP 2010-211056 A, Example 1 — probable production correlation",
+  "subtitle": "JP 2010-211056 A, Example 1 — probable production match",
   "catalog": {
     "lensMounts": [
       "sigma-sa",
