@@ -1,356 +1,399 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
+/**
+ * First embodiment of US 8,498,063 B2, reproduced at the printed scale. The prescription gives the spherical
+ * radii, thicknesses, d-line indices and Abbe numbers, the stop at surface 12, and the rear filter and image spacing.
+ * Table 1 gives three focus positions. Only G2 moves, toward the image, while the two gaps around it sum to 17.990 mm.
+ * Fig. 1 provides rim estimates. The close clearances at surfaces 4–5, 6–7 and 17–18 follow the drawing; the
+ * surface 11 rim clears the axial beam beyond the drawn arc. The 13.78 mm iris radius follows from F/1.44.
+ * The image plane stays 0.522 mm behind the filter. Spacings between printed focus positions are interpolated.
+ */
 const LENS_DATA = {
-  "schema": 2,
-  "key": "private-samsung-nx85-us8498063-e1-source-states-f56",
-  "name": "PRIVATE Samsung NX85 family — exact three patent focus states f5.6",
-  "maker": "Samsung",
-  "visible": false,
-  "subtitle": "US8498063B2 First Embodiment; source geometry, estimated caps; scoped D-line f5.6 ±3deg, not factory or wide-open qualification",
-  "source": {
-    "patentNumber": "US 8498063 B2",
-    "patentYear": 2013,
-    "example": {
-      "label": "Embodiment 1",
-      "id": "1"
+  schema: 2,
+  key: "samsung-85mm-f14-ed-ssa",
+  name: "SAMSUNG 85mm f/1.4 ED SSA",
+  maker: "Samsung",
+  visible: true,
+  subtitle: "US 8,498,063 B2, Embodiment 1 — Samsung / Yoneyama",
+  catalog: {
+    focalLengthMm: {
+      design: 85.01,
+      marketing: 85,
     },
-    "authors": [
-      "Shuji Yoneyama"
+    fNumber: {
+      design: 1.44,
+      marketing: 1.4,
+    },
+    elementCount: 10,
+    groupCount: 8,
+    specs: [
+      "10 ELEMENTS / 8 GROUPS",
+      "ALL SPHERICAL",
+      "1 ED ELEMENT",
+      "DESIGN f = 85.01 mm",
+      "DESIGN F/1.44",
+      "INTERNAL FOCUS",
     ],
-    "assignees": [
-      "Samsung Electronics Co., Ltd."
-    ],
-    "sdSource": "heuristic"
+    lensMounts: ["samsung-nx"],
+    imageFormat: "aps-c",
+    closeFocusM: {
+      marketing: 0.82,
+    },
   },
-  "elements": [
+  source: {
+    patentNumber: "US 8,498,063 B2",
+    patentYear: 2013,
+    example: {
+      label: "Embodiment 1",
+      id: "1",
+    },
+    authors: ["Shuji Yoneyama"],
+    assignees: ["Samsung Electronics Co., Ltd."],
+  },
+  elements: [
     {
-      "id": 1,
-      "name": "E1",
-      "label": "Patent lens 1",
-      "type": "Patent glass",
-      "nd": 1.618,
-      "vd": 63.4,
-      "indexReference": "d",
-      "glass": "Published nd/Vd; supplier and melt unspecified"
+      id: 1,
+      name: "L111",
+      label: "L111",
+      type: "Biconvex Positive",
+      nd: 1.618,
+      vd: 63.4,
+      indexReference: "d",
+      glass: "PCD4 (HOYA)",
+      focalLengthMm: 89.48,
+      role: "Positive front crown of the fixed first group.",
     },
     {
-      "id": 2,
-      "name": "E2",
-      "label": "Patent lens 2",
-      "type": "Patent glass",
-      "nd": 1.8042,
-      "vd": 46.5,
-      "indexReference": "d",
-      "glass": "Published nd/Vd; supplier and melt unspecified"
+      id: 2,
+      name: "L121",
+      label: "L121",
+      type: "Positive Meniscus",
+      nd: 1.8042,
+      vd: 46.5,
+      indexReference: "d",
+      glass: "TAF3 (HOYA)",
+      focalLengthMm: 91.64,
+      role: "High-index positive meniscus paired across a narrow air gap with L131.",
     },
     {
-      "id": 3,
-      "name": "E3",
-      "label": "Patent lens 3",
-      "type": "Patent glass",
-      "nd": 1.69895,
-      "vd": 30.1,
-      "indexReference": "d",
-      "glass": "Published nd/Vd; supplier and melt unspecified"
+      id: 3,
+      name: "L131",
+      label: "L131",
+      type: "Negative Meniscus",
+      nd: 1.69895,
+      vd: 30.1,
+      indexReference: "d",
+      glass: "E-FD15 (HOYA)",
+      focalLengthMm: -44.77,
+      role: "Dispersive negative meniscus between the two positive menisci in G1.",
     },
     {
-      "id": 4,
-      "name": "E4",
-      "label": "Patent lens 4",
-      "type": "Patent glass",
-      "nd": 1.497,
-      "vd": 81.6,
-      "indexReference": "d",
-      "glass": "Published nd/Vd; supplier and melt unspecified"
+      id: 4,
+      name: "L141",
+      label: "L141",
+      type: "Positive Meniscus",
+      nd: 1.497,
+      vd: 81.6,
+      indexReference: "d",
+      glass: "FCD1 (HOYA)",
+      focalLengthMm: 75.76,
+      role: "Extra-low-dispersion positive meniscus closing the fixed first group.",
+      apd: "inferred",
+      apdNote:
+        "Samsung's construction diagram marks this positive meniscus as ED, consistent with the patent's 1.49700 index and 81.6 Abbe number.",
     },
     {
-      "id": 5,
-      "name": "E5",
-      "label": "Patent lens 5",
-      "type": "Patent glass",
-      "nd": 1.84666,
-      "vd": 23.8,
-      "indexReference": "d",
-      "glass": "Published nd/Vd; supplier and melt unspecified",
-      "cemented": "D1"
+      id: 5,
+      name: "L211",
+      label: "L211",
+      type: "Positive Meniscus",
+      nd: 1.84666,
+      vd: 23.8,
+      indexReference: "d",
+      glass: "FDS90 (HOYA)",
+      cemented: "C1",
+      focalLengthMm: 79.82,
+      role: "Dense-flint positive member of the moving doublet C1.",
     },
     {
-      "id": 6,
-      "name": "E6",
-      "label": "Patent lens 6",
-      "type": "Patent glass",
-      "nd": 1.744,
-      "vd": 44.9,
-      "indexReference": "d",
-      "glass": "Published nd/Vd; supplier and melt unspecified",
-      "cemented": "D1"
+      id: 6,
+      name: "L221",
+      label: "L221",
+      type: "Biconcave Negative",
+      nd: 1.744,
+      vd: 44.9,
+      indexReference: "d",
+      glass: "LAF2 (HOYA)",
+      cemented: "C1",
+      focalLengthMm: -27.55,
+      role: "Strong negative member that sets the moving doublet's net negative power.",
     },
     {
-      "id": 7,
-      "name": "E7",
-      "label": "Patent lens 7",
-      "type": "Patent glass",
-      "nd": 1.69895,
-      "vd": 30.1,
-      "indexReference": "d",
-      "glass": "Published nd/Vd; supplier and melt unspecified",
-      "cemented": "D2"
+      id: 7,
+      name: "L311",
+      label: "L311",
+      type: "Negative Meniscus",
+      nd: 1.69895,
+      vd: 30.1,
+      indexReference: "d",
+      glass: "E-FD15 (HOYA)",
+      cemented: "C2",
+      focalLengthMm: -128.48,
+      role: "Dispersive negative front member of C2, immediately behind the iris.",
     },
     {
-      "id": 8,
-      "name": "E8",
-      "label": "Patent lens 8",
-      "type": "Patent glass",
-      "nd": 1.8042,
-      "vd": 46.5,
-      "indexReference": "d",
-      "glass": "Published nd/Vd; supplier and melt unspecified",
-      "cemented": "D2"
+      id: 8,
+      name: "L321",
+      label: "L321",
+      type: "Biconvex Positive",
+      nd: 1.8042,
+      vd: 46.5,
+      indexReference: "d",
+      glass: "TAF3 (HOYA)",
+      cemented: "C2",
+      focalLengthMm: 33.93,
+      role: "Strong positive rear member of C2, which converges the beam behind the iris.",
     },
     {
-      "id": 9,
-      "name": "E9",
-      "label": "Patent lens 9",
-      "type": "Patent glass",
-      "nd": 1.7725,
-      "vd": 49.6,
-      "indexReference": "d",
-      "glass": "Published nd/Vd; supplier and melt unspecified"
+      id: 9,
+      name: "L331",
+      label: "L331",
+      type: "Positive Meniscus",
+      nd: 1.7725,
+      vd: 49.6,
+      indexReference: "d",
+      glass: "TAF1 (HOYA)",
+      focalLengthMm: 113.42,
+      role: "Weak positive meniscus ahead of the final negative element in G3b.",
     },
     {
-      "id": 10,
-      "name": "E10",
-      "label": "Patent lens 10",
-      "type": "Patent glass",
-      "nd": 1.72825,
-      "vd": 28.3,
-      "indexReference": "d",
-      "glass": "Published nd/Vd; supplier and melt unspecified"
-    }
+      id: 10,
+      name: "L341",
+      label: "L341",
+      type: "Biconcave Negative",
+      nd: 1.72825,
+      vd: 28.3,
+      indexReference: "d",
+      glass: "E-FD10 (HOYA)",
+      focalLengthMm: -64.47,
+      role: "Final negative element, used to control spherical aberration and set the exit pupil position.",
+    },
   ],
-  "surfaces": [
+  surfaces: [
     {
-      "label": "S1",
-      "R": 60.561,
-      "d": 10.986,
-      "sd": 14,
-      "medium": 1
+      label: "1",
+      R: 60.561,
+      d: 10.986,
+      sd: 30.9,
+      medium: 1,
     },
     {
-      "label": "S2",
-      "R": -592.244,
-      "d": 0.1,
-      "sd": 13
+      label: "2",
+      R: -592.244,
+      d: 0.1,
+      sd: 30.9,
     },
     {
-      "label": "S3",
-      "R": 47.31,
-      "d": 7.463,
-      "sd": 12.5,
-      "medium": 2
+      label: "3",
+      R: 47.31,
+      d: 7.463,
+      sd: 27.3,
+      medium: 2,
     },
     {
-      "label": "S4",
-      "R": 122.837,
-      "d": 2.314,
-      "sd": 11
+      label: "4",
+      R: 122.837,
+      d: 2.314,
+      sd: 24.6,
     },
     {
-      "label": "S5",
-      "R": 991.103,
-      "d": 4.142,
-      "sd": 10.5,
-      "medium": 3
+      label: "5",
+      R: 991.103,
+      d: 4.142,
+      sd: 26.1,
+      medium: 3,
     },
     {
-      "label": "S6",
-      "R": 30.284,
-      "d": 0.988,
-      "sd": 9.5
+      label: "6",
+      R: 30.284,
+      d: 0.988,
+      sd: 21.3,
     },
     {
-      "label": "S7",
-      "R": 32.912,
-      "d": 8.768,
-      "sd": 9,
-      "medium": 4
+      label: "7",
+      R: 32.912,
+      d: 8.768,
+      sd: 21.3,
+      medium: 4,
     },
     {
-      "label": "S8",
-      "R": 238.182,
-      "sd": 7.5
+      label: "8",
+      R: 238.182,
+      sd: 21.5,
     },
     {
-      "label": "S9",
-      "R": -402.507,
-      "d": 4.086,
-      "sd": 6.5,
-      "medium": 5
+      label: "9",
+      R: -402.507,
+      d: 4.086,
+      sd: 18.55,
+      medium: 5,
     },
     {
-      "label": "S10",
-      "R": -58.134,
-      "d": 1.5,
-      "sd": 6,
-      "medium": 6
+      label: "10",
+      R: -58.134,
+      d: 1.5,
+      sd: 18.55,
+      medium: 6,
     },
     {
-      "label": "S11",
-      "R": 32.003,
-      "sd": 6
+      label: "11",
+      R: 32.003,
+      sd: 15.2,
     },
     {
-      "label": "STO",
-      "R": "flat",
-      "d": 8.783
+      label: "STO",
+      R: "flat",
+      d: 8.783,
     },
     {
-      "label": "S13",
-      "R": 93.377,
-      "d": 1.5,
-      "sd": 5,
-      "medium": 7
+      label: "13",
+      R: 93.377,
+      d: 1.5,
+      sd: 15.05,
+      medium: 7,
     },
     {
-      "label": "S14",
-      "R": 45.475,
-      "d": 6.079,
-      "sd": 5,
-      "medium": 8
+      label: "14",
+      R: 45.475,
+      d: 6.079,
+      sd: 15.05,
+      medium: 8,
     },
     {
-      "label": "S15",
-      "R": -64.139,
-      "d": 6.131,
-      "sd": 5
+      label: "15",
+      R: -64.139,
+      d: 6.131,
+      sd: 15.05,
     },
     {
-      "label": "S16",
-      "R": 32.411,
-      "d": 3.061,
-      "sd": 5,
-      "medium": 9
+      label: "16",
+      R: 32.411,
+      d: 3.061,
+      sd: 14.95,
+      medium: 9,
     },
     {
-      "label": "S17",
-      "R": 49.321,
-      "d": 1.911,
-      "sd": 5
+      label: "17",
+      R: 49.321,
+      d: 1.911,
+      sd: 13.1,
     },
     {
-      "label": "S18",
-      "R": -2041.322,
-      "d": 1.3,
-      "sd": 4.5,
-      "medium": 10
+      label: "18",
+      R: -2041.322,
+      d: 1.3,
+      sd: 13.85,
+      medium: 10,
     },
     {
-      "label": "S19",
-      "R": 48.072,
-      "d": 19.447,
-      "sd": 4.5
-    }
+      label: "19",
+      R: 48.072,
+      d: 19.447,
+      sd: 13.85,
+    },
   ],
-  "rearPlates": [
-    {
-      "label": "Source filter",
-      "thicknessMm": 2.8,
-      "nd": 1.5168,
-      "vd": 64.2,
-      "indexReference": "d",
-      "gapAfterMm": 0.522,
-      "sd": 5,
-      "source": "US8498063B2 First Embodiment S20/S21, exact physical plate and trailing air; not a verified retail camera stack"
-    }
-  ],
-  "focus": {
-    "closeFocusM": 0.8100244609672149,
-    "keyframes": [
-      0,
-      0.18365769347577218,
-      1
-    ],
-    "published": [
-      1,
-      2
-    ],
-    "conjugates": [
+  focus: {
+    closeFocusM: 0.81,
+    keyframes: [0, 0.1837, 1],
+    published: [1, 2],
+    conjugates: [
       {
-        "zoomStation": 0,
-        "keyframe": 1,
-        "objectDistanceMm": 4300.641,
-        "distanceReference": "first-surface",
-        "source": "US8498063B2 First Embodiment Table1Pos2; printedOBJ.DIST.4300.641andD1/D2=5.005/12.985. First-surface reference inferred from source-table near-state audit, not OEMMFD or substituted solved distance."
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 4300.641,
+        distanceReference: "first-surface",
+        source:
+          "US 8,498,063 B2, Table 1, Pos2. The printed 4300.641 mm and −0.0200 magnification agree with a distance from the first vertex.",
       },
       {
-        "zoomStation": 0,
-        "keyframe": 2,
-        "objectDistanceMm": 700,
-        "distanceReference": "first-surface",
-        "source": "US8498063B2 First Embodiment Table1Pos3; printedOBJ.DIST.700andD1/D2=11.202/6.788. First-surface datum to be tested by conjugate audit versus image-plane; retains original distance, not700.15346solved."
-      }
+        zoomStation: 0,
+        keyframe: 2,
+        objectDistanceMm: 700,
+        distanceReference: "first-surface",
+        source:
+          "US 8,498,063 B2, Table 1, Pos3. The printed 700 mm and −0.1306 magnification agree with a distance from the first vertex.",
+      },
     ],
-    "description": "Only three original patent states certified; exact complementary gaps and fixed sensor. Intermediate native focus interpolation is not a source schedule or qualified optical claim; MTF only at declared states."
+    description:
+      "PUBLISHED inner focus. G2 moves 1.08 mm toward the image at 4.41 m and 7.277 mm at 0.81 m, measured from object to image. The other groups, stop and image plane stay fixed. Travel between the three printed positions is interpolated. At the nearest position, surface 4 limits the wide-open axial beam. Samsung specifies a 0.82 m minimum for the production lens.",
   },
-  "aperture": {
-    "nominalFNumber": 5.6,
-    "fStops": [
-      5.6,
-      8,
-      11,
-      16,
-      22
-    ],
-    "maxFNumber": 22
-  },
-  "projection": {
-    "kind": "rectilinear",
-    "fullFieldDeg": 6,
-    "maxTraceFieldDeg": 3
-  },
-  "layout": {
-    "yScFill": 0.7
-  },
-  "catalog": {
-    "focalLengthMm": {
-      "design": 85.01,
-      "marketing": 85
+  gaps: {
+    "8": {
+      label: "D1",
+      values: [[3.925, 5.005, 11.202]],
     },
-    "fNumber": {
-      "design": 1.44,
-      "marketing": 1.4
+    "11": {
+      label: "D2",
+      values: [[14.065, 12.985, 6.788]],
     },
-    "elementCount": 10,
-    "groupCount": 8,
-    "specs": [
-      "Strong Samsung NX85 family correlation from10/8andonehighAbbeelement; no verified OEM optical section or exact factory identity. SSA is motor only; no retail asphere claim.",
-      "This is a stopped-down f5.6,±3degreeD-line diagnostic. Source nominalf1.44is metadata, not tested wide-open performance. No field or prescription fit.",
-      "All signed radii/spacings/indices retained. Estimated clear caps: independent scoped pupil envelope+.25mm rounded outward.5mm; not source mechanical rims/baffles.",
-      "Source2.8mmplate and.522mmlastair retained; no refocus. Source focus D1/D2 rows assessed separately, not assumed factory interpolation."
-    ]
   },
-  "gaps": {
-    "S8": {
-      "label": "D1",
-      "values": [
-        [
-          3.925,
-          5.005,
-          11.202
-        ]
-      ]
+  aperture: {
+    nominalFNumber: 1.44,
+    fStops: [1.4, 2, 2.8, 4, 5.6, 8, 11, 16, 22],
+    maxFNumber: 22,
+    blades: 9,
+  },
+  projection: {
+    kind: "rectilinear",
+  },
+  rearPlates: [
+    {
+      label: "FL",
+      thicknessMm: 2.8,
+      nd: 1.5168,
+      vd: 64.2,
+      indexReference: "d",
+      gapAfterMm: 0.522,
+      sd: 15.2,
+      source: "US 8,498,063 B2, first embodiment, filter 400 and surfaces 20–21.",
+      glass: "BSC7 (HOYA)",
     },
-    "S11": {
-      "label": "D2",
-      "values": [
-        [
-          14.065,
-          12.985,
-          6.788
-        ]
-      ]
-    }
-  }
+  ],
+  groups: [
+    {
+      text: "G1",
+      fromSurface: "1",
+      toSurface: "8",
+    },
+    {
+      text: "G2 FOCUS",
+      fromSurface: "9",
+      toSurface: "11",
+    },
+    {
+      text: "G3",
+      fromSurface: "13",
+      toSurface: "19",
+    },
+  ],
+  doublets: [
+    {
+      text: "C1",
+      fromSurface: "9",
+      toSurface: "11",
+    },
+    {
+      text: "C2",
+      fromSurface: "13",
+      toSurface: "15",
+    },
+  ],
+  layout: {
+    yScFill: 0.7,
+  },
+  checks: {
+    gapSagFrac: 0.95,
+  },
 } satisfies LensDataV2Input;
 
 export default LENS_DATA;
