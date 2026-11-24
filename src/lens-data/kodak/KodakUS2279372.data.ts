@@ -49,8 +49,9 @@ const LENS_DATA = {
   elements: [
     {
       id: 1,
-      name: "L1",
-      label: "Element 1",
+      name: "I",
+      diagramLabel: "I",
+      label: "Front element",
       type: "Positive Meniscus",
       focalLengthMm: 59.39,
       nd: 1.616,
@@ -61,8 +62,9 @@ const LENS_DATA = {
     },
     {
       id: 2,
-      name: "L2",
-      label: "Element 2",
+      name: "II",
+      diagramLabel: "II",
+      label: "Middle element",
       type: "Biconcave Negative",
       focalLengthMm: -33.47,
       nd: 1.649,
@@ -73,8 +75,9 @@ const LENS_DATA = {
     },
     {
       id: 3,
-      name: "L3",
-      label: "Element 3",
+      name: "III",
+      diagramLabel: "III",
+      label: "Rear element",
       type: "Biconvex Positive",
       focalLengthMm: 52.29,
       nd: 1.616,
@@ -132,7 +135,7 @@ const LENS_DATA = {
   ],
   focus: {
     closeFocusM: 1e15,
-    description: "Infinity focus only; the patent gives no close-focus data.",
+    description: "Fixed at infinity in this model. The patent gives no focusing movement or close-focus distance.",
   },
   aperture: {
     nominalFNumber: 3.5,
