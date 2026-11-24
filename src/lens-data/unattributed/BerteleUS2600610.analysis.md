@@ -22,6 +22,8 @@ The patent gives Example I at nominal focal length 100 mm and f/1.44, with a 45.
 
 Seven elements form three air-separated components: a positive front singlet, a negative middle triplet and a positive rear triplet, arranged as 1 | 2+3+4 | 5+6+7. The middle triplet is cemented at R4 and R5; the rear triplet is cemented at R8 and R9. R7 is the plane front surface of element 5. All curved surfaces are spherical.
 
+The cross-section uses Figure 1's L1–L7 identifiers for the individual elements. C1 spans the middle cemented triplet and C2 spans the rear cemented triplet.
+
 The front component has focal length +127.74 mm. The middle and rear cemented components have focal lengths −147.92 mm and +91.80 mm respectively. These component powers differ from the individual elements' focal lengths measured in air.
 
 The 0.3 mm front air space and 14.9 mm central air space follow Table I. The first-to-last surface distance is 75.45 mm, and the total distance from the first vertex to the computed image plane is 119.15 mm.
@@ -50,7 +52,7 @@ The text and claims explicitly define the refractive indices for the d-line, des
 
 Element 5 matches Sumita KF8: its catalogue dispersion curve gives nd 1.51118 and ν 50.92, compared with the printed 1.5112 and 50.9. The differences are Δn = −0.00002 and Δν = +0.02. The curve does not establish the historical supplier or melt.
 
-Elements 3, 6 and 7 use spectral proxies: S-FSL5 (Ohara), with Δn = −0.00001 and Δν = +0.24; BAF11 (Sumita), with Δn = +0.00012 and Δν = −0.02; and BACD2 (Hoya), with Δn = +0.00018 and Δν = +0.01, respectively. These catalog-minus-printed differences are within index 0.002 and Abbe number 0.25 at helium d. The catalog curves supply only the dispersion-curve shape, so colour analysis follows real glass curves while retaining the printed indices and Abbe numbers. They do not identify Bertele's historical suppliers or melts.
+Elements 3, 6 and 7 use spectral proxies: S-FSL5 (Ohara), with Δn = −0.00001 and Δν = +0.24; BAF11 (Sumita), with Δn = +0.00012 and Δν = −0.02; and BACD2 (Hoya), with Δn = +0.00018 and Δν = +0.01, respectively. These differences from the printed values are within the site's spectral-proxy tolerance of 0.002 in index and 0.25 in Abbe number at helium d. Each curve supplies the wavelength dependence, anchored at the printed d-line index. The printed Abbe numbers are retained in the prescription. The historical suppliers and melts remain unknown.
 
 Elements 1, 2 and 4 remain labelled Unmatched because no catalog row is within that tolerance. The patent supplies no additional spectral indices or partial dispersions; colour predictions for these three glasses rely on estimates from their Abbe numbers.
 
@@ -68,7 +70,7 @@ The paraxial aperture is f/1.44. Pupil aberration makes the real-ray entrance ap
 
 The patent's 45.0° field extends to ±22.5°. At 22.5°, the real chief ray reaches an image semi-height of 42.635 mm at the paraxial image plane. Twice that height gives the model's 85.27 mm image circle. This diameter follows the stated field and computed chief ray; it does not identify a camera format or establish uniform illumination or sharpness across the field.
 
-Clear semi-diameters are not tabulated. Figure 1 supports square rims at R1–R2 = 36 mm and R3–R5 = 32 mm. Its expanded front air gap and approximate arc shapes prevent an exact scale fit, so these are inferred from the drawing's relative heights. The rear values are R6 = 21.2 mm, R7–R8 = 21 mm, R9 = 20.16 mm and R10 = 26.5 mm. R9 stays below the model's surface-slope limit: the approximately 21 mm drawn rim would require a 69.6° rim angle, beyond the 64.2° limit. Straight rim joins approximate the chamfered shoulders at R6, R7 and R9; no flat lands are specified.
+Clear semi-diameters are not tabulated. Figure 1 supports square rims at R1–R2 = 36 mm and R3–R5 = 32 mm. Its expanded front air gap and approximate arc shapes prevent an exact scale fit, so these are inferred from the drawing's relative heights. The rear values are R6 = 21.2 mm, R7–R8 = 21 mm, R9 = 20.16 mm and R10 = 26.5 mm. The equal R7 and R8 rims give the rear triplet a level front edge. R9 stays below the model's surface-slope limit: the approximately 21 mm drawn rim would require a 69.6° rim angle, beyond the 64.2° limit. The drawing shows a bevel and a flat outer edge on each of L4 and L7. The model approximates each shoulder with a straight sloped join between the optical rims.
 
 The axial beam and the 22.5° chief ray clear the rims. Geometric transmission at the field edge, evaluated over the diaphragm opening, is about 40%. This describes geometric vignetting, without coating losses or measured image quality. All clear radii remain estimates rather than printed dimensions.
 
