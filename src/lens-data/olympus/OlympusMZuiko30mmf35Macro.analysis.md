@@ -43,8 +43,8 @@ part of the patent's optical path, behind the seven powered elements.
 
 The prescription retains the printed radii, spacings, d-line glass values and aspheres. The plate and gaps put
 the image plane 73.69 mm behind the front vertex, 0.025 mm behind paraxial focus at infinity. The clear radii
-and the land on surface 6 are estimated from Fig. 6C. The plate has no clear radius of its own because the
-patent prints none. The calculated 4.686 mm iris radius follows the printed infinity aperture. At infinity
+are estimated from Fig. 6C. The rear face of L1 and the front face of L3 each end short of the edge with a flat
+step, as Fig. 6B and 6C draw them. The plate has no clear radius of its own because the patent prints none. The calculated 4.686 mm iris radius follows the printed infinity aperture. At infinity
 the chief ray reaches the Four Thirds corner at 10.82 mm image height and 19.4° half-field.
 
 ## Element-by-Element Analysis
@@ -53,7 +53,7 @@ The element focal lengths are paraxial values for each element in air.
 
 ### L1 — Biconcave negative, double aspheric
 
-$n_d = 1.58913$, $\nu_d = 61.15$. Glass: S-BAL35 (Ohara). Focal length −15.32 mm.
+$n_d = 1.58913$, $\nu_d = 61.15$. Glass: L-BAL35 (Ohara). Focal length −15.32 mm.
 
 The negative front element of G1 has a shallow front and much stronger rear curvature. The patent links this
 configuration to reducing off-axis aberrations and moving the principal point toward the object, which helps
@@ -138,7 +138,7 @@ signed sum of polynomial terms at each estimated clear rim, relative to the base
 | Element / surface |    $k$ |       $A_4$ |       $A_6$ |       $A_8$ |     $A_{10}$ | Rim departure (mm) |
 | ----------------- | -----: | ----------: | ----------: | ----------: | -----------: | -----------------: |
 | L1 / 1A           |      0 | −3.32176e−5 |  5.48670e−7 | −1.44850e−8 |  1.39256e−10 |             −0.045 |
-| L1 / 2A           | −1.967 |  1.28821e−4 | −6.24774e−8 | −1.87604e−8 |  2.57096e−10 |             +0.200 |
+| L1 / 2A           | −1.967 |  1.28821e−4 | −6.24774e−8 | −1.87604e−8 |  2.57096e−10 |             +0.130 |
 | L5 / 9A           |      0 | −2.85655e−5 | −1.62203e−7 |  3.86801e−9 | −7.91556e−11 |             −0.088 |
 | L5 / 10A          |      0 |  7.16927e−5 |  1.84655e−7 | −1.83473e−9 | −2.03651e−11 |             +0.178 |
 | L6 / 11A          |      0 | −9.84785e−6 |  1.29117e−6 | −3.74635e−8 |  3.33054e−10 |             +0.011 |

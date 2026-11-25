@@ -51,11 +51,13 @@ clear radii at all three printed spacings.
 ## Values Not Printed in the Patent
 
 Clear radii follow the optical outlines in Fig. 6C at 26.04 pixels per millimetre on the 600 dpi page image.
-Surface 6 has a 5.3 mm clear radius and a flat land out to the 5.9 mm outer edge.
+Surface 2A has a 5.8 mm clear radius and a flat land out to the 6.5 mm outer edge. Surface 6 has a 5.3 mm clear
+radius and a flat land out to the 5.9 mm outer edge.
 
 | Surface                    | First clear radius (mm) | Fig. 6C clear radius (mm) |
 | -------------------------- | ----------------------: | ------------------------: |
-| 1A, 2A                     |                3.3, 3.3 |                       6.5 |
+| 1A                         |                     3.3 |                       6.5 |
+| 2A                         |                     3.3 |                       5.8 |
 | 3, 4                       |                3.5, 3.5 |                       6.0 |
 | 6                          |                     3.8 |                       5.3 |
 | 7                          |                     4.2 |                       5.9 |
@@ -120,7 +122,7 @@ in the model. [Olympus specifications](https://jp.omsystem.com/product/lens/macr
 
 | Element | Catalog glass   | Supplier |         Δnd |     Δνd |
 | ------- | --------------- | -------- | ----------: | ------: |
-| L1      | S-BAL35         | Ohara    | −8.99 × 10⁻⁸ | −0.0150 |
+| L1      | L-BAL35         | Ohara    | −4.40 × 10⁻⁷ | +0.0026 |
 | L2      | S-BAH28         | Ohara    | −1.75 × 10⁻⁷ | +0.0056 |
 | L3      | S-TIH14         | Ohara    | +7.43 × 10⁻⁷ | −0.0021 |
 | L4      | S-LAH52         | Ohara    | −4.17 × 10⁻⁶ | +0.0050 |
@@ -158,6 +160,44 @@ at a 19.4° half-field.
 
 - The camera-side plate is labelled S-BSL7 (Ohara), whose catalog index and Abbe number equal the printed
   1.51633 and 64.14. The catalog row supplies the plate's dispersion curve.
+
+2026-11-24 final check against the drawing:
+
+- The drawn section was compared once more with Fig. 6A–C and the Olympus drawing. On the 300 dpi image of
+  Fig. 6C the first and last lens vertices are 665 pixels apart, which gives 13.09 pixels per millimetre. The
+  element edges read 6.5 mm for L1, 6.0 mm for L2, 5.8–5.9 mm for L3, 6.4–6.5 mm for L4, 6.9–7.1 mm for L5,
+  7.4–7.6 mm for L6 and 11.9–12.1 mm for L7. Every outer height stays.
+- Surface 2A: the clear radius changed from 6.5 mm to 5.8 mm, and a flat land now runs out to the unchanged
+  6.5 mm edge. Fig. 6B and 6C end the concave rear face of L1 with a short stroke square to the axis, above
+  and below the axis in both panels. The curve ends 5.6–5.9 mm from the axis, 0.86–0.90 of the edge height.
+  L1's drawn edge is 3.1 mm thick, which the surface gives at 5.8 mm. With the curve carried out to 6.5 mm
+  the edge was 3.6 mm thick. The Olympus drawing shows the same step on the rear of L1. The 5.8 mm value is
+  at the upper end of the readings, which keeps the change and its cost in light small.
+  [Olympus construction drawing](https://jp.omsystem.com/content/000083238.jpg)
+- With the land on surface 2A, illumination at the Four Thirds corner, calculated with collimated light,
+  falls from 74.1% to 73.0% at infinity, from 75.3% to 74.2% at the 0.5× spacing and from 75.5% to 74.3% at
+  the 1× spacing. At 16.6° it falls from 82.8% to 82.2% at infinity, and nothing changes inside 14°. A fan
+  of rays from a real object point imaged at the 10.82 mm corner fills 73.9% of the iris diameter at 0.5×,
+  against 74.5% before, and 72.1% at 1× before and after. The aperture stays f/3.56, the rims still allow a
+  23.0° half-field, and the corner chief ray still arrives at 19.4°.
+- The land on surface 6 costs no light at any focus position and stays as drawn. Its curve ends 5.0–5.1 mm
+  from the axis in Fig. 6C. The 5.3 mm clear radius is within the reading error and stays.
+- L4's edge still slopes from 5.9 mm to 6.5 mm. Raising surface 7 to 6.5 mm would square L4 and slope the
+  edge of L3 instead, with no difference in light, so the shared face keeps L3's height.
+- The glass labels now name each catalog's maker: Ohara for L1–L4, L6 and L7, and Hoya for L5. Apart from
+  L1, described next, the catalog rows and dispersion curves are the same as before.
+- L1 is labelled L-BAL35 (Ohara), a low-softening-temperature glass for moulded aspheres whose index of 1.58913
+  and Abbe number of 61.15 equal the printed pair. S-BAL35 has the same index and an Abbe number 0.015 lower.
+- The aspheric marks sit on surfaces 1, 2, 9, 10, 11 and 12, the six the patent stars. The stop sits between
+  L2 and L3, the brackets follow the patent's G1–G4, and one bracket joins L3 and L4. L1, L5 and L6 carry
+  the DSA, EDA and aspherical designations that the Olympus drawing colours.
+- The 36 focus positions run from infinity to 1× in order. The gap before G3 grows from 1.80 mm to 15.56 mm
+  and the gap behind it shrinks from 19.92 mm to 6.16 mm without a reversal, so G3 moves 13.76 mm toward
+  the image while every other group stays fixed. The distance readout gives 13 cm at 0.5× and 10 cm at 1×,
+  in agreement with 128.49 mm and 97.61 mm from object to image.
+- Every element and the camera-side plate has a catalog dispersion curve. Paraxial focus for the C and F
+  lines lies 0.025 mm behind and 0.004 mm ahead of the d line. Fig. 12A draws the three lines within about
+  0.03 mm of each other.
 
 ## Remaining Questions
 

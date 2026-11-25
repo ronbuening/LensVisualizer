@@ -3,8 +3,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /**
  * US 9,791,677 B2, Example 6. The radii, spacings, d-line indices, Abbe numbers,
  * aspheres and camera-side plate follow the patent at its printed millimetre scale.
- * The image plane is 0.75 mm behind the plate. The clear radii and land on
- * surface 6 follow Fig. 6C, and the iris radius follows the infinity f/3.56.
+ * The image plane is 0.75 mm behind the plate. The clear radii follow Fig. 6C,
+ * and the lands on surfaces 2A and 6 follow Fig. 6B and 6C: each curve ends
+ * short of the edge and a flat step runs out to it. The iris radius follows
+ * the infinity f/3.56.
  * The plate has no clear radius, because the patent prints none.
  * The patent prints f/3.56, f/4.07 and f/5.04 at infinity, 0.5× and 1×.
  * With the iris held at its infinity size, surfaces 7, 8, 9A and 10A clip
@@ -58,7 +60,7 @@ const LENS_DATA = {
       nd: 1.58913,
       vd: 61.15,
       indexReference: "d",
-      glass: "S-BAL35",
+      glass: "L-BAL35 (Ohara)",
       focalLengthMm: -15.32,
       role: "Dual Super Aspherical (DSA) negative front element that helps control off-axis aberrations.",
       diagramLabel: "L1",
@@ -71,7 +73,7 @@ const LENS_DATA = {
       nd: 1.72342,
       vd: 37.95,
       indexReference: "d",
-      glass: "S-BAH28",
+      glass: "S-BAH28 (Ohara)",
       focalLengthMm: 15.54,
       role: "Positive element that balances L1 and leaves G1 weakly positive.",
       diagramLabel: "L2",
@@ -84,7 +86,7 @@ const LENS_DATA = {
       nd: 1.76182,
       vd: 26.52,
       indexReference: "d",
-      glass: "S-TIH14",
+      glass: "S-TIH14 (Ohara)",
       cemented: "C1",
       focalLengthMm: -11.62,
       role: "High-dispersion negative member of the cemented pair that helps correct color in G2.",
@@ -98,7 +100,7 @@ const LENS_DATA = {
       nd: 1.79952,
       vd: 42.22,
       indexReference: "d",
-      glass: "S-LAH52",
+      glass: "S-LAH52 (Ohara)",
       cemented: "C1",
       focalLengthMm: 17.1,
       role: "High-index positive member that offsets most of the negative power of L3.",
@@ -112,7 +114,7 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.61,
       indexReference: "d",
-      glass: "FCD1",
+      glass: "FCD1 (Hoya)",
       focalLengthMm: 19.08,
       role: "Extra-low-dispersion aspherical (EDA) element that makes G2 net positive.",
       diagramLabel: "L5",
@@ -127,7 +129,7 @@ const LENS_DATA = {
       nd: 1.51633,
       vd: 64.06,
       indexReference: "d",
-      glass: "L-BSL7",
+      glass: "L-BSL7 (Ohara)",
       focalLengthMm: -27.74,
       role: "Double-aspheric negative element that moves toward the image for close focus.",
       diagramLabel: "L6",
@@ -140,7 +142,7 @@ const LENS_DATA = {
       nd: 1.83481,
       vd: 42.73,
       indexReference: "d",
-      glass: "S-LAH55V",
+      glass: "S-LAH55V (Ohara)",
       focalLengthMm: 45.88,
       role: "Fixed positive rear element that converges the beam after G3.",
       diagramLabel: "L7",
@@ -165,7 +167,7 @@ const LENS_DATA = {
       label: "2A",
       R: 9.864,
       d: 1.57,
-      sd: 6.5,
+      sd: 5.8,
       asphere: {
         K: -1.967,
         A4: 0.000128821,
@@ -173,6 +175,7 @@ const LENS_DATA = {
         A8: -1.87604e-8,
         A10: 2.57096e-10,
       },
+      rimExtensionSd: 6.5,
     },
     {
       label: "3",
