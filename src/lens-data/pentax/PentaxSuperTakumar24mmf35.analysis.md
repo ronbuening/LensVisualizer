@@ -1,61 +1,96 @@
+# PENTAX SUPER-TAKUMAR 24mm f/3.5
+
 ## Patent Reference and Design Identification
 
-**Patent:** US 3545845 A, Compact wide angle objective lens system with long back focal length
-**Application Number:** US743854A
-**Filed:** 1968-07-10; Japanese priority 1967-07-24
-**Granted:** 1970-12-08
-**Inventor:** Yasuo Takahashi
-**Applicant:** Asahi Kogaku Kogyo Co., Ltd.
-**Example details:** Sole Table I and Figure 1. Nine physical glass elements in eight air-separated groups.
+**Patent:** US 3,545,845, _Compact Wide Angle Objective Lens System with Long Back Focal Length_\
+**Inventors:** Yasuo Takahashi\
+**Assignee:** Asahi Kogaku Kogyo Co., Ltd.\
+**Priority:** July 24, 1967, Japan\
+**Filed:** July 10, 1968\
+**Published:** December 8, 1970\
+**Example details:** Table I gives the prescription drawn in Fig. 1. The claim repeats the same table.
 
-Private numerical reconstruction for the M42 Super-Takumar 24mm f/3.5 variant. The parent independently registered its 9/8 section against the manufacturer-authored Pentax SL manual, printed p21. That comparison is a cross-workspace witness: the actual overlay/manual crop is not locally in custody here. No new local overlay RMS or factory-exact prescription claim is made. This is distinct from the K-mount 24mm f/2.8. Photons to Photos' differently labeled smc reference is documentary context and did not supply model values.
+The strongest link to the Super-Takumar is the section on printed page 24 of the Asahi Pentax SL manual. It shows two negative front menisci with a positive lens between them, a thick fourth lens with a concave front, and a single cemented pair immediately behind the diaphragm. Even the nearly plane rear face of L2 and the plane front of L9 agree with Fig. 1. Both sections have nine elements in eight groups. The table specifies spherical or plane faces throughout, and neither source designates an ED element. The patent contains one numerical example. The agreement identifies the layout with confidence, although the manual gives no factory radii or glass constants. [Asahi Pentax SL manual, p. 24](https://www.cameramanuals.org/pentax_pdf/asahi%20pentax_sl.pdf#page=27) · [Patent, Fig. 1 and Table I](https://patents.google.com/patent/US3545845A/en)
 
-Original four-page US PDF was acquired and visually inspected locally. Both original Table I printings agree; notably source d7 is 11.0 and r15 is -124.5. Original shared r12/r13=-116.0 is one actual cemented interface. No invented adhesive layer.
-
-The source states nominal f=100, f/3.5. Its literal d-line numbers independently compute EFL98.5649413980 source units. A single uniform dimensional multiplier **0.2434942856921586** makes the literal computed EFL24.000000mm. Every radius, thickness, air gap and stop offset receives that same scale; indices do not change. This is normalization, not a fit of individual optical parameters. The simpler nominal100-to24 multiplier0.24 would yield23.655585936mm and is not the chosen model.
-
-The source prints no terminal image spacing. The model therefore explicitly uses a **derived paraxial infinity BFD36.013662460745mm**, detector z89.217163884482mm, without an additional defocus optimization. This plane is not factory film/register metrology. The table and scale remain separately preserved in LITERAL.json.
+Asahi lists 24 mm, f/3.5 and an 84° diagonal field. The patent gives f/3.5 and plots aberrations to 41.5° off axis, an 83° full field. Its stated focal length is 100. Multiplying all lengths by 0.24 gives the nominal 24 mm scale. The printed prescription yields 23.66 mm, and its chief ray reaches the corner of a 36 × 24 mm frame at 43.1° at infinity. [Honeywell Pentax SL manual, Super-Takumar 24mm entry](https://www.cameramanuals.org/pentax_pdf/pentax_sl.pdf) · [Patent, Fig. 2 and Table I](https://patents.google.com/patent/US3545845A/en)
 
 ## Optical Architecture
 
-A negative front meniscus precedes a positive lens, another negative meniscus, a thick weak meniscus, a positive biconvex element, a positive/negative cemented doublet, a rear positive meniscus and a positive plano-convex final element. The long-back-focus architecture is retained literally, including the close0.5-source-unit air gaps. There is no filter/cover plate in Table I, and none is added.
+The back focal distance is 35.50 mm, or 1.501 times the effective focal length. The long clearance for the reflex mirror comes from the retrofocus arrangement. L1–L3 act together as a negative lens of −29.22 mm focal length. L4 is the thickest element at 8.40 mm, yet has the least power. Takahashi explains that its thickness and that of L5 help keep the front diameter small. He also relates the concave front face of L4 to the balance between coma and back focus. [Patent, columns 2–3](https://patents.google.com/patent/US3545845A/en)
 
-The original explicitly places the diaphragm4 source units behind its tenth face, within the5-unit gap. The operational model retains that position: split0.973977142769/0.243494285692mm. Iris radius and all optical clear rims are estimates, not factory mechanical aperture dimensions.
+The diaphragm lies 0.96 mm behind L5 and 0.24 mm ahead of L6. Its axial position is printed. Its 5.58 mm radius follows from the f/3.5 entrance pupil. The glass rims come from the ends of the optical faces in Fig. 1, scaled against the 52.44 mm distance between the first and last vertices. The last vertex to film distance comes from paraxial focus. The off-axis bundle is partly vignetted at full aperture even though the corner chief ray clears every rim.
 
 ## Element-by-Element Analysis
 
-| Element | Source nd/Vd | Topology |
-|---|---|---|
-| E1 |1.51633/64.1|Front negative meniscus|
-| E2 |1.83630/30.4|Positive element|
-| E3 |1.62041/60.3|Negative meniscus|
-| E4 |1.51633/64.1|Thick weak meniscus|
-| E5 |1.55690/48.5|Positive biconvex|
-| E6 |1.56883/56.0|Positive doublet member|
-| E7 |1.69895/30.0|Negative member cemented to E6|
-| E8 |1.58487/53.0|Rear positive meniscus|
-| E9 |1.56732/42.8|Plano-convex final element|
+The focal lengths below are for the individual thick elements in air.
 
-## Glass Identification and Selection
+### L1 — negative meniscus
 
-Printed nd/Vd pairs are used directly. No stock-glass names, material equivalence, dispersion or broadband color performance is inferred. The patent identifies d-line aberration plots. Runtime calculations use helium d587.5618nm; only that monochromatic convention is tested.
+nd = 1.51633, νd = 64.1, Ohara S-BSL7 equivalent, f = −104.25 mm.
+
+Its wide front face admits oblique rays. The more strongly curved rear face starts the divergence.
+
+### L2 — positive meniscus
+
+nd = 1.83630, νd = 30.4, no catalog match, f = +71.67 mm.
+
+The highest-index glass in the lens gives positive power between L1 and L3 despite the nearly plane rear face.
+
+### L3 — negative meniscus
+
+nd = 1.62041, νd = 60.3, Ohara S-BSM16 equivalent, f = −25.87 mm.
+
+Its steep rear face provides most of the front section’s negative power.
+
+### L4 — negative meniscus
+
+nd = 1.51633, νd = 64.1, Ohara S-BSL7 equivalent, f = −436.35 mm.
+
+Its thickness separates the front section from L5 with little added power.
+
+### L5 — biconvex
+
+nd = 1.55690, νd = 48.5, no catalog match, f = +45.56 mm.
+
+Both surfaces turn the diverging beam toward the axis before it reaches the diaphragm.
+
+### L6 — biconvex
+
+nd = 1.56883, νd = 56.0, Schott N-BAK4 equivalent, f = +18.99 mm.
+
+The positive member of the cemented doublet receives the beam immediately behind the stop.
+
+### L7 — biconcave
+
+nd = 1.69895, νd = 30.0, Sumita SF15 equivalent, f = −13.89 mm.
+
+Its higher dispersion and stronger negative power balance L6. Together they have a focal length of −106.22 mm.
+
+### L8 — positive meniscus
+
+nd = 1.58487, νd = 53.0, no catalog match, f = +68.44 mm.
+
+Its more strongly curved rear face adds convergence after the negative doublet.
+
+### L9 — plano-convex
+
+nd = 1.56732, νd = 42.8, Ohara S-TIL26 equivalent, f = +45.01 mm.
+
+A 0.12 mm air gap separates its plane face from L8. Its convex rear face supplies the final refracting power.
+
+## Glass Identification
+
+The patent gives refractive indices and Abbe numbers and refers its aberration curves to the helium d line. Six elements have catalog equivalents consistent with both printed values. The optical contrast matters most at the L6/L7 cemented face. The index rises by 0.13012 there. Takahashi relates that index difference and the common radius to the correction of spherical aberration and to a positive Petzval sum. The patent leaves the glass suppliers unidentified. [Patent, columns 3–5](https://patents.google.com/patent/US3545845A/en)
+
+L8 is the principal uncertainty. Both printings give 1.58487, which yields a focal length of 98.565 on the patent’s scale. Trying 1.56883, the value printed for L6, gives 100.004. It also gives spherical aberration coefficients of 4.61 and 8.01 for faces 16 and 18, close to Table II’s 4.61 and 8.00. That agreement suggests an error in the patent. The available evidence does not identify L8’s glass, so the model uses the printed 1.58487 and νd 53.0.
 
 ## Focus Mechanism
 
-Only a stationary infinity configuration is represented. No unit-focus travel, close distance, floating group, or finite mode is sourced or qualified.
-
-## Scoped Numerical Validation and Limits
-
-Default native import/serialization and full authored geometry pass, with zero render trim and no override. At f/3.5-control and f/8-control, all1173 samples per field at -5,-2.5,0,+2.5,+5degrees reach the fixed derived plane, with no cap loss or unexplained failure. Independent spherical Snell intersections and native intersections agree within2.03e-13mm. Caps are conservative estimates from actual scoped rays, and do not constitute full factory rims or84degree coverage.
-
-The two native calculated physical iris radii are5.661753179393mm and2.477017015984mm. Independent real axial entrance ratios are approximately f/3.585618 andf/8.034978 respectively. Thus the f-number controls are explicit paraxial model controls, not exact physical factory iris measurements.
-
-Native geometric and scalar sheared-pupil diffraction MTF converge at0,approximately2.50314 and4.99972degrees,5/10/20/40lp/mm, no focus shift and zero unknown flux. Independent geometric Fourier pupil-grid64/96 checks differ from native by at most0.003494 and between grids by0.001940. These are simulations of the normalized prescription, not measured production performance. Existing targeted Builder, diagram geometry and MTF tests:201 pass.
-
-**HOLD:** Actual desktop/mobile Builder import/render/control/export/reload QA is not completed. The parent's registered production overlay/manual artifact still needs exact custody transfer for the complete QA handoff. No full field, finite, broadband, measured product performance or factory-exact claim. No delivery or release.
+The production lens focuses manually down to 0.25 m. The patent gives only the infinity layout. The model assumes unit focus, with all nine elements and the diaphragm moving 3.30 mm toward the subject. The back gap then grows from 35.4968 to 38.7951 mm, placing an object 250.00 mm from the film in paraxial focus. The absolute magnification is 0.139×. Pentax Forums lists 0.12× for the production lens. Neither the patent nor the SL diagram gives a measured close-focus displacement. [Asahi Pentax SL manual, p. 24](https://www.cameramanuals.org/pentax_pdf/asahi%20pentax_sl.pdf#page=27) · [Pentax Forums, Super-Takumar product 43961](https://www.pentaxforums.com/lensreviews/S-M-C-Super-Takumar-24mm-F3.5.html)
 
 ## Sources
 
-- Original US publication: https://patentimages.storage.googleapis.com/8b/19/a1/7cd0d9bad46a68/US3545845.pdf
-- Structured cross-reference: https://patents.google.com/patent/US3545845A/en
-- Parent-witness production manual: https://www.cameramanuals.org/pentax_pdf/pentax_sl.pdf, printed p21. Local retrieval rate-limited; no retry or local custody claim.
+- Takahashi’s drawings, glass data, stop position and Seidel coefficients appear in [US 3,545,845, Figs. 1–2 and Tables I–II](https://patents.google.com/patent/US3545845A/en).
+- The production section and the aperture, angle of view and minimum focus specifications appear in the [Asahi Pentax SL manual, printed p. 24](https://www.cameramanuals.org/pentax_pdf/asahi%20pentax_sl.pdf#page=27). The [Honeywell edition](https://www.cameramanuals.org/pentax_pdf/pentax_sl.pdf) also illustrates the lens.
+- The later Super-Multi-Coated Takumar has the same arrangement in its [Honeywell/Asahi dimensioned cutaway](http://whitemetal.com/pentax/smct_24_35/smct_24_35_cutaway.gif).
+- The M42 mount, 35 mm film format, five-blade automatic diaphragm and 0.12× magnification are listed with photographs of both screw-mount versions in the [Pentax Forums lens database](https://www.pentaxforums.com/lensreviews/S-M-C-Super-Takumar-24mm-F3.5.html).

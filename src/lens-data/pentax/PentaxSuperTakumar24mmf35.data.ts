@@ -1,270 +1,190 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
-/** Private source-normalized numerical prototype only; actual browser QA not passed. */
+
+/**
+ * US 3,545,845, sole example, Table I and Fig. 1. Yasuo Takahashi gives radii,
+ * axial spacings and d-line glass constants for nominal f = 100. Multiplying
+ * all lengths by 0.24 gives the 24 mm scale. With the printed L8 index of
+ * 1.58487, the focal length is 23.66 mm. An index of 1.56883 would reproduce
+ * the nominal focal length and more closely match the Seidel sums in Table II.
+ *
+ * Each clear semi-diameter is measured from the curved or plane face in Fig. 1.
+ * The diaphragm sits at the published position 0.96 mm behind face 10. Its
+ * radius follows from f/3.5. The infinity image gap is the paraxial back focus.
+ * The near gap assumes the whole lens moves toward the object to reach Asahi's
+ * 0.25 m minimum. The patent gives only the infinity spacings.
+ */
 const LENS_DATA = {
-  "schema": 2,
-  "key": "pentax-super-takumar-24mm-f35-m42",
-  "visible": false,
-  "maker": "Pentax",
-  "name": "ASAHI SUPER-TAKUMAR 24mm f/3.5 M42",
-  "subtitle": "US3545845A sole Table I; parent production-overlay witness, not factory exact",
-  "source": {
-    "patentNumber": "US 3545845 A",
-    "patentYear": 1970,
-    "authors": [
-      "Yasuo Takahashi"
+  schema: 2,
+  key: "pentax-super-takumar-24mm-f35",
+  visible: true,
+  maker: "Pentax",
+  name: "PENTAX SUPER-TAKUMAR 24mm f/3.5",
+  subtitle: "US 3,545,845, sole example — Asahi / Takahashi",
+  source: {
+    patentNumber: "US 3,545,845",
+    patentYear: 1970,
+    example: { label: "Sole example", id: null },
+    authors: ["Yasuo Takahashi"],
+    assignees: ["Asahi Kogaku Kogyo Co., Ltd."],
+    sdSource: "figure-measured",
+    errata: [
+      {
+        status: "unresolved",
+        note: "Both copies of Table I give L8 an index of 1.58487. The resulting focal length is 98.565 against the stated 100, a shortfall of 1.44%. An index of 1.56883 gives 100.004 and brings the spherical aberration coefficients for faces 16 and 18 closer to Table II. The prescription retains the printed index.",
+      },
     ],
-    "assignees": [
-      "Asahi Kogaku Kogyo Co., Ltd."
-    ],
-    "example": {
-      "label": "Sole example",
-      "id": null
-    },
-    "sdSource": "heuristic"
   },
-  "catalog": {
-    "lensMounts": [
-      "m42"
-    ],
-    "elementCount": 9,
-    "groupCount": 8,
-    "focalLengthMm": {
-      "marketing": 24,
-      "design": 24
-    },
-    "fNumber": {
-      "marketing": 3.5,
-      "design": 3.5
-    },
-    "specs": [
-      "Exact M42 Super-Takumar 9/8 variant, not K-mount24/2.8 or third-party smc label.",
-      "One uniform scale24/98.5649413980 from literal source; no individual prescription fit.",
-      "Unpublished image gap: derived monochromatic infinity plane; no factory flange or close-focus claim.",
-      "Source stop axial offset4 behind face10; radius and optical clear caps estimated."
-    ]
+  catalog: {
+    lensMounts: ["m42"],
+    imageFormat: "135-full-frame",
+    elementCount: 9,
+    groupCount: 8,
+    focalLengthMm: { marketing: 24, design: 23.66 },
+    fNumber: { marketing: 3.5, design: 3.5 },
+    closeFocusM: { marketing: 0.25 },
+    specs: ["9 ELEMENTS / 8 GROUPS", "ALL SPHERICAL", "DESIGN f = 23.66 mm", "RETROFOCUS"],
   },
-  "elements": [
+  elements: [
     {
-      "id": 1,
-      "name": "E1",
-      "label": "Element 1",
-      "type": "Lens",
-      "nd": 1.51633,
-      "vd": 64.1,
-      "indexReference": "d"
+      id: 1,
+      name: "L1",
+      label: "Element 1",
+      type: "Negative Meniscus",
+      nd: 1.51633,
+      vd: 64.1,
+      indexReference: "d",
+      focalLengthMm: -104.25,
+      glass: "S-BSL7 (Ohara equivalent)",
+      role: "The large front meniscus admits oblique rays and starts the diverging front section.",
     },
     {
-      "id": 2,
-      "name": "E2",
-      "label": "Element 2",
-      "type": "Lens",
-      "nd": 1.8363,
-      "vd": 30.4,
-      "indexReference": "d"
+      id: 2,
+      name: "L2",
+      label: "Element 2",
+      type: "Positive Meniscus",
+      nd: 1.8363,
+      vd: 30.4,
+      indexReference: "d",
+      focalLengthMm: 71.67,
+      glass: "Unmatched (nd 1.83630 / νd 30.4)",
+      role: "A high-index lens with a nearly flat rear face adds positive power between the two front negative menisci.",
     },
     {
-      "id": 3,
-      "name": "E3",
-      "label": "Element 3",
-      "type": "Lens",
-      "nd": 1.62041,
-      "vd": 60.3,
-      "indexReference": "d"
+      id: 3,
+      name: "L3",
+      label: "Element 3",
+      type: "Negative Meniscus",
+      nd: 1.62041,
+      vd: 60.3,
+      indexReference: "d",
+      focalLengthMm: -25.87,
+      glass: "S-BSM16 (Ohara equivalent)",
+      role: "The steep rear face supplies most of the diverging power at the front of the lens.",
     },
     {
-      "id": 4,
-      "name": "E4",
-      "label": "Element 4",
-      "type": "Lens",
-      "nd": 1.51633,
-      "vd": 64.1,
-      "indexReference": "d"
+      id: 4,
+      name: "L4",
+      label: "Element 4",
+      type: "Negative Meniscus",
+      nd: 1.51633,
+      vd: 64.1,
+      indexReference: "d",
+      focalLengthMm: -436.35,
+      glass: "S-BSL7 (Ohara equivalent)",
+      role: "This thick, weak meniscus spaces the front lenses from the stop. Its concave front face helps control coma.",
     },
     {
-      "id": 5,
-      "name": "E5",
-      "label": "Element 5",
-      "type": "Lens",
-      "nd": 1.5569,
-      "vd": 48.5,
-      "indexReference": "d"
+      id: 5,
+      name: "L5",
+      label: "Element 5",
+      type: "Biconvex Positive",
+      nd: 1.5569,
+      vd: 48.5,
+      indexReference: "d",
+      focalLengthMm: 45.56,
+      glass: "Unmatched (nd 1.55690 / νd 48.5)",
+      role: "This biconvex element bends the diverging beam toward the axis immediately ahead of the diaphragm.",
     },
     {
-      "id": 6,
-      "name": "E6",
-      "label": "Element 6",
-      "type": "Lens",
-      "nd": 1.56883,
-      "vd": 56.0,
-      "indexReference": "d",
-      "cemented": "D1"
+      id: 6,
+      name: "L6",
+      label: "Element 6",
+      type: "Biconvex Positive",
+      nd: 1.56883,
+      vd: 56,
+      indexReference: "d",
+      focalLengthMm: 18.99,
+      glass: "N-BAK4 (Schott equivalent)",
+      cemented: "D1",
+      role: "The converging member of the doublet behind the stop shares its rear surface with the more dispersive L7.",
     },
     {
-      "id": 7,
-      "name": "E7",
-      "label": "Element 7",
-      "type": "Lens",
-      "nd": 1.69895,
-      "vd": 30.0,
-      "indexReference": "d",
-      "cemented": "D1"
+      id: 7,
+      name: "L7",
+      label: "Element 7",
+      type: "Biconcave Negative",
+      nd: 1.69895,
+      vd: 30,
+      indexReference: "d",
+      focalLengthMm: -13.89,
+      glass: "SF15 (Sumita equivalent)",
+      cemented: "D1",
+      role: "The negative member gives the doublet its net diverging power. Its index contrast with L6 helps control spherical aberration.",
     },
     {
-      "id": 8,
-      "name": "E8",
-      "label": "Element 8",
-      "type": "Lens",
-      "nd": 1.58487,
-      "vd": 53.0,
-      "indexReference": "d"
+      id: 8,
+      name: "L8",
+      label: "Element 8",
+      type: "Positive Meniscus",
+      nd: 1.58487,
+      vd: 53,
+      indexReference: "d",
+      focalLengthMm: 68.44,
+      glass: "Unmatched (nd 1.58487 / νd 53.0)",
+      role: "The concave-front meniscus restores convergence behind the doublet.",
     },
     {
-      "id": 9,
-      "name": "E9",
-      "label": "Element 9",
-      "type": "Lens",
-      "nd": 1.56732,
-      "vd": 42.8,
-      "indexReference": "d"
-    }
+      id: 9,
+      name: "L9",
+      label: "Element 9",
+      type: "Plano-Convex Positive",
+      nd: 1.56732,
+      vd: 42.8,
+      indexReference: "d",
+      focalLengthMm: 45.01,
+      glass: "S-TIL26 (Ohara equivalent)",
+      role: "The plane front face lies close to L8. The convex rear face provides the final convergence toward the film.",
+    },
   ],
-  "surfaces": [
-    {
-      "label": "1",
-      "R": 53.81223713796705,
-      "d": 2.434942856921586,
-      "sd": 5.5,
-      "medium": 1
-    },
-    {
-      "label": "2",
-      "R": 26.68697371186058,
-      "d": 5.843862856611807,
-      "sd": 5.25
-    },
-    {
-      "label": "3",
-      "R": 55.516697137812166,
-      "d": 5.722115713765727,
-      "sd": 5.05,
-      "medium": 2
-    },
-    {
-      "label": "4",
-      "R": 607.664339373351,
-      "d": 0.1217471428460793,
-      "sd": 4.7
-    },
-    {
-      "label": "5",
-      "R": 32.50648713990317,
-      "d": 1.8262071426911897,
-      "sd": 4.65,
-      "medium": 3
-    },
-    {
-      "label": "6",
-      "R": 10.616350856178116,
-      "d": 8.52229999922555,
-      "sd": 4.36
-    },
-    {
-      "label": "7",
-      "R": -26.784371426137447,
-      "d": 8.52229999922555,
-      "sd": 4.9,
-      "medium": 4
-    },
-    {
-      "label": "8",
-      "R": -33.6265608540871,
-      "d": 0.1217471428460793,
-      "sd": 5.82
-    },
-    {
-      "label": "9",
-      "R": 43.585477138896394,
-      "d": 4.869885713843172,
-      "sd": 5.9,
-      "medium": 5
-    },
-    {
-      "label": "10",
-      "R": -60.362233423086124,
-      "d": 0.9739771427686345,
-      "sd": 5.9
-    },
-    {
-      "label": "STO",
-      "R": "flat",
-      "d": 0.2434942856921586
-    },
-    {
-      "label": "11",
-      "R": 16.679358569912864,
-      "d": 5.356874285227489,
-      "sd": 5.9,
-      "medium": 6
-    },
-    {
-      "label": "12",
-      "R": -28.2453371402904,
-      "d": 1.0957242856147138,
-      "sd": 5.5,
-      "medium": 7
-    },
-    {
-      "label": "13",
-      "R": 15.364489427175208,
-      "d": 2.6784371426137445,
-      "sd": 5.3
-    },
-    {
-      "label": "14",
-      "R": -30.315038568673746,
-      "d": 2.434942856921586,
-      "sd": 5.46,
-      "medium": 8
-    },
-    {
-      "label": "15",
-      "R": -17.872480569804445,
-      "d": 0.1217471428460793,
-      "sd": 5.75
-    },
-    {
-      "label": "16",
-      "R": "flat",
-      "d": 2.3131957140755066,
-      "sd": 5.8,
-      "medium": 9
-    },
-    {
-      "label": "17",
-      "R": -25.907791997645678,
-      "d": 36.01366246074525,
-      "sd": 5.82
-    }
+  surfaces: [
+    { label: "1", R: 53.04, d: 2.4, sd: 20.11, medium: 1 },
+    { label: "2", R: 26.304, d: 5.76, sd: 16.66 },
+    { label: "3", R: 54.72, d: 5.64, sd: 15.97, medium: 2 },
+    { label: "4", R: 598.944, d: 0.12, sd: 15.97 },
+    { label: "5", R: 32.04, d: 1.8, sd: 11.53, medium: 3 },
+    { label: "6", R: 10.464, d: 8.4, sd: 9.12 },
+    { label: "7", R: -26.4, d: 8.4, sd: 7.79, medium: 4 },
+    { label: "8", R: -33.144, d: 0.12, sd: 7.89 },
+    { label: "9", R: 42.96, d: 4.8, sd: 6.01, medium: 5 },
+    { label: "10", R: -59.496, d: 0.96, sd: 6.01 },
+    { label: "STO", R: "flat", d: 0.24 },
+    { label: "11", R: 16.44, d: 5.28, sd: 6.16, medium: 6 },
+    { label: "12", R: -27.84, d: 1.08, sd: 6.11, medium: 7 },
+    { label: "13", R: 15.144, d: 2.64, sd: 5.91 },
+    { label: "14", R: -29.88, d: 2.4, sd: 6.21, medium: 8 },
+    { label: "15", R: -17.616, d: 0.12, sd: 6.21 },
+    { label: "16", R: "flat", d: 2.28, sd: 6.9, medium: 9 },
+    { label: "17", R: -25.536, sd: 6.9 },
   ],
-  "aperture": {
-    "nominalFNumber": 3.5,
-    "fStops": [3.5, 8],
-    "maxFNumber": 8
+  aperture: { nominalFNumber: 3.5, fStops: [3.5, 4, 5.6, 8, 11, 16], blades: 5 },
+  focus: {
+    closeFocusM: 0.25,
+    description:
+      "Unit focus is inferred. All nine elements move 3.30 mm toward the subject to focus at 0.25 m. The patent gives the internal spacings at infinity.",
   },
-  "focus": {
-    "closeFocusM": 1000000000000000.0,
-    "description": "Static infinity only. No finite prescription or focus travel sourced."
-  },
-  "projection": {
-    "kind": "rectilinear",
-    "fullFieldDeg": 10,
-    "maxTraceFieldDeg": 5
-  },
-  "rays": {
-    "offAxisFieldFrac": 0.98
-  },
-  "layout": {
-    "yScFill": 0.65
-  }
+  gaps: { "17": { label: "BF", values: [[35.4968, 38.7951]] } },
+  doublets: [{ text: "D1", fromSurface: "11", toSurface: "13" }],
+  layout: { yScFill: 0.65 },
 } satisfies LensDataV2Input;
+
 export default LENS_DATA;
