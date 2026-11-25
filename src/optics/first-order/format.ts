@@ -135,7 +135,9 @@ export function marketedCloseFocusNote(
   if (marketed === undefined || focusT < 1 - 1e-9 || labelDistanceM === null || !Number.isFinite(labelDistanceM))
     return "";
   const agrees = (value: number) => Math.abs(value / labelDistanceM - 1) <= MARKETED_CLOSE_FOCUS_NOTE_FRACTION;
-  const note = (value: number) => (agrees(value) ? "" : `marketed ${formatDistanceM(value)}`);
+  /* A no-break space keeps each figure with its unit when a narrow readout row wraps the note. */
+  const distance = (value: number) => formatDistanceM(value).replace(" ", "\u00a0");
+  const note = (value: number) => (agrees(value) ? "" : `marketed ${distance(value)}`);
   if (!Array.isArray(marketed)) return note(marketed);
   const [wide, tele] = marketed;
   if (zoomT <= 1e-9) return note(wide);
@@ -143,7 +145,7 @@ export function marketedCloseFocusNote(
   const low = Math.min(wide, tele) * (1 - MARKETED_CLOSE_FOCUS_NOTE_FRACTION);
   const high = Math.max(wide, tele) * (1 + MARKETED_CLOSE_FOCUS_NOTE_FRACTION);
   if (labelDistanceM >= low && labelDistanceM <= high) return "";
-  return `marketed ${formatDistanceM(wide)}–${formatDistanceM(tele)}`;
+  return `marketed ${distance(wide)}–${distance(tele)}`;
 }
 
 /**
