@@ -113,6 +113,15 @@ At infinity the finished model gives 85.014 mm EFL, f/1.44, 21.817 mm of back fo
 - Corner illumination at f/1.44, before and after: 55.7% at 9.5° at infinity both times, 56.1% at 9.1° at 4.41 m both times, and 53.2% rising to 55.4% at 7.2° at 0.81 m. The gain at 0.81 m comes from the filter rim; the lens rims and lands change no field at any of the three printed positions. The aperture stays f/1.44. The widest half-field a chief ray can pass rises from 10.26° to 14.67° with the filter rim gone; the APS-C corner is at 9.5°. At 700 mm surface 4 still limits the axial beam.
 - Samsung's construction drawing shows the same flat rear rims on the third element, the focusing doublet and the last element. It draws the front elements roughly a tenth lower than Fig. 1. The patent figure decides the heights.
 
+2026-11-24 final check against the drawing:
+
+- The page was compared with both panels of Fig. 1, infinity and closest, and with Samsung's construction drawing. The element shapes, edge heights, five flat lands, iris position, group and cemented-pair brackets and the ED marking on the fourth element agree. Nothing changed.
+- Fig. 1 was read once more on the 300 dpi sheet. The first and last lens vertices are 1010.5 px apart, or 11.60 px/mm. The drawn edges of L111, L121, L131, L141, the focusing doublet, C2, L331 and L341 stand 383, 338, 323, 266, 229, 186, 184 and 171 px from the axis. Every one corresponds to its tabulated height at 12.3–12.4 px/mm, inside the stated radial uncertainty, and the drawn order of heights is kept.
+- The lands and the two shortened curves on surfaces 6 and 19 cost no light. Corner illumination is the same with and without them at infinity (55.7% at 9.5°) and at every focus position. Rays from the 700 mm object point give 90% of the full-aperture beam on axis and 63% at the 14.175 mm corner in both cases. Surface 4 alone limits the axial beam there.
+- At the closest position the vignetting chart reads about 68% on axis. The chart sends parallel light through the lens with G2 in its near position, which calls for a 76.4 mm entrance beam, wider than the 61.8 mm front element. Light from the 700 mm object point is cut only at surface 4, to the 90% above.
+- G2 moves toward the image through all ten positions. D1 rises from 3.925 to 11.202 mm, in steps that grow evenly from 0.64 to 0.93 mm across the calculated positions, and each pair of gaps sums to 17.990 mm. G1, G3 and the iris stay fixed. The distance shown at the second position is 4.42 m, against 4.41 m from the printed 4300.641 mm, and 0.81 m at the closest.
+- Paraxial focus relative to the d line lies +0.056 mm at C and +0.069 mm at g, against about +0.05 and +0.06 mm read from Fig. 3. All ten elements and the filter take their dispersion from HOYA catalog rows, so no element is left with constant dispersion.
+
 ## Remaining Questions
 
 - The production radii, spacings, clear apertures and glass supplier remain undocumented. The drawn radial scale carries about ±2% uncertainty, and single faces of Fig. 1 differ from one another by up to 4%.
