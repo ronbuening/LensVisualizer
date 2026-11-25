@@ -611,7 +611,7 @@ describe("resolveGlass", () => {
     expect(resolveGlass("L-BAL42 (OHARA)")?.name).toBe("L-BAL42");
     expect(resolveGlass("S-YGH51 (OHARA)")?.name).toBe("S-YGH51");
     expect(resolveGlass("OHARA L-BSL7 (PGM)")?.name).toBe("L-BSL7");
-    expect(resolveGlass("L-BAL35 (OHARA)")?.name).toBe("S-BAL35");
+    expect(resolveGlass("L-BAL35 (OHARA)")?.name).toBe("L-BAL35");
   });
 
   it("resolves a 6-digit Schott CID", () => {
