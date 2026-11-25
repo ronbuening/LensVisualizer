@@ -21,6 +21,7 @@ while the catalog is being backfilled, but when present it must be a non-empty a
 | ID | Display Label | Notes |
 |----|---------------|-------|
 | `agfa-ambi-silette` | Agfa Ambi Silette | Agfa Ambi Silette proprietary 35 mm rangefinder bayonet. |
+| `agfa-ambiflex` | Agfa Ambiflex / Agfaflex | Interchangeable-lens fitting of the Agfa Ambiflex (US Agfaflex) leaf-shutter 35 mm SLRs, from about 1960. |
 | `alpa` | ALPA (35 mm SLR) | The proprietary bayonet of the Swiss ALPA 35 mm SLR system. |
 | `argus-c` | Argus C-series | The geared screw mount of the Argus C2/C3 and later C-series rangefinders; usually pairs with `135-full-frame`. |
 | `arri-pl` | ARRI PL | The Positive Lock cinema mount used by ARRI and many other camera makers. |
