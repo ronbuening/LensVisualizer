@@ -18,7 +18,7 @@ const LENS_DATA = {
   key: "canon-ef-400mm-f56-l-usm",
   maker: "Canon",
   name: "CANON EF 400mm f/5.6 L USM",
-  subtitle: "JP 2019-070689 A, Numerical Example 1-A — Canon / Sugita",
+  subtitle: "JP 2019-070689 A, Numerical Example 1A — Canon / Sugita",
   visible: true,
 
   catalog: {
@@ -28,7 +28,6 @@ const LENS_DATA = {
     specs: ["7 ELEMENTS / 6 GROUPS", "DESIGN f = 391.91 mm", "DESIGN F/5.8", "1 SUPER UD + 1 UD"],
     elementCount: 7,
     groupCount: 6,
-    acceptsTeleconverters: true,
     focalLengthMm: { marketing: 400, design: 391.91 },
     fNumber: { marketing: 5.6, design: 5.8 },
     closeFocusM: { marketing: 3.5 },
