@@ -68,6 +68,7 @@ const GLASS_CATALOG_SOURCE_ORDER = [
   "H-K9LGT",
   "S-BSL7",
   "L-BSL7",
+  "L-BAL35",
   "CaF2",
   "SiO2",
   "S-FPL51",
