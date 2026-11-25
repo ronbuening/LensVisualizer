@@ -14,15 +14,15 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 - **1221** lenses scanned
 - **13495** glass elements examined
-- **2702** elements have multiple coordinate-compatible candidates
-- **496** lens files are affected
+- **2700** elements have multiple coordinate-compatible candidates
+- **494** lens files are affected
 - **276** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
 - **118** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
 
 | Selection criterion | Elements |
 |---|---:|
 | Smallest reference-index residual | 1574 |
-| Evidence-source priority | 831 |
+| Evidence-source priority | 829 |
 | Vendor context | 283 |
 | Stable canonical-name order | 12 |
 | Smallest Abbe residual | 2 |
@@ -816,7 +816,7 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `670472 — barium-flint coordinate class (BAF10 catalog equivalent; supplier/melt unresolved)` | 1.67000 / 47.20 (d) | BAF10 — direct name evidence outranks six-digit code evidence. | H-ZBaF52 (CDGM, code, preferred code row) | 1 | [MINOLTA MD ZOOM 50-135mm f/3.5](../../src/lens-data/minolta/Minolta50135mmf35MDZoom.data.ts) G12 |
 | `517641 crown / BK7-family class` | 1.51680 / 64.10 (d) | N-BK7 — alias evidence outranks six-digit code evidence. | J-BK7A (Hikari, code, preferred code row) | 2 | [MINOLTA MD ZOOM 75-150mm f/4](../../src/lens-data/minolta/Minolta75150mmf40MDZoom.data.ts) L1 |
 | `805255 dense flint / SF6-family class` | 1.80518 / 25.50 (d) | SF6 — direct name evidence outranks six-digit code evidence. | J-SF6 (Hikari, code, alternate code row)<br>H-ZF7LA (CDGM, code, preferred code row)<br>FD60 (Hoya, code, alternate code row) | 2 | [MINOLTA MD ZOOM 75-150mm f/4](../../src/lens-data/minolta/Minolta75150mmf40MDZoom.data.ts) L3 |
-| `589611 crown class (L-BAL35 / N-SK5 / K-SKLD5 coordinate family)` | 1.58913 / 61.10 (d) | N-SK5 — smallest d-line \|Δn\| (1.2e-7 vs 4.4e-7) | L-BAL35 (Ohara, name)<br>S-BAL35 (Ohara, alias) | 1 | [MINOLTA MD ZOOM 75-150mm f/4](../../src/lens-data/minolta/Minolta75150mmf40MDZoom.data.ts) L7 |
+| `589611 crown class (L-BAL35 / N-SK5 / K-SKLD5 coordinate family)` | 1.58913 / 61.10 (d) | N-SK5 — smallest d-line \|Δn\| (1.2e-7 vs 4.4e-7) | L-BAL35 (Ohara, name) | 1 | [MINOLTA MD ZOOM 75-150mm f/4](../../src/lens-data/minolta/Minolta75150mmf40MDZoom.data.ts) L7 |
 | `658509 dense crown / N-SSK5 class` | 1.65844 / 50.90 (d) | N-SSK5 — direct name evidence outranks six-digit code evidence. | S-BSM25 (Ohara, code, alternate code row)<br>BACED5 (Hoya, code, alternate code row) | 1 | [MINOLTA MD ZOOM 75-150mm f/4](../../src/lens-data/minolta/Minolta75150mmf40MDZoom.data.ts) L9 |
 | `673322 dense flint / SF5 class` | 1.67270 / 32.20 (d) | SF5 — direct name evidence outranks six-digit code evidence. | H-ZF2 (CDGM, code, alternate code row)<br>E-FD5 (Hoya, code, preferred code row) | 1 | [MINOLTA MD ZOOM 75-150mm f/4](../../src/lens-data/minolta/Minolta75150mmf40MDZoom.data.ts) L11 |
 | `LAC12 (HOYA catalog equivalent; patent 678555; production supplier unspecified)` | 1.67790 / 55.50 (d) | LAC12 — direct name evidence outranks six-digit code evidence. | K-LaK12 (Sumita, code, vendor ✗, alternate code row) | 2 | [MINOLTA SUPER ROKKOR 5cm f/1.8](../../src/lens-data/minolta/MinoltaSuperRokkor5cmf18.data.ts) L1 |
@@ -1044,7 +1044,6 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `954323 — ultra-high-index lanthanum (S-LAH98 / TAFD45 family)` | 1.95375 / 32.33 (d) | S-LAH98 — smallest d-line \|Δn\| (5.9e-7 vs 2.6e-6) | TAFD45 (Hoya, name)<br>J-LASFH21 (Hikari, code, alternate code row)<br>TAFD45L (Hoya, code, alternate code row) | 3 | [NIKON NIKKOR Z 24-200mm f/4-6.3 VR](../../src/lens-data/nikon/NikonNikkorZ24200mmf463VR.data.ts) L21 |
 | `001291 — ultra-high-index dense flint (patent nd=2.00100, νd=29.12)` | 2.00100 / 29.12 (d) | S-LAH99 — smallest d-line \|Δn\| (3.6e-10 vs 3.8e-8) | J-LASFH16 (Hikari, code, alternate code row) | 1 | [NIKON NIKKOR Z 24-200mm f/4-6.3 VR](../../src/lens-data/nikon/NikonNikkorZ24200mmf463VR.data.ts) L32 |
 | `FCD1 (HOYA) / S-FPL51` | 1.49700 / 81.61 (d) | FCD1 — Annotation vendor context matches Hoya. | S-FPL51 (Ohara, name, vendor ✗) | 2 | [NIKON NIKKOR Z 24-50mm f/4-6.3](../../src/lens-data/nikon/NikonNikkorZ2450mmf463.data.ts) L2a |
-| `L-BAL35 (OHARA)` | 1.58913 / 61.20 (d) | L-BAL35 — direct name evidence outranks alias evidence. | S-BAL35 (Ohara, alias, vendor ✓) | 1 | [NIKON NIKKOR Z 24-70mm f/4 S](../../src/lens-data/nikon/NikonNikkorZ2470mmf4S.data.ts) L51 |
 | `J-LASFH21 (HIKARI catalog equivalent; OHARA S-LAH98 / HOYA TAFD45 share the coordinate)` | 1.95375 / 32.30 (d) | J-LASFH21 — smallest d-line \|Δn\| (3.1e-8 vs 5.9e-7) | S-LAH98 (Ohara, name, vendor ✓)<br>TAFD45 (Hoya, name, vendor ✓) | 1 | [NIKON NIKKOR Z 35mm f/1.2 S](../../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) L15 |
 | `N-KZFS8 (SCHOTT catalog equivalent; OHARA S-NBH8 shares the coordinate)` | 1.72047 / 34.70 (d) | N-KZFS8 — smallest d-line \|Δn\| (3.1e-7 vs 2.9e-6) | S-NBH8 (Ohara, name, vendor ✓) | 1 | [NIKON NIKKOR Z 35mm f/1.2 S](../../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) L21 |
 | `903358 class; J-LASFH9 catalog spectral proxy (production supplier unspecified) (inferred coordinate counterpart)` | 1.90265 / 35.77 (d) | J-LASFH9 — direct name evidence outranks six-digit code evidence. | J-LASFH9A (Hikari, code, preferred code row) | 1 | [NIKON NIKKOR Z 58mm f/0.95 S Noct](../../src/lens-data/nikon/NikonZ58f095SNoct.data.ts) L11 |
@@ -1157,7 +1156,6 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `S-TIH6 (OHARA) / SF6 (Schott) — dense flint (805254)` | 1.80518 / 25.42 (d) | S-TIH6 — smallest d-line \|Δn\| (7.1e-7 vs 2.1e-6) | SF6 (Schott, name, vendor ✓)<br>N-SF6 (Schott, code, vendor ✓, alternate code row) | 1 | [OLYMPUS M.ZUIKO DIGITAL ED 12-40mm f/2.8 PRO](../../src/lens-data/olympus/OlympusMZuiko1240mmf28PRO.data.ts) L9 |
 | `S-LAH53 (OHARA) — high-index lanthanum (806409)` | 1.80610 / 40.88 (d) | S-LAH53 — direct name evidence outranks six-digit code evidence. | L-LAH53 (Ohara, code, vendor ✓, alternate code row)<br>P-LASF47 (Schott, code, vendor ✗, alternate code row) | 1 | [OLYMPUS M.ZUIKO DIGITAL ED 12-40mm f/2.8 PRO](../../src/lens-data/olympus/OlympusMZuiko1240mmf28PRO.data.ts) L11 |
 | `TAFD40 (HOYA) — ultra-high-index dense flint (001255)` | 2.00069 / 25.46 (d) | TAFD40 — direct name evidence outranks six-digit code evidence. | TAFD40L-W (Hoya, code, vendor ✓, alternate code row)<br>J-LASFH17 (Hikari, code, vendor ✗, alternate code row) | 1 | [OLYMPUS M.ZUIKO DIGITAL ED 12-40mm f/2.8 PRO](../../src/lens-data/olympus/OlympusMZuiko1240mmf28PRO.data.ts) L13 |
-| `L-BAL35 (Ohara)` | 1.58913 / 61.15 (d) | L-BAL35 — direct name evidence outranks alias evidence. | S-BAL35 (Ohara, alias, vendor ✓) | 1 | [OLYMPUS M.ZUIKO DIGITAL ED 30mm f/3.5 Macro](../../src/lens-data/olympus/OlympusMZuiko30mmf35Macro.data.ts) L1 |
 | `Path-splitter prism glass (516/641, patent-listed)` | 1.51633 / 64.14 (d) | S-BSL7 — smallest d-line \|Δn\| (7.5e-8 vs 8.3e-8) | K-BK7 (Sumita, code, alternate code row)<br>L-BSL7 (Ohara, code, alternate code row) | 1 | [OLYMPUS ZUIKO 9-36mm f/2-2.4 (Olympus E-10 / E-20)](../../src/lens-data/olympus/OlympusZuiko936mmf224.data.ts) P1 |
 | `S-BAL35 class (OHARA; SK5 / 589/610 equivalent)` | 1.58910 / 61.00 (d) | S-BAL35 — Annotation vendor context matches Ohara. | SK5 (Sumita, name, vendor ✗)<br>S-BAL35R (Ohara, code, vendor ✓, preferred code row) | 2 | [OLYMPUS ZUIKO AUTO-FISHEYE 8mm f/2.8](../../src/lens-data/olympus/OlympusZuikoAutoFisheye8mmf28.data.ts) L1 |
 | `S-TIH11 class (OHARA; SF11 / 785/256 equivalent)` | 1.78470 / 25.60 (d) | S-TIH11 — Annotation vendor context matches Ohara. | SF11 (Schott, name, vendor ✗)<br>J-SF11 (Hikari, code, vendor ✗, preferred code row) | 1 | [OLYMPUS ZUIKO AUTO-FISHEYE 8mm f/2.8](../../src/lens-data/olympus/OlympusZuikoAutoFisheye8mmf28.data.ts) L2 |
