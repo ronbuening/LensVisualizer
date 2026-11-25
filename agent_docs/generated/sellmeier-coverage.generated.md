@@ -12,7 +12,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **1222** lenses scanned
-- **1198** visible lenses scanned
+- **1199** visible lenses scanned
 - **812** lenses fully covered by trusted chromatic data
 - **805** visible lenses fully covered by trusted chromatic data
 - **804** lenses fully covered by strict Sellmeier data
@@ -1509,7 +1509,7 @@ Fully strict and line-index-complete trusted lenses are listed above; this table
 |  | **0-4.9% coverage** |  |  |  |  |  |  |
 | 354 | [REFERENCE Mangin Second-Surface Mirror](../../src/lens-data/reference/ReferenceManginSecondSurfaceMirror.data.ts) *(hidden)* | 0.0% | 0.0% | 0/1 | 0/1 | 1 | abbe: 1 |
 | 355 | [FRENCH LANDSCAPE f/12.1 (von Rohr 1899, Fig. 54)](../../src/lens-data/literature/FrenchLandscapeVonRohr1899.data.ts) | 0.0% | 0.0% | 0/2 | 0/2 | 2 | constant: 2 |
-| 356 | [GOERZ 100mm f/9 (US 1,643,865 Design)](../../src/lens-data/goerz/GoerzUS1643865.data.ts) *(hidden)* | 0.0% | 0.0% | 0/2 | 0/2 | 2 | abbe: 2 |
+| 356 | [GOERZ 100mm f/9 (US 1,643,865 Design)](../../src/lens-data/goerz/GoerzUS1643865.data.ts) | 0.0% | 0.0% | 0/2 | 0/2 | 2 | abbe: 2 |
 | 357 | [STEINHEIL PERISKOP f/40 (von Rohr 1899, Fig. 109)](../../src/lens-data/literature/SteinheilPeriskop1865VonRohr1899.data.ts) | 0.0% | 0.0% | 0/2 | 0/2 | 2 | constant: 2 |
 | 358 | [CARL ZEISS JENA ANASTIGMAT-SATZLINSE 500mm f/13 (CH 6329 Design)](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaAnastigmatSatzlinse500mmf13CH6329.data.ts) | 0.0% | 0.0% | 0/3 | 0/3 | 3 | constant: 3 |
 | 359 | [DALLMEYER RAPID LANDSCAPE f/11 (von Rohr 1899, Fig. 77)](../../src/lens-data/literature/DallmeyerRapidLandscape1865VonRohr1899.data.ts) | 0.0% | 0.0% | 0/3 | 0/3 | 3 | constant: 3 |
@@ -4079,6 +4079,13 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 |---|---|---|---|---|
 | 1 | Old silicate flint | constant | `Unmatched (historical nD only, no dispersion published)` | Explicit unmatched/proprietary annotation |
 | 2 | Old silicate crown | constant | `Unmatched (historical nD only, no dispersion published)` | Explicit unmatched/proprietary annotation |
+
+### [GOERZ 100mm f/9 (US 1,643,865 Design)](../../src/lens-data/goerz/GoerzUS1643865.data.ts) - 0.0% trusted (0/2); 0.0% Sellmeier (0/2) - US 1,643,865 A
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `Unmatched (nD 1.5096 / V 63.4, Sendlinger crown 510/634)` | Explicit unmatched/proprietary annotation |
+| 2 | Element 2 | abbe | `Unmatched (nD 1.5490 / V 47.1, Sendlinger flint 549/471)` | Explicit unmatched/proprietary annotation |
 
 ### [STEINHEIL PERISKOP f/40 (von Rohr 1899, Fig. 109)](../../src/lens-data/literature/SteinheilPeriskop1865VonRohr1899.data.ts) - 0.0% trusted (0/2); 0.0% Sellmeier (0/2)
 

@@ -23,7 +23,7 @@ const LENS_DATA = {
   maker: "Goerz",
   name: "GOERZ 100mm f/9 (US 1,643,865 Design)",
   subtitle: "US 1,643,865 A, Example 1 — cemented achromat with rear diaphragm",
-  visible: false,
+  visible: true,
   catalog: {
     specs: [
       "2 ELEMENTS / 1 GROUP",
