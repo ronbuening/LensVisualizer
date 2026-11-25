@@ -101,6 +101,16 @@ The finished model gives 51.007 mm EFL, f/1.83, a 10.02 mm iris radius, and 35.0
 - The other rims were compared again with Fig. 2(a) and Olympus's drawing and kept. Every element is drawn with a square edge and no further land. The drawn curves follow the tabulated radii at 19.3 pixels/mm along and across the axis.
 - Corner transmission at the widest aperture is unchanged at 79.0% at infinity and 83.0% at −0.1×, and moves from 94.8% to 94.6% at −0.52×. No field changes by more than 0.4 points. At −0.52× the fully open axial beam now passes to an object-side numerical aperture of 0.1038, previously 0.1043.
 
+2026-11-24 final check against the drawing:
+
+- The rendered section was set beside Fig. 2(a) and Fig. 2(b) at one scale, and beside Olympus's drawing. No rim, land or label changed.
+- A fresh reading of the edge strokes on both sides of the axis at 19.3 pixels/mm gives 18.24, 18.33, 16.92, 14.41, 12.20, 12.16, 12.92, 14.64, 13.49 and 13.3 mm for L1 through L9 and the cemented pair. Each agrees with its modeled rim to 0.1 mm except L6, whose 11.30 mm is set by the 11.42 mm height at which surfaces 13 and 14 meet.
+- The same reading ends the curved faces of surfaces 8, 10 and 12 at 13.30, 10.57 and 10.71 mm, against 13.41, 10.58 and 10.66 mm modeled. All three are within one pixel.
+- Removing any of the three lands leaves the transmitted light unchanged at every field at infinity, −0.1× and −0.52×. Raising L6 back from 11.30 to 11.36 mm would gain at most 0.4 points, at 7.3° and −0.52×, and would leave only 1% of the gap to L7 at the rim. The lands and the L6 rim stay.
+- Focus: both gaps grow at every step from infinity to −0.52×, so both groups move toward the object without reversing, G1 by 29.98 mm and G2 by 23.69 mm. The distance shown is 62 cm at the −0.1× position and 23 cm at −0.52×, matching the calculated 620.08 and 229.06 mm.
+- Color: all eleven glasses trace with catalog dispersion curves. At the edge of the f/1.83 aperture the C, F and g foci lie about +0.065, −0.037 and +0.048 mm from d, in line with Fig. 5(a).
+- L7's note now records that the patent places an anomalous-dispersion glass behind the stop (¶0068) without naming the element. The tag stays as taken from Olympus's ED marking.
+
 ## Remaining Questions
 
 - The factory prescription, exact clear apertures, glass supplier and mechanical focus cam remain undocumented. The rim readings from Fig. 2(a) have about ±0.2 mm reading uncertainty. Olympus specifies seven blades and leaves their curvature unspecified.

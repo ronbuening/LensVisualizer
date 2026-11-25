@@ -3,10 +3,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /**
  * US 2003/0103269 A1, Example 2, gives the spherical prescription in millimetres,
  * d-line glass values, the stop position, and three focus settings. Clear radii
- * are estimated from Fig. 2(a). The sixth element's rim is smaller than drawn
- * to clear the seventh element. The iris radius follows the printed f/1.83 at
- * infinity. Object distances and 24 intermediate positions are calculated.
- * The patent gives no focus cam.
+ * and the flat lands on surfaces 8, 10 and 12 are estimated from Fig. 2(a).
+ * The sixth element's rim is smaller than drawn to clear the seventh element.
+ * The iris radius follows the printed f/1.83 at infinity. Object distances and
+ * 24 intermediate positions are calculated. The patent gives no focus cam.
  */
 
 const LENS_DATA = {
@@ -121,7 +121,8 @@ const LENS_DATA = {
       glass: "S-FPL51 (OHARA)",
       role: "ED positive meniscus for chromatic correction behind the iris.",
       apd: "inferred",
-      apdNote: "The element Olympus marks as ED has d-line values consistent with Ohara S-FPL51.",
+      apdNote:
+        "Olympus marks this element ED, and its d-line values match Ohara S-FPL51. The patent places an anomalous-dispersion glass behind the stop without naming the element (¶0068).",
     },
     {
       id: 8,

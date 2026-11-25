@@ -68,7 +68,7 @@ This negative element faces L5 across the iris, with its stronger concave face t
 
 nd = 1.49700, νd = 81.54. Glass match S-FPL51 (Ohara). f = +65.18 mm.
 
-Olympus's drawing marks this element as ED. It supplies positive power behind the iris with comparatively little primary color. The patent uses anomalous dispersion there to control longitudinal and lateral color at macro distances (¶0068).
+Olympus's drawing marks this element as ED. It supplies positive power behind the iris with comparatively little primary color. The patent places an anomalous-dispersion glass behind the stop to control longitudinal and lateral color at macro distances (¶0068). It does not name the element, and L7 is the only glass there with such values.
 
 ### L8 — Biconvex Positive
 
@@ -107,7 +107,7 @@ The patent prints three magnifications and gap pairs. The distances are calculat
 
 ## Clear Apertures and Field
 
-Figure 2(a) supplies the estimated clear radii. L6's rim is smaller than drawn because its rear face would meet L7. The surface table gives the curvature radii, axial spacings and iris location. The 10.02 mm iris radius is calculated from f/1.83 at infinity.
+Figure 2(a) supplies the estimated clear radii and the flat lands on the rear of L4 and L5 and the front of L6. L6's rim is smaller than drawn because its rear face would meet L7. The surface table gives the curvature radii, axial spacings and iris location. The 10.02 mm iris radius is calculated from f/1.83 at infinity.
 
 The corner chief ray reaches 10.82 mm at each printed focus setting. At the closest setting, the full f/1.83 iris admits an axial bundle wider than the L6 rear rim can pass. The narrower f/2 setting passes the axial bundle at all three positions. The patent specifies f/1.83 at infinity and gives no iris schedule through focus.
 
