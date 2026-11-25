@@ -1,245 +1,250 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
-/** Private production-correlated reconstruction; literal sodium-D source, estimated iris/caps. */
+
+/**
+ * US 4,176,914, Table 1 and Figure 1, Kazuo Fujibayashi for Canon. The sole
+ * example gives f = 100, f/2.8 and a 76° field. All lengths are scaled by
+ * 0.28 to the marketed 28 mm focal length. The seven air-spaced singlets
+ * retain the printed sodium D indices, Abbe numbers and 35.644 mm back focus.
+ * The patent places the iris between L3 and L4. Its estimated axial position
+ * divides that air space into 4.1468 and 1.414 mm. The iris radius follows
+ * from f/2.8. Figure 1 supplies the clear rims and the flat land on the back
+ * of L1. At surfaces 7–10 the nominal axial marginal ray sets the minimum
+ * clear radii. Table 1 gives only the infinity setting.
+ */
 const LENS_DATA = {
-  "schema": 2,
-  "key": "canon-new-fd-28mm-f28",
-  "maker": "Canon",
-  "visible": false,
-  "name": "CANON New FD 28mm f/2.8",
-  "subtitle": "June1979; US4176914 Table1 / Japanese repeated Example1; production-correlated reconstruction",
-  "source": {
-    "patentNumber": "US 4176914 A",
-    "patentYear": 1979,
-    "example": {
-      "label": "Sole example",
-      "id": null
+  schema: 2,
+  key: "canon-new-fd-28mm-f28",
+  maker: "Canon",
+  visible: true,
+  name: "CANON NEW FD 28mm f/2.8",
+  subtitle: "US 4,176,914, Example 1 — Canon / Fujibayashi",
+  source: {
+    patentNumber: "US 4,176,914",
+    patentYear: 1979,
+    example: {
+      label: "Example 1",
+      id: "1",
     },
-    "authors": [
-      "Kazuo Fujibayashi"
-    ],
-    "assignees": [
-      "Canon Kabushiki Kaisha"
-    ],
-    "sdSource": "heuristic"
+    authors: ["Kazuo Fujibayashi"],
+    assignees: ["Canon Inc."],
   },
-  "catalog": {
-    "lensMounts": [
-      "canon-fd"
-    ],
-    "imageFormat": "135-full-frame",
-    "elementCount": 7,
-    "groupCount": 7,
-    "focalLengthMm": {
-      "marketing": 28,
-      "design": 28.01447752650096
+  catalog: {
+    lensMounts: ["canon-fd"],
+    imageFormat: "135-full-frame",
+    elementCount: 7,
+    groupCount: 7,
+    focalLengthMm: {
+      marketing: 28,
+      design: 28.01,
     },
-    "fNumber": {
-      "marketing": 2.8,
-      "design": 2.8
+    fNumber: {
+      marketing: 2.8,
+      design: 2.8,
     },
-    "closeFocusM": {
-      "marketing": 0.3
+    closeFocusM: {
+      marketing: 0.3,
     },
-    "specs": [
-      "June1979 7/7 New FD28/2.8; not earlier Kawamura S.C.",
-      "MIR cutaway one isotropic fit; unknown original print attribution.",
-      "Literal signed Table1 at0.28mm/unit; sodiumD indices, no source retune.",
-      "R4+54.902 in signed Table1 and claim facsimile; reject OCR34.902.",
-      "Estimated iris z20.72mm and inner optical caps; no finite focus schedule.",
-      "Printed BFD35.644mm retained; browserQA deferred."
-    ]
+    specs: ["7 ELEMENTS / 7 GROUPS", "ALL SPHERICAL", "DESIGN f = 28.01 mm", "RETROFOCUS"],
   },
-  "elements": [
+  elements: [
     {
-      "id": 1,
-      "name": "E1",
-      "label": "Element1",
-      "type": "Lens",
-      "nd": 1.60311,
-      "vd": 60.7,
-      "indexReference": "D"
+      id: 1,
+      name: "L1",
+      label: "Element 1",
+      type: "Negative Meniscus",
+      nd: 1.60311,
+      vd: 60.7,
+      indexReference: "D",
+      focalLengthMm: -50.61,
+      glass: "BACD14 (Hoya)",
+      role: "The front meniscus diverges the incoming beam and provides clearance behind the lens for the reflex mirror.",
     },
     {
-      "id": 2,
-      "name": "E2",
-      "label": "Element2",
-      "type": "Lens",
-      "nd": 1.60311,
-      "vd": 60.7,
-      "indexReference": "D"
+      id: 2,
+      name: "L2",
+      label: "Element 2",
+      type: "Negative Meniscus",
+      nd: 1.60311,
+      vd: 60.7,
+      indexReference: "D",
+      focalLengthMm: -76.17,
+      glass: "BACD14 (Hoya)",
+      role: "Adds negative power behind the first meniscus. Both front menisci are convex toward the object.",
     },
     {
-      "id": 3,
-      "name": "E3",
-      "label": "Element3",
-      "type": "Lens",
-      "nd": 1.69895,
-      "vd": 30.1,
-      "indexReference": "D"
+      id: 3,
+      name: "L3",
+      label: "Element 3",
+      type: "Biconvex Positive",
+      nd: 1.69895,
+      vd: 30.1,
+      indexReference: "D",
+      focalLengthMm: 72.05,
+      glass: "Unmatched (nd 1.69895 / νd 30.1)",
+      role: "Begins to converge the beam before the iris. Its nearly flat rear face contributes little power.",
     },
     {
-      "id": 4,
-      "name": "E4",
-      "label": "Element4",
-      "type": "Lens",
-      "nd": 1.7725,
-      "vd": 49.6,
-      "indexReference": "D"
+      id: 4,
+      name: "L4",
+      label: "Element 4",
+      type: "Biconvex Positive",
+      nd: 1.7725,
+      vd: 49.6,
+      indexReference: "D",
+      focalLengthMm: 21.11,
+      glass: "Unmatched (nd 1.7725 / νd 49.6)",
+      role: "Supplies the strongest positive power immediately behind the iris.",
     },
     {
-      "id": 5,
-      "name": "E5",
-      "label": "Element5",
-      "type": "Lens",
-      "nd": 1.80518,
-      "vd": 25.4,
-      "indexReference": "D"
+      id: 5,
+      name: "L5",
+      label: "Element 5",
+      type: "Biconcave Negative",
+      nd: 1.80518,
+      vd: 25.4,
+      indexReference: "D",
+      focalLengthMm: -16.47,
+      glass: "Unmatched (nd 1.80518 / νd 25.4)",
+      role: "Opposes the convergence from L4. Its highly dispersive glass contributes to the balance of axial color.",
     },
     {
-      "id": 6,
-      "name": "E6",
-      "label": "Element6",
-      "type": "Lens",
-      "nd": 1.713,
-      "vd": 53.9,
-      "indexReference": "D"
+      id: 6,
+      name: "L6",
+      label: "Element 6",
+      type: "Positive Meniscus",
+      nd: 1.713,
+      vd: 53.9,
+      indexReference: "D",
+      focalLengthMm: 49.51,
+      glass: "Unmatched (nd 1.713 / νd 53.9)",
+      role: "Restores convergence after L5, mainly at its rear face.",
     },
     {
-      "id": 7,
-      "name": "E7",
-      "label": "Element7",
-      "type": "Lens",
-      "nd": 1.7725,
-      "vd": 49.6,
-      "indexReference": "D"
-    }
+      id: 7,
+      name: "L7",
+      label: "Element 7",
+      type: "Positive Meniscus",
+      nd: 1.7725,
+      vd: 49.6,
+      indexReference: "D",
+      focalLengthMm: 43.31,
+      glass: "Unmatched (nd 1.7725 / νd 49.6)",
+      role: "Bends rays toward the film, with most of its power at the rear face.",
+    },
   ],
-  "surfaces": [
+  surfaces: [
     {
-      "label": "1",
-      "R": 22.162280000000003,
-      "d": 1.6212000000000002,
-      "sd": 12.5,
-      "medium": 1
+      label: "1",
+      R: 22.16228,
+      d: 1.6212,
+      sd: 12.22,
+      medium: 1,
     },
     {
-      "label": "2",
-      "R": 12.486040000000003,
-      "d": 3.9788000000000006,
-      "sd": 10.5
+      label: "2",
+      R: 12.48604,
+      d: 3.9788,
+      sd: 9.84,
+      rimExtensionSd: 12.22,
     },
     {
-      "label": "3",
-      "R": 23.82548,
-      "d": 1.2768,
-      "sd": 11.5,
-      "medium": 2
+      label: "3",
+      R: 23.82548,
+      d: 1.2768,
+      sd: 9.61,
+      medium: 2,
     },
     {
-      "label": "4",
-      "R": 15.372560000000002,
-      "d": 7.711200000000001,
-      "sd": 11.5
+      label: "4",
+      R: 15.37256,
+      d: 7.7112,
+      sd: 9.61,
     },
     {
-      "label": "5",
-      "R": 51.528400000000005,
-      "d": 1.9852,
-      "sd": 7.2,
-      "medium": 3
+      label: "5",
+      R: 51.5284,
+      d: 1.9852,
+      sd: 7.23,
+      medium: 3,
     },
     {
-      "label": "6",
-      "R": -2187.8360000000002,
-      "d": 4.146800000000003,
-      "sd": 7.2
+      label: "6",
+      R: -2187.836,
+      d: 4.1468,
+      sd: 7.23,
     },
     {
-      "label": "STO",
-      "R": "flat",
-      "d": 1.4139999999999993
+      label: "STO",
+      R: "flat",
+      d: 1.414,
     },
     {
-      "label": "7",
-      "R": 33.821200000000005,
-      "d": 3.458,
-      "sd": 7.4,
-      "medium": 4
+      label: "7",
+      R: 33.8212,
+      d: 3.458,
+      sd: 7.5,
+      medium: 4,
     },
     {
-      "label": "8",
-      "R": -30.086000000000002,
-      "d": 3.1724,
-      "sd": 7.4
+      label: "8",
+      R: -30.086,
+      d: 3.1724,
+      sd: 7.44,
     },
     {
-      "label": "9",
-      "R": -24.1066,
-      "d": 4.4212,
-      "sd": 7.7,
-      "medium": 5
+      label: "9",
+      R: -24.1066,
+      d: 4.4212,
+      sd: 6.51,
+      medium: 5,
     },
     {
-      "label": "10",
-      "R": 31.883600000000005,
-      "d": 1.4252,
-      "sd": 7.4
+      label: "10",
+      R: 31.8836,
+      d: 1.4252,
+      sd: 6.38,
     },
     {
-      "label": "11",
-      "R": -36.733200000000004,
-      "d": 2.0916,
-      "sd": 6.5,
-      "medium": 6
+      label: "11",
+      R: -36.7332,
+      d: 2.0916,
+      sd: 7.07,
+      medium: 6,
     },
     {
-      "label": "12",
-      "R": -18.42792,
-      "d": 0.196,
-      "sd": 7.0
+      label: "12",
+      R: -18.42792,
+      d: 0.196,
+      sd: 7.07,
     },
     {
-      "label": "13",
-      "R": -134.2432,
-      "d": 2.2792000000000003,
-      "sd": 8,
-      "medium": 7
+      label: "13",
+      R: -134.2432,
+      d: 2.2792,
+      sd: 8.3,
+      medium: 7,
     },
     {
-      "label": "14",
-      "R": -26.97828,
-      "d": 35.644000000000005,
-      "sd": 7.8
-    }
+      label: "14",
+      R: -26.97828,
+      d: 35.644,
+      sd: 8.3,
+    },
   ],
-  "aperture": {
-    "nominalFNumber": 2.8,
-    "fStops": [
-      2.8,
-      4,
-      5.6,
-      8,
-      11,
-      16,
-      22
-    ],
-    "maxFNumber": 22,
-    "blades": 5
+  aperture: {
+    nominalFNumber: 2.8,
+    fStops: [2.8, 4, 5.6, 8, 11, 16, 22],
+    maxFNumber: 22,
+    blades: 5,
   },
-  "focus": {
-    "closeFocusM": 1000000000000000.0,
-    "description": "Static source infinity only. No0.3m finite prescription or focus law inferred; distant native sentinel is not a finite performance claim."
+  focus: {
+    closeFocusM: 1e15,
+    description:
+      "Infinity focus only. Canon specifies double-helicoid focusing to 0.3 m. The patent gives no close-focus spacings.",
   },
-  "projection": {
-    "kind": "rectilinear",
-    "fullFieldDeg": 76,
-    "maxTraceFieldDeg": 38
+  layout: {
+    yScFill: 0.65,
   },
-  "rays": {
-    "offAxisFieldFrac": 0.07894736842105263
-  },
-  "layout": {
-    "yScFill": 0.65
-  }
 } satisfies LensDataV2Input;
+
 export default LENS_DATA;
