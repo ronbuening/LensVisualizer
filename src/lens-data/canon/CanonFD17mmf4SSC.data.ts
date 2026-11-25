@@ -1,328 +1,243 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
-/** Private production-correlated source reconstruction. Literal signed source, estimated iris/caps; browserQA deferred. */
+
+/**
+ * US 3,748,021, Embodiment 1 (Figure 1 and columns 3–4). All lengths use
+ * 17 mm per unit of the patent’s normalized focal length. The patent gives
+ * 20 radii, axial spacings, 11 glass index and Abbe-number pairs, and f/4.
+ * R12 requires a minus sign to reproduce the stated focal length and back
+ * focus, the real image in Figures 2–4 and the biconvex E6 in Figure 1.
+ * The clear radii are measured from the patent drawing. The iris lies in
+ * D12. Its position is estimated at mid-gap and its radius follows from f/4.
+ * The patent tabulates D8 at infinity and at an image-to-object distance of
+ * 17.24 focal lengths. The infinity image spacing follows its back focus.
+ * The near spacing is calculated from the finite conjugate.
+ */
 const LENS_DATA = {
-  "schema": 2,
-  "key": "canon-fd-17mm-f4-ssc",
-  "maker": "Canon",
-  "visible": false,
-  "name": "CANON FD 17mm f/4 S.S.C.",
-  "subtitle": "US3748021A Embodiment1; production-correlated patent reconstruction, not factory exact",
-  "source": {
-    "patentNumber": "US 3748021 A",
-    "patentYear": 1973,
-    "example": {
-      "label": "Embodiment 1",
-      "id": "1"
-    },
-    "authors": [
-      "Akira Tajima",
-      "Kikuo Momiyama"
+  schema: 2,
+  key: "canon-fd-17mm-f4-ssc",
+  name: "CANON FD 17mm f/4 S.S.C.",
+  maker: "Canon",
+  visible: true,
+  subtitle: "US 3,748,021, Embodiment 1 — Canon / Tajima & Momiyama",
+  source: {
+    patentNumber: "US 3,748,021",
+    patentYear: 1973,
+    example: { label: "Embodiment 1", id: "1" },
+    authors: ["Akira Tajima", "Kikuo Momiyama"],
+    assignees: ["Canon Inc."],
+    sdSource: "figure-measured",
+    errata: [
+      {
+        status: "corrected",
+        surface: "12",
+        field: "R",
+        printed: 0.738,
+        applied: -12.546,
+        evidence: ["source-summary", "aberration-figure"],
+        note: "Column 3 prints R12 as +0.7380 in units of focal length. That sign gives f = −4.60 and a virtual image. R12 = −0.7380 gives f = 1.0000, back focus 2.07139 and a real image consistent with Figures 2–4. Figure 1 draws E6 biconvex.",
+      },
     ],
-    "assignees": [
-      "Canon Kabushiki Kaisha"
-    ],
-    "sdSource": "heuristic"
   },
-  "catalog": {
-    "lensMounts": [
-      "canon-fd"
-    ],
-    "imageFormat": "135-full-frame",
-    "elementCount": 11,
-    "groupCount": 9,
-    "focalLengthMm": {
-      "marketing": 17,
-      "design": 17.39991546639363
-    },
-    "fNumber": {
-      "marketing": 4,
-      "design": 4
-    },
-    "closeFocusM": {
-      "marketing": 0.25
-    },
-    "specs": [
-      "Canon period catalog printed16 cutaway, independently registered all20 signed surfaces with one uniform transform; not factory exact.",
-      "One disclosed17.4mm/source-f normalization, exact printed2.0714f rear air retained. No source fitting.",
-      "Private f4/f8-controls through\u00b15deg helium-d static infinity only. No nominal full104deg performance claim.",
-      "Iris position estimated midpoint of unnumbered schematicD12 iris; radius and inner optical caps estimated.",
-      "Published nearD8 .025f at17.24f image-object distance299.976mm remains documentary, not retail250mm or a modeled focus schedule.",
-      "BrowserQA deferred to integration, not passed."
-    ]
+  catalog: {
+    lensMounts: ["canon-fd"],
+    imageFormat: "135-full-frame",
+    elementCount: 11,
+    groupCount: 9,
+    focalLengthMm: { marketing: 17, design: 17 },
+    fNumber: { marketing: 4, design: 4 },
+    closeFocusM: { marketing: 0.25 },
+    specs: ["11 ELEMENTS / 9 GROUPS", "ALL SPHERICAL", "FLOATING FOCUS"],
+    imageCircleMm: 41.99,
   },
-  "elements": [
+  elements: [
     {
-      "id": 1,
-      "name": "E1",
-      "label": "Element 1",
-      "type": "Lens",
-      "nd": 1.64,
-      "vd": 60.2,
-      "indexReference": "d"
+      id: 1,
+      name: "E1",
+      label: "Element 1",
+      type: "Negative Meniscus",
+      nd: 1.64,
+      vd: 60.2,
+      indexReference: "d",
+      glass: "LACL60 (Hoya)",
+      role: "First of two negative menisci that diverge the incoming beam.",
+      focalLengthMm: -70.48,
     },
     {
-      "id": 2,
-      "name": "E2",
-      "label": "Element 2",
-      "type": "Lens",
-      "nd": 1.6968,
-      "vd": 55.2,
-      "indexReference": "d"
+      id: 2,
+      name: "E2",
+      label: "Element 2",
+      type: "Negative Meniscus",
+      nd: 1.6968,
+      vd: 55.2,
+      indexReference: "d",
+      glass: "Unmatched (nd 1.69680 / νd 55.2)",
+      role: "Adds negative power ahead of the two positive front singlets.",
+      focalLengthMm: -52.87,
     },
     {
-      "id": 3,
-      "name": "E3",
-      "label": "Element 3",
-      "type": "Lens",
-      "nd": 1.68893,
-      "vd": 31,
-      "indexReference": "d"
+      id: 3,
+      name: "E3",
+      label: "Element 3",
+      type: "Biconvex Positive",
+      nd: 1.68893,
+      vd: 31,
+      indexReference: "d",
+      glass: "PBM28 (Ohara)",
+      role: "Begins the positive pair between the front menisci and the floating air space.",
+      focalLengthMm: 93.03,
     },
     {
-      "id": 4,
-      "name": "E4",
-      "label": "Element 4",
-      "type": "Lens",
-      "nd": 1.64769,
-      "vd": 33.8,
-      "indexReference": "d"
+      id: 4,
+      name: "E4",
+      label: "Element 4",
+      type: "Biconvex Positive",
+      nd: 1.64769,
+      vd: 33.8,
+      indexReference: "d",
+      glass: "PBM22 (Ohara)",
+      role: "Its nearly flat rear face forms the front boundary of the floating air space.",
+      focalLengthMm: 74.75,
     },
     {
-      "id": 5,
-      "name": "E5",
-      "label": "Element 5",
-      "type": "Lens",
-      "nd": 1.7725,
-      "vd": 49.5,
-      "indexReference": "d"
+      id: 5,
+      name: "E5",
+      label: "Element 5",
+      type: "Negative Meniscus",
+      nd: 1.7725,
+      vd: 49.5,
+      indexReference: "d",
+      glass: "LAH66 (Ohara)",
+      role: "Forms the rear boundary of the floating air space and supplies the final negative power of the front group.",
+      focalLengthMm: -19.61,
     },
     {
-      "id": 6,
-      "name": "E6",
-      "label": "Element 6",
-      "type": "Lens",
-      "nd": 1.50137,
-      "vd": 56.2,
-      "indexReference": "d"
+      id: 6,
+      name: "E6",
+      label: "Element 6",
+      type: "Biconvex Positive",
+      nd: 1.50137,
+      vd: 56.2,
+      indexReference: "d",
+      glass: "Unmatched (nd 1.50137 / νd 56.2)",
+      role: "Strong positive singlet at the front of the convergent rear group, immediately ahead of the iris.",
+      focalLengthMm: 19,
     },
     {
-      "id": 7,
-      "name": "E7",
-      "label": "Element 7",
-      "type": "Lens",
-      "nd": 1.56384,
-      "vd": 60.7,
-      "indexReference": "d"
+      id: 7,
+      name: "E7",
+      label: "Element 7",
+      type: "Biconcave Negative",
+      nd: 1.56384,
+      vd: 60.7,
+      indexReference: "d",
+      glass: "J-SK11 (Hikari)",
+      role: "Negative member of the first doublet behind the iris.",
+      cemented: "C1",
+      focalLengthMm: -20.21,
     },
     {
-      "id": 8,
-      "name": "E8",
-      "label": "Element 8",
-      "type": "Lens",
-      "nd": 1.72151,
-      "vd": 29.2,
-      "indexReference": "d"
+      id: 8,
+      name: "E8",
+      label: "Element 8",
+      type: "Positive Meniscus",
+      nd: 1.72151,
+      vd: 29.2,
+      indexReference: "d",
+      glass: "S-TIH18 (Ohara)",
+      role: "Positive partner of E7 at their cemented surface R14.",
+      cemented: "C1",
+      focalLengthMm: 41.92,
     },
     {
-      "id": 9,
-      "name": "E9",
-      "label": "Element 9",
-      "type": "Lens",
-      "nd": 1.92286,
-      "vd": 20.9,
-      "indexReference": "d"
+      id: 9,
+      name: "E9",
+      label: "Element 9",
+      type: "Biconcave Negative",
+      nd: 1.92286,
+      vd: 20.9,
+      indexReference: "d",
+      glass: "PBH21 (Ohara)",
+      role: "High-dispersion negative member of the second doublet.",
+      cemented: "C2",
+      focalLengthMm: -22.99,
     },
     {
-      "id": 10,
-      "name": "E10",
-      "label": "Element 10",
-      "type": "Lens",
-      "nd": 1.48749,
-      "vd": 69.8,
-      "indexReference": "d"
+      id: 10,
+      name: "E10",
+      label: "Element 10",
+      type: "Biconvex Positive",
+      nd: 1.48749,
+      vd: 69.8,
+      indexReference: "d",
+      glass: "Unmatched (nd 1.48749 / νd 69.8)",
+      role: "Low-dispersion positive partner of E9 at their cemented surface R17.",
+      cemented: "C2",
+      focalLengthMm: 21.74,
     },
     {
-      "id": 11,
-      "name": "E11",
-      "label": "Element 11",
-      "type": "Lens",
-      "nd": 1.7725,
-      "vd": 49.5,
-      "indexReference": "d"
-    }
+      id: 11,
+      name: "E11",
+      label: "Element 11",
+      type: "Positive Meniscus",
+      nd: 1.7725,
+      vd: 49.5,
+      indexReference: "d",
+      glass: "LAH66 (Ohara)",
+      role: "Rear singlet that adds convergence toward the film plane.",
+      focalLengthMm: 33.37,
+    },
   ],
-  "surfaces": [
-    {
-      "label": "1",
-      "R": 35.87879999999999,
-      "d": 1.9992599999999998,
-      "sd": 4.3500000000000005,
-      "medium": 1
-    },
-    {
-      "label": "2",
-      "R": 19.750739999999997,
-      "d": 6.3457799999999995,
-      "sd": 4.15
-    },
-    {
-      "label": "3",
-      "R": 36.75924,
-      "d": 1.9992599999999998,
-      "sd": 3.9000000000000004,
-      "medium": 2
-    },
-    {
-      "label": "4",
-      "R": 18.19692,
-      "d": 6.9078,
-      "sd": 3.8000000000000003
-    },
-    {
-      "label": "5",
-      "R": 283.9158,
-      "d": 5.17998,
-      "sd": 4,
-      "medium": 3
-    },
-    {
-      "label": "6",
-      "R": -84.67535999999998,
-      "d": 0.09917999999999999,
-      "sd": 4.1000000000000005
-    },
-    {
-      "label": "7",
-      "R": 52.69416,
-      "d": 4.710179999999999,
-      "sd": 4.1000000000000005,
-      "medium": 4
-    },
-    {
-      "label": "8",
-      "R": -803.1143999999999,
-      "d": 1.0005,
-      "sd": 3.9000000000000004
-    },
-    {
-      "label": "9",
-      "R": 20.0448,
-      "d": 1.0005,
-      "sd": 3.85,
-      "medium": 5
-    },
-    {
-      "label": "10",
-      "R": 8.551925999999998,
-      "d": 2.7335399999999996,
-      "sd": 3.7
-    },
-    {
-      "label": "11",
-      "R": 30.571799999999996,
-      "d": 9.444719999999998,
-      "sd": 4,
-      "medium": 6
-    },
-    {
-      "label": "12",
-      "R": -12.841199999999999,
-      "d": 1.09968,
-      "sd": 4.5
-    },
-    {
-      "label": "STO",
-      "R": "flat",
-      "d": 1.09968
-    },
-    {
-      "label": "13",
-      "R": -34.222319999999996,
-      "d": 4.983359999999999,
-      "sd": 4.3,
-      "medium": 7
-    },
-    {
-      "label": "14",
-      "R": 18.628439999999998,
-      "d": 3.46086,
-      "sd": 4.55,
-      "medium": 8
-    },
-    {
-      "label": "15",
-      "R": 43.131119999999996,
-      "d": 0.7464599999999999,
-      "sd": 4.6000000000000005
-    },
-    {
-      "label": "16",
-      "R": -44.29866,
-      "d": 1.0005,
-      "sd": 4.65,
-      "medium": 9
-    },
-    {
-      "label": "17",
-      "R": 43.073699999999995,
-      "d": 4.384799999999999,
-      "sd": 4.800000000000001,
-      "medium": 10
-    },
-    {
-      "label": "18",
-      "R": -14.016744,
-      "d": 0.09917999999999999,
-      "sd": 5.3500000000000005
-    },
-    {
-      "label": "19",
-      "R": -82.6848,
-      "d": 2.8623,
-      "sd": 5.4,
-      "medium": 11
-    },
-    {
-      "label": "20",
-      "R": -20.305799999999998,
-      "d": 36.04236,
-      "sd": 5.550000000000001
-    }
+  surfaces: [
+    { label: "1", R: 35.054, d: 1.9533, sd: 20.908, medium: 1 },
+    { label: "2", R: 19.2967, d: 6.1999, sd: 16.2184 },
+    { label: "3", R: 35.9142, d: 1.9533, sd: 17.7816, medium: 2 },
+    { label: "4", R: 17.7786, d: 6.749, sd: 12.7989 },
+    { label: "5", R: 277.389, d: 5.0609, sd: 14.5575, medium: 3 },
+    { label: "6", R: -82.7288, d: 0.0969, sd: 14.5575 },
+    { label: "7", R: 51.4828, d: 4.6019, sd: 10.7471, medium: 4 },
+    { label: "8", R: -784.652, sd: 10.7471 },
+    { label: "9", R: 19.584, d: 0.9775, sd: 7.2299, medium: 5 },
+    { label: "10", R: 8.35533, d: 2.6707, sd: 5.2759 },
+    { label: "11", R: 29.869, d: 9.2276, sd: 5.0805, medium: 6 },
+    { label: "12", R: -12.546, d: 1.0744, sd: 5.0805 },
+    { label: "STO", R: "flat", d: 1.0744 },
+    { label: "13", R: -33.4356, d: 4.8688, sd: 5.0805, medium: 7 },
+    { label: "14", R: 18.2002, d: 3.3813, sd: 6.2529, medium: 8 },
+    { label: "15", R: 42.1396, d: 0.7293, sd: 5.1782 },
+    { label: "16", R: -43.2803, d: 0.9775, sd: 7.2299, medium: 9 },
+    { label: "17", R: 42.0835, d: 4.284, sd: 7.2299, medium: 10 },
+    { label: "18", R: -13.69452, d: 0.0969, sd: 7.0833 },
+    { label: "19", R: -80.784, d: 2.7965, sd: 9.2816, medium: 11 },
+    { label: "20", R: -19.839, sd: 9.2816 },
   ],
-  "aperture": {
-    "nominalFNumber": 4,
-    "fStops": [
-      4,
-      8
+  aperture: { nominalFNumber: 4, fStops: [4, 5.6, 8, 11, 16, 22], maxFNumber: 22, blades: 6 },
+  focus: {
+    closeFocusM: 0.29308,
+    published: [1],
+    description:
+      "The whole lens advances toward the subject. The air space between E4 and E5 narrows by 0.5525 mm at the patent’s 0.29308 m setting.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 293.08,
+        distanceReference: "image-plane",
+        source:
+          "US 3,748,021, Embodiment 1, columns 3–4. The object is 17.24 focal lengths from the image plane, or 293.08 mm at 17 mm per unit. The table gives D8 = 0.025 at this distance.",
+      },
     ],
-    "maxFNumber": 8
+    keyframes: [0, 1],
   },
-  "focus": {
-    "closeFocusM": 1000000000000000.0,
-    "description": "Literal stationary infinity only. No finite or floating-focus travel modeled."
-  },
-  "projection": {
-    "kind": "rectilinear",
-    "fullFieldDeg": 104,
-    "maxTraceFieldDeg": 5
-  },
-  "doublets": [
-    {
-      "text": "E7/E8",
-      "fromSurface": "13",
-      "toSurface": "15"
-    },
-    {
-      "text": "E9/E10",
-      "fromSurface": "16",
-      "toSurface": "18"
-    }
+  gaps: { "8": { label: "D8", values: [[0.9775, 0.425]] }, "20": { label: "BF", values: [[35.214, 36.5726]] } },
+  groups: [
+    { text: "Front divergent group", fromSurface: "1", toSurface: "10" },
+    { text: "Rear convergent group", fromSurface: "11", toSurface: "20" },
   ],
-  "rays": {
-    "offAxisFieldFrac": 0.98
-  },
-  "layout": {
-    "yScFill": 0.65
-  }
+  doublets: [
+    { text: "C1", fromSurface: "13", toSurface: "15" },
+    { text: "C2", fromSurface: "16", toSurface: "18" },
+  ],
+  layout: { yScFill: 0.65 },
 } satisfies LensDataV2Input;
+
 export default LENS_DATA;
