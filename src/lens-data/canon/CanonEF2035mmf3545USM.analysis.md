@@ -102,7 +102,7 @@ A weaker meniscus of the same index and dispersion completes G3. Its rear vertex
 
 ## Glass Identification
 
-The patent gives d-line indices and Abbe numbers. The catalog equivalents supply dispersion curves for tracing. The original suppliers and melts are unknown.
+The patent gives refractive indices and Abbe numbers without naming a spectral line. They match d-line catalog values exactly. The catalog equivalents supply dispersion curves for tracing. The original suppliers and melts are unknown.
 
 | Catalog equivalent | Elements | Optical use                                                  |
 | ------------------ | -------- | ------------------------------------------------------------ |

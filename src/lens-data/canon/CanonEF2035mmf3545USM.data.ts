@@ -22,12 +22,12 @@ const LENS_DATA = {
   catalog: {
     lensMounts: ["canon-ef"],
     imageFormat: "135-full-frame",
-    specs: ["12 ELEMENTS / 11 GROUPS", "ALL SPHERICAL", "DESIGN f = 20.61–34.09 mm", "INNER FOCUS"],
+    specs: ["12 ELEMENTS / 11 GROUPS", "ALL SPHERICAL", "DESIGN f = 20.60–34.09 mm", "INNER FOCUS"],
     elementCount: 12,
     groupCount: 11,
     focalLengthMm: {
       marketing: [20, 35],
-      design: [20.61, 34.09],
+      design: [20.6, 34.09],
     },
     fNumber: { marketing: 3.5, design: 3.5 },
     closeFocusM: { marketing: 0.34 },

@@ -6,7 +6,7 @@ Tsunefumi Tanaka, _Zoom Lens_, JP H06-230281 A, Numerical Example 1. Canon Inc. 
 
 ## Transcription
 
-The prescription is in millimetres at the printed scale. The 23 spherical refracting surfaces, the stop at surface 13, 21 fixed thicknesses and air spaces, 12 d-line index and Abbe-number pairs, and six variable-gap values agree with Numerical Example 1. The iris lies 1.78 mm behind surface 12 and 0.92 mm ahead of surface 14. Surface 17 is the single cemented interface, between L33 and L34. The example gives spherical curvature throughout.
+The prescription is in millimetres at the printed scale. The 23 spherical refracting surfaces, the stop at surface 13, 21 fixed thicknesses and air spaces, 12 index and Abbe-number pairs, and six variable-gap values agree with Numerical Example 1. The patent names no spectral line; its index and Abbe-number pairs match d-line catalog glasses exactly. The iris lies 1.78 mm behind surface 12 and 0.92 mm ahead of surface 14. Surface 17 is the single cemented interface, between L33 and L34. The example gives spherical curvature throughout.
 
 The two variable gaps lie after surfaces 4 and 10. The published D4 spacings are 8.29, 10.28 and 8.29 mm, and D10 takes 16.80, 10.50 and 1.49 mm. The table headings are discussed under Corrections.
 
