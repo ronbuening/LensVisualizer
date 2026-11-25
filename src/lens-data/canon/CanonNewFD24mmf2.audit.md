@@ -53,5 +53,5 @@ The prescription reproduces the Example 1 table as printed. Its rounded dimensio
 
 ## Remaining Questions
 
-- The conditions table prints 1.8923 f for the magnitude of the combined focal length of Groups I and II. R1–R11 give a signed focal length of −2.4205 f. The same calculation reproduces the tabulated magnitudes for Examples 2–4. The Example 1 condition appears to be a misprint. The prescription still satisfies the stated 1.5 f to 6 f interval.
+- The conditions table prints 1.8923 f for the magnitude of the combined focal length of Groups I and II. R1–R11 give a focal length of −2.4205 f. The same calculation reproduces the tabulated magnitudes for Examples 2–4. The Example 1 condition appears to be a misprint. The prescription still satisfies the stated 1.5 f to 6 f interval.
 - The production iris diameter and the clear edges at R4, R8 and R16 are undocumented. The drawn flange at R8 and the R16/R17 contact limit leave uncertainty in wide-open illumination. The exact close-focus motion, production glass suppliers and melts, and original print source of the cutaway are also unknown.

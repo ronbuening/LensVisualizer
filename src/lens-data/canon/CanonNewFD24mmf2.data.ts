@@ -194,7 +194,7 @@ const LENS_DATA = {
     { label: "17", R: -116.184, d: 3.036, sd: 10.6, medium: 10 },
     { label: "18", R: -22.5144, d: 0.1464, sd: 10.6 },
     { label: "19", R: 284.4432, d: 2.6448, sd: 12.2, medium: 11 },
-    { label: "20", R: -49.8576, d: 36.05336462192678, sd: 12.2 },
+    { label: "20", R: -49.8576, d: 36.0534, sd: 12.2 },
   ],
   aperture: {
     nominalFNumber: 2,
