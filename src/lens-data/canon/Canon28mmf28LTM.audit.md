@@ -43,13 +43,13 @@ The first and last refracting vertices are 16.072 mm apart. Their separation in 
 | 5       |               3.68 |              3.73 |
 | 6       |               4.38 |              4.38 |
 | 7       |               5.04 |              5.04 |
-| 8       |               6.61 |              6.19 |
-| 9       |               6.61 |              6.19 |
+| 8       |               6.61 |              6.30 |
+| 9       |               6.61 |              6.30 |
 | 10      |               7.80 |              7.80 |
 
-At the front doublet, surfaces 2 and 3 meet at a radius just above 5.72 mm. At the rear, 6.19 mm keeps the shared edge below a 64.2° surface slope at r₉. Extending both members of either pair to the drawn radii makes the printed surfaces cross. Extending r₂, r₃ or r₈ separately to its drawn radius leaves corner illumination at 4.2%. Figure 1 shows a common edge on each doublet.
+At the front doublet, surfaces 2 and 3 meet at a radius just above 5.72 mm. At the rear, r₈ and r₉ meet at 6.35 mm, short of the 6.61 mm edge in Figure 1. Canon’s section draws the same edge at about 6.1–6.26 mm, scaled from its front rim. The shared rear edge is set at 6.30 mm, between the two drawings, which leaves L4a 0.12 mm thick at its rim. There r₉ reaches a 66.2° surface slope, so the file admits rim slopes up to 67°. A 6.19 mm edge, the largest within the usual 64.2° limit, would pass about 4 points less of the pupil at the infinity corner and 3–5 points less between 29° and 35°. Extending both members of either pair to the drawn radii makes the printed surfaces cross. Extending r₂, r₃ or r₈ separately to its drawn radius leaves corner illumination at 5.7%. Figure 1 shows a common edge on each doublet.
 
-The clear radius at surface 5 chiefly affects intermediate fields. With the other radii fixed, 3.68 mm admits 4.4 percentage points less of the pupil near 17° than 3.90 mm. A radius of 3.73 mm is within the drawing uncertainty and limits the largest loss to 2.9 points. The change has no measurable effect at the format corner. At infinity the corner chief ray clears every rim by at least 0.28 mm. The axial pupil transmits fully. At the infinity corner, the entrance rim, cemented interface 2 and surfaces 6–9 intercept off-axis rays. The 12.0% geometric corner transmission and 4.2% relative illumination are calculated at f/2.8.
+The clear radius at surface 5 chiefly affects intermediate fields. With the other radii fixed, 3.68 mm admits 4.4 percentage points less of the pupil near 17° than 3.90 mm. A radius of 3.73 mm is within the drawing uncertainty and limits the largest loss to 2.9 points. The change has no measurable effect at the format corner. At infinity the corner chief ray clears every rim by at least 0.35 mm. The axial pupil transmits fully. At the infinity corner, the entrance rim, cemented interface 2 and surfaces 6–9 intercept off-axis rays. The 16.1% geometric corner transmission and 5.7% relative illumination are calculated at f/2.8. At 1 m the corner transmission is 22.9%.
 
 Both film gaps come from paraxial focus. At infinity the stored plane is 0.00004 mm in front of the calculated focus. Moving the entire lens forward 0.8295 mm brings a subject 1 m from the film into focus, with the film plane 0.00003 mm in front of the calculated image. The finite corner chief clears every rim.
 
@@ -67,4 +67,4 @@ Canon marketed the six-element, four-group 28mm f/2.8 in June 1957. Its labeled 
 
 ## Remaining Questions
 
-The factory clear apertures, near-focus travel and measured corner illumination remain unknown. The patent gives no glass names and Canon does not identify its rare glasses by position. Both patent tables give n₃ = 1.7400, although the description and Claim 1 print the impossible inequality 1.30 > n₃ > 1.64. The intended upper bound remains uncertain.
+The factory clear apertures, near-focus travel and measured corner illumination remain unknown. Figure 1 and Canon’s section disagree on the height of the rear doublet’s shared edge. The patent gives no glass names and Canon does not identify its rare glasses by position. Both patent tables give n₃ = 1.7400, although the description and Claim 1 print the impossible inequality 1.30 > n₃ > 1.64. The intended upper bound remains uncertain.

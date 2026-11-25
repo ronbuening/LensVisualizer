@@ -6,10 +6,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * d₂ = 0.083 and r₆ = −0.2090. Claim 2 differs on both. The table gives
  * n₃ = 1.7400 despite an impossible inequality in the text.
  * Figure 1 supplies the rim estimates and the diaphragm position within d₅.
- * The two cemented edges are limited by the glass geometry, and the rim at
- * surface 5 allows for the width of the oblique beam. The iris radius follows
- * from f/2.8. The infinity image plane and whole-lens extension to Canon’s
- * 1 m minimum focus are paraxial calculations.
+ * The front cemented edge is limited by the glass geometry. The rear cemented
+ * edge is set at 6.3 mm, between Canon’s section (about 6.1–6.26 mm) and the
+ * Figure 1 knife edge (about 6.6 mm, beyond where the printed surfaces
+ * cross). The rim at surface 5 allows for the width of the oblique beam. The
+ * iris radius follows from f/2.8. The infinity image plane and whole-lens
+ * extension to Canon’s 1 m minimum focus are paraxial calculations.
  */
 const LENS_DATA = {
   schema: 2,
@@ -201,14 +203,14 @@ const LENS_DATA = {
       label: "8",
       R: -36.148,
       d: 3.668,
-      sd: 6.19,
+      sd: 6.3,
       medium: 5,
     },
     {
       label: "9",
       R: -6.888,
       d: 0.812,
-      sd: 6.19,
+      sd: 6.3,
       medium: 6,
     },
     {
@@ -270,6 +272,9 @@ const LENS_DATA = {
   ],
   layout: {
     yScFill: 0.65,
+  },
+  checks: {
+    maxRimAngleDeg: 67,
   },
 } satisfies LensDataV2Input;
 
