@@ -265,7 +265,7 @@ const LENS_DATA = {
   gaps: { STO: { label: "D7", values: [[2.81, 4.07, 8.08]] }, "9A": { label: "BF", values: [[13.67, 12.41, 8.4]] } },
 
   /* ── Aperture configuration ── */
-  aperture: { nominalFNumber: 1.86, fStops: [1.86, 2, 2.8, 4, 5.6, 8, 11, 16, 22] },
+  aperture: { nominalFNumber: 1.86, fStops: [1.86, 2, 2.8, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22 },
 
   /* ── Optical member SG (patent Table 1 surfaces 14–15): traced, not drawn ── */
   rearPlates: [

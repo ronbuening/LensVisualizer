@@ -29,7 +29,7 @@ const LENS_DATA = {
   key: "olympus-zuiko-mc-auto-w-28mm-f28",
   maker: "Olympus",
   name: "OLYMPUS ZUIKO MC AUTO-W 28mm f/2.8",
-  subtitle: "US 4,352,544, Sole Example — qualified production correlation",
+  subtitle: "US 4,352,544, Sole Example — tentative production match",
   visible: true,
   catalog: {
     lensMounts: ["olympus-om"],

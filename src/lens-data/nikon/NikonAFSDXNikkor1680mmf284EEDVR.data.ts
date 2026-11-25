@@ -35,7 +35,7 @@ const LENS_DATA = {
   key: "nikon-af-s-dx-nikkor-16-80mm-f28-4-e-ed-vr",
   maker: "Nikon",
   name: "NIKON AF-S DX NIKKOR 16-80mm f/2.8-4 E ED VR",
-  subtitle: "US 2018/0252903 A1 Example 1 — production correlation, not manufacturer-confirmed",
+  subtitle: "US 2018/0252903 A1 Example 1 — production match, not maker-confirmed",
 
   catalog: {
     lensMounts: ["nikon-f"],
@@ -484,7 +484,7 @@ const LENS_DATA = {
     },
   },
 
-  aperture: { fStops: [2.8, 4, 5.6, 8, 11, 16, 22] },
+  aperture: { fStops: [2.8, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22 },
 
   groups: [
     { text: "G1 (+)", fromSurface: "1", toSurface: "5" },

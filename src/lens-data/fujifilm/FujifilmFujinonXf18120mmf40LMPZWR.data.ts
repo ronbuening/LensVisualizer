@@ -52,7 +52,7 @@ const LENS_DATA = {
   key: "fujifilm-fujinon-xf-18-120mm-f4-lm-pz-wr",
   maker: "Fujifilm",
   name: "FUJIFILM FUJINON XF 18-120mm f/4 LM PZ WR",
-  subtitle: "JP 2023-033114 A Example 1 — native-scale production correlation",
+  subtitle: "JP 2023-033114 A Example 1 — production match at patent scale",
 
   catalog: {
     lensMounts: ["fujifilm-x"],
@@ -490,7 +490,7 @@ const LENS_DATA = {
     },
   },
 
-  aperture: { fStops: [4, 5.6, 8, 11, 16, 22] },
+  aperture: { fStops: [4, 5.6, 8, 11, 16, 22], maxFNumber: 22 },
 
   /* ── Plane-parallel member PP (patent surfaces 29–30): traced, not drawn ── */
   rearPlates: [

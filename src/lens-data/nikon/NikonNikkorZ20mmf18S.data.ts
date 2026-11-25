@@ -31,7 +31,7 @@ const LENS_DATA = {
   key: "nikon-nikkor-z-20mm-f18-s",
   maker: "Nikon",
   name: "NIKON NIKKOR Z 20mm f/1.8 S",
-  subtitle: "WO 2021/117429 A1 Example 1 — production correlation",
+  subtitle: "WO 2021/117429 A1 Example 1 — production match",
 
   catalog: {
     lensMounts: ["nikon-z"],

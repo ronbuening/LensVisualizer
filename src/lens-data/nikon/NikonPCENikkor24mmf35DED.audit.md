@@ -24,3 +24,7 @@ Patent: JP 2008-151949A, Example 2
 - Removed only the three catalog-derived dPgF.030 copies on L15/L21/L23. Their existing S-FPL51 curves remain, with R/G/B channel indices unchanged and V+5.653212e−6 on each. Qualified inferred ED/APD positions remain; source Δν2=38.62 is mean Abbe contrast, not partial dispersion. All 13 curves are qualified proxies; resin layers alone remain unresolved. Fixed stale public S-LAH58/S-BAL14/S-TIH14 names to actual S-LAH65V/S-TIL1/E-FL5 and removed unsupported exact-supplier/UV-cure claims.
 - Final asphere departures: S3A at 15.6:−3.304977 mm; S8A at 15.3:−.445770 mm; S26A at 13:+.408608 mm. Profiles remain physical through their final caps. Focused surface/image-circle/aperture/centered-FX field checks pass; nine actual SVG states have zero trim, with connected compounds. Resolver/catalog consistency passes13/15 modeled media. All source R/d/aspheres, source pairs/APD flags and focus/aperture/perspective controls remain unchanged.
 - Additional source-image-height probe: current centered chief-ray field reaches23.81 mm of the patent’s29.30 mm height(81%), limited by S2. Centered FX success does not verify the complete101°/shift image circle; public text states this limitation rather than fitting R/d or hiding the source bounds.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 32. `fStops` lists f/22 and f/32, which the slider cut off at the default 16. No optical value changed.

@@ -34,7 +34,7 @@ const LENS_DATA = {
   key: "nikon-af-s-nikkor-70-200mm-f4g-ed-vr",
   maker: "Nikon",
   name: "NIKON AF-S NIKKOR 70-200mm f/4 G ED VR",
-  subtitle: "US 2017/0315337 A1 — Example 1; strong production correlation, not manufacturer-confirmed attribution",
+  subtitle: "US 2017/0315337 A1 — Example 1; strong production match, not maker-confirmed",
 
   catalog: {
     lensMounts: ["nikon-f"],
@@ -401,7 +401,7 @@ const LENS_DATA = {
     },
   },
 
-  aperture: { nominalFNumber: 4.0997, fStops: [4, 5.6, 8, 11, 16, 22] },
+  aperture: { nominalFNumber: 4.0997, fStops: [4, 5.6, 8, 11, 16, 22], maxFNumber: 22 },
 
   groups: [
     { text: "G1", fromSurface: "1", toSurface: "7" },

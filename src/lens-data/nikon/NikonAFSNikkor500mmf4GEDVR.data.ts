@@ -43,7 +43,7 @@ const LENS_DATA = {
   key: "nikon-af-s-nikkor-500mm-f4g-ed-vr",
   maker: "Nikon",
   name: "NIKON AF-S NIKKOR 500mm f/4 G ED VR",
-  subtitle: "US 2009/0190239 A1 Example 1 — optical-specification correlation; attribution not manufacturer-confirmed",
+  subtitle: "US 2009/0190239 A1 Example 1 — production match in optical specifications; not maker-confirmed",
 
   catalog: {
     lensMounts: ["nikon-f"],
@@ -337,7 +337,7 @@ const LENS_DATA = {
 
   gaps: { "11": { label: "D11", values: [[39.04, 49.88]] }, "16": { label: "D16", values: [[24.02, 13.18]] } },
 
-  aperture: { nominalFNumber: 4.08, fStops: [4.08, 5.6, 8, 11, 16, 22] },
+  aperture: { nominalFNumber: 4.08, fStops: [4.08, 5.6, 8, 11, 16, 22], maxFNumber: 22 },
 
   groups: [
     { text: "G1 +", fromSurface: "1", toSurface: "11" },

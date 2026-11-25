@@ -45,7 +45,7 @@ const LENS_DATA = {
   key: "panasonic-lumix-s-pro-16-35f4",
   maker: "Panasonic",
   name: "PANASONIC LUMIX S PRO 16-35mm f/4",
-  subtitle: "JP 2021-076829 A, NUMERICAL EXAMPLE 1 — STRONG PRODUCT CORRELATION",
+  subtitle: "JP 2021-076829 A, NUMERICAL EXAMPLE 1 — STRONG PRODUCTION MATCH",
 
   catalog: {
     lensMounts: ["l-mount"],
@@ -536,7 +536,7 @@ const LENS_DATA = {
     },
   },
 
-  aperture: { fStops: [4, 4.5, 5, 5.6, 6.3, 8, 11, 16, 22], blades: 9 },
+  aperture: { fStops: [4, 4.5, 5, 5.6, 6.3, 8, 11, 16, 22], maxFNumber: 22, blades: 9 },
 
   /* ── Group and cemented-pair annotations ── */
   groups: [

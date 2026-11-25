@@ -19,9 +19,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  The patent describes a G2 imageward/objectward U-turn, but its turning     ║
  * ║  point is not tabulated; no extra control point is invented.                ║
  * ║                                                                            ║
- * ║  FOCUS STATUS: NO_INTERNAL_RECONSTRUCTION. The production lens is           ║
- * ║  inner-focusing, but the patent gives no close-focus prescription or        ║
- * ║  mechanism constraints. Every zoom-state focus pair is therefore identical.║
+ * ║  FOCUS: Infinity only. The production lens is inner-focusing, but the      ║
+ * ║  patent gives no close-focus prescription or mechanism constraints. At     ║
+ * ║  every zoom state each spacing keeps its infinity value at both ends of    ║
+ * ║  the focus control.                                                        ║
  * ║                                                                            ║
  * ║  SEMI-DIAMETERS: Not published. Figure 13 supplies the relative element      ║
  * ║  proportions; exact meridional tracing of the full-field chief ray, full     ║
@@ -44,7 +45,7 @@ const LENS_DATA = {
   key: "pentax-da-17-70mm-f4-al-if-sdm",
   maker: "Pentax",
   name: "PENTAX SMC DA 17-70mm f/4 AL [IF] SDM",
-  subtitle: "US 7,804,652 B2 EMBODIMENT 4 — STRONG PRODUCTION CORRELATION",
+  subtitle: "US 7,804,652 B2 EMBODIMENT 4 — STRONG PRODUCTION MATCH",
 
   catalog: {
     lensMounts: ["pentax-k"],
@@ -341,8 +342,8 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.28,
     description:
-      "NO_INTERNAL_RECONSTRUCTION: the production lens uses inner focusing, but Embodiment 4 publishes only " +
-      "infinity zoom states. Focus endpoint spacings are intentionally identical at every zoom position.",
+      "Infinity focus only. The production lens uses inner focusing, but Embodiment 4 publishes only infinity " +
+      "zoom states, so focus travel is not modeled; zoom movement is.",
   },
 
   gaps: {

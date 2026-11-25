@@ -56,7 +56,7 @@ const LENS_DATA = {
   key: "laowa-105mm-f2-stf",
   maker: "Laowa",
   name: "LAOWA 105mm f/2 Smooth Trans Focus (STF)",
-  subtitle: "CN 104991330 B, Example 1 — construction-based production correlation",
+  subtitle: "CN 104991330 B, Example 1 — production match by construction",
 
   catalog: {
     lensMounts: ["canon-ef", "nikon-f", "sony-a", "sony-fe", "pentax-k"],

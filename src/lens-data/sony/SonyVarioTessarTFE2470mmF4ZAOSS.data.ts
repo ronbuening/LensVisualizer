@@ -27,7 +27,7 @@ const LENS_DATA = {
   key: "sony-vario-tessar-t-fe-24-70-f4-za-oss",
   maker: "Sony",
   name: "SONY VARIO-TESSAR T* FE 24-70mm f/4 ZA OSS",
-  subtitle: "US 2015/0085165 A1, Example 3 — inferred production correlation",
+  subtitle: "US 2015/0085165 A1, Example 3 — inferred production match",
   visible: true,
 
   catalog: {
@@ -336,7 +336,7 @@ const LENS_DATA = {
     },
   },
 
-  aperture: { nominalFNumber: 4.1, fStops: [4.1, 5.6, 8, 11, 16, 22], blades: 7 },
+  aperture: { nominalFNumber: 4.1, fStops: [4.1, 5.6, 8, 11, 16, 22], maxFNumber: 22, blades: 7 },
 
   groups: [
     { text: "G1", fromSurface: "1", toSurface: "3" },

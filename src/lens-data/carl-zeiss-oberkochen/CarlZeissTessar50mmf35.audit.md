@@ -46,3 +46,7 @@ Catalog version: local working tree, 2026-06-25
 - `catalog.focalLengthMm.design: 50` from the same passage, lines 58–60: the radii and spacings "gelten für eine
   Brennweite von etwa 100 mm". Times the ×0.500005 scale in the data header this is 50.0005; it is recorded as 50
   because the source states the focal length only approximately. No optical value changed.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 22. `fStops` lists f/22, which the slider cut off at the default 16. No optical value changed.

@@ -20,7 +20,7 @@ const LENS_DATA = {
   key: "sigma-17mm-f4-dg-dn-contemporary",
   maker: "Sigma",
   name: "SIGMA 17mm f/4 DG DN | Contemporary",
-  subtitle: "JP 2024-062005 A — Numerical Example 2; construction-based production correlation",
+  subtitle: "JP 2024-062005 A — Numerical Example 2; production match by construction",
   catalog: {
     lensMounts: ["l-mount", "sony-fe"],
     imageFormat: "135-full-frame",

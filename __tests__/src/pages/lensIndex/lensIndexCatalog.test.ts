@@ -3,10 +3,13 @@ import {
   ALL_CATALOG_ENTRIES,
   buildImageFormatOptions,
   buildMountOptions,
+  buildSourceKindOptions,
   defaultCustomFilter,
+  lensSourceKind,
   DEBUG_CATALOG_ENTRIES,
   catalogEntriesForView,
   groupByAssignee,
+  groupByFocalLength,
   groupByImageFormat,
   groupByInventor,
   groupByMount,
@@ -28,7 +31,7 @@ const TEST_BOUNDS: FilterBounds = {
 
 function entry(
   key: string,
-  overrides: Partial<Pick<CatalogLensEntry, "lensMounts" | "imageFormat">> = {},
+  overrides: Partial<Pick<CatalogLensEntry, "lensMounts" | "imageFormat" | "sourceKind">> = {},
 ): CatalogLensEntry {
   return {
     key,
@@ -37,6 +40,8 @@ function entry(
     focalRange: [50, 50],
     aperture: 2,
     patentYear: 2021,
+    sourceKind: null,
+    productionMatch: true,
     lensMounts: [],
     imageFormat: null,
     ...overrides,
@@ -112,6 +117,26 @@ describe("lens index catalog metadata filters", () => {
     ).toBe(false);
     expect(matchesCustomFilter(unknownFormat, defaultCustomFilter(TEST_BOUNDS), TEST_BOUNDS)).toBe(true);
   });
+
+  it("classifies each lens by its source document and filters on it", () => {
+    const summary = (fields: Partial<LensSummary>) =>
+      ({ key: "s", name: "S", visible: true, ...fields }) as LensSummary;
+    const literature = { authors: ["Moritz von Rohr"], title: "Synthetic treatise", year: 1899, locator: "p. 1" };
+    expect(lensSourceKind(summary({ patentNumber: "US 1,234,567" }))).toBe("patent");
+    expect(lensSourceKind(summary({ sourceIssuer: "Fixture Optical Works" }))).toBe("maker-document");
+    expect(lensSourceKind(summary({ sourceLiterature: literature }))).toBe("literature");
+    expect(lensSourceKind(summary({}))).toBeNull();
+
+    const book = entry("book", { sourceKind: "literature" });
+    const patent = entry("patent", { sourceKind: "patent" });
+    const unsourced = entry("unsourced");
+    expect(buildSourceKindOptions([unsourced, book, patent, patent])).toEqual([
+      { id: "patent", label: "Patents", count: 2 },
+      { id: "literature", label: "Published literature", count: 1 },
+    ]);
+    const onlyBooks = { ...defaultCustomFilter(TEST_BOUNDS), sourceKinds: ["literature" as const] };
+    expect([book, patent, unsourced].filter((e) => matchesCustomFilter(e, onlyBooks, TEST_BOUNDS))).toEqual([book]);
+  });
 });
 
 describe("lens index catalog metadata grouping", () => {
@@ -151,6 +176,36 @@ describe("lens index catalog metadata grouping", () => {
     expect(groups.map((group) => group.label)).toEqual(["Alpha Optics", "Beta Optics"]);
     expect(groups[0].lenses).toEqual([multiAssignee]);
     expect(groups[1].lenses).toEqual([multiAssignee]);
+  });
+
+  it("buckets focal lengths by whole millimetres and keeps lenses without one", () => {
+    const focal = (key: string, focalLengthMarketing?: number | [number, number]): CatalogLensEntry => ({
+      ...entry(key),
+      data: { key, name: key, focalLengthMarketing } as LensSummary,
+    });
+    const sections = groupByFocalLength([
+      focal("unknown"),
+      focal("prime-24-2", 24.2),
+      focal("prime-24-6", 24.6),
+      focal("zoom-24-70", [24, 70]),
+    ]);
+
+    expect(
+      sections.map((section) => [
+        section.label,
+        section.subGroups.map((group) => [group.label, group.lenses.map((lens) => lens.key)]),
+      ]),
+    ).toEqual([
+      [
+        "Primes",
+        [
+          ["Ultrawide (≤24mm)", ["prime-24-2"]],
+          ["Wide (25–39mm)", ["prime-24-6"]],
+          ["Unknown Focal Length", ["unknown"]],
+        ],
+      ],
+      ["Zooms", [["Ultrawide (≤24mm)", ["zoom-24-70"]]]],
+    ]);
   });
 
   it("duplicates multi-mount lenses into each mount group and puts unknown last", () => {

@@ -25,7 +25,7 @@ const LENS_DATA = {
   key: "rodenstock-geronar-wa-90mm-f8",
   maker: "Rodenstock",
   name: "RODENSTOCK GERONAR-WA 90mm f/8",
-  subtitle: "DE 3026282 C2, sole example — probable production correlation",
+  subtitle: "DE 3026282 C2, sole example — probable production match",
   visible: true,
   catalog: {
     lensMounts: ["large-format-lens-board"],

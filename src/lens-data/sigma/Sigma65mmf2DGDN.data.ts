@@ -31,7 +31,7 @@ const LENS_DATA = {
   maker: "Sigma",
   name: "SIGMA 65mm f/2 DG DN | Contemporary",
   subtitle:
-    "JP 2021-128263 A Numerical Example 1; production construction correlation, exact factory prescription unconfirmed",
+    "JP 2021-128263 A Numerical Example 1; production match by construction, exact factory prescription not maker-confirmed",
 
   catalog: {
     lensMounts: ["l-mount", "sony-fe"],

@@ -55,7 +55,7 @@ Tags: `[policy]` how we work · `[recipe]` steps for one change type · `[archit
 - [queue] [`../FEATURE_ADDITION_PLAN.md`](../FEATURE_ADDITION_PLAN.md) — planned features; owns the per-item template and the "already shipped" list
 - [queue] [`../EFFICIENCY_IMPROVEMENT_PLAN.md`](../EFFICIENCY_IMPROVEMENT_PLAN.md) — open cleanup and performance items with verification gates
 - [queue] [`../TRACE_MODEL_IMPROVEMENT_PLAN.md`](../TRACE_MODEL_IMPROVEMENT_PLAN.md) — trace-model status, deferred items, suggested next work
-- [queue] [`../MTF_ACCURACY_PLAN.md`](../MTF_ACCURACY_PLAN.md) — MTF audit findings, assumption review, the open stages (prescription screen, uncertainty display, validation statement) and unscheduled candidates; optional optiland cross-check tool
+- [queue] [`../MTF_ACCURACY_PLAN.md`](../MTF_ACCURACY_PLAN.md) — MTF audit findings; numerical estimator/convergence workstream; prescription, uncertainty and validation stages; external comparator workflow
 - [queue] [`sd-audit-queue.md`](sd-audit-queue.md) — semi-diameter floor failures, shape deviations, source blockers, MTF field and image-plane censuses, traced field-coverage shortfalls, prescription errors found in passing, stops still opened to the marketed f-number, stations whose stated axial beam does not pass, the in-progress diagram sweep
 - [queue] [`lens-mount-format-backfill.md`](lens-mount-format-backfill.md) — mount/format metadata coverage and review queue
 - [queue] [`finite-conjugate-backfill.md`](finite-conjugate-backfill.md) — published close-focus states without `focus.conjugates`, by what the source prints and why it could not be declared
@@ -64,6 +64,9 @@ Tags: `[policy]` how we work · `[recipe]` steps for one change type · `[archit
 - [queue] [`proprietary-glass-backfill.md`](proprietary-glass-backfill.md) — patent line-index backfill for proprietary glasses
 - [queue] [`dispersion-estimate-exploration.md`](dispersion-estimate-exploration.md) — paused proposal: narrow the MTF warning's estimated-dispersion blur and refit the nd/νd estimate; findings and the audit script
 - [queue] [`seo-optimization-plan.md`](seo-optimization-plan.md) — SEO rollout and Search Console triage, blocked on user-supplied inputs
+- [queue] [`search-traffic-actions.md`](search-traffic-actions.md) — quick snippet, opening-paragraph and crawl fixes from the November 2026 Bing and Google exports
+- [queue] [`search-traffic-research.md`](search-traffic-research.md) — lens families, mounts and features to investigate from the same exports, with open questions
+- [queue] [`article-preplanning.md`](article-preplanning.md) — candidate articles with target queries, overlap to check and outlines
 
 ## Records
 

@@ -55,7 +55,7 @@ const LENS_DATA = {
   key: "canon-ef-m-11-22mm-f4-5-6-is-stm",
   maker: "Canon",
   name: "CANON EF-M 11-22mm f/4-5.6 IS STM",
-  subtitle: "US 2014/0098253 A1 Numerical Example 3 — strong Canon EF-M 11-22mm f/4-5.6 IS STM correlation",
+  subtitle: "US 2014/0098253 A1 Numerical Example 3 — strong Canon EF-M 11-22mm f/4-5.6 IS STM match",
 
   catalog: {
     lensMounts: ["canon-ef-m"],
@@ -330,7 +330,7 @@ const LENS_DATA = {
     },
   },
 
-  aperture: { fStops: [4, 4.5, 5.6, 8, 11, 16, 22], blades: 7 },
+  aperture: { fStops: [4, 4.5, 5.6, 8, 11, 16, 22], maxFNumber: 22, blades: 7 },
 
   groups: [
     { text: "U1 (-)", fromSurface: "1A", toSurface: "6" },

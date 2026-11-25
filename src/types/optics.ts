@@ -75,7 +75,7 @@ export interface RearPlateData {
   nC?: number;
   nF?: number;
   ng?: number;
-  /** Physical air gap after this plate in mm; for the last plate, the distance to the image plane. */
+  /** Physical air gap after this plate in mm. A scheduled final gap uses its first thickness here. */
   gapAfterMm: number;
   /** Published clear semi-diameter; omitted plates get a non-clipping generated value. */
   sd?: number;
@@ -462,6 +462,28 @@ export interface PatentExample {
   id: string | null;
 }
 
+/**
+ * A published secondary work that prints the prescription: a book, treatise, journal article or teaching text that is
+ * neither a patent nor its manufacturer's own document. A lens with one is a literature reconstruction; see
+ * LENS_DATA_SPEC.md § Literature reconstructions.
+ */
+export interface LiteratureSource {
+  /** The work's authors, romanized, one complete personal name each, in title-page order. */
+  authors: string[];
+  /** The title as printed, in its original language. */
+  title: string;
+  /** Year of the edition used. */
+  year: number;
+  publisher?: string;
+  place?: string;
+  /** Where the prescription is printed, as the work numbers it: `"p. 250, Fig. 100"`. */
+  locator: string;
+  /** A stable https link to the scan used, page-anchored where possible. */
+  url?: string;
+  /** The earlier work the publication says it took the data from, when it names one. */
+  after?: string;
+}
+
 /** Complete lens data object (after defaults merging) */
 export interface LensData {
   /** Optional UTC publication timestamp for a replacement model; otherwise derived from Git history. */
@@ -492,6 +514,8 @@ export interface LensData {
   patentAssignees?: string[];
   /** The organization that issued a non-patent manufacturer source; never beside `patentNumber`. */
   sourceIssuer?: string;
+  /** The published secondary work that prints a literature reconstruction; never beside patent metadata or an issuer. */
+  sourceLiterature?: LiteratureSource;
   patentYear?: number;
   /** Departures from, and unresolved contradictions in, the source's printed values; see LENS_DATA_SPEC.md. */
   sourceErrata?: SourceErratum[];

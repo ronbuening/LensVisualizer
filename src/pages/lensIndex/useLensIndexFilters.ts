@@ -8,6 +8,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import {
+  SOURCE_KIND_ORDER,
   clampNumericFilterValue,
   defaultCustomFilter,
   hasActiveCustomFilters,
@@ -15,7 +16,14 @@ import {
   numericFilterInputValues,
 } from "./catalog.js";
 import { isSameCustomFilter } from "./urlState.js";
-import type { CatalogLensEntry, CustomFilterState, FilterBounds, NumericFilterField } from "./types.js";
+import type {
+  CatalogLensEntry,
+  CustomFilterState,
+  FilterBounds,
+  LensSourceKind,
+  NumericFilterField,
+  ProductionMatchFilter,
+} from "./types.js";
 import type { ImageFormatId, LensMountId } from "../../utils/catalog/lensTaxonomy.js";
 import { catalogCollator } from "../../utils/catalog/collation.js";
 
@@ -44,6 +52,10 @@ interface LensIndexFiltersResult {
   clearMountSelection: () => void;
   toggleImageFormat: (formatId: ImageFormatId) => void;
   clearImageFormatSelection: () => void;
+  toggleSourceKind: (kind: LensSourceKind) => void;
+  clearSourceKindSelection: () => void;
+  selectSourceKind: (kind: LensSourceKind) => void;
+  setProductionMatch: (value: ProductionMatchFilter) => void;
   applyNumericField: (field: NumericFilterField, value: number) => void;
   handleNumericInputChange: (field: NumericFilterField, value: string) => void;
   commitNumericInput: (field: NumericFilterField) => void;
@@ -85,10 +97,11 @@ export default function useLensIndexFilters({
     numericFilterInputValues(initialFilter ?? defaultCustomFilter(bounds)),
   );
 
-  useEffect(() => {
-    if (!initialFilter) return;
-    setCustomFilter((previous) => (isSameCustomFilter(previous, initialFilter) ? previous : initialFilter));
-  }, [initialFilter]);
+  const [previousInitialFilter, setPreviousInitialFilter] = useState(initialFilter);
+  if (initialFilter !== previousInitialFilter) {
+    setPreviousInitialFilter(initialFilter);
+    if (initialFilter && !isSameCustomFilter(customFilter, initialFilter)) setCustomFilter(initialFilter);
+  }
 
   useEffect(() => {
     setFilterInputValues(numericFilterInputValues(customFilter));
@@ -163,6 +176,33 @@ export default function useLensIndexFilters({
       imageFormatIds: [],
     }));
 
+  const toggleSourceKind = (kind: LensSourceKind) =>
+    setCustomFilter((previous) => ({
+      ...previous,
+      sourceKinds: SOURCE_KIND_ORDER.filter((id) =>
+        id === kind ? !previous.sourceKinds.includes(id) : previous.sourceKinds.includes(id),
+      ),
+    }));
+
+  // Re-selecting the current value keeps the same filter object, so the list is not regrouped.
+  const selectSourceKind = (kind: LensSourceKind) =>
+    setCustomFilter((previous) =>
+      previous.sourceKinds.length === 1 && previous.sourceKinds[0] === kind
+        ? previous
+        : { ...previous, sourceKinds: [kind] },
+    );
+
+  const setProductionMatch = (productionMatch: ProductionMatchFilter) =>
+    setCustomFilter((previous) =>
+      previous.productionMatch === productionMatch ? previous : { ...previous, productionMatch },
+    );
+
+  const clearSourceKindSelection = () =>
+    setCustomFilter((previous) => ({
+      ...previous,
+      sourceKinds: [],
+    }));
+
   const handleNumericInputChange = (field: NumericFilterField, value: string) =>
     setFilterInputValues((previous) => ({
       ...previous,
@@ -183,7 +223,13 @@ export default function useLensIndexFilters({
       return;
     }
 
-    applyNumericField(field, clampNumericFilterValue(parsed, config.min, config.max, config.step));
+    const value = clampNumericFilterValue(parsed, config.min, config.max, config.step);
+    if (value === customFilter[field]) {
+      // Nothing to commit: restore the draft text without regrouping the list.
+      resetNumericInputField(field);
+      return;
+    }
+    applyNumericField(field, value);
   };
 
   const handleNumericInputKeyDown = (field: NumericFilterField, event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -210,6 +256,10 @@ export default function useLensIndexFilters({
     clearMountSelection,
     toggleImageFormat,
     clearImageFormatSelection,
+    toggleSourceKind,
+    clearSourceKindSelection,
+    selectSourceKind,
+    setProductionMatch,
     applyNumericField,
     handleNumericInputChange,
     commitNumericInput,

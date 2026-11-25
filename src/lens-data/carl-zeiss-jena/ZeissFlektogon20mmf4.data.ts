@@ -41,7 +41,7 @@ const LENS_DATA = {
   key: "czj-flektogon-20-f4",
   maker: "Carl Zeiss Jena",
   name: "CARL ZEISS JENA FLEKTOGON 20mm f/4",
-  subtitle: "GB 978,797 Example 1 — strong Flektogon 4/20 correlation; attribution not manufacturer-confirmed",
+  subtitle: "GB 978,797 Example 1 — strong Flektogon 4/20 match; attribution not maker-confirmed",
 
   catalog: {
     lensMounts: ["m42", "exakta"],
@@ -238,7 +238,7 @@ const LENS_DATA = {
   },
 
   /* ── Aperture configuration ── */
-  aperture: { nominalFNumber: 4, fStops: [4, 5.6, 8, 11, 16, 22] },
+  aperture: { nominalFNumber: 4, fStops: [4, 5.6, 8, 11, 16, 22], maxFNumber: 22 },
 
   // GB 978,797 states the available image field is approximately 93°.
   // The rectilinear override keeps the authored coverage tied to that source value

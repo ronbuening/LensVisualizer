@@ -154,14 +154,13 @@ supplier-specific glass pairing beyond the stored coordinate classes.
 
 ## Focus Mechanism
 
-The verified optical model has focus status `NO_INTERNAL_RECONSTRUCTION`. DE 927 540 publishes one fixed prescription
-state and no moving-group spacing table, close-focus row, minimum focus distance, or optical focusing mechanism.
-Accordingly, no `var` spacings are authored and no internal group motion is inferred.
+DE 927 540 publishes one fixed prescription state and no moving-group spacing table, close-focus row, minimum focus
+distance, or optical focusing mechanism. The verified model therefore shows the lens at infinity only: no spacing
+changes with focus and no internal group motion is inferred.
 
-The data schema requires `closeFocusM`; the static model therefore uses `1e15 m` as an explicit infinity sentinel. That
-number is not a production minimum-focus-distance specification and should not be interpreted as mechanical focus travel.
-Secondary observations of production barrels are insufficient to determine which optical group, if any, moved relative
-to the others in the manufactured lens.
+The focus control is held at infinity; the stored value is not a production minimum focus distance and should not be
+interpreted as mechanical focus travel. Secondary observations of production barrels are insufficient to determine which
+optical group, if any, moved relative to the others in the manufactured lens.
 
 ## Patent Conditions and Numerical Verification
 

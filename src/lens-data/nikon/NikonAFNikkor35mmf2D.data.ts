@@ -26,7 +26,7 @@ const LENS_DATA = {
   maker: "Nikon",
   name: "NIKON AF NIKKOR 35mm f/2 D",
   subtitle:
-    "JP 2021-36283 A Ex.1 — strong form correlation; attribution unconfirmed; patent unit focus differs from Nikon RF",
+    "JP 2021-36283 A Ex.1 — strong layout match; not maker-confirmed; patent unit focus differs from Nikon RF",
 
   catalog: {
     lensMounts: ["nikon-f"],

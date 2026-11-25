@@ -52,7 +52,7 @@ const LENS_DATA = {
   key: "minolta-af-35mm-f14",
   maker: "Minolta",
   name: "MINOLTA AF 35mm f/1.4",
-  subtitle: "US 4,806,003 — Example 2; production-correlated, 0.35× scaled",
+  subtitle: "US 4,806,003 — Example 2; production match, 0.35× scaled",
 
   catalog: {
     lensMounts: ["sony-a"],

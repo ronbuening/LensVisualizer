@@ -47,7 +47,7 @@ const LENS_DATA = {
   key: "hasselblad-hc-50f35-ii",
   maker: "Hasselblad",
   name: "HASSELBLAD HC 50mm f/3.5 II",
-  subtitle: "US 2012/0063011 A1 Example 1 — Hasselblad HC 3,5/50-II correlation",
+  subtitle: "US 2012/0063011 A1 Example 1 — Hasselblad HC 3,5/50-II match",
 
   catalog: {
     lensMounts: ["hasselblad-h"],

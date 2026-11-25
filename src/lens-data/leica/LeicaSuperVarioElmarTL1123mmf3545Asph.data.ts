@@ -52,7 +52,7 @@ const LENS_DATA = {
   key: "leica-super-vario-elmar-tl-11-23mm-f35-45-asph",
   maker: "Leica",
   name: "LEICA SUPER-VARIO-ELMAR-TL 11-23mm f/3.5-4.5 ASPH.",
-  subtitle: "JP 2016-133764 A Example 6 — strong inferred production correlation",
+  subtitle: "JP 2016-133764 A Example 6 — strong inferred production match",
 
   catalog: {
     lensMounts: ["l-mount"],

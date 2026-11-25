@@ -35,7 +35,7 @@ const LENS_DATA = {
   "key": "yongnuo-yn-33mm-f14-da-dsm-wl-pro",
   "maker": "Yongnuo",
   "name": "YONGNUO YN 33mm f/1.4 DA DSM WL PRO",
-  "subtitle": "CN 220137479 U, Sole example \u2014 strong production correlation",
+  "subtitle": "CN 220137479 U, Sole example \u2014 strong production match",
   "catalog": {
     "specs": [
       "11 ELEMENTS / 9 GROUPS",

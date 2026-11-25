@@ -197,15 +197,14 @@ supported by `nd` and `νd` alone unless a new primary source identifies the act
 
 ## Focus Mechanism
 
-The modeled prescription is an infinity state only. The patent gives no finite-conjugate prescription, focus-spacing
-table, object-distance series, magnification series, or internal-group travel for Example 1. Accordingly, the data file
-uses `NO_INTERNAL_RECONSTRUCTION`, with an empty `var` object and an empty `varLabels` array; no internal focus motion is
-synthesized from product specifications.
+The modeled prescription is an infinity state only. The patent gives no close-focus prescription, focus-spacing table,
+object-distance series, magnification series, or internal-group travel for Example 1. Accordingly, no spacing in the
+model changes with focus, and no internal focus motion is modeled from product specifications.
 
-Fuji's production literature gives a minimum focusing distance of 0.25 m, and the data file retains that value as
-`closeFocusM` product metadata. The manufacturer source does not define a prescription reference plane or disclose which
-optical group moves to reach that distance. The 0.25 m value therefore does not establish a modeled close-focus optical
-state and must not be interpreted as a finite-conjugate validation of the patent prescription.
+Fuji's production literature gives a minimum focusing distance of 0.25 m, and the model records that value as product
+information. The manufacturer source does not define a prescription reference plane or disclose which optical group
+moves to reach that distance. The 0.25 m value therefore does not establish a modeled close-focus optical state and must
+not be interpreted as a close-focus validation of the patent prescription.
 
 ## Conditional Expressions
 

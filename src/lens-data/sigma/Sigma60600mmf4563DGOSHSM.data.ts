@@ -52,7 +52,7 @@ const LENS_DATA = {
   key: "sigma-60-600mm-f45-63-dg-os-hsm-sports",
   maker: "Sigma",
   name: "SIGMA 60-600mm f/4.5-6.3 DG OS HSM | Sports",
-  subtitle: "JP 2020-020948 A, Numerical Example 1; architectural correlation",
+  subtitle: "JP 2020-020948 A, Numerical Example 1; layout match",
 
   catalog: {
     lensMounts: ["sigma-sa", "canon-ef", "nikon-f"],

@@ -75,6 +75,7 @@ import {
 } from "../ingestCommon.js";
 import type { IngestContext as SharedIngestContext, Untyped } from "../ingestCommon.js";
 import { itemPath, labelPath } from "../sourcePaths.js";
+import { rearPlateSurfaceLabels } from "../rearPlates.js";
 
 /** Radius the V1 format writes for a flat surface; any other flat radius is kept in provenance. */
 export const V1_FLAT_RADIUS = 1e15;
@@ -112,6 +113,7 @@ const LENS_FIELDS: Readonly<Record<keyof LensDataInput, true>> = {
   sourceOmissions: true,
   sdSource: true,
   sourceIssuer: true,
+  sourceLiterature: true,
   elementCount: true,
   groupCount: true,
   visible: true,
@@ -626,7 +628,7 @@ function ingestGaps(
     /* A prime's list is the one row of its gap. */
     if (context.sources) context.sources.read[isZoom ? `gaps[${index}].values` : `gaps[${index}].values[0]`] = where;
     const surface = surfaces[labelIndex.get(gap.surface)!];
-    if (rows.length > 0 && rows[0].length > 0 && rows[0][0] !== surface.d) {
+    if (surface && rows.length > 0 && rows[0].length > 0 && rows[0][0] !== surface.d) {
       context.issues.push(
         `surfaces[${labelIndex.get(gap.surface)}].d ${String(surface.d)} differs from ${where}'s first value ` +
           `${String(rows[0][0])}: a variable gap's first value is its surface's d, so write the two alike`,
@@ -952,7 +954,11 @@ export function ingestLensV1(input: LensDataInput, request?: IngestRequest): Ing
     if (!Array.isArray(data.finiteConjugates)) context.issues.push(`finiteConjugates must be a list`);
   }
   ingestPublishedStations(data, zoom, focus, context);
-  const gaps = ingestGaps(data, zoom !== undefined, labelIndex, surfaces, context);
+  const rearPlates = has(data, "rearPlates") ? ingestRearPlates(data.rearPlates, context) : undefined;
+  const gapLabelIndex = rearPlates?.length
+    ? new Map(labelIndex).set(rearPlateSurfaceLabels(rearPlates.length - 1)[1], surfaces.length)
+    : labelIndex;
+  const gaps = ingestGaps(data, zoom !== undefined, gapLabelIndex, surfaces, context);
 
   const catalog: Untyped = {};
   for (const field of [
@@ -1020,7 +1026,7 @@ export function ingestLensV1(input: LensDataInput, request?: IngestRequest): Ing
   }
   for (const field of ["projection", "opticalPath", "perspectiveControl", "imageSurface"])
     put(lens, field, data[field]);
-  if (has(data, "rearPlates")) lens.rearPlates = ingestRearPlates(data.rearPlates, context);
+  put(lens, "rearPlates", rearPlates);
   put(lens, "groups", data.groups);
   put(lens, "doublets", data.doublets);
   lens.layout = layout;
@@ -1042,6 +1048,7 @@ const V1_NAMES = {
     errata: "sourceErrata",
     omissions: "sourceOmissions",
     issuer: "sourceIssuer",
+    literature: "sourceLiterature",
   },
   focus: { closeFocusM: "closeFocusM", description: "focusDescription" },
   aperture: {
@@ -1102,6 +1109,7 @@ function recordSourceReads(sources: SourcePaths, source: Untyped): void {
     "omissions",
     "sdSource",
     "issuer",
+    "literature",
   ];
   recordReads(sources, "source", "", source, fields, V1_NAMES.source);
 }
@@ -1117,6 +1125,7 @@ function ingestSource(data: Untyped): Untyped {
   put(source, "omissions", data.sourceOmissions);
   put(source, "sdSource", data.sdSource);
   put(source, "issuer", data.sourceIssuer);
+  put(source, "literature", data.sourceLiterature);
   return source;
 }
 

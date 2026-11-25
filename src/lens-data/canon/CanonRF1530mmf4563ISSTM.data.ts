@@ -31,7 +31,7 @@ const LENS_DATA = {
   key: "canon-rf-15-30mm-f4-5-6-3-is-stm",
   maker: "Canon",
   name: "CANON RF 15-30mm f/4.5-6.3 IS STM",
-  subtitle: "EP 4 174 551 A1 — Second Numerical Embodiment; production correlation inferred",
+  subtitle: "EP 4 174 551 A1 — Second Numerical Embodiment; inferred production match",
 
   catalog: {
     lensMounts: ["canon-rf"],
@@ -346,7 +346,7 @@ const LENS_DATA = {
     },
   },
 
-  aperture: { fStops: [4.6, 5.6, 6.3, 8, 11, 16, 22], blades: 7 },
+  aperture: { fStops: [4.6, 5.6, 6.3, 8, 11, 16, 22], maxFNumber: 22, blades: 7 },
 
   groups: [
     { text: "L1", fromSurface: "1", toSurface: "8" },

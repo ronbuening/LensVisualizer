@@ -250,6 +250,7 @@ const LENS_DATA = {
   aperture: {
     nominalFNumber: 2.89, // patent design FNO; Nikon markets f/2.8
     fStops: [2.89, 4, 5.6, 8, 11, 16, 22, 32],
+    maxFNumber: 32,
   },
 
   perspectiveControl: {

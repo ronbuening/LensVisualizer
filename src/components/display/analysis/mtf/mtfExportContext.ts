@@ -10,6 +10,7 @@ import type { MtfSweepSample, MtfResult } from "../../../../types/mtf.js";
 import type { MtfPreferences } from "../../../../utils/state/mtfPreferences.js";
 import { mtfSweepLabel } from "./mtfPresentation.js";
 import { SITE_NAME } from "../../../../utils/catalog/lensMetadata.js";
+import { literatureCitation } from "../../../../utils/catalog/lensPatentMetadata.js";
 import { fopenAtZoomClamped, formatFNumber } from "../../../../optics/optics.js";
 
 export const MTF_EXPORT_DISCLAIMER =
@@ -68,7 +69,15 @@ export function buildMtfExportContext(input: MtfExportContextInput): MtfExportCo
     site_name: SITE_NAME,
     lens_name: lens.source.name,
     lens_key: lens.source.key,
-    source: [source.patentNumber, source.example?.label, source.issuer].filter(Boolean).join("; ") || "not recorded",
+    source:
+      [
+        source.patentNumber,
+        source.example?.label,
+        source.issuer,
+        source.literature ? literatureCitation(source.literature) : undefined,
+      ]
+        .filter(Boolean)
+        .join("; ") || "not recorded",
     station: `${input.focalLengthMm} mm; ${conjugate ? `${conjugate.objectDistanceMm} mm from ${conjugate.distanceReference}` : input.focusT === 0 ? "infinity" : "focus distance not established"}; zoom ${input.zoomT}; focus ${input.focusT}`,
     aperture: [
       input.fNumber ? `selected f/${input.fNumber}` : "selected f-number not recorded",

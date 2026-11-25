@@ -43,7 +43,7 @@ const LENS_DATA = {
   key: "samsung-nx-45mm-f18",
   maker: "Samsung",
   name: "SAMSUNG 45mm f/1.8",
-  subtitle: "US 2013/0314588 A1 Example 1 — production correlation to the Samsung 45mm f/1.8",
+  subtitle: "US 2013/0314588 A1 Example 1 — production match to the Samsung 45mm f/1.8",
 
   catalog: {
     lensMounts: ["samsung-nx"],
@@ -190,7 +190,7 @@ const LENS_DATA = {
   /* (moved from var) ── Published focus movement ── */
   gaps: { "5": { label: "D1", values: [[2.99, 7.01]] }, "7": { label: "D2", values: [[6.81, 2.78]] } },
 
-  aperture: { nominalFNumber: 1.84, fStops: [1.84, 2, 2.8, 4, 5.6, 8, 11, 16, 22] },
+  aperture: { nominalFNumber: 1.84, fStops: [1.84, 2, 2.8, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22 },
 
   /* ── Filter 400 (patent Example 1 surfaces 15–16): traced, not drawn ── */
   rearPlates: [

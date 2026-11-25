@@ -50,7 +50,7 @@ const LENS_DATA = {
   key: "pentax-da-11-18-f28",
   maker: "Pentax",
   name: "PENTAX HD DA* 11-18mm f/2.8 ED DC AW",
-  subtitle: "US 2018/0164556 A1 Example 1 — probable production correlation",
+  subtitle: "US 2018/0164556 A1 Example 1 — probable production match",
 
   catalog: {
     lensMounts: ["pentax-k"],
@@ -431,7 +431,7 @@ const LENS_DATA = {
   },
 
   /* ── Aperture, focus range, and rendering ── */
-  aperture: { nominalFNumber: 2.8, fStops: [2.8, 4, 5.6, 8, 11, 16, 22], blades: 9 },
+  aperture: { nominalFNumber: 2.8, fStops: [2.8, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22, blades: 9 },
 
   /* ── Group annotations ── */
   groups: [

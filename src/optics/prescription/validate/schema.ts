@@ -313,6 +313,20 @@ export function validateImageFormat(value: unknown, errors: string[]): void {
 
 export const LENS_KEY_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
+/**
+ * Reject quick-select stops past the aperture slider's end. The slider runs to `maxFstop` (default 16) and the stop
+ * buttons filter on the same limit, so a listed stop above it can never be selected.
+ */
+export function validateFStopsWithinSlider(data: UntrustedLensData, errors: string[]): void {
+  const max = data.maxFstop;
+  if (!Array.isArray(data.fstopSeries) || typeof max !== "number" || !isFinite(max)) return;
+  const over = data.fstopSeries.filter((stop: unknown) => typeof stop === "number" && stop > max + 1e-9);
+  if (over.length === 0) return;
+  errors.push(
+    `"fstopSeries" lists ${over.join(", ")} above "maxFstop" (${max}), past the aperture slider's end; set "maxFstop" to ${Math.max(...over)}`,
+  );
+}
+
 export function validateTopLevel(data: UntrustedLensData, errors: string[]): void {
   /* ── Required top-level scalars ── */
   const requiredStrings = ["key", "name"];
@@ -354,6 +368,7 @@ export function validateTopLevel(data: UntrustedLensData, errors: string[]): voi
   for (const f of requiredArrays) {
     if (!Array.isArray(data[f]) || data[f].length === 0) errors.push(`Missing or empty required array field: "${f}"`);
   }
+  validateFStopsWithinSlider(data, errors);
 
   if (
     data.zoomApertureModel !== undefined &&

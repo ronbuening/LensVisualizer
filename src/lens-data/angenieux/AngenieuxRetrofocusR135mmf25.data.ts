@@ -6,8 +6,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ╠══════════════════════════════════════════════════════════════════════════════╣
  * ║  Source: GB 673,358 A, Example I / Table I / Fig. 1 (Pierre Angénieux).   ║
  * ║  Six elements in five air-spaced groups; the final group is cemented.      ║
- * ║  Focus status: NO_INTERNAL_RECONSTRUCTION. The patent publishes one fixed  ║
- * ║  infinity prescription and no focus movement table.                        ║
+ * ║  Focus: infinity only. The patent publishes one fixed infinity prescription  ║
+ * ║  and no focus movement table.                                                ║
  * ║                                                                              ║
  * ║  SCALING: The patent is normalized to F=100. Every prescription length was ║
  * ║  scaled ×0.35 for the marketed 35mm lens. The traced EFL is 35.37154355mm; ║
@@ -169,10 +169,10 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.914,
     description:
-      "NO_INTERNAL_RECONSTRUCTION — GB 673,358 A publishes one fixed infinity prescription and no moving-group or object-distance table. The 0.914m catalog value is representative Exakta production metadata only; no focus var is authored.",
+      "Infinity focus only. GB 673,358 A gives one fixed infinity prescription and no moving-group or object-distance table, so focus travel is not modeled. The 0.914 m close-focus figure is representative product information for an Exakta production lens only.",
   },
 
-  aperture: { nominalFNumber: 2.5, fStops: [2.5, 2.8, 3.5, 4, 5.6, 8, 11, 16, 22] },
+  aperture: { nominalFNumber: 2.5, fStops: [2.5, 2.8, 3.5, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22 },
 
   projection: { kind: "rectilinear", fullFieldDeg: 65, maxTraceFieldDeg: 32.5 },
 

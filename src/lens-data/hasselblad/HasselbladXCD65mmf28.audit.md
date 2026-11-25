@@ -80,3 +80,7 @@ Figure 3 (PDF p. 3, Sheet 2) prints OBJECT DISTANCE 2400mm and 400mm. No explici
 | 0 / 2 | `focus.conjugates` | Undeclared | 400 mm, `first-surface` | d12 14.46 | +0.067428600 / +5.080009 | +325.051298 |
 
 Every added declaration is `consistent` with `referenceDiscriminated: true`. The source-published flags already include these states.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 32. `fStops` lists f/22 and f/32, which the slider cut off at the default 16. No optical value changed.

@@ -7,7 +7,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ╠════════════════════════════════════════════════════════════════════════════════════╣
  * ║ Data source: DE 1 497 540 A1, Beispiel III (Nippon Kogaku K.K.; Ikuo Mori).       ║
  * ║ Eight-element / seven-group all-spherical retrofocus design.                       ║
- * ║ Focus status: NO_INTERNAL_RECONSTRUCTION — the patent publishes no focus states.  ║
+ * ║ Focus: infinity only — the patent publishes no close-focus states.                 ║
  * ║                                                                                    ║
  * ║ SCALING: the patent is normalized to f=100. All dimensional prescription values   ║
  * ║ are scaled ×0.35 for correlation to the marketed 35 mm lens. There are no         ║
@@ -45,7 +45,7 @@ const LENS_DATA = {
   key: "nikon-pc-nikkor-35mm-f28",
   maker: "Nikon",
   name: "NIKON PC-NIKKOR 35mm f/2.8",
-  subtitle: "DE 1 497 540 A1 — Example III — 1968 7-group / 8-element production correlation",
+  subtitle: "DE 1 497 540 A1 — Example III — 1968 7-group / 8-element production match",
 
   catalog: {
     lensMounts: ["nikon-f"],
@@ -218,10 +218,10 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.3,
     description:
-      "NO_INTERNAL_RECONSTRUCTION: DE 1 497 540 A1 Example III publishes only the infinity prescription; no internal focus spacing is modeled. The 0.3 m catalog MFD is metadata from a later same-name Nikon manual and does not define a patent focus state.",
+      "Infinity focus only. DE 1 497 540 A1 Example III publishes only the infinity prescription, so focus travel is not modeled. The 0.3 m minimum focus distance comes from a later Nikon manual for a lens of the same name and is product information only.",
   },
 
-  aperture: { nominalFNumber: 2.8, fStops: [2.8, 4, 5.6, 8, 11, 16, 22, 32] },
+  aperture: { nominalFNumber: 2.8, fStops: [2.8, 4, 5.6, 8, 11, 16, 22, 32], maxFNumber: 32 },
 
   projection: { kind: "rectilinear", fullFieldDeg: 75, maxTraceFieldDeg: 37.5 },
 

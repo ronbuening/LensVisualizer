@@ -138,15 +138,15 @@ The patent supplies only d-line refractive index and Abbe number. It names no gl
 | 648338 coordinate class | 1.64831 | 33.77 | L13 |
 | 580539 coordinate class | 1.57957 | 53.86 | L14 |
 
-Authoritative catalog coverage recorded in the dossier includes SCHOTT, OHARA, HOYA, HIKARI, CDGM, and SUMITA. Several patent coordinates have exact or very close modern counterparts, but that does not identify the historical supplier. For the same reason, candidate catalog `nC`, `nF`, `ng`, or `dPgF` values are not copied onto the patent elements. The implemented model uses compatible catalog curves for thirteen elements and an Abbe fallback for L11; neither establishes an APO or anomalous-partial-dispersion performance claim.
+The authoritative catalogs consulted include SCHOTT, OHARA, HOYA, HIKARI, CDGM, and SUMITA. Several patent coordinates have exact or very close modern counterparts, but that does not identify the historical supplier. For the same reason, candidate catalog `nC`, `nF`, `ng`, or `dPgF` values are not copied onto the patent elements. The implemented model uses compatible catalog curves for thirteen elements and an Abbe fallback for L11; neither establishes an APO or anomalous-partial-dispersion performance claim.
 
-The patent states that its indices refer to a wavelength of "587.6 microns." That unit is dimensionally inconsistent with the Fraunhofer d line represented by the numerical coordinate. The dossier preserves the raw wording but normalizes the modeled reference to 587.6 nm. This is a unit correction, not a refractive-index conversion.
+The patent states that its indices refer to a wavelength of "587.6 microns." That unit is dimensionally inconsistent with the Fraunhofer d line represented by the numerical coordinate. This analysis preserves the raw wording but normalizes the modeled reference to 587.6 nm. This is a unit correction, not a refractive-index conversion.
 
 ## Focus Mechanism
 
 The patent allows component I, or one of its members, to move axially for focusing but gives no numerical finite-focus prescription. It also uses approximately 1.2 m as a close-focus design illustration for a roughly 50-100 mm lens. Schneider retrospective material describes the production 2.8/45-100 as front focusing. These statements establish the general focusing concept but do not establish which exact internal member in the production lens follows which displacement law. (US 3,482,900, pp. 3 and 5; Schneider-Kreuznach Variogon retrospective.)
 
-The data therefore use `NO_INTERNAL_RECONSTRUCTION`. `closeFocusM = 1.2` is retained as product/design metadata, while every authored focus pair in the zoom variable-gap table is identical at infinity and close focus. No internal finite-focus motion, focus travel, close-focus EFL, or magnification is claimed from the model.
+The model therefore shows the lens at infinity focus only. The 1.2 m close-focus figure is kept as product and design information, while every spacing that changes with zoom keeps the same value at both ends of the focus control. No internal close-focus movement, focus travel, close-focus EFL, or magnification is claimed from the model; zoom movement is modeled.
 
 ## Zoom Kinematics and First-Order Verification
 
@@ -207,7 +207,7 @@ The numerical verification separates four different categories that should not b
 2. Schneider-Kreuznach, **"What Is a Variogon Zoom Lens? Vario-Optics Explained."** https://schneiderkreuznach.com/en/industrial-optics/knowledge-hub/what-is-a-variogon-lens
 3. Schneider-Kreuznach, **"Variogon - Zoom Lenses"** retrospective PDF. https://schneiderkreuznach.com/application/files/6115/0781/8896/variogon-zoom-lenses.pdf
 4. Burleigh Brooks Inc. / Schneider-Kreuznach, **"Schneider Vario-Lens Systems for Single Lens Reflex Cameras"** period brochure scan, archived by Pacific Rim Camera. https://www.pacificrimcamera.com/rl/00068/00068.pdf
-5. Current authoritative glass-catalog evidence recorded in the dossier: SCHOTT Advanced Optics, OHARA optical-glass catalogs, HOYA Optics Division, HIKARI General Optical Glass, CDGM Optical Glass Database, and SUMITA Optical Glass Data Book, version 14.02 (2026-08-21). These sources are used only for modern coordinate-equivalence review, not as proof of the historical supplier.
+5. Current authoritative glass catalogs consulted: SCHOTT Advanced Optics, OHARA optical-glass catalogs, HOYA Optics Division, HIKARI General Optical Glass, CDGM Optical Glass Database, and SUMITA Optical Glass Data Book, version 14.02 (2026-08-21). These sources are used only for modern coordinate-equivalence review, not as proof of the historical supplier.
 
 ## Image-format evidence
 

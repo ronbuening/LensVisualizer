@@ -38,7 +38,7 @@ const LENS_DATA = {
   key: "nikon-nikkor-300mm-f45-ed",
   maker: "Nikon",
   name: "NIKON NIKKOR 300mm f/4.5 ED",
-  subtitle: "US 3,774,991 Example I — strong production correlation; attribution not manufacturer-confirmed",
+  subtitle: "US 3,774,991 Example I — strong production match; not maker-confirmed",
 
   catalog: {
     lensMounts: ["nikon-f"],
@@ -157,7 +157,7 @@ const LENS_DATA = {
       "Infinity prescription only. The production lens focuses to 4 m by whole-lens movement; the patent supplies no finite-focus spacings.",
   },
 
-  aperture: { nominalFNumber: 4.5, fStops: [4.5, 5.6, 8, 11, 16, 22] },
+  aperture: { nominalFNumber: 4.5, fStops: [4.5, 5.6, 8, 11, 16, 22], maxFNumber: 22 },
 
   projection: { kind: "rectilinear", fullFieldDeg: 8.4, maxTraceFieldDeg: 4.2 },
 

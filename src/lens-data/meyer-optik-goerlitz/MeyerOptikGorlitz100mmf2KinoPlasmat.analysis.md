@@ -109,10 +109,10 @@ from these data.
 
 ## Focus Mechanism
 
-The optical model uses `NO_INTERNAL_RECONSTRUCTION`. DE 401630 Example III publishes no finite-focus state, no moving
-optical group, no variable spacing law, and no minimum focus distance. Accordingly, `var` and `varLabels` are empty. The runtime schema requires `closeFocusM`,
-so the 1 m endpoint is an explicitly documented UI placeholder, not a measured production MFD or a reconstructed
-finite-focus state.
+The model shows the lens at infinity only. DE 401630 Example III publishes no close-focus state, no moving optical
+group, no table of spacings that change with focus, and no minimum focus distance. No spacing in the model changes with
+focus, so the focus control moves nothing; its 1 m end point is a placeholder, not a measured production minimum focus
+distance or a modeled close-focus state.
 
 The Leitz Auction record describes the surviving 10 cm f/2 sample as being in a heavy brass focusing mount, but that is
 mechanical evidence only. It does not establish whether the optical cell moved as a unit, whether any internal motion was
@@ -149,7 +149,7 @@ filter, cover glass, dummy plane, or flare-cutter plane is present in the select
 
 1. Dr. Paul Rudolph, **DE 401630, “Photographisches Objektiv”**, Reichspatentamt, issued 6 September 1924; Example III
    and numerical table on patent p. 3, optical section *Abb. 3* on patent p. 4, claims on patent p. 3. The unchanged PDF
-   is included in the dossier as `DE_401630_C.pdf`.
+   was consulted as `DE_401630_C.pdf`.
 2. Meyer Optik Görlitz, **History**, manufacturer history of the Rudolph cooperation and Plasmat/Kino-Plasmat family:
    https://www.meyer-optik-goerlitz.com/en/history/
 3. Leitz Photographica Auction, **Hugo Meyer Kino Plasmat 2/10cm**, lot 619, product record AI_30_34091, surviving lens

@@ -42,7 +42,7 @@ const LENS_DATA = {
   key: "sigma-28mm-f14-dg-hsm-art",
   maker: "Sigma",
   name: "SIGMA 28mm f/1.4 DG HSM | Art",
-  subtitle: "JP 2019-219472 A, Numerical Example 5 — architectural correlation; production prescription unconfirmed",
+  subtitle: "JP 2019-219472 A, Numerical Example 5 — layout match; production prescription not maker-confirmed",
 
   catalog: {
     lensMounts: ["sigma-sa", "canon-ef", "nikon-f", "sony-fe", "l-mount"],

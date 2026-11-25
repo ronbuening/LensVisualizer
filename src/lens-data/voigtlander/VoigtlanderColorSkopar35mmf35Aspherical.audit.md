@@ -279,3 +279,7 @@ incompatible label was changed to an explicit unmatched 009/291 class; no compat
 - For reference only, not used: the repo's catalog curves give engine-line values of −0.002290 (TAFD35), +0.023135 (FD225), −0.005966 (S-NBM51), −0.009458 (TAFD30), +0.031200 (FCD1), and −0.000766 (S-BSL7). L12 is the one element whose patent figure and compatible catalog glass disagree by more than the patent's rounding (PgF 0.5330 from the printed 0.000 against 0.5353 for S-BSL7); the patent figure is kept and the vendor remains not uniquely identified.
 - Analysis: statements about what the file stores now give the engine-line values; every evaluation of the patent's conditions still quotes the patent's ΔPgF (−0.005 for L10f, +0.037 for L11).
 - Checked with `.lens-work/audit-tools/dpgfcheck.mjs`: the file builds and validates. No test, typecheck, lint, format, or build command was run in this pass.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 22. `fStops` lists f/22, which the slider cut off at the default 16. No optical value changed.

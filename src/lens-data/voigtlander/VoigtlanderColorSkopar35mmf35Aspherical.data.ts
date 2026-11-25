@@ -56,7 +56,7 @@ const LENS_DATA = {
   key: "voigtlander-color-skopar-vm-35mm-f35-aspherical",
   maker: "Voigtländer",
   name: "VOIGTLÄNDER COLOR-SKOPAR 35mm f/3.5 Aspherical",
-  subtitle: "JP 2026-121744 A Example 3 — production correlation; patent scale retained",
+  subtitle: "JP 2026-121744 A Example 3 — production match; patent scale retained",
 
   catalog: {
     lensMounts: ["leica-m"],
@@ -195,7 +195,7 @@ const LENS_DATA = {
 
   gaps: { "11A": { label: "BF", values: [[15.11, 17.166711491888]] } },
 
-  aperture: { nominalFNumber: 3.58, fStops: [3.5, 4, 5.6, 8, 11, 16, 22], blades: 10 },
+  aperture: { nominalFNumber: 3.58, fStops: [3.5, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22, blades: 10 },
 
   projection: { kind: "rectilinear", fullFieldDeg: 61.5, maxTraceFieldDeg: 30.75 },
 

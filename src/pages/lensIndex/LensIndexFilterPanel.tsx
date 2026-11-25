@@ -13,10 +13,14 @@ import type {
   CustomFilterState,
   FilterBounds,
   ImageFormatOption,
+  LensSourceKind,
   MakerOption,
   MountOption,
   NumericFilterField,
+  ProductionMatchFilter,
+  SourceKindOption,
 } from "./types.js";
+import { PRODUCTION_MATCH_OPTIONS } from "./types.js";
 import type { Theme } from "../../types/theme.js";
 import type { ImageFormatId, LensMountId } from "../../utils/catalog/lensTaxonomy.js";
 import { countSuffix } from "../../utils/style/styles.js";
@@ -30,15 +34,19 @@ interface LensIndexFilterPanelProps {
   patentDecadeOptions: PatentDecadeOption[];
   mountOptions: MountOption[];
   imageFormatOptions: ImageFormatOption[];
+  sourceKindOptions: SourceKindOption[];
   filterInputValues: Record<NumericFilterField, string>;
   activeFilters: boolean;
   onClearFilters: () => void;
+  onProductionMatchChange: (value: ProductionMatchFilter) => void;
   onClearMakerSelection: () => void;
   onToggleMaker: (makerSlug: string) => void;
   onClearMountSelection: () => void;
   onToggleMount: (mountId: LensMountId) => void;
   onClearImageFormatSelection: () => void;
   onToggleImageFormat: (formatId: ImageFormatId) => void;
+  onClearSourceKindSelection: () => void;
+  onToggleSourceKind: (kind: LensSourceKind) => void;
   onApplyNumericField: (field: NumericFilterField, value: number) => void;
   onNumericInputChange: (field: NumericFilterField, value: string) => void;
   onNumericInputCommit: (field: NumericFilterField) => void;
@@ -245,15 +253,19 @@ export default function LensIndexFilterPanel({
   patentDecadeOptions,
   mountOptions,
   imageFormatOptions,
+  sourceKindOptions,
   filterInputValues,
   activeFilters,
   onClearFilters,
+  onProductionMatchChange,
   onClearMakerSelection,
   onToggleMaker,
   onClearMountSelection,
   onToggleMount,
   onClearImageFormatSelection,
   onToggleImageFormat,
+  onClearSourceKindSelection,
+  onToggleSourceKind,
   onApplyNumericField,
   onNumericInputChange,
   onNumericInputCommit,
@@ -375,7 +387,7 @@ export default function LensIndexFilterPanel({
         <div>
           <h2 style={{ ...FILTER_TITLE_STYLE, marginBottom: "0.25rem" }}>Custom Filter</h2>
           <p style={{ margin: 0, fontSize: "0.78rem", color: t.muted }}>
-            Adjust the ranges below and optionally select makers, mounts, or image formats.
+            Adjust the ranges below and optionally select makers, mounts, image formats, or sources.
           </p>
         </div>
         <button
@@ -389,6 +401,28 @@ export default function LensIndexFilterPanel({
       </div>
 
       <div style={{ display: "grid", gap: "1rem" }}>
+        <section>
+          <h3 id="custom-filter-production-match" style={FILTER_TITLE_STYLE}>
+            Production Match
+          </h3>
+          <div role="group" aria-labelledby="custom-filter-production-match" style={FILTER_CHIP_GROUP_STYLE}>
+            {PRODUCTION_MATCH_OPTIONS.map(([value, label]) => (
+              <button
+                key={value}
+                type="button"
+                style={buildToggleButtonStyle(t, customFilter.productionMatch === value)}
+                aria-pressed={customFilter.productionMatch === value}
+                onClick={() => onProductionMatchChange(value)}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
+          <p style={{ margin: "0.4rem 0 0", fontSize: "0.78rem", color: t.muted }}>
+            Matches include both documented and inferred production counterparts.
+          </p>
+        </section>
+
         <section>
           <h3 style={FILTER_TITLE_STYLE}>
             Focal Length
@@ -522,6 +556,18 @@ export default function LensIndexFilterPanel({
           onClear={onClearImageFormatSelection}
           getId={(format) => format.id}
           getLabel={(format) => `${format.label} (${format.count})`}
+        />
+
+        <FilterChipSection
+          theme={t}
+          title="Source"
+          allLabel="All Sources"
+          options={sourceKindOptions}
+          selectedIds={customFilter.sourceKinds}
+          onToggle={onToggleSourceKind}
+          onClear={onClearSourceKindSelection}
+          getId={(kind) => kind.id}
+          getLabel={(kind) => `${kind.label} (${kind.count})`}
         />
       </div>
     </section>

@@ -21,11 +21,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  remains at focus. No zoom-group reversal is resolved at the three       ║
  * ║  published states.                                                        ║
  * ║                                                                            ║
- * ║  Focus status: NO_INTERNAL_RECONSTRUCTION. Canon documents fourth-group  ║
- * ║  rear focusing for the production lens, but the selected patent example  ║
- * ║  publishes no finite-object spacings or focus travel. Every var pair      ║
- * ║  therefore preserves the infinity spacing; no close-focus motion is      ║
- * ║  invented. Production MFD 1.5 m is metadata only.                        ║
+ * ║  Focus: infinity only. Canon documents fourth-group rear focusing for the  ║
+ * ║  production lens, but the selected patent example publishes no close-focus ║
+ * ║  spacings or focus travel. Every focus pair therefore keeps its infinity   ║
+ * ║  spacing; focus travel is not modeled. The 1.5 m production MFD is product ║
+ * ║  information only.                                                         ║
  * ║                                                                            ║
  * ║  F-number: nominalFno uses the state-specific patent chart values         ║
  * ║  4.65 / 5.21 / 5.80 because they control modeled stop/pupil geometry.    ║
@@ -61,7 +61,7 @@ const LENS_DATA = {
   key: "canon-ef-100300mm-f4556-usm",
   maker: "Canon",
   name: "CANON EF 100-300mm f/4.5-5.6 USM",
-  subtitle: "US 7,158,320 B2 Example 3 — design correlation only; patent postdates the 1990 production lens",
+  subtitle: "US 7,158,320 B2 Example 3 — design match only; patent postdates the 1990 production lens",
 
   catalog: {
     lensMounts: ["canon-ef"],
@@ -299,11 +299,11 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 1.5,
     description:
-      "Production lens: fourth-group rear focus. Patent Example 3: no finite-object spacing table; " +
-      "focus status NO_INTERNAL_RECONSTRUCTION, so only published infinity zoom states are modeled.",
+      "Infinity focus only. Canon's production lens focuses with the fourth group at the rear, but the patent's " +
+      "Numerical Embodiment 3 gives no close-focus spacings, so focus travel is not modeled; zoom movement is.",
   },
 
-  /* (moved from var) Zoom-only spacings. Because focus status is NO_INTERNAL_RECONSTRUCTION, every [infinity, close] pair is
+  /* (moved from var) Zoom-only spacings. Focus travel is not modeled, so every [infinity, close] pair is
    * identical.
    */
   gaps: {

@@ -22,6 +22,7 @@ import type {
   FiniteConjugate,
   ImageSurfaceData,
   LensProjectionConfig,
+  LiteratureSource,
   OpticalConfigurationData,
   OpticalPathData,
   PatentExample,
@@ -233,10 +234,21 @@ export interface SourceV2Input {
    * its historical legal entity at the source date. Never set beside `patentNumber`.
    */
   issuer?: string;
+  /**
+   * The published secondary work (book, treatise, journal article, teaching text) that prints the prescription. It
+   * makes the lens a literature reconstruction, and never stands beside patent metadata or `issuer`.
+   */
+  literature?: LiteratureSourceV2Input;
 }
 
-/** A teleconverter's source: as a lens's, without errata or a non-patent issuer, which V1 holds for a lens alone. */
-export type TeleconverterSourceV2Input = Omit<SourceV2Input, "errata" | "issuer">;
+/** A literature reconstruction's source; see LENS_DATA_SPEC.md § Literature reconstructions. */
+export type LiteratureSourceV2Input = LiteratureSource;
+
+/**
+ * A teleconverter's source: as a lens's, without errata, a non-patent issuer or a literature citation, which V1 holds
+ * for a lens alone.
+ */
+export type TeleconverterSourceV2Input = Omit<SourceV2Input, "errata" | "issuer" | "literature">;
 
 /** Diagram layout. Every member but `yScFill` has a schema default. */
 export interface LayoutV2Input {
@@ -283,6 +295,7 @@ export interface LensDataV2Input {
   /** Present on a zoom alone. */
   zoom?: ZoomV2Input;
   focus: FocusV2Input;
+  /** Also accepts the final rear plate's generated rear-face label (`RP<n>b`). */
   gaps?: Record<string, GapV2Input>;
   aperture: ApertureV2Input;
   aberrationControl?: AberrationControlV2Input;

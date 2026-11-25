@@ -12,8 +12,9 @@ import {
   isLensMountId,
 } from "../../utils/catalog/lensTaxonomy.js";
 import buildMeta from "../../generated/client-metadata.json";
-import { clampNumericFilterValue, defaultCustomFilter, hasActiveCustomFilters } from "./catalog.js";
+import { SOURCE_KIND_ORDER, clampNumericFilterValue, defaultCustomFilter, hasActivePanelFilters } from "./catalog.js";
 import type { CustomFilterState, FilterBounds, GroupMode, LensIndexViewMode, NumericFilterField } from "./types.js";
+import { PRODUCTION_MATCH_OPTIONS } from "./types.js";
 import { catalogCollator } from "../../utils/catalog/collation.js";
 
 export interface LensIndexUrlState {
@@ -76,6 +77,10 @@ function sortedKnownFormats(values: string[]): CustomFilterState["imageFormatIds
   );
 }
 
+function sortedKnownSourceKinds(values: string[]): CustomFilterState["sourceKinds"] {
+  return SOURCE_KIND_ORDER.filter((id) => values.includes(id));
+}
+
 function parseNumericParam(
   params: URLSearchParams,
   param: string,
@@ -112,6 +117,9 @@ export function parseLensIndexUrlState(
     makerSlugs: sortedKnownMakers(parseListParam(params.get("makers")), knownMakerSlugs),
     lensMountIds: sortedKnownMounts(parseListParam(params.get("mounts"))),
     imageFormatIds: sortedKnownFormats(parseListParam(params.get("formats"))),
+    sourceKinds: sortedKnownSourceKinds(parseListParam(params.get("sources"))),
+    productionMatch:
+      PRODUCTION_MATCH_OPTIONS.find(([id]) => id === params.get("production"))?.[0] ?? defaultFilter.productionMatch,
   };
 
   for (const { param, field, step } of NUMERIC_PARAMS) {
@@ -131,7 +139,7 @@ export function parseLensIndexUrlState(
   customFilter.patentYearMin = Math.min(patentYearMin, patentYearMax);
   customFilter.patentYearMax = Math.max(patentYearMin, patentYearMax);
 
-  const filterOpen = params.get("filters") === "open" || hasActiveCustomFilters(customFilter, bounds);
+  const filterOpen = params.get("filters") === "open" || hasActivePanelFilters(customFilter, bounds);
   return { viewMode, groupMode, filterOpen, customFilter };
 }
 
@@ -146,15 +154,17 @@ export function serializeLensIndexUrlState({
 
   if (groupMode !== "maker") params.set("group", groupMode === "author" ? "inventor" : groupMode);
   if (viewMode !== "visible") params.set("view", viewMode);
+  if (customFilter.productionMatch !== "all") params.set("production", customFilter.productionMatch);
   if (customFilter.makerSlugs.length > 0) params.set("makers", customFilter.makerSlugs.join(","));
   if (customFilter.lensMountIds.length > 0) params.set("mounts", customFilter.lensMountIds.join(","));
   if (customFilter.imageFormatIds.length > 0) params.set("formats", customFilter.imageFormatIds.join(","));
+  if (customFilter.sourceKinds.length > 0) params.set("sources", customFilter.sourceKinds.join(","));
 
   for (const { param, field } of NUMERIC_PARAMS) {
     if (customFilter[field] !== bounds[field]) params.set(param, String(customFilter[field]));
   }
 
-  if (filterOpen && !hasActiveCustomFilters(customFilter, bounds)) params.set("filters", "open");
+  if (filterOpen && !hasActivePanelFilters(customFilter, bounds)) params.set("filters", "open");
   return params.toString();
 }
 
@@ -168,7 +178,9 @@ export function isSameCustomFilter(a: CustomFilterState, b: CustomFilterState): 
     a.patentYearMax === b.patentYearMax &&
     a.makerSlugs.join(",") === b.makerSlugs.join(",") &&
     a.lensMountIds.join(",") === b.lensMountIds.join(",") &&
-    a.imageFormatIds.join(",") === b.imageFormatIds.join(",")
+    a.imageFormatIds.join(",") === b.imageFormatIds.join(",") &&
+    a.sourceKinds.join(",") === b.sourceKinds.join(",") &&
+    a.productionMatch === b.productionMatch
   );
 }
 

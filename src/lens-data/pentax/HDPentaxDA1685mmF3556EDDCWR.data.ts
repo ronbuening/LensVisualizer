@@ -15,9 +15,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * 0.141 mm imageward from wide to mid, then 15.465 mm objectward from mid to tele relative to the fixed
  * image plane. (Using the independently rounded patent L values instead gives +0.144 / -15.464 mm.)
  *
- * Focus status: NO_INTERNAL_RECONSTRUCTION. The patent publishes no close-focus spacing table or focusing
- * mechanism. The production 0.35 m minimum focus distance is metadata only; all var pairs therefore keep
- * infinity and close values identical at each zoom position.
+ * Focus: infinity only. The patent publishes no close-focus spacing table or focusing mechanism. The
+ * production 0.35 m minimum focus distance is product information only; every spacing therefore keeps
+ * its infinity value at both ends of the focus control at each zoom position.
  *
  * Scaling: none. Patent radii, thicknesses, spacings, and asphere coefficients are used at source scale.
  * The patent uses the standard conic constant K directly; all Example 1 K values are 0.
@@ -341,8 +341,8 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.35,
     description:
-      "NO_INTERNAL_RECONSTRUCTION: JP 2016-114800 A Example 1 publishes infinity-focus zoom states only; " +
-      "the production 0.35 m MFD is metadata and does not define internal focus travel.",
+      "Infinity focus only. JP 2016-114800 A Example 1 publishes infinity-focus zoom states only. The production " +
+      "0.35 m minimum focus distance is product information; focus travel is not modeled, zoom movement is.",
   },
 
   /* (moved from var) ── Zoom-only variable air spacings; no close-focus reconstruction ── */
@@ -381,7 +381,7 @@ const LENS_DATA = {
     },
   },
 
-  aperture: { fStops: [3.5, 4, 5.6, 8, 11, 16, 22], blades: 7 },
+  aperture: { fStops: [3.5, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22, blades: 7 },
 
   /* ── Group and cemented/hybrid annotations ── */
   groups: [

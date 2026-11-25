@@ -54,7 +54,7 @@ const LENS_DATA = {
   key: "nikon-nikkor-z-800mm-f63-vr-s",
   maker: "Nikon",
   name: "NIKON NIKKOR Z 800mm f/6.3 VR S",
-  subtitle: "JP 2023-23323 A, Example 6 — inferred production correlation",
+  subtitle: "JP 2023-23323 A, Example 6 — inferred production match",
 
   catalog: {
     lensMounts: ["nikon-z"],

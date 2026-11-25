@@ -1169,6 +1169,17 @@ export const HOYA_GLASS_ENTRIES: readonly GlassEntry[] = [
       "HOYA Zemax OpticStudio DATA 2026-07-07 including obsolete glasses, NBFD1 NM/CD row; vendor formula-1 polynomial. https://www.hoya-opticalworld.com/common/agf/HOYA20260707_include_obsolete.agf (accessed 2026-11-06).",
   },
   {
+    name: "ADF455",
+    vendor: "Hoya",
+    polynomial: [2.8615365, -0.012012467, 0.029737731, 0.0012191813, -0.000039599373, 7.3055199e-6],
+    nd: 1.71852,
+    vd: 33.456548,
+    PgF: 0.5851,
+    code6: "719335",
+    source:
+      "HOYA Zemax OpticStudio DATA 2026-07-07 including obsolete glasses, ADF455 NM/CD row; vendor formula-1 polynomial. https://www.hoya-opticalworld.com/common/agf/HOYA20260707_include_obsolete.agf (accessed 2026-11-10).",
+  },
+  {
     name: "TAFD25",
     vendor: "Hoya",
     polynomial: [3.4905528, -0.016325771, 0.041146322, 0.0027169124, -0.00018260518, 0.000020641862],
@@ -2002,6 +2013,16 @@ export const HOYA_GLASS_ENTRIES: readonly GlassEntry[] = [
       "HOYA Zemax OpticStudio DATA 2026-07-07 (HOYA20260707_include_obsolete.agf), vendor-published E-FD15L formula-1 row; product code 699-301 omitted so bare-code annotations keep their existing row.",
   },
   {
+    name: "M-TAC60",
+    vendor: "Hoya",
+    polynomial: [3.017866, -0.015790934, 0.021144702, 0.00093137389, -0.000069379914, 0.00000402762],
+    nd: 1.75501,
+    vd: 51.16,
+    code6: "755512",
+    source:
+      "HOYA Zemax OpticStudio DATA 2026-07-07 (HOYA20260707_include_obsolete.agf), vendor-published M-TAC60 formula-1 row (discontinued moulding glass).",
+  },
+  {
     name: "M-NBFD130",
     vendor: "Hoya",
     polynomial: [3.173794, -0.01498658, 0.02906741, 0.001204829, -0.00005355158, 0.00000527135],
@@ -2103,5 +2124,14 @@ export const HOYA_GLASS_ENTRIES: readonly GlassEntry[] = [
     vd: 42.72,
     source:
       "HOYA Zemax OpticStudio DATA 2026-07-07 (HOYA20260707.agf), MP-TAFD51-50 precision-moulding preform row; vendor formula-1 polynomial. It shares the six-digit code 821427 with M-TAFD51, so code6 is omitted.",
+  },
+  {
+    name: "MP-LAC14-80",
+    vendor: "Hoya",
+    polynomial: [2.8306733, -0.014855863, 0.018103472, 0.00053539971, -3.1929778e-5, 2.0340983e-6],
+    nd: 1.6976,
+    vd: 55.51,
+    source:
+      "HOYA Zemax OpticStudio DATA 2026-07-07 (HOYA20260707.agf), MP-LAC14-80 precision-moulding preform row; vendor formula-1 polynomial. Added as the LaK14-class row nearest a two-decimal patent index (1.70 / 55.5); code6 is omitted.",
   },
 ];

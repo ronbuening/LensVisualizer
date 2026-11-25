@@ -6,7 +6,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ╠══════════════════════════════════════════════════════════════════════════════╣
  * ║ Data source: JP 1981-119109 A, sole example, Yusuke Nanjo / Mamiya Koki.    ║
  * ║ Production correlation: 9 elements / 8 groups and f/3.5-4.5 source states. ║
- * ║ Focus status: NO_INTERNAL_RECONSTRUCTION.                                  ║
+ * ║ Focus: infinity only; focus travel is not modeled.                           ║
  * ║                                                                              ║
  * ║ Scaling: the patent is normalized to f=1 at wide. All radii, spacings,      ║
  * ║ semi-diameters, stop coordinates, and BFDs are scaled uniformly ×28.        ║
@@ -214,7 +214,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.6,
     description:
-      "NO_INTERNAL_RECONSTRUCTION — the patent publishes infinity-focus zoom states only. The marketed 0.6 m minimum focusing distance is metadata; all authored focus pairs remain at their published infinity values.",
+      "Infinity focus only. The patent publishes infinity-focus spacings at its zoom states only, so focus travel is not modeled; zoom movement is. Mamiya's 0.6 m minimum focus distance is product information.",
   },
 
   /* (moved from var) ── Published infinity-state zoom variables only; no close-focus reconstruction ── */

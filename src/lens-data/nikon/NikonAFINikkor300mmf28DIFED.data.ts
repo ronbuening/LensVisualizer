@@ -47,7 +47,7 @@ const LENS_DATA = {
   key: "nikon-af-i-nikkor-300mm-f2-8d-if-ed",
   maker: "Nikon",
   name: "NIKON AF-I NIKKOR 300mm f/2.8 D IF-ED",
-  subtitle: "JP H04-294310 A Example 1 — production correlation inferred from timing and architecture",
+  subtitle: "JP H04-294310 A Example 1 — inferred production match based on timing and architecture",
 
   catalog: {
     lensMounts: ["nikon-f"],
@@ -256,7 +256,7 @@ const LENS_DATA = {
   gaps: { "9": { label: "D9", values: [[5.134, 16.0229]] }, "14": { label: "D14", values: [[15.8406, 4.9517]] } },
 
   // The stop radius is derived from the design f-number, f/2.9.
-  aperture: { nominalFNumber: 2.9, fStops: [2.9, 4, 5.6, 8, 11, 16, 22] },
+  aperture: { nominalFNumber: 2.9, fStops: [2.9, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22 },
 
   groups: [
     { text: "G1", fromSurface: "1", toSurface: "9" },

@@ -2,243 +2,170 @@
 
 ## Patent Reference and Design Identification
 
-**Patent:** US 2011/0170195 A1\
-**Application Number:** 13/006,210\
-**Priority:** January 14, 2010 (JP 2010-005516); October 21, 2010 (JP 2010-236640)\
-**Filed:** January 13, 2011\
-**Published:** July 14, 2011\
-**Inventors:** Mami Muratani; Issei Tanaka\
+**Patent:** US 2011/0176215 A1\
+**Application Number:** 13/008,975\
+**Priority:** January 20, 2010 (JP 2010-009580) and December 7, 2010 (JP 2010-272975)\
+**Filed:** January 19, 2011\
+**Published:** July 21, 2011\
+**Inventors:** Motohisa Mouri and Issei Tanaka\
 **Assignee:** Nikon Corporation\
-**Title:** *Imaging Lens, Optical Apparatus Including Imaging Lens and Method for Manufacturing Imaging Lens*
+**Title:** _Imaging Lens, Optical Apparatus Equipped Therewith, and Method for Manufacturing Imaging Lens_\
+**Example details:** Table 1, Figs. 1–3 and ¶¶0088–0101. The 40 mm prescription is used at its published scale.
 
-The prescription transcribed here is the job-card-selected Example 1 of US 2011/0170195 A1. The patent describes a 40.00 mm macro lens with a design f-number of 2.68, a full field of 39.0°, and published infinity, −0.5×, and −1.0× focus states (Table 1; ¶¶0096–0108). The LensVisualizer model retains those exact design quantities where the source publishes them and keeps them separate from the production lens's marketed 40 mm f/2.8 specification.
+Example 1 is a close published counterpart to Nikon's 2011 DX Micro-NIKKOR. Several details support the identification.
 
-The production correlation is supported by several convergent points, but it is not presented as manufacturer confirmation that Example 1 is the final mass-production prescription:
+1. **Construction.** Nikon specifies nine elements in seven groups. Its section shows two cemented doublets ahead of the iris followed by five singlets, just as in Fig. 1 of the patent. Example 1 is all spherical. Nikon's product diagram marks no aspherical, ED or Super ED elements.[^nikon-spec][^nikon-section][^nikon-story]
+2. **Focal length and aperture.** Both sources give 40 mm. The patent's infinity design aperture is f/2.887, while the product is rated f/2.8. At life size the patent prescription gives a paraxial working aperture of f/4.217, close to the f/4.2 Nikon reports.[^nikon-spec][^nikon-story]
+3. **Close-range correction.** The first two groups move independently and the third remains fixed. Example 1's front group moves 30.053 mm to 1:1, in line with Nikon's account of just over 30 mm. The patent's closest row gives 160.777 mm from object to image, compared with Nikon's 163 mm from the focal plane. Nikon credits co-inventor Motohisa Mouri with designing the production lens.[^nikon-spec][^nikon-story]
 
-1. **Focal length and field.** Example 1 gives $f=40.00$ mm and $2\omega=39.0°$. Nikon specifies the production lens as 40 mm with a 38°50′ angle of view on DX format.[^nikon-spec]
-2. **Macro range.** Example 1 publishes a close state at $\beta=-1.0$; Nikon specifies 1.0× maximum reproduction.[^nikon-spec]
-3. **Focus architecture.** The patent moves G1 and G2 objectward with changing separation while G3 remains fixed (¶¶0099, 0104). Nikon's design retrospective describes the production lens as a three-group system in which the third group is fixed and the first and second groups move with focusing.[^nikon-story]
-4. **Timing.** The patent priorities begin in January 2010 and the publication appeared on July 14, 2011. Nikon states that production-lens design work began in spring 2009, was finalized in spring 2010, and the lens was released in August 2011; Nikon USA announced it on July 12, 2011.[^nikon-story][^nikon-release]
-5. **Construction discrepancy.** The active patent prescription contains nine glass elements in eight air-separated glass assemblies, with one cemented L21/L22 pair. Nikon's production specification is nine elements in seven groups.[^nikon-spec] This is a genuine construction mismatch, not a terminology-only difference.
+An overlay registered at the first and last powered vertices shows close agreement in the order and general shape of the glass. Measured in the original Nikon image's pixels, Example 1's second-doublet seam and exit face lie about 7 and 8 pixels farther toward the image than Nikon's corresponding surfaces. The production drawing's focus state is unstated. The profile differences and the f/2.887 versus f/2.8 aperture difference leave the exact factory prescription unverified.[^nikon-story]
 
-The last point limits the correlation. The patent's labels G1, G2, and G3 are power and kinematic groups rather than the physical group count used in the product specification, but the patent still has eight air-separated glass assemblies. The data file therefore records `elementCount: 9` and `groupCount: 8` for the modeled prescription while explicitly preserving Nikon's 9-element/7-group production specification as separate product metadata.
-
-Nikon's retrospective credits the production optical design to Motohisa Mouri, whereas the selected patent names Mami Muratani and Issei Tanaka as inventors.[^nikon-story] The present identification is therefore a fixed optical and chronological correlation selected by the job card, not a claim that Nikon has identified Example 1 as Mouri's final manufacturing prescription.
-
-No scale factor is applied. Example 1 is already a 40.00 mm design, and the computed model EFL is 40.001074 mm.
+Nikon announced this F-mount DX lens in July 2011 and released it that August. Nikon specifies a 38°50′ angle of view, a 52 mm filter thread and a seven-blade rounded diaphragm. The patent's infinity half-field is 20.479° at a 15.00 mm image height. Nikon's angle of view and the patent field describe their respective frames.[^nikon-release][^nikon-spec][^nikon-story]
 
 ## Optical Architecture
 
-Example 1 is a three-power-group macro lens with a positive–positive–negative sequence: G1 is positive overall, G2 is positive, and G3 is negative (¶¶0092, 0096–0099). G1 is itself divided into a negative front subgroup G1F and a positive rear subgroup G1R. Independent paraxial calculation from the final data gives focal lengths of approximately −681.94 mm for G1F, +186.44 mm for G1R, +222.05 mm for G1, +34.10 mm for G2, and −170.52 mm for G3.
+The three optical groups have positive, positive and negative power. At the front, the negative G1F doublet and positive G1R doublet form a retrofocus arrangement within the focusing optics. The rear negative group helps set the back focus and correct field curvature (¶¶0035–0039, 0042–0044, 0088–0091). Nikon describes a similar retrofocus-derived arrangement in the production lens. For the complete Example 1 system, the computed infinity back focus of 39.825 mm is slightly shorter than the 40.020 mm focal length.[^nikon-story]
 
-The front section is best described as a modified-Gaussian, retrofocus-derived architecture rather than labeling the entire lens a retrofocus system. The patent states that the G1/G2 balance gives a retrofocus effect to a modified Gaussian arrangement (¶0038), and Nikon's retrospective likewise describes the production first and second groups as retrofocus-based.[^nikon-story] Under the project's strict whole-system criterion, however, the modeled rear focal distance does not exceed the EFL: the air-equivalent S18 back focal distance is 39.070621 mm versus a 40.001074 mm EFL. The complete modeled lens is therefore not classified as retrofocus under the strict $BFD>EFL$ definition. It is also not telephoto: the patent infinity total track is much longer than the EFL.
+| Assembly | Glass construction                                 | Paraxial focal length in air |
+| -------- | -------------------------------------------------- | ---------------------------: |
+| G1F      | Front cemented doublet                             |                    −57.73 mm |
+| G1R      | Rear cemented doublet                              |                    +38.64 mm |
+| G1       | Both doublets, 12.50 mm apart on axis              |                    +76.90 mm |
+| G2       | Negative singlet followed by two positive singlets |                    +51.03 mm |
+| G3       | Negative meniscus followed by a positive singlet   |                   −333.64 mm |
 
-G1 contains four air-spaced elements in negative/positive/positive/negative order. The patent uses the front negative-positive pair to control ray angles and off-axis behavior, while the positive rear subgroup restores net positive power (¶¶0040–0057). G2 lies immediately behind the aperture stop and contains the only cemented pair, L21/L22, followed by positive L23. G3 is a fixed two-element negative-positive rear group that receives the converging beam from G1/G2 and leaves the image plane stationary during focusing (¶¶0058–0059, 0098–0099).
+The iris is surface 7, in air 2.50 mm behind G1. The patent gives its location and design f-number. Those values imply a 7.548 mm stop radius and a 6.931 mm paraxial entrance-pupil radius at infinity. The same physical iris moves with G1. After the last spherical surface the prescription ends with 39.818 mm of air to the image. This is the more precise back-focus value in Table 1 and gives its printed infinity track of 92.518 mm.
 
-The modeled aperture stop occupies the patent-published axial station between G1 and G2. Its diameter is not published. The data therefore uses an inferred physical stop semi-diameter of 7.430942 mm, solved from the exact front prescription to reproduce the Table-1 design f-number of 2.68. The resulting entrance-pupil semi-diameter is 7.462887 mm and the independently recomputed model f-number is 2.6799999. These pupil dimensions are model geometry, not patent dimensions.
-
-The patent also does not publish clear semi-diameters. All element semi-diameters in the data file are therefore inferred geometry constrained by traced on-axis and off-axis bundles and by the current edge-thickness, rim-slope, conic-domain, cross-gap, and containment tests. They should not be read as production mechanical apertures.
+The glass rims are estimated from the patent section. The exit face of the first doublet has a spherical cap surrounded by the flat land shown in Fig. 1. The cap clears the open beam across the focus range. Off-axis bundles still lose rays at the glass edges. At the patent's 20.479° infinity half-field, the chief ray reaches about 14.99 mm image height and about 53% of the sampled open-iris bundle reaches the image. That fraction describes geometric vignetting in the model, with no account of glass absorption or reflection losses.
 
 ## Element-by-Element Analysis
 
-The focal length on each element line below is the **standalone thick-lens focal length in air** stored by the validated data file. These values are not the same as an individual element's in-situ contribution when it borders another glass at a cemented interface. Where relevant, cemented net power is stated separately.
+The focal lengths below are for the individual thick elements in air. The shared interfaces of each doublet contribute to the power of the assembled pair.
 
-### L11 — Negative Meniscus, concave to image
+### L11 — Biconvex positive
 
-**nd = 1.48749, νd = 70.40. Glass: FK5 (SUMITA catalog equivalent; production supplier unspecified). Standalone f = −35.974 mm.**
+**nd = 1.743997, νd = 44.79. Glass: S-LAM2 (Ohara equivalent). f = +45.34 mm.**
 
-L11 is the object-side negative meniscus required by the patent's basic architecture (¶¶0011, 0090, 0096). Its image-side surface has the stronger curvature, so the element sends off-axis rays outward before L12 collects them. The patent's discussion of conditional expression (3) explicitly treats the L11–L12 spacing as part of the control of off-axis ray angles and the division of corrective work between the first three members of G1 (¶¶0040–0043).
+L11 is the positive front element of G1F. Its shallow, cemented rear face joins L12. The two elements together form the first negative assembly. The patent connects that front negative power with preserving working distance as G1 moves toward the object (¶0089).
 
-The patent further treats the air space between the rear of L11 and the front of L12 as a meniscus-shaped “air lens.” Its shape-factor condition is intended to restrain changes in ray angle from infinity to close focus and thereby stabilize coma; the patent also connects the lower side of this condition with axial and lateral chromatic behavior at the g line (¶¶0048–0050). Those statements describe the pair's system role rather than assigning an isolated aberration correction to L11 alone.
+### L12 — Biconcave negative
 
-### L12 — Biconvex Positive
+**nd = 1.516330, νd = 64.14. Glass: S-BSL7 (Ohara equivalent). f = −23.92 mm.**
 
-**nd = 1.80604, νd = 40.77. Glass: NBFD13 (HOYA catalog correlation; patent vendor unspecified). Standalone f = +42.951 mm.**
+L12 is the stronger element in the front doublet. Most of its curvature is on the image side, with a 13.1290 mm rear radius compared with the 216.2230 mm magnitude at the seam. The patent associates this strongly curved exit with control of coma and distortion as the lens focuses closer (¶0089).
 
-L12 is the positive second member of G1F. Together with L11 it forms a front subgroup that remains slightly negative overall; independent calculation gives G1F a focal length of about −681.94 mm. The strong positive surface powers of L12 oppose the angular expansion produced by L11 while leaving the subgroup's net sign negative.
+### L13 — Biconvex positive
 
-The high refractive index permits substantial positive power without requiring still stronger curvature. The relatively low νd compared with the 487704 crown in L11 also shows that the pair is not a conventional crown-positive/flint-negative achromat. The patent instead emphasizes the geometric balance of this pair and the spacing onward to L13 for controlling spherical aberration, coma, and field-dependent behavior over the macro focus range (¶¶0040–0050).
+**nd = 1.699998, νd = 48.08. Glass: S-LAM51 (Ohara equivalent). f = +15.67 mm.**
 
-### L13 — Biconvex Positive
+L13 supplies the positive power in G1R. Its front surface receives the beam after the 12.50 mm separation between the doublets. Its steep rear surface of radius −14.9811 mm is shared with L14.
 
-**nd = 1.61272, νd = 58.73. Glass: BACD4 (HOYA catalog correlation; patent vendor unspecified). Standalone f = +23.873 mm.**
+### L14 — Biconcave negative
 
-L13 is the strongest standalone positive element in G1 and begins the positive rear subgroup G1R. The air gap between L12 and L13 is the denominator term in the patent's $D_a/D_b$ condition. The patent states that retaining sufficient separation here helps keep spherical aberration under control while preserving the balance from infinity to near focus (¶¶0040–0043).
+**nd = 1.581439, νd = 40.75. Glass: S-TIL25 (Ohara equivalent). f = −24.34 mm.**
 
-G1R is positive overall, with an independently computed focal length of about +186.44 mm. In system terms, L13 supplies most of the subgroup's positive convergence before L14 moderates that power and sets the beam for the aperture-stop region.
+L14 is the higher-dispersion negative partner of L13. Its weakly curved exit lies immediately ahead of the iris and leaves the rear doublet with net positive power (¶¶0089, 0092).
 
-### L14 — Biconcave Negative
+### L21 — Biconcave negative
 
-**nd = 1.61293, νd = 37.00. Glass: F3 (SUMITA catalog equivalent; production supplier unspecified). Standalone f = −24.057 mm.**
+**nd = 1.740769, νd = 27.79. Glass: S-TIH13 (Ohara equivalent). f = −24.95 mm.**
 
-L14 is the negative second member of G1R and the last powered element before the stop. The combination of positive L13 and negative L14 remains positive as a subgroup; the patent explicitly assigns G1R positive refractive power and describes its balance with negative G1F as part of the correction strategy across focus (¶¶0053–0057, 0096).
+L21 is the highest-dispersion glass in the prescription. It reduces the convergence of the bundle arriving at G2. Air on both sides of the element gives it independent refracting surfaces (¶0090).
 
-Its low νd contrasts with the crown-like L13. That dispersion contrast can support ordinary primary chromatic balancing inside G1, but the available data does not contain the line indices or partial-dispersion measurements needed to make an anomalous-dispersion or apochromatic claim.
+### L22 — Positive meniscus, convex to image
 
-### L21 — Biconcave Negative, cemented front member of D1
+**nd = 1.651597, νd = 58.55. Glass: S-LAL7 (Ohara equivalent). f = +68.41 mm.**
 
-**nd = 1.61293, νd = 37.00. Glass: F3 (SUMITA catalog equivalent; production supplier unspecified). Standalone f = −21.025 mm.**
+L22 restores convergence. The image-facing convex surface is stronger than its object-side concavity. In Fig. 3 and ¶0101 that rear surface is one of the two interfaces on the illustrated reflection path.
 
-L21 is the negative front member of the only cemented pair in Example 1. Its front surface is strongly negative, while its shallow cemented rear surface joins directly to L22. In the LensVisualizer prescription the shared surface carries the downstream L22 index and element identity, matching the actual glass-to-glass boundary.
+### L23 — Biconvex positive
 
-The standalone focal length above describes L21 isolated in air. At the cemented interface its in-situ span is different because the rear medium is L22 rather than air. The distinction matters here: the L21/L22 pair as a whole has a computed net focal length of **−142.509 mm**, even though L22 is a strong positive element.
+**nd = 1.740999, νd = 52.64. Glass: S-LAL61 (Ohara equivalent). f = +29.30 mm.**
 
-### L22 — Biconvex Positive, cemented rear member of D1
+L23 carries the stronger of G2's two positive standalone powers. Together with L22 it shapes the converging beam after L21. The patent attributes part of the spherical-aberration and coma correction to this negative–positive–positive sequence (¶0090).
 
-**nd = 1.62041, νd = 60.29. Glass: N-SK16 (SCHOTT catalog equivalent; production supplier unspecified). Standalone f = +27.928 mm.**
+### L31 — Negative meniscus, concave to image
 
-L22 is the positive rear member of the cemented D1 pair. Its νd is substantially higher than L21's 37.00, so the pair combines opposite powers with a large Abbe-number separation. That is consistent with primary chromatic balancing, but the patent gives no vendor glass names and no per-line dispersion data from which to infer higher-order chromatic behavior.
+**nd = 1.772499, νd = 49.60. Glass: S-LAH66 (Ohara equivalent). f = −58.64 mm.**
 
-The pair's weak net negative power must not be confused with G2's function. G2 also contains L23, and the complete group is strongly positive: independent calculation gives G2 an effective focal length of about +34.10 mm. The patent's conditions (2) and (7) specifically constrain G2's focal length relative to G1 and the whole lens because excessive or insufficient G2 power compromises back focus, spherical aberration, coma, or working-distance behavior (¶¶0037–0039, 0051–0052).
+L31 is the fixed group's negative element. The steep image-facing concavity lies near L32, with a 1.00 mm air gap on axis. The two-element rear group helps maintain back clearance and correct field curvature (¶0091).
 
-### L23 — Biconvex Positive with rear asphere
+### L32 — Biconvex positive
 
-**nd = 1.61881, νd = 63.73. Glass: M-PCD4 (HOYA catalog correlation; patent vendor unspecified). Standalone f = +31.536 mm.**
+**nd = 1.548141, νd = 45.78. Glass: S-TIL1 (Ohara equivalent). f = +73.38 mm.**
 
-L23 is the positive rear member that turns the weakly negative cemented L21/L22 pair into the net-positive G2 assembly. It is also the only element carrying an aspherical surface: the image-side surface is `14A` in the data file, corresponding to patent surface 14*.
-
-The patent does not assign one named aberration exclusively to surface 14. A system-level interpretation is therefore more defensible: the asphere modifies the converging beam immediately before the variable G2→G3 spacing, giving the design an additional correction degree of freedom as the first two groups move through the macro range. The exact equation and verified departure are discussed in the asphere section below.
-
-### L31 — Negative Meniscus, concave to image
-
-**nd = 1.48749, νd = 70.40. Glass: FK5 (SUMITA catalog equivalent; production supplier unspecified). Standalone f = −58.213 mm.**
-
-L31 begins the fixed rear group G3. It is a negative meniscus with its concavity directed toward the image, as specified in the patent's Example-1 construction (¶¶0090, 0098). G3 receives a converging beam from the positive front groups and remains fixed relative to the image plane while G1 and G2 move.
-
-The group is net negative even after the following positive L32; the independently computed G3 focal length is about −170.52 mm. The fixed negative rear group is part of the patent's strategy for reducing overall length while preserving back focus without requiring the image plane to move during focusing (¶¶0008–0011, 0034).
-
-### L32 — Positive Meniscus, concave to object
-
-**nd = 1.74400, νd = 44.79. Glass: J-LAF2 (HIKARI catalog equivalent; production supplier unspecified). Standalone f = +93.164 mm.**
-
-L32 is the final powered element and is a positive meniscus concave toward the object. It partially offsets L31 while leaving G3 negative overall. The patent specifically states that placing a positive lens closest to the image side in G3 can move the exit pupil farther away and facilitate coma correction (¶0058).
-
-The high index of 1.74400 allows this weak positive correction to be obtained with relatively gentle curvatures, particularly at the very weak object-side surface. Its νd of 44.79 is intermediate within the palette and does not, by itself, establish anomalous partial dispersion.
+L32 offsets most of L31's standalone negative power and leaves G3 weakly negative as an assembly. The convex rear face is the final glass interface in the prescription.
 
 ## Glass Identification and Selection
 
-The patent publishes only d-line refractive index and Abbe number (`nd`, `νd`) for the active elements. It does not identify the optical-glass manufacturer. The final data uses checked catalog equivalents for dispersion modeling while explicitly leaving the production supplier unspecified.
+Table 1 defines the helium d line at 587.6 nm (¶0094). Each published index and Abbe number has an Ohara catalog equivalent at the printed precision. The patent supplies no glass trade names, melt data or individual C-, F- or g-line indices. The catalog curves provide estimates of wavelength-dependent behavior. The production supplier and glass melts remain unverified.[^ohara]
 
-| Data-file glass annotation | nd | νd | Elements | Interpretation |
-|---|---:|---:|---|---|
-| FK5 (SUMITA catalog equivalent; production supplier unspecified) | 1.48749 | 70.40 | L11, L31 | Low-index, high-νd crown used in negative menisci |
-| NBFD13 (HOYA catalog correlation; patent vendor unspecified) | 1.80604 | 40.77 | L12 | Catalog-compatible high-index positive member of G1F |
-| BACD4 (HOYA catalog correlation; patent vendor unspecified) | 1.61272 | 58.73 | L13 | Catalog-compatible crown-like positive member of G1R |
-| F3 (SUMITA catalog equivalent; production supplier unspecified) | 1.61293 | 37.00 | L14, L21 | Lower-νd negative members in G1R and G2 |
-| N-SK16 (SCHOTT catalog equivalent; production supplier unspecified) | 1.62041 | 60.29 | L22 | Higher-νd positive half of the cemented pair |
-| M-PCD4 (HOYA catalog correlation; patent vendor unspecified) | 1.61881 | 63.73 | L23 | Catalog-compatible positive rear member of G2 and asphere carrier |
-| J-LAF2 (HIKARI catalog equivalent; production supplier unspecified) | 1.74400 | 44.79 | L32 | High-index positive final meniscus |
-| J-BK7A spectral proxy (supplier unspecified) | 1.51680 | 64.12 | Rear low-pass plate P1 | Source-listed plate, traced but not drawn |
+| Element |    $n_d$ | $\nu_d$ | Catalog equivalent and glass type   |
+| ------- | -------: | ------: | ----------------------------------- |
+| L11     | 1.743997 |   44.79 | S-LAM2, lanthanum glass             |
+| L12     | 1.516330 |   64.14 | S-BSL7, borosilicate crown          |
+| L13     | 1.699998 |   48.08 | S-LAM51, lanthanum glass            |
+| L14     | 1.581439 |   40.75 | S-TIL25, light flint                |
+| L21     | 1.740769 |   27.79 | S-TIH13, high-dispersion flint      |
+| L22     | 1.651597 |   58.55 | S-LAL7, lanthanum crown             |
+| L23     | 1.740999 |   52.64 | S-LAL61, lanthanum crown            |
+| L31     | 1.772499 |   49.60 | S-LAH66, high-index lanthanum glass |
+| L32     | 1.548141 |   45.78 | S-TIL1, light flint                 |
 
-The independent glass audit found close coordinate matches in more than one manufacturer family for several rows. The selected entries reproduce the patent coordinates within the project compatibility window and provide verified dispersion curves. They are modeling choices, not evidence that Nikon purchased those melts for this design.
-
-No element in the final data directly authors `nC`, `nF`, `ng`, or `dPgF`; compatible catalog names let the runtime derive curves for the correlated rows. Those curves improve modeled chromatic coverage but do not establish historical melts or justify an APO claim. The patent `nd/νd` pattern remains sufficient to discuss ordinary dispersion contrast—most clearly across the L21/L22 cemented pair.
+The two front doublets pair glasses with different dispersions in opposite orders. The front negative element L12 has a higher Abbe number than its positive partner. The rear doublet puts the lower Abbe number on its negative element, L14. Behind the stop, the high-dispersion negative L21 faces two positive glasses with considerably higher Abbe numbers. Figures 2A and 2B show the resulting longitudinal correction at the d and g lines.
 
 ## Focus Mechanism
 
-The focus state is **PUBLISHED** rather than reconstructed. Example 1 gives explicit INF, MID ($\beta=-0.5$), and CLD ($\beta=-1.0$) spacings. G1 and G2 move toward the object, their separation changes, the aperture stop moves with G2, and G3 remains fixed relative to the image plane (¶¶0099, 0104).
+This is a fixed-focal-length lens with two independently moving focus groups. G1 and the iris move toward the subject by 14.522 mm at 1:2 and 30.053 mm at 1:1. G2 moves in the same direction by 15.034 mm and 30.000 mm. The iris-to-G2 separation first decreases and then increases. G3 and the image plane stay fixed (Fig. 1, ¶0088 and Table 1).
 
-The patent divides the G1→G2 interval around the stop into `d1a` and `d1b`. The stop-to-G2 spacing `d1b` stays fixed at 4.00000 mm, so the stop is kinematically tied to G2. The published states are:
+| Table 1 value or derived distance          |  Infinity |        1:2 |        1:1 |
+| ------------------------------------------ | --------: | ---------: | ---------: |
+| Printed magnification                      |         0 |      −0.5× |      −1.0× |
+| Printed object to first vertex, $d_0$      |         ∞ |  78.087 mm |  38.206 mm |
+| Stop to G2, $d_7$                          |  7.200 mm |   6.688 mm |   7.253 mm |
+| G2 to G3, $d_{13}$                         |  1.200 mm |  16.234 mm |  31.200 mm |
+| First vertex to image                      | 92.518 mm | 107.040 mm | 122.571 mm |
+| Object to image from the printed distances |         ∞ | 185.127 mm | 160.777 mm |
 
-| State | β | d1a: G1→STO (mm) | d1b: STO→G2 (mm) | d2: G2→G3 (mm) |
-|---|---:|---:|---:|---:|
-| INF | 0 | 2.96840 | 4.00000 | 1.21000 |
-| MID | −0.5 | 3.21650 | 4.00000 | 13.37100 |
-| CLD | −1.0 | 5.33230 | 4.00000 | 25.70880 |
-
-Taking infinity as the zero position, independent kinematic calculation gives G2 objectward travel of 12.1610 mm at MID and 24.4988 mm at CLD. G1 travels 12.4091 mm at MID and 26.8627 mm at CLD. The G1 travel reproduces the patent's conditional value $X_1/f=0.672$ after source-precision rounding.
-
-The runtime focus control stores INF, MID, and CLD as exact keyframes. The published MID pair does not lie on a single endpoint interpolation: its normalized position is 0.104954 along `d1a` but 0.496392 along `d2`. At `focusT = 0.9106579317813288`, both gaps now reach the source row together. Recalculation at the published MID spacings gives lateral magnification −0.500004; the published CLD endpoint gives −0.999991.
-
-Product and patent close-distance numbers are intentionally separated. Nikon specifies a production minimum focus distance of **0.163 m from the focal plane**.[^nikon-spec] The patent's CLD geometry gives an object-to-image-plane distance of **0.15264661 m** after the source reference planes are normalized. The 10.35 mm difference is one of the reasons the selected embodiment is treated as a strong production correlate rather than silently equated with every production dimension.
-
-Nikon's retrospective says the production first group moves “just over 3 cm.”[^nikon-story] Example 1's independently derived G1 travel is 26.8627 mm. This is another direct production-to-patent difference and is not corrected in the model.
-
-The production lens uses Nikon's Silent Wave Motor for autofocus and provides M/A and M focus modes.[^nikon-spec] Those are mechanical product features; they do not alter the patent's optical focus-state data.
-
-## Aspherical Surfaces
-
-Example 1 has one aspherical surface: patent surface 14*, the rear surface of L23. LensVisualizer labels it `14A` to follow the current surface-label convention.
-
-The patent writes the sag equation as
-
-$$
-S(y)=\frac{y^2/r}{1+\sqrt{1-k\,y^2/r^2}}
-+A_4y^4+A_6y^6+A_8y^8+A_{10}y^{10},
-$$
-
-with $A_2=0$ (¶¶0094–0095; Table 1). LensVisualizer's standard conic equation instead places $(1+K)$ under the radical. The required convention conversion is therefore
-
-$$
-K=k-1.
-$$
-
-For patent $k=0.3210$, the stored standard conic constant is **K = −0.6790**. This is a convention conversion only; it is not a correction to the patent.
-
-The source coefficients, in millimeter units, are:
-
-- $A_4=+4.54813\times10^{-6}\ \mathrm{mm}^{-3}$
-- $A_6=+5.40478\times10^{-9}\ \mathrm{mm}^{-5}$
-- $A_8=-5.17090\times10^{-12}\ \mathrm{mm}^{-7}$
-- $A_{10}=+5.14254\times10^{-15}\ \mathrm{mm}^{-9}$
-
-No dimensional scaling is applied, so the coefficients are stored without scale transformation and $K$ remains unchanged.
-
-The patent does not publish a clear-aperture height for surface 14. The data file's 9.0 mm semi-diameter is an inferred, Figure-1-refined, and independently geometry-validated modeling aperture. At that verified semi-diameter, the modeled asphere sag is −1.580828 mm versus −1.650574 mm for the reference sphere, a **+0.069746 mm departure**; in other words, the asphere is about 0.070 mm shallower than its spherical reference at the modeled rim. This departure is a computed property of the validated model, not a patent-published aperture specification.
+All three published states use their tabulated spacings. Focus positions between those states use piecewise-linear interpolation of the two gaps. The model comes to paraxial focus at about 185.290 mm and 160.879 mm object-to-image with the image plane fixed at the printed back focus. Nikon describes approximately 190 mm at 1:2 and specifies 163 mm at 1:1 for the production lens. Nikon's roughly 35 mm at 1:1 is measured from the front of the production barrel. The patent's 38.206 mm is measured from the first glass vertex. The production lens uses Silent Wave Motor autofocus and offers manual override.[^nikon-story][^nikon-spec]
 
 ## Conditional Expressions
 
-The patent supplies ten explicit design conditions. Recalculation from the selected prescription reproduces the published Example-1 values at the source's three-decimal precision and satisfies every stated inequality.
+The patent relates the group powers, front-doublet spacing and focus travel to seven bounds (¶¶0038–0052 and 0067–0081). Here $f$ is the infinity EFL, $f_{1F}$ and $f_{1R}$ are the powers expressed as focal lengths of the two front doublets, $f_{1Fn}$ is the focal length of L12, and $X_1$ and $X_2$ are the respective travels of G1 and G2 to 1:1. The quantities from the printed prescription satisfy all seven bounds.
 
-| No. | Patent condition | Computed | Published |
-|---:|---|---:|---:|
-| 1 | $0.50\le(-\beta)$ | 1.000000 | 1.000 |
-| 2 | $0.07<f_2/f_1<0.35$ | 0.153581 | 0.154 |
-| 3 | $0.10<D_a/D_b<2.00$ | 0.507111 | 0.507 |
-| 4 | $0.40<X_1/f<0.90$ | 0.671568 | 0.672 |
-| 5 | $0.35<f/TL<1.20$ | 0.460537 | 0.461 |
-| 6 | $0.90<(r_2+r_1)/(r_2-r_1)<2.50$ | 1.663138 | 1.663 |
-| 7 | $0.30<f(-\beta)/f_2<1.50$ | 1.172943 | 1.173 |
-| 8 | $0.05<f_p/(-f_n)<0.60$ | 0.273391 | 0.273 |
-| 9 | $0.04<f/(-f_n)<0.40$ | 0.058656 | 0.059 |
-| 10 | $0.07<f/f_p<0.80$ | 0.214551 | 0.215 |
+| Quantity         | Table 1 | Computed |
+| ---------------- | ------: | -------: |
+| $-f_{1F}/f_{1R}$ |    1.49 |    1.494 |
+| $f_{1R}/f$       |   0.966 |    0.965 |
+| $-f_3/f_1$       |    4.38 |    4.339 |
+| $d_{FR}/f$       |   0.313 |    0.312 |
+| $-f_{1Fn}/f$     |    0.60 |    0.598 |
+| $X_1/f$          |   0.751 |    0.751 |
+| $X_2/f$          |   0.750 |    0.750 |
 
-These conditions explain several structural choices without requiring an element-by-element attribution that the source does not make. Conditions (2) and (7) constrain G2 power; (3) and (6) constrain the spacing and shape relationship around L11/L12/L13; (4) constrains G1 focus travel; and (8)–(10) constrain the balance between the negative G1F and positive G1R subgroups (¶¶0037–0057).
+The printed 4.38 for $-f_3/f_1$ is not reproduced by the printed prescription: rounding at the displayed precision allows about 4.31 to 4.37. Both values satisfy the stated range, and the prescription is kept as printed.
 
-## Verification Summary
+## First-Order Performance and Aberration Plots
 
-Independent calculation was rerun from the final TypeScript surface and element arrays rather than copied from the extraction notes. The load-bearing results are:
+With the object at the published position for each state, the calculated paraxial image distances are 39.825, 39.859 and 39.920 mm behind the last surface. They lie 0.007, 0.041 and 0.102 mm behind the fixed image plane specified by Table 1. The calculated finite image magnifications at their paraxial image positions are −0.5006× and −1.0022×. The infinity focal length agrees with the patent's 40 mm at its stated precision.
 
-| Quantity | Final-model result | Source or model reference |
-|---|---:|---|
-| EFL | 40.001074 mm | Patent $f=40.00$ mm |
-| Modeled wide-open f-number | 2.6799999 | Patent FNO = 2.68 |
-| S18 paraxial BFL (air-equivalent) | 39.070621 mm | Independent calculation |
-| Modeled S18→P1 air gap | 0.100 mm | Patent d18 |
-| Modeled P1→IMG gap | 37.65276 mm | Derived from patent INF TL/ACTL (printed Bf = 37.65) |
-| Air-equivalent S18→IMG | 39.071320 mm | Patent INF ACTL normalization |
-| Infinity physical track | 86.855160 mm | Patent TL = 86.85516 mm (ACTL = 86.17372 mm) |
-| MID magnification | −0.500004 | Patent $\beta=-0.5$ |
-| CLD magnification | −0.999991 | Patent $\beta=-1.0$ |
-| Petzval sum | +0.003020087 mm⁻¹ | Surface-by-surface $\phi/(n n')$ calculation |
+| Computed quantity         |  Infinity |       1:2 |       1:1 |
+| ------------------------- | --------: | --------: | --------: |
+| Effective focal length    | 40.020 mm | 37.882 mm | 36.271 mm |
+| Paraxial working f-number |     2.887 |     3.547 |     4.217 |
 
-The low-pass filter P1 published as patent surfaces 19–20 (2.000 mm, nd = 1.51680, νd = 64.12) is modeled in `rearPlates`: every analysis traces it, but the diagram does not draw it. The file stores the patent's 0.100 mm S18→P1 gap and a 37.65276 mm P1→IMG gap derived from the published infinity TL/ACTL (Table 1 prints Bf as 37.65), so the paraxial equivalent remains a **39.07132 mm air-equivalent S18→IMG spacing** and the physical infinity track equals the patent TL of 86.85516 mm. The patent's raw `Bf`/`ACBf` entries exhibit an internal reference-plane inconsistency; the analysis therefore follows the normalized data model instead of silently substituting either raw value.
-
-The stop axial position is source-published, but its diameter is inferred from the modeled f-number. All element semi-diameters are likewise modeling inferences because the patent supplies no clear apertures. Independent Stage-2 geometry checks found positive edge thicknesses, acceptable actual rim slopes, a valid conic domain, no prohibited cross-gap intrusion, and containment of all 42 representative on-axis/off-axis rays across INF, MID, and CLD. These checks validate the authored geometry as a LensVisualizer model; they do not convert inferred semi-diameters into production dimensions.
-
-## Fresh Rim Review
-
-Figure 1's infinity section (local US 2011/0170195 A1, PDF page 2) resolves exposed concave cap-end lands at S2, S7, S8 and S10. S2 retains its 10.5 mm clear cap and extends to 11.3 mm; S8 retains 9.4 mm and extends to 10.0 mm; S10 retains 8.3 mm and extends to 9.4 mm. These flat lands keep the existing optical caps and fill the corresponding outer rims. Other caps and all source prescription values remain unchanged.
-
-For S7, a figure-derived 1.02 mm cut (radius 8.999 mm) failed the inferred-cut guard: the β=-1 focus beam reaches 9.0956 mm at 7.5° and requires at least 9.1456 mm including clearance. The adopted inferred depth 1.06 mm places the cap at 9.171841 mm while retaining the 10.0 mm outer rim. It passes the full zoom/focus/field guard, including published finite keyframes; its endpoint is deliberately farther out than the measured q≈0.88. No source depth or tolerance exception is asserted. The S14A asphere and its 9.0 mm clear radius remain unchanged, so its quoted departure remains applicable.
+The infinity plot in Fig. 2A is labeled f/2.87, compared with f/2.887 in Table 1. Fig. 2B instead labels the closest state with object-side NA 0.11. Exact tracing to the same inferred iris gives an object-side NA of 0.115 at that state. The d-line marginal focus bends toward the lens in both plots and the model shows the same trend. The g-line curve lies near d around the axis at infinity and separates toward the lens at 1:1. This agrees with the change in the plotted longitudinal color. The curves represent the optical design at its published states, with the model's rim shapes and color behavior subject to the aperture and glass estimates above.
 
 ## Sources
 
-- US 2011/0170195 A1, Mami Muratani and Issei Tanaka, *Imaging Lens, Optical Apparatus Including Imaging Lens and Method for Manufacturing Imaging Lens*, published July 14, 2011. Example 1, especially Figs. 1–3, ¶¶0092–0110, and Table 1.
-- Nikon Corporation, [AF-S DX Micro NIKKOR 40mm f/2.8G — specifications](https://imaging.nikon.com/imaging/lineup/lens/f-mount/specialpurpose/micro/af-s_dx_micro40mmf_28g/).
-- Nikon Corporation, [NIKKOR — The Thousand and One Nights No. 88: AF-S DX Micro NIKKOR 40mm f/2.8G](https://imaging.nikon.com/imaging/information/story/0088/).
-- Nikon Inc., [July 12, 2011 press release for the AF-S DX Micro NIKKOR 40mm f/2.8G](https://www.nikonusa.com/press-room/get-closer-to-clarity-the-new).
+- [US 2011/0176215 A1](https://patents.google.com/patent/US20110176215A1/en) and [publication PDF](https://patentimages.storage.googleapis.com/cb/14/1b/1cf1db8be7b0b1/US20110176215A1.pdf). Table 1 and Figs. 1–3 cover the modeled prescription, movement, aberrations and illustrated reflection path.
 
-[^nikon-spec]: Nikon Corporation, *AF-S DX Micro NIKKOR 40mm f/2.8G* product specification.
-[^nikon-story]: Nikon Corporation, *NIKKOR — The Thousand and One Nights No. 88*.
-[^nikon-release]: Nikon Inc., July 12, 2011 product announcement.
+[^nikon-spec]: Nikon, [AF-S DX Micro NIKKOR 40mm f/2.8G specifications](https://imaging.nikon.com/imaging/lineup/lens/f-mount/specialpurpose/micro/af-s_dx_micro40mmf_28g/).
+
+[^nikon-section]: Nikon, [product construction drawing](https://imaging.nikon.com/imaging/lineup/lens/f-mount/specialpurpose/micro/af-s_dx_micro40mmf_28g/img/pic_004.jpg).
+
+[^nikon-story]: Kouichi Ohshita, Nikon, [_NIKKOR — The Thousand and One Nights_, No. 88](https://imaging.nikon.com/imaging/information/story/0088/index.html), including the production section in Fig. 1.
+
+[^nikon-release]: Nikon, [July 12, 2011 Japanese launch announcement](https://www.jp.nikon.com/company/news/2011/0712_nikkor_01/).
+
+[^ohara]: Ohara, [Optical Glass Catalog](https://oharacorp.com/glass-catalog/) and [older glass catalog and equivalence table](https://wp.optics.arizona.edu/optomech/wp-content/uploads/sites/53/2016/10/Ohara_Glass_Catalog.pdf).

@@ -31,6 +31,10 @@
  *   2026-11-16  Expanded the Kinoptik, Meike, Schacht, Thypoch, Viltrox, and Yongnuo entries to the
  *               full multi-paragraph form of the established makers; renamed the P. Angénieux slug
  *               to angenieux.
+ *   2026-11-16  Added the SongRaw maker entry in the same multi-paragraph form.
+ *   2026-11-16  Added the ISCO entry in the same form.
+ *   2026-11-18  Added Busch, Dallmeyer, Goerz, Ross, and Steinheil maker entries for the historical
+ *               literature reconstructions and patent lenses.
  *   2026-04-26  Detail and accuracy pass on Leica (designer attributions,
  *               Solms→Leitz-Park facility history), Fujifilm (X100, GFX,
  *               2006 holding-company rebrand), Canon (Kwanon-vs-Hansa Canon,
@@ -94,6 +98,18 @@ export const MAKER_DETAILS: Record<string, MakerDetails> = {
     notableDesigns:
       "QuickTake 100; iPhone 4S five-element camera; iPhone 7 Wide and 7 Plus dual-camera system; iPhone 11 Pro triple-camera system; iPhone 12 seven-element Main camera; iPhone 15 Pro Max tetraprism Telephoto",
   },
+  // Company history and production specifications; patent association qualified in the lens analysis.
+  // https://7artisans.store/pages/about-us
+  // https://7artisans.store/products/af-135mm-f1-8-full-frame-lens-for-e-z-l
+  "7artisans": {
+    founded: 2016,
+    headquarters: "Shenzhen, Guangdong, China",
+    summary:
+      "Chinese optical manufacturer Shenzhen 7Artisans Photoelectric Technology Co., Ltd., producing manual-focus, autofocus and cinema lenses under the 7Artisans name.",
+    history:
+      "7Artisans was established in Shenzhen in 2016 by a group of photography enthusiasts. The company's account traces the project to a gathering in 2015 that brought together optical-design, manufacturing and camera-collecting interests. In September 2016, the group completed 100 engineering samples of a 50mm f/1.1 lens, with seven participants remaining to give the brand its name. The M 50mm f/1.1 entered commercial sale in 2017, followed by lenses for additional mounts and focal lengths. The Vision cinema series appeared in 2021 as the company expanded beyond still-photography lenses. Its later autofocus range includes the full-frame AF 135mm f/1.8 MAX, specified with sixteen elements in thirteen groups and versions for Sony E, Nikon Z and L mount.",
+    notableDesigns: "AF 135mm f/1.8 MAX, M 50mm f/1.1",
+  },
   // https://www.zenitcamera.com/archive/history/marks.html
   // https://www.zenitcamera.com/archive/history/production-reliability-longevity.html
   // https://www.zenitcamera.com/archive/history/feday-about-lenses.html
@@ -129,6 +145,25 @@ export const MAKER_DETAILS: Record<string, MakerDetails> = {
     notableDesigns:
       "Apochromat 50mm f/2, Apochromat 100mm f/2, Apochromat 150mm f/2.5, Tegea 5.7mm f/1.8, Tegea 9.8mm f/1.8, Super-Tegea 1.9mm f/1.9, Fulgior 50mm f/1.3",
   },
+  // Founding, wartime work, postwar products and later company history: https://de.wikipedia.org/wiki/ISCO_G%C3%B6ttingen
+  // 30 March 1936 founding and Tronnier: https://cinelenswiki.com/mfg:isco
+  // https://www.filmkorn.org/super8data/database/manufacturers_list/i_/isco.htm (gives 1939)
+  // Camera-lens dates, Reich Air Ministry commission and Iscorama for SLRs: https://photobutmore.de/exakta/isco/
+  // Lens customers and the name restriction until 1953: https://camera-wiki.org/wiki/Isco
+  // Iscorama models: https://en.wikipedia.org/wiki/Iscorama
+  // 1980s restructuring and return to Schneider: https://www.eoshd.com/news/whats-the-story-behind-schneider-kreuznachs-return-of-the-iscorama
+  // https://www.pressebox.com/pressrelease/jos-schneider-optische-werke-gmbh/ISK-Optics-merges-with-parent-company-Jos-Schneider-Optische-Werke/boxid/698220
+  // https://schneiderkreuznach.com/application/files/5116/8552/3858/Press_Release_Schneider-Kreuznach_introduces_ISCO_Family.pdf
+  isco: {
+    founded: 1936,
+    headquarters: "Göttingen, Germany",
+    summary:
+      "Göttingen optical works founded by Schneider Kreuznach in 1936, known for wartime aerial lenses, Westron, Westanar and Tele-Iscaron camera lenses, cinema projection optics, and Iscorama anamorphic attachments.",
+    history:
+      "ISCO was founded in Göttingen on 30 March 1936 as Jos. Schneider & Co., Optische Werke, Göttingen, a limited partnership of the Bad Kreuznach lens maker, set up as a second production site under a Reich Air Ministry commission; some references date it to 1939. Albrecht Wilhelm Tronnier, Schneider's chief designer, built up lens production, which began the same year. A new plant opened on Reichsstraße in 1941, and during the Second World War the works was the Luftwaffe's main supplier of aerial-reconnaissance lenses, making about 45,000 of them, partly with forced labour.\n\nAfter the war the Allies dismantled much of the plant. The company made its first cinema-projection lenses in 1946 and spectacle lenses from 1947, and until 1953 it traded as Optische Werke Göttingen because it could not use the ISCO name. Its first anamorphic attachments for widescreen projection followed in 1953, and Kiptar and Super-Kiptar lenses became the core of its projection range.\n\nCamera lenses began in 1951 with fitted lenses such as the Isconar and Westanar for other makers' cameras, among them Balda, Bilora, Franka and Wirgin. Interchangeable lenses for Exakta, Edixa and M42 cameras followed from 1952: the Westar and Westanar standard lenses, the Westagon 50mm f/2, the Westron wide-angles, the Westrogon 24mm f/4 of 1958 and, from 1957, the Tele-Iscaron line. In the 1960s ISCO had about 600 employees, concentrated on lenses and was among the first major makers to use plastic lens mounts. The Iscorama anamorphic attachment for Exakta and M42 cameras appeared in 1967–68 and was followed by the Iscorama 36 and Iscorama 54 and, in 1982, the Iscorama 42.\n\nWhen the Schneider parent company went bankrupt in 1982, ISCO was restructured: Kurt Lindstedt and two partners took it over and renamed it Isco-Optik. The company moved to the Anna-Vandenhoeck-Ring in Göttingen in the late 1980s, began making lenses for digital projectors in 1990 and worked with Texas Instruments on digital cinema from 1995. After a second insolvency in 2003, a Swiss investor took over the business in 2004. It returned to the Schneider group as Schneider Kreuznach ISCO Division (sources give 2008 or 2009), was renamed ISK Optics GmbH in 2011 and merged into Jos. Schneider Optische Werke GmbH in 2014. Schneider revived the ISCO name in 2022 with ISCO4all, which pairs a new ISCORAMA 54 CU-1.5x anamorphic adapter with ISCOspherical cine primes. US 2,972,285, by Rudolf Solisch for Isco Optische Werke, is the source of the Tele-Iscaron entry in this catalog.",
+    notableDesigns:
+      "Westanar 50mm f/2.8, Westagon 50mm f/2, Westrogon 24mm f/4, Westron 35mm f/2.8, Tele-Iscaron 135mm f/2.8, Kiptar projection lenses, Iscorama anamorphic attachments",
+  },
   unattributed: {
     headquarters: "Not known",
     summary: "Lenses whose maker is not known.",
@@ -154,6 +189,18 @@ export const MAKER_DETAILS: Record<string, MakerDetails> = {
       "Enna Werk was founded in Munich in 1920 by engineer Alfred Neumann as an optical workshop producing lenses and optical components. Before selling lenses under its own name, Enna supplied optics to other brands, including Kodak and Liesegang. After wartime damage forced relocation and rebuilding, the company resumed in Munich under the Appelt family and began marketing Enna-branded lenses in 1950.\n\nThe 1950s and early 1960s were Enna's main photographic-lens period. The company built rangefinder lenses, then developed a broad SLR line from 24 mm to 600 mm with preset, click-stop, and automatic diaphragm variants for mounts such as Exakta, Edixa, Praktica/M42, and other third-party systems. Enna names included Lithagon wide-angles, Ennalyt normals and telephotos, and Tele-Ennalyt longer lenses. In 1964 the four-millionth Enna lens, a tele-zoom, was presented to the Munich Stadtmuseum.\n\nEnna gradually shifted away from camera-lens supply as Japanese SLR systems and first-party lens lines tightened the market. The company expanded projector production, technical optics, toolmaking, and plastic injection molding, with a Wegscheid branch opening in 1968 and administration moving there in 1990. Enna sold its optical business in 1991 and continued as a manufacturing and plastics specialist, leaving the photographic legacy in its compact third-party lenses and the Ennalyt and Lithagon names.",
     notableDesigns:
       "Lithagon 35mm lenses, Super-Lithagon 35mm f/1.9, Ennalyt 50mm lenses, Tele-Ennalyt 400mm f/4.5, Enna 85-250mm tele-zoom",
+  },
+  // Company history and Ernostar development: museum records; patent qualification in the lens analysis.
+  // https://collection.sciencemuseumgroup.org.uk/people/cp100571/ernemann-werke
+  // https://www.cameramuseum.ch/en/discover/permanent-exhibition/the-plate-era/the-ermanox-plays-with-the-shadows/
+  ernemann: {
+    founded: 1889,
+    headquarters: "Dresden, Saxony, Germany (historical works)",
+    summary:
+      "German camera, lens and cinema-projector manufacturer whose Ernostar lenses equipped the Ermanox cameras for photography in low light.",
+    history:
+      "Heinrich Ernemann and his partner Matthias founded the Dresdner Photographische Apparate-Fabrik Ernemann & Matthias in Dresden in 1889. The business became a joint-stock company in 1899 and produced photographic cameras and cinema projectors. Ludwig Bertele developed the Ernostar lens for the company, first at f/2 and then at f/1.8. The Ermanox camera appeared in 1924 and used these large-aperture lenses for photography in available light. In 1926 Ernemann merged with other manufacturers to form Zeiss Ikon AG, while the Ernemann brand continued in use. The catalog's Ernostar 10.5cm f/1.8 follows Example II of Ernemann's DE 436,260.",
+    notableDesigns: "Ernostar 10.5cm f/1.8, Ernostar 10cm f/2, Ermanox camera",
   },
   kodak: {
     founded: 1892,
@@ -199,6 +246,96 @@ export const MAKER_DETAILS: Record<string, MakerDetails> = {
     notableDesigns:
       "Travegon 35mm f/3.5, Travenar 50mm f/2.8, S-Travelon 50mm f/1.8, M-Travenar 50mm f/2.8, Travenar 90mm f/2.8, Travenar 135mm f/3.5, S-Travenar 135mm f/2.8",
   },
+  // Emil Busch and the Duncker founding (NDB 3, 1957): https://www.deutsche-biographie.de/sfz11230.html
+  // Company chronology: https://collection.sciencemuseumgroup.org.uk/people/cp105648/emil-busch-ag
+  // 1872 company name and Pantoskop: https://stereoscopyhistory.net/compendium/emil-busch
+  busch: {
+    founded: 1800,
+    headquarters: "Rathenow, Germany",
+    summary:
+      "German optical works in Rathenow, led from 1845 by Emil Busch, which made spectacle lenses, opera glasses, binoculars, cameras and photographic lenses, among them the Pantoskop wide-angle objective of 1865.",
+    history:
+      "The firm descends from the Königlich Privilegierte Rathenowische Optische Industrie-Anstalt, which the Rathenow pastor Johann Heinrich August Duncker founded in 1800. His son Eduard Duncker led it after him, and in 1845 Eduard handed the management to his nephew Emil Busch (1820–1888), who had joined the firm in 1840. Busch turned the workshop into an industrial operation, introducing steam power in 1846 and building new machines for grinding spectacle and optical lenses. Its opera glasses gave the firm an international reputation.\n\nBusch began making photographic cameras in 1852. Production of the Pantoskop (also spelled Pantoscop), a wide-angle objective he developed, began in 1865, and the lens became widely praised. In 1872 Busch converted the company into a joint-stock company, the Rathenower Optische Industrie-Anstalt vormals Emil Busch AG. He also supported the founding of the Schott optical glassworks in Jena, and he died in Rathenow in 1888.\n\nThe company was renamed Emil Busch AG Optische Industrie in 1908. Carl Zeiss acquired a majority of its shares in the late 1920s, after which Busch stopped making photographic lenses but continued to make cameras. In 1946 the business became the state-owned Rathenower Optische Werke GmbH, and from 1948 VEB Rathenower Optische Werke, which later became part of VEB Carl Zeiss Jena.",
+    notableDesigns: "Pantoskop wide-angle objective, opera glasses, Galilean and prism binoculars",
+  },
+  // J. H. and T. R. Dallmeyer (1911 Britannica): https://en.wikisource.org/wiki/1911_Encyclop%C3%A6dia_Britannica/Dallmeyer,_John_Henry
+  // Lens dates (1911 Britannica, Photography): https://en.wikisource.org/wiki/Page:EB1911_-_Volume_21.djvu/533
+  // https://en.wikisource.org/wiki/Page:EB1911_-_Volume_21.djvu/534
+  // https://en.wikisource.org/wiki/Page:EB1911_-_Volume_21.djvu/535
+  // https://en.wikisource.org/wiki/Page:EB1911_-_Volume_21.djvu/536
+  // Founding after Ross's death: https://en.wikipedia.org/wiki/Ross_(optics)
+  // Company registration, works and 1974 sale: https://www.gracesguide.co.uk/J._H._Dallmeyer
+  // Later owners: https://collection.sciencemuseumgroup.org.uk/people/cp35932/j-h-dallmeyer-ltd
+  // Bergheim lens: https://en.wikipedia.org/wiki/Thomas_Rudolphus_Dallmeyer
+  dallmeyer: {
+    founded: 1860,
+    headquarters: "London, England",
+    summary:
+      "London optical firm founded by John Henry Dallmeyer, son-in-law of Andrew Ross, known for portrait, landscape and rectilinear photographic lenses, photoheliographs, and the telephoto lens his son Thomas Rudolphus Dallmeyer patented in 1891.",
+    history:
+      "John Henry Dallmeyer was born in Loxten, Westphalia, in 1830 and apprenticed to an optician in Osnabrück. He came to London in 1851, worked for the optician W. Hewitt and then for Andrew Ross, who engaged him as scientific adviser to test and finish high-grade instruments, and he married Ross's second daughter, Hannah. When Ross died in 1859, Dallmeyer inherited a third of his fortune and the telescope-making part of the business, and in 1860 he set up his own optical firm in London.\n\nDallmeyer moved from astronomical work to photographic lenses. His Quick Acting portrait lenses date from 1860, the Triple Achromatic from 1861, the Wide Angle Landscape lens from 1865, and the Patent Portrait Lens and the Wide Angle Rectilinear from 1866. Within a year of Steinheil's Aplanat of 1866 came the Rapid Rectilinear, an f/8 symmetrical doublet built on the same principle. Dallmeyer also built photoheliographs for the Wilna observatory in 1863, Harvard College Observatory in 1864 and the British government in 1873. Ill health led him to give up supervising the workshops around 1880, and he died at sea off New Zealand on 30 December 1883.\n\nHis son Thomas Rudolphus Dallmeyer (1859–1906) took over the business. He patented the first practical telephoto lens in 1891, wrote the standard text Telephotography in 1899, and was president of the Royal Photographic Society from 1900 to 1903. The firm was registered as J. H. Dallmeyer Ltd in 1892, and from 1896 it issued H. L. Aldis's Stigmatic anastigmats in series.\n\nBy 1922 the company had a factory at Church End Works in Willesden, north-west London, and in both World Wars it made gun sights and other military equipment. Lens manufacture continued into the 1970s. Watshams bought J. H. Dallmeyer Ltd in 1974, and the business later passed through other optical groups into Thales.",
+    notableDesigns:
+      "Triple Achromatic, Wide Angle Landscape, Patent Portrait Lens, Wide Angle Rectilinear, Rapid Rectilinear, Rapid Landscape, telephoto lens, Stigmatic, Dallmeyer-Bergheim soft-focus portrait lens",
+  },
+  // Carl Paul Goerz (NDB 6, 1964): https://www.deutsche-biographie.de/sfz21445.html
+  // Emil von Höegh (NDB): https://www.deutsche-biographie.de/sfz32800.html
+  // Company chronology: https://collection.sciencemuseumgroup.org.uk/people/cp1132/c-p-goerz
+  // https://collection.sciencemuseumgroup.org.uk/people/cp133159
+  // Schöneberg start, Friedenau works, 1893 licences: https://de.wikipedia.org/wiki/Optische_Anstalt_C._P._Goerz
+  // American company: https://en.wikipedia.org/wiki/Goerz_(company)
+  // Doppel-Anastigmat dates (1911 Britannica): https://en.wikisource.org/wiki/Page:EB1911_-_Volume_21.djvu/535
+  // Dagor name after 1904: https://collection.sciencemuseumgroup.org.uk/objects/co8939872/a-double-anastigmat-series-iii-dagor-lens
+  // Hypergon patent: https://collection.sciencemuseumgroup.org.uk/objects/co8210853/hypergon-dopel-anastigmat-wide-angle-lens-serie-x-no-1
+  // Celor: https://en.wikipedia.org/wiki/Emil_von_H%C3%B6egh
+  // Dogmar: https://patents.google.com/patent/US1108307A/en; attribution follows the qualified source discussion in the lens analysis.
+  goerz: {
+    founded: 1886,
+    headquarters: "Berlin-Friedenau, Germany",
+    summary:
+      "Berlin optical company founded by Carl Paul Goerz in 1886, maker of Emil von Höegh's Doppel-Anastigmat (Dagor) and Hypergon lenses, Anschütz focal-plane cameras and military optics, which merged into Zeiss Ikon in 1926.",
+    history:
+      "Carl Paul Goerz (1854–1923) trained at Emil Busch's optical works in Rathenow from 1870 to 1873 and then travelled as a salesman for optical and precision-mechanics firms. In 1886 he started a mail-order business in Berlin for mathematical instruments and drawing equipment, and he added cameras to its range in 1887. In 1888 he took over F. A. Hintze's workshop in Schöneberg and began making cameras himself, and in 1889 he acquired the rights to Ottomar Anschütz's focal-plane shutter. From 1890 the firm traded as Optische Anstalt C. P. Goerz.\n\nIn 1892 Emil von Höegh (1865–1915) came to Goerz with the design for a new anastigmat, and the firm hired him at once. Goerz secured the patent in 1892 and issued the Doppel-Anastigmat in 1893, the first symmetrical anastigmat to combine a flat, astigmatism-free field with wide coverage; after 1904 it was sold as the Dagor. Licences went to Ross in London and Karl Fritsch in Vienna in 1893, and the firm completed its 100,000th lens in 1901. Von Höegh also designed the Hypergon, a 135-degree wide-angle patented in 1900, and the Celor, before leaving Goerz in 1902.\n\nThe company became a joint-stock company in 1903, with its works on Rheinstraße in Berlin-Friedenau, and set up a military department the same year. By then it had sales branches or factories in Paris (from 1893), London (from 1899) and New York, with St Petersburg and others to follow. A film factory in Berlin-Zehlendorf was added in 1908, and the workforce grew to about 2,500 by 1911 and roughly 10,000 by 1917, much of it making military optics.\n\nThe loss of military work after the First World War left the company in financial difficulty. In 1926 it merged with Ica, Contessa-Nettel and Ernemann to form Zeiss Ikon, and Goerz lens production largely ended. The New York company, the C. P. Goerz American Optical Company, was independent of the merger and continued to make lenses until Schneider Optics took it over in 1972.",
+    notableDesigns:
+      "Doppel-Anastigmat (Dagor), Hypergon wide-angle, Celor, Dogmar, Goerz-Anschütz focal-plane camera, Tenax cameras",
+  },
+  // Andrew and Thomas Ross (Darwin Correspondence Project): https://epsilon.ac.uk/view/dcp-data/nameregs/nameregs_4081
+  // https://epsilon.ac.uk/view/dcp-data/nameregs/nameregs_4085
+  // Apprenticeship and early addresses: https://www.gracesguide.co.uk/Andrew_Ross
+  // Thomas Ross's death: https://www.gracesguide.co.uk/Thomas_Ross_(1818-1870)
+  // Company names and dates: https://collection.sciencemuseumgroup.org.uk/people/cp29165/ross-and-company
+  // https://collection.sciencemuseumgroup.org.uk/people/cp35931/ross-limited
+  // https://www.gracesguide.co.uk/Ross
+  // Clapham works, wartime and 1975 sale: https://claphamsociety.com/article/25-from-ross-to-experian/
+  // Licences, Mill Hill and Avimo: https://en.wikipedia.org/wiki/Ross_(optics)
+  // Lens dates (1911 Britannica, Photography): https://en.wikisource.org/wiki/Page:EB1911_-_Volume_21.djvu/534
+  // https://en.wikisource.org/wiki/Page:EB1911_-_Volume_21.djvu/535
+  // Xpres: https://collection.sciencemuseumgroup.org.uk/objects/co8092587/xpres-lens-6-inch
+  ross: {
+    founded: 1830,
+    headquarters: "London, England; works at Clapham Common from the 1890s",
+    summary:
+      "London optical firm founded by Andrew Ross in 1830, maker of microscopes, telescopes and some of the earliest English photographic lenses, which later built Zeiss and Goerz anastigmats under licence and became Ross Ltd and then Ross Ensign.",
+    history:
+      "Andrew Ross (1798–1859) was apprenticed to the London optician John Corless from 1813 and set up his own business in Clerkenwell in 1830. Around 1837 to 1841 he made microscope objectives to Joseph Jackson Lister's new design, and he was a founder member of the Microscopical Society of London in 1841. From about 1840 he also made camera lenses of two achromatic groups; the lens he made for H. Collen was the first corrected so that its visual and chemical foci coincided.\n\nWhen Andrew Ross died in 1859 his son Thomas took over the business, which became Ross & Co., while his son-in-law John Henry Dallmeyer inherited the telescope side and set up his own firm. Thomas Ross issued the Actinic Triplets in 1861 and the Actinic Doublets in 1864; the doublets, modelled on the Collen lens, were unsymmetrical and faster than Harrison's Globe lens. Thomas Ross died in 1870. In 1888 H. L. H. Schroeder designed the Concentric lens for the firm, a flat-field, astigmatism-free symmetrical doublet issued in 1892.\n\nIn the 1890s Ross made Zeiss and Goerz lenses under licence for Britain and its empire, taking the English licence for Zeiss's anastigmats in 1890 and for the Goerz Doppel-Anastigmat in 1893. The company bought premises on Clapham Common North Side in 1891 and was floated as Ross Ltd in 1897. During the First World War the government took its entire output and placed it in charge of the Zeiss factory at Mill Hill, and in 1915–16 Ross put up a new factory building at Clapham. Its later camera lenses included the Xpres series.\n\nRoss merged with Barnet Ensign in 1948 to form Barnet Ensign Ross, renamed Ross Ensign in 1954, and stopped making cameras in 1961 while continuing binoculars and other optics. The company was sold in 1975, when manufacturing at Clapham ended, and the business passed to Avimo, later part of Thales.",
+    notableDesigns:
+      "Actinic Triplet, Actinic Doublet, Rapid Symmetrical, Portable Symmetrical, Concentric lens, Xpres, Goerz Double Anastigmat under licence",
+  },
+  // Firm history (Deutsches Museum archive finding aid FA 005, 2023):
+  // https://www.deutsches-museum.de/assets/Forschung/Archiv/Download/Findbuecher_PDF/FA_005_Steinheil.pdf
+  // Hugo Adolph Steinheil (NDB 25, 2013): https://www.deutsche-biographie.de/117657867.html
+  // Periskop, Aplanat and Orthostigmat (1911 Britannica, Photography):
+  // https://en.wikisource.org/wiki/Page:EB1911_-_Volume_21.djvu/534
+  // https://en.wikisource.org/wiki/Page:EB1911_-_Volume_21.djvu/536
+  // Company record: https://collection.sciencemuseumgroup.org.uk/people/cp116351
+  steinheil: {
+    founded: 1855,
+    headquarters: "Munich, Germany; Ismaning from 1969",
+    summary:
+      "Munich optical and astronomical works founded by Carl August von Steinheil in 1855, whose Periskop, Aplanat, Antiplanet and Orthostigmat lenses shaped nineteenth-century photographic optics, and which later made Cassar, Quinar and Culminar lenses alongside telescopes, spectrographs and military optics.",
+    history:
+      "Carl August von Steinheil (1801–1870), astronomer, physicist and telegraph pioneer, registered the Optische und astronomische Werkstätte C. A. Steinheil in Schwabing, near Munich, in March 1855. His son Hugo Adolph Steinheil (1832–1893) did most of the optical calculation, and his elder son Eduard joined in 1860 to run the technical and commercial side. The workshop moved into Munich in 1862. In 1865 Carl August withdrew and Adolph bought the business, sharing it with Eduard, and from 1 January 1868 it traded as C. A. Steinheil Söhne.\n\nApplying Philipp Ludwig von Seidel's methods of ray calculation, the firm brought out the Periskop in 1865, a nearly distortion-free wide-angle of two simple crown menisci around a central stop, and in 1866 Adolph Steinheil's Aplanat, which applied the same symmetrical principle with achromatized components. The Aplanat won a gold medal at the 1867 Paris exhibition, and wide-angle, reproduction and portrait forms followed until 1896. Adolph introduced the Antiplanet in 1881. In March 1893 the firm completed the six-element Orthostigmat anastigmat, but C. P. Goerz had filed a similar design three months earlier and the German patent was delayed, so the lens was first produced at a Paris branch, C. A. Steinheil fils, opened in 1895.\n\nAdolph died in November 1893, and his son Rudolf Steinheil (1865–1930), co-owner since 1890, led the firm. The Orthostigmat Type II entered production in 1896, followed by the Triplar portrait lens, the four-element Unofocal, the Cassar triplet from 1919 and the Quinar of 1925, alongside large observatory objectives and spectrographs. After Rudolf's death the firm passed to his five daughters and became Optische Werke C. A. Steinheil Söhne GmbH in 1937; its postwar range included binoculars, spectrographs, the Casca 35 mm camera and Culminar lenses.\n\nThe American Elgeet Optical Company bought a controlling share in 1962 and sold it to Lear Siegler in 1963. The business was reorganized as Steinheil-Lear Siegler AG from 1968, moved to Ismaning by the end of 1969 and concentrated on military, surveying and industrial optics. British Aerospace bought it in 1987 as Steinheil Optronik and closed it in 1995.",
+    notableDesigns: "Periskop, Aplanat, Antiplanet, Orthostigmat, Triplar, Unofocal, Cassar, Quinar, Culminar",
+  },
   samsung: {
     founded: 1938,
     headquarters: "Suwon and Seoul, South Korea",
@@ -218,6 +355,25 @@ export const MAKER_DETAILS: Record<string, MakerDetails> = {
       "Tamron began in November 1950 in Urawa, now part of Saitama City, as Taisei Optical Equipment Manufacturing, founded by Fujio Watanabe and Takeyuki Arai to make camera and binocular lenses. The business was incorporated in 1952, when optical designer Uhyoue Tamura joined and helped establish its design department. His surname inspired the Tamron trademark registered in 1958; Taisei Optical adopted Tamron Co., Ltd. as its corporate name in 1970.\n\nThe company built its early interchangeable-lens identity around mount flexibility and practical zoom design. It developed the T-mount system in 1957, began mass-producing its affordable 95-205 mm f/6.3 telephoto zoom in 1959, introduced Adapt-A-Matic in the 1960s, and followed with Adaptall in 1976. The SP, or Super Performance, series arrived in 1979, the same era that produced the first SP 90 mm f/2.5 macro. That 90 mm line became a Tamron signature, evolving through autofocus, 1:1 reproduction, internal focusing, VC stabilization, and mirrorless versions.\n\nTamron expanded beyond interchangeable still-camera lenses into broadcast, surveillance, automotive, medical, and industrial optics. It acquired Bronica in 1995 and merged that medium-format camera company into Tamron in 1998. In photography, the company helped popularize compact all-in-one zooms, then broadened its premium SP primes and zooms and built extensive native mirrorless ranges. Modern lenses such as the 28-75 mm f/2.8, 35-150 mm f/2-2.8, and 150-600 mm continue its role as a major independent alternative to camera-system manufacturers.",
     notableDesigns:
       "T-mount, Adapt-A-Matic, Adaptall and Adaptall-2, SP 90mm Macro series, SP AF 60mm f/2 Di II Macro, SP AF 180mm f/3.5 Di Macro, 28-200mm all-in-one zoom, 28-75mm f/2.8, 35-150mm f/2-2.8, SP 150-600mm",
+  },
+  /* Applicant, address, inventor and filing dates: CN 119148346 A (filed 2024-11-12), CN 119667909 A (filed 2025-01-23),
+   * CN 224176794 U.
+   * Launch and founders: https://petapixel.com/2025/04/07/new-company-songraw-unveils-first-lens-full-frame-af-50mm-f-1-2-moonlit/
+   * https://www.cined.com/songraw-af-50mm-f-1-2-moonlit-full-frame-prime-lens-for-sony-e-nikon-z-and-l-mount-released/
+   * Apochromatic claim: https://phillipreeve.net/blog/review-songraw-50mm-1-2-moonlit/
+   * 85mm and company profile: https://www.cined.com/songraw-moonlit-85mm-f-1-2-lens-announced-challenging-the-85mm-classics/
+   * https://petapixel.com/2025/09/16/songraw-expands-its-moonlit-lens-series-with-the-85mm-f-1-2/
+   * CP+ 2026 finishes and launch prices: https://phototrend.fr/2026/03/cp-plus-2026-songraw-af-85-mm-f-12-et-50-mm-f-12-v2/
+   * Simplified editions: https://www.imaging-resource.com/news/songraw-moonlit-simplified-lenses-cut-price-of-f-1-2-primes/
+   * MS review: https://dustinabbott.net/2026/09/songraw-af-85mm-f1-2-ms-review/
+   */
+  songraw: {
+    headquarters: "Shenzhen, China",
+    summary:
+      "Chinese lens maker that launched in 2025 with the Moonlit series of full-frame f/1.2 autofocus primes for Sony E and Nikon Z mounts, later joined by lighter, lower-priced silver editions of the same designs.",
+    history:
+      "SongRaw is the brand of Shenzhen Songruo Photography Equipment Co., Ltd., based in the Bantian area of Shenzhen's Longgang district, which files its optical patents. Press coverage describes the founders as former engineers and lens designers with backgrounds in the camera-equipment industry; the company makes only lenses and runs its own factory. Its application for a 50mm f/1.2 design was filed in November 2024 and one for an 85mm f/1.2 design in January 2025, both naming Chang Yuwen as inventor.\n\nThe brand's first lens, the AF 50mm f/1.2 Moonlit, was announced in April 2025, and SongRaw described it as the first Chinese full-frame 50mm f/1.2 autofocus lens for mirrorless cameras. It has 15 elements in 10 groups with two aspherical elements, a 13-blade diaphragm, an aperture ring that can be declicked and a stepping-motor (STM) autofocus drive, and SongRaw's marketing describes its colour correction as apochromatic. The Sony E version came first, with Nikon Z and L-mount versions announced alongside it.\n\nThe AF 85mm f/1.2 Moonlit followed at IBC in September 2025 at US$1,299. It uses 18 elements in 10 groups, among them one aspherical, five ED and eleven high-index elements. At CP+ in 2026 SongRaw showed silver versions of both lenses alongside the black Moonlit finish: lighter aluminium bodies without an aperture ring. At NAB in April 2026 these were presented as simplified editions with the same optical designs, priced at about half the originals; the silver 85mm is sold as the AF 85mm f/1.2 MS.\n\nSongRaw's patents CN 224176794 U and CN 119667909 A are the sources of the AF 50mm f/1.2 Moonlit and AF 85mm f/1.2 MS entries in this catalog.",
+    notableDesigns: "AF 50mm f/1.2 Moonlit, AF 85mm f/1.2 Moonlit, AF 85mm f/1.2 MS",
   },
   /* Thypoch product pages; patent applicant per CN 118244463 A and CN 118534627 A.
    * https://thypoch.com/en/simera/50mm
@@ -287,6 +443,21 @@ export const MAKER_DETAILS: Record<string, MakerDetails> = {
       "Canon's origins trace to 1933, when Goro Yoshida and his brother-in-law Saburo Uchida built the Kwanon — a 35 mm focal-plane shutter camera prototype, named after the Buddhist goddess of mercy — at the Precision Optical Instruments Laboratory in Roppongi, Tokyo. The Kwanon never went into commercial production; the first camera actually sold under the new brand was the Hansa Canon (1936), a coupled-rangefinder 35 mm body distributed by Omiya Shashin-yōhin under the 'Hansa' trade name and fitted with a Nikkor 50 mm f/3.5 lens supplied by Nippon Kogaku — Canon did not yet produce its own lenses. Precision Optical Industry Co., Ltd. was formally incorporated in August 1937 to scale up production, and the company renamed itself Canon Camera Co., Ltd. in 1947 (and Canon Inc. in 1969).\n\nCanon began manufacturing its own optics in 1939 with the Serenar lens series for the Hansa Canon line. Through the 1950s and early 1960s the Canon-mount (Leica thread mount-derivative) rangefinders matured into the Canon VI and Canon 7, and the Canonflex (1959) and FT QL (1966) brought Canon into the SLR market. The R, FL, and FD lens-mount series of the 1960s and early 1970s established Canon's SLR optical line, and the AE-1 (1976) — with CPU-controlled shutter-priority exposure made possible by Canon's early investment in microelectronics — sold an unprecedented five million units worldwide and became the best-selling SLR of the decade. The Canon F-1 (1971) and New F-1 (1981) served professional photojournalists and studio photographers during the same period.\n\nThe EOS system (1987) was a deliberate architectural break: Canon abandoned the FD mount mid-product-cycle and introduced the EF mount with a fully electronic lens-body interface and a 54 mm throat at a 44 mm flange focal distance. Every EF lens drives its own autofocus motor internally — Canon's USM (Ultrasonic Motor), introduced on the EF 300 mm f/2.8L USM in 1987, was the first such system in any 35 mm autofocus lens and removed the body-to-lens mechanical coupling that limited earlier AF designs. The EOS-1 (1989) and the long telephoto L-series that followed — together with optical innovations like in-lens Image Stabilization (introduced on the EF 75-300 mm f/4-5.6 IS USM in 1995, the first stabilized 35 mm autofocus lens), Diffractive Optics (DO) elements (EF 400 mm f/4 DO IS USM, 2001), and Blue-spectrum Refractive (BR) elements (EF 35 mm f/1.4L II USM, 2015) — made Canon the dominant force in professional sport and press photography through the 1990s and 2000s.\n\nCanon's transition to digital began with the EOS D30 (2000) and EOS-1D (2001), and the EOS-1Ds (2002) was the first integrated full-frame DSLR. The RF mount system, launched with the EOS R (2018), kept the EF mount's 54 mm throat but shortened the flange focal distance from 44 mm to 20 mm, enabling much shorter back-focus designs and a denser 12-pin lens-body data link. The RF 50 mm f/1.2L USM and RF 85 mm f/1.2L USM demonstrated what this design freedom enabled at wide apertures, while the RF 100 mm f/2.8L Macro IS USM introduced an SA (spherical aberration) control ring — an adjustable element group that allows photographers to dial in or out foreground and background bokeh character at any focus distance.",
     notableDesigns:
       "EF 50mm f/1.0L USM, EF 85mm f/1.2L II USM, EF 200mm f/2L IS USM, RF 50mm f/1.2L USM, RF 100mm f/2.8L Macro IS USM",
+  },
+  // Manufacturing lineage and later company formation: Science Museum Group; lens families: Cooke archives.
+  // https://collection.sciencemuseumgroup.org.uk/people/cp104737/taylor-hobson-limited
+  // https://cookeoptics.com/compendium/
+  // https://cookeoptics.com/news-and-events/the-history-of-panchro-part-1/
+  // https://cookeoptics.com/news-and-events/classic-cookes-25mm-t2-2-cooke-speed-panchro-series-ii-s2-serial-592911-in-production-from-1953-u-s-patent-2502509/
+  cooke: {
+    founded: 1886,
+    headquarters: "Leicester, England, United Kingdom",
+    summary:
+      "British lens brand of Taylor, Taylor & Hobson, known for photographic anastigmats, telephotos and the Speed Panchro cinema lenses, later continued by Cooke Optics.",
+    history:
+      "Cooke's manufacturing lineage began in Leicester in 1886 with the business later known as Taylor, Taylor & Hobson. The firm produced Cooke lenses based on H. Dennis Taylor's triplet design, patented in 1893. Arthur Warmisham's Aviar and Horace William Lee's Series VIII telephoto, Series XI triplet and Series XV Triple Convertible extended its photographic lens range. Lee's Speed Panchro designs were followed by Gordon Cook's Series II cinema lenses in the 1950s. Cooke Optics became a separate company in 1998 following a buyout of Taylor Hobson's optical division. Each Cooke model in the catalog follows a numerical example from one of these patents.",
+    notableDesigns:
+      "Aviar (Series II), Series VIII telephoto, Series XI triplet, Series XV Triple Convertible, Speed Panchro, Speed Panchro Series II (S2), Cooke Triplet",
   },
   hasselblad: {
     founded: 1941,
@@ -418,6 +589,20 @@ export const MAKER_DETAILS: Record<string, MakerDetails> = {
     history:
       "Vivitar Corporation traces its origins to Ponder & Best, Inc., a photographic equipment importer founded in 1938 in Los Angeles. The company sold imported Japanese photographic accessories under the Vivitar brand starting in 1959, eventually adopting Vivitar Corporation as its corporate name in 1971.\n\nVivitar's commercial model was unusual: the company designed and marketed lenses but contracted their manufacture to Japanese optical firms — primarily Komine, Tokina, Cosina, Kiron, and Mamiya, among others. The brand became known primarily for affordable third-party lenses for the SLR market, but its premium tier, the Series 1, earned a distinct reputation for optical quality that rivaled — and in some cases surpassed — first-party alternatives.\n\nThe Series 1 designation was introduced in 1973 to mark lenses whose designs were developed or supervised by independent optical engineers rather than being straightforward copies of existing formulas. The most prominent contributor was Ellis I. Betensky, an American optical designer and patent holder who collaborated with Ponder & Best on several Series 1 designs. Betensky's patents — including US 3,942,876 covering the 200mm f/3.0 VMC — introduced design innovations such as fixed rear corrector elements that remained stationary during focusing, reducing focus breathing and improving off-axis performance at close distances. Other Series 1 contributors included David Betensky and William Peck.\n\nProduction quality varied by manufacturer: Series 1 lenses made by Komine are generally regarded as the highest-quality examples, with Kiron-made units also well-regarded. The VMC (Variable Multi-Coating) designation, introduced in the mid-1970s, indicated multi-layer anti-reflection coatings applied to all air-glass surfaces — a feature that markedly improved contrast and flare resistance relative to single-coated alternatives.\n\nVivitar was acquired by Hanson Photo in 1992. The brand has since changed hands multiple times and today is largely a consumer electronics label with no connection to the optical engineering tradition of the Series 1 era.",
     notableDesigns: "Series 1 200mm f/3.0 VMC, Series 1 90mm f/2.5 Macro, Series 1 28-90mm f/2.8-3.5",
+  },
+  // Museum corporate history and a documented Wrayflex with its Unilite lens.
+  // https://collection.sciencemuseumgroup.org.uk/people/cp110299
+  // https://collection.sciencemuseumgroup.org.uk/objects/co8205017/wrayflex-camera
+  // https://patents.google.com/patent/US2499264A/en
+  // The lens analysis qualifies the Unilite family association and Table A reconstruction.
+  wray: {
+    founded: 1850,
+    headquarters: "Bromley, Kent, England, United Kingdom (historical optical works)",
+    summary:
+      "British manufacturer Wray (Optical Works) Ltd, producing astronomical, photographic and military optics and the Wrayflex camera with Unilite lenses.",
+    history:
+      "William Wray, a solicitor and amateur astronomer, established the optical business in 1850 after making telescopes himself. A merger with the prism-binocular manufacturer Aitcheson in 1908 added binocular production to the firm's lens business. During the First World War it supplied binoculars and photographic lenses for the Royal Flying Corps, and during the Second World War it produced prism binoculars and reflector gunsights for the Royal Air Force. Its postwar civilian products included the Wrayflex 35 mm single-lens reflex camera, documented in a 1951 Science Museum Group example fitted with a 50mm f/2 Unilite. The Bromley works closed in June 1971, with operations transferred to Kershaw's in Leeds.",
+    notableDesigns: "Unilite 50mm f/2, Wrayflex 35 mm SLR",
   },
   voigtlander: {
     founded: 1756,

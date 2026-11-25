@@ -341,7 +341,8 @@ The original renderer mounts when first selected, then stays mounted with gestur
 its camera. Opening another view directly avoids computing a hidden map layout.
 
 The catalog-wide `/relationships/universal` route uses `src/utils/catalog/universalRelationshipGraph.ts` and the pure
-`universalLayout.ts` engine. Connected components are partitioned into corporate-family hubs and standalone assignees
+`universalLayout.ts` engine; `isRelationshipMapLens` leaves out hidden lenses and literature reconstructions
+(`source.literature`). Connected components are partitioned into corporate-family hubs and standalone assignees
 regardless of patent count (a family needs eight assignment edges or two patent-holding names not already held by a
 stronger family, and a family whose names are all held elsewhere joins that neighborhood instead of forming its own;
 networks without assignees fall back to the highest-degree node); shared inventors never absorb a small assignee into an unrelated hub. Each node joins its nearest
