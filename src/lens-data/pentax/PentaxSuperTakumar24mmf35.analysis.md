@@ -12,7 +12,7 @@
 
 The strongest link to the Super-Takumar is the section on printed page 24 of the Asahi Pentax SL manual. It shows two negative front menisci with a positive lens between them, a thick fourth lens with a concave front, and a single cemented pair immediately behind the diaphragm. Even the nearly plane rear face of L2 and the plane front of L9 agree with Fig. 1. Both sections have nine elements in eight groups. The table specifies spherical or plane faces throughout, and neither source designates an ED element. The patent contains one numerical example. The agreement identifies the layout with confidence, although the manual gives no factory radii or glass constants. [Asahi Pentax SL manual, p. 24](https://www.cameramanuals.org/pentax_pdf/asahi%20pentax_sl.pdf#page=27) · [Patent, Fig. 1 and Table I](https://patents.google.com/patent/US3545845A/en)
 
-Asahi lists 24 mm, f/3.5 and an 84° diagonal field. The patent gives f/3.5 and plots aberrations to 41.5° off axis, an 83° full field. Its stated focal length is 100. Multiplying all lengths by 0.24 gives the nominal 24 mm scale. The printed prescription yields 23.66 mm, and its chief ray reaches the corner of a 36 × 24 mm frame at 43.1° at infinity. [Honeywell Pentax SL manual, Super-Takumar 24mm entry](https://www.cameramanuals.org/pentax_pdf/pentax_sl.pdf) · [Patent, Fig. 2 and Table I](https://patents.google.com/patent/US3545845A/en)
+Asahi lists 24 mm, f/3.5 and an 84° diagonal field. The patent gives f/3.5 and plots aberrations to 41.5° off axis, an 83° full field. Its stated focal length is 100. Multiplying all lengths by 0.24 gives the nominal 24 mm scale. The printed prescription yields 23.66 mm, and its chief ray reaches the corner of a 36 × 24 mm frame at 43.1° at infinity. [Asahi Pentax SL manual, p. 24](https://www.cameramanuals.org/pentax_pdf/asahi%20pentax_sl.pdf#page=27) · [Patent, Fig. 2 and Table I](https://patents.google.com/patent/US3545845A/en)
 
 ## Optical Architecture
 
@@ -91,6 +91,6 @@ The production lens focuses manually down to 0.25 m. The patent gives only the i
 ## Sources
 
 - Takahashi’s drawings, glass data, stop position and Seidel coefficients appear in [US 3,545,845, Figs. 1–2 and Tables I–II](https://patents.google.com/patent/US3545845A/en).
-- The production section and the aperture, angle of view and minimum focus specifications appear in the [Asahi Pentax SL manual, printed p. 24](https://www.cameramanuals.org/pentax_pdf/asahi%20pentax_sl.pdf#page=27). The [Honeywell edition](https://www.cameramanuals.org/pentax_pdf/pentax_sl.pdf) also illustrates the lens.
+- The production section and the aperture, angle of view and minimum focus specifications appear in the [Asahi Pentax SL manual, printed p. 24](https://www.cameramanuals.org/pentax_pdf/asahi%20pentax_sl.pdf#page=27).
 - The later Super-Multi-Coated Takumar has the same arrangement in its [Honeywell/Asahi dimensioned cutaway](http://whitemetal.com/pentax/smct_24_35/smct_24_35_cutaway.gif).
 - The M42 mount, 35 mm film format, five-blade automatic diaphragm and 0.12× magnification are listed with photographs of both screw-mount versions in the [Pentax Forums lens database](https://www.pentaxforums.com/lensreviews/S-M-C-Super-Takumar-24mm-F3.5.html).

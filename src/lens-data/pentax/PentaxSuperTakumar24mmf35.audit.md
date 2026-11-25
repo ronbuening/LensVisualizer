@@ -33,7 +33,7 @@ Figure 1 supplies the clear semi-diameters. The distance between the first and l
 
 The physical stop radius of 5.58 mm follows from the paraxial f/3.5 entrance pupil. At full aperture the axial marginal ray clears the glass edges, as does the chief ray to the corner of the 36 × 24 mm frame. The edge thicknesses and spaces between adjacent surfaces remain positive. The rear rims vignette part of the corner bundle.
 
-The infinity image gap is the d-line paraxial back focal distance. For the 0.25 m setting, the rear gap was calculated for an object and image 250 mm apart with all internal spacings fixed. The gap is 38.7951 mm, an extension of 3.2983 mm between the rounded positions. The signed differences between the film plane and paraxial focus are −0.000045 mm at infinity and +0.000032 mm at 0.25 m. A ray from the finite object through the stop center to the film corner clears every glass rim by at least 1.28 mm. Neither close-focus spacings nor magnification appear in the patent.
+The infinity image gap is the d-line paraxial back focal distance. For the 0.25 m setting, the rear gap was calculated for an object and image 250 mm apart with all internal spacings fixed. The gap is 38.7951 mm, an extension of 3.2983 mm. The differences between the film plane and paraxial focus are −0.000045 mm at infinity and +0.000032 mm at 0.25 m. A ray from the finite object through the stop center to the film corner clears every glass rim by at least 1.28 mm. Neither close-focus spacings nor magnification appear in the patent.
 
 ## Product Identification
 
