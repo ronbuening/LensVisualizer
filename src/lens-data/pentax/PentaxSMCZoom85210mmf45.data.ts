@@ -315,7 +315,7 @@ const LENS_DATA = {
       ],
     },
   },
-  aperture: { nominalFNumber: 4.5, fStops: [4.5, 5.6, 8, 11, 16, 22], maxFNumber: 22, blades: 6 },
+  aperture: { nominalFNumber: 4.5, fStops: [4.5, 5.6, 8, 11, 16, 22, 32], maxFNumber: 32, blades: 6 },
   focus: {
     closeFocusM: 3.5,
     description:

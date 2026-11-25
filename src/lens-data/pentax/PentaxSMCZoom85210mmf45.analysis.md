@@ -14,7 +14,7 @@ Takahashi’s 85–205 mm design is a probable match for the K-mount SMC Pentax 
 
 1. The patent has 11 elements in ten air-spaced groups, with a single cemented pair at L5/L6. A reproduced crop of the construction drawing on printed page 25 of Asahi’s 1976–77 catalog shows the same sequence of shapes, the doublet in the moving group and the two long air spaces in the rear triplet. The comparison rests on that crop. It does not establish the glass specifications or which elements move during close focusing.
 2. Figures 2(a–c) give f/4.5, with full field angles of 29.6° at the short end and 11.8° at the long end. Asahi specifies f/4.5, a 29°–11° field, a 58 mm filter and a 3.5 m minimum focus. The K-mount lens appeared in 1975, after the Japanese priority filing. The patent names no commercial model and contains no alternative numerical example.
-3. The 1971 screw-mount S-M-C Takumar Zoom shares the 85–210 mm range, maximum aperture, 3.5 m minimum focus and 58 mm filter. Its smallest stop is f/22. Asahi lists f/32 for the K version. The aperture settings shown here run from f/4.5 to f/22. Asahi also lists an 85–210 mm f/3.5 with 12 elements in 11 groups, a different construction.
+3. The 1971 screw-mount S-M-C Takumar Zoom shares the 85–210 mm range, maximum aperture, 3.5 m minimum focus and 58 mm filter, but closes only to f/22. The K version stops down to f/32, as do the aperture settings shown here. Asahi also lists an 85–210 mm f/3.5 with 12 elements in 11 groups, a different construction.
 
 ## Optical Architecture
 
@@ -121,5 +121,6 @@ Asahi’s manual describes focusing by turning the zoom ring and zooming by slid
 - Yasuo Takahashi, description of the four groups and their motion, Table 1, Claim 1 and Figures 1–2. [US 3,506,337](https://patents.google.com/patent/US3506337A/en)
 - Asahi Optical, 1976–77 catalog, printed p. 25 for the construction drawing and specification table for the two 85–210 mm K zooms. [Pentax lens and accessory catalog](https://hirokun.jp/pentax_lens_accessory_catalog_1976-77.pdf)
 - Asahi Optical, aperture settings, zoom and focus operation and K-mount specifications. [SMC Pentax lenses operating manual](https://cameramanuals.org/lenses/pentax_smc_lenses.pdf)
+- K-version aperture range f/4.5–f/32, 11/10 construction, 3.5 m close focus and six blades. [Cinelens Wiki lens record](https://cinelenswiki.com/lens:pensmc85-210mmf4.5)
 - Asahi Optical, screw-mount zoom operation and specifications. [Takumar interchangeable lenses operating manual](https://www.pacificrimcamera.com/rl/04347/04347.pdf)
 - Production dates, mounts and the six-blade K diaphragm. [Pentax Forums K-mount lens record](https://www.pentaxforums.com/lensreviews/SMC-Pentax-K-85-210mm-F4.5-Zoom-Lens.html) · [Pentax Forums S-M-C Takumar record](https://www.pentaxforums.com/lensreviews/Super-Multi-Coated-TAKUMAR-ZOOM-Super-Takumar-Zoom-85-210mm-F4.5.html)

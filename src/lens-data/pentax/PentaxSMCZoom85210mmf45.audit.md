@@ -51,7 +51,6 @@ The association with the 1975 K-mount SMC Pentax Zoom is probable. A reproduced 
 - The numerical prescription follows Table 1 at its printed scale. The duplicate d2 line above R1 is omitted as in Claim 1. The long endpoint follows the patent’s 205 mm designation. The production barrel is marked 210 mm.
 - The text assigns Figure 1(b) to the intermediate position and 1(c) to tele. The drawn gaps put 1(b) at tele (d13 about 0.1 mm) and 1(c) near the middle (d13 about 7.2 mm). The optical spacings follow Table 1.
 - Four entries in Table 2 disagree with its prescription. At R3 the Petzval contribution is about +0.320 (printed +0.310). At R9 the astigmatism term is +0.054 (printed −0.054). At R20 the Petzval contribution is +0.032 (printed +0.331). The astigmatism sum is +0.067 (printed +0.670). These discrepancies concern derived coefficients and require no change to a radius, thickness or glass value.
-- The modeled aperture series ends at f/22, the smallest stop of the screw-mount Takumar. Asahi lists f/32 for the K version. Both open to f/4.5. [Asahi K-mount manual](https://cameramanuals.org/lenses/pentax_smc_lenses.pdf) · [Asahi Takumar manual](https://www.pacificrimcamera.com/rl/04347/04347.pdf)
 
 ## Remaining Questions
 
