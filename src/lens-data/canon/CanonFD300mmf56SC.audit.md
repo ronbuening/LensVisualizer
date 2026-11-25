@@ -45,7 +45,7 @@ The front opening clears the 26.83 mm axial marginal ray at f/5.6. The remaining
 
 ## Product Identification
 
-The association with the March 1973 S.C. is probable. Canon specifies six elements in five groups, ordinary optical glass and a 0.72 telephoto ratio. Figure 5 has the same count and glass types, and the table gives a ratio of 0.7198. Canon's catalog cutaway shows the separated rear lenses, but its front detail is too coarse to confirm the cemented surface. [Canon lens catalog, p. 32](https://www.pacificrimcamera.com/rl/00253/00253.pdf) · [Canon Camera Museum](https://global.canon/en/c-museum/product/fd179.html)
+The association with the March 1973 S.C. is probable. Canon specifies six elements in five groups, ordinary optical glass and a 0.72 telephoto ratio. Example 3 has the same count and uses ordinary glass, and the table gives a ratio of 0.7198. Canon's catalog cutaway shows the separated rear lenses, but its front detail is too coarse to confirm the cemented surface. [Canon lens catalog, p. 32](https://www.pacificrimcamera.com/rl/00253/00253.pdf) · [Canon Camera Museum](https://global.canon/en/c-museum/product/fd179.html)
 
 Example 1 has a wider field, Example 2 uses fluorite and Example 4 has six separate groups. Example 5 shares the production count but cements the rear pair. The 1971 FD model has the same barrel dimensions and minimum focus as the S.C. The March 1977 S.S.C. has a longer, lighter barrel and a 3 m minimum focus. [Canon Camera Museum, 1971 FD](https://global.canon/en/c-museum/product/fd178.html) · [1977 S.S.C.](https://global.canon/en/c-museum/product/fd180.html)
 

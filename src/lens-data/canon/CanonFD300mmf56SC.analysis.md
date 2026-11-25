@@ -53,7 +53,7 @@ F16, nd = 1.59270, νd = 35.4, f = +87.30 mm. A 5.643 mm air gap separates it fr
 
 The patent names all six glasses and prints N and V without a spectral subscript. Their catalog values support reading them at the helium d line. L3, L5 and L6 use the dispersion curves of Hoya NBFD11, LAC8 and FF5 respectively. Each has the printed refractive index and differs in Abbe number by 0.07 or less. The original glass supplier and melt are unknown.
 
-The FK5 catalog glass has an Abbe number of 70.4, compared with 70.0 for both front singlets in the patent. A corresponding catalog curve for the printed FK1 pair is also unavailable. Dispersion for L1, L2 and L4 therefore follows the printed index and Abbe number. The patent supplies no partial dispersions.
+The FK5 catalog glass has an Abbe number of 70.4, compared with 70.0 for both front singlets in the patent. A corresponding catalog curve for the printed FK1 values is also unavailable. Dispersion for L1, L2 and L4 therefore follows the printed index and Abbe number. The patent supplies no partial dispersions.
 
 ## Focus Mechanism
 

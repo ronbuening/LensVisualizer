@@ -34,7 +34,7 @@ const LENS_DATA = {
     focalLengthMm: { marketing: 300, design: 300.11 },
     fNumber: { marketing: 4, design: 4 },
     closeFocusM: { marketing: 3 },
-    specs: ["7 ELEMENTS / 7 GROUPS", "ALL SPHERICAL", "2 UD ELEMENTS", "DESIGN f = 300.11 mm", "REAR FOCUS"],
+    specs: ["7 ELEMENTS / 7 GROUPS", "2 UD ELEMENTS", "DESIGN f = 300.11 mm", "REAR FOCUS"],
   },
   elements: [
     {
@@ -133,7 +133,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 1e15,
     description:
-      "Infinity focus only. L5 and L6 move together in the production lens. The patent tabulates their position only at infinity.",
+      "Infinity focus only. L5 and L6 move together in the patent's design. The patent tabulates their position only at infinity.",
   },
   groups: [
     { text: "Front group", fromSurface: "1", toSurface: "6" },
