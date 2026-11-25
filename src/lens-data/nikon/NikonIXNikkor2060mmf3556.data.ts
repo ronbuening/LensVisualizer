@@ -9,7 +9,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * power, D18 is interpolated and D19 is calculated for paraxial focus on the film.
  * The printed film spacings give small focus offsets at the three published positions.
  * The iris radius follows the stated f-number. The flare stop opening is measured
- * from Figure 1. Glass and resin clear radii are estimates within the drawn outlines.
+ * from Figure 1. Glass and resin clear radii are read from Nikon's published cross-section
+ * (Nikon Tale 75) scaled to the prescription; 2/3A, 4 and 16 are reduced to keep surfaces apart.
  */
 const LENS_DATA = {
   schema: 2,
@@ -35,7 +36,7 @@ const LENS_DATA = {
     specs: [
       "9 ELEMENTS / 7 GROUPS",
       "1 ASPHERICAL ELEMENT",
-      "DESIGN f = 20–56.54 mm",
+      "DESIGN f = 20–56.43 mm",
       "DESIGN F/3.59–5.67",
       "MOVING FLARE STOP",
     ],
@@ -326,7 +327,7 @@ const LENS_DATA = {
     description:
       "Infinity focus only. The production lens focuses to 0.35 m by moving G1 toward the subject. The patent gives group spacings only at infinity.",
   },
-  aperture: { fStops: [3.5, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22, blades: 7 },
+  aperture: { fStops: [3.5, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22 },
   layout: { yScFill: 0.65 },
   groups: [
     { text: "G1", fromSurface: "1", toSurface: "7" },

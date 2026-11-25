@@ -70,7 +70,7 @@ The differences below are catalog minus patent. The first doublet combines a low
 
 ## Focus Mechanism
 
-For close focus, Nikon moves G1 toward the subject at every focal length. The production minimum is 0.35 m. Table 1 gives zoom spacings at infinity only, with no near-focus travel or reproduction ratio. The model therefore shows infinity focus. Nikon’s brochure gives no close-up magnification for comparison. It specifies a minimum aperture of f/22. Roland Vink’s lens catalog lists seven diaphragm blades. [Nikon’s designer account](https://imaging.nikon.com/imaging/information/story/0075/) · [Pronea S brochure](https://www.submin.com/aps/manuals/nikon/pdf/pronea_s.pdf) · [Vink’s Nikon lens specifications](https://johnmeister.com/tech/NIKON/www.photosynthesis.co.nz/nikon/lenses.html)
+For close focus, Nikon moves G1 toward the subject at every focal length. The production minimum is 0.35 m. Table 1 gives zoom spacings at infinity only, with no near-focus travel or reproduction ratio. The model therefore shows infinity focus. Nikon’s brochure gives no close-up magnification for comparison. It specifies a minimum aperture of f/22. [Nikon’s designer account](https://imaging.nikon.com/imaging/information/story/0075/) · [Pronea S brochure](https://www.submin.com/aps/manuals/nikon/pdf/pronea_s.pdf)
 
 Between the three printed zoom positions, the model calculates the separation of G1 and G2 for the intermediate focal length, interpolates the distance from G2 to the flare stop, then places the groups relative to the fixed film plane for paraxial infinity focus. The printed spacings put the film 0.0113, 0.0226 and 0.0500 mm behind paraxial focus. Those offsets are retained. The intermediate positions describe optical motion between the drawings. The actual zoom cam is unpublished.
 
@@ -89,11 +89,10 @@ The higher-order terms change the profile away from the axis while preserving th
 
 ## Field Coverage
 
-The chief ray reaches the 17.255 mm APS film corner at half-fields of 42.11°, 26.97° and 16.92°. The angles on the patent’s aberration plots, 40.98°, 26.08° and 16.31°, correspond to about 16.60 mm image height. The estimated clear apertures pass the axial beam at all three positions. They vignette the oblique bundle, giving calculated corner illumination of about 40%, 61% and 64% relative to the center. These figures depend on inferred clear radii, including the 7.35 mm opening radius of the flare stop.
+The chief ray reaches the 17.255 mm APS film corner at half-fields of 42.11°, 26.97° and 16.92°. The angles on the patent’s aberration plots, 40.98°, 26.08° and 16.31°, correspond to about 16.60 mm image height. The estimated clear apertures pass the axial beam at all three positions. They vignette the oblique bundle, giving calculated corner illumination of about 40%, 61% and 64% relative to the center. These figures depend on clear radii read from Nikon’s drawing, including the 7.35 mm opening radius of the flare stop.
 
 ## Sources and References
 
 - Haruo Sato, zoom lens, Example 1. [JP H08-334694 A](https://patents.google.com/patent/JPH08334694A/en)
 - Nikon, _NIKKOR — The Thousand and One Nights_, Tale 75. [Designer’s account](https://imaging.nikon.com/imaging/information/story/0075/) · [Production cross-section](https://imaging.nikon.com/imaging/information/story/0075/img/pic_01.jpg)
 - Nikon, _Pronea S_, IX-Nikkor specifications on page 3. [Product brochure](https://www.submin.com/aps/manuals/nikon/pdf/pronea_s.pdf)
-- Roland Vink, _Nikon Lens Specifications_, IX 20–60/3.5–5.6. [Lens catalog](https://johnmeister.com/tech/NIKON/www.photosynthesis.co.nz/nikon/lenses.html)
