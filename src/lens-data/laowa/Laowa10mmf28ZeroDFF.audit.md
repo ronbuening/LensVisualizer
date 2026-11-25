@@ -76,6 +76,17 @@ L1, L2, L6, L7, L11, L13, L14 and L15 retain unidentified glasses with their pri
 - Every other radius stays, each within about 0.15 mm of the figure.
 - At the 64.6° field edge the clear share of the geometric pupil rises from 49.9% to 59.7% at infinity and from 52.7% to 62.8% at the near setting. No field loses light, and the lands cost none. The half field remains 64.6° and the aperture f/2.87.
 
+2026-11-24 final check against the drawing:
+
+- The finished page was compared with Fig. 1 and with [Laowa's drawing][diagram]. The 25 vertices of Fig. 1 fall within one pixel of the prescription at 8.19 px/mm. Read on both sides of the axis, the rims of L1, L2, L3, L4, L5–L6, L7–L8, L9, L11, L12, L13, L14 and L15 come to 18.54, 13.53, 10.48, 9.75, 8.85, 6.2, 7.1, 8.35, 9.65, 10.15, 10.75 and 13.95 mm at the centre of the drawn line. Each lies within 0.12 mm, one pixel, of the stored radius. The curves end on their lands at about 12.5, 9.75, 8.15, 7.95 and 12.0 mm at surfaces 2, 4A, 8, 21 and 24A. At surface 24A the 12.5 mm radius puts the land 0.05 mm ahead of the drawn one, less than half a pixel. No radius or land changes.
+- The five lands and the two raised radii lose no light at any field against the earlier radii, so all of them stay.
+- The lands that Fig. 1 draws at the cemented faces of L3, L9 and L11 stay left out, because a land cannot sit on a cemented face. L3 and L11 show a slanted rim where Fig. 1 and Laowa's drawing show a square shoulder. Fig. 1 carries surface 22 on to the 10.75 mm rim of L14, past the 10.15 mm rim of L13. The model ends that surface at 10.25 mm, and the rim of L14 slants from there to 10.8 mm.
+- The description of L1 now says that it receives the wide-field bundles and supplies the first negative power of G1. It said before that L1 spreads the bundles into G1, the group it belongs to.
+- Element shapes and focal lengths, the three group brackets, the five cemented-group brackets, the four aspherical surface marks and the stop position agree with the patent table and Fig. 1. The aspherical marks on L2 and L15 and the ED marks on L5, L10 and L12 agree with the colours of Laowa's drawing, as do the six ultra-high-refraction elements.
+- From infinity to the near setting D4 grows and D10 shrinks by 0.157 mm, so G2 moves toward the image as ¶0008 states. The displayed distance falls steadily, through 1.47 m at half travel to 0.73 m at the near setting.
+- At the edge of the f/2.87 pupil the g-line focus lies about 0.08 mm ahead of the d-line focus, against about 0.085 mm in Fig. 2.
+- No catalog glass comes close to any of the eight unidentified pairs in both index and Abbe number. The nearest is S-LAH55 (OHARA) for L7, 0.00044 higher in index and 0.73 higher in Abbe number. Example 2 prints 1.93323/20.88, 1.49845/81.61, 1.91048/31.31 and 1.88622/40.15, which keep the Abbe numbers of glasses in Examples 1 and 3 with shifted indices, and its 1.88766/45.00 repeats the 45.00 of L1. The unidentified pairs therefore look like design variables, not catalog glasses. CDGM's H-ZF62 has the same 1.92286/20.88 as E-FDS1.
+
 ## Remaining Questions
 
 - The printed condition summary gives $\mathrm{ST}_L/L$ as 0.489. The spacings and Fig. 1 give 0.428. The summary gives $|F_2/F_1|$ as 0.881, while the prescription gives 2.903. Its $|F_2/F_3|$ is 0.879, close to the printed ratio. The reason for the discrepancies is unknown.

@@ -59,7 +59,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "Unmatched (nd 1.88300 / νd 45.00)",
       focalLengthMm: -31.37,
-      role: "Ultra-high-refraction front meniscus that spreads the wide-field bundles into G1",
+      role: "Ultra-high-refraction front meniscus that receives the steep wide-field bundles and supplies the first negative power of G1",
     },
     {
       id: 2,
