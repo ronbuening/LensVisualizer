@@ -1,160 +1,128 @@
 import type { TeleconverterDataV2Input } from "../../types/lensDataV2.js";
-const DATA = {
-  "schema": 2,
-  "key": "nikon-tc300-2x",
-  "maker": "Nikon",
-  "name": "NIKON TELECONVERTER TC-300 2x",
-  "visible": false,
-  "subtitle": "Nakamura US4154508 Example 2; Nikon factory production cutaway",
-  "catalog": {
-    "lensMounts": [
-      "nikon-f"
-    ],
-    "imageFormat": "135-full-frame",
-    "elementCount": 5,
-    "groupCount": 5,
-    "specs": [
-      "1977 2× rear converter; five spherical singlets; no internal aperture stop",
-      "Production link: Nikon dimensioned TC-300 engineering cross-section; TC-2 predecessor, not a second entry",
-      "Signed 300mm f/4.5 reference master and literal 1.5423mm junction; derived conjugate and rear image distance",
-      "Estimated rims and fixture iris; monochromatic infinity validation only, see analysis",
-      "Private, hidden integration model. Main catalog Nikon F hosts excluded until checked; this does not assert physical incompatibility."
-    ]
+
+/**
+ * Nikon TC-300, US 4,154,508, Example II (Figure 2 and claim 4). The patent gives ten
+ * spherical radii, nine internal intervals in millimetres and five glass index/Abbe pairs.
+ * All lengths retain the patent scale. The spectral reference is inferred to be helium d.
+ * The glass labels identify catalog curves with matching indices and dispersion.
+ *
+ * The 300 mm master's paraxial back focus of 70.05349 mm and the printed 1.5423 mm
+ * junction place its image 68.51119 mm behind the converter's first vertex. With the
+ * converter fitted, the paraxial image lies 63.11192 mm behind its last vertex.
+ * Nikon's TC-300 section gives clear-radius estimates of 13.3 mm across the front three
+ * singlets and 19.8 mm across the rear two. The host supplies the iris and focus movement.
+ * The converter clears an axial f/2.8 cone at the fast end of Nikon's AI coupling range.
+ */
+
+const TELECONVERTER_DATA = {
+  schema: 2,
+  key: "nikon-teleconverter-tc-300",
+  maker: "Nikon",
+  name: "NIKON TELECONVERTER TC-300",
+  visible: true,
+  subtitle: "US 4,154,508, Example II — Nippon Kogaku / Nakamura",
+  catalog: {
+    lensMounts: ["nikon-f"],
+    imageFormat: "135-full-frame",
+    elementCount: 5,
+    groupCount: 5,
+    specs: ["5 ELEMENTS / 5 GROUPS", "2× CONVERTER", "ALL SPHERICAL"],
   },
-  "source": {
-    "patentNumber": "US 4154508 A",
-    "example": {
-      "label": "Example 2",
-      "id": "2"
+  source: {
+    patentNumber: "US 4,154,508",
+    example: {
+      label: "Example II",
+      id: "2",
     },
-    "sdSource": "heuristic",
-    "authors": [
-      "Soichi Nakamura"
-    ],
-    "assignees": [
-      "Nippon Kogaku K. K."
-    ],
-    "patentYear": 1979
+    sdSource: "figure-measured",
+    authors: ["Soichi Nakamura"],
+    assignees: ["Nippon Kogaku K.K."],
+    patentYear: 1979,
   },
-  "magnification": 2,
-  "masterImageDistanceMm": 68.51118978527313,
-  "universal": false,
-  "minHostFNumber": 4.5,
-  "elements": [
+  magnification: 2,
+  masterImageDistanceMm: 68.51119,
+  universal: false,
+  minHostFNumber: 2.8,
+  elements: [
     {
-      "id": 1,
-      "name": "E1",
-      "label": "Element1",
-      "type": "Lens",
-      "nd": 1.59507,
-      "vd": 35.6,
-      "indexReference": "d"
+      id: 1,
+      name: "L1",
+      label: "Element 1",
+      type: "Biconvex Positive",
+      nd: 1.59507,
+      vd: 35.6,
+      indexReference: "d",
+      focalLengthMm: 101.91,
+      glass: "Unmatched (nd 1.59507 / νd 35.6)",
+      role: "Positive entrance element of the diverging front group.",
+      indexReferenceNote: "The patent gives no wavelength. The helium d line is inferred from the glass data.",
     },
     {
-      "id": 2,
-      "name": "E2",
-      "label": "Element2",
-      "type": "Lens",
-      "nd": 1.74443,
-      "vd": 49.4,
-      "indexReference": "d"
+      id: 2,
+      name: "L2",
+      label: "Element 2",
+      type: "Biconcave Negative",
+      nd: 1.74443,
+      vd: 49.4,
+      indexReference: "d",
+      focalLengthMm: -33.44,
+      glass: "Unmatched (nd 1.74443 / νd 49.4)",
+      role: "Supplies the negative power of the front group.",
+      indexReferenceNote: "The patent gives no wavelength. The helium d line is inferred from the glass data.",
     },
     {
-      "id": 3,
-      "name": "E3",
-      "label": "Element3",
-      "type": "Lens",
-      "nd": 1.59507,
-      "vd": 35.6,
-      "indexReference": "d"
+      id: 3,
+      name: "L3",
+      label: "Element 3",
+      type: "Positive Meniscus",
+      nd: 1.59507,
+      vd: 35.6,
+      indexReference: "d",
+      focalLengthMm: 112.42,
+      glass: "Unmatched (nd 1.59507 / νd 35.6)",
+      role: "Positive meniscus at the rear of the front group, convex toward the host lens.",
+      indexReferenceNote: "The patent gives no wavelength. The helium d line is inferred from the glass data.",
     },
     {
-      "id": 4,
-      "name": "E4",
-      "label": "Element4",
-      "type": "Lens",
-      "nd": 1.50137,
-      "vd": 56.5,
-      "indexReference": "d"
+      id: 4,
+      name: "L4",
+      label: "Element 4",
+      type: "Biconvex Positive",
+      nd: 1.50137,
+      vd: 56.5,
+      indexReference: "d",
+      focalLengthMm: 94.42,
+      glass: "K10",
+      role: "Supplies the positive power of the rear group after the long air space.",
+      indexReferenceNote: "The patent gives no wavelength. The helium d line is inferred from the glass data.",
     },
     {
-      "id": 5,
-      "name": "E5",
-      "label": "Element5",
-      "type": "Lens",
-      "nd": 1.80454,
-      "vd": 39.5,
-      "indexReference": "d"
-    }
+      id: 5,
+      name: "L5",
+      label: "Element 5",
+      type: "Biconcave Negative",
+      nd: 1.80454,
+      vd: 39.5,
+      indexReference: "d",
+      focalLengthMm: -140.3,
+      glass: "NBFD3",
+      role: "Reduces the convergence introduced by L4 before the beam reaches the film.",
+      indexReferenceNote: "The patent gives no wavelength. The helium d line is inferred from the glass data.",
+    },
   ],
-  "surfaces": [
-    {
-      "label": "1",
-      "R": 179.709,
-      "d": 3.7,
-      "sd": 13.3,
-      "medium": 1
-    },
-    {
-      "label": "2",
-      "R": -90.827,
-      "d": 2,
-      "sd": 13.3
-    },
-    {
-      "label": "3",
-      "R": -109.097,
-      "d": 2.1,
-      "sd": 13.3,
-      "medium": 2
-    },
-    {
-      "label": "4",
-      "R": 32.52,
-      "d": 2.1,
-      "sd": 13.3
-    },
-    {
-      "label": "5",
-      "R": 40.56,
-      "d": 4.2,
-      "sd": 13.3,
-      "medium": 3
-    },
-    {
-      "label": "6",
-      "R": 99.049,
-      "d": 66.24,
-      "sd": 13.3
-    },
-    {
-      "label": "7",
-      "R": 317.64,
-      "d": 6.2,
-      "sd": 19.8,
-      "medium": 4
-    },
-    {
-      "label": "8",
-      "R": -55.266,
-      "d": 0.2,
-      "sd": 19.8
-    },
-    {
-      "label": "9",
-      "R": -195.754,
-      "d": 1.8,
-      "sd": 19.8,
-      "medium": 5
-    },
-    {
-      "label": "10",
-      "R": 267.716,
-      "d": 63.11191949990361,
-      "sd": 19.8
-    }
+  surfaces: [
+    { label: "1", R: 179.709, d: 3.7, sd: 13.3, medium: 1 },
+    { label: "2", R: -90.827, d: 2, sd: 13.3 },
+    { label: "3", R: -109.097, d: 2.1, sd: 13.3, medium: 2 },
+    { label: "4", R: 32.52, d: 2.1, sd: 13.3 },
+    { label: "5", R: 40.56, d: 4.2, sd: 13.3, medium: 3 },
+    { label: "6", R: 99.049, d: 66.24, sd: 13.3 },
+    { label: "7", R: 317.64, d: 6.2, sd: 19.8, medium: 4 },
+    { label: "8", R: -55.266, d: 0.2, sd: 19.8 },
+    { label: "9", R: -195.754, d: 1.8, sd: 19.8, medium: 5 },
+    { label: "10", R: 267.716, d: 63.11192, sd: 19.8 },
   ],
-  "incompatibleLensKeys": [
+  incompatibleLensKeys: [
     "nikkor-afs-120-300f28e",
     "nikkor-afs-200-500f56e",
     "nikon-af-i-nikkor-300mm-f2-8d-if-ed",
@@ -179,7 +147,12 @@ const DATA = {
     "nikon-afs-vr-zoom-nikkor-70-200-f28g-if-ed",
     "nikon-afs-zoom-nikkor-80-200mm-f28d-if-ed",
     "nikon-ai-af-s-nikkor-300mm-f28d-if-ed",
-    "nikon-ai-af-s-nikkor-500mm-f4d-if-ed"
-  ]
+    "nikon-ai-af-s-nikkor-500mm-f4d-if-ed",
+  ],
+  groups: [
+    { text: "Diverging group", fromSurface: "1", toSurface: "6" },
+    { text: "Converging group", fromSurface: "7", toSurface: "10" },
+  ],
 } satisfies TeleconverterDataV2Input;
-export default DATA;
+
+export default TELECONVERTER_DATA;

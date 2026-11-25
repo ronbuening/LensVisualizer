@@ -1,14 +1,64 @@
-# Nikon TC-300 2× teleconverter
+# NIKON TELECONVERTER TC-300
 
-This hidden native integration model reconstructs the 1977 **TC-300** powered optics from Soichi Nakamura's US4154508 Example II and claim 4. Nikon describes the Montreal-era TC-2 as its predecessor; this is not a second TC-2 or TC-301 model.
+## Patent Reference and Design Identification
 
-## Production identification
+**Patent:** US 4,154,508, _Rear Conversion Lens_\
+**Inventors:** Soichi Nakamura\
+**Assignee:** Nippon Kogaku K.K.\
+**Priority:** 11 March 1976, Japan\
+**Filed:** 2 March 1977\
+**Published:** 15 May 1979\
+**Example details:** Figure 2, the table headed “EXAMPLE 2” in column 7, and claim 4.
 
-- [Nikon factory sales manual, PDF p. 106](https://www.pacificrimcamera.com/rl/00594/00594.pdf#page=106) gives the exact labeled TC-300 optical section, five singlets, 2× nominal ratio, 88.5 mm first-to-last vertex distance, 63.1 mm back focus and −237.7 mm converter focal length. The [higher-resolution copy of the same engineering section](https://www.mir.com.my/rb/photography/companies/nikon/nikkoresources/teleconverter/tc300.gif) is the overlay source; the Nikon scan is included for provenance.
-- The [original patent](https://patentimages.storage.googleapis.com/a3/4d/9d/bc66def5d8957c/US4154508.pdf) gives the reference host on PDF p. 13 and signed converter claim on p. 15. All ten radii, nine internal gaps and refractive data are unchanged. Example II's ten axial positions register at 0.655 px RMS / 1.135 px maximum over 339 px; Example I has the wrong track and misses by about 73 px RMS. No factory-tolerance claim. Clear rims of 13.3 and 19.8 mm are inferred from the production drawing.
-- The isolated converter focal length is −236.42349 mm (printed −236.415), and its track is 88.54 mm. The printed 1.5423 mm is a host-to-converter air gap, not the converter's master image distance. The literal patent host gives 299.99960 mm and 70.05349 mm back focus. This derives 68.51119 mm master image distance, a 600.00771 mm combined EFL and 63.11192 mm back focus from the final converter surface. The 2.000028× result was not forced to 2.000000×.
+Of the twelve examples, only the second uses a 300 mm f/4.5 master lens. Nakamura gives the combination as 600 mm f/9. Its ten converter surfaces also match the labeled TC-300 section in Nikon’s sales manual. Both show three small air-spaced singlets at the front, a long air space, and two larger singlets at the rear. All five are spherical. Neither source identifies an ED element in the converter. [Patent, Figure 2 and columns 6–7](https://patents.google.com/patent/US4154508A/en) · [Nikon TC-300 specification and section, PDF p. 106](https://www.pacificrimcamera.com/rl/00594/00594.pdf#page=106)
 
-## Validation and limits
+Nikon dimensions the optical length at 88.5 mm and the back focus at 63.1 mm. The prescription gives 88.54 and 63.11 mm. Example 1 has the same five element shapes, but only 0.514 mm between the two optical groups, against 66.24 mm in Example II. Example 11, on a 51.6 mm master, is the separate seven-element TC-200 design. The group spacing and image position strongly identify Example II with the TC-300. Nikon also identifies the TC-2 as its predecessor. [Nikon’s dimensioned drawing](https://www.mir.com.my/rb/photography/companies/nikon/nikkoresources/teleconverter/tc300.gif) · [Nikon’s account of the TC-2 and TC-300](https://www.pacificrimcamera.com/rl/00594/00594.pdf) · [Patent, Examples 1, 2 and 11](https://patents.google.com/patent/US4154508A/en)
 
-- Verified numerical model transfer from Codex, native schema/round-trip, mounted reference fixture and physical stop preservation; the isolated test results included 267 passing tests. No geometry override or trim. Native compatibility controls reject undeclared, incorrect-mount, or too-fast test hosts. Main catalog Nikon F hosts are excluded pending their own checks, not declared physically incompatible. The patent reference fixture included as evidence is not a retail lens.
-- d-line and infinity only. With the reference master at f/4.5 (combined about f/9), the sampled on-axis bundle cleared; off-axis master-rim clipping and unresolved aiming prevent a wider claim. With master f/8 (combined about f/16), the sampled pupil passed through ±2°. The reference master's iris position and rims are estimates. No measured MTF, actual production host fit, finite focus, broadband performance or application UI QA.
+## Optical Architecture
+
+The TC-300 sits in the converging beam behind the host lens. Nakamura divides the five singlets into a diverging front group (L1–L3, −96.80 mm) and a converging rear group (L4–L5, +281.13 mm). The two groups together have a focal length of −236.42 mm. The patent describes this distribution of power as a way to reduce the negative Petzval sum of a rear converter and limit the separation of the sagittal and tangential image surfaces. [Patent, columns 1–4](https://patents.google.com/patent/US4154508A/en)
+
+The master alone focuses 70.05349 mm behind its last surface. The patent places the first converter surface 1.5423 mm behind that surface, so the incoming beam is converging toward a point 68.51119 mm inside the converter. Refraction through the five singlets places the new image 63.11192 mm beyond the last surface. Both image distances follow from the unscaled tables. At infinity, the combination gives 600.0077 mm at f/9.0001 and a focal-length ratio of 2.00003×.
+
+## Element-by-Element Analysis
+
+The focal lengths below are for each singlet in air. The glass coordinates are the patent’s values, with the helium d line inferred.
+
+### L1 — Biconvex positive
+
+nd = 1.59507, νd = 35.6. Glass unmatched. Focal length +101.91 mm. L1 increases the convergence of the incoming beam before it reaches the stronger negative L2.
+
+### L2 — Biconcave negative
+
+nd = 1.74443, νd = 49.4. Glass unmatched. Focal length −33.44 mm. The rear surface has the steeper curvature. L2 gives the front group its net negative power despite the positive elements on either side.
+
+### L3 — Positive meniscus
+
+nd = 1.59507, νd = 35.6. Glass unmatched. Focal length +112.42 mm. The convex face points toward the master. L3 ends the front group and shares L1’s index and dispersion.
+
+### L4 — Biconvex positive
+
+nd = 1.50137, νd = 56.5. Schott K10 supplies the dispersion curve. Focal length +94.42 mm. After the 66.24 mm air space, L4 provides the rear group’s positive power. Its rear face curves more strongly than its front face.
+
+### L5 — Biconcave negative
+
+nd = 1.80454, νd = 39.5. Hoya NBFD3 supplies the dispersion curve. Focal length −140.30 mm. A 0.2 mm air space separates L5 from L4. L5 reduces the convergence imparted by L4 while the pair retains positive power.
+
+## Glass Identification and Selection
+
+The patent prints an index and an Abbe number for each glass without naming a reference wavelength or supplier. A separate optical patent, US 4,348,085, explicitly gives the L1/L3 and L2 pairs at the helium d line. L4 and L5 are also close to catalog d-line values. Together these observations support using the d line here. The front three elements still lack a close catalog match for both index and dispersion. [US 4,348,085, d-line glass tables](https://patents.google.com/patent/US4348085A/en)
+
+Schott K10 has nd 1.50137 and νd 56.41. Hoya NBFD3 has nd 1.80450 and νd 39.63. Their catalog curves approximate the dispersion of L4 and L5. The glass suppliers, melt data and partial dispersion of the production TC-300 remain unknown. [Schott K10](https://us.shop.schott.com/advanced-optics/en/Optical-Glass/K10/c/glass-K10) · [Hoya optical glass index](https://www.hoyaoptics.eu/glass-cross-reference-index)
+
+## Focus Mechanism
+
+All five singlets have fixed spacing. The host lens supplies the focusing movement and the iris. The patent gives an infinity prescription only. Nikon specifies the host’s closest focusing distance and twice its reproduction ratio with the TC-300 attached. Its AI diaphragm coupling covers f/2.8 through f/32 on the host, equivalent to f/5.6 through f/64 with the converter. The f/4.5 host in Figure 2 is one example within that range. [Nikon TC-300 specifications](https://www.pacificrimcamera.com/rl/00594/00594.pdf#page=106)
+
+## Field Coverage
+
+On the patent master at full aperture, the chief ray reaches the 21.65 mm corner of the 35 mm frame at 2.089° off axis. The patent gives a half-field of 2°05′. The converter’s clear radii, read from Nikon’s production section, are 13.3 mm across L1–L3 and 19.8 mm across L4–L5. The chief ray clears all ten surfaces. Some outer pupil rays meet the rear rims, and about 96% of the sampled pupil reaches the corner. This estimate depends on the assumed host iris position and the clear radii read from the drawings.
+
+## Sources
+
+- Soichi Nakamura, _Rear Conversion Lens_. Figure 2, columns 4 and 6–7, and claim 4 give the master and converter prescriptions, power distribution, field and magnification. [US 4,154,508, original publication](https://patentimages.storage.googleapis.com/a3/4d/9d/bc66def5d8957c/US4154508.pdf)
+- Nikon’s sales manual gives the TC-300 specifications and dimensioned optical section. The larger reproduction shows the front and rear rim heights. [Nikon TC-300, PDF p. 106](https://www.pacificrimcamera.com/rl/00594/00594.pdf#page=106) · [Enlarged Nikon drawing](https://www.mir.com.my/rb/photography/companies/nikon/nikkoresources/teleconverter/tc300.gif)
