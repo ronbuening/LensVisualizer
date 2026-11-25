@@ -1,0 +1,31 @@
+# Canon EF 20–35mm f/3.5–4.5 USM (1993) — private three-anchor reconstruction
+
+This is the variable-aperture USM lens, not the f/2.8L. The parent independently checked the current live catalog and exact origin/main variant, titles, patent and geometry at `43b9506233f55afcc8ec05344fa7e9a68a759616`; no equivalent was found. Worker search of the pinned catalog found no exact match. No fresh remote-main fetch or global archive-freshness claim is made.
+
+
+## Literal prescription and three states
+
+All signed spherical radii, glass nd/Vd and axial dimensions are retained in original millimetres; no focal-length scaling, substitution or optical fit is used. There are24surface rows including the true planar R13 iris and one R17 glass-to-glass cemented interface,12powered elements and11groups. No plate, filter, baffle or extra glass is added. The OEM front flare-cut baffle is a separate feature and is deliberately not modeled under the standing instruction; no actual baffle clipping/illumination is reproduced.
+
+The signed numerical rows explicitly make **D4/D10** variable. Table1's D5/D11 headings conflict with those rows: D5 and D11 are actually glass thicknesses1.40 and2.20. The parent-verified interpretation uses D4/D10 W/M/T pairs [8.29,16.80], [10.28,10.50], [8.29,1.49], preserving the glass. It reproduces the independently supplied first-order values. This is a documented source-label correction, not an adjustment of the spacings.
+
+The three authored stations are the printed anchors, with calculated EFL20.6117013901,24.0100318267,34.0948557287mm. Marketed20–35mm remains separate. No endpoint is forced to20 or35. The detector is the supplied common numerical datum **z111.3941mm behind R1**, unchanged at every anchor. R24 rear air is respectively37.7541,42.0641,53.0641mm. Independent Gaussian BFDs are37.7503471890,42.0637649678,53.0682297783, leaving residuals−3.752811,−0.335032,+4.129778µm at the fixed detector. No refocus or individual image-plane compensation is applied.
+
+The normal zoom slider uses supported **zoom.step=0.5**, exposing only0,.5,1. Source publication flags are true on these three stations; no additional derived station is authored. Arbitrary URL/API values still invoke native interpolation and are unqualified. A17-position diagnostic shows why: at t=.75 linearly interpolated gaps give up to−0.910424mm Gaussian defocus; native interpolated EFL label29.05244mm differs from that geometry's28.21451mm. At t=.25 defocus is−0.184743mm. These are not a factory cam, not admitted infinity states, and were not repaired by inventing positions. The native slider consumes L.zoomStep, verified in source; no actual browser behavior is claimed.
+
+## Estimated aperture and field controls
+
+The planar main stop is exactly the source R13: z48.12/43.81/32.81mm W/M/T,1.78mm after R12 and.92mm before R14. It is not the front flare cutter. The parent's wide diagram suggests an approximate6.9mm radius, not a measured bore. Exact axial Snell calibration to estimated real entrance f/3.5 wide and f/4.5 tele gives physical iris radii **6.564676499958 / 6.371827473016mm**. Middle maximum aperture is unspecified: **f/4 and r6.134258875400mm are expressly estimated**, not printed or factory values. No physical stop radius is claimed measured.
+
+Native stop scaling is paraxial. To reproduce those real-entrance estimates, per-station native wide-open controls are **3.456156663177 / 3.944588812917 / 4.401537895800**; display rounding is not source evidence. Marketing3.5–4.5 and the estimated model target remain separate. Catalog design3.5 denotes the estimated operational wide target, not a claim of a separately printed source aperture. Fresh JSON import/build proves the requested radii. CALIBRATION_V2.json is authoritative; CALIBRATION.json preserves a discarded same-object cached readback from the setup phase, not the fresh imported result. The native f/8 control is separately traced at all anchors; no untested dropdown aperture is qualified.
+
+Endpoint source half fields are exactly46.4°wide and32.4°tele. The middle half field39.4° is an explicitly estimated arithmetic midpoint, not a source column. The current untrusted rectilinear importer rejects field-limit arrays. Therefore authored projection bounds are the scalar maximum wide92.8°full/46.4°half, with narrower tele/mid limits documented here and in the catalog note. That scalar is not a claim of46.4°tele coverage. No engine or UI contract was changed.
+
+
+## MTF, verification and boundaries
+
+Native geometric and scalar-diffraction MTF are computed at5/10/20/40lp/mm, helium d587.5618nm, at axis,3°,half the qualified field and its edge for each anchor/control. Image-height targeting resolves the requested angles within2e−6°. All48field/control/method results converge under the native0.01MTF criterion (maximum actual grid128), unknown flux zero and applied focus shift zero. Example scalar diffraction20lp/mm sagittal/tangential values at wide-open axis are W.2367/.2367, M.3905/.3905, T.8372/.8372; these are conditional numerical results with the estimated pupils. Clipping can increase conditional contrast while losing light and does not establish useful relative illumination. Independently traced characteristic-function MTF is labeled geometric only; the engine scalar-diffraction calculation is not an independent wavefront or factory measurement.
+
+The actual Builder JSON import, validateDraft, buildLens, station/layout/aperture readback and canonical JSON/TS export entry points pass. TypeScript checks pass. The54existing tests in zoomOptics, apertureStop and zoomConversion pass in a separate scratch tree. Two clean replays reproduce all18files byte-for-byte. Browser/desktop/mobile app QA is deferred, not passed; no server was started.
+
+Qualified outcome is a private **three-anchor scoped native numerical reconstruction**, with central clear bundles and candid clipped endpoint diagnostics. Full manufacturing rims, factory vignetting/flare cutter, continuous zoom cam, finite focus (including marketed0.34m), source-plot reproduction, broadband color and factory-exact optical performance are not qualified. Parent original production assets must accompany any later collection. No delivery, upload or public/repository action occurred.

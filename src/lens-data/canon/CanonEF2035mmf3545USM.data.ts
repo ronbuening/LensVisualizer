@@ -1,0 +1,231 @@
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * ╔══════════════════════════════════════════════════════════════════════╗
+ * ║ LENS DATA — CANON EF 20–35mm f/3.5–4.5 USM                           ║
+ * ╠══════════════════════════════════════════════════════════════════════╣
+ * ║ Exported from Build your own lens. Verify data and provenance.       ║
+ * ╚══════════════════════════════════════════════════════════════════════╝
+ */
+
+const LENS_DATA = {
+  schema: 2,
+  key: "canon-ef-20-35mm-f35-45-usm",
+  maker: "Canon",
+  name: "CANON EF 20–35mm f/3.5–4.5 USM",
+  subtitle: "Ex1; estimated real-entrance f/3.5–4.5, calibrated app controls; middle f/4 estimate; anchors only",
+  visible: false,
+
+  catalog: {
+    lensMounts: ["canon-ef"],
+    imageFormat: "135-full-frame",
+    specs: [
+      "1993 variable-aperture USM; not f/2.8L",
+      "12 ELEMENTS / 11 GROUPS",
+      "Parent production-correlated overlay; not factory exact",
+      "Only three source anchors; interpolation is not a factory cam",
+      "Fixed datum z111.3941mm; no focus compensation",
+      "Estimated apertures/rims; no factory vignetting",
+      "Wide bound46.4deg; tele source32.4deg; mid39.4deg estimate; UI scalar bound not per-station coverage",
+      "Native calibrated wide-open controls differ from marketed f/3.5–4.5; no factory iris measurements",
+    ],
+    elementCount: 12,
+    groupCount: 11,
+    focalLengthMm: { marketing: [20, 35], design: [20.611701390125237, 34.09485572866248] },
+    fNumber: { marketing: 3.5, design: 3.5 },
+  },
+
+  source: {
+    patentNumber: "JP H06-230281 A",
+    example: { label: "Example 1", id: "1" },
+    patentYear: 1994,
+    authors: [],
+    assignees: ["Canon Inc."],
+    sdSource: "heuristic",
+  },
+
+  elements: [
+    {
+      id: 1,
+      name: "L1",
+      label: "L1",
+      type: "Positive Meniscus",
+      nd: 1.62299,
+      vd: 58.2,
+      indexReference: "d",
+      glass: "Literal patent nd/Vd; factory identity not asserted",
+    },
+    {
+      id: 2,
+      name: "L2",
+      label: "L2",
+      type: "Negative Meniscus",
+      nd: 1.7859,
+      vd: 44.2,
+      indexReference: "d",
+      glass: "Literal patent nd/Vd; factory identity not asserted",
+    },
+    {
+      id: 3,
+      name: "L3",
+      label: "L3",
+      type: "Negative Meniscus",
+      nd: 1.8061,
+      vd: 41,
+      indexReference: "d",
+      glass: "Literal patent nd/Vd; factory identity not asserted",
+    },
+    {
+      id: 4,
+      name: "L4",
+      label: "L4",
+      type: "Negative Meniscus",
+      nd: 1.7725,
+      vd: 49.6,
+      indexReference: "d",
+      glass: "Literal patent nd/Vd; factory identity not asserted",
+    },
+    {
+      id: 5,
+      name: "L5",
+      label: "L5",
+      type: "Positive Meniscus",
+      nd: 1.84666,
+      vd: 23.8,
+      indexReference: "d",
+      glass: "Literal patent nd/Vd; factory identity not asserted",
+    },
+    {
+      id: 6,
+      name: "L6",
+      label: "L6",
+      type: "Biconvex Positive",
+      nd: 1.58313,
+      vd: 59.4,
+      indexReference: "d",
+      glass: "Literal patent nd/Vd; factory identity not asserted",
+    },
+    {
+      id: 7,
+      name: "L7",
+      label: "L7",
+      type: "Biconvex Positive",
+      nd: 1.62606,
+      vd: 39.2,
+      indexReference: "d",
+      glass: "Literal patent nd/Vd; factory identity not asserted",
+    },
+    {
+      id: 8,
+      name: "L8",
+      label: "L8",
+      type: "Negative Meniscus",
+      nd: 1.84666,
+      vd: 23.8,
+      indexReference: "d",
+      glass: "Literal patent nd/Vd; factory identity not asserted",
+    },
+    {
+      id: 9,
+      name: "L9",
+      label: "L9",
+      type: "Positive Meniscus",
+      nd: 1.7859,
+      vd: 44.2,
+      indexReference: "d",
+      glass: "Literal patent nd/Vd; factory identity not asserted",
+    },
+    {
+      id: 10,
+      name: "L10",
+      label: "L10",
+      type: "Negative Meniscus",
+      nd: 1.834,
+      vd: 37.2,
+      indexReference: "d",
+      glass: "Literal patent nd/Vd; factory identity not asserted",
+    },
+    {
+      id: 11,
+      name: "L11",
+      label: "L11",
+      type: "Positive Meniscus",
+      nd: 1.51633,
+      vd: 64.2,
+      indexReference: "d",
+      glass: "Literal patent nd/Vd; factory identity not asserted",
+    },
+    {
+      id: 12,
+      name: "L12",
+      label: "L12",
+      type: "Positive Meniscus",
+      nd: 1.51633,
+      vd: 64.2,
+      indexReference: "d",
+      glass: "Literal patent nd/Vd; factory identity not asserted",
+    },
+  ],
+  surfaces: [
+    { label: "1", R: 80.59, d: 4.1, sd: 32, medium: 1 },
+    { label: "2", R: 202.04, d: 0.1, sd: 32 },
+    { label: "3", R: 48.14, d: 1.7, sd: 25, medium: 2 },
+    { label: "4", R: 21.61, sd: 18 },
+    { label: "5", R: 39.85, d: 1.4, sd: 17, medium: 3 },
+    { label: "6", R: 16.65, d: 4.65, sd: 11.5 },
+    { label: "7", R: 141.29, d: 1.3, sd: 11.5, medium: 4 },
+    { label: "8", R: 32.48, d: 2.8, sd: 13 },
+    { label: "9", R: 25.81, d: 3, sd: 12, medium: 5 },
+    { label: "10", R: 70.11, sd: 12 },
+    { label: "11", R: 77.91, d: 2.2, sd: 10, medium: 6 },
+    { label: "12", R: -77.9, d: 1.78, sd: 10 },
+    { label: "STO", R: "flat", d: 0.92 },
+    { label: "14", R: 34.17, d: 6.9, sd: 10, medium: 7 },
+    { label: "15", R: -39.89, d: 3.5, sd: 10 },
+    { label: "16", R: -15.9, d: 2.5, sd: 10, medium: 8 },
+    { label: "17", R: -417.04, d: 3.8, sd: 10, medium: 9 },
+    { label: "18", R: -20.5, d: 0.2, sd: 10 },
+    { label: "19", R: 82.47, d: 1.2, sd: 11, medium: 10 },
+    { label: "20", R: 25.23, d: 1.65, sd: 7.7 },
+    { label: "21", R: -111.96, d: 2.5, sd: 7.7, medium: 11 },
+    { label: "22", R: -25.61, d: 0.2, sd: 12 },
+    { label: "23", R: -343.4, d: 2.15, sd: 13, medium: 12 },
+    { label: "24", R: -47.31, sd: 13 },
+  ],
+
+  zoom: {
+    stations: [
+      { focalLengthMm: 20.611701390125237, nominalFNumber: 3.456156663176634, label: "Wide", published: true },
+      { focalLengthMm: 24.01003182670818, nominalFNumber: 3.9445888129171087, label: "Middle", published: true },
+      { focalLengthMm: 34.09485572866248, nominalFNumber: 4.401537895800223, label: "Tele", published: true },
+    ],
+    apertureModel: "from-nominal-fno",
+    step: 0.5,
+  },
+
+  focus: {
+    closeFocusM: 1000000000000000,
+    description: "Static infinity anchors only. No source finite conjugates. Interpolated slider positions unqualified.",
+  },
+  gaps: {
+    "4": { label: "D4 variable, corrected header interpretation", values: [[8.29, 8.29], [10.28, 10.28], [8.29, 8.29]] },
+    "10": { label: "D10 variable, corrected header interpretation", values: [[16.8, 16.8], [10.5, 10.5], [1.49, 1.49]] },
+    "24": {
+      label: "Fixed image datum rear air",
+      values: [
+        [37.754099999999966, 37.754099999999966],
+        [42.06409999999998, 42.06409999999998],
+        [53.064099999999996, 53.064099999999996],
+      ],
+    },
+  },
+
+  aperture: { fStops: [3.456156663176634, 3.5, 4, 4.5, 5.6, 8, 11, 16, 22, 27], maxFNumber: 27 },
+
+  projection: { kind: "rectilinear", fullFieldDeg: 92.8, maxTraceFieldDeg: 46.4 },
+
+  layout: { yScFill: 0.5 },
+  rays: { offAxisFieldFrac: 1 },
+} satisfies LensDataV2Input;
+
+export default LENS_DATA;
