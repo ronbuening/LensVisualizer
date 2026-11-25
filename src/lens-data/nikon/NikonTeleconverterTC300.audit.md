@@ -6,7 +6,7 @@ US 4,154,508, _Rear Conversion Lens_, Soichi Nakamura, Nippon Kogaku K.K., publi
 
 ## Transcription
 
-All ten signed radii, nine internal intervals, the 1.5423 mm junction and five index/Abbe pairs agree between the example and claim 4. The prescription retains the printed millimetre scale. Each element is an air-spaced spherical singlet. There is no cemented interface, converter iris or rear plate.
+All ten radii, nine internal intervals, the 1.5423 mm junction and five index/Abbe pairs agree between the example and claim 4. The prescription retains the printed millimetre scale. Each element is an air-spaced spherical singlet. There is no cemented interface, converter iris or rear plate.
 
 The Nikkor 300mm f/4.5 ED prescription in US 3,774,991, Example I, shares the master’s radii, spacings and indices. The Abbe numbers of master elements 1 and 4 are 81.9 in the converter patent and 81.5 in the 300 mm lens patent. The first-order comparison below uses the converter patent’s master. [US 3,774,991](https://patents.google.com/patent/US3774991A/en)
 
@@ -37,16 +37,16 @@ The full-aperture combination covers the frame without a converter rim limiting 
 
 ## Product Identification
 
-Nikon’s TC-300 drawing gives an optical span of 88.5 mm, a back focus of 63.1 mm and a converter focal-length magnitude of 237.7 mm. Example II gives 88.54, 63.11 and 236.42 mm respectively. It alone pairs the five-singlet converter with a 300 mm f/4.5 master. With the drawing scaled to its vertex span, the ten calculated vertex positions differ from the drawn positions by about 0.62 pixels RMS over a 339-pixel span, against about 73 pixels for Example 1. Example 11 has seven elements and corresponds to the TC-200. [Nikon TC-300 section and specifications](https://www.pacificrimcamera.com/rl/00594/00594.pdf#page=106) · [US 4,154,508](https://patents.google.com/patent/US4154508A/en)
+Nikon’s TC-300 drawing gives an optical span of 88.5 mm, a back focus of 63.1 mm and a converter focal-length magnitude of 237.7 mm. Example 2 gives 88.54, 63.11 and 236.42 mm respectively. It alone pairs the five-singlet converter with a 300 mm f/4.5 master. With the drawing scaled to its vertex span, the ten calculated vertex positions differ from the drawn positions by about 0.62 pixels RMS over a 339-pixel span, against about 73 pixels for Example 1. Example 11 has seven elements and corresponds to the TC-200. [Nikon TC-300 section and specifications](https://www.pacificrimcamera.com/rl/00594/00594.pdf#page=106) · [US 4,154,508](https://patents.google.com/patent/US4154508A/en)
 
-Nikon specifies a 2× multiplier and AI aperture coupling from f/2.8 through f/32 for long Nikkors. At infinity the 300mm f/4.5 ED, both 600mm f/5.6 ED prescriptions and the 360–1200mm f/11 ED reach the full-frame corner with the converter. This includes both ends of the zoom. Nikon lists AI and non-AI versions of the six-element 300mm f/4.5 ED as products 1172 and 1272 respectively. The separate-mount 600mm f/5.6 ED also depends on its focusing unit for the camera connection. [Nikon dealer specifications, Section III, sheet 7](https://device.report/m/fde30a9a8757ca959c08899664023641e13cb6db80a0b116bf276a8289882532) · [Nikon TC-300 coupling requirements](https://www.pacificrimcamera.com/rl/00594/00594.pdf#page=106)
+Nikon specifies a 2× multiplier and AI aperture coupling from f/2.8 through f/32 for long Nikkors. At infinity the 300mm f/4.5 ED, both 600mm f/5.6 ED prescriptions and the 360–1200mm f/11 ED reach the full-frame corner with the converter. This includes both ends of the zoom. The separate-mount 600mm f/5.6 ED also depends on its focusing unit for the camera connection. [Nikon TC-300 coupling requirements](https://www.pacificrimcamera.com/rl/00594/00594.pdf#page=106)
 
 ## Corrections
 
 ### 2026-11-25
 
-The prescription follows Example II as printed. The small differences between its calculated focal lengths and the rounded patent summaries require no change to the surface table.
+The prescription follows Example 2 as printed. The small differences between its calculated focal lengths and the rounded patent summaries require no change to the surface table.
 
 ## Remaining Questions
 
-The published sections leave the precise clear apertures, the master iris position and the production glass identities uncertain. The period specifications distinguish the AI version of the 300 mm lens. Mechanical clearance and coupling for the separate-mount 600 mm ED with the TC-300 still need confirmation for the particular focusing unit.
+The published sections leave the precise clear apertures, the master iris position and the production glass identities uncertain. Mechanical clearance and coupling for the separate-mount 600 mm ED with the TC-300 still need confirmation for the particular focusing unit.

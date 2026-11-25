@@ -1,7 +1,7 @@
 import type { TeleconverterDataV2Input } from "../../types/lensDataV2.js";
 
 /**
- * Nikon TC-300, US 4,154,508, Example II (Figure 2 and claim 4). The patent gives ten
+ * Nikon TC-300, US 4,154,508, Example 2 (Figure 2 and claim 4). The patent gives ten
  * spherical radii, nine internal intervals in millimetres and five glass index/Abbe pairs.
  * All lengths retain the patent scale. The spectral reference is inferred to be helium d.
  * The glass labels identify catalog curves with matching indices and dispersion.
@@ -20,7 +20,7 @@ const TELECONVERTER_DATA = {
   maker: "Nikon",
   name: "NIKON TELECONVERTER TC-300",
   visible: true,
-  subtitle: "US 4,154,508, Example II — Nippon Kogaku / Nakamura",
+  subtitle: "US 4,154,508, Example 2 — Nippon Kogaku / Nakamura",
   catalog: {
     lensMounts: ["nikon-f"],
     imageFormat: "135-full-frame",
@@ -31,7 +31,7 @@ const TELECONVERTER_DATA = {
   source: {
     patentNumber: "US 4,154,508",
     example: {
-      label: "Example II",
+      label: "Example 2",
       id: "2",
     },
     sdSource: "figure-measured",
