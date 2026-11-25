@@ -47,6 +47,7 @@ const LENS_DATA = {
   catalog: {
     lensMounts: ["nikon-f"],
     imageFormat: "135-full-frame",
+    acceptsTeleconverters: true,
     specs: ["10 ELEMENTS / 8 GROUPS", "f = 200 mm", "F/2", "2ω = 12.32°", "2 ED ELEMENTS", "INTERNAL FOCUS"],
     elementCount: 10,
     groupCount: 8,
