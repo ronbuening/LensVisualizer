@@ -1,3 +1,4 @@
+import { createHash } from "node:crypto";
 import react from "@vitejs/plugin-react";
 import { configDefaults, defineConfig } from "vitest/config";
 
@@ -17,9 +18,19 @@ const RIM_CUT_PROJECT_COUNT = 16;
 /* Playwright translation specs run through `npm run test:browser`, not Vitest. */
 const TEST_EXCLUDES = [...configDefaults.exclude, "**/.claude/**", "tmp/**", "__tests__/browser/**", ...TOOLING_TESTS];
 
+/* Worktrees symlink node_modules to the main checkout, so the default `node_modules/.vite` would be one
+ * cache shared by every checkout. Vite keys that cache on the project root, so each dev server that
+ * starts re-bundles the dependencies and deletes the chunks the running servers still serve ("The
+ * file does not exist ... in the optimize deps directory"). Key the directory on this checkout's path. */
+const CACHE_DIR = `node_modules/.vite/${createHash("sha1")
+  .update(import.meta.dirname)
+  .digest("hex")
+  .slice(0, 8)}`;
+
 export default defineConfig(({ isSsrBuild }) => ({
   plugins: [react()],
   base: "/",
+  cacheDir: CACHE_DIR,
   /* Cloudflare Pages (CF_PAGES=1) has dropped the ~900-line per-asset build
    * listing mid-stream and then failed the build stage with "an internal error
    * occurred", so keep the client build quiet there. Warnings and errors still
