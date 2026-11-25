@@ -1,7 +1,7 @@
 import { constructionFixtureData } from "./constructionFixtures.js";
 import { describe, it, expect, vi } from "vitest";
 import { buildFixtureLens as buildLens } from "./constructionFixtures.js";
-import { ingestLens } from "../../../src/optics/lensDataConversion.js";
+import { ingestLens, toLensDataV2Input } from "../../../src/optics/lensDataConversion.js";
 import { ingestLensV1 } from "../../../src/optics/prescription/v1/ingestV1.js";
 import { paraxialTrace, realTraceToStop } from "../../../src/optics/first-order/lensConstants.js";
 import { toLensData } from "../../../src/optics/prescription/v1/toLensData.js";
@@ -804,6 +804,32 @@ describe("buildLens — rear plates", () => {
     expect(plate.every((surface) => surface.synthetic === "rearPlate")).toBe(true);
     expect(L.lastLensSurfaceIdx).toBe(2);
     expect(L.S[L.lastLensSurfaceIdx].d).toBe(44);
+  });
+
+  it("interpolates a scheduled gap behind the final plate through the authored and round-trip inputs", () => {
+    const fixture = buildRearPlateLens();
+    const draft = toLensDataV2Input(canonicalInput(fixture.source));
+    const schedule = { label: "Sensor gap", values: [[gapAfterMm, gapAfterMm + 2]] };
+    draft.gaps = { RP1b: schedule };
+    const ingested = ingestLens(draft);
+    const roundTripped = toLensDataV2Input(ingestLensV1(toLensDataInput(ingested)));
+
+    for (const input of [draft, roundTripped]) {
+      const L = buildCanonical(input);
+      expect(L.elements).toEqual(fixture.elements);
+      expect(L.ES).toEqual(fixture.ES);
+      const infinity = doLayout(0, 0, L);
+      for (const focus of [0, 0.5, 1]) {
+        const layout = doLayout(focus, 0, L);
+        expect(layout.z).toEqual(infinity.z);
+        expect(layout.imgZ).toBeCloseTo(infinity.imgZ + 2 * focus, 12);
+      }
+    }
+
+    expect(() => buildCanonical({ ...draft, gaps: { RP1a: schedule } })).toThrow(/no surface/);
+    expect(() => buildCanonical({ ...draft, gaps: { RP1b: { values: [[gapAfterMm + 1, gapAfterMm + 2]] } } })).toThrow(
+      /gapAfterMm must equal the first thickness/,
+    );
   });
 
   /* A generated rim never clips, so its size only extends the envelopes that ray launch and intersection bounds read. */

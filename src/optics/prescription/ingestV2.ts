@@ -39,6 +39,7 @@ import type {
   ZoomV2Input,
 } from "../../types/lensDataV2.js";
 import { associateCanonical } from "./identity.js";
+import { rearPlateSurfaceLabels } from "./rearPlates.js";
 import { FLAT_R_THRESHOLD } from "../geometry/surfaceProfile.js";
 import { FLAT_RADIUS, PrescriptionIngestError, stopRadiusAuthority } from "./canonical.js";
 import type {
@@ -1036,7 +1037,11 @@ export function ingestLensV2(input: LensDataV2Input, request?: IngestRequest): I
 
   const elements = ingestElements(authoredElements, labelIndex, context);
   const declaredMedia = declareMedia(data.media, context);
-  const gaps = ingestGaps(data.gaps, stationCount, keyframeCount, labelIndex, context);
+  const rearPlates = has(data, "rearPlates") ? ingestRearPlates(everyIndex(data.rearPlates), context) : undefined;
+  const gapLabelIndex = rearPlates?.length
+    ? new Map(labelIndex).set(rearPlateSurfaceLabels(rearPlates.length - 1)[1], authoredSurfaces.length)
+    : labelIndex;
+  const gaps = ingestGaps(data.gaps, stationCount, keyframeCount, gapLabelIndex, context);
   const surfaces = ingestSurfaces(
     authoredSurfaces,
     {
@@ -1104,7 +1109,7 @@ export function ingestLensV2(input: LensDataV2Input, request?: IngestRequest): I
   const control = nested(data, "aberrationControl", "", ABERRATION_CONTROL_FIELDS, context);
   if (control) lens.aberrationControl = ingestAberrationControl(control, labelIndex, context);
   for (const field of ["projection", "opticalPath", "perspectiveControl"]) put(lens, field, data[field]);
-  if (has(data, "rearPlates")) lens.rearPlates = ingestRearPlates(everyIndex(data.rearPlates), context);
+  put(lens, "rearPlates", rearPlates);
   put(lens, "imageSurface", data.imageSurface);
   put(lens, "groups", data.groups);
   put(lens, "doublets", data.doublets);

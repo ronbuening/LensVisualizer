@@ -11,6 +11,7 @@
  */
 
 import { LINE_NM } from "../optics/chromatic.js";
+import { rearPlateSurfaceLabels } from "../optics/prescription/rearPlates.js";
 import type { ElementV2Input, LensDataV2Input, SurfaceV2Input } from "../types/lensDataV2.js";
 
 /** One refracting surface. */
@@ -361,11 +362,12 @@ export function toElementModel(draft: LensDataV2Input): ToModelResult {
   }
   if (used.size !== draft.elements.length) reasons.push("Every element must occur exactly once in the optical train.");
   const gapLabels = new Set(model.items.map((item) => itemSurfaces(item).at(-1)!.label));
+  const plateGapLabel = draft.rearPlates?.length ? rearPlateSurfaceLabels(draft.rearPlates.length - 1)[1] : undefined;
   if (
-    Object.keys(draft.gaps ?? {}).some((label) => !gapLabels.has(label)) ||
+    Object.keys(draft.gaps ?? {}).some((label) => !gapLabels.has(label) && label !== plateGapLabel) ||
     Object.keys(draft.aberrationControl?.gaps ?? {}).some((label) => !gapLabels.has(label))
   )
-    reasons.push("Every scheduled or aberration-controlled gap must follow a group or the stop.");
+    reasons.push("Gap controls need a named group, stop or final rear plate.");
   if (!reasons.length) {
     try {
       checkModel(model);
@@ -433,6 +435,11 @@ export function applyElementModel(draft: LensDataV2Input, model: BuilderModel): 
         values: structuredClone(gap.schedule),
       };
     else last.d = gap.mm;
+  }
+  if (next.rearPlates?.length) {
+    const label = rearPlateSurfaceLabels(next.rearPlates.length - 1)[1];
+    const plateGap = next.gaps?.[label];
+    if (plateGap) gaps[label] = plateGap;
   }
   if (Object.keys(gaps).length || draft.gaps !== undefined) next.gaps = gaps;
   else delete next.gaps;
@@ -828,8 +835,9 @@ function renumber(next: LensDataV2Input, original: LensDataV2Input): void {
     original.elements.every((e, i) => e.name === `L${i + 1}`) &&
     next.elements.every((e) => e.name === (originalNames.get(e.id) ?? `L${e.id}`));
   const labels = new Set(next.surfaces.map((s) => s.label));
+  const plateGapLabel = next.rearPlates?.length ? rearPlateSurfaceLabels(next.rearPlates.length - 1)[1] : undefined;
   const references = [
-    ...Object.keys(next.gaps ?? {}),
+    ...Object.keys(next.gaps ?? {}).filter((label) => label !== plateGapLabel),
     ...Object.keys(next.aberrationControl?.gaps ?? {}),
     ...next.elements.flatMap((e) => e.span ?? []),
     ...[...(next.groups ?? []), ...(next.doublets ?? [])].flatMap((a) => [a.fromSurface, a.toSurface]),
