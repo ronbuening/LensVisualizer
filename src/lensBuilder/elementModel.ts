@@ -10,8 +10,8 @@
  * and leaves every field the model does not cover untouched. The operations are pure and return new models.
  */
 
+import { rearPlateSurfaceLabels } from "../optics/buildLens.js";
 import { LINE_NM } from "../optics/chromatic.js";
-import { rearPlateSurfaceLabels } from "../optics/prescription/rearPlates.js";
 import type { ElementV2Input, LensDataV2Input, SurfaceV2Input } from "../types/lensDataV2.js";
 
 /** One refracting surface. */
