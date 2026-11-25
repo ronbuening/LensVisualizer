@@ -161,4 +161,8 @@ Open: S15 remains numerically labelled “15” rather than an A-suffixed surfac
 
 Open: source focal-length/back-focus/length summaries, the near f-number and 0.9 m heading, D5's meaning, variable rear-plate-gap support, production identity, supplier/resin identity and the intermediate focus cam remain unresolved. The fan-plane discrepancy above is not reconciled by a speculative glass change. Application-wide checks and remote CI remain outside this scope.
 
+## 2026-11-25 — Rear filter
+
+Moved OD to `rearPlates`. The schedule on its rear face (`RP1b`) preserves the two published D4 values, 0.507836 and 0.687847 mm, with D3 fixed at 37.3 mm. The 2.5 mm thickness, glass and inferred 24 mm semi-diameter carry over. The image plane still follows D4. D5 remains source metadata.
+
 Sandbox refusal: a command attempted to redirect the finite-conjugate recheck output to `./finite-before.jsonl` while its cwd was the read-only main checkout. The shell refused it with “operation not permitted.” That output change was stopped and was not retried in another form; the prior finite-object log is explicitly distinguished above. No lens edit was refused.
