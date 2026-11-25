@@ -187,6 +187,12 @@ const CACHE_REGISTRY: Readonly<Record<string, CacheRecord>> = {
     capacity: 512,
     limit: "CHIEF_RAY_CACHE_LIMIT",
   },
+  "src/optics/field/geometry.ts#inFocusVergenceByState": {
+    kind: "weak-owner",
+    owner: "PreparedGeometry",
+    key: "owner identity",
+    perOwner: "one signed paraxial object vergence or null for a degenerate trace",
+  },
   "src/optics/geometry/surfaceProfile.ts#COMPILED_ASPHERES": {
     kind: "weak-owner",
     owner: "frozen AsphericCoefficients",
@@ -252,12 +258,6 @@ const CACHE_REGISTRY: Readonly<Record<string, CacheRecord>> = {
     perOwner: "at most 128 frozen paraxial stop-rule records, evicting the oldest insertion",
     capacity: 128,
     limit: "STOP_RULE_CACHE_LIMIT",
-  },
-  "src/optics/state/fieldAdapters.ts#ROW_FOCUS_VERGENCE": {
-    kind: "weak-owner",
-    owner: "CompiledLens",
-    key: "owner identity",
-    perOwner: "one station-by-keyframe table of row in-focus inverse distances, built once",
   },
   "src/optics/state/preparedGeometry.ts#PREPARED_STATE_BY_LENS": {
     kind: "bounded",

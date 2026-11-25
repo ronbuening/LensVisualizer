@@ -208,7 +208,7 @@ export type LensAction =
   | { type: "SET_RAY_TOGGLE"; field: BooleanRayField; value: boolean }
   | { type: "SET_FOCUS_T"; value: number }
   | { type: "SET_ZOOM_T"; value: number; focusT?: number }
-  | { type: "SET_ABERRATION_T"; value: number }
+  | { type: "SET_ABERRATION_T"; value: number; focusT?: number }
   | { type: "SET_STOPDOWN_T"; value: number }
   | { type: "SET_SHIFT_MM"; value: number }
   | { type: "SET_TILT_DEG"; value: number }

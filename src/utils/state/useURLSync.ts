@@ -149,6 +149,10 @@ export default function useURLSync(
     lens.selectedConfigurationKey,
     lens.teleconverterKeyA,
     lens.teleconverterKeyB,
+    // Keyboard edits and a yielded focus search can commit after (or without) a pointer release.
+    state.sliders.focusT,
+    state.sliders.zoomT,
+    state.sliders.aberrationT,
     panels.selectedElementId,
     panels.selectedElementIdA,
     panels.selectedElementIdB,

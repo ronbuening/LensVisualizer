@@ -185,22 +185,28 @@ export function conjugateK(state: PreparedGeometry): number {
  */
 export function paraxialObjectVergence(state: PreparedGeometry): number {
   if (state.focusT < FOCUS_INFINITY_CUTOFF || state.lens.flags.isFoldedOptics) return 0;
-  return paraxialInFocusVergence(state);
+  return paraxialInFocusVergence(state) ?? 0;
 }
+
+const inFocusVergenceByState = new WeakMap<PreparedGeometry, number | null>();
 
 /**
  * The same reciprocal distance with no infinity cutoff: at infinity focus it is the authored state's own residual,
  * which printed image-plane rounding makes slightly nonzero. Sequential paths only.
  *
  * @param state - prepared geometry for the current controls
- * @returns 1/s in 1/mm; negative when the state focuses beyond infinity; 0 when the trace is degenerate
+ * @returns 1/s in 1/mm; negative when the state focuses beyond infinity; null when the trace is degenerate
  */
-export function paraxialInFocusVergence(state: PreparedGeometry): number {
+export function paraxialInFocusVergence(state: PreparedGeometry): number | null {
+  const cached = inFocusVergenceByState.get(state);
+  if (cached !== undefined) return cached;
   const imagePlaneTransfer = state.surfaces[state.surfaces.length - 1]?.d ?? 0;
   const parallel = traceParaxialSurfaces(state.surfaces, 1, 0);
   const axial = traceParaxialSurfaces(state.surfaces, 0, 1);
   const vergence = -(parallel.y + imagePlaneTransfer * parallel.u) / (axial.y + imagePlaneTransfer * axial.u);
-  return Number.isFinite(vergence) ? vergence : 0;
+  const result = Number.isFinite(vergence) ? vergence : null;
+  inFocusVergenceByState.set(state, result);
+  return result;
 }
 
 function conjugateReferencePupilFraction(

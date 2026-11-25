@@ -332,6 +332,7 @@ const opticalSummary = {
   physicalStopDiameterMm: 10,
   halfFieldDeg: 12,
   fullFieldDeg: 24,
+  focus: { kind: "finite", distanceM: 2.5 },
   focusDistanceM: 2.5,
   zoomT: 0.3,
   focusT: 0.2,

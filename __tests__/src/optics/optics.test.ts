@@ -1,4 +1,5 @@
 import { traceParaxialSurfaces } from "../../../src/optics/math/paraxial.js";
+import { focusReadingForState } from "../../../src/optics/state/focusReadout.js";
 import { stateSurfaces } from "../../../src/optics/state/layout.js";
 import { describe, it, expect } from "vitest";
 import { sagSlope } from "../../../src/optics/diagram/runtimeSurface.js";
@@ -89,34 +90,52 @@ describe("focus labels", () => {
     expect(formatDist(0.001, mockL)).toBe("∞");
   });
 
-  it("reports where each authored row focuses, interpolating inverse distance between rows", () => {
-    const L = buildImageGapFocusLens([47.5362, 50]);
-    const closeM = focusLabelDistanceM(1, L)!;
-    const state = prepareRuntimeState(L, 1, 0);
-    // An axial object at the close row's label distance (object to image) images onto the image plane...
-    const ray = traceParaxialSurfaces(state.surfaces, 1, 1 / (closeM * 1000 - state.totalTrack));
-    expect(ray.y + state.surfaces[state.surfaces.length - 1].d * ray.u).toBeCloseTo(0, 9);
-    // ...where the slider convention would have labelled this row 50 cm,
-    expect(closeM).not.toBeCloseTo(L.closeFocusM, 1);
-    // and halfway to infinity the inverse distance is half the close row's.
-    expect(focusLabelDistanceM(0.5, L)).toBeCloseTo(2 * closeM, 12);
-    expect(formatDist(0.5, L)).toBe(formatDistanceM(2 * closeM));
-  });
-
-  it("anchors infinity at infinity, so an infinity-row residual does not move the labels", () => {
-    // The same close row, once over an in-focus infinity gap and once over one 0.1 mm long, as a source table's
-    // rounding leaves it. Read from the blended state, an in-focus distance would differ by about 80 % near infinity.
-    const focused = buildImageGapFocusLens([47.5362, 50.0002], "test-image-gap-focus-in-focus");
-    const rounded = buildImageGapFocusLens([47.6362, 50.0002], "test-image-gap-focus-rounded");
-    for (const focusT of [0.01, 0.5, 1]) {
-      expect(focusLabelDistanceM(focusT, rounded)).toBeCloseTo(focusLabelDistanceM(focusT, focused)!, 12);
+  it("lands an axial ray from each finite label on the current image plane", () => {
+    const prime = buildImageGapFocusLens([47.6362, 50.0002]);
+    const zoom = buildVariableStopGapLens(
+      [
+        [1, 1],
+        [2, 2],
+        [3, 3],
+      ],
+      "moving-image-gap",
+      undefined,
+      {
+        var: {
+          "2": [
+            [80, 80],
+            [48, 50],
+            [47.6, 53],
+          ],
+        },
+      },
+    );
+    for (const [L, f, z] of [
+      [prime, FOCUS_INFINITY_CUTOFF, 0],
+      [prime, 0.5, 0],
+      [prime, 1, 0],
+      [zoom, 0.45, 0.25],
+      [zoom, 1, 0.75],
+    ] as const) {
+      const m = focusLabelDistanceM(f, L, z)!;
+      const state = prepareRuntimeState(L, f, z);
+      const ray = traceParaxialSurfaces(state.surfaces, 1, 1 / (m * 1000 - state.totalTrack));
+      expect(-ray.y / ray.u).toBeCloseTo(state.surfaces.at(-1)!.d, 9);
+      expect(formatDist(f, L, z)).toBe(formatDistanceM(m));
     }
   });
 
-  it("reads ∞ when the state focuses at or beyond infinity", () => {
-    const L = buildImageGapFocusLens([47.536, 45], "test-image-gap-focus-beyond-infinity");
-    expect(focusLabelDistanceM(0.5, L)).toBe(Infinity);
-    expect(formatDist(0.5, L)).toBe("∞");
+  it("distinguishes a virtual conjugate, an exactly focused collimated ray and an undefined trace", () => {
+    const L = buildImageGapFocusLens([47.536, 45]);
+    expect(formatDist(0.5, L)).toBe("Beyond ∞");
+    expect(focusLabelDistanceM(0.5, L)).toBeNull();
+    const state = prepareRuntimeState(L, 0.5, 0);
+    const [stop, front, back] = state.surfaces;
+    const surfaces = [stop, { ...front, R: 1, nd: 2, d: 0 }, { ...back, R: 1e15, nd: 1, d: 1 }];
+    expect(focusReadingForState({ ...state, surfaces })).toEqual({ kind: "infinity" });
+    expect(focusReadingForState({ ...state, totalTrack: NaN, surfaces: [stop, { ...front, nd: NaN }, back] })).toEqual({
+      kind: "unavailable",
+    });
   });
 
   it("keeps the slider convention where the focus control moves no gap", () => {

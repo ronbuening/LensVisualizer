@@ -10,6 +10,7 @@ export {
   focusLabelDistanceM,
   formatDist,
   formatDistanceM,
+  formatFocusReading,
   formatFNumber,
   formatParaxialWorkingFNumber,
   formatPetzvalRadius,
@@ -79,3 +80,5 @@ export {
 export type { RuntimeSkewRayTraceResult } from "./trace/runtimeRayResult.js";
 export { stopInnerBlockedSemiDiameter } from "./trace/stopObstruction.js";
 export { traceToStopViaGeneralized } from "./trace/stopTrace.js";
+
+export { focusReadingAt, focusStepReadings } from "./state/focusReadout.js";

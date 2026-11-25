@@ -986,19 +986,24 @@ EFL (including perspective field scale), f-number and magnification summaries, p
 and the real-ray sensitivity difference `kt - k0` used for conjugate correction. Below the cutoff `conjugateK` is
 zero, matching the pre-optics-2 behavior. The cutoff does not snap interpolated surface gaps.
 
-Focus labels (`formatDist` and `focusLabelDistanceM` in `first-order/format.ts`, which feed the focus readout, breathing,
-the summary and the uncertified patent-station buttons) report `modeledFocusDistanceAt` (`state/fieldAdapters.ts`).
-It anchors each authored row (station × keyframe) at that row's own paraxial in-focus object-to-image distance
-(`paraxialInFocusVergence` plus the total track), reads keyframe 0 as infinity, and interpolates inverse distance
-bilinearly between rows, so a label never inherits an infinity row's printed image-plane residual or the
-hypersensitive in-focus distance of a near-infinity blend. The per-`CompiledLens` table is cached in
-`ROW_FOCUS_VERGENCE`. A row whose spacings equal its infinity row has no distance, and labels then fall back to the
-slider convention `focusDistanceAt` (closeFocus / focusT), as they do on folded paths and for runtimes the canonical
-compiler did not build. `focus.closeFocusM` is the close row's distance (a corpus sweep holds it within 5 %); the
-maker's figure is `catalog.closeFocusM.marketing`, named beside the label by `marketedCloseFocusNote`. Station buttons
-for source-certified conjugates (`PublishedFocusStation.certifiedDistanceM`) show the source's object-to-image
-distance, or the one solved from its printed magnification. Zoom-change focus remapping, comparison focus sharing and `PublishedFocusStation.distanceM` still use the
-convention.
+Focus labels read the on-axis paraxial conjugate of the current prepared geometry, including zoom and aberration
+spacing. `state/focusReadout.ts` checks for actual focus-gap movement relative to infinity at the same settings.
+For a real first-vertex object vergence `v` (1/mm), the object-to-image distance is `(1/v + totalTrack) / 1000` metres.
+The two paraxial basis rays are shared by immutable state identity with other first-order readers. The infinity
+detent still reads ∞ at every zoom, including source rows with printed image-plane residuals. Beyond the detent,
+zero vergence reads ∞, negative vergence reads “Beyond ∞”, and undefined geometry reads “Unavailable”. Folded paths,
+stationary focus gaps and unregistered runtimes use the slider convention. Certified patent buttons retain the
+source distance or the distance derived from published magnification. Breathing plots use their neutral-aberration
+sample geometry. The current reading in Breathing and the Summary uses the active geometry. Aperture-dependent best
+focus and the diagram’s “tracks focus” ray calculation continue to use their respective ray samples.
+
+Continuous single-lens edits skip unusable focus positions. A pointer chooses the nearest usable stop, with ties toward
+infinity. An arrow skips in its direction. Zoom first remaps via the existing close-focus convention, then resolves
+focus at the new zoom. Aberration and zoom changes commit the accepted focus together with the changed control.
+A rejected request triggers a cancellable, time-sliced search of the native slider grid. Trial states bypass the
+prepared-state LRU. Where the grid has no finite focus, the control returns to the infinity detent. Saved coordinates,
+patent stepping and the shared comparison target stay directly inspectable. The maker’s marketed minimum remains a
+separate readout, and the catalog sweep checks close rows at authored zoom stations.
 
 `state/preparedGeometry.ts` owns `prepareState()` and the only prepared-control LRU. It retains prepared states for
 the two most recently used compiled lenses (`PREPARED_LENS_CACHE_LIMIT = 2`), so a comparison keeps a full slider

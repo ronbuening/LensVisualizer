@@ -84,6 +84,16 @@ describe("patent station labels", () => {
     expect(station.certifiedDistanceM).toBeCloseTo((500 + state.imgZ - state.z[0]) / 1000, 12);
     expect(focusStationOptions(L, 0, 0)[1].label).toBe(formatDistanceM(station.certifiedDistanceM!));
   });
+
+  it("keeps an uncertified virtual row selectable at its published coordinate", () => {
+    const lens = buildVariableStopGapLens([1, 2], "test-virtual-patent-row", undefined, {
+      var: { "2": [80, 45] },
+      publishedStations: { focus: [1] },
+    });
+    const row = focusStationOptions(lens, 0, 0)[1];
+    expect(row).toMatchObject({ id: 1, label: "Beyond ∞", ariaLabel: "Focus Beyond ∞" });
+    expect(publishedFocusStations(lens, 0)[row.id].focusT).toBe(1);
+  });
 });
 
 describe("focus after a zoom step", () => {

@@ -3,7 +3,7 @@
  */
 
 import { runtimeView } from "../../prescription/runtimeView.js";
-import { focusLabelDistanceM } from "../../first-order/format.js";
+import { focusReadingForState, type FocusReading } from "../../state/focusReadout.js";
 
 import { eflAtZoom } from "../../state/stationTables.js";
 import { computeCardinalElements } from "./cardinals.js";
@@ -32,7 +32,9 @@ export interface OpticalSummaryMetrics {
   physicalStopDiameterMm: number | null;
   halfFieldDeg: number | null;
   fullFieldDeg: number | null;
-  /** The focus label distance in metres (object to image); null at infinity or when none is defined. */
+  /** Signed-conjugate classification and object-to-image distance when finite. */
+  focus: FocusReading;
+  /** Numeric projection for summary consumers. Null when no finite real distance is available. */
   focusDistanceM: number | null;
   zoomT: number;
   focusT: number;
@@ -94,6 +96,7 @@ export function computeOpticalSummary(request: AnalysisRequest): OpticalSummaryM
   const halfFieldDeg = finiteOrNull(fieldGeometry?.halfFieldDeg);
   const cardinals = computeCardinalElements(request);
 
+  const focus = focusReadingForState(state);
   return {
     currentEFLMm,
     infinityEFLMm,
@@ -105,7 +108,8 @@ export function computeOpticalSummary(request: AnalysisRequest): OpticalSummaryM
     physicalStopDiameterMm,
     halfFieldDeg,
     fullFieldDeg: halfFieldDeg === null ? null : halfFieldDeg * 2,
-    focusDistanceM: finiteOrNull(focusLabelDistanceM(state.focusT, L, state.zoomT)),
+    focus,
+    focusDistanceM: focus.kind === "finite" ? focus.distanceM : null,
     zoomT: state.zoomT,
     focusT: state.focusT,
     aberrationT: state.aberrationT,

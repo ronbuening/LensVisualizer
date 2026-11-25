@@ -5,7 +5,7 @@
  * `track` swaps the range input and its endpoint labels for another control (the station buttons of
  * patent-positions mode) while the label, readout, action slot, and collapsible section stay in place.
  */
-import type { ReactNode } from "react";
+import type { KeyboardEventHandler, ReactNode } from "react";
 import { SLIDER_LABEL, SLIDER_VALUE_BASE, sliderInput } from "../../utils/style/styles.js";
 import CollapseButton from "./CollapseButton.js";
 import type { Theme } from "../../types/theme.js";
@@ -25,6 +25,7 @@ interface SliderControlProps {
   min?: number;
   max?: number;
   onChange?: (value: number) => void;
+  onKeyDown?: KeyboardEventHandler<HTMLInputElement>;
   onPointerDown?: () => void;
   onPointerUp?: () => void;
   minLabel: string;
@@ -59,6 +60,7 @@ export default function SliderControl({
   min = 0,
   max = 1,
   onChange,
+  onKeyDown,
   onPointerDown,
   onPointerUp,
   minLabel,
@@ -96,6 +98,7 @@ export default function SliderControl({
       step={step}
       value={value}
       disabled={disabled}
+      onKeyDown={onKeyDown}
       onPointerDown={disabled ? undefined : onPointerDown}
       onChange={(e) => {
         if (!disabled) onChange?.(parseFloat(e.target.value));

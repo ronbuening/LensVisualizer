@@ -151,6 +151,24 @@ describe("useURLSync — zoom initialization", () => {
 /* ── Debounced slider URL update ── */
 
 describe("useURLSync — updateURLWithSliders (debounced)", () => {
+  it("serializes a corrected focus committed after the pointer-release write", () => {
+    const dispatch = vi.fn();
+    const initial = makeState();
+    const { rerender } = renderHook(({ s }) => useURLSync(s, dispatch, null, true, false), {
+      initialProps: { s: initial },
+    });
+    act(() => {
+      vi.advanceTimersByTime(100);
+    });
+    replaceStateSpy.mockClear();
+    rerender({ s: { ...initial, sliders: { ...initial.sliders, focusT: 0.412 } } });
+    act(() => {
+      vi.advanceTimersByTime(100);
+    });
+    const url = new URL(String(replaceStateSpy.mock.calls.at(-1)?.[2]), window.location.origin);
+    expect(url.searchParams.get("focus")).toBe("0.412");
+  });
+
   it.each([false, true])("preserves an explicit MTF override through URL writes (route: %s)", (isLensPage) => {
     window.history.replaceState({}, "", "/lens/test/?v=1&ad=1&tab=mtf&mtf=1");
     const dispatch = vi.fn() as unknown as Dispatch<LensAction>;

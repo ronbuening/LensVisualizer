@@ -41,6 +41,7 @@ interface DiagramHeaderProps {
   compact: boolean;
   isWide: boolean;
   focusT: number;
+  aberrationT?: number;
   zoomT: number;
   fNumber: number;
   showOnAxis: boolean;
@@ -100,6 +101,7 @@ const DiagramHeader = memo(
       compact,
       isWide,
       focusT,
+      aberrationT = 0,
       zoomT,
       fNumber,
       showOnAxis,
@@ -349,7 +351,7 @@ const DiagramHeader = memo(
                 }}
               >
                 {L.isZoom && <span>{`${eflAtZoom(zoomT, L).toFixed(0)} mm`}</span>}
-                <span>{formatDist(focusT, L, zoomT)}</span>
+                <span>{formatDist(focusT, L, zoomT, aberrationT)}</span>
                 <span>{`f/${formatFNumber(fNumber)}`}</span>
                 <span>{compactFocalReadout}</span>
               </div>

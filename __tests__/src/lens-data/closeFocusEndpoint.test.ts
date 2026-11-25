@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { CATALOG_CONSTRUCTION_FIXTURES, buildFixtureLens as buildLens } from "../optics/constructionFixtures.js";
-import { modeledFocusDistanceAt } from "../../../src/optics/state/fieldAdapters.js";
+import { modeledFocusReading } from "../../../src/optics/state/focusReadout.js";
+import { prepareRuntimeState } from "../../../src/optics/state/runtimeAdapters.js";
 import { closeFocusAtZoom, zoomIndexToT } from "../../../src/optics/state/stationTables.js";
 
 /**
@@ -40,12 +41,13 @@ describe("close-focus endpoint", () => {
       const stations = (L.isZoom && L.zoomPositions?.length) || 1;
       for (let zoomIndex = 0; zoomIndex < stations; zoomIndex++) {
         const zoomT = zoomIndexToT(zoomIndex, stations);
-        const modeled = modeledFocusDistanceAt(1, L, zoomT);
+        const modeled = modeledFocusReading(prepareRuntimeState(L, 1, zoomT));
         if (modeled === null) continue;
         const authored = closeFocusAtZoom(zoomT, L);
-        if (Math.abs(modeled / authored - 1) <= CLOSE_FOCUS_LABEL_FRACTION) continue;
+        if (modeled.kind === "finite" && Math.abs(modeled.distanceM / authored - 1) <= CLOSE_FOCUS_LABEL_FRACTION)
+          continue;
         found.push(
-          `${data.key} zoom ${zoomIndex}: close row focuses at ${modeled.toFixed(3)} m, authored ${authored} m`,
+          `${data.key} zoom ${zoomIndex}: close row focuses at ${modeled.kind === "finite" ? modeled.distanceM.toFixed(3) + " m" : modeled.kind}, authored ${authored} m`,
         );
       }
     }

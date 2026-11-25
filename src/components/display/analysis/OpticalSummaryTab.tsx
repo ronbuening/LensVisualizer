@@ -1,7 +1,7 @@
 /** Summary presentation shares the drawer request, including its movement guards and lazy results. */
 
 import { useMemo, type ReactNode } from "react";
-import { formatFNumber as formatMarkedFNumber } from "../../../optics/optics.js";
+import { formatFocusReading, formatFNumber as formatMarkedFNumber } from "../../../optics/optics.js";
 import { createAnalysisRequest, createAnalysisComputationContext } from "../../../optics/analysis.js";
 import { AnalysisMetricRow } from "./analysisUi.js";
 import usePreparedAnalysisState from "./usePreparedAnalysisState.js";
@@ -107,7 +107,7 @@ export default function OpticalSummaryTab({
             t={t}
           />
         ) : null}
-        <AnalysisMetricRow label="Focus" value={formatFocusDistance(summary.focusDistanceM)} t={t} />
+        <AnalysisMetricRow label="Focus" value={formatFocusReading(summary.focus)} t={t} />
         <AnalysisMetricRow label="Zoom" value={formatControl(summary.zoomT)} t={t} />
         <AnalysisMetricRow label="Aberration" value={formatControl(summary.aberrationT)} t={t} />
       </SummarySection>
@@ -273,9 +273,4 @@ function formatSignedPercent(value: number | null): string {
 
 function formatControl(value: number): string {
   return `${(value * 100).toFixed(0)}%`;
-}
-
-function formatFocusDistance(value: number | null): string {
-  if (value === null) return "Infinity";
-  return `${value.toFixed(value >= 10 ? 1 : 2)} m`;
 }

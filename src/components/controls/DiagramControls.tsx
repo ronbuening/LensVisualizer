@@ -7,10 +7,11 @@
  * they move the whole lens without changing the prescription.
  */
 
-import { useCallback, useEffect, useMemo } from "react";
+import { useCallback, useEffect, useMemo, type KeyboardEvent } from "react";
 import {
   eflAtZoomClamped as eflAtZoom,
-  focusLabelDistanceM,
+  focusReadingAt,
+  formatFocusReading,
   formatDist,
   formatFNumber,
   formatParaxialWorkingFNumber,
@@ -33,6 +34,7 @@ import { focusStationOptions, focusTAfterZoomStep, patentStationNotes, zoomStati
 import SliderControl from "./SliderControl.js";
 import SliderResetButton from "./SliderResetButton.js";
 import StationStepper from "./StationStepper.js";
+import useFocusSelection from "../hooks/useFocusSelection.js";
 import useInteractionSignal from "../hooks/useInteractionSignal.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
@@ -52,7 +54,7 @@ interface DiagramControlsProps {
   zoomT: number;
   onZoomChange?: (value: number, focusT?: number) => void;
   aberrationT: number;
-  onAberrationChange?: (value: number) => void;
+  onAberrationChange?: (value: number, focusT?: number) => void;
   focusT: number;
   onFocusChange?: (value: number) => void;
   shiftMm: number;
@@ -146,34 +148,48 @@ export default function DiagramControls({
     onSliderPointerUp?.();
   }, [endInteraction, onSliderPointerUp]);
 
-  const handleZoomChange = useCallback(
-    (v: number) => {
-      onChangeActivity();
-      onZoomChange?.(
-        v,
-        groupMovementAvailability.focus
-          ? remapFocusDistance(focusT, closeFocusAtZoom(zoomT, L), closeFocusAtZoom(v, L))
-          : 0,
-      );
-    },
-    [onChangeActivity, onZoomChange, groupMovementAvailability.focus, focusT, zoomT, L],
-  );
+  const { select, noFiniteFocus } = useFocusSelection(L, zoomT, aberrationT, focusT, showSliders && !patentPositions);
 
-  const handleFocusChange = useCallback(
-    (v: number) => {
-      onChangeActivity();
-      onFocusChange?.(v);
-    },
-    [onChangeActivity, onFocusChange],
-  );
+  function handleZoomChange(v: number) {
+    onChangeActivity();
+    const target = groupMovementAvailability.focus
+      ? remapFocusDistance(focusT, closeFocusAtZoom(zoomT, L), closeFocusAtZoom(v, L))
+      : 0;
+    select(target, v, aberrationT, "finite", (focus) => onZoomChange?.(v, focus));
+  }
 
-  const handleAberrationChange = useCallback(
-    (v: number) => {
-      onChangeActivity();
-      onAberrationChange?.(v);
-    },
-    [onChangeActivity, onAberrationChange],
-  );
+  function handleFocusChange(v: number, selection: "nearest" | "forward" | "backward" = "nearest") {
+    onChangeActivity();
+    select(v, zoomT, aberrationT, selection, (focus) => {
+      if (focus !== focusT) onFocusChange?.(focus);
+    });
+  }
+
+  function handleFocusKeyDown(event: KeyboardEvent<HTMLInputElement>) {
+    const { key } = event;
+    const forward = key === "ArrowRight" || key === "ArrowUp";
+    const backward = key === "ArrowLeft" || key === "ArrowDown";
+    if (!forward && !backward && key !== "Home" && key !== "End") return;
+    event.preventDefault();
+    const range = event.currentTarget.cloneNode(false) as HTMLInputElement;
+    if (forward || backward) {
+      // A range rounds its DOM value even when a URL or zoom remap supplies an off-grid coordinate.
+      // A number input preserves that coordinate and steps to the next native tick in the requested direction.
+      range.type = "number";
+      range.valueAsNumber = focusT;
+      if (forward) range.stepUp();
+      else range.stepDown();
+    } else range.value = key === "End" ? "1" : "0";
+    handleFocusChange(range.valueAsNumber, forward ? "forward" : backward || key === "End" ? "backward" : "nearest");
+  }
+
+  function handleAberrationChange(v: number) {
+    onChangeActivity();
+    select(focusT, zoomT, v, "finite", (focus) => {
+      if (focus === focusT) onAberrationChange?.(v);
+      else onAberrationChange?.(v, focus);
+    });
+  }
 
   const handleStopdownChange = useCallback(
     (v: number) => {
@@ -263,6 +279,12 @@ export default function DiagramControls({
   const signed = (value: number, digits: number, unit: string) =>
     `${value > 0 ? "+" : ""}${value.toFixed(digits)} ${unit}`;
   const shownAberrationT = patentPositions ? 0 : aberrationT;
+  const closeFocusLabel = useMemo(
+    () => (showSliders && groupMovementAvailability.focus ? formatDist(1, L, zoomT, shownAberrationT) : "Not modeled"),
+    [L, zoomT, shownAberrationT, groupMovementAvailability.focus, showSliders],
+  );
+  const focusReading =
+    showSliders && groupMovementAvailability.focus ? focusReadingAt(focusT, L, zoomT, shownAberrationT) : null;
   const aberrationValue = (() => {
     const min = Number(L.aberrationControl?.minLabel);
     const center = Number(L.aberrationControl?.centerLabel);
@@ -361,20 +383,26 @@ export default function DiagramControls({
           label="FOCUS"
           labelMinWidth={85}
           /* A lens with no modeled focus travel stays at infinity whatever focusT a shared URL carries. */
-          displayValue={groupMovementAvailability.focus ? formatDist(focusT, L, zoomT) : "\u221e"}
+          displayValue={focusReading ? formatFocusReading(focusReading) : "\u221e"}
           displayNote={
-            groupMovementAvailability.focus
-              ? marketedCloseFocusNote(L.source, focusT, focusLabelDistanceM(focusT, L, zoomT), zoomT)
-              : undefined
+            noFiniteFocus
+              ? "No finite focus at this setting."
+              : marketedCloseFocusNote(
+                  L.source,
+                  focusT,
+                  focusReading?.kind === "finite" ? focusReading.distanceM : null,
+                  zoomT,
+                )
           }
           displayValueStyle={{ whiteSpace: "nowrap" }}
           value={focusT}
           step={L.focusStep}
           onPointerDown={beginInteraction}
           onChange={handleFocusChange}
+          onKeyDown={handleFocusKeyDown}
           onPointerUp={handlePointerUp}
           minLabel={"\u221e"}
-          maxLabel={groupMovementAvailability.focus ? formatDist(1, L, zoomT) : "Not modeled"}
+          maxLabel={closeFocusLabel}
           disabled={!groupMovementAvailability.focus}
           disabledReason="No modeled focus travel data"
           flexBasis="260px"

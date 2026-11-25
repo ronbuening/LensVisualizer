@@ -4,7 +4,11 @@ import { cleanup, fireEvent, render, renderHook, screen, within } from "@testing
 import { afterEach, describe, expect, it, vi } from "vitest";
 import useStickySliders from "../../../src/comparison/useStickySliders.js";
 import SharedSlidersBar from "../../../src/comparison/SharedSlidersBar.js";
-import { buildSimplePositiveElementLens, buildVariableStopGapLens } from "../optics/testLensFixtures.js";
+import {
+  buildImageGapFocusLens,
+  buildSimplePositiveElementLens,
+  buildVariableStopGapLens,
+} from "../optics/testLensFixtures.js";
 import themes from "../../../src/utils/theme/themes.js";
 import type { RuntimeLens } from "../../../src/types/optics.js";
 import type { ParaxialWorkingFNumberResult } from "../../../src/optics/optics.js";
@@ -160,6 +164,13 @@ function renderSharedSliders({
 
 describe("SharedSlidersBar", () => {
   afterEach(() => cleanup());
+
+  it("retains the shared target when one lens focuses beyond infinity", () => {
+    const { callbacks } = renderSharedSliders({ LA: buildImageGapFocusLens([46, 50]) });
+    expect((screen.getByRole("slider", { name: "FOCUS" }) as HTMLInputElement).value).toBe("0.25");
+    expect(screen.getByText("A: Beyond ∞")).toBeTruthy();
+    expect(callbacks.onSharedFocusChange).not.toHaveBeenCalled();
+  });
 
   it("lets presets and keyboard changes pass a sticky limit while drags still stop", () => {
     const dispatch = vi.fn();

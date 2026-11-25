@@ -1,0 +1,1 @@
+Focus distances now follow the modeled lens at each focus and zoom setting, and the single-lens slider skips positions beyond infinity.

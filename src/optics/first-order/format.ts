@@ -4,11 +4,9 @@
  * Kept in the pure optics layer so analysis displays share unit conventions without importing React components.
  */
 
-import { focusDistanceAt } from "../state/focusDistance.js";
-import { modeledFocusDistanceAt } from "../state/fieldAdapters.js";
+import { focusReadingAt, type FocusReading } from "../state/focusReadout.js";
 import type { CanonicalLens } from "../prescription/canonical.js";
 import type { RuntimeLens } from "../../types/optics.js";
-import { FOCUS_INFINITY_CUTOFF } from "../state/focusDistance.js";
 import type { ParaxialWorkingFNumberResult, ParaxialWorkingFNumberUnavailableReason } from "./fNumber.js";
 
 /**
@@ -88,11 +86,12 @@ export function marketedApertureNote(
  * @param t - normalized focus slider, 0=infinity and 1=close focus
  * @param L - runtime lens object
  * @param zoomT - normalized zoom slider
- * @returns object-to-image distance in metres; `Infinity` at or beyond infinity; `null` when none is defined
+ * @returns object-to-image distance in metres, infinity, or null when no real distance is defined
  */
-export function focusLabelDistanceM(t: number, L: RuntimeLens, zoomT = 0): number | null {
-  if (t < FOCUS_INFINITY_CUTOFF) return Infinity;
-  return modeledFocusDistanceAt(t, L, zoomT) ?? focusDistanceAt(t, L, zoomT);
+export function focusLabelDistanceM(t: number, L: RuntimeLens, zoomT = 0, aberrationT = 0): number | null {
+  const reading = focusReadingAt(t, L, zoomT, aberrationT);
+  if (reading.kind === "infinity") return Infinity;
+  return reading.kind === "finite" ? reading.distanceM : null;
 }
 
 /**
@@ -154,9 +153,23 @@ export function marketedCloseFocusNote(
  * @param zoomT - normalized zoom slider
  * @returns compact distance string, infinity, or a dash when no distance is defined
  */
-export function formatDist(t: number, L: RuntimeLens, zoomT = 0): string {
-  const d = focusLabelDistanceM(t, L, zoomT);
-  return d === null ? "\u2014" : formatDistanceM(d);
+export function formatDist(t: number, L: RuntimeLens, zoomT = 0, aberrationT = 0): string {
+  return formatFocusReading(focusReadingAt(t, L, zoomT, aberrationT));
+}
+
+export function formatFocusReading(reading: FocusReading): string {
+  switch (reading.kind) {
+    case "finite":
+      return formatDistanceM(reading.distanceM);
+    case "infinity":
+      return "∞";
+    case "beyond-infinity":
+      return "Beyond ∞";
+    case "unavailable":
+      return "Unavailable";
+    case "unspecified":
+      return "—";
+  }
 }
 
 /**

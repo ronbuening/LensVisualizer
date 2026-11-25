@@ -2,8 +2,13 @@
 import { constructionFixtureData } from "../../optics/constructionFixtures.js";
 
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { cleanup, fireEvent, render, screen, within } from "@testing-library/react";
-import { build, buildSimplePositiveElementLens, buildVariableStopGapLens } from "../../optics/testLensFixtures.js";
+import { cleanup, fireEvent, render, screen, waitFor, within } from "@testing-library/react";
+import {
+  build,
+  buildImageGapFocusLens,
+  buildSimplePositiveElementLens,
+  buildVariableStopGapLens,
+} from "../../optics/testLensFixtures.js";
 import DiagramControls from "../../../../src/components/controls/DiagramControls.js";
 import { buildFixtureLens as buildLens } from "../../optics/constructionFixtures.js";
 import themes from "../../../../src/utils/theme/themes.js";
@@ -111,6 +116,93 @@ describe("DiagramControls", () => {
     expect(callbacks.onZoomChange.mock.calls[0][0]).toBe(1);
     expect(callbacks.onZoomChange.mock.calls[0][1]).toBeCloseTo(expected, 12);
   });
+  it("skips a virtual interval with the arrows and chooses the nearest usable pointer position", async () => {
+    const { callbacks } = renderControls(buildImageGapFocusLens([46, 50]));
+    const slider = screen.getByRole("slider", { name: "FOCUS" });
+    fireEvent.keyDown(slider, { key: "ArrowRight" });
+    await waitFor(() => expect(callbacks.onFocusChange).toHaveBeenLastCalledWith(0.388));
+    callbacks.onFocusChange.mockClear();
+    fireEvent.change(slider, { target: { value: "0.1" } });
+    // The controlled value is already the nearest stop (the detent).
+    await Promise.resolve();
+    expect(callbacks.onFocusChange).not.toHaveBeenCalled();
+    fireEvent.change(slider, { target: { value: "0.3" } });
+    await waitFor(() => expect(callbacks.onFocusChange).toHaveBeenLastCalledWith(0.388));
+  });
+
+  it("uses the last real stop for End on a lens with a virtual close end", async () => {
+    const { callbacks } = renderControls(buildImageGapFocusLens([50, 46]));
+    fireEvent.keyDown(screen.getByRole("slider", { name: "FOCUS" }), { key: "End" });
+    await waitFor(() => expect(callbacks.onFocusChange).toHaveBeenLastCalledWith(0.612));
+  });
+
+  it("steps from the saved optical coordinate when the range thumb rounds to a native tick", () => {
+    const { callbacks } = renderControls(buildImageGapFocusLens([46, 50]), { focusT: 0.389 });
+    fireEvent.keyDown(screen.getByRole("slider", { name: "FOCUS" }), { key: "ArrowLeft" });
+    expect(callbacks.onFocusChange).toHaveBeenCalledWith(0.388);
+  });
+
+  it("keeps a saved virtual coordinate when there is no usable step in the arrow direction", async () => {
+    const { callbacks } = renderControls(buildImageGapFocusLens([50, 46]), { focusT: 0.9 });
+    const slider = screen.getByRole("slider", { name: "FOCUS" });
+    fireEvent.keyDown(slider, { key: "End" });
+    await waitFor(() => expect(callbacks.onFocusChange).toHaveBeenCalledWith(0.612));
+    callbacks.onFocusChange.mockClear();
+    fireEvent.keyDown(slider, { key: "ArrowRight" });
+    expect(callbacks.onFocusChange).not.toHaveBeenCalled();
+    fireEvent.keyDown(slider, { key: "ArrowLeft" });
+    await waitFor(() => expect(callbacks.onFocusChange.mock.calls).toEqual([[0.612]]));
+  });
+
+  it("commits aberration and corrected finite focus together", async () => {
+    const L = build({
+      ...constructionFixtureData(buildImageGapFocusLens([46, 50])),
+      aberrationControl: {
+        label: "SOFT",
+        minLabel: "OFF",
+        maxLabel: "ON",
+        description: "Test gap",
+        var: { "2": [46, 45] },
+      },
+    });
+    const { callbacks } = renderControls(L, { focusT: 0.44 });
+    fireEvent.change(screen.getByRole("slider", { name: "SOFT" }), { target: { value: "1" } });
+    await waitFor(() => expect(callbacks.onAberrationChange).toHaveBeenLastCalledWith(1, 0.636));
+    expect(formatDist(0.44, L, 0, 1)).toBe("Beyond ∞");
+  });
+
+  it("keeps a newer zoom edit when an older virtual range is still resolving", async () => {
+    const L = buildVariableStopGapLens(
+      [
+        [1, 1],
+        [2, 2],
+        [3, 3],
+      ],
+      "zoom-skips-virtual",
+      undefined,
+      {
+        var: {
+          "2": [
+            [80, 82],
+            [45, 46],
+            [49, 52],
+          ],
+        },
+      },
+    );
+    const { callbacks } = renderControls(L, { focusT: 0.5 });
+    const slider = screen.getByRole("slider", { name: "ZOOM" });
+    fireEvent.change(slider, { target: { value: "0.5" } });
+    fireEvent.change(slider, { target: { value: "1" } });
+    await waitFor(() => expect(callbacks.onZoomChange).toHaveBeenLastCalledWith(1, 0.5));
+    fireEvent.change(slider, { target: { value: "0.5" } });
+    await waitFor(() => expect(callbacks.onZoomChange).toHaveBeenLastCalledWith(0.5, 0));
+    expect(callbacks.onZoomChange.mock.calls).toEqual([
+      [1, 0.5],
+      [0.5, 0],
+    ]);
+  });
+
   it.each([1.03, 1.45, 1.85])("preserves patent aperture precision for f/%s", (nominalFno) => {
     const L = buildLens({ ...constructionFixtureData(LENS_CATALOG["sonnar-50f15"]), nominalFno });
     renderControls(L);

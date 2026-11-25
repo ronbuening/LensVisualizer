@@ -18,6 +18,7 @@ interface FocusBreathingTabProps {
   t: Theme;
   focusT: number;
   zoomT: number;
+  aberrationT?: number;
   dynamicEFL: number;
 }
 
@@ -210,7 +211,14 @@ function FocusBreathingChart({
   );
 }
 
-export default function FocusBreathingTab({ L, t, focusT, zoomT, dynamicEFL }: FocusBreathingTabProps) {
+export default function FocusBreathingTab({
+  L,
+  t,
+  focusT,
+  zoomT,
+  aberrationT = 0,
+  dynamicEFL,
+}: FocusBreathingTabProps) {
   const preparedState = usePreparedAnalysisState({ L, focusT, zoomT, aberrationT: 0 });
   const request = useMemo(
     () =>
@@ -296,7 +304,7 @@ export default function FocusBreathingTab({ L, t, focusT, zoomT, dynamicEFL }: F
               transition: "color 0.3s",
             }}
           >
-            {formatDist(focusT, L, zoomT)}
+            {formatDist(focusT, L, zoomT, aberrationT)}
           </span>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: 8 }}>

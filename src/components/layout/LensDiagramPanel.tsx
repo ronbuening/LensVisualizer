@@ -555,6 +555,7 @@ export default function LensDiagramPanel({
                 compact={compact}
                 isWide={isWide}
                 focusT={focusT}
+                aberrationT={aberrationT}
                 zoomT={zoomT}
                 fNumber={fNumber}
                 showOnAxis={showOnAxis}

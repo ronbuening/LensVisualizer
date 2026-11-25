@@ -55,7 +55,7 @@ interface DiagramControlPanelProps {
   apertureExpanded: boolean;
   legendExpanded: boolean;
   onZoomChange: (v: number, focusT?: number) => void;
-  onAberrationChange: (v: number) => void;
+  onAberrationChange: (v: number, focusT?: number) => void;
   onFocusChange: (v: number) => void;
   onStopdownChange: (v: number) => void;
   onShiftChange: (v: number) => void;

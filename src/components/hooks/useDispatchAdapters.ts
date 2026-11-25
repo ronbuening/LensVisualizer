@@ -31,7 +31,7 @@ import type { ImageSurfaceSection } from "../../types/optics.js";
 export interface DispatchAdapters {
   onFocusChange: (v: number) => void;
   onZoomChange: (v: number, focusT?: number) => void;
-  onAberrationChange: (v: number) => void;
+  onAberrationChange: (v: number, focusT?: number) => void;
   onStopdownChange: (v: number) => void;
   onShiftChange: (v: number) => void;
   onTiltChange: (v: number) => void;
@@ -90,7 +90,8 @@ export default function useDispatchAdapters(): DispatchAdapters {
       onFocusChange: (v: number) => dispatch({ type: SET_FOCUS_T, value: v }),
       onZoomChange: (v: number, focusT?: number) =>
         dispatch({ type: SET_ZOOM_T, value: v, ...(focusT === undefined ? {} : { focusT }) }),
-      onAberrationChange: (v: number) => dispatch({ type: SET_ABERRATION_T, value: v }),
+      onAberrationChange: (v: number, focusT?: number) =>
+        dispatch({ type: SET_ABERRATION_T, value: v, ...(focusT === undefined ? {} : { focusT }) }),
       onStopdownChange: (v: number) => dispatch({ type: SET_STOPDOWN_T, value: v }),
       onShiftChange: (v: number) => dispatch({ type: SET_SHIFT_MM, value: v }),
       onTiltChange: (v: number) => dispatch({ type: SET_TILT_DEG, value: v }),

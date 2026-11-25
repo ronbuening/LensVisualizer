@@ -6,7 +6,8 @@ import { eflAtPreparedState } from "../../first-order/focusBreathing.js";
 import { prepareState } from "../../state/preparedGeometry.js";
 import { runtimeView } from "../../prescription/runtimeView.js";
 import { eflAtZoom } from "../../state/stationTables.js";
-import { formatDist } from "../../first-order/format.js";
+import { focusReadingForState } from "../../state/focusReadout.js";
+import { formatFocusReading } from "../../first-order/format.js";
 import type { AnalysisRequest } from "../request.js";
 
 /**
@@ -42,13 +43,14 @@ export function computeFocusBreathingSeries(request: AnalysisRequest): Breathing
   return [...points]
     .sort((a, b) => a - b)
     .map((focusT) => {
-      const efl = eflAtPreparedState(prepareState(lens, focusT, zoomT, 0));
+      const state = prepareState(lens, focusT, zoomT, 0);
+      const efl = eflAtPreparedState(state);
       const breathingPercent = Math.abs(infinityEFL) > 1e-9 ? (100 * (efl - infinityEFL)) / infinityEFL : 0;
       return {
         focusT,
         efl,
         breathingPercent,
-        distanceLabel: formatDist(focusT, L, zoomT),
+        distanceLabel: formatFocusReading(focusReadingForState(state)),
       };
     });
 }
