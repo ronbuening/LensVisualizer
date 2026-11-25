@@ -2137,4 +2137,13 @@ export const HOYA_GLASS_ENTRIES: readonly GlassEntry[] = [
     source:
       "HOYA Zemax OpticStudio DATA 2026-07-07 (HOYA20260707_include_obsolete.agf), discontinued ZNC1 zinc crown row; vendor formula-1 polynomial.",
   },
+  {
+    name: "MP-LAC14-80",
+    vendor: "Hoya",
+    polynomial: [2.8306733, -0.014855863, 0.018103472, 0.00053539971, -3.1929778e-5, 2.0340983e-6],
+    nd: 1.6976,
+    vd: 55.51,
+    source:
+      "HOYA Zemax OpticStudio DATA 2026-07-07 (HOYA20260707.agf), MP-LAC14-80 precision-moulding preform row; vendor formula-1 polynomial. Added as the LaK14-class row nearest a two-decimal patent index (1.70 / 55.5); code6 is omitted.",
+  },
 ];
