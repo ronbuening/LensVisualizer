@@ -1,72 +1,99 @@
+# NIKON IX-NIKKOR 20-60mm f/3.5-5.6
+
 ## Patent Reference and Design Identification
 
-**Patent:** JPH08334694A, Example 1 / Table 1 / Fig. 1; family JP3528946B2 and US5793536A.
-**Inventor:** Haruo Sato.
-**Applicant:** Nikon Corporation.
-**Priority:** 1995-06-05.
-**Published:** 1996.
+**Patent:** JP H08-334694 A, _Zoom lens_\
+**Inventors:** Haruo Sato\
+**Assignee:** Nikon Corporation\
+**Filed:** 5 June 1995\
+**Published:** 17 December 1996\
+**Example details:** Table 1 gives the prescription and zoom spacings. Figure 1 shows the lens motion. Figures 2–4 give the apertures and fields at infinity.
 
-This is a private, production-associated patent reconstruction for the IX-Nikkor 20–60mm f/3.5–5.6, not a factory-exact prescription. Nikon's designer account [NIKKOR Tale 75](https://imaging.nikon.com/imaging/information/story/0075/) and its actual production section support the association. The 1998 barrel/coating revision is not a separate optical prescription here.
+Sato identifies a 1995 Japanese filing in his account of the IX-Nikkor. His production cross-section agrees with Example 1 in several distinctive details. The first negative lens carries an aspherical resin layer, the two rear doublets face one another, the iris sits just ahead of the rear group, and a second stop moves behind it. Nikon lists nine lenses in seven groups and identifies the front group as the focusing group. Neither the patent nor Nikon identifies an ED element. [Nikon’s designer account](https://imaging.nikon.com/imaging/information/story/0075/) · [Nikon’s Figure 1](https://imaging.nikon.com/imaging/information/story/0075/img/pic_01.jpg) · [Pronea S brochure, p. 3](https://www.submin.com/aps/manuals/nikon/pdf/pronea_s.pdf)
 
-The registered production overlay uses one uniform scale and translation for both groups, without warping. Independently replaying all 17 patent contours (2,890 points) gives maximum quantized drawing discrepancy 0.00910 px. The parent researcher's separately measured 13 axial landmarks give 0.66 px RMS for Example 1 versus 1.96 px for Example 2; that landmark measurement was not independently repeated here. Local custody is the complete Japanese primary HTML, Nikon production JPEG and transferred registered overlay. No local custody of an original Japanese patent PDF is asserted. Registration sources and exact hashes remain in the checkpoint.
-
-**Status:** numerical verification completed as described below; final qualification is HOLD because the required fresh-profile desktop/mobile browser gate could not run under the managed command runner's Unix-socket restriction. This checkpoint is not admitted, delivered, or published.
+Example 2 has a similar layout. On Nikon’s drawing, the axial positions of thirteen corresponding features differ from Example 1 by 0.24 pixel RMS, compared with 1.71 pixels for Example 2. Example 3 places its iris between two lenses in the rear group. The comparison strongly favors Example 1, although Nikon does not identify a numbered example or publish factory dimensions. The original lens appeared in September 1996. Nikon says the 1998 barrel revision retained its optics. The IX-Nikkor 30–60mm f/4–5.6 is a separate six-element design. [Patent, Figures 1, 5 and 9](https://patents.google.com/patent/JPH08334694A/en) · [Nikon’s account](https://imaging.nikon.com/imaging/information/story/0075/) · [Pronea S brochure](https://www.submin.com/aps/manuals/nikon/pdf/pronea_s.pdf)
 
 ## Optical Architecture
 
-The source has nine glass lenses in seven groups, with a separate bonded resin layer on the first lens. Ten native material runs therefore do not mean ten physical lenses. The rear group has two cemented doublets. The explicit 0.030 mm resin layer and all source shared glass interfaces remain distinct.
+The seven air-separated components form two moving groups. The negative front group G1 spreads the beam at the wide end. The positive rear group G2 forms the image. As the lens zooms toward telephoto, G2 advances toward the subject and its distance to G1 decreases. Relative to the film, G1 moves imageward first, then reverses. The iris travels with G2, 0.486 mm ahead of its first glass surface. Behind G2, a separate flare stop intercepts oblique rays that would contribute to upper coma. Its vertex coincides with the rear glass vertex at wide angle and stands 11.9856 mm behind it at telephoto. [Patent, ¶¶0049–0053 and Figure 1](https://patents.google.com/patent/JPH08334694A/en)
 
-One scale of 20 mm per normalized source unit gives source labels 20 / 34 / 56.54 mm and preserves the published 2.827 zoom ratio. Computed EFLs are 19.995137 / 33.957868 / 56.428665 mm. Marketing 20–60mm is documentary; the prescription was not stretched or fitted to 60mm.
+Table 1 normalizes the wide focal length to 1. A single scale of 20 mm per unit converts all lengths. It gives nominal focal lengths of 20, 34 and 56.54 mm. The d-line effective focal lengths from the tabulated surfaces are 19.995, 33.958 and 56.429 mm. The printed zoom ratio is 2.827×, compared with 3× from the barrel markings. The corresponding apertures in Figures 2–4 are f/3.59, f/4.45 and f/5.67. Nikon sold the design as a 20–60mm f/3.5–5.6 and specified a picture angle of 82° to 32°10′ on APS film. [Patent, Table 1 and Figures 2–4](https://patents.google.com/patent/JPH08334694A/en) · [Nikon’s production specifications](https://www.submin.com/aps/manuals/nikon/pdf/pronea_s.pdf)
 
-The original three stations retain all their literal geometry and image planes. Sixty-two additional unpublished optical interpolation samples yield one 65-station native zoom file. They are estimated optical controls, not a factory cam. Simple three-point gap interpolation was explicitly falsified: its maximum between-station paraxial residual is 2.69706 mm. The separately derived denser interpolation leaves at most 3.366 µm additional paraxial residual beyond interpolation of the original source residuals, in a 2,001-position numerical audit.
+## Element-by-Element Analysis
 
-## Element-by-Element Source Materials
+Focal lengths below describe each material in air. The combined focal lengths of the bonded components include refraction at their shared interfaces.
 
-These are literal source refractive indices and Abbe numbers, not identified commercial glass products or independently validated broadband dispersion curves.
+### L11 — Hybrid negative meniscus
 
-| Material run | Source n_d | ν_d | Interface note |
-|---|---:|---:|---|
-| L11 glass body | 1.796681 | 45.37 | First glass component |
-| L11 bonded resin | 1.506250 | 55.63 | Exact 0.030 mm; S3 aspheric exit |
-| L12 | 1.716999 | 48.04 | Separate front-group glass |
-| L13 | 1.795040 | 28.56 | Separate front-group glass |
-| L21 | 1.603001 | 65.42 | Rear group, after source aperture |
-| L22 | 1.603001 | 65.42 | Separate rear component |
-| L23 | 1.516800 | 64.10 | First member of cemented pair |
-| L24 | 1.834000 | 37.17 | Shared cemented interface retained |
-| L25 | 1.772789 | 49.45 | First member of final cemented pair |
-| L26 | 1.518230 | 58.90 | Shared cemented interface retained |
+The glass substrate has nd = 1.796681, νd = 45.37 and f = −25.07 mm. Its bonded resin has nd = 1.506250, νd = 55.63 and f = −160.12 mm. Both materials are unmatched. Together they form one lens with f = −21.70 mm. Its strongly concave rear surface supplies much of the front group’s negative power. The resin allows the curvature to vary toward the rim.
+
+### L12 — Biconcave negative
+
+L12 has nd = 1.716999, νd = 48.04 and f = −59.53 mm. Hikari J-LAF3 is a catalog counterpart. Its object-side surface is shallow. Most of its negative power comes from the more strongly curved rear face.
+
+### L13 — Positive meniscus
+
+L13 has nd = 1.795040, νd = 28.56 and f = +37.87 mm. Hikari J-LAFH3 is a catalog counterpart. Its positive power partly offsets the two negative elements in G1. It is also the most dispersive glass in that group.
+
+### L21 — Positive meniscus
+
+L21 has nd = 1.603001, νd = 65.42 and f = +51.61 mm. Ohara S-PHM53 is a catalog counterpart. This first positive lens in G2 receives the beam immediately behind the iris.
+
+### L22 — Positive meniscus
+
+L22 has the same nd = 1.603001 and νd = 65.42 as L21, also represented by Ohara S-PHM53. Its more strongly curved front surface gives it a shorter focal length of +41.45 mm. It adds converging power just before the doublets. Splitting the power here helps control spherical aberration and coma. [Nikon’s designer account](https://imaging.nikon.com/imaging/information/story/0075/)
+
+### L23 — Cemented negative doublet
+
+The biconvex front member has nd = 1.516800, νd = 64.10 and f = +24.81 mm, with Hikari J-BK7A as its catalog counterpart. The biconcave member has nd = 1.834000, νd = 37.17 and f = −11.82 mm, close to Hikari J-LASF010. The pair has f = −29.82 mm. Its strongly concave rear face opens onto the air gap between the doublets.
+
+### L24 — Cemented positive doublet
+
+The unmatched negative meniscus has nd = 1.772789, νd = 49.45 and f = −25.09 mm. The biconvex rear member has nd = 1.518230, νd = 58.90 and f = +17.82 mm, close to Ohara S-NSL3. The pair has f = +56.95 mm. Sato describes the adjacent negative members of L23 and L24 as a split central lens in a triplet-like arrangement. This gives the designer more control over astigmatism and field curvature while reducing sensitivity to decentering. [Nikon’s designer account](https://imaging.nikon.com/imaging/information/story/0075/)
 
 ## Glass Identification and Selection
 
-Only the printed d-line indices and Abbe values are asserted. No supplier name, chemical resin identity, coatings, transmission or color correction has been inferred. Quantitative verification is monochromatic helium d, 587.5618 nm.
+Table 1 gives helium d-line indices and Abbe numbers for all ten materials, including the resin. The Hikari and Ohara labels supply dispersion curves consistent with seven of those pairs. The same Ohara curve applies to both L21 and L22. The patent leaves the suppliers, resin chemistry and glass melts unspecified. The model therefore keeps the printed index and dispersion even when the material has a catalog counterpart. [Patent, ¶¶0050–0052](https://patents.google.com/patent/JPH08334694A/en)
 
-## Focus and Zoom Mechanism
+The differences below are catalog minus patent. The first doublet combines a lower-index, less dispersive positive glass with a higher-index, more dispersive negative glass. The final doublet uses the opposite order.
 
-Only infinity is represented. The repeated infinity columns do not establish finite focus. Source image coordinates from the first vertex are 99.0534 / 93.5224 / 103.9850 mm. They remain respectively 11.319 / 22.575 / 50.004 µm behind the Gaussian focus, without detector compensation.
+| Component               | Catalog counterpart |       Δnd |    Δνd |
+| ----------------------- | ------------------- | --------: | -----: |
+| L11 substrate and resin | Both unmatched      |         — |      — |
+| L12                     | Hikari J-LAF3       | +0.000001 | −0.060 |
+| L13                     | Hikari J-LAFH3      |         0 | +0.132 |
+| L21 and L22             | Ohara S-PHM53       |         0 | +0.024 |
+| L23a                    | Hikari J-BK7A       |         0 | +0.040 |
+| L23b                    | Hikari J-LASF010    |         0 | +0.010 |
+| L24a                    | Unmatched           |         — |      — |
+| L24b                    | Ohara S-NSL3        | −0.000001 | +0.002 |
 
-Source S8 is the actual iris, located exactly 0.486 mm before S9. The distinct source S19 flare stopper is unsupported clipping geometry and is not represented as the aperture. Its two original air segments are summed exactly into rear air 31.7724 / 44.8680 / 65.9526 mm. No source flare-stop loss, mechanical baffle behavior or full-field vignetting is claimed.
+## Focus Mechanism
 
-Endpoint source controls are f/3.59 and f/5.67. The middle f/4.63 and all interior aperture schedules are estimates. Numerically scoped verification uses f/8 control, whose physical source-station iris radii are 3.142520 / 4.065419 / 5.550678 mm; no factory iris dimensions are asserted.
+For close focus, Nikon moves G1 toward the subject at every focal length. The production minimum is 0.35 m. Table 1 gives zoom spacings at infinity only, with no near-focus travel or reproduction ratio. The model therefore shows infinity focus. Nikon’s brochure gives no close-up magnification for comparison. It specifies a minimum aperture of f/22. Roland Vink’s lens catalog lists seven diaphragm blades. [Nikon’s designer account](https://imaging.nikon.com/imaging/information/story/0075/) · [Pronea S brochure](https://www.submin.com/aps/manuals/nikon/pdf/pronea_s.pdf) · [Vink’s Nikon lens specifications](https://johnmeister.com/tech/NIKON/www.photosynthesis.co.nz/nikon/lenses.html)
+
+Between the three printed zoom positions, the model calculates the separation of G1 and G2 for the intermediate focal length, interpolates the distance from G2 to the flare stop, then places the groups relative to the fixed film plane for paraxial infinity focus. The printed spacings put the film 0.0113, 0.0226 and 0.0500 mm behind paraxial focus. Those offsets are retained. The intermediate positions describe optical motion between the drawings. The actual zoom cam is unpublished.
 
 ## Aspherical Surfaces
 
-Only source S3 has the printed asphere. The source radical uses kappa directly; kappa 0.1343 therefore maps to standard native K = −0.8657. C2 is exactly zero. C4 +0.159130, C6 +0.275100, C8 −0.382470 and C10 +0.167360 are scaled by 20^(1−power). The literal radius is unchanged. Independent sag and slope agree with the compiled native profile; wrong-conic and dropped-A10 controls measurably change the surface. No coefficient was fitted or discarded.
+Surface 3A is the exposed rear face of L11’s resin layer, which is 0.030 mm thick on axis. The patent uses κ = 0.1343, equivalent to K = κ − 1 = −0.8657 in the usual conic equation. The quadratic term is zero. With the radius expressed in millimetres, each coefficient of order n is the tabulated coefficient divided by the length scale to the power n − 1.
 
-## Clear Apertures and Scope
+| Term |               Coefficient |
+| ---- | ------------------------: |
+| A₄   |     +1.989125 × 10⁻⁵ mm⁻³ |
+| A₆   |     +8.596875 × 10⁻⁸ mm⁻⁵ |
+| A₈   | −2.988046875 × 10⁻¹⁰ mm⁻⁷ |
+| A₁₀  |     +3.26875 × 10⁻¹³ mm⁻⁹ |
 
-Full factory rim geometry has not been established. Drawing-extents estimates produce a negative resin edge thickness at radius 13.1469 mm. A 13 mm cap gives positive minimum resin thickness 0.018825 mm. The native default air-gap guard also rejects the initial outer estimate at S3–S4. That original trial remains on HOLD outside this checkpoint's importable model.
+The higher-order terms change the profile away from the axis while preserving the vertex curvature. The highly curved resin boundary and the neighboring lens leave less usable clear radius than their outlines suggest. At their full drawn extent the resin faces would cross. [Patent, Table 1 and Figure 1](https://patents.google.com/patent/JPH08334694A/en)
 
-The present explicitly limited inner-clear-aperture alternative uses resin-face caps 13 mm, S4 front cap 12.5 mm, S16 cap 6.7 mm and documented drawing estimates elsewhere. It changes no printed optical radius, thickness, glass, stop position or source detector. It uses no trim or override. Dense same-pupil comparison at all three source stations, source endpoint/estimated middle apertures and f/8 through ±3° showed zero additional admitted-ray losses against the original drawing-cap estimates.
+## Field Coverage
 
-The model's native field is restricted to ±3°. Wider independent f/8 bench samples clear the selected pupils through 20° at each source station; larger fields include clips or failed paths. Those wider samples have no native/UI/MTF qualification, and no full APS image coverage is asserted.
+The chief ray reaches the 17.255 mm APS film corner at half-fields of 42.11°, 26.97° and 16.92°. The angles on the patent’s aberration plots, 40.98°, 26.08° and 16.31°, correspond to about 16.60 mm image height. The estimated clear apertures pass the axial beam at all three positions. They vignette the oblique bundle, giving calculated corner illumination of about 40%, 61% and 64% relative to the center. These figures depend on inferred clear radii, including the 7.35 mm opening radius of the flare stop.
 
-## Verification and Remaining Gate
+## Sources and References
 
-129 native geometry states, including all 65 authored nodes and their midpoints, have zero render trimming and positive sampled common-radius separations. At 17 zoom positions, 385 independent aimed rays at each of −3°, 0° and +3° all reach the literal image and agree with native intersections to 9.76e−12 mm. The three source anchors separately use 1,441 physical and aimed pupil samples per case with classified iris losses, no unexplained failures and exact source geometry assertions.
-
-At five zoom positions and f/8, native geometric and scalar sheared-pupil diffraction MTF converge over 5–40 lp/mm at axis, approximately 1.5°, and 3°, with zero unknown flux and zero applied focus shift. These are monochromatic simulations, not measured factory performance. Independent exact-Snell geometric Fourier MTF at 64/96 pupil-grid cells agrees with native geometric MTF within 0.00364; the grid change is below 0.00364. Diffraction is identified separately and is not obtained by multiplying the independent geometric curves.
-
-All 492 relevant existing tests pass. Fresh-process replay reproduces seven deterministic outputs byte-for-byte. The current main, controlling specs and nine transferred source files remain unchanged. Dedup covers 1,209 current-main bodies and a fully read 151-family staged/delivered inventory plus documented later additions; unavailable historical archives were not newly byte-reread.
-
-Fresh isolated Chromium launch failed at its process-singleton Unix socket under the managed runner. No desktop/mobile screenshot, UI import, slider, autosave or browser reload success is claimed. The task's own Vite server has been stopped. Final production qualification must remain HOLD until that exact browser gate is completed with the same model bytes.
+- Haruo Sato, zoom lens, Example 1. [JP H08-334694 A](https://patents.google.com/patent/JPH08334694A/en)
+- Nikon, _NIKKOR — The Thousand and One Nights_, Tale 75. [Designer’s account](https://imaging.nikon.com/imaging/information/story/0075/) · [Production cross-section](https://imaging.nikon.com/imaging/information/story/0075/img/pic_01.jpg)
+- Nikon, _Pronea S_, IX-Nikkor specifications on page 3. [Product brochure](https://www.submin.com/aps/manuals/nikon/pdf/pronea_s.pdf)
+- Roland Vink, _Nikon Lens Specifications_, IX 20–60/3.5–5.6. [Lens catalog](https://johnmeister.com/tech/NIKON/www.photosynthesis.co.nz/nikon/lenses.html)
