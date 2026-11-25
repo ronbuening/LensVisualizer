@@ -1,3 +1,148 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
-const DATA = {"schema":2,"key":"nikon-ai-nikkor-50mm-f18-1978-long-barrel","maker":"Nikon","name":"NIKON Ai Nikkor 50mm f/1.8 (1978 long barrel)","visible":false,"subtitle":"Matsui US4139265 Example1; factory51.6 scale; infinityonly, iris/rims estimated","source":{"patentNumber":"US 4139265 A","example":{"label":"Example 1","id":"1"},"authors":[],"assignees":[],"sdSource":"heuristic"},"catalog":{"lensMounts":["nikon-f"],"imageFormat":"135-full-frame","elementCount":6,"groupCount":5,"focalLengthMm":{"marketing":50,"design":51.6},"fNumber":{"marketing":1.8,"design":1.8},"closeFocusM":{"marketing":0.45},"specs":["OriginalJanuary1978 Ai longbarrel,220g,37mmbarrel; notlaterNakamuraF1.8S","Parent signed/p59productionwitness; no local originalpixels","Literal source scale0.516 fromfactoryactual51.6; no normalizationtomarked50","Both0.194normalizedairs remain0.100104mm; R8cementedinterface retained","Derived infinityplane; OEM opticalfigures and rounding residuals preserved separately","Iris incentralair and allclearcaps estimated; no baffles/factoryilluminationclaim","Projection bound is calculated135formatdiagonal, not a suppliedsourcefield","Infinityonly; marked0.45m not modeled, no finitecam, broadbandorUIqualification"]},"elements":[{"id":1,"name":"E1","label":"Element1","type":"Lens","nd":1.79631,"vd":40.8,"indexReference":"d"},{"id":2,"name":"E2","label":"Element2","type":"Lens","nd":1.78797,"vd":47.5,"indexReference":"d"},{"id":3,"name":"E3","label":"Element3","type":"Lens","nd":1.74,"vd":28.2,"indexReference":"d"},{"id":4,"name":"E4","label":"Element4","type":"Lens","nd":1.74,"vd":28.2,"indexReference":"d"},{"id":5,"name":"E5","label":"Element5","type":"Lens","nd":1.74443,"vd":49.4,"indexReference":"d"},{"id":6,"name":"E6","label":"Element6","type":"Lens","nd":1.79631,"vd":40.8,"indexReference":"d"}],"surfaces":[{"label":"1","R":40.999812,"d":4.60014,"sd":16.5,"medium":1},{"label":"2","R":197.899932,"d":0.10010400000000001,"sd":16.5},{"label":"3","R":21.400068,"d":4.7002440000000005,"sd":14,"medium":2},{"label":"4","R":32.599848,"d":1.000008,"sd":12.2},{"label":"5","R":50.999892,"d":1.1001120000000002,"sd":12.2,"medium":3},{"label":"6","R":16.19982,"d":6.550104000000001,"sd":11.8},{"label":"STO","R":"flat","d":6.550104000000001},{"label":"7","R":-16.500132,"d":1.2998040000000002,"sd":11.8,"medium":4},{"label":"8","R":-99.999768,"d":5.39994,"sd":13.5,"medium":5},{"label":"9","R":-20.64,"d":0.10010400000000001,"sd":13.5},{"label":"10","R":204.29988,"d":3.449976,"sd":14,"medium":6},{"label":"11","R":-49.6521,"d":37.60473052084318,"sd":14}],"aperture":{"nominalFNumber":1.8,"fStops":[1.8,2.8,4,5.6,8,11,16,22],"maxFNumber":22},"focus":{"closeFocusM":1000000000000000.0,"description":"Static literal infinity only. No factory0.45m motion or finitewholecellstate assumed."},"projection":{"kind":"rectilinear","fullFieldDeg":45.4910825694586,"maxTraceFieldDeg":22.7455412847293},"rays":{"offAxisFieldFrac":0.21982330239627473},"layout":{"yScFill":0.65},"doublets":[{"text":"Source cemented rear pair","fromSurface":"7","toSurface":"9"}]} satisfies LensDataV2Input;
-export default DATA;
+
+/**
+ * Sei Matsui's US 4,139,265, Example 1. Nikon's dealer drawing gives a focal
+ * length of 51.6 mm for the original 1978 AI 50mm f/1.8. Multiplying every
+ * printed length by 0.516 takes the 100 mm prescription to this scale.
+ * The table gives spherical radii, axial spacings and d-line glass data.
+ * Figure 1 places the iris about 57% of the way from r6 to r7. Its clear
+ * radius follows from f/1.8. The glass rims follow the figure, with r4 and
+ * r5 limited by their air gap and r6 rounded up to clear the axial beam.
+ * The film lies at the paraxial back focus. The patent gives only infinity.
+ */
+const LENS_DATA = {
+  schema: 2,
+  key: "nikon-ai-nikkor-50mm-f18",
+  name: "NIKON AI NIKKOR 50mm f/1.8",
+  maker: "Nikon",
+  visible: true,
+  subtitle: "US 4,139,265, Example 1 — Nippon Kogaku / Matsui (1978 long-barrel AI)",
+  source: {
+    patentNumber: "US 4,139,265",
+    example: { label: "Example 1", id: "1" },
+    patentYear: 1979,
+    authors: ["Sei Matsui"],
+    assignees: ["Nippon Kogaku K.K."],
+  },
+  catalog: {
+    lensMounts: ["nikon-f"],
+    imageFormat: "135-full-frame",
+    elementCount: 6,
+    groupCount: 5,
+    focalLengthMm: { marketing: 50, design: 51.6 },
+    fNumber: { marketing: 1.8, design: 1.8 },
+    closeFocusM: { marketing: 0.45 },
+    specs: ["6 ELEMENTS / 5 GROUPS", "ALL SPHERICAL", "DESIGN f = 51.60 mm"],
+  },
+  elements: [
+    {
+      id: 1,
+      name: "L1",
+      label: "Element 1",
+      type: "Positive Meniscus",
+      nd: 1.79631,
+      vd: 40.8,
+      indexReference: "d",
+      focalLengthMm: 64.11,
+      glass: "Unmatched (nd 1.79631 / νd 40.8)",
+      role: "Front positive meniscus that converges the incoming light.",
+    },
+    {
+      id: 2,
+      name: "L2",
+      label: "Element 2",
+      type: "Positive Meniscus",
+      nd: 1.78797,
+      vd: 47.5,
+      indexReference: "d",
+      focalLengthMm: 66.71,
+      glass: "TAF4 (HOYA catalog equivalent)",
+      role: "Positive member of the air-spaced pair ahead of the diaphragm.",
+    },
+    {
+      id: 3,
+      name: "L3",
+      label: "Element 3",
+      type: "Negative Meniscus",
+      nd: 1.74,
+      vd: 28.2,
+      indexReference: "d",
+      focalLengthMm: -32.52,
+      glass: "FD3 (HOYA catalog equivalent)",
+      role: "Negative meniscus with its concave rear face toward the diaphragm.",
+    },
+    {
+      id: 4,
+      name: "L4",
+      label: "Element 4",
+      type: "Negative Meniscus",
+      nd: 1.74,
+      vd: 28.2,
+      indexReference: "d",
+      focalLengthMm: -26.88,
+      glass: "FD3 (HOYA catalog equivalent)",
+      role: "Negative member of the cemented doublet, with its concave face toward the diaphragm.",
+      cemented: "C1",
+    },
+    {
+      id: 5,
+      name: "L5",
+      label: "Element 5",
+      type: "Positive Meniscus",
+      nd: 1.74443,
+      vd: 49.4,
+      indexReference: "d",
+      focalLengthMm: 33.95,
+      glass: "Unmatched (nd 1.74443 / νd 49.4)",
+      role: "Less dispersive positive member of the rear doublet, cemented to L4.",
+      cemented: "C1",
+    },
+    {
+      id: 6,
+      name: "L6",
+      label: "Element 6",
+      type: "Biconvex Positive",
+      nd: 1.79631,
+      vd: 40.8,
+      indexReference: "d",
+      focalLengthMm: 50.47,
+      glass: "Unmatched (nd 1.79631 / νd 40.8)",
+      role: "Rear positive singlet with its stronger surface facing the film.",
+    },
+  ],
+  surfaces: [
+    { label: "1", R: 40.999812, d: 4.60014, sd: 18, medium: 1 },
+    { label: "2", R: 197.899932, d: 0.100104, sd: 18 },
+    { label: "3", R: 21.400068, d: 4.700244, sd: 14, medium: 2 },
+    { label: "4", R: 32.599848, d: 1.000008, sd: 12.2 },
+    { label: "5", R: 50.999892, d: 1.100112, sd: 12.2, medium: 3 },
+    { label: "6", R: 16.19982, d: 7.467119, sd: 10.5 },
+    { label: "STO", R: "flat", d: 5.633089 },
+    { label: "7", R: -16.500132, d: 1.299804, sd: 10.4, medium: 4 },
+    { label: "8", R: -99.999768, d: 5.39994, sd: 12.4, medium: 5 },
+    { label: "9", R: -20.64, d: 0.100104, sd: 12.4 },
+    { label: "10", R: 204.29988, d: 3.449976, sd: 13.5, medium: 6 },
+    { label: "11", R: -49.6521, d: 37.60473052084318, sd: 13.5 },
+  ],
+  aperture: {
+    nominalFNumber: 1.8,
+    fStops: [1.8, 2.8, 4, 5.6, 8, 11, 16, 22],
+    maxFNumber: 22,
+    blades: 7,
+    bladeRoundedness: 0,
+  },
+  focus: {
+    closeFocusM: 1e15,
+    description: "Infinity focus only. The patent gives one set of spacings. The manual-focus lens reaches 0.45 m.",
+  },
+  groups: [
+    { text: "L2–L3", fromSurface: "3", toSurface: "6" },
+    { text: "L4–L5", fromSurface: "7", toSurface: "9" },
+  ],
+  doublets: [{ text: "C1", fromSurface: "7", toSurface: "9" }],
+  layout: {
+    yScFill: 0.65,
+  },
+} satisfies LensDataV2Input;
+
+export default LENS_DATA;
