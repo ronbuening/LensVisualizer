@@ -1,70 +1,75 @@
-# Canon FD300mm f/5.6 S.C.1973 — scoped simulation-only native checkpoint
+# CANON FD 300mm f/5.6 S.C.
 
-**PASS for the declared estimated-iris/rim model at a separately derived Gaussian infinity plane. The nominal source-summary plane remains a reference, not a validated factory infinity datum. No factory-exact Rx, clear diameter, iris location, illumination, or app/browser QA claim.** This is one production-associated Example3 model; the alternative snapshots are diagnostic evidence, not additional lenses or published/focus states.
+## Patent Reference and Design Identification
 
+**Patent:** JP S47-8749 B, _Short, high-performance telephoto lens_ (全長の短い高写力望遠レンズ)\
+**Inventors:** Michiyoshi Suwa (諏訪道美)\
+**Assignee:** Canon Inc.\
+**Filed:** 1 October 1968, application Shō 43-71246\
+**Published:** 13 March 1972\
+**Example details:** Example 3 (実施例 3), numerical table on page 5, section in Figure 5 and aberration plots in Figure 10.
 
-## Unchanged optical table and two distinct planes
+Example 3 is the probable design of the FD 300mm f/5.6 S.C., introduced in March 1973. Canon's lens catalog describes a 300 mm f/5.6 made with ordinary optical glass and a telephoto ratio of 0.72. Example 3 names glass for every element and gives a first-vertex-to-image length of 0.7198 times the focal length. Its 8.2° field also agrees closely with Canon's 8°15′. [Canon lens catalog, p. 32](https://www.pacificrimcamera.com/rl/00253/00253.pdf) · [Canon FD lens specifications](https://www.pacificrimcamera.com/rl/00354/00354.pdf)
 
-All11signed radii and10tabulated gaps use one exact×3 length scale from normalizedf100; no rescale to force computedEFL300. Indices/V and the literal source labels FK5,FK5,LaSFo1,FK1,LaK8,F16 stay unchanged, with direct R6glass-to-glass cement. Six elements/five groups; no extra protector, plate, baffle, adhesive or FL-F/1977component. No modern melt/partial-dispersion or broadband claim.
+Canon lists six elements in five groups. In the catalog cutaway, two rear singlets are separated by air, as in Figure 5. The front assembly is harder to read. The cutaway does not resolve the cement line between L3 and L4 well enough to establish the exact prescription. The 1971 FD 300mm f/5.6 shares the S.C.'s construction count, 173 mm barrel length and 4 m minimum focus. The rear-focusing S.S.C. version introduced in 1977 focuses to 3 m. [Canon Camera Museum, 1973 S.C.](https://global.canon/en/c-museum/product/fd179.html) · [1971 FD](https://global.canon/en/c-museum/product/fd178.html) · [1977 S.S.C.](https://global.canon/en/c-museum/product/fd180.html)
 
-Computed EFL300.468442586mm. Powered glass track142.800mm. Source nominal normalizedL71.984 gives215.952mm and a SOURCE-SUMMARY-DERIVED rear gap73.152mm, not a separately printed d11. Independent ABCD gives GaussianBFD73.438416869mm and imagez216.238416869mm, +.286416869mm from that nominal reference.
+The other examples help distinguish the designs. Example 1 covers a wider 12.4° field. Example 2 uses two fluorite elements, a feature Canon identifies in its FL-F 300mm f/5.6. Example 4 has six separate groups. Example 5 matches the S.C.'s six elements in five groups, but puts the cemented pair at the rear and separates L3 and L4. That rear construction differs from the catalog cutaway. [JP S47-8749 B, Examples 1–5](https://www.j-platpat.inpit.go.jp/c1801/PU/JP-S47-008749/12/en) · [Canon Camera Museum, FL-F 300mm f/5.6](https://global.canon/en/c-museum/product/fl117.html)
 
-The active native triad deliberately uses **73.43841686894342mm rear air**, explicitly the traced Gaussian infinity plane for simulation. This is NOT called source-printedd11, an OEM measured film plane, or a best-MTF fit. All glass R/d/n and powered vertex positions are unchanged. The nominal73.152mm model is preserved in the comparison JSONs and its MTF/ray results. No lensRx value was tuned, and neither plane's MTF analysis applies a focus shift.
+## Optical Architecture
 
-The discrepancy's historical reference/rounding cause is unresolved. The earlier source-only HOLD and normalization/interval audit remain unchanged at the parent trial root; this continuation does not rewrite that evidence. The selected simulation plane is an explicit authorized analysis interpretation, not a claim that the production camera/lens was defective or that the source plane has been independently corrected.
+A positive front group and a negative rear group give this lens a 300.47 mm effective focal length in just 216.24 mm from the first vertex to the image. All dimensions use one ×3 scale from the patent's nominal focal length of 100 to Canon's 300 mm. The aperture is f/5.6 in both.
 
-## Estimated iris: source-backed station, unpublished radius
+The front group consists of two positive singlets followed by a negative cemented doublet. Its focal length is +204.84 mm. An 87.441 mm air space contains the diaphragm and separates the doublet from the rear group. The rear negative meniscus and positive singlet together have a focal length of −296.03 mm. All eleven refracting surfaces are spherical.
 
-Parent worker read Fig5,index8,PyMuPDFMatrix2,clipRect95,480,490,655:790x350px. Axis~189, R7x220, stop bars~417.5, R8x667. Store fraction.4418 across normalizedD7=29.147. R7z38.409mm gives estimatedSTOz**77.0404338mm**; evidence resolution only warrants about77.04mm. Interval fractions.425–.455 give75.571425–78.194655mm. OEMregistrationx346.6 is consistent with a diaphragm module but does not independently determine its exact plane.
+## Element-by-Element Analysis
 
-Original R7-to-R8air87.441mm is split into38.6314338+48.8095662 at that estimated iris, without moving either glass face. The circular nativef/5.6 control derives estimated physicalr**13.122148060mm**; no source radius is printed. This is the engine's paraxial control convention. Independent real-marginal entrance-pupil calculation gives5.671958440 for this modeled aperture; neither number is a factory measurement or a revision to the source/marketf5.6 label. Other quick stops are controls, not separately qualified factory apertures.
+The focal lengths below are for the individual elements in air. L3 and L4 have one common glass-to-glass surface in the assembled lens.
 
-At the two location endpoints, the same nativef5.6 rule recalculatesr13.314541169 andr12.970982046 respectively. These are joint static estimate-sensitivity cases, not a focus/iris cam or published positions. All powered source vertices stay fixed; only the unprinted stop split changes in-memory.
+### L1 — Biconvex positive
 
-## Estimated rims, numerical floors and cap sensitivity
+FK5, nd = 1.48749, νd = 70.0, f = +122.13 mm. The front face supplies most of the element's converging power. Its 62.778 mm radius is much steeper than the nearly flat rear face.
 
-Predeclared before tracing, by5physical optical groups:
+### L2 — Positive meniscus
 
-| Group | Patent schematic upper envelope | Parent OEM envelope | Selected estimated cap | On-axis numerical floor |
-|---|---:|---:|---:|---:|
-|L1|26.8|28–29|28.5|26.487187|
-|L2|26.8|24–27|26.8|24.425795|
-|cementL3/L4|22.1|22–23|22.5|20.371247|
-|L5|12.3|14–15|14.5|6.695331|
-|L6|14.3|14–15|14.5|6.626225|
+FK5, nd = 1.48749, νd = 70.0, f = +174.37 mm. Only 0.516 mm of air separates L2 from L1 on the axis. This second low-dispersion positive lens shares the front group's power, with its more strongly convex surface facing the object.
 
-All values are mmsemi-height, not measured clear/finished apertures. R4/R8 are obscured; the broader provided brackets are retained in source/ESTIMATED_IRIS_RIMS.json. The primary is a working estimate within the exact-product OEM envelope, with positive real-axis margins; it is not chosen by enlarging beyond evidence to eliminate clipping. The separate schematic-cap candidate26.8/26.8/22.1/12.3/14.3 is also retained and passes geometry. Neither envelope is called manufacturing truth.
+### L3 — Biconcave negative
 
-Physical audit solves the on-axis real marginal entrance ray to the estimated iris and samples257radial positions.4097co-radial samples check each adjacent glass/air/stop pair. All separations/edge thicknesses stay positive; minimum center/shared-band separation.516mm. Native validator/import/build passes at the unchanged default90%margin and has zero renderer trim. **No lens/model allowance or global engine tweak is used.**
+LaSFo1, nd = 1.78590, νd = 44.0, f = −49.92 mm. This high-index element turns part of the front singlets' convergence back at the cemented interface. Together, L3 and L4 form a negative doublet of −78.99 mm focal length.
 
-All-unvignetted sampled full-pupil±4.1° paths would require first-face radius36.173839mm and last-face16.989220mm, exceeding the primary OEM bounds (and the broad31mm front upper bracket). Those numbers are diagnostic ray-envelope requirements, NOT proposed rims. We did not enlarge to force full transmission. Natural-looking cap loss in this model is still not verified OEM vignetting or radiometric illumination.
+### L4 — Positive meniscus
 
-## Exact source-field diagnostics
+FK1, nd = 1.47069, νd = 67.2, f = +128.66 mm. Its convex face fits the concave rear face of L3 at surface 6. It supplies the doublet's lower-dispersion positive component.
 
-Runtimehelium-d587.5618nm, fixed nativef5.6control and selected center iris.17equally spaced angles across exact−4.1°..+4.1°;812uniform stop-cell samples each,13,804per scenario. Five scenarios (schematic/nominal, OEM/nominal, OEM/Gaussian, two iris-location bounds) give69,020launches per clean replay. No failed, unaimed or unclassified rays in any scenario. Clipping remains explicit at its first surface and is independently checked by exact sphere/Snell tracing. Primary intersection parity is within4.625e−13mm; image landing within3.925e−13mm.
+### L5 — Negative meniscus
 
-| Field | Selected OEM valid/blocked | Schematic valid/blocked |
-|---|---:|---:|
-|−4.1°|514/298|454/358|
-|−2.05°|760/52|716/96|
-|0°|812/0|812/0|
-|+2.05°|760/52|716/96|
-|+4.1°|514/298|454/358|
+LaK8, nd = 1.71300, νd = 53.9, f = −57.72 mm. Its strongly concave face looks toward the diaphragm. This is the stronger of the two rear elements and gives the rear group its negative power.
 
-This is conditional geometric admission under estimates, not full/unvignetted factory-field qualification. Cap sensitivity is significant and retained openly. At±4.1°, the source-supported stop-location bracket gives512–516valid of812, with allremaining rays cap-blocked and no unresolved launches. R4/R8 remain uncertain even where not the active first clip in these samples. `maxUnrestrictedIndependentRadii` records unrestricted ray floors; these do not justify enlarging caps or passing paths that the authored bounds reject. Finite angular/pupil sampling is not a continuous-field or actual hardware guarantee.
+### L6 — Biconvex positive
 
-## Performance: nominal reference versus simulation only
+F16, nd = 1.59270, νd = 35.4, f = +87.30 mm. A 5.643 mm air gap separates it from L5. Its image-side face supplies most of its positive power and partly offsets L5.
 
-For the SAME primary source optics/caps/stop, geometric centroid-referencedD80:
+## Glass Identification and Selection
 
-| Angle | Nominal source-summary plane | Gaussian simulation plane |
-|---|---:|---:|
-|0°|47.238µm|2.210µm|
-|2.05°|46.384µm|4.624µm|
-|4.1°|34.532µm|6.297µm|
+The patent names all six glasses and prints N and V without a spectral subscript. Their catalog values support reading them at the helium d line. L3, L5 and L6 use the dispersion curves of Hoya NBFD11, LAC8 and FF5 respectively. Each has the printed refractive index and differs in Abbe number by 0.07 or less. The original glass supplier and melt are unknown.
 
-D80excludes diffraction and is not measured camera resolution. Native design-focus MTF suggests best axial shifts+.284998246mm from nominal and−.001418706mm from Gaussian; **appliedShift=0in every result**. The active plane was computed from independent ABCD before performance evaluation, not from the MTF best-focus optimizer. The native imagePlaneInconsistent boolean is false even for the poor nominal reference; it is not treated as an optical PASS gate. Direct spot/MTF comparison demonstrates the mismatch instead.
+The FK5 catalog glass has an Abbe number of 70.4, compared with 70.0 for both front singlets in the patent. A corresponding catalog curve for the printed FK1 pair is also unavailable. Dispersion for L1, L2 and L4 therefore follows the printed index and Abbe number. The patent supplies no partial dispersions.
 
-Geometric and scalar diffraction MTF were evaluated at5/10/20/40lp/mm for0/2.05/4.1° on both planes. All12outputs converge at maxgrid128, actual inversion angles within5e−6° of requested. Gaussian-plane40lp/mm results: axisgeometric.98659 /scalardiffraction.82420; edgeS/Tgeometric.88011/.92390, scalardiffraction.72685/.69544. These are idealized conditional simulations with estimated circular pupil/rims, no coatings, real melt tolerances, housing, sensor or measured production response. Native scalar diffraction is not independently reconstructed wavefront/OPDFFT. Independent geometric Fourier MTF agrees within.000000323at the selected plane and.008176at the nominal reference.
+## Focus Mechanism
 
-Initial default full-frame chart corners resolved to4.10676° (Gaussian) and4.11479° (nominal), slightly beyond strict published4.1°. Their raw output is retained as OUTSIDE-SOURCE-SCOPE evidence, not claimed qualification. Final validation explicitly maps real chief-image heights for2.05/4.1° to existing fieldFractions, rather than moving optics, changing format, or silently dropping a field. Direct rays use exactly±4.1°. Preview metadata uses full fraction1, not.98; visual/UI behavior is untested.
+The patent gives a single prescription at infinity. It provides no group travel, finite spacing or close-focus magnification, so all six elements stay at their infinity positions. Canon specifies 4 m minimum focus and 0.09× maximum magnification for the production S.C. The cutaway does not identify which elements move during focusing. [Canon Camera Museum](https://global.canon/en/c-museum/product/fd179.html)
+
+## Image Plane, Aperture and Field
+
+The distance from the first glass vertex to the last is 142.800 mm. Subtracting this from the patent's scaled total length of 215.952 mm gives 73.152 mm behind the last vertex. The radii, spacings and indices instead bring paraxial rays to focus at 73.4384 mm. The image plane follows that focus, 0.286 mm beyond the plane implied by the printed length.
+
+Figure 5 places the diaphragm about 44% of the way across the air space from surface 7 to surface 8. At this position, f/5.6 gives a paraxial stop radius of 13.12 mm. Canon specifies an eight-blade diaphragm closing to f/22. [Canon Camera Museum](https://global.canon/en/c-museum/product/fd179.html)
+
+The glass rims follow the outlines in Figure 5. The 26.9 mm front radius just clears the 26.83 mm axial marginal ray. At a half-field of 4.1°, the chief ray lands 21.61 mm off axis, close to the 21.63 mm corner of a 36 × 24 mm frame. The corner chief ray clears all eleven surfaces, although the front and rear rims cut some of the oblique bundle. About 53% of the pupil area transmits at the corner with these inferred rims. Canon gives no measured corner transmission here.
+
+## Sources and References
+
+- Patent prescription and first-order summary on p. 5, third-order coefficients on p. 7, Figures 5 and 10. [Japan Patent Office, JP S47-8749 B](https://www.j-platpat.inpit.go.jp/c1801/PU/JP-S47-008749/12/en)
+- Production cutaway, glass description and telephoto ratio on p. 32. [Canon lens catalog, Pacific Rim Camera scan](https://www.pacificrimcamera.com/rl/00253/00253.pdf)
+- Field angle and production dimensions in Canon's FD lens table. [Canon system brochure](https://www.pacificrimcamera.com/rl/00354/00354.pdf)
+- Release date, construction, aperture, minimum focus and magnification. [Canon Camera Museum, FD 300mm f/5.6 S.C.](https://global.canon/en/c-museum/product/fd179.html)
