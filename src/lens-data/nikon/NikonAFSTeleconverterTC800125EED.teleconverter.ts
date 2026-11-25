@@ -65,6 +65,7 @@ const TELECONVERTER_DATA = {
   incompatibleLensKeys: [
     "nikon-af-s-nikkor-500mm-f56e-pf-ed-vr",
     "nikon-af-s-nikkor-180-400mm-f4e-tc14-fl-ed-vr-tc-in",
+    "nikon-ai-zoom-nikkor-360-1200mm-f11-ed",
   ],
 
   elements: [
