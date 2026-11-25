@@ -143,7 +143,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 1e15,
     description:
-      "Infinity focus only. The patent gives one set of spacings. Canon specifies double-helicoid focusing to 0.35 m for the production lens.",
+      "Infinity focus only. The patent gives one set of spacings. The production lens uses helicoid focusing to 0.35 m.",
   },
   groups: [
     { text: "G1", fromSurface: "1", toSurface: "2" },

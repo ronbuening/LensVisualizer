@@ -68,18 +68,17 @@ Condition (5) requires the mean index of the positive elements to exceed both 1.
 
 ## Focus Mechanism
 
-Canon's FD lens instructions specify double-helicoid focusing for the 35mm f/2.8. Canon gives 0.35 m as the closest focus and 0.13× as the maximum magnification. The patent prints only the infinity spacings. Neither the single cutaway nor the patent establishes the displacement of any group at 0.35 m, so the model represents infinity only. [Canon FD Lens Instructions](https://flynngraphics.ca/wp-content/uploads/2016/07/FD-Lens-Instructions-for-Web.pdf) · [Canon Camera Museum](https://global.canon/en/c-museum/product/nfd205.html)
+The production lens uses helicoid focusing. Canon gives 0.35 m as the closest focus and 0.13× as the maximum magnification. The patent prints only the infinity spacings. Neither the single cutaway nor the patent establishes the displacement of any group at 0.35 m, so the model represents infinity only. [MIR, New FD 35mm f/2.8](https://www.mir.com.my/rb/photography/companies/canon/fdresources/fdlenses/35mm.htm) · [Canon Camera Museum](https://global.canon/en/c-museum/product/nfd205.html)
 
 ## Clear Apertures and Field Coverage
 
 Nine clear radii come from the curved portions of the faces in Figure 1. The bevels at R7 and R8 obscure their endpoints. At f/2.8 over the central ±3°, the two faces need clear radii of at least 6.99 and 7.01 mm respectively. Radii of 7.02 and 7.04 mm leave 0.071 mm of air at their common clear edge. Extending both curves to the drawn shoulders would make the glasses intersect.
 
-At f/2.8 the chief ray reaches the 21.65 mm full-frame corner at a field angle of 32.293°. There the clear apertures transmit 56.86% of the modeled pupil, giving 38.72% relative illumination. These estimates depend on the inferred rim and stop dimensions. The patent gives neither an image height nor a measured corner illumination.
+At f/2.8 the chief ray reaches the 21.65 mm full-frame corner at a field angle of 32.293°. There the clear apertures transmit about 56% of the modeled pupil, giving about 39% relative illumination. These estimates depend on the inferred rim and stop dimensions. The patent gives neither an image height nor a measured corner illumination.
 
 ## Sources and References
 
 - Kikuo Momiyama and Hideo Yokota, _Wide Angle Photographic Lens_. Example 1, its prescription and its aberration diagrams. [US 4,257,678](https://patents.google.com/patent/US4257678A/en)
 - Canon, production specifications and date of introduction. [Canon Camera Museum, New FD35mm f/2.8](https://global.canon/en/c-museum/product/nfd205.html)
 - Canon, product identification and diagonal angle of view. [FD Lens Guide, sheet SG2-A13](https://www.pacificrimcamera.com/rl/01152/01152.pdf#page=13)
-- Canon, focusing mechanism for the FD wide-angle lenses. [FD Lens Instructions](https://flynngraphics.ca/wp-content/uploads/2016/07/FD-Lens-Instructions-for-Web.pdf)
-- MIR, barrel section identifying the production lens. [New FD 35mm f/2.8 lens](https://www.mir.com.my/rb/photography/companies/canon/fdresources/fdlenses/35mm.htm) · [Cutaway](https://www.mir.com.my/rb/photography/companies/canon/fdresources/fdlenses/35mmfd28optic.gif)
+- MIR, focusing method and barrel section identifying the production lens. [New FD 35mm f/2.8 lens](https://www.mir.com.my/rb/photography/companies/canon/fdresources/fdlenses/35mm.htm) · [Cutaway](https://www.mir.com.my/rb/photography/companies/canon/fdresources/fdlenses/35mmfd28optic.gif)
