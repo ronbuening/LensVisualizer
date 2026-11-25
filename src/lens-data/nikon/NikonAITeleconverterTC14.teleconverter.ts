@@ -1,161 +1,49 @@
 import type { TeleconverterDataV2Input } from "../../types/lensDataV2.js";
-const DATA = {
-  "schema": 2,
-  "key": "nikon-ai-tc14-14x",
-  "maker": "Nikon",
-  "name": "NIKON Ai TELECONVERTER TC-14 1.4x",
-  "visible": false,
-  "subtitle": "Original 1978 Ai TC-14; Nikon factory cross-section and US4206971 Embodiment I",
-  "catalog": {
-    "lensMounts": [
-      "nikon-f"
-    ],
-    "imageFormat": "135-full-frame",
-    "elementCount": 5,
-    "groupCount": 5,
-    "specs": [
-      "Original 1978 Ai TC-14 only; not TC-14A/B/C/E; five spherical singlets",
-      "Production contours follow Nikon factory optical section; signed 30.883 mm converter track",
-      "Literal 71.001 mm R1-to-image station, 48.968 mm virtual image conjugate",
-      "Semi-diameters are computational caps, not measured factory apertures",
-      "Private hidden model. Main catalog Nikon F hosts excluded pending individual optical and physical qualification."
-    ]
+
+/**
+ * US 4,206,971, First Embodiment (Figure 3 and claim 4), matches the five air-spaced
+ * elements in Nikon's drawing of the original 1978 AI TC-14. The ten spherical radii,
+ * nine internal spacings, indices and Abbe numbers are as printed, with lengths in millimetres.
+ * The clear radii are measured from Figure 3 to about ±0.4 mm. The patent leaves
+ * the reference wavelength unspecified. The glass values are treated as helium d-line
+ * data, with Sumita BK1 providing a dispersion curve for the last element.
+ *
+ * The host image lies 48.968 mm behind the first vertex (printed d₀ = −48.968 mm).
+ * Subtracting the 30.883 mm optical track from the printed 71.001 mm to the final
+ * image plane gives a 40.118 mm rear gap. All five elements are fixed. The host
+ * supplies focus and the iris, with Nikon specifying aperture coupling from f/2 to f/32.
+ */
+
+const TELECONVERTER_DATA = {
+  schema: 2,
+  key: "nikon-ai-teleconverter-tc-14",
+  maker: "Nikon",
+  name: "NIKON AI TELECONVERTER TC-14",
+  visible: true,
+  subtitle: "US 4,206,971, Embodiment 1 — Nippon Kogaku / Hamanishi & Nakamura",
+  catalog: {
+    lensMounts: ["nikon-f"],
+    imageFormat: "135-full-frame",
+    specs: ["5 ELEMENTS / 5 GROUPS", "1.4× REAR CONVERTER", "ALL SPHERICAL"],
+    elementCount: 5,
+    groupCount: 5,
   },
-  "source": {
-    "patentNumber": "US 4206971 A",
-    "example": {
-      "label": "Embodiment I",
-      "id": "1"
+  source: {
+    patentNumber: "US 4,206,971",
+    example: {
+      label: "Embodiment 1",
+      id: "1",
     },
-    "authors": [
-      "Yoshinari Hamanishi",
-      "Soichi Nakamura"
-    ],
-    "assignees": [
-      "Nippon Kogaku K.K."
-    ],
-    "sdSource": "heuristic",
-    "patentYear": 1980
+    patentYear: 1980,
+    authors: ["Yoshinari Hamanishi", "Soichi Nakamura"],
+    assignees: ["Nippon Kogaku K.K."],
+    sdSource: "figure-measured",
   },
-  "magnification": 1.4,
-  "masterImageDistanceMm": 48.968,
-  "universal": false,
-  "minHostFNumber": 2,
-  "elements": [
-    {
-      "id": 1,
-      "name": "E1",
-      "label": "Element1",
-      "type": "Lens",
-      "nd": 1.59507,
-      "vd": 35.6,
-      "indexReference": "d"
-    },
-    {
-      "id": 2,
-      "name": "E2",
-      "label": "Element2",
-      "type": "Lens",
-      "nd": 1.79668,
-      "vd": 45.4,
-      "indexReference": "d"
-    },
-    {
-      "id": 3,
-      "name": "E3",
-      "label": "Element3",
-      "type": "Lens",
-      "nd": 1.59507,
-      "vd": 35.6,
-      "indexReference": "d"
-    },
-    {
-      "id": 4,
-      "name": "E4",
-      "label": "Element4",
-      "type": "Lens",
-      "nd": 1.79668,
-      "vd": 45.4,
-      "indexReference": "d"
-    },
-    {
-      "id": 5,
-      "name": "E5",
-      "label": "Element5",
-      "type": "Lens",
-      "nd": 1.51009,
-      "vd": 63.4,
-      "indexReference": "d"
-    }
-  ],
-  "surfaces": [
-    {
-      "label": "1",
-      "R": 121.015,
-      "d": 4,
-      "sd": 12.7,
-      "medium": 1
-    },
-    {
-      "label": "2",
-      "R": -100.184,
-      "d": 2.008,
-      "sd": 12.7
-    },
-    {
-      "label": "3",
-      "R": -118.42,
-      "d": 1.8,
-      "sd": 12.7,
-      "medium": 2
-    },
-    {
-      "label": "4",
-      "R": 35.5,
-      "d": 1.8,
-      "sd": 12.7
-    },
-    {
-      "label": "5",
-      "R": 36.8,
-      "d": 6,
-      "sd": 12.7,
-      "medium": 3
-    },
-    {
-      "label": "6",
-      "R": -5196.816,
-      "d": 4.575,
-      "sd": 12.7
-    },
-    {
-      "label": "7",
-      "R": -99.964,
-      "d": 1.5,
-      "sd": 14,
-      "medium": 4
-    },
-    {
-      "label": "8",
-      "R": 70.033,
-      "d": 0.2,
-      "sd": 14
-    },
-    {
-      "label": "9",
-      "R": 53.938,
-      "d": 9,
-      "sd": 14,
-      "medium": 5
-    },
-    {
-      "label": "10",
-      "R": -180.939,
-      "d": 40.118,
-      "sd": 14
-    }
-  ],
-  "incompatibleLensKeys": [
+  magnification: 1.4,
+  masterImageDistanceMm: 48.968,
+  minHostFNumber: 2,
+  universal: false,
+  incompatibleLensKeys: [
     "nikkor-afs-120-300f28e",
     "nikkor-afs-200-500f56e",
     "nikon-af-i-nikkor-300mm-f2-8d-if-ed",
@@ -180,7 +68,95 @@ const DATA = {
     "nikon-afs-vr-zoom-nikkor-70-200-f28g-if-ed",
     "nikon-afs-zoom-nikkor-80-200mm-f28d-if-ed",
     "nikon-ai-af-s-nikkor-300mm-f28d-if-ed",
-    "nikon-ai-af-s-nikkor-500mm-f4d-if-ed"
-  ]
+    "nikon-ai-af-s-nikkor-500mm-f4d-if-ed",
+    "nikon-ai-nikkor-135f28",
+    "nikon-ai-zoom-nikkor-360-1200mm-f11-ed",
+    "nikon-dodotto-400f8",
+    "nikon-nikkor-800mm-f8-ed",
+  ],
+  elements: [
+    {
+      id: 1,
+      name: "L1",
+      label: "Element 1",
+      type: "Biconvex Positive",
+      nd: 1.59507,
+      vd: 35.6,
+      indexReference: "d",
+      indexReferenceNote: "The patent gives n and ν without a wavelength. The helium d line is assumed.",
+      focalLengthMm: 92.73,
+      glass: "Unmatched (nd 1.59507 / νd 35.6)",
+      role: "Positive entrance element of the forward group.",
+    },
+    {
+      id: 2,
+      name: "L2",
+      label: "Element 2",
+      type: "Biconcave Negative",
+      nd: 1.79668,
+      vd: 45.4,
+      indexReference: "d",
+      indexReferenceNote: "The patent gives n and ν without a wavelength. The helium d line is assumed.",
+      focalLengthMm: -34.11,
+      glass: "Unmatched (nd 1.79668 / νd 45.4)",
+      role: "Strongest negative element in the converter, between the two positive elements of the forward group.",
+    },
+    {
+      id: 3,
+      name: "L3",
+      label: "Element 3",
+      type: "Biconvex Positive",
+      nd: 1.59507,
+      vd: 35.6,
+      indexReference: "d",
+      indexReferenceNote: "The patent gives n and ν without a wavelength. The helium d line is assumed.",
+      focalLengthMm: 61.43,
+      glass: "Unmatched (nd 1.59507 / νd 35.6)",
+      role: "Positive rear element of the forward group, with most of its curvature on the front face.",
+    },
+    {
+      id: 4,
+      name: "L4",
+      label: "Element 4",
+      type: "Biconcave Negative",
+      nd: 1.79668,
+      vd: 45.4,
+      indexReference: "d",
+      indexReferenceNote: "The patent gives n and ν without a wavelength. The helium d line is assumed.",
+      focalLengthMm: -51.49,
+      glass: "Unmatched (nd 1.79668 / νd 45.4)",
+      role: "Negative element that gives the rearward group its divergent power.",
+    },
+    {
+      id: 5,
+      name: "L5",
+      label: "Element 5",
+      type: "Biconvex Positive",
+      nd: 1.51009,
+      vd: 63.4,
+      indexReference: "d",
+      indexReferenceNote: "The patent gives n and ν without a wavelength. The helium d line is assumed.",
+      focalLengthMm: 82.53,
+      glass: "BK1 (Sumita)",
+      role: "Positive exit element, separated from the preceding negative element by 0.200 mm of air.",
+    },
+  ],
+  surfaces: [
+    { label: "1", R: 121.015, d: 4, sd: 15.2, medium: 1 },
+    { label: "2", R: -100.184, d: 2.008, sd: 15.2 },
+    { label: "3", R: -118.42, d: 1.8, sd: 15.0, medium: 2 },
+    { label: "4", R: 35.5, d: 1.8, sd: 15.0 },
+    { label: "5", R: 36.8, d: 6, sd: 15.7, medium: 3 },
+    { label: "6", R: -5196.816, d: 4.575, sd: 15.7 },
+    { label: "7", R: -99.964, d: 1.5, sd: 16.0, medium: 4 },
+    { label: "8", R: 70.033, d: 0.2, sd: 16.0 },
+    { label: "9", R: 53.938, d: 9, sd: 16.8, medium: 5 },
+    { label: "10", R: -180.939, d: 40.118, sd: 16.8 },
+  ],
+  groups: [
+    { text: "Forward group", fromSurface: "1", toSurface: "6" },
+    { text: "Rearward group", fromSurface: "7", toSurface: "10" },
+  ],
 } satisfies TeleconverterDataV2Input;
-export default DATA;
+
+export default TELECONVERTER_DATA;
