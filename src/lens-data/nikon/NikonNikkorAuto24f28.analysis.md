@@ -15,7 +15,7 @@ The Japanese example also has both cemented pairs in the production positions an
 
 ## Optical Architecture
 
-The nine spherical elements form seven air-spaced groups. L1–L3 act as a diverging front section and L4–L9 bring the beam to focus. This retrofocus arrangement leaves room for a reflex mirror. The calculated focal length is 23.9993 mm at f/2.8, with a paraxial back focal distance of 37.8349 mm. The film sits at the patent’s 37.824 mm. Nikon specifies a 24 mm f/2.8 lens covering 84° on 35 mm film in the Nikon F mount. The traced diagonal corner is at a half-angle of 42.5°. The aperture ring spans f/2.8 to f/16, and a documented 1967 specimen has six iris blades. [Nikon’s lens manual, p. 10](https://cameramanuals.org/lenses/nikon_nikkor_manual_lenses.pdf) · [1967 lens No. 242932](https://destoutz.ch/lens_24mm_f2.8_242932.html)
+The nine spherical elements form seven air-spaced groups. L1–L3 act as a diverging front section and L4–L9 bring the beam to focus. This retrofocus arrangement leaves room for a reflex mirror. The calculated focal length is 23.9993 mm at f/2.8, with a paraxial back focal distance of 37.8349 mm. The film sits at the patent’s 37.824 mm. Nikon specifies a 24 mm f/2.8 lens covering 84° on 35 mm film in the Nikon F mount. The traced diagonal corner is at a half-angle of 42.5°. The aperture ring spans f/2.8 to f/16. A collector’s record of a 1967 specimen lists six iris blades; Nikon’s own documents give no blade count. [Nikon’s lens manual, p. 10](https://cameramanuals.org/lenses/nikon_nikkor_manual_lenses.pdf) · [1967 lens No. 242932](https://destoutz.ch/lens_24mm_f2.8_242932.html)
 
 The diaphragm sits between L5 and L6. Nikon’s section supplies the clear radii of the glass and places the iris about 0.48 mm behind surface 9. Its calculated wide-open radius is 6.27 mm. The patent gives the total air space between L5 and L6 and shows the iris in Figure 1. [JP S45-39875 B](https://www.j-platpat.inpit.go.jp/c1801/PU/JP-S45-039875/12/ja)
 
@@ -29,7 +29,7 @@ nd = 1.62299, νd = 58.12. Hoya BACD15. f = −57.05 mm. The wide front meniscus
 
 ### L2 — Biconvex positive
 
-nd = 1.62280, νd = 57.05. Ohara S-BSM10. f = +78.83 mm. L2 partially reconverges the beam between the two negative menisci. Its rear vertex lies just 0.10 mm ahead of L3.
+nd = 1.6228, νd = 57.05. Ohara S-BSM10. f = +78.83 mm. L2 partially reconverges the beam between the two negative menisci. Its rear vertex lies just 0.10 mm ahead of L3.
 
 ### L3 — Negative meniscus
 
@@ -38,7 +38,7 @@ nd = 1.62041, νd = 60.3. Schott N-SK16. f = −29.31 mm. Its 10.55 mm rear radi
 ### L4 and L5 — Positive cemented doublet
 
 - **L4, biconvex positive.** nd = 1.62004, νd = 36.3. Hoya E-F2. f = +17.71 mm. L4 brings the diverging front beam toward convergence.
-- **L5, negative meniscus.** nd = 1.51680, νd = 64.17. Schott N-BK7. f = −83.86 mm. This thin crown shares surface 8 with L4 and reduces its positive power. The doublet has a focal length of +22.22 mm.
+- **L5, negative meniscus.** nd = 1.5168, νd = 64.17. Schott N-BK7. f = −83.86 mm. This thin crown shares surface 8 with L4 and reduces its positive power. The doublet has a focal length of +22.22 mm.
 
 ### L6 — Biconcave negative
 
@@ -57,11 +57,11 @@ nd = 1.74443, νd = 49.4. Glass unidentified. f = +43.53 mm. Its shallow front s
 
 Example 1 prints nine refractive indices without naming the wavelength or giving any Abbe numbers. Treating them as helium d-line indices allows three independent comparisons. The resulting chromatic aberrations are estimates. The Japanese patent gives no spectral curves or glass trade names against which to check them.
 
-| Elements           | Basis for the inferred dispersion                                                                                                                                  |
-| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| L1, L2, L5, L6, L7 | Hoya BACD15, Ohara S-BSM10 and Schott N-BK7, SF1 and SF6 have the corresponding d-line indices at five decimal places. Their catalog rows supply the Abbe numbers. |
-| L3, L8 and L4      | Shimizu’s US 3,622,227 pairs 1.62041 with 60.3 and 1.62004 with 36.3. Schott N-SK16 and Hoya E-F2 supply closely matching dispersion curves.                       |
-| L9                 | Nippon Kogaku’s US 4,139,265 pairs 1.74443 with 49.4. The supplier and catalog curve remain unidentified.                                                          |
+| Elements           | Basis for the inferred dispersion                                                                                                                                                            |
+| ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| L1, L2, L5, L6, L7 | Hoya BACD15, Ohara S-BSM10 and Schott N-BK7, SF1 and SF6 have the corresponding d-line indices at the printed precision (four or five decimals). Their catalog rows supply the Abbe numbers. |
+| L3, L8 and L4      | Shimizu’s US 3,622,227 pairs 1.62041 with 60.3 and 1.62004 with 36.3. Schott N-SK16 and Hoya E-F2 supply closely matching dispersion curves.                                                 |
+| L9                 | Nippon Kogaku’s US 4,139,265 pairs 1.74443 with 49.4. The supplier and catalog curve remain unidentified.                                                                                    |
 
 ## Focus Mechanism
 
@@ -80,6 +80,6 @@ The close conjugate places the subject 204.34 mm ahead of the first surface. Its
 
 - The Japanese prescription, normalized group powers and drawings are in Example 1, pages 2–3 and 7. [Japan Patent Office, JP S45-39875 B](https://www.j-platpat.inpit.go.jp/c1801/PU/JP-S45-039875/12/ja)
 - The 1967 optical section and account of Shimizu and Wakimoto are by Kouichi Ohshita. [Nikon, Tale 14](https://imaging.nikon.com/imaging/information/story/0014/index.html) · [Figure 1](https://imaging.nikon.com/imaging/information/story/0014/img/img2.jpg)
-- Production dimensions and specifications appear in Nikon’s sales manual and lens manual. The diaphragm count is documented on a 1967 specimen. [Sales sheet L-18](https://www.pacificrimcamera.com/rl/00766/00766.pdf) · [Nikon lens manual](https://cameramanuals.org/lenses/nikon_nikkor_manual_lenses.pdf) · [Richard de Stoutz, No. 242932](https://destoutz.ch/lens_24mm_f2.8_242932.html)
+- Production dimensions and specifications appear in Nikon’s sales manual and lens manual. A collector’s record of a 1967 specimen gives the diaphragm blade count. [Sales sheet L-18](https://www.pacificrimcamera.com/rl/00766/00766.pdf) · [Nikon lens manual](https://cameramanuals.org/lenses/nikon_nikkor_manual_lenses.pdf) · [Richard de Stoutz, No. 242932](https://destoutz.ch/lens_24mm_f2.8_242932.html)
 - The comparison prescriptions supply the index and Abbe-number pairs for L3, L4, L8 and L9. [US 3,622,227, Example I](https://patents.google.com/patent/US3622227A/en) · [US 4,139,265, Example 1](https://patents.google.com/patent/US4139265A/en)
 - The optical glass catalogs give dispersion curves for glasses with matching indices. [Hoya optical glass data](https://www.hoya-opticalworld.com/english/datadownload/index.html) · [Ohara S-BSM glasses](https://oharacorp.com/glass-type/s-bsm/) · [Schott optical glass catalog](https://www.schott.com/en-gb/products/optical-glass-p1000267)

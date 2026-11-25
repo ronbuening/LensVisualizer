@@ -24,6 +24,7 @@ const LENS_DATA = {
   name: "NIKON NIKKOR-N AUTO 24mm f/2.8",
   subtitle: "JP S45-39875 B, Example 1 — Nippon Kogaku / Wakimoto",
   visible: true,
+  publishedAt: "2026-12-17T00:00:00Z",
   source: {
     patentNumber: "JP S45-39875 B",
     patentYear: 1970,
@@ -206,7 +207,6 @@ const LENS_DATA = {
   aperture: {
     nominalFNumber: 2.8,
     fStops: [2.8, 4, 5.6, 8, 11, 16],
-    blades: 6,
   },
   groups: [
     { text: "Front group (L1–L6)", fromSurface: "1", toSurface: "11" },

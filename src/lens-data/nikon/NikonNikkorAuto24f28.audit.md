@@ -33,7 +33,7 @@ At full aperture, the iris limits the axial beam. The glass edges clear one anot
 
 ## Values Not Printed in the Patent
 
-**Glass.** The source prints indices without a spectral line, Abbe numbers, or glass names. The indices are treated as helium d-line values. Five Abbe numbers come from catalog rows with equal five-decimal indices. Four come from the same indices in other patent prescriptions. The differences below are catalog minus assumed values, and the supplier names identify the curves used for tracing. The production melts remain unknown. [Shimizu, US 3,622,227](https://patents.google.com/patent/US3622227A/en) · [Matsui, US 4,139,265](https://patents.google.com/patent/US4139265A/en)
+**Glass.** The source prints indices without a spectral line, Abbe numbers, or glass names. The indices are treated as helium d-line values. Five Abbe numbers come from catalog rows whose indices equal the printed values at the printed precision (four or five decimals). Four come from the same indices in other patent prescriptions. The differences below are catalog minus assumed values, and the supplier names identify the curves used for tracing. The production melts remain unknown. [Shimizu, US 3,622,227](https://patents.google.com/patent/US3622227A/en) · [Matsui, US 4,139,265](https://patents.google.com/patent/US4139265A/en)
 
 | Element | Printed index | Inferred νd | Evidence for νd     | Catalog curve | Δnd |   Δνd |
 | ------- | ------------: | ----------: | ------------------- | ------------- | --: | ----: |
@@ -67,7 +67,7 @@ At full aperture, the iris limits the axial beam. The glass edges clear one anot
 
 Example 1 closely matches the 1967 Nikkor-N Auto. Both sections have nine elements in seven groups, the same two cemented interfaces, a stop between L5 and L6 and a floating air space immediately behind L6. The first and fourth elements measure about 3.97 and 4.94 mm thick in Nikon’s section, against 3.90 and 5.00 mm in the patent. The fifth measures 0.68 mm against 0.70 mm. Shimizu’s separate US 3,622,227 gives 2.70, 4.00 and 3.00 mm respectively. Aligning the first and last vertices gives an RMS difference of 0.60 pixels for the Japanese example and 22.98 pixels for the US example across 14 axial landmarks. Each of the two nearly touching surface pairs is read as a single landmark. Examples 2 and 3 of the Japanese patent have different element counts and fields. [Nikon’s section and design credits](https://imaging.nikon.com/imaging/information/story/0014/index.html)
 
-Nikon’s F-mount sales literature gives 24 mm, f/2.8–16, 84° and a 0.3 m minimum distance. Its dimensioned section gives 54.3 mm between the first and last vertices and 37.8 mm from the rear vertex to film. A 1967 production specimen has six diaphragm blades. [Nikon/Nikkormat sales sheet L-18](https://www.pacificrimcamera.com/rl/00766/00766.pdf) · [Nikon F lens instructions](https://www.marcocavina.com/brochure_foto/nikon_f-instructions_03_1969_en.pdf) · [Specimen No. 242932](https://destoutz.ch/lens_24mm_f2.8_242932.html)
+Nikon’s F-mount sales literature gives 24 mm, f/2.8–16, 84° and a 0.3 m minimum distance. Its dimensioned section gives 54.3 mm between the first and last vertices and 37.8 mm from the rear vertex to film. [Nikon/Nikkormat sales sheet L-18](https://www.pacificrimcamera.com/rl/00766/00766.pdf) · [Nikon F lens instructions](https://www.marcocavina.com/brochure_foto/nikon_f-instructions_03_1969_en.pdf)
 
 ## Corrections
 
