@@ -8,8 +8,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * is the paraxial back focal distance for infinity on a fixed film plane.
  * Group I reverses direction near telephoto. No finite-focus spacing is printed.
  * The iris is placed halfway between R10 and R11, with its radius derived from f/4.
- * Clear radii follow Figure 1 except for the clearance at R2 and R12/R13 and
- * the axial marginal-ray heights at R7/R8. At telephoto the printed spherical
+ * Clear radii follow Figure 1. Figure 1 draws L1/L2 and L6/L7 touching, so R2 (15.94)
+ * and R12/R13 (8.51) stop just short of where the spheres meet (gap allowance 0.98).
+ * R7/R8 follow the axial marginal-ray heights. At telephoto the printed spherical
  * surfaces R12 and R13 meet inside the f/4 marginal ray.
  */
 const LENS_DATA = {
@@ -136,7 +137,7 @@ const LENS_DATA = {
   ],
   surfaces: [
     { label: "1", R: 36.64764, d: 1.8, sd: 19.3, medium: 1 },
-    { label: "2", R: 21.155004, d: 7.542, sd: 15.4 },
+    { label: "2", R: 21.155004, d: 7.542, sd: 15.94 },
     { label: "3", R: -924.32196, d: 1.2996, sd: 17.8, medium: 2 },
     { label: "4", R: 39.274704, d: 4.3416, sd: 15.7 },
     { label: "5", R: 32.729292, d: 3.3696, sd: 15.7, medium: 3 },
@@ -147,8 +148,8 @@ const LENS_DATA = {
     { label: "10", R: 65.121012, d: 1.2006, sd: 11.1 },
     { label: "STO", R: "flat", d: 1.2006 },
     { label: "11", R: 29.939796, d: 4.5396, sd: 10.1, medium: 6 },
-    { label: "12", R: 50.202792, d: 0.9648, sd: 8.16 },
-    { label: "13", R: -166.97502, d: 1.8432, sd: 8.16, medium: 7 },
+    { label: "12", R: 50.202792, d: 0.9648, sd: 8.51 },
+    { label: "13", R: -166.97502, d: 1.8432, sd: 8.51, medium: 7 },
     { label: "14", R: 18.105192, d: 4.7736, sd: 8.7 },
     { label: "15", R: 78.91164, d: 3.1788, sd: 8.9, medium: 8 },
     { label: "16", R: -36.354816, sd: 8.9 },
@@ -226,6 +227,7 @@ const LENS_DATA = {
     { text: "II", fromSurface: "7", toSurface: "16" },
   ],
   layout: { yScFill: 0.65 },
+  checks: { gapSagFrac: 0.98 },
 } satisfies LensDataV2Input;
 
 export default LENS_DATA;

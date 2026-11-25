@@ -87,13 +87,13 @@ The patent's glass table describes L1–L2 as extra-dense crowns, L3 and L7 as d
 
 ## Focus Mechanism
 
-The patent describes advancing group I toward the subject for closer focus, independently of group II. The production cutaway shows the corresponding three-element front assembly in a single position, so it gives no independent measure of focusing travel. It gives no finite object distance, magnification or corresponding group spacing for Embodiment 1, so the model covers infinity focus only. Canon specifies a minimum focus distance of 0.5 m and maximum magnification of 0.15× for the production lens. It has six diaphragm blades and stops down to f/22. [Canon Camera Museum](https://global.canon/en/c-museum/product/nfd243.html) · [US 4,299,452](https://patents.justia.com/patent/4299452)
+The patent describes advancing group I toward the subject for closer focus, independently of group II. The production cutaway shows the corresponding three-element front assembly in a single position, so it gives no independent measure of focusing travel. The patent gives no finite object distance, magnification or corresponding group spacing for Embodiment 1, so the model covers infinity focus only. Canon specifies a minimum focus distance of 0.5 m and maximum magnification of 0.15× for the production lens. It has six diaphragm blades and stops down to f/22. [Canon Camera Museum](https://global.canon/en/c-museum/product/nfd243.html) · [US 4,299,452](https://patents.justia.com/patent/4299452)
 
 ## Clear Aperture at Telephoto
 
-The patent locates the iris between R10 and R11. Its midpoint placement and the opening calculated for f/4 are estimates. Figure 1 supplies the other clear-radius estimates, with allowance for axial rays at R7/R8 and for the air remaining between adjacent spherical surfaces at R2/R3 and R12/R13.
+The patent locates the iris between R10 and R11. Its midpoint placement and the opening calculated for f/4 are estimates. Figure 1 supplies the other clear-radius estimates, with allowance for axial rays at R7/R8. Figure 1 draws L1/L2 and L6/L7 touching, so the clear radii at R2 and R12/R13 stop just short of where those spherical surfaces meet.
 
-At telephoto, the axial f/4 marginal ray would reach radii of 8.73 and 8.74 mm at R12 and R13. Those two spheres meet at 8.605 mm. Their 8.16 mm clear radii leave 0.098 mm of air at the edge and clip the outer part of the axial bundle. The model still passes a chief ray to the corner of a 36 × 24 mm frame at every zoom position. The production cutaway gives no dimension for this edge.
+At telephoto, the axial f/4 marginal ray would reach radii of 8.73 and 8.74 mm at R12 and R13. Those two spheres meet at 8.605 mm. Their 8.51 mm clear radii leave 0.021 mm of air at the edge and would clip a full f/4 beam to about f/4.09. The model still passes a chief ray to the corner of a 36 × 24 mm frame at every zoom position. The production cutaway gives no dimension for this edge.
 
 ## Sources
 
