@@ -25,7 +25,7 @@ const LENS_DATA = {
     lensMounts: ["canon-ef"],
     imageFormat: "135-full-frame",
     imageCircleMm: 43.28,
-    specs: ["7 ELEMENTS / 6 GROUPS", "DESIGN f = 391.89 mm", "DESIGN F/5.8", "1 SUPER UD + 1 UD"],
+    specs: ["7 ELEMENTS / 6 GROUPS", "DESIGN f = 391.91 mm", "DESIGN F/5.8", "1 SUPER UD + 1 UD"],
     elementCount: 7,
     groupCount: 6,
     acceptsTeleconverters: true,
@@ -36,7 +36,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP 2019-070689 A",
-    example: { label: "Numerical Example 1-A", id: "1-A" },
+    example: { label: "Numerical Example 1A", id: "1A" },
     patentYear: 2019,
     authors: ["Shigenobu Sugita"],
     assignees: ["Canon Inc."],

@@ -32,7 +32,7 @@ The printed image plane lies 0.0214 mm ahead of the paraxial focus from the roun
 
 ## Values Not Printed in the Patent
 
-The paraxial stop radius follows from the 391.91 mm focal length, f/5.80 and the pupil magnification. It is 15.501 mm. The real axial marginal ray at the corresponding 33.785 mm entrance-pupil radius reaches a stop radius of 15.648 mm, within 0.002 mm of half the printed 31.30 mm diameter. The other rims are direct table values. The example gives a single infinity position, with no finite-focus gaps to infer.
+The paraxial stop radius follows from the 391.91 mm focal length, f/5.80 and the pupil magnification. It is 15.501 mm. The real axial marginal ray at the corresponding 33.785 mm entrance-pupil radius reaches a stop radius of 15.648 mm, within 0.002 mm of half the printed 31.30 mm diameter. A paraxial stop radius equal to half the printed diameter would give f/5.745, so the stop follows the printed f/5.80. The other rims are direct table values. The example gives a single infinity position, with no finite-focus gaps to infer. The 43.28 mm image circle is twice the printed 21.64 mm image height. The marketed 400 mm f/5.6 and 3.5 m minimum focus come from Canon's production specification. [Canon Camera Museum](https://global.canon/en/c-museum/product/ef317.html)
 
 The element focal lengths are thick-lens values in air. The glass names are Ohara catalog equivalents, with absolute differences from the patent of at most 0.000004 in nd and 0.059 in νd. Canon's drawing and the patent's dispersion values support the inferred Super UD and UD assignments at L2 and L4. [Canon construction drawing](https://global.canon/ja/c-museum/wp-content/uploads/2015/05/ef317-lens-construction.gif) · [Ohara catalog](https://www.ohara-inc.co.jp/en/product/catalog/)
 
@@ -44,10 +44,8 @@ Canon's 2019 publication gives a base example that matches the 1993 EF 400mm f/5
 
 ### 2026-11-25
 
-- Surface 16 has a clear radius of 14.34 mm. The 14.81 mm radius belongs to the preceding cemented interface.
-- The design aperture is f/5.80. Equating a paraxial stop radius to the printed iris would give f/5.745. Exact tracing accounts for the printed iris at f/5.80.
-- The marketed 400 mm f/5.6 and 3.5 m minimum focus describe the production lens. The example gives 391.89 mm at f/5.80 and infinity spacings only. Its printed 21.64 mm maximum image height corresponds to a 43.28 mm image circle. [Canon Camera Museum](https://global.canon/en/c-museum/product/ef317.html)
+None; the table is reproduced as printed.
 
 ## Remaining Questions
 
-Canon's Museum text calls the UD member fifth. Its drawing colours L4, whose printed Abbe number is 81.6, while L5 has νd = 60.7. The drawing and the glass data support L4. The production glass suppliers and the travel of the rear focusing optics remain undocumented in these sources. Canon also gives two maximum magnifications at 3.5 m, 0.11× in the Museum and 0.12× in the product specifications. [Canon Camera Museum](https://global.canon/en/c-museum/product/ef317.html) · [Canon Japan specifications](https://faq.canon.jp/app/answers/detail/a_id/95755)
+Canon's Museum text calls the UD member fifth. Its drawing colours L4, whose printed Abbe number is 81.6, while L5 has νd = 60.7. The drawing and the glass data support L4. The production glass suppliers and the travel of the inner-focusing optics remain undocumented in these sources. Canon also gives two maximum magnifications at 3.5 m, 0.11× in the Museum and 0.12× in the product specifications. [Canon Camera Museum](https://global.canon/en/c-museum/product/ef317.html) · [Canon Japan specifications](https://faq.canon.jp/app/answers/detail/a_id/95755)
