@@ -42,7 +42,7 @@ nd = 1.59551, νd = 39.2. Ohara S-TIM8 equivalent. f = −27.79 mm. This is the 
 
 ### E5 and E6 — Cemented positive doublet
 
-E5 is biconvex, with nd = 1.80518, νd = 25.4, a Schott SF6 equivalent and f = +33.35 mm. E6 is plano-concave, with nd = 1.54869, νd = 45.6, an Ohara PBL7 equivalent and f = −95.27 mm. The pair converges the beam with a combined focal length of +50.57 mm. Its plane rear face R11 has zero surface power. The iris lies in the air space that follows.
+E5 is biconvex, with nd = 1.80518, νd = 25.4, a Ohara S-TIH6 equivalent and f = +33.35 mm. E6 is plano-concave, with nd = 1.54869, νd = 45.6, an Ohara PBL7 equivalent and f = −95.27 mm. The pair converges the beam with a combined focal length of +50.57 mm. Its plane rear face R11 has zero surface power. The iris lies in the air space that follows.
 
 ### E7 — Biconvex positive
 
@@ -50,7 +50,7 @@ nd = 1.77250, νd = 49.6. Ohara S-LAH66 equivalent. f = +22.20 mm. E7 is the str
 
 ### E8 — Biconcave negative
 
-nd = 1.80518, νd = 25.4. Schott SF6 equivalent. f = −20.05 mm. E8 opposes E7’s convergence. Its more deeply curved front face is the second boundary of the corrective air space.
+nd = 1.80518, νd = 25.4. Ohara S-TIH6 equivalent. f = −20.05 mm. E8 opposes E7’s convergence. Its more deeply curved front face is the second boundary of the corrective air space.
 
 ### E9 — Positive meniscus
 

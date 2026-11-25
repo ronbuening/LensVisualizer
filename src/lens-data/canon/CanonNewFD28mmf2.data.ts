@@ -92,7 +92,7 @@ const LENS_DATA = {
       vd: 25.4,
       indexReference: "d",
       focalLengthMm: 33.35,
-      glass: "SF6 (Schott catalog equivalent)",
+      glass: "S-TIH6 (OHARA catalog equivalent)",
       role: "Supplies the positive power of the cemented middle group.",
       cemented: "C1",
     },
@@ -130,7 +130,7 @@ const LENS_DATA = {
       vd: 25.4,
       indexReference: "d",
       focalLengthMm: -20.05,
-      glass: "SF6 (Schott catalog equivalent)",
+      glass: "S-TIH6 (OHARA catalog equivalent)",
       role: "Opposes the power of E7 across the air space that helps balance spherical aberration and coma.",
     },
     {
