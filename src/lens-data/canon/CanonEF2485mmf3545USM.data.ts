@@ -23,6 +23,7 @@ const LENS_DATA = {
   name: "CANON EF 24-85mm f/3.5-4.5 USM",
   subtitle: "JP H09-304697 A, Numerical Example 1 — Canon / Misaka",
   visible: true,
+
   catalog: {
     lensMounts: ["canon-ef"],
     imageFormat: "135-full-frame",
@@ -33,6 +34,7 @@ const LENS_DATA = {
     fNumber: { marketing: 3.5, design: 3.58 },
     closeFocusM: { marketing: 0.5 },
   },
+
   source: {
     patentNumber: "JP H09-304697 A",
     example: { label: "Numerical Example 1", id: "1" },
@@ -40,6 +42,7 @@ const LENS_DATA = {
     authors: ["Makoto Misaka"],
     assignees: ["Canon Inc."],
   },
+
   elements: [
     {
       id: 1,
@@ -49,8 +52,8 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.8,
       indexReference: "d",
-      glass: "S-TIH53 (Ohara)",
       focalLengthMm: -126.96,
+      glass: "S-TIH53 (Ohara)",
       role: "High-dispersion negative member of the front cemented pair.",
       cemented: "C1",
     },
@@ -62,8 +65,8 @@ const LENS_DATA = {
       nd: 1.69679,
       vd: 55.5,
       indexReference: "d",
-      glass: "S-LAL14 (Ohara)",
       focalLengthMm: 94.79,
+      glass: "S-LAL14 (Ohara)",
       role: "Positive partner of L1, with lower dispersion than the front flint.",
       cemented: "C1",
     },
@@ -75,8 +78,8 @@ const LENS_DATA = {
       nd: 1.69679,
       vd: 55.5,
       indexReference: "d",
-      glass: "S-LAL14 (Ohara)",
       focalLengthMm: 109.36,
+      glass: "S-LAL14 (Ohara)",
       role: "Air-spaced meniscus supplying most of the convergence of G1.",
     },
     {
@@ -87,8 +90,8 @@ const LENS_DATA = {
       nd: 1.5164,
       vd: 52.2,
       indexReference: "d",
-      glass: "Unmatched (nd 1.51640 / νd 52.2)",
       focalLengthMm: -89886.92,
+      glass: "Unmatched (nd 1.51640 / νd 52.2)",
       role: "Bonded layer carrying the aspherical front face of L4.",
       cemented: "C2",
     },
@@ -100,8 +103,8 @@ const LENS_DATA = {
       nd: 1.804,
       vd: 46.6,
       indexReference: "d",
-      glass: "S-LAH65 (Ohara)",
       focalLengthMm: -18.72,
+      glass: "S-LAH65 (Ohara)",
       role: "Glass substrate of the hybrid asphere and front negative meniscus of G2.",
       cemented: "C2",
     },
@@ -113,8 +116,8 @@ const LENS_DATA = {
       nd: 1.80517,
       vd: 25.4,
       indexReference: "d",
-      glass: "S-TIH6 (Ohara)",
       focalLengthMm: 47.9,
+      glass: "S-TIH6 (Ohara)",
       role: "High-dispersion positive member of the negative doublet in G2.",
       cemented: "C3",
     },
@@ -126,8 +129,8 @@ const LENS_DATA = {
       nd: 1.88299,
       vd: 40.8,
       indexReference: "d",
-      glass: "S-LAH58 (Ohara)",
       focalLengthMm: -16.69,
+      glass: "S-LAH58 (Ohara)",
       role: "Strong diverging member of the cemented pair in the focusing group.",
       cemented: "C3",
     },
@@ -139,8 +142,8 @@ const LENS_DATA = {
       nd: 1.84665,
       vd: 23.9,
       indexReference: "d",
-      glass: "S-TIH53 (Ohara)",
       focalLengthMm: 32.68,
+      glass: "S-TIH53 (Ohara)",
       role: "Positive rear meniscus partly offsets the negative power of G2.",
     },
     {
@@ -151,8 +154,8 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.8,
       indexReference: "d",
-      glass: "S-TIH53 (Ohara)",
       focalLengthMm: -49.26,
+      glass: "S-TIH53 (Ohara)",
       role: "Negative flint immediately behind the main diaphragm.",
       cemented: "C4",
     },
@@ -164,8 +167,8 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.2,
       indexReference: "d",
-      glass: "S-FSL5 (Ohara)",
       focalLengthMm: 26.84,
+      glass: "S-FSL5 (Ohara)",
       role: "Low-dispersion positive partner of L8 in G3.",
       cemented: "C4",
     },
@@ -177,8 +180,8 @@ const LENS_DATA = {
       nd: 1.71299,
       vd: 53.8,
       indexReference: "d",
-      glass: "S-LAL8 (Ohara)",
       focalLengthMm: 33.32,
+      glass: "S-LAL8 (Ohara)",
       role: "Adds convergence behind the cemented pair in G3.",
     },
     {
@@ -189,8 +192,8 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.8,
       indexReference: "d",
-      glass: "S-TIH53 (Ohara)",
       focalLengthMm: 28.92,
+      glass: "S-TIH53 (Ohara)",
       role: "Positive front member of the stationary fourth group.",
     },
     {
@@ -201,8 +204,8 @@ const LENS_DATA = {
       nd: 1.80609,
       vd: 41,
       indexReference: "d",
-      glass: "S-LAH53 (Ohara)",
       focalLengthMm: -15.23,
+      glass: "S-LAH53 (Ohara)",
       role: "Supplies the net negative power of G4 across a narrow air space from L11.",
     },
     {
@@ -213,8 +216,8 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.2,
       indexReference: "d",
-      glass: "S-FSL5 (Ohara)",
       focalLengthMm: 34.2,
+      glass: "S-FSL5 (Ohara)",
       role: "Low-dispersion front element of G5 with a nearly flat object-side face.",
     },
     {
@@ -225,8 +228,8 @@ const LENS_DATA = {
       nd: 1.75699,
       vd: 47.8,
       indexReference: "d",
-      glass: "S-LAM54 (Ohara)",
       focalLengthMm: 36.55,
+      glass: "S-LAM54 (Ohara)",
       role: "Second converging element of the rear group.",
     },
     {
@@ -237,11 +240,12 @@ const LENS_DATA = {
       nd: 1.84665,
       vd: 23.9,
       indexReference: "d",
-      glass: "S-TIH53 (Ohara)",
       focalLengthMm: -29.52,
+      glass: "S-TIH53 (Ohara)",
       role: "High-dispersion rear meniscus balances the two positive elements of G5.",
     },
   ],
+
   surfaces: [
     { label: "1", R: 120.44, d: 1.2, sd: 28, medium: 1 },
     { label: "2", R: 56.54, d: 6.46, sd: 28, medium: 2 },
@@ -281,6 +285,7 @@ const LENS_DATA = {
     { label: "29", R: -21.19, d: 1.1, sd: 11, medium: 16 },
     { label: "30", R: -142.46, sd: 12.6 },
   ],
+
   zoom: {
     stations: [
       { focalLengthMm: 24.84, nominalFNumber: 3.58, label: "Wide", published: true },
@@ -300,10 +305,12 @@ const LENS_DATA = {
       { focalLengthMm: 82.06, nominalFNumber: 4.68, label: "Tele", published: true },
     ],
   },
+
   focus: {
     closeFocusM: 1e15,
     description: "Infinity focus only. Claim 3 assigns focusing to G2. The patent gives no finite-distance spacings.",
   },
+
   gaps: {
     "5": {
       label: "G1 to G2",
@@ -426,14 +433,13 @@ const LENS_DATA = {
       ],
     },
   },
+
   aperture: {
     fStops: [3.58, 4, 4.5, 5.6, 8, 11, 16, 22, 32],
     maxFNumber: 32,
     blades: 6,
   },
-  layout: {
-    yScFill: 0.5,
-  },
+
   groups: [
     { text: "G1", fromSurface: "1", toSurface: "5" },
     { text: "G2", fromSurface: "6A", toSurface: "13" },
@@ -447,6 +453,10 @@ const LENS_DATA = {
     { text: "C3", fromSurface: "9", toSurface: "11" },
     { text: "C4", fromSurface: "15", toSurface: "17" },
   ],
+
+  layout: {
+    yScFill: 0.5,
+  },
 } satisfies LensDataV2Input;
 
 export default LENS_DATA;

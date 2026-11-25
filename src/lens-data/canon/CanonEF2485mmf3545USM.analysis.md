@@ -26,7 +26,7 @@ Five groups share the zoom movement. From front to rear their focal lengths in a
 | Calculated back focal distance (mm)    |  37.91 |  43.30 |  46.36 |
 | First vertex to image plane (mm)       | 112.06 | 126.71 | 137.78 |
 
-Canon specifies 24–85 mm and f/3.5–4.5 for the production lens. Its six-bladed diaphragm closes to f/22 at wide and f/32 at tele. Figures 5–7 give the patent apertures. The main diaphragm radius follows those apertures in the model. The separate 6.6 mm opening read from Figure 1 clips the axial beam around 50 mm. A chief ray still reaches the 35 mm frame corner at every zoom position. At wide, barrel distortion puts the corner at a 42.9° half-field, compared with the 41.1° half-field marked on Figure 5. [Canon Camera Museum](https://global.canon/en/c-museum/product/ef337.html) · [Patent, Figures 1 and 5–7](https://patents.google.com/patent/JPH09304697A/en)
+Canon specifies 24–85 mm and f/3.5–4.5 for the production lens. Its six-bladed diaphragm closes to f/22 at wide and f/32 at tele. Figures 5–7 give the patent apertures. The main diaphragm radius follows those apertures in the model. The separate opening of 6.6 mm radius read from Figure 1 clips the axial beam around 50 mm. A chief ray still reaches the 35 mm frame corner at every zoom position. At wide, barrel distortion puts the corner at a 42.9° half-field, compared with the 41.1° half-field marked on Figure 5. [Canon Camera Museum](https://global.canon/en/c-museum/product/ef337.html) · [Patent, Figures 1 and 5–7](https://patents.google.com/patent/JPH09304697A/en)
 
 The patent tabulates five air spaces at three infinity positions. It gives neither the final air space nor the continuous zoom motion. The back focal distance at each printed position follows from the prescription. At twelve intermediate positions, the spacing from G2 to SP is calculated for infinity focus on the fixed image plane. The other gaps and the maximum aperture vary linearly between adjacent printed positions. The largest paraxial focus error between the resulting positions is 0.0175 mm.
 
@@ -87,7 +87,7 @@ nd = 1.84665, νd = 23.9, S-TIH53, f = −29.52 mm. The rear flint partially off
 
 ## Glass Identification
 
-The patent gives an index and an Abbe number for each of the sixteen refracting media. Nine Ohara glasses match the fifteen glass elements within 0.000011 in nd and 0.123 in νd. The greatest Abbe-number difference occurs for L7 and L15, whose printed νd is 23.9. These matches supply dispersion curves. The original glass suppliers and resin formulation remain unknown. [Ohara optical glass catalog](https://www.ohara-inc.co.jp/en/product/catalog/)
+The patent gives an index and an Abbe number for each of the sixteen refracting media. Nine Ohara glasses match the fifteen glass elements within 0.000011 in nd and 0.122 in νd. The greatest Abbe-number difference occurs for L7 and L15, whose printed νd is 23.9. These matches supply dispersion curves. The original glass suppliers and resin formulation remain unknown. [Ohara optical glass catalog](https://www.ohara-inc.co.jp/en/product/catalog/)
 
 | Optical use                               | Ohara equivalents        | Elements                      |
 | ----------------------------------------- | ------------------------ | ----------------------------- |
