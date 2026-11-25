@@ -46,7 +46,7 @@ const LENS_DATA = {
       vd: 53.74,
       indexReference: "d",
       focalLengthMm: -23.65,
-      glass: "BAFL4 (Hoya)",
+      glass: "J-BALF4 (Hikari)",
       role: "Negative front element that spreads the incoming bundle for the wide field.",
     },
     {

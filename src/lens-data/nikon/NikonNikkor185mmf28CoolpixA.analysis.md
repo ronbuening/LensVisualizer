@@ -47,7 +47,7 @@ The focal lengths below are for each element in air.
 
 ### L1 — Negative meniscus
 
-**nd = 1.57957, νd = 53.74. Glass equivalent BAFL4 (Hoya). f = −23.65 mm.**
+**nd = 1.57957, νd = 53.74. Glass equivalent J-BALF4 (Hikari). f = −23.65 mm.**
 
 The front meniscus is convex toward the object and spreads the incoming bundle. Its concave rear face and the weak
 combined power of L1 and L2 help control off-axis coma and distortion. [1]
@@ -101,7 +101,7 @@ curves. The production glass suppliers and melts are unknown.
 
 | Position           |      nd |    νd | Catalog equivalent |
 | ------------------ | ------: | ----: | ------------------ |
-| L1                 | 1.57957 | 53.74 | BAFL4 (Hoya)       |
+| L1                 | 1.57957 | 53.74 | J-BALF4 (Hikari)   |
 | L2                 | 1.77250 | 49.62 | J-LASF016 (Hikari) |
 | L3                 | 1.88300 | 40.66 | J-LASF08A (Hikari) |
 | L4, L5             | 1.69895 | 30.13 | S-TIM35 (Ohara)    |
@@ -110,7 +110,7 @@ curves. The production glass suppliers and melts are unknown.
 | Both filter plates | 1.51680 | 64.20 | BSC7 (Hoya)        |
 
 The two cemented pairs each combine a more dispersive negative member with a less dispersive positive member.
-BAFL4 is a discontinued Hoya glass. The model estimates dispersion from the Abbe number for L7. [1]
+The model estimates dispersion from the Abbe number for L7. [1]
 
 ## Focus Mechanism
 

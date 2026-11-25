@@ -62,7 +62,7 @@ Three optical-glass equivalents replace unidentified labels on seven elements. T
 
 | Elements     | Glass label   |       Δnd |     Δνd |
 | ------------ | ------------- | --------: | ------: |
-| L3, L8, L9   | E-FDS1 (Hoya) | −4.0×10⁻⁷ | +0.0004 |
+| L3, L8, L9   | H-ZF62 (CDGM) | +7.9×10⁻⁸ | −0.0001 |
 | L4           | H-ZF1 (CDGM)  | +3.2×10⁻⁶ | +0.0023 |
 | L5, L10, L12 | H-FK61 (CDGM) | −1.1×10⁻⁸ | +0.0028 |
 
@@ -85,6 +85,7 @@ L1, L2, L6, L7, L11, L13, L14 and L15 retain unidentified glasses with their pri
 - Element shapes and focal lengths, the three group brackets, the five cemented-group brackets, the four aspherical surface marks and the stop position agree with the patent table and Fig. 1. The aspherical marks on L2 and L15 and the ED marks on L5, L10 and L12 agree with the colours of Laowa's drawing, as do the six ultra-high-refraction elements.
 - From infinity to the near setting D4 grows and D10 shrinks by 0.157 mm, so G2 moves toward the image as ¶0008 states. The displayed distance falls steadily, through 1.47 m at half travel to 0.73 m at the near setting.
 - At the edge of the f/2.87 pupil the g-line focus lies about 0.08 mm ahead of the d-line focus, against about 0.085 mm in Fig. 2.
+- L3, L8 and L9 are labelled H-ZF62 (CDGM) in place of E-FDS1 (Hoya). Both rows match the printed 1.92286 and 20.88; the CDGM glass comes from the same catalog as the other two identified glasses of this lens.
 - No catalog glass comes close to any of the eight unidentified pairs in both index and Abbe number. The nearest is S-LAH55 (OHARA) for L7, 0.00044 higher in index and 0.73 higher in Abbe number. Example 2 prints 1.93323/20.88, 1.49845/81.61, 1.91048/31.31 and 1.88622/40.15, which keep the Abbe numbers of glasses in Examples 1 and 3 with shifted indices, and its 1.88766/45.00 repeats the 45.00 of L1. The unidentified pairs therefore look like design variables, not catalog glasses. CDGM's H-ZF62 has the same 1.92286/20.88 as E-FDS1.
 
 ## Remaining Questions

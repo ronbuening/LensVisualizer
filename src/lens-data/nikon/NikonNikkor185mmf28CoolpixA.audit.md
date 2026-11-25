@@ -106,7 +106,7 @@ from the Abbe number.
 
 | Position           | Catalog equivalent |         Δnd |     Δνd |
 | ------------------ | ------------------ | ----------: | ------: |
-| L1                 | BAFL4 (Hoya)       | +2.0 × 10⁻⁶ |  −0.034 |
+| L1                 | J-BALF4 (Hikari)   |           0 |       0 |
 | L2                 | J-LASF016 (Hikari) | +1.7 × 10⁻⁸ | +0.0002 |
 | L3                 | J-LASF08A (Hikari) | +2.5 × 10⁻⁸ |  +0.029 |
 | L4, L5             | S-TIM35 (Ohara)    | −3.2 × 10⁻⁶ |  −0.002 |
@@ -130,13 +130,37 @@ paraxial back focus from the last plate.
 
 2026-11-24 glass review:
 
-- L1: the label changed from unmatched to BAFL4 (Hoya), a discontinued glass whose catalog values lie 2 × 10⁻⁶
-  above the printed index and 0.034 below the printed Abbe number. The printed index and Abbe number are kept;
-  the catalog row supplies the dispersion curve.
+- L1: the label changed from unmatched to J-BALF4 (Hikari), whose catalog index and Abbe number equal the printed
+  1.57957 and 53.74. The catalog row supplies the dispersion curve.
+
+2026-11-24 final check against the drawing:
+
+- The page was compared with Figure 1 at one scale, and no rim, land or label changed. Nikon publishes no section
+  drawing for a second comparison. On the patent's 300 dpi drawing the 25.19 mm from the first to the last lens
+  vertex spans 850 pixels, or 33.75 pixels per millimeter. Each drawn curve follows its table radius at that scale
+  to within one or two pixels, which confirms the scale across the axis as well.
+- Curve ends and outer edges read from the drawing, in mm: surface 1, 10.03–10.15; surface 2, 8.0–8.2 with the
+  land out to the rim; surface 3, 5.90–5.96; surface 4, 5.0 with the land; surfaces 6–7, 4.58–4.64; surface 8,
+  4.78–4.82; surface 9, 5.1–5.2 with the land out to 6.31; surfaces 10–11, 6.31; surfaces 12–13, 6.90–6.96. All
+  agree with the modeled values to about 3%.
+- The three lands cost at most 0.1 point of corner light, 96.8% to 96.7% at 38.0°, all of it from the land at
+  surface 4. They stay as drawn.
+- Figure 1 draws L4 as a square block about 0.2 mm taller than L3. The cemented surface has a single clear radius,
+  so the model joins L4's two faces with a slightly inclined edge and keeps both drawn heights.
+- The drawn stop opening has a radius of about 4.0–4.1 mm, against the 3.935 mm paraxial value.
+- The page shows no focus movement, an inactive focus control and the infinity-only description. The element
+  types, the two cemented-pair brackets, the stop position and the asphere marker on surface 13 agree with the
+  patent text and Figure 1.
+- L1: Hikari's J-BALF4 (nd 1.57957, νd 53.74) equals the printed values exactly. Hikari is Nikon's glass subsidiary
+  and the source of the L2, L3 and L6 equivalents, so L1 carries that label.
+- L7: Hikari's Q-LASFH12S, a glass for precision molding (nd 1.79063, νd 44.98), is the nearest catalog glass. Its
+  index lies 1.3 × 10⁻⁴ above the printed 1.79050. Tables 5 and 6 on PDF page 34 print the same lens as
+  1.79050 / 44.98, the catalog Abbe number. The identification is likely but not exact, and L7 stays unmatched.
 
 ## Remaining Questions
 
 The production cross-section, focusing group and travel, degree of iris rounding and composition of the sensor
-stack remain undocumented. L1 matches the discontinued Hoya BAFL4; Schott N-BALF4 lies almost as near, so the maker of the
-production glass is not established. L7 has no matching catalog entry. Exact clear apertures and iris diameter remain unknown because
+stack remain undocumented. L1 matches Hikari's J-BALF4 exactly; the discontinued Hoya BAFL4 and Schott N-BALF4 lie almost as
+close, so the maker of the production glass is not established. L7 has no exact
+catalog entry; Hikari's Q-LASFH12S is the nearest. Exact clear apertures and iris diameter remain unknown because
 Table 1 gives no rim or stop diameters.

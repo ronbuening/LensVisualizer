@@ -38,7 +38,7 @@ L2 supplies stronger negative power than L1. Its aspheres let the front assembly
 
 ### L3 and L4 — First Focusing Doublet
 
-- **L3, negative meniscus.** $n_d = 1.92286$, $\nu_d = 20.88$. E-FDS1 (Hoya) equivalent. $f = -23.76$ mm. The dense flint provides negative power and a large dispersion difference relative to its positive partner.
+- **L3, negative meniscus.** $n_d = 1.92286$, $\nu_d = 20.88$. H-ZF62 (CDGM) equivalent. $f = -23.76$ mm. The dense flint provides negative power and a large dispersion difference relative to its positive partner.
 - **L4, biconvex positive.** $n_d = 1.64769$, $\nu_d = 33.84$. H-ZF1 (CDGM) equivalent. $f = +13.45$ mm. It supplies the dominant positive power in the first moving doublet.
 
 ### L5 and L6 — Second Focusing Doublet
@@ -49,11 +49,11 @@ L2 supplies stronger negative power than L1. Its aspheres let the front assembly
 ### L7 and L8 — First Rear Doublet
 
 - **L7, negative meniscus.** $n_d = 1.83437$, $\nu_d = 41.98$. Glass unmatched. $f = -12.06$ mm. It provides the negative entrance member of the rear assembly.
-- **L8, positive meniscus.** $n_d = 1.92286$, $\nu_d = 20.88$. E-FDS1 (Hoya) equivalent. $f = +14.50$ mm. Its dense-flint positive power offsets part of L7’s negative power in the doublet.
+- **L8, positive meniscus.** $n_d = 1.92286$, $\nu_d = 20.88$. H-ZF62 (CDGM) equivalent. $f = +14.50$ mm. Its dense-flint positive power offsets part of L7’s negative power in the doublet.
 
 ### L9, L10 and L11 — Rear Triplet
 
-- **L9, negative meniscus.** $n_d = 1.92286$, $\nu_d = 20.88$. E-FDS1 (Hoya) equivalent. $f = -39.38$ mm. The first dense flint forms the negative front flank of the triplet.
+- **L9, negative meniscus.** $n_d = 1.92286$, $\nu_d = 20.88$. H-ZF62 (CDGM) equivalent. $f = -39.38$ mm. The first dense flint forms the negative front flank of the triplet.
 - **L10, biconvex positive.** $n_d = 1.49700$, $\nu_d = 81.61$. H-FK61 (CDGM) equivalent, marked ED by Laowa. $f = +10.55$ mm. The thick ED core supplies most of the triplet’s positive power.
 - **L11, negative meniscus.** $n_d = 1.90325$, $\nu_d = 27.29$. Glass unmatched. $f = -26.25$ mm. This highly dispersive rear flank pairs with L10 across the second cemented interface.
 
@@ -80,7 +80,7 @@ The patent prints helium d-line indices and Abbe numbers (¶0062–0063). The na
 
 | Catalog equivalent    |               $n_d$ |             $\nu_d$ | Elements                           |
 | --------------------- | ------------------: | ------------------: | ---------------------------------- |
-| E-FDS1 (Hoya)         |             1.92286 |               20.88 | L3, L8, L9                         |
+| H-ZF62 (CDGM)         |             1.92286 |               20.88 | L3, L8, L9                         |
 | H-ZF1 (CDGM)          |             1.64769 |               33.84 | L4                                 |
 | H-FK61 (CDGM)         |             1.49700 |               81.61 | L5, L10, L12                       |
 | Unmatched coordinates | See element entries | See element entries | L1, L2, L6, L7, L11, L13, L14, L15 |
