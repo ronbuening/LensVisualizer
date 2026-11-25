@@ -6,7 +6,7 @@ Tsunefumi Tanaka, *Telephoto lens* (望遠レンズ), Canon Inc. Application JP 
 
 ## Transcription
 
-All sixteen signed radii, sixteen axial intervals and nine glass index/Abbe-number pairs agree with p. 4 at the printed scale in millimetres. Surface 11 is the diaphragm. C1 spans surfaces 12–14 and C2 spans 15–17. Surface 5 has a finite radius of −1971.05 mm. The table contains no aspheres, camera-side plate, back focus or finite-focus spacings. The d- and g-line legend supports the d-line interpretation of the indices.
+All sixteen radii, with their signs, sixteen axial intervals and nine glass index/Abbe-number pairs agree with p. 4 at the printed scale in millimetres. Surface 11 is the diaphragm. C1 spans surfaces 12–14 and C2 spans 15–17. Surface 5 has a finite radius of −1971.05 mm. The table contains no aspheres, camera-side plate, back focus or finite-focus spacings. The d- and g-line legend supports the d-line interpretation of the indices.
 
 ## First-Order Values
 
@@ -41,7 +41,7 @@ Figure 2 spans 464 pixels between the first and last vertices, a distance of 109
 
 The stop position is printed. Its radius of 16.92 mm follows from paraxial pupil magnification at f/2.8. The real axial ray that just reaches this iris enters at a height of 34.00 mm, giving f/2.87 from its entrance beam diameter. A ray entering at the nominal pupil radius of 34.851 mm reaches the stop at 17.36 mm. Figure 2 indicates about 17.4 mm. The glass rims clear this latter ray as well. The image-side gap is the calculated paraxial back focus. The only lens position is infinity.
 
-The surface geometry clears at every rim. The corner chief ray reaches an image height of 21.633 mm at 6.26°. At 6.3° the calculated pupil transmission is 53.3%. The corner trace through the 17.36 mm stop opening does not find the lower marginal ray.
+The surface geometry clears at every rim. The corner chief ray reaches an image height of 21.633 mm at 6.26°. At 6.3° the calculated pupil transmission is 53.3%.
 
 The patent gives no trade names or wavelength-specific indices. Eight distinct catalog equivalents cover the nine printed glass pairs. The largest departures are 0.000004 in index (L9) and 0.074 in Abbe number (L3). The UD identification at L2 and L4 follows Canon's marked section and their printed Abbe number of 81.6.
 
