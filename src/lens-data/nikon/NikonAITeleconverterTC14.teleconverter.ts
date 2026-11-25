@@ -71,8 +71,6 @@ const TELECONVERTER_DATA = {
     "nikon-ai-af-s-nikkor-500mm-f4d-if-ed",
     "nikon-ai-nikkor-135f28",
     "nikon-ai-zoom-nikkor-360-1200mm-f11-ed",
-    "nikon-dodotto-400f8",
-    "nikon-nikkor-800mm-f8-ed",
   ],
   elements: [
     {
