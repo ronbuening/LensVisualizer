@@ -1,218 +1,276 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
-const DATA = {
-  "schema": 2,
-  "key": "canon-28mm-f28-ltm",
-  "maker": "Canon",
-  "name": "CANON 28mm f/2.8 LTM",
-  "visible": false,
-  "subtitle": "Hiroshi Ito US2779239 sole example; production-correlated static infinity model",
-  "source": {
-    "patentNumber": "US 2779239 A",
-    "example": {
-      "label": "Sole example",
-      "id": null
+
+/**
+ * Hiroshi Ito’s sole example in US 2,779,239. All printed radii, thicknesses and
+ * air spaces are scaled by 28 from f = 1 to millimetres. The body table gives
+ * d₂ = 0.083 and r₆ = −0.2090. Claim 2 differs on both. The table gives
+ * n₃ = 1.7400 despite an impossible inequality in the text.
+ * Figure 1 supplies the rim estimates and the diaphragm position within d₅.
+ * The two cemented edges are limited by the glass geometry, and the rim at
+ * surface 5 allows for the width of the oblique beam. The iris radius follows
+ * from f/2.8. The infinity image plane and whole-lens extension to Canon’s
+ * 1 m minimum focus are paraxial calculations.
+ */
+const LENS_DATA = {
+  schema: 2,
+  key: "canon-28mm-f28-ltm",
+  maker: "Canon",
+  name: "CANON 28mm f/2.8",
+  subtitle: "US 2,779,239, sole example — Canon / Ito",
+  visible: true,
+  source: {
+    patentNumber: "US 2,779,239",
+    example: {
+      label: "Sole example",
+      id: null,
     },
-    "authors": [
-      "Hiroshi Ito"
+    patentYear: 1957,
+    authors: ["Hiroshi Ito"],
+    assignees: ["Canon Camera Co., Inc."],
+    errata: [
+      {
+        status: "corrected",
+        surface: "2",
+        field: "d",
+        printed: 1.764,
+        applied: 2.324,
+        evidence: ["source-summary", "aberration-figure"],
+        note: "Claim 2 prints d₂ = 0.063 (1.764 mm). The body table gives 0.083 (2.324 mm), which reproduces the stated focal length and the wide-open spherical aberration in Figure 2.",
+      },
+      {
+        status: "unresolved",
+        note: "The description and Claim 1 give the impossible condition 1.30 > n₃ > 1.64. The numerical tables agree on n₃ = 1.7400.",
+      },
     ],
-    "assignees": [
-      "Canon Camera Company, Inc."
-    ],
-    "sdSource": "heuristic",
-    "patentYear": 1957
   },
-  "catalog": {
-    "lensMounts": [
-      "leica-ltm"
-    ],
-    "imageFormat": "135-full-frame",
-    "elementCount": 6,
-    "groupCount": 4,
-    "focalLengthMm": {
-      "marketing": 28,
-      "design": 28
+  catalog: {
+    lensMounts: ["leica-ltm"],
+    imageFormat: "135-full-frame",
+    elementCount: 6,
+    groupCount: 4,
+    focalLengthMm: {
+      marketing: 28,
+      design: 28,
     },
-    "fNumber": {
-      "marketing": 2.8,
-      "design": 2.8
+    fNumber: {
+      marketing: 2.8,
+      design: 2.8,
     },
-    "specs": [
-      "Period Canon 28mm f/2.8 LTM, not the Serenar 28mm f/3.5 or Canon FD 28mm f/2.8",
-      "Canon period production cutaway confirms distinctive 6/4 topology",
-      "Uniform ×28, signed geometry and glass unchanged; suggested L2 retail glass change unverified",
-      "Computed d-line infinity plane; no signed finite movement",
-      "Central diaphragm and clear semi-diameters are estimated",
-      "Scoped stopped-down validation; not qualified at nominal f/2.8 across the frame"
-    ]
+    specs: ["6 ELEMENTS / 4 GROUPS", "ALL SPHERICAL", "72° DESIGN FIELD"],
+    closeFocusM: {
+      marketing: 1,
+    },
   },
-  "elements": [
+  elements: [
     {
-      "id": 1,
-      "name": "E1",
-      "label": "Element1",
-      "type": "Lens",
-      "nd": 1.6166,
-      "vd": 36.6,
-      "indexReference": "d"
+      id: 1,
+      name: "L1a",
+      label: "Element 1",
+      type: "Negative Meniscus",
+      nd: 1.6166,
+      vd: 36.6,
+      indexReference: "d",
+      diagramLabel: "L1a",
+      glass: "F4 (SUMITA catalog equivalent)",
+      focalLengthMm: -28.76,
+      role: "Negative front member of the first doublet, cemented to L1b at surface 2.",
+      cemented: "C1",
     },
     {
-      "id": 2,
-      "name": "E2",
-      "label": "Element2",
-      "type": "Lens",
-      "nd": 1.697,
-      "vd": 54.7,
-      "indexReference": "d"
+      id: 2,
+      name: "L1b",
+      label: "Element 2",
+      type: "Positive Meniscus",
+      nd: 1.697,
+      vd: 54.7,
+      indexReference: "d",
+      diagramLabel: "L1b",
+      glass: "Unmatched (nd 1.6970 / νd 54.7)",
+      focalLengthMm: 13.34,
+      role: "The stronger positive member gives the front doublet its converging power.",
+      cemented: "C1",
     },
     {
-      "id": 3,
-      "name": "E3",
-      "label": "Element3",
-      "type": "Lens",
-      "nd": 1.74,
-      "vd": 28.2,
-      "indexReference": "d"
+      id: 3,
+      name: "L2",
+      label: "Element 3",
+      type: "Negative Meniscus",
+      nd: 1.74,
+      vd: 28.2,
+      indexReference: "d",
+      diagramLabel: "L2",
+      glass: "FD3 (HOYA catalog equivalent)",
+      focalLengthMm: -38.15,
+      role: "Front negative singlet with its steep concave rear face toward the diaphragm.",
     },
     {
-      "id": 4,
-      "name": "E4",
-      "label": "Element4",
-      "type": "Lens",
-      "nd": 1.6889,
-      "vd": 31.1,
-      "indexReference": "d"
+      id: 4,
+      name: "L3",
+      label: "Element 4",
+      type: "Negative Meniscus",
+      nd: 1.6889,
+      vd: 31.1,
+      indexReference: "d",
+      diagramLabel: "L3",
+      glass: "PBM28 (OHARA catalog equivalent)",
+      focalLengthMm: -45.81,
+      role: "Rear negative singlet with its steep concave front face toward the diaphragm.",
     },
     {
-      "id": 5,
-      "name": "E5",
-      "label": "Element5",
-      "type": "Lens",
-      "nd": 1.6583,
-      "vd": 57.1,
-      "indexReference": "d"
+      id: 5,
+      name: "L4a",
+      label: "Element 5",
+      type: "Positive Meniscus",
+      nd: 1.6583,
+      vd: 57.1,
+      indexReference: "d",
+      diagramLabel: "L4a",
+      glass: "Unmatched (nd 1.6583 / νd 57.1)",
+      focalLengthMm: 12.31,
+      role: "Positive member of the rear doublet, following the narrow air space behind L3.",
+      cemented: "C2",
     },
     {
-      "id": 6,
-      "name": "E6",
-      "label": "Element6",
-      "type": "Lens",
-      "nd": 1.5673,
-      "vd": 42.8,
-      "indexReference": "d"
-    }
+      id: 6,
+      name: "L4b",
+      label: "Element 6",
+      type: "Negative Meniscus",
+      nd: 1.5673,
+      vd: 42.8,
+      indexReference: "d",
+      diagramLabel: "L4b",
+      glass: "S-TIL26 (OHARA catalog equivalent)",
+      focalLengthMm: -35.13,
+      role: "Negative rear member cemented to L4a at surface 9, with the largest clear rim at its exit face.",
+      cemented: "C2",
+    },
   ],
-  "surfaces": [
+  surfaces: [
     {
-      "label": "1",
-      "R": 12.1212,
-      "d": 1.316,
-      "sd": 6.2,
-      "medium": 1
+      label: "1",
+      R: 12.1212,
+      d: 1.316,
+      sd: 7.24,
+      medium: 1,
     },
     {
-      "label": "2",
-      "R": 6.902,
-      "d": 1.764,
-      "sd": 5.1,
-      "medium": 2
+      label: "2",
+      R: 6.902,
+      d: 2.324,
+      sd: 5.72,
+      medium: 2,
     },
     {
-      "label": "3",
-      "R": 23.072,
-      "d": 0.056,
-      "sd": 5.1
+      label: "3",
+      R: 23.072,
+      d: 0.056,
+      sd: 5.72,
     },
     {
-      "label": "4",
-      "R": 8.12,
-      "d": 1.9600000000000002,
-      "sd": 4.7,
-      "medium": 3
+      label: "4",
+      R: 8.12,
+      d: 1.96,
+      sd: 5.06,
+      medium: 3,
     },
     {
-      "label": "5",
-      "R": 5.6588,
-      "d": 2.66,
-      "sd": 3.9
+      label: "5",
+      R: 5.6588,
+      d: 2.26,
+      sd: 3.73,
     },
     {
-      "label": "STO",
-      "R": "flat",
-      "d": 2.66
+      label: "STO",
+      R: "flat",
+      d: 3.06,
     },
     {
-      "label": "6",
-      "R": -5.851999999999999,
-      "d": 0.5880000000000001,
-      "sd": 3.9,
-      "medium": 4
+      label: "6",
+      R: -5.852,
+      d: 0.588,
+      sd: 4.38,
+      medium: 4,
     },
     {
-      "label": "7",
-      "R": -7.4788,
-      "d": 0.028,
-      "sd": 4.7
+      label: "7",
+      R: -7.4788,
+      d: 0.028,
+      sd: 5.04,
     },
     {
-      "label": "8",
-      "R": -36.147999999999996,
-      "d": 3.668,
-      "sd": 5,
-      "medium": 5
+      label: "8",
+      R: -36.148,
+      d: 3.668,
+      sd: 6.19,
+      medium: 5,
     },
     {
-      "label": "9",
-      "R": -6.888,
-      "d": 0.812,
-      "sd": 5,
-      "medium": 6
+      label: "9",
+      R: -6.888,
+      d: 0.812,
+      sd: 6.19,
+      medium: 6,
     },
     {
-      "label": "10",
-      "R": -10.976,
-      "d": 20.189698071760965,
-      "sd": 5.5
-    }
+      label: "10",
+      R: -10.976,
+      sd: 7.8,
+    },
   ],
-  "aperture": {
-    "nominalFNumber": 2.8,
-    "fStops": [
-      2.8,
-      4,
-      5.6,
-      8,
-      11,
-      16,
-      22
-    ],
-    "maxFNumber": 22
+  gaps: {
+    "10": {
+      label: "BF",
+      values: [[19.1905, 20.02]],
+    },
   },
-  "focus": {
-    "closeFocusM": 1000000000000000,
-    "description": "Static infinity only; no signed finite position or movement is available."
+  aperture: {
+    nominalFNumber: 2.8,
+    fStops: [2.8, 4, 5.6, 8, 11, 16, 22],
+    maxFNumber: 22,
+    blades: 6,
   },
-  "projection": {
-    "kind": "rectilinear",
-    "fullFieldDeg": 50,
-    "maxTraceFieldDeg": 25
+  focus: {
+    closeFocusM: 1,
+    description:
+      "Derived unit focus. All four groups move together 0.8295 mm toward the subject to focus at Canon’s 1 m minimum. The patent gives only the infinity prescription.",
   },
-  "rays": {
-    "offAxisFieldFrac": 0.2
-  },
-  "layout": {
-    "yScFill": 0.65
-  },
-  "doublets": [
+  groups: [
     {
-      "text": "Front cemented doublet",
-      "fromSurface": "1",
-      "toSurface": "3"
+      text: "L1",
+      fromSurface: "1",
+      toSurface: "3",
     },
     {
-      "text": "Rear cemented doublet",
-      "fromSurface": "8",
-      "toSurface": "10"
-    }
-  ]
+      text: "L2",
+      fromSurface: "4",
+      toSurface: "5",
+    },
+    {
+      text: "L3",
+      fromSurface: "6",
+      toSurface: "7",
+    },
+    {
+      text: "L4",
+      fromSurface: "8",
+      toSurface: "10",
+    },
+  ],
+  doublets: [
+    {
+      text: "L1a + L1b",
+      fromSurface: "1",
+      toSurface: "3",
+    },
+    {
+      text: "L4a + L4b",
+      fromSurface: "8",
+      toSurface: "10",
+    },
+  ],
+  layout: {
+    yScFill: 0.65,
+  },
 } satisfies LensDataV2Input;
-export default DATA;
+
+export default LENS_DATA;
