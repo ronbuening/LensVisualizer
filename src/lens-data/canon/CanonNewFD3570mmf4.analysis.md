@@ -1,0 +1,11 @@
+# Canon New FD 35–70mm f/4 (manual, June 1979)
+
+The manual New FD model is distinct from the preceding FD S.S.C. f/2.8–3.5 and the later autofocus barrel. [Canon's product record](https://global.canon/en/c-museum/product/nfd243.html) and the [production cross-section](https://mir.com.my/rb/photography/companies/canon/fdresources/fdlenses/fdzooms/3570mmf4optic.jpg) agree with [Ikemori's US4299452](https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/4299452), Embodiment 1. One scale gives 0.746 px RMS and 1.763 px maximum over 158 px of the production drawing. Embodiments 2 and 3 have other apertures and poorer geometric fits.
+
+The ×0.36 scale preserves every signed radius and spacing. Three printed interblock gaps give 35.999, 53.998 and 68.500 mm with derived BFD 43.829, 56.011 and 65.827 mm. The model uses a fixed camera-frame image plane and a sign-correct path for both moving blocks. The wide paraxial first-vertex/image distance 116.526929 mm is 0.113071 mm short of the converted printed 116.64 mm. The source and calculated stations are retained separately.
+
+Of 65 control points, only three are published gap anchors. The rest use calculated infinity compensation, not measured zoom cam positions. A 513-state independent sweep found no more than 2.180 µm of paraxial focus residual. No finite station is modeled; the retail 0.5 m is not a supplied prescription.
+
+The stop is placed at the estimated midpoint between R10 and R11. The optical clear apertures and effective f-number trajectory are computational estimates. For release, both R12/R13 caps were reduced from an initial diagnostic 8.45 mm to 8.16 mm, with no change to signed optical dimensions and no guard override. At default guard, the minimum calculated co-radial clearance is 0.097688 mm with zero trimming across all 513 states. At nine zoom samples, a 940-ray circular pupil trace per setting reached the plane at native f/4 and f/8 through 5° field angle, scoped to that infinity test. The model does not claim nominal full-frame edge performance, factory illumination, finite focus, broadband correction or UI behavior.
+
+Evidence includes original signed and production material, the registered wide-angle comparison, original worker handoff, independent fixed-plane check, clearance sweep and cap comparison.

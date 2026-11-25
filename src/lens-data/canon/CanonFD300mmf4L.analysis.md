@@ -1,0 +1,16 @@
+# Canon FD 300mm f/4L
+
+**Scope.** Powered optical family, 1978 FD and May 1980 New FD L. Static, infinity-only reconstruction from Tsuji's US4251133 Example 4 (DE2849609A1 Example 4 / claim 5). Distinct from ordinary f/4 S.S.C., Example 3. No commercial lens measurements or application browser check. Canon's nominal finite specification is 3 m at 0.11×; the patent also gives aberrations at 10f without an exact focus motion prescription. No finite state authored.
+
+## Provenance
+
+- [Signed US grant](https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/4251133), PDF p. 9 (printed col. 4). The six singlets, spacings and d-line glass values are literal at a uniform 300 mm scale. Authored final gap = **116.520 mm**, as printed; derived best paraxial back focus = **116.576 mm** and EFL = **300.111 mm**. No optimization or refocus was used. Stop is **15.060 mm behind R8**.
+- [Canon 1978 catalog entry](https://global.canon/en/c-museum/product/fd177.html) and [Canon 1980 New FD L entry](https://global.canon/en/c-museum/product/nfd228.html) both specify 7/7, rear focus, 3 m, 0.11× and nine iris blades. The New FD entry confirms two UD glasses.
+- [Named 1978 production glass schedule](https://www.marcocavina.com/articoli_fotografici/Canon_FD_300_400_500_L/04.gif), reproduced by Cavina, independently selects the two 1.49700 low-dispersion positives and the 1.80610 negative. [May 1980 New FD production housing cutaway](https://mir.com.my/rb/photography/companies/canon/fdresources/fdlenses/300mmf4loptic.jpg) independently fits twelve powered axial points with one isotropic scale: 0.430 px RMS versus 1.181 px for non-L Example 3 and 2.390 px for Example 2. Example 1 has a cemented rather than split rear pair. The overlay is not a tolerance measurement. The original FD and New FD provenance are not interchangeable.
+- The fixed protector in front and the detachable rear drop-in are shown/documented but not dimensioned in the sources. Both omitted, not assigned invented glass or thickness. The model depicts six powered elements and does not reproduce actual glass-to-film distance with those flats. Clear radii are inferred from the New FD drawing.
+
+## Validation
+
+- Native import, schema/geometry validation, TypeScript and JSON round trips pass; 241 targeted repository tests pass. No gap-sag override or rim trim. Minimum tested continuous geometric separation 1.3413 mm. Dedup checked all 1,215 numeric model modules and 1,752 loose files; the one same-patent catalog ID is the non-L Example 3.
+- Infinity d-line, at the printed plane: all 1,173 independent/natively matched stop-target samples clear to **±0.5° at f/4, ±3° at f/5.6, ±4.125° at f/8** for the authored approximate rims. Simulated geometric and scalar diffraction MTF converge at their sampled points to 0.5°, 3° and 4.06°, respectively; 4.06° is inside the app's format corner. Those are not measured MTF. The iris controls are nominal; the real marginal pupil gives approximately f/4.07 on axis at the f/4 control.
+- At ±4.125°, f/4 has 808 clear, 76 confirmed clips and 289 unresolved stop targets; f/5.6 has 1,056 clear and 117 clips; f/8 clears 1,173. No full-frame wide-open claim. Rays at exact edges are not an assessment of OEM vignetting or manufacturing tolerances.
