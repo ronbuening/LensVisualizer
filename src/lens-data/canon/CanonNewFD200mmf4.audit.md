@@ -6,7 +6,7 @@ Kikuo Momiyama, _Telephoto Lens_, US 4,240,703, assigned to Canon Kabushiki Kais
 
 ## Transcription
 
-The 13 signed radii, ten fixed separations, seven index and Abbe-number pairs, and both rows of variable separations agree with Example I. R10 is the cemented interface between L5 and L6. Its radius is −26,173.24 mm. The patent gives a finite radius even for this nearly plane surface. All surfaces are spherical. The table ends at R13 and gives no rear plate, image-plane spacing or image height.
+The 13 radii with their signs, ten fixed separations, seven index and Abbe-number pairs, and both rows of variable separations agree with Example I. R10 is the cemented interface between L5 and L6. Its radius is −26,173.24 mm. The patent gives a finite radius even for this nearly plane surface. All surfaces are spherical. The table ends at R13 and gives no rear plate, image-plane spacing or image height.
 
 The printed air spaces between members I–II, II–III and III–IV are 12.34, 26.40 and 31.02 mm at infinity. The last two become 45.08 and 12.34 mm at 9.13f. Their constant 57.42 mm sum keeps members II and IV fixed as member III translates rearward.
 
@@ -54,7 +54,7 @@ Canon's June 1979 New FD 200mm f/4 has seven elements in six groups, rear-group 
 
 ### 2026-11-25
 
-- Example I gives system focal lengths longer than the two printed headings. The rear member gives +936.58 mm against the printed +687.52 mm, a 36.2% difference. The three inter-member gaps agree with the condition table. Neither the member powers nor the aberration figures identify a unique erroneous entry, so the radii, thicknesses, indices and focus spacings follow the printed prescription.
+- Example I gives system focal lengths longer than the two printed headings. The rear member gives +936.58 mm against the printed +687.52 mm, a 36.2% difference. The three inter-member gaps agree with the condition table. Example II's table gives the same +0.45% focal length, and its member II value misses the listed −1.567 by 18%. Neither the member powers nor the aberration figures identify a unique erroneous entry, so the radii, thicknesses, indices and focus spacings follow the printed prescription.
 - Column 3 calls d a sodium line. All five distinct index values agree at the printed precision with helium d-line catalog values. The model uses helium d and retains the published indices.
 - The last printed position is 9.13f. The model stops there. Canon's 1.5 m specification describes the additional travel available on the production lens.
 

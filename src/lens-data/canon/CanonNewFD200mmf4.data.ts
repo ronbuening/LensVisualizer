@@ -32,7 +32,7 @@ const LENS_DATA = {
     errata: [
       {
         status: "unresolved",
-        note: "The printed spacings and glass data give focal lengths of 200.89 mm at infinity and 169.44 mm at 9.13f. The focus table gives 200.00 and 168.78 mm. Members II and IV give −288.83 and +936.58 mm, while the patent lists −286.90 and +687.52 mm.",
+        note: "The printed spacings and glass data give focal lengths of 200.89 mm at infinity and 169.44 mm at 9.13f. The focus table gives 200.00 and 168.78 mm. Members II and IV give −288.83 and +936.58 mm, while the patent lists −286.90 and +687.52 mm. Example II's table gives the same +0.45% focal length, and its member II value misses the listed one by 18%, so no single entry of Example I explains the difference.",
       },
       {
         status: "unresolved",
@@ -143,7 +143,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 936.58,
       glass: "S-TIH4 (OHARA)",
-      role: "Corrects residual spherical aberration and distortion from a fixed position behind the focusing doublet.",
+      role: "Weak positive meniscus that offsets residual positive distortion from a fixed position behind the focusing doublet.",
     },
   ],
   surfaces: [

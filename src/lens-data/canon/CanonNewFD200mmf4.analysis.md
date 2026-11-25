@@ -14,7 +14,7 @@ Example I is a strong match for the New FD 200mm f/4 that Canon introduced in Ju
 
 ## Optical Architecture
 
-The patent divides the optics into four members. Member I collects the beam. Member II diverges it just before the diaphragm. Member III, the negative doublet, moves toward the film to focus closer. Member IV stays fixed so its weak positive power can help correct residual spherical aberration and distortion as the doublet moves. All 13 refracting surfaces are spherical. Neither the patent nor Canon's product description identifies an ED element.
+The patent divides the optics into four members. Member I collects the beam. Member II diverges it just before the diaphragm. Member III, the negative doublet, moves toward the film to focus closer. Member IV stays fixed. Its weak positive meniscus produces negative distortion that offsets the residual positive distortion, and its power is limited so that spherical aberration and astigmatism do not worsen. All 13 refracting surfaces are spherical. Neither the patent nor Canon's product description identifies an ED element.
 
 The patent normalizes its lengths to a focal length of 1 mm. Multiplying all lengths by 200 puts the prescription at the marketed scale. The table then gives an effective focal length of 200.89 mm at infinity, 0.45% longer than the printed 200 mm. The first vertex is 164.00 mm from the film, including 61.156 mm of calculated back focus. The patent gives f/4 and a 12.3° full field. Canon specifies f/4 to f/32, eight blades and a 12° diagonal field for the 35 mm FD lens. [Canon Camera Museum](https://global.canon/en/c-museum/product/nfd224.html) · [Canon FD Lens Guide](https://www.galimbertipaolo.it/CanonFD/FDLensGuide1.pdf)
 
@@ -62,7 +62,7 @@ The focus table gives the air space D8 ahead of member III and D11 behind it. At
 | Infinity       | 26.40 mm | 31.02 mm |           200.00 mm |               200.89 mm |
 | 9.13f          | 45.08 mm | 12.34 mm |           168.78 mm |               169.44 mm |
 
-The near distance of 9.13f corresponds to 1.826 m from object to film. At that distance the printed spacings put the paraxial image 0.0206 mm behind the film. With the film fixed, the lens focuses at 1.82737 m with signed magnification −0.1225×. The model ends at this printed position. Canon's production lens focuses to 1.5 m and reaches 0.15×. [Canon Camera Museum](https://global.canon/en/c-museum/product/nfd224.html)
+The near distance of 9.13f corresponds to 1.826 m from object to film. At that distance the printed spacings put the paraxial image 0.0206 mm behind the film. With the film fixed, the lens focuses at 1.82737 m with magnification −0.1225×. The model ends at this printed position. Canon's production lens focuses to 1.5 m and reaches 0.15×. [Canon Camera Museum](https://global.canon/en/c-museum/product/nfd224.html)
 
 Between the two printed positions, nine doublet positions are calculated at equal steps in reciprocal object-to-film distance, using the focused near distance. They hold the paraxial image within 0.019 mm of the film between positions. The patent does not describe the focusing cam profile.
 
