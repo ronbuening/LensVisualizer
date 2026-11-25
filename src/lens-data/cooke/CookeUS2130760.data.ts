@@ -34,7 +34,7 @@ const LENS_DATA = {
   maker: "Cooke",
   name: "COOKE 100mm f/2 (US 2,130,760 Design)",
   subtitle: "US 2,130,760 A, Example II — f/2 objective with two cemented triplets",
-  visible: false,
+  visible: true,
   catalog: {
     specs: ["8 ELEMENTS / 4 GROUPS", "ALL SPHERICAL", "DESIGN F/2", "TWO CEMENTED TRIPLETS"],
     elementCount: 8,

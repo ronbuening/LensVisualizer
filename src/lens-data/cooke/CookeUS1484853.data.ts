@@ -26,7 +26,7 @@ const LENS_DATA = {
   maker: "Cooke",
   name: "COOKE 10 in f/3.1 (US 1,484,853 Design)",
   subtitle: "US 1,484,853 A, sole example — Warmisham short-back-focus projection lens",
-  visible: false,
+  visible: true,
   catalog: {
     lensMounts: ["projection-lens"],
     imageFormat: "35mm-cinema",

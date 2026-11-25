@@ -12,7 +12,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **1221** lenses scanned
-- **1193** visible lenses scanned
+- **1198** visible lenses scanned
 - **812** lenses fully covered by trusted chromatic data
 - **805** visible lenses fully covered by trusted chromatic data
 - **804** lenses fully covered by strict Sellmeier data
@@ -1514,8 +1514,8 @@ Fully strict and line-index-complete trusted lenses are listed above; this table
 | 358 | [BUSCH PANTOSKOP f/30.4 (von Rohr 1899, Fig. 108)](../../src/lens-data/literature/BuschPantoskop1865VonRohr1899.data.ts) | 0.0% | 0.0% | 0/4 | 0/4 | 4 | constant: 4 |
 | 359 | [CARL ZEISS JENA ANASTIGMATLINSE f/12.5 (von Rohr 1899, Fig. 140)](../../src/lens-data/literature/CarlZeissJenaAnastigmatlinseVonRohr1899.data.ts) | 0.0% | 0.0% | 0/4 | 0/4 | 4 | constant: 4 |
 | 360 | [CARL ZEISS JENA TESSAR 144mm f/5.5](../../src/lens-data/carl-zeiss-jena/ZeissTessar144f55.data.ts) | 0.0% | 0.0% | 0/4 | 0/4 | 4 | abbe: 4 |
-| 361 | [COOKE 10 in f/3.1 (US 1,484,853 Design)](../../src/lens-data/cooke/CookeUS1484853.data.ts) *(hidden)* | 0.0% | 0.0% | 0/4 | 0/4 | 4 | abbe: 4 |
-| 362 | [COOKE 100mm f/4.5 (US 1,361,207 Example II Design)](../../src/lens-data/cooke/CookeUS1361207ExampleII.data.ts) *(hidden)* | 0.0% | 0.0% | 0/4 | 0/4 | 4 | abbe: 4 |
+| 361 | [COOKE 10 in f/3.1 (US 1,484,853 Design)](../../src/lens-data/cooke/CookeUS1484853.data.ts) | 0.0% | 0.0% | 0/4 | 0/4 | 4 | abbe: 4 |
+| 362 | [COOKE 100mm f/4.5 (US 1,361,207 Example II Design)](../../src/lens-data/cooke/CookeUS1361207ExampleII.data.ts) | 0.0% | 0.0% | 0/4 | 0/4 | 4 | abbe: 4 |
 | 363 | [FUJIFILM FUJINAR 210mm f/4.5](../../src/lens-data/fujifilm/FujifilmFujinar210mmf45.data.ts) | 0.0% | 0.0% | 0/4 | 0/4 | 4 | constant: 4 |
 | 364 | [GOERZ DOUBLE OBJECTIVE 240mm f/7.6 (GB 1898/12,859 Design)](../../src/lens-data/goerz/GoerzDoubleObjective240mmf76GB189812859.data.ts) | 0.0% | 0.0% | 0/4 | 0/4 | 4 | abbe: 4 |
 | 365 | [MINOR PHOTOGRAPHIC OBJECTIVE (Figure 2 patent reconstruction)](../../src/lens-data/unattributed/MinorUS1360667Figure2.data.ts) *(hidden)* | 0.0% | 0.0% | 0/4 | 0/4 | 4 | lineIndices: 4 |
@@ -1535,7 +1535,7 @@ Fully strict and line-index-complete trusted lenses are listed above; this table
 | 379 | [APPLE WIDE 4.10mm f/1.8 (Apple iPhone 7)](../../src/lens-data/apple/AppleiPhone7WideCameraLens.data.ts) | 0.0% | 0.0% | 0/6 | 0/6 | 6 | abbe: 6 |
 | 380 | [CARL ZEISS JENA PANCOLAR 50mm f/2](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaPancolar50mmf2.data.ts) | 0.0% | 0.0% | 0/6 | 0/6 | 6 | abbe: 6 |
 | 381 | [CARL ZEISS JENA PLANAR f/3.3 (von Rohr 1899, Fig. 146)](../../src/lens-data/literature/CarlZeissJenaPlanarVonRohr1899.data.ts) | 0.0% | 0.0% | 0/6 | 0/6 | 6 | constant: 6 |
-| 382 | [COOKE 108mm f/1.5 (US 1,797,202 Design)](../../src/lens-data/cooke/CookeUS1797202.data.ts) *(hidden)* | 0.0% | 0.0% | 0/6 | 0/6 | 6 | abbe: 6 |
+| 382 | [COOKE 108mm f/1.5 (US 1,797,202 Design)](../../src/lens-data/cooke/CookeUS1797202.data.ts) | 0.0% | 0.0% | 0/6 | 0/6 | 6 | abbe: 6 |
 | 383 | [GOERZ DOPPEL-ANASTIGMAT SERIES III 240mm f/7.7](../../src/lens-data/goerz/GoerzDoppelAnastigmatSeriesIII240mmf77.data.ts) | 0.0% | 0.0% | 0/6 | 0/6 | 6 | constant: 6 |
 | 384 | [MEYER OPTIK GÖRLITZ KINO-PLASMAT 100mm f/2](../../src/lens-data/meyer-optik-goerlitz/MeyerOptikGorlitz100mmf2KinoPlasmat.data.ts) | 0.0% | 0.0% | 0/6 | 0/6 | 6 | constant: 6 |
 | 385 | [MINOLTA AUTO TELE ROKKOR-PF 100mm f/2](../../src/lens-data/minolta/Minolta100mmf2AutoTeleRokkor.data.ts) | 0.0% | 0.0% | 0/6 | 0/6 | 6 | abbe: 6 |
@@ -1544,12 +1544,12 @@ Fully strict and line-index-complete trusted lenses are listed above; this table
 | 388 | [VOIGTLÄNDER COLLINEAR TYPE II 150mm f/6.9 (DE 90482 Design)](../../src/lens-data/voigtlander/VoigtlanderCollinearTypeII150mmf69DE90482.data.ts) | 0.0% | 0.0% | 0/6 | 0/6 | 6 | constant: 6 |
 | 389 | [CARL ZEISS JENA PI-FLEKTOGON 30mm f/2.8 (Prototype Design)](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaPIFlektogon30mmf28Printed1975ELine.data.ts) | 0.0% | 0.0% | 0/7 | 0/7 | 7 | constant: 7 |
 | 390 | [CARL ZEISS JENA SONNAR 50mm f/1.5 (US 2,186,621 Design)](../../src/lens-data/carl-zeiss-jena/ZeissJenaSonnar50mmf15US2186621.data.ts) | 0.0% | 0.0% | 0/7 | 0/7 | 7 | abbe: 7 |
-| 391 | [COOKE 1 in f/1.4 (US 2,019,985 Design)](../../src/lens-data/cooke/CookeUS2019985.data.ts) *(hidden)* | 0.0% | 0.0% | 0/7 | 0/7 | 7 | abbe: 7 |
+| 391 | [COOKE 1 in f/1.4 (US 2,019,985 Design)](../../src/lens-data/cooke/CookeUS2019985.data.ts) | 0.0% | 0.0% | 0/7 | 0/7 | 7 | abbe: 7 |
 | 392 | [COOKE 97mm f/1 (US 1,926,569 Design)](../../src/lens-data/cooke/CookeUS1926569.data.ts) *(hidden)* | 0.0% | 0.0% | 0/7 | 0/7 | 7 | abbe: 7 |
 | 393 | [LEITZ SUMMAREX 85mm f/1.5](../../src/lens-data/leica/LeicaSummarex85mmf15.data.ts) | 0.0% | 0.0% | 0/7 | 0/7 | 7 | abbe: 7 |
 | 394 | [SAMSUNG 4.3mm f/1.5 (Samsung Galaxy S9)](../../src/lens-data/samsung/SamsungGalaxyS9MainWideCameraLens.data.ts) | 0.0% | 0.0% | 0/7 | 0/7 | 7 | abbe: 7 |
 | 395 | [SONY SONNAR T* FE 35mm f/2.8 ZA](../../src/lens-data/sony/SonyFE35mmf28ZA.data.ts) | 0.0% | 0.0% | 0/7 | 0/7 | 7 | abbe: 7 |
-| 396 | [COOKE 100mm f/2 (US 2,130,760 Design)](../../src/lens-data/cooke/CookeUS2130760.data.ts) *(hidden)* | 0.0% | 0.0% | 0/8 | 0/8 | 8 | abbe: 8 |
+| 396 | [COOKE 100mm f/2 (US 2,130,760 Design)](../../src/lens-data/cooke/CookeUS2130760.data.ts) | 0.0% | 0.0% | 0/8 | 0/8 | 8 | abbe: 8 |
 | 397 | [THYPOCH KSANA 21mm f/3.5 ASPH.](../../src/lens-data/thypoch/ThypochKsana21mmf35.data.ts) | 0.0% | 0.0% | 0/8 | 0/8 | 8 | abbe: 8 |
 | 398 | [THYPOCH SIMERA 50mm f/1.4 ASPH.](../../src/lens-data/thypoch/ThypochSimera50mmf14.data.ts) | 0.0% | 0.0% | 0/8 | 0/8 | 8 | abbe: 8 |
 | 399 | [LEICA NOCTILUX-M 35mm f/1.2 ASPH.](../../src/lens-data/leica/LeicaNoctiluxM35mmf12ASPH.data.ts) | 0.0% | 0.0% | 0/10 | 0/10 | 10 | abbe: 10 |
@@ -4122,6 +4122,24 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 5 | Element 3 | abbe | `Unmatched patent medium (Abbe estimated; supplier unspecified)` | Explicit unmatched/proprietary annotation |
 | 6 | Element 4 | abbe | `Unmatched patent medium (Abbe estimated; supplier unspecified)` | Explicit unmatched/proprietary annotation |
 
+### [COOKE 10 in f/3.1 (US 1,484,853 Design)](../../src/lens-data/cooke/CookeUS1484853.data.ts) - 0.0% trusted (0/4); 0.0% Sellmeier (0/4) - US 1,484,853 A
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `Unmatched (nD 1.509 / V 64.3, Chance type 646)` | Explicit unmatched/proprietary annotation |
+| 2 | Element 2 | abbe | `Unmatched (nD 1.651 / V 33.5, Chance type 5093)` | Explicit unmatched/proprietary annotation |
+| 4 | Element 3 | abbe | `Unmatched (nD 1.509 / V 64.3, Chance type 646)` | Explicit unmatched/proprietary annotation |
+| 5 | Element 4 | abbe | `Unmatched (nD 1.651 / V 33.5, Chance type 5093)` | Explicit unmatched/proprietary annotation |
+
+### [COOKE 100mm f/4.5 (US 1,361,207 Example II Design)](../../src/lens-data/cooke/CookeUS1361207ExampleII.data.ts) - 0.0% trusted (0/4); 0.0% Sellmeier (0/4) - US 1,361,207 A
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element I | abbe | `Unmatched (nD 1.6116 / V 56.4, dense baryta crown)` | Explicit unmatched/proprietary annotation |
+| 3 | Element II | abbe | `Unmatched (nD 1.6206 / V 36.2, heavy flint)` | Explicit unmatched/proprietary annotation |
+| 5 | Element III | abbe | `Unmatched (nD 1.6206 / V 36.2, heavy flint)` | Explicit unmatched/proprietary annotation |
+| 7 | Element IV | abbe | `Unmatched (nD 1.6116 / V 56.4, dense baryta crown)` | Explicit unmatched/proprietary annotation |
+
 ### [FUJIFILM FUJINAR 210mm f/4.5](../../src/lens-data/fujifilm/FujifilmFujinar210mmf45.data.ts) - 0.0% trusted (0/4); 0.0% Sellmeier (0/4) - JP S29-2685 B
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
@@ -4296,6 +4314,17 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 7 | New high-index crown | constant | `Unmatched (historical nD only, no dispersion published)` | Explicit unmatched/proprietary annotation |
 | 9 | New high-index crown | constant | `Unmatched (historical nD only, no dispersion published)` | Explicit unmatched/proprietary annotation |
 
+### [COOKE 108mm f/1.5 (US 1,797,202 Design)](../../src/lens-data/cooke/CookeUS1797202.data.ts) - 0.0% trusted (0/6); 0.0% Sellmeier (0/6) - US 1,797,202 A
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `Unmatched (nD 1.5736 / V 57.7, Chance type 9002)` | Explicit unmatched/proprietary annotation |
+| 3 | Element 2 | abbe | `Unmatched (nD 1.5290 / V 51.6, Chance type 7863)` | Explicit unmatched/proprietary annotation |
+| 4 | Element 3 | abbe | `Unmatched (nD 1.6512 / V 33.5, Chance type 5093)` | Explicit unmatched/proprietary annotation |
+| 6 | Element 4 | abbe | `Unmatched (nD 1.6512 / V 33.5, Chance type 5093)` | Explicit unmatched/proprietary annotation |
+| 8 | Element 5 | abbe | `Unmatched (nD 1.6129 / V 59.3, Chance type 4873)` | Explicit unmatched/proprietary annotation |
+| 10 | Element 6 | abbe | `Unmatched (nD 1.6129 / V 59.3, Chance type 4873)` | Explicit unmatched/proprietary annotation |
+
 ### [GOERZ DOPPEL-ANASTIGMAT SERIES III 240mm f/7.7](../../src/lens-data/goerz/GoerzDoppelAnastigmatSeriesIII240mmf77.data.ts) - 0.0% trusted (0/6); 0.0% Sellmeier (0/6) - DE 74437 C
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
@@ -4386,6 +4415,18 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 8 | Element 6 | abbe | `Unmatched (658512 — SSK-class dense crown, near N-SSK5; supplier unconfirmed)` | Explicit unmatched/proprietary annotation |
 | 9 | Element 7 | abbe | `Unmatched (589612 — crown class, near SK5; supplier unconfirmed)` | Explicit unmatched/proprietary annotation |
 
+### [COOKE 1 in f/1.4 (US 2,019,985 Design)](../../src/lens-data/cooke/CookeUS2019985.data.ts) - 0.0% trusted (0/7); 0.0% Sellmeier (0/7) - US 2,019,985 A
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 5 | abbe | `Unmatched (nD 1.6135 / V 59.4)` | Explicit unmatched/proprietary annotation |
+| 3 | Element 1 | abbe | `Unmatched (nD 1.6135 / V 59.4)` | Explicit unmatched/proprietary annotation |
+| 4 | Element 2 | abbe | `Unmatched (nD 1.579 / V 40.4)` | Explicit unmatched/proprietary annotation |
+| 6 | Element 3 | abbe | `Unmatched (nD 1.579 / V 40.4)` | Explicit unmatched/proprietary annotation |
+| 7 | Element 4 | abbe | `Unmatched (nD 1.6437 / V 48.3)` | Explicit unmatched/proprietary annotation |
+| 9 | Element 6 | abbe | `Unmatched (nD 1.6135 / V 59.4)` | Explicit unmatched/proprietary annotation |
+| 11 | Element 7 | abbe | `Unmatched (nD 1.6135 / V 59.4)` | Explicit unmatched/proprietary annotation |
+
 ### [LEITZ SUMMAREX 85mm f/1.5](../../src/lens-data/leica/LeicaSummarex85mmf15.data.ts) - 0.0% trusted (0/7); 0.0% Sellmeier (0/7)
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
@@ -4421,6 +4462,19 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 9 | Element 5 | abbe | `Unmatched (830427 patent-rounded lanthanum glass; vendor unresolved)` | Explicit unmatched/proprietary annotation |
 | 10 | Element 6 | abbe | `630346 - dense flint (patent nd=1.63000, vd=34.57; no exact public catalog match)` | No catalog match |
 | 12A | Element 7 | abbe | `680312 - dense flint (patent nd=1.68000, vd=31.16; no exact public catalog match)` | No catalog match |
+
+### [COOKE 100mm f/2 (US 2,130,760 Design)](../../src/lens-data/cooke/CookeUS2130760.data.ts) - 0.0% trusted (0/8); 0.0% Sellmeier (0/8) - US 2,130,760 A
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `Unmatched (nD 1.613 / V 59.3)` | Explicit unmatched/proprietary annotation |
+| 3 | Element 2 | abbe | `Unmatched (nD 1.621 / V 60.4)` | Explicit unmatched/proprietary annotation |
+| 4 | Element 3 | abbe | `Unmatched (nD 1.605 / V 38.2)` | Explicit unmatched/proprietary annotation |
+| 5 | Element 4 | abbe | `Unmatched (nD 1.652 / V 33.5)` | Explicit unmatched/proprietary annotation |
+| 7 | Element 5 | abbe | `Unmatched (nD 1.652 / V 33.5)` | Explicit unmatched/proprietary annotation |
+| 8 | Element 6 | abbe | `Unmatched (nD 1.605 / V 38.2)` | Explicit unmatched/proprietary annotation |
+| 9 | Element 7 | abbe | `Unmatched (nD 1.621 / V 60.4)` | Explicit unmatched/proprietary annotation |
+| 11 | Element 8 | abbe | `Unmatched (nD 1.621 / V 60.4)` | Explicit unmatched/proprietary annotation |
 
 ### [THYPOCH KSANA 21mm f/3.5 ASPH.](../../src/lens-data/thypoch/ThypochKsana21mmf35.data.ts) - 0.0% trusted (0/8); 0.0% Sellmeier (0/8) - CN 118534627 A
 

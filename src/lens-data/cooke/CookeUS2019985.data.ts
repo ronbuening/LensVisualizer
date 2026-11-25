@@ -40,7 +40,7 @@ const LENS_DATA = {
   maker: "Cooke",
   name: "COOKE 1 in f/1.4 (US 2,019,985 Design)",
   subtitle: "US 2,019,985 A, sole example — H. W. Lee f/1.4 objective",
-  visible: false,
+  visible: true,
   catalog: {
     specs: ["7 ELEMENTS / 5 GROUPS", "DESIGN f = 26.31 mm", "DESIGN F/1.4", "ALL SPHERICAL"],
     elementCount: 7,

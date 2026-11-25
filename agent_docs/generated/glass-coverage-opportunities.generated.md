@@ -9,7 +9,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **1221** lenses scanned (**1193** visible)
+- **1221** lenses scanned (**1198** visible)
 - **12392 / 13480** non-air surfaces use strict catalog Sellmeier data (91.9%)
 - **12410 / 13480** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 92.1%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files

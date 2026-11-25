@@ -139,3 +139,8 @@ Open:
 - The printed table computes to 101.56 mm against the stated 100 mm; no misprint established in either print.
 - Whether to cite GB 113,590 A (1918) instead of the US grant.
 
+## 2026-11-25 — Shown in the catalogue
+
+`visible` changed from false to true. The reasons it stayed hidden are closed: the Cooke maker page now exists, and
+the catalogue lists patent designs with no production match under their "(US … Design)" names. No optical value, rim
+or metadata changed.

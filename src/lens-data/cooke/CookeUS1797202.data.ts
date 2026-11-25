@@ -34,7 +34,7 @@ const LENS_DATA = {
   maker: "Cooke",
   name: "COOKE 108mm f/1.5 (US 1,797,202 Design)",
   subtitle: "US 1,797,202 A, sole example — Warmisham f/1.5 Petzval-type objective",
-  visible: false,
+  visible: true,
   catalog: {
     specs: ["6 ELEMENTS / 5 GROUPS", "ALL SPHERICAL", "DESIGN f = 108.4 mm", "DESIGN F/1.5", "PETZVAL TYPE"],
     elementCount: 6,

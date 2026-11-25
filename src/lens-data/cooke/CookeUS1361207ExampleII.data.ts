@@ -33,7 +33,7 @@ const LENS_DATA = {
   maker: "Cooke",
   name: "COOKE 100mm f/4.5 (US 1,361,207 Example II Design)",
   subtitle: "US 1,361,207 A, Example II — long-focus form of the Aviar four-lens type",
-  visible: false,
+  visible: true,
   catalog: {
     specs: ["4 ELEMENTS / 4 GROUPS", "ALL SPHERICAL", "DESIGN F/4.5"],
     elementCount: 4,
