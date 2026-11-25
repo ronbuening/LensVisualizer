@@ -4,7 +4,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * US 4,176,914, Table 1 and Figure 1, Kazuo Fujibayashi for Canon. The sole
  * example gives f = 100, f/2.8 and a 76° field. All lengths are scaled by
  * 0.28 to the marketed 28 mm focal length. The seven air-spaced singlets
- * retain the printed sodium D indices, Abbe numbers and 35.644 mm back focus.
+ * retain the printed indices, Abbe numbers and 35.644 mm back focus. The text
+ * names the sodium D line, but every index/Abbe pair is a catalog d-line
+ * value, so the file stores them as d-line data.
  * The patent places the iris between L3 and L4. Its estimated axial position
  * divides that air space into 4.1468 and 1.414 mm. The iris radius follows
  * from f/2.8. Figure 1 supplies the clear rims and the flat land on the back
@@ -54,9 +56,9 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.60311,
       vd: 60.7,
-      indexReference: "D",
+      indexReference: "d",
       focalLengthMm: -50.61,
-      glass: "BACD14 (Hoya)",
+      glass: "S-BSM14 (OHARA)",
       role: "The front meniscus diverges the incoming beam and provides clearance behind the lens for the reflex mirror.",
     },
     {
@@ -66,9 +68,9 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.60311,
       vd: 60.7,
-      indexReference: "D",
+      indexReference: "d",
       focalLengthMm: -76.17,
-      glass: "BACD14 (Hoya)",
+      glass: "S-BSM14 (OHARA)",
       role: "Adds negative power behind the first meniscus. Both front menisci are convex toward the object.",
     },
     {
@@ -78,9 +80,9 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.69895,
       vd: 30.1,
-      indexReference: "D",
+      indexReference: "d",
       focalLengthMm: 72.05,
-      glass: "Unmatched (nd 1.69895 / νd 30.1)",
+      glass: "S-TIM35 (OHARA)",
       role: "Begins to converge the beam before the iris. Its nearly flat rear face contributes little power.",
     },
     {
@@ -90,9 +92,9 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.7725,
       vd: 49.6,
-      indexReference: "D",
+      indexReference: "d",
       focalLengthMm: 21.11,
-      glass: "Unmatched (nd 1.7725 / νd 49.6)",
+      glass: "S-LAH66 (OHARA)",
       role: "Supplies the strongest positive power immediately behind the iris.",
     },
     {
@@ -102,9 +104,9 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.80518,
       vd: 25.4,
-      indexReference: "D",
+      indexReference: "d",
       focalLengthMm: -16.47,
-      glass: "Unmatched (nd 1.80518 / νd 25.4)",
+      glass: "S-TIH6 (OHARA)",
       role: "Opposes the convergence from L4. Its highly dispersive glass contributes to the balance of axial color.",
     },
     {
@@ -114,9 +116,9 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.713,
       vd: 53.9,
-      indexReference: "D",
+      indexReference: "d",
       focalLengthMm: 49.51,
-      glass: "Unmatched (nd 1.713 / νd 53.9)",
+      glass: "S-LAL8 (OHARA)",
       role: "Restores convergence after L5, mainly at its rear face.",
     },
     {
@@ -126,9 +128,9 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.7725,
       vd: 49.6,
-      indexReference: "D",
+      indexReference: "d",
       focalLengthMm: 43.31,
-      glass: "Unmatched (nd 1.7725 / νd 49.6)",
+      glass: "S-LAH66 (OHARA)",
       role: "Bends rays toward the film, with most of its power at the rear face.",
     },
   ],

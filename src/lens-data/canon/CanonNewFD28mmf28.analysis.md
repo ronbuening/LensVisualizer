@@ -26,19 +26,19 @@ The patent places the diaphragm between L3 and L4. The MIR cutaway suggests an i
 
 The focal lengths below are for each thick element in air. The index and Abbe number are the patent’s printed values.
 
-| Element | Form               | Sodium D index | Abbe number | Glass equivalent | Focal length | Optical role                                                                                                                |
-| ------- | ------------------ | -------------: | ----------: | ---------------- | -----------: | --------------------------------------------------------------------------------------------------------------------------- |
-| L1      | Negative meniscus  |        1.60311 |        60.7 | Hoya BACD14      |    −50.61 mm | The stronger of the two front menisci starts the beam diverging. Its rear face has a flat land beyond the clear rim.        |
-| L2      | Negative meniscus  |        1.60311 |        60.7 | Hoya BACD14      |    −76.17 mm | Adds divergence before the wide air space leading to L3. Both front menisci are convex toward the subject.                  |
-| L3      | Biconvex positive  |        1.69895 |        30.1 | Unmatched        |    +72.05 mm | Reduces the divergence ahead of the iris. Its rear radius is −2,187.836 mm, leaving almost all its power on the front face. |
-| L4      | Biconvex positive  |        1.77250 |        49.6 | Unmatched        |    +21.11 mm | Immediately behind the iris, it supplies the strongest positive power of the seven elements.                                |
-| L5      | Biconcave negative |        1.80518 |        25.4 | Unmatched        |    −16.47 mm | Opposes L4’s convergence. Its high dispersion and negative power help balance axial color from the positive lenses.         |
-| L6      | Positive meniscus  |          1.713 |        53.9 | Unmatched        |    +49.51 mm | Its strongly curved rear face restores convergence after L5.                                                                |
-| L7      | Positive meniscus  |        1.77250 |        49.6 | Unmatched        |    +43.31 mm | Separated from L6 by only 0.196 mm, it adds the final convergence toward the film.                                          |
+| Element | Form               | d-line index | Abbe number | Glass equivalent | Focal length | Optical role                                                                                                                |
+| ------- | ------------------ | -----------: | ----------: | ---------------- | -----------: | --------------------------------------------------------------------------------------------------------------------------- |
+| L1      | Negative meniscus  |      1.60311 |        60.7 | Ohara S-BSM14    |    −50.61 mm | The stronger of the two front menisci starts the beam diverging. Its rear face has a flat land beyond the clear rim.        |
+| L2      | Negative meniscus  |      1.60311 |        60.7 | Ohara S-BSM14    |    −76.17 mm | Adds divergence before the wide air space leading to L3. Both front menisci are convex toward the subject.                  |
+| L3      | Biconvex positive  |      1.69895 |        30.1 | Ohara S-TIM35    |    +72.05 mm | Reduces the divergence ahead of the iris. Its rear radius is −2,187.836 mm, leaving almost all its power on the front face. |
+| L4      | Biconvex positive  |      1.77250 |        49.6 | Ohara S-LAH66    |    +21.11 mm | Immediately behind the iris, it supplies the strongest positive power of the seven elements.                                |
+| L5      | Biconcave negative |      1.80518 |        25.4 | Ohara S-TIH6     |    −16.47 mm | Opposes L4’s convergence. Its high dispersion and negative power help balance axial color from the positive lenses.         |
+| L6      | Positive meniscus  |        1.713 |        53.9 | Ohara S-LAL8     |    +49.51 mm | Its strongly curved rear face restores convergence after L5.                                                                |
+| L7      | Positive meniscus  |      1.77250 |        49.6 | Ohara S-LAH66    |    +43.31 mm | Separated from L6 by only 0.196 mm, it adds the final convergence toward the film.                                          |
 
 ## Glass Identification and Selection
 
-Column 2 specifies the sodium D line for the indices. At that line, the Hoya BACD14 dispersion curve gives an index of 1.603022 and an Abbe number of 60.686. Those values are close enough to the printed 1.60311 and 60.7 to use the curve for L1 and L2. The other five elements retain their printed indices and Abbe numbers. The patent gives neither glass trade names nor melt data.
+Column 2 names the sodium D line for the indices, but the values are helium d-line catalog values. Five Ohara catalog glasses reproduce all seven printed indices within 0.000005 and their Abbe numbers within 0.06 at the d line. At the sodium D wavelength the same glasses read 0.00009 to 0.00028 lower. The table header also prints a lowercase νd. The model therefore stores d-line values, and the catalog equivalents supply dispersion curves for tracing. The patent gives neither glass trade names nor suppliers, and identifies no extra-low-dispersion element.
 
 ## Focus Mechanism
 
@@ -51,4 +51,4 @@ Canon’s FD lens instructions specify double-helicoid focusing. The production 
 - Focusing mechanism and field of view. [Canon FD Lens Instructions, pp. 28–29](https://flynngraphics.ca/wp-content/uploads/2016/07/FD-Lens-Instructions-for-Web.pdf) and [Canon New FD lens guide, product C21-5223-201](https://www.galimbertipaolo.it/CanonFD/FDLensGuide1.pdf)
 - Retail optical section showing the shapes and positions of the seven singlets. [MIR cutaway](https://www.mir.com.my/rb/photography/companies/canon/fdresources/fdlenses/28mmf28optic.gif) and [its product page](https://mir.com.my/rb/photography/companies/canon/fdresources/fdlenses/28mm.htm)
 - Earlier Canon design used for the comparison. [Kawamura, US 4,046,459, Example 2](https://patents.google.com/patent/US4046459A/en)
-- Published glass dispersion data. [Hoya Optics, optical glass data](https://www.hoya-opticalworld.com/english/datadownload/index.html)
+- Published glass dispersion data. [OHARA optical glass catalog](https://www.ohara-inc.co.jp/en/product/catalog/)
