@@ -222,16 +222,6 @@ export const HOYA_GLASS_ENTRIES: readonly GlassEntry[] = [
       "HOYA Zemax catalog 2026-07-07 including obsolete glasses; vendor formula-3 polynomial for discontinued BAFL2.",
   },
   {
-    name: "BAFL4",
-    vendor: "Hoya",
-    polynomial: [2.4516489, -0.0082668819, 0.015080705, 0.00033506162, -0.000014477165, 0.0000015628088],
-    nd: 1.579572,
-    vd: 53.705963,
-    PgF: 0.5517,
-    source:
-      "HOYA Zemax OpticStudio DATA 2026-07-07 including obsolete glasses, BAFL4 NM/CD row; vendor formula-1 polynomial for discontinued BAFL4; code 580-537 omitted so bare-code annotations keep their existing row. https://www.hoya-opticalworld.com/common/agf/HOYA20260707_include_obsolete.agf (accessed 2026-11-24).",
-  },
-  {
     name: "LACL1",
     vendor: "Hoya",
     polynomial: [2.6475841, -0.012231817, 0.015713584, 0.00051271652, -0.0000403019, 0.0000027476766],

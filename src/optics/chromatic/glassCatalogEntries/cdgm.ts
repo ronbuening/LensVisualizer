@@ -256,6 +256,16 @@ export const CDGM_GLASS_ENTRIES: readonly GlassEntry[] = [
     code6: "497816",
     source: "CDGM Zemax catalog 2022-06 via refractiveindex.info; H-FK61 page.",
   },
+  {
+    name: "H-ZF62",
+    vendor: "CDGM",
+    B: [2.55246796, 0.465681607, 2.0289468],
+    C: [162.450683, 0.069560081, 0.014771138],
+    nd: 1.92286,
+    vd: 20.879907,
+    source:
+      "CDGM Zemax catalog 2022-06 via refractiveindex.info; H-ZF62 page; code 923-209 omitted so bare-code annotations keep their existing row.",
+  },
   /* Phase 14 catalog expansion (May 2026): CDGM, current Ohara, Hoya, and Schott unresolved-token pass. */
   {
     name: "H-QK3L",
