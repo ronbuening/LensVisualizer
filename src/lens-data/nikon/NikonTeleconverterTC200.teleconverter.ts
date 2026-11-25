@@ -7,7 +7,10 @@ import type { TeleconverterDataV2Input } from "../../types/lensDataV2.js";
  * correction to +35.545 mm, the patent's master at its printed spacing gives
  * 103.29 mm, f/4.003 and 2.0017×, against 103.2 mm, f/4 and 2×. The converter
  * Petzval sum is −0.002118 per mm (printed −0.00211), and its focal length
- * is −76.49 mm (76.5 mm in magnitude on the dimensioned TC-200 drawing).
+ * is −76.49 mm (76.5 mm in magnitude on the dimensioned TC-200 drawing). Column 3
+ * of the patent prints the design values f1 = −50.48869, e = 20.25835 and
+ * fR = −76.492 mm; the corrected radius reproduces them (−50.4887, 20.257,
+ * −76.4917), the printed one does not (−47.30, 20.59, −70.21).
  *
  * Nikon specifies 44 mm between mounts. Placing the corrected optics for infinity
  * focus at that extension puts the host's original image plane 36.8649 mm behind
