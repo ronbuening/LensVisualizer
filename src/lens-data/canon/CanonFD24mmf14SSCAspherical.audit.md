@@ -6,7 +6,7 @@ Kikuo Momiyama, US 3,992,085, assigned to Canon Inc., issued November 16, 1976. 
 
 ## Transcription
 
-The 18 signed radii, axial spacings, ten index and Abbe-number pairs and 36.500 mm back focus agree with Example 1. Elements 3/4 share surface 6 and elements 7/8 share surface 13. The patent adds fourth-, sixth-, eighth- and tenth-order terms to a spherical base at surface 14, the rear face of element 8. The conic constant is zero. At the table's 14.700 mm height, the coefficients give a sag magnitude of 2.21322 mm against the printed 2.21315 mm.
+The 18 radii (with their signs), axial spacings, ten index and Abbe-number pairs and 36.500 mm back focus agree with Example 1. Elements 3/4 share surface 6 and elements 7/8 share surface 13. The patent adds fourth-, sixth-, eighth- and tenth-order terms to a spherical base at surface 14, the rear face of element 8. The conic constant is zero. At the table's 14.700 mm height, the coefficients give a sag magnitude of 2.21322 mm against the printed 2.21315 mm.
 
 ## First-Order Values
 
