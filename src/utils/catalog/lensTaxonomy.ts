@@ -13,6 +13,7 @@
 
 export const LENS_MOUNTS = [
   { id: "agfa-ambi-silette", label: "Agfa Ambi Silette", sortOrder: 50 },
+  { id: "agfa-ambiflex", label: "Agfa Ambiflex / Agfaflex", sortOrder: 52 },
   { id: "alpa", label: "ALPA (35 mm SLR)", sortOrder: 55 },
   { id: "argus-c", label: "Argus C-series", sortOrder: 57 },
   { id: "arri-pl", label: "ARRI PL", sortOrder: 60 },
