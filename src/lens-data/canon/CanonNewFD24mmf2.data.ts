@@ -1,334 +1,223 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
-/** Private source-preserving reconstruction. Estimated rims/stop and derived infinity plane; see paired analysis. */
+
+/**
+ * US 4,188,092, Example 1, gives the infinity prescription for an 84° f/2
+ * retrofocus lens. The radii and axial spacings in its f = 1 table are
+ * multiplied by 24 to give millimetres. The glass values refer to the d line.
+ * The printed Seidel coefficients place the diaphragm 0.488 mm behind R11
+ * within D11. Its radius follows from the paraxial f-number, and the image
+ * plane is at the calculated paraxial back focus. The clear radii follow
+ * Fig. 1 except where adjacent surfaces approach contact at R4 and R16 or
+ * the flange at R8 leaves the clear opening uncertain. Only the infinity
+ * width of the floating air space D6 is given.
+ */
 const LENS_DATA = {
-  "schema": 2,
-  "key": "canon-new-fd-24mm-f2",
-  "maker": "Canon",
-  "visible": false,
-  "name": "CANON New FD 24mm f/2",
-  "subtitle": "June1979 variant; US4188092A Example1, production-correlated patent reconstruction",
-  "source": {
-    "patentNumber": "US 4188092 A",
-    "patentYear": 1980,
-    "example": {
-      "label": "Example 1",
-      "id": "1"
-    },
-    "authors": [
-      "Kikuo Momiyama"
-    ],
-    "assignees": [
-      "Canon Kabushiki Kaisha"
-    ],
-    "sdSource": "heuristic"
+  schema: 2,
+  key: "canon-new-fd-24mm-f2",
+  maker: "Canon",
+  visible: true,
+  name: "CANON NEW FD 24mm f/2",
+  subtitle: "US 4,188,092, Example 1 — Canon / Momiyama",
+  source: {
+    patentNumber: "US 4,188,092",
+    patentYear: 1980,
+    example: { label: "Example 1", id: "1" },
+    authors: ["Kikuo Momiyama"],
+    assignees: ["Canon Inc."],
   },
-  "catalog": {
-    "lensMounts": [
-      "canon-fd"
-    ],
-    "imageFormat": "135-full-frame",
-    "elementCount": 11,
-    "groupCount": 9,
-    "focalLengthMm": {
-      "marketing": 24,
-      "design": 23.99264253394198
-    },
-    "fNumber": {
-      "marketing": 2,
-      "design": 2
-    },
-    "closeFocusM": {
-      "marketing": 0.3
-    },
-    "specs": [
-      "June1979 New FD24/2, not the f/2.8 S.S.C.",
-      "MIR mechanical section with rear biconcave cement seam supports Example1; print origin unknown.",
-      "All signed normalized radii and thicknesses scaled uniformly by24; no plate or baffle.",
-      "Image plane derived from exact d-line Gaussian infinity focus; not a printed terminal distance.",
-      "Iris midpoint and optical caps estimated; full-field diagnostic may clip or fail.",
-      "No finite floating-focus cam modeled; browser QA deferred."
-    ]
+  catalog: {
+    lensMounts: ["canon-fd"],
+    imageFormat: "135-full-frame",
+    elementCount: 11,
+    groupCount: 9,
+    focalLengthMm: { marketing: 24, design: 23.99 },
+    fNumber: { marketing: 2, design: 2 },
+    closeFocusM: { marketing: 0.3 },
+    specs: ["11 ELEMENTS / 9 GROUPS", "ALL SPHERICAL", "DESIGN f = 23.99 mm", "84° FIELD"],
   },
-  "elements": [
+  elements: [
     {
-      "id": 1,
-      "name": "E1",
-      "label": "Element 1",
-      "type": "Lens",
-      "nd": 1.58913,
-      "vd": 61.1,
-      "indexReference": "d"
+      id: 1,
+      name: "L1",
+      label: "Element 1",
+      type: "Positive Meniscus",
+      nd: 1.58913,
+      vd: 61.1,
+      indexReference: "d",
+      focalLengthMm: 180.39,
+      glass: "S-BAL35 (OHARA)",
+      role: "The front positive meniscus bends oblique rays before they reach the first strong negative element.",
     },
     {
-      "id": 2,
-      "name": "E2",
-      "label": "Element 2",
-      "type": "Lens",
-      "nd": 1.68893,
-      "vd": 31.1,
-      "indexReference": "d"
+      id: 2,
+      name: "L2",
+      label: "Element 2",
+      type: "Negative Meniscus",
+      nd: 1.68893,
+      vd: 31.1,
+      indexReference: "d",
+      focalLengthMm: -36.69,
+      glass: "S-TIM28 (OHARA)",
+      role: "The strongly curved rear surface supplies the first diverging power in Group I.",
     },
     {
-      "id": 3,
-      "name": "E3",
-      "label": "Element 3",
-      "type": "Lens",
-      "nd": 1.59551,
-      "vd": 39.2,
-      "indexReference": "d"
+      id: 3,
+      name: "L3",
+      label: "Element 3",
+      type: "Positive Meniscus",
+      nd: 1.59551,
+      vd: 39.2,
+      indexReference: "d",
+      focalLengthMm: 96.56,
+      glass: "S-TIM8 (OHARA)",
+      role: "The second positive meniscus helps correct chromatic coma and distortion in the front group.",
     },
     {
-      "id": 4,
-      "name": "E4",
-      "label": "Element 4",
-      "type": "Lens",
-      "nd": 1.58913,
-      "vd": 61.1,
-      "indexReference": "d"
+      id: 4,
+      name: "L4",
+      label: "Element 4",
+      type: "Negative Meniscus",
+      nd: 1.58913,
+      vd: 61.1,
+      indexReference: "d",
+      focalLengthMm: -28.05,
+      glass: "S-BAL35 (OHARA)",
+      role: "The strongest negative lens in Group I follows the floating air space.",
     },
     {
-      "id": 5,
-      "name": "E5",
-      "label": "Element 5",
-      "type": "Lens",
-      "nd": 1.80518,
-      "vd": 25.4,
-      "indexReference": "d"
+      id: 5,
+      name: "L5",
+      label: "Element 5",
+      type: "Biconvex Positive",
+      nd: 1.80518,
+      vd: 25.4,
+      indexReference: "d",
+      focalLengthMm: 34.75,
+      glass: "SF6 (Schott)",
+      role: "The positive front member supplies the converging power of the central doublet.",
+      cemented: "C1",
     },
     {
-      "id": 6,
-      "name": "E6",
-      "label": "Element 6",
-      "type": "Lens",
-      "nd": 1.62041,
-      "vd": 60.3,
-      "indexReference": "d"
+      id: 6,
+      name: "L6",
+      label: "Element 6",
+      type: "Negative Meniscus",
+      nd: 1.62041,
+      vd: 60.3,
+      indexReference: "d",
+      focalLengthMm: -210.19,
+      glass: "N-SK16 (Schott)",
+      role: "The thick, weakly negative rear member completes Group II just ahead of the diaphragm.",
+      cemented: "C1",
     },
     {
-      "id": 7,
-      "name": "E7",
-      "label": "Element 7",
-      "type": "Lens",
-      "nd": 1.804,
-      "vd": 46.6,
-      "indexReference": "d"
+      id: 7,
+      name: "L7",
+      label: "Element 7",
+      type: "Biconvex Positive",
+      nd: 1.804,
+      vd: 46.6,
+      indexReference: "d",
+      focalLengthMm: 25.97,
+      glass: "S-LAH65 (OHARA)",
+      role: "The first lens behind the stop has a nearly flat front and a strongly curved rear face.",
     },
     {
-      "id": 8,
-      "name": "E8",
-      "label": "Element 8",
-      "type": "Lens",
-      "nd": 1.6968,
-      "vd": 55.5,
-      "indexReference": "d"
+      id: 8,
+      name: "L8",
+      label: "Element 8",
+      type: "Positive Meniscus",
+      nd: 1.6968,
+      vd: 55.5,
+      indexReference: "d",
+      focalLengthMm: 78.5,
+      glass: "S-LAL14 (OHARA)",
+      role: "The positive member of the rear doublet faces the curved air space behind L7.",
+      cemented: "C2",
     },
     {
-      "id": 9,
-      "name": "E9",
-      "label": "Element 9",
-      "type": "Lens",
-      "nd": 1.80518,
-      "vd": 25.4,
-      "indexReference": "d"
+      id: 9,
+      name: "L9",
+      label: "Element 9",
+      type: "Biconcave Negative",
+      nd: 1.80518,
+      vd: 25.4,
+      indexReference: "d",
+      focalLengthMm: -16.95,
+      glass: "SF6 (Schott)",
+      role: "The biconcave member gives the rear doublet its net negative power.",
+      cemented: "C2",
     },
     {
-      "id": 10,
-      "name": "E10",
-      "label": "Element 10",
-      "type": "Lens",
-      "nd": 1.6968,
-      "vd": 55.5,
-      "indexReference": "d"
+      id: 10,
+      name: "L10",
+      label: "Element 10",
+      type: "Positive Meniscus",
+      nd: 1.6968,
+      vd: 55.5,
+      indexReference: "d",
+      focalLengthMm: 39.55,
+      glass: "S-LAL14 (OHARA)",
+      role: "The singlet after the negative doublet turns the rays back toward the axis.",
     },
     {
-      "id": 11,
-      "name": "E11",
-      "label": "Element 11",
-      "type": "Lens",
-      "nd": 1.7725,
-      "vd": 49.6,
-      "indexReference": "d"
-    }
+      id: 11,
+      name: "L11",
+      label: "Element 11",
+      type: "Biconvex Positive",
+      nd: 1.7725,
+      vd: 49.6,
+      indexReference: "d",
+      focalLengthMm: 55.11,
+      glass: "TAF1 (Hoya)",
+      role: "The last positive element completes the convergence toward the film plane.",
+    },
   ],
-  "surfaces": [
-    {
-      "label": "1",
-      "R": 82.02720000000001,
-      "d": 3.2304,
-      "sd": 18,
-      "medium": 1
-    },
-    {
-      "label": "2",
-      "R": 354.30240000000003,
-      "d": 0.19680000000000003,
-      "sd": 18
-    },
-    {
-      "label": "3",
-      "R": 30.458399999999997,
-      "d": 1.4687999999999999,
-      "sd": 13,
-      "medium": 2
-    },
-    {
-      "label": "4",
-      "R": 13.5408,
-      "d": 4.5408,
-      "sd": 11.3
-    },
-    {
-      "label": "5",
-      "R": 31.437600000000003,
-      "d": 2.3496,
-      "sd": 12,
-      "medium": 3
-    },
-    {
-      "label": "6",
-      "R": 67.4232,
-      "d": 2.2512,
-      "sd": 12
-    },
-    {
-      "label": "7",
-      "R": 62.7312,
-      "d": 0.9792000000000001,
-      "sd": 9.7,
-      "medium": 4
-    },
-    {
-      "label": "8",
-      "R": 13.005600000000001,
-      "d": 4.1856,
-      "sd": 9.7
-    },
-    {
-      "label": "9",
-      "R": 45.3024,
-      "d": 3.1344,
-      "sd": 10.6,
-      "medium": 5
-    },
-    {
-      "label": "10",
-      "R": -70.93199999999999,
-      "d": 12.4872,
-      "sd": 10.6,
-      "medium": 6
-    },
-    {
-      "label": "11",
-      "R": -166.02,
-      "d": 0.9792000000000001,
-      "sd": 10.6
-    },
-    {
-      "label": "STO",
-      "R": "flat",
-      "d": 0.9792000000000001
-    },
-    {
-      "label": "12",
-      "R": 461.2224,
-      "d": 4.1136,
-      "sd": 10.3,
-      "medium": 7
-    },
-    {
-      "label": "13",
-      "R": -21.787200000000002,
-      "d": 2.9088000000000003,
-      "sd": 10.3
-    },
-    {
-      "label": "14",
-      "R": -27.554399999999998,
-      "d": 2.0568,
-      "sd": 10,
-      "medium": 8
-    },
-    {
-      "label": "15",
-      "R": -18.8856,
-      "d": 0.9792000000000001,
-      "sd": 10,
-      "medium": 9
-    },
-    {
-      "label": "16",
-      "R": 50.304,
-      "d": 1.3224,
-      "sd": 9
-    },
-    {
-      "label": "17",
-      "R": -116.184,
-      "d": 3.036,
-      "sd": 9,
-      "medium": 10
-    },
-    {
-      "label": "18",
-      "R": -22.514400000000002,
-      "d": 0.1464,
-      "sd": 10.1
-    },
-    {
-      "label": "19",
-      "R": 284.44320000000005,
-      "d": 2.6448,
-      "sd": 10.1,
-      "medium": 11
-    },
-    {
-      "label": "20",
-      "R": -49.8576,
-      "d": 36.05336462192678,
-      "sd": 10.1
-    }
+  surfaces: [
+    { label: "1", R: 82.0272, d: 3.2304, sd: 22.2, medium: 1 },
+    { label: "2", R: 354.3024, d: 0.1968, sd: 22.2 },
+    { label: "3", R: 30.4584, d: 1.4688, sd: 16.6, medium: 2 },
+    { label: "4", R: 13.5408, d: 4.5408, sd: 11.35 },
+    { label: "5", R: 31.4376, d: 2.3496, sd: 12.3, medium: 3 },
+    { label: "6", R: 67.4232, d: 2.2512, sd: 12.3 },
+    { label: "7", R: 62.7312, d: 0.9792, sd: 9.9, medium: 4 },
+    { label: "8", R: 13.0056, d: 4.1856, sd: 9.7 },
+    { label: "9", R: 45.3024, d: 3.1344, sd: 10.5, medium: 5 },
+    { label: "10", R: -70.932, d: 12.4872, sd: 10.5, medium: 6 },
+    { label: "11", R: -166.02, d: 0.488, sd: 10.6 },
+    { label: "STO", R: "flat", d: 1.4704 },
+    { label: "12", R: 461.2224, d: 4.1136, sd: 11.3, medium: 7 },
+    { label: "13", R: -21.7872, d: 2.9088, sd: 11.3 },
+    { label: "14", R: -27.5544, d: 2.0568, sd: 10.5, medium: 8 },
+    { label: "15", R: -18.8856, d: 0.9792, sd: 10.5, medium: 9 },
+    { label: "16", R: 50.304, d: 1.3224, sd: 9.1 },
+    { label: "17", R: -116.184, d: 3.036, sd: 10.6, medium: 10 },
+    { label: "18", R: -22.5144, d: 0.1464, sd: 10.6 },
+    { label: "19", R: 284.4432, d: 2.6448, sd: 12.2, medium: 11 },
+    { label: "20", R: -49.8576, d: 36.05336462192678, sd: 12.2 },
   ],
-  "aperture": {
-    "nominalFNumber": 2,
-    "fStops": [
-      2,
-      2.8,
-      4,
-      5.6,
-      8,
-      11,
-      16,
-      22
-    ],
-    "maxFNumber": 22,
-    "blades": 8
+  aperture: {
+    nominalFNumber: 2,
+    fStops: [2, 2.8, 4, 5.6, 8, 11, 16, 22],
+    maxFNumber: 22,
+    blades: 8,
   },
-  "focus": {
-    "closeFocusM": 1000000000000000,
-    "description": "Static infinity only. Source qualitatively increases D6 while advancing the whole lens for near focus; no numeric finite prescription or focus cam inferred."
+  focus: {
+    closeFocusM: 1e15,
+    description:
+      "Infinity focus only. At close range the lens moves toward the subject and the air space between L3 and L4 widens. The patent gives its width only at infinity.",
   },
-  "projection": {
-    "kind": "rectilinear",
-    "fullFieldDeg": 84,
-    "maxTraceFieldDeg": 42
-  },
-  "doublets": [
-    {
-      "text": "E5/E6",
-      "fromSurface": "9",
-      "toSurface": "11"
-    },
-    {
-      "text": "E8/E9",
-      "fromSurface": "14",
-      "toSurface": "16"
-    }
+  projection: { kind: "rectilinear", fullFieldDeg: 84, maxTraceFieldDeg: 42 },
+  groups: [
+    { text: "I", fromSurface: "1", toSurface: "8" },
+    { text: "II", fromSurface: "9", toSurface: "11" },
+    { text: "III", fromSurface: "12", toSurface: "20" },
   ],
-  "rays": {
-    "offAxisFieldFrac": 0.07142857142857142
-  },
-  "layout": {
-    "yScFill": 0.65
-  }
+  doublets: [
+    { text: "C1", fromSurface: "9", toSurface: "11" },
+    { text: "C2", fromSurface: "14", toSurface: "16" },
+  ],
+  layout: { yScFill: 0.65 },
 } satisfies LensDataV2Input;
+
 export default LENS_DATA;

@@ -1,69 +1,93 @@
+# CANON NEW FD 24mm f/2
+
 ## Patent Reference and Design Identification
 
-**Patent:** [US4188092A](https://patents.google.com/patent/US4188092A/en), Retrofocus type wide-angle objective lens  
-**Inventor:** Kikuo Momiyama  
-**Assignee:** Canon Kabushiki Kaisha  
-**Priority:** April 5, 1977, JP52/38690  
-**Filed:** March 31, 1978  
-**Granted:** February 12, 1980  
-**Example details:** Example 1 / Figure 1; original PDF page 12, columns5–6 including R20 continuation. Uniform scale24mm from the source's f=1 normalization.
+**Patent:** US 4,188,092, _Retrofocus Type Wide-Angle Objective Lens_\
+**Inventors:** Kikuo Momiyama\
+**Assignee:** Canon Inc. (Canon Kabushiki Kaisha on the grant)\
+**Priority:** April 5, 1977, Japan\
+**Filed:** March 31, 1978\
+**Published:** February 12, 1980\
+**Example details:** Example 1, Fig. 1 and columns 5–8.
 
-This is a production-correlated reconstruction of the **June1979 Canon New FD24mm f/2**, not a factory-authenticated prescription or the distinct f/2.8 S.S.C. The [Canon Museum](https://global.canon/en/c-museum/product/nfd200.html) identifies the June1979 retail model with11 elements/9 groups and0.3m minimum focus. The manufacturer [FD Lens Instructions](https://flynngraphics.ca/wp-content/uploads/2016/07/FD-Lens-Instructions-for-Web.pdf), local PDF page8 / printed28–29, explicitly lists New FD24mmf/2,84degrees,9groups/11elements,0.3m and double-helicoid focusing with Canon Floating System. That manual supports identity/specifications/mechanism, not measured optical geometry. Its weight310g differs from the Museum's285g; no optical-change explanation is inferred.
+Canon introduced the New FD 24mm f/2 in June 1979. Its 11 elements in nine air-spaced groups, f/2 aperture and 84° diagonal field fit two examples in Momiyama's patent. The rear cement seam distinguishes them. In the production cutaway reproduced by MIR, the seam lies **inside the biconcave component**. A single positive meniscus follows it. Example 1 shows this sequence. Example 3 has a biconcave singlet and places the seam in the following positive component. The almost flat front of the first lens behind the stop also favors Example 1 (radius 461 mm, compared with 68 mm in Example 3). Examples 2 and 4 are 28 mm designs. [Canon Camera Museum](https://global.canon/en/c-museum/product/nfd200.html) · [Production cutaway](https://mir.com.my/rb/photography/companies/canon/fdresources/fdlenses/24mmf2optic.jpg) · [Patent, Figs. 1 and 5](https://patents.google.com/patent/US4188092A/en)
 
-The [MIR exact-model mechanical cutaway](https://mir.com.my/rb/photography/companies/canon/fdresources/fdlenses/24mmf2optic.jpg), in its [24mm page context](https://mir.com.my/rb/photography/companies/canon/fdresources/fdlenses/24mm.htm), is independent of the patent drawing. Its original print attribution is unknown; it is **not described as a Canon OEM print**. The entire ordered stack fits one isotropic transform:20 axial vertices, scale68.332524pixels per normalized source focal unit, shift6.744640pixels, RMS1.050834pixels/max2.697258pixels across155pixels. Pick uncertainty is approximately1–3native pixels. Signed spherical contours and element ordering also agree over visible optical portions. No per-group warp, separate axial/radial scaling or Rx fitting is used.
-
-Example3's axial RMS1.548345pixels is only slightly worse, within raster uncertainty. The stronger discriminator is topology: the independently inspected rear crop shows a seam **inside the biconcave component**, matching Example1's R15 glass/glass junction. Example3 exits that component to air atR15 and instead cements the following positive component atR17. Thus Example1 is the better production-correlated example; small RMS superiority alone is not treated as decisive. Low-resolution shading, bevels and unresolved peripheral shapes prevent factory-exact claims.
+These details strongly identify Example 1 with the production lens. The cutaway shows construction at one focus setting. It does not give manufacturing dimensions or show the motion of the focusing parts. MIR identifies the f/2 lens as all-spherical and describes its floating system. Neither the patent nor the production specifications identify an ED element. [MIR, New FD 24mm f/2](https://mir.com.my/rb/photography/companies/canon/fdresources/fdlenses/24mm.htm)
 
 ## Optical Architecture
 
-Eleven spherical elements in nine air-separated groups. R10 joinsE5/E6; R15 joinsE8/E9 inside the rear biconcave component. Both shared interfaces remain single optical surfaces with the correct following material. No plate or baffle is invented.
+The patent divides the nine air-spaced components into three optical groups. Group I (L1–L4) diverges even though its first lens is positive. It has a focal length of −20.33 mm. Group II (L5–L6) is a thick cemented doublet of +42.85 mm in front of the diaphragm. Group III (L7–L11) has a focal length of +28.77 mm and brings the beam to the film. This distribution leaves 36.05 mm from the rear vertex to the paraxial image, about one and a half times the focal length.
 
-The source explicitly gives f24mm/F2/half-field42degrees and converts its table to f=1. All20 signed radii and19 separations are multiplied uniformly by24; no source index or Abbe value is changed. R1–R20 track is53.9904mm. In particular, faint signs are confirmed from original pixels: R10−2.9555f, R11−6.9175f, R13−.9078f, R14−1.1481f, R15−.7869f, R17−4.8410f, R18−.9381f, R20−2.0774f.
-
-Terminal image distance is not printed. From the literal d-line prescription, independent ABCD yields EFL**23.992642534mm** and Gaussian infinity BFD**36.053364622mm**, placing the model's flat image at **z90.043764622mm** fromR1. Exact near-axis Snell rays independently approach this plane. These are explicitly **derived infinity coordinates**, not source-measured or factory image dimensions. No best-focus shift is applied in reported MTF; spherical aberration at larger pupils remains visible.
-
-The diaphragm is explicitly drawn betweenR11/R12 but no numeric split/radius is given. The model estimates the midpoint of the exact1.9584mm air interval:0.9792mm on each side, STOz35.8032mm. Native paraxial f/2,f/4,f/8 controls give physical radii9.148829539,4.574414770,2.287207385mm. The exact axial marginal entrance radius at the f/2 control is5.440412224mm, yielding EFL/diameter2.205039; native paraxial aperture labels and real marginal-pupil ratios are distinct conventions, not factory measurements.
-
-Unpublished optical caps are conservative **inner aperture estimates**, bounded by the MIR schematic and true source geometry. The initial R4cap12mm guess physically crossedR5 by0.346413mm and was rejected; it is preserved in baseline-v1. A valid inner estimate11.3mm is above the qualified ray footprints and retains positive clearance, rather than changing any printed prescription. Rear caps are similarly inner optical estimates, not claims about full factory glass rims or illumination. No geometry guard or gap-sag override is used. Dense co-radial separation remains positive (minimum0.1464mm); maximum intrusion is87.776956%, below the default90% limit. Render trimming is zero.
+The patent specifies 24 mm, f/2 and a 42° half-field. It tabulates radii and axial separations with the focal length normalized to one. Multiplying those lengths by 24 gives millimetres. The rounded table then gives a focal length of 23.99 mm and a first-to-last vertex distance of 53.99 mm. The back focal distance is calculated for an object at infinity.
 
 ## Element-by-Element Analysis
 
-| Element | Source faces | n_d | V_d | Layout |
-| --- | --- | --- | --- | --- |
-| E1 | R1–R2 |1.58913|61.1|Positive meniscus|
-| E2 | R3–R4 |1.68893|31.1|Negative meniscus|
-| E3 | R5–R6 |1.59551|39.2|Positive meniscus|
-| E4 | R7–R8 |1.58913|61.1|Negative meniscus|
-| E5 | R9–R10 |1.80518|25.4|Central cemented front|
-| E6 | R10–R11 |1.62041|60.3|Central cemented rear|
-| E7 | R12–R13 |1.80400|46.6|Positive rear component|
-| E8 | R14–R15 |1.69680|55.5|Front of bonded biconcave component|
-| E9 | R15–R16 |1.80518|25.4|Rear of bonded biconcave component|
-| E10 | R17–R18 |1.69680|55.5|Positive meniscus|
-| E11 | R19–R20 |1.77250|49.6|Positive final component|
+The individual focal lengths below are for each thick element in air. The cemented focal lengths include refraction at the shared glass interface.
+
+### L1 — Positive meniscus
+
+L1 (nd 1.58913, νd 61.1, +180.39 mm) bends oblique rays before they reach the first negative element. Momiyama uses a positive front meniscus to help correct the distortion of the divergent group.
+
+### L2 — Negative meniscus
+
+L2 (nd 1.68893, νd 31.1, −36.69 mm) introduces strong divergence at its steep rear surface. Its front faces the shallow rear surface of L1 across a narrow air space.
+
+### L3 — Positive meniscus
+
+L3 (nd 1.59551, νd 39.2, +96.56 mm) provides a second positive bend between the two negative menisci. The patent places the more dispersive of the two positive front glasses here to balance chromatic coma and chromatic distortion. Its rear surface bounds the floating air space D6.
+
+### L4 — Negative meniscus
+
+L4 (nd 1.58913, νd 61.1, −28.05 mm) gives Group I its strongest negative element. Its convex front faces D6 and its concave rear sends diverging rays toward the central doublet.
+
+### L5 and L6 — Positive cemented doublet
+
+L5 (nd 1.80518, νd 25.4, +34.75 mm) is the biconvex front member. L6 (nd 1.62041, νd 60.3, −210.19 mm) is a thick negative meniscus cemented to L5 at R10. Together they form Group II. The patent relates the axial thickness of this group, 15.62 mm, to the balance of field curvature and astigmatism.
+
+### L7 — Biconvex positive
+
+L7 (nd 1.804, νd 46.6, +25.97 mm) is the strongest positive singlet. Its nearly flat front faces the stop. Its much steeper rear face and the facing concavity of L8 enclose a meniscus-shaped air space that the patent uses to balance spherical aberration and coma.
+
+### L8 and L9 — Negative cemented doublet
+
+L8 (nd 1.6968, νd 55.5, +78.50 mm) is a positive meniscus. L9 (nd 1.80518, νd 25.4, −16.95 mm) is biconcave. Their shared surface R15 lies inside the overall biconcave profile. L9 supplies most of the doublet's negative power, giving the pair a focal length of −20.85 mm.
+
+### L10 — Positive meniscus
+
+L10 (nd 1.6968, νd 55.5, +39.55 mm) follows the negative doublet as a singlet. Its steep rear face restores convergence, and only 0.1464 mm of air separates its rear vertex from L11.
+
+### L11 — Biconvex positive
+
+L11 (nd 1.7725, νd 49.6, +55.11 mm) has a shallow front and a more curved rear face. It supplies the final positive power before the 36.05 mm back focal space.
 
 ## Glass Identification and Selection
 
-Every d-line index and Abbe number is literal source data. No manufacturer glass identity, melt, coating or chemical formulation is established. Qualified calculations use helium-d587.5618nm only. Native Abbe-based dispersion remains unvalidated outside that wavelength.
+The patent supplies the helium d-line index and Abbe number for each element. The following catalog glasses agree within 0.000003 in index and 0.043 in Abbe number. Their dispersion curves describe glasses with the printed optical properties. The production glass suppliers and melts are unknown.
+
+| Elements | Patent nd | Patent νd | Catalog equivalent |
+| -------- | --------: | --------: | ------------------ |
+| L1, L4   |   1.58913 |      61.1 | Ohara S-BAL35      |
+| L2       |   1.68893 |      31.1 | Ohara S-TIM28      |
+| L3       |   1.59551 |      39.2 | Ohara S-TIM8       |
+| L5, L9   |   1.80518 |      25.4 | Schott SF6         |
+| L6       |   1.62041 |      60.3 | Schott N-SK16      |
+| L7       |     1.804 |      46.6 | Ohara S-LAH65      |
+| L8, L10  |    1.6968 |      55.5 | Ohara S-LAL14      |
+| L11      |    1.7725 |      49.6 | Hoya TAF1          |
 
 ## Focus Mechanism
 
-Only static infinity is represented. The patent describes expanding theR6–R7 interval while advancing the whole system for close objects, but Example1 prints no numerical finite-focus state or floating cam. Manufacturer0.3m is a retail specification, not a modeled endpoint. The mandatory native focus field uses a distant1e15m sentinel and no variable gaps; this must not be presented as a validated finite setting. No solved/interpolated focus curve is supplied. Integration may refine supported focus presentation separately.
+For nearer subjects the whole lens advances toward the subject while D6, between L3 and L4, widens. This relative movement within the divergent front group changes the correction at close range. Example 1 gives D6 as 2.2512 mm at infinity. It supplies neither a near spacing nor a finite conjugate, so the optical model covers infinity only. Canon lists a 0.30 m minimum focus and 0.11× maximum magnification for the production lens. [Patent, claim 5 and description](https://patents.google.com/patent/US4188092A/en) · [Canon Camera Museum](https://global.canon/en/c-museum/product/nfd200.html)
 
-## Aspherical Surfaces
+## Diaphragm and Field Coverage
 
-None. All20 source interfaces are spherical, plus the separately estimated planar iris. No polynomial, conic or alternative tracing branch is introduced.
+Fig. 1 places the diaphragm between R11 and R12. The printed third-order aberration coefficients put it 0.488 mm behind R11, leaving 1.4704 mm to R12. At this position the paraxial f/2 iris has a radius of 9.10 mm. Pupil spherical aberration makes the real axial entrance radius 5.45 mm at that opening, equivalent to about f/2.20. Canon specifies eight blades and a marked aperture range of f/2 to f/22. [Canon Camera Museum](https://global.canon/en/c-museum/product/nfd200.html)
 
-## Validation and Scope
+The clear radii come mainly from Fig. 1. Close surface spacing constrains R4 and R16, and the width of the clear opening at the flange on R8 is uncertain. At the 42° half-field the chief ray lands 21.22 mm off axis. Barrel distortion moves the 21.63 mm corner of a 36 × 24 mm frame to 42.49°, where the chief ray still clears every surface. With the adopted rims, geometric pupil transmission falls from 78% at 30° to 27% at 42°. These are estimates for the drawn openings.
 
-Main/spec pin: `980bd6f7fd5d27ba5f1d9a68e8c344a4123d67f2`. Exact source aliases and all1,215 catalog modules were checked numerically, including uniformly scaled20-radius sequences: no equivalent. Nineteen retained private native JSON copies from the prior six pack and New FD28 checkpoint also showed no numerical duplicate. The shared-family New FD28/2 is explicitly distinct (Example2,19interfaces/10elements, different rear topology) and unchanged. The public indexed catalog search and upstream handoff report no exact product. A direct live `/lenses/` HTML snapshot was denied HTTP403; no bytes or exhaustive live-snapshot custody are claimed, and no retry was made.
+## Sources and References
 
-Actual builder JSON import, validation/build, JSON re-export and exported TypeScript reimport pass. Type checking passes; existing focused builder/untrusted/construction suites pass241 tests. Two clean fresh-directory/process runs must reproduce the native and optical outputs byte-for-byte before sealing.
-
-A 32×32 uniform stop-cell disk(812rays),360rim rays and center were traced at each reported field. All1,173 samples clear the model's estimated caps and reach the fixed derived image plane at f/2 for−3/0/+3degrees; f/4 at sampled fields through±30degrees; and f/8 at sampled fields through±35degrees. These are sampled numerical scopes, not a continuum or full-frame factory-illumination guarantee. The default ray fraction3/42 selects the qualified3-degree central view.
-
-Native/independent exact sphere intersections agree within1.33e−13mm. Independent geometric MTF on64/96stop-cell pupils agrees within0.003904 at5/10/20/40lp/mm, grid differences below0.003721. Native diffraction results are separately labeled scalar sheared-pupil estimates from traced rays, numerically converged without refocus; they are not an independently established full-wave solution or measured production-lens MTF. `RAY_AUDIT.json`'s spot statistics combine cell/rim samples and are diagnostic, not flux-weighted image or illumination measurements.
-
-The exact published **±42-degree edge is not qualified**. At+42degrees, f/2 yields38valid/291cap-blocked/844unresolved samples; f/4 yields158valid/684blocked/331unresolved; f/8 yields173valid/917blocked/83unresolved. Negative-edge numerical categories differ slightly; both signs are retained. Root/aim failures are not renamed as factory vignetting, and small residual-subpupil D80 is not reported as full-pupil quality. No unqualified edge MTF, full-aperture/full-field production equivalence, finite-focus performance or broadband coverage is claimed.
-
-Desktop/mobile browser QA and application fine-tuning are deferred to integration, not passed. Manufacturing tolerances, full rims, coatings, flare and factory aperture behavior remain unverified. Prior frozen artifacts and the original six-lens ZIP are protected and unchanged.
+- Momiyama, _Retrofocus Type Wide-Angle Objective Lens_. Example 1 gives the prescription and aberration coefficients. Claim 5 identifies the floating space. [US 4,188,092](https://patents.google.com/patent/US4188092A/en)
+- Canon, _New FD24mm f/2_. Release date, construction, diaphragm, closest focus and magnification. [Canon Camera Museum](https://global.canon/en/c-museum/product/nfd200.html)
+- MIR, _New FD 24mm f/2.0 Lens_. Angle of view, all-spherical construction, floating focus and production cross-section. The original print source of the cutaway is unknown. [Lens description](https://mir.com.my/rb/photography/companies/canon/fdresources/fdlenses/24mm.htm) · [Cutaway](https://mir.com.my/rb/photography/companies/canon/fdresources/fdlenses/24mmf2optic.jpg)
+- Optical glass catalogs for the comparison glasses. [Ohara](https://www.ohara-inc.co.jp/en/product/catalog/) · [Schott](https://www.schott.com/en-us/products/optical-glass) · [Hoya](https://www.hoya-opticalworld.com/english/datadownload/index.html)
