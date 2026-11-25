@@ -2,7 +2,7 @@
 
 ## Source
 
-US 2,854,890, _High Aperture Wide Angle Lens_, Jiro Mukai, assigned to Canon Camera Co., Inc. Japanese priority 14 January 1955, U.S. filing 4 January 1956, granted 7 October 1958. Figure 1 and the column 2 table describe the sole example. Claim 2 repeats the numerical prescription. [Patent](https://patents.google.com/patent/US2854890A/en)
+US 2,854,890, _High Aperture Wide Angle Lens_, Jiro Mukai, assigned to Canon Camera Co., Inc. Japanese priority 14 January 1955, U.S. filing 4 January 1956, granted 7 October 1958. Figure 1 and the column 2 table describe the sole example. Claim 2 reprints the prescription with two differences (see Corrections). [Patent](https://patents.google.com/patent/US2854890A/en)
 
 ## Transcription
 
@@ -46,7 +46,7 @@ All eleven radii and ten axial spacings follow the column 2 table at ×35, takin
 
 The surfaces retain positive edge thickness and clear the axial f/1.8 beam. Exact sphere intersections place the axial ray through the 6.781 mm iris rim at a height of 6.710 mm on surface 7 at infinity and 6.724 mm at 1 m. The chief ray reaches the 21.63 mm image height at both distances. At infinity the estimated corner illumination is 10.3% of the axial illumination.
 
-**Film plane and focus.** The last vertex lies 23.695 mm behind the first. Paraxial imaging gives a rear spacing of 24.2578 mm at infinity. Translating the whole lens forward to Canon’s 1 m subject-to-film distance gives a spacing of 25.5739 mm. The signed image-plane residuals with those rounded spacings are −0.000014 mm and +0.000021 mm respectively. The patent gives no finite spacing or magnification.
+**Film plane and focus.** The last vertex lies 23.695 mm behind the first. Paraxial imaging gives a rear spacing of 24.2578 mm at infinity. Translating the whole lens forward to Canon’s 1 m subject-to-film distance gives a spacing of 25.5739 mm. The image-plane residuals with those rounded spacings are −0.000014 mm and +0.000021 mm respectively. The patent gives no finite spacing or magnification.
 
 ## Product Identification
 
