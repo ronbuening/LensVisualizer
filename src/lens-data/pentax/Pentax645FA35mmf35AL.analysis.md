@@ -9,24 +9,28 @@
 **Title:** *Wide-Angle Lens System*
 **Example details:** Figure 13 and Tables 4–5
 
-The prescription transcribes Embodiment 4 at its original scale and associates it with the PENTAX HD D FA645
-35mm f/3.5 AL [IF] selected in the job card. The association is a fixed project correlation, not a statement that Ricoh
-or Pentax identified this patent as the production formula.
+The prescription transcribes Embodiment 4 at its original scale and associates it with the smc PENTAX-FA645 35mm
+f/3.5 AL [IF], which Pentax announced in March 2001. The association rests on dates and on an outside patent index. It
+is not a statement that Ricoh or Pentax identified this patent as the production formula.
 
-Several features support an FA645-lineage relationship:
+Several features support the association:
 
-1. The patent design computes to 36.000133 mm at f/3.6, corresponding closely to the marketed 35 mm f/3.5 class.
-2. The published image height is 34.85 mm and the half field is 44.8°, matching a 69.7 mm-diagonal 645 image field.
-3. The patent moves only the positive rear group and keeps the surface-1-to-image track essentially constant.
-4. The prescription includes a bonded hybrid asphere and a second aspherical surface.
-5. Ricoh describes the 2015 HD lens as based on the earlier smc PENTAX-FA645 35mmF3.5AL[IF], which also uses inner
-   focusing and aspherical optics.
+1. The patent's priority date is December 1999 and it was published in July 2001, either side of the lens's
+   announcement. A Pentax designer and patent index lists this patent under the smc FA645 35mm f/3.5.
+2. The patent design computes to 36.000133 mm at f/3.6, corresponding closely to the marketed 35 mm f/3.5 class.
+3. The published image height is 34.85 mm and the half field is 44.8°, matching a 69.7 mm-diagonal 645 image field.
+4. The patent moves only the positive rear group and keeps the surface-1-to-image track essentially constant. Ricoh
+   describes the lens as inner focusing with a constant overall length.
+5. The prescription includes a bonded hybrid asphere and a second aspherical surface. Ricoh describes the lens as
+   using aspherical elements.
 
 The limitations are material. Embodiment 4 has 10 physical elements in 8 air-separated groups, whereas Ricoh specifies
-10 elements in 7 groups for both commercial versions. The patent minimum state is 0.200×, while the production lens is
-specified at 0.25×. Ricoh also states that the 2015 HD revision added a newly designed glass-molded aspherical element.
-The patent is therefore treated as a plausible design-lineage prescription rather than a confirmed exact model of the
-2015 HD optical system.
+10 elements in 7 groups. The patent minimum state is 0.200×, while the production lens is specified at 0.25×. No maker
+section drawing of the smc lens was found, so the layout has not been compared with one. The patent is therefore
+treated as a plausible prescription for the 2001 lens rather than a confirmed exact model.
+
+The 2015 HD PENTAX-D FA645 35mm f/3.5 AL [IF] is a later revision. Ricoh describes it as based on the smc lens with a
+newly designed glass-molded aspherical element, and lists the same 10 elements in 7 groups.
 
 ## Optical Architecture
 
@@ -248,9 +252,11 @@ model-validation results, not patent dimensions.
 
 - Takayuki Sensui, [US 2001/0007512 A1, *Wide-Angle Lens System*](https://patents.google.com/patent/US20010007512A1/en),
   especially ¶¶0004–0021, 0040–0068, 0076–0081, Figure 13, and Tables 4–5.
+- Ricoh Imaging, [smc PENTAX-FA645 35mmF3.5AL[IF] product page](https://www.ricoh-imaging.co.jp/english/products/lens/645/wide/smcpentax-fa645-35/).
+- Ricoh Imaging, [2001 press release index](https://www.ricoh-imaging.co.jp/japan/press/2001.html), March 2001 entry for the lens.
+- *Through the Viewfinder*, [Pentax lens designers and patent index](https://douglasviewfinder.blogspot.com/p/known-pentax-lens-designs-and-designers.html).
 - Ricoh Imaging, [HD PENTAX-D FA645 35mmF3.5AL[IF] product page](https://www.ricoh-imaging.co.jp/english/products/lens/645/wide/hdpentax-dfa645-35/).
 - Ricoh Imaging, [2015 launch announcement](https://news.ricoh-imaging.co.jp/rim_info2/2015/20151112_019254.html).
-- Ricoh Imaging, [smc PENTAX-FA645 35mmF3.5AL[IF] product page](https://www.ricoh-imaging.co.jp/english/products/lens/645/wide/smcpentax-fa645-35/).
 - Manufacturer glass catalogs and cross-reference data from
   [OHARA](https://www.ohara-inc.co.jp/en/product/catalog/),
   [HOYA](https://www.hoya-opticalworld.com/english/),
