@@ -39,7 +39,7 @@ The focal lengths below are paraxial values for each member in air. The cemented
 
 ### L2 — stationary negative doublet
 
-- **L2-1, biconcave negative.** nd = 1.80610, νd = 33.3, equivalent to Hoya NBFD15, f = −37.87 mm. Its front face and the shared interface at surface 8 give the doublet its negative power.
+- **L2-1, biconcave negative.** nd = 1.80610, νd = 33.3, equivalent to Hoya NBFD15, f = −37.87 mm. Its concave front face supplies nearly all of the doublet’s negative power; the cemented interface at surface 8 is almost neutral.
 - **L2-2, positive meniscus.** nd = 1.84666, νd = 23.8, equivalent to Hoya FDS90, f = +54.27 mm. This more dispersive positive member partly offsets the negative member’s chromatic power. Its rear face has a radius of 1000 mm.
 
 ### L3 — positive middle group
