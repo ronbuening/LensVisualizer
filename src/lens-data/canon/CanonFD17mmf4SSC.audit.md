@@ -14,15 +14,15 @@ The prescription has 20 spherical refracting surfaces, 19 glass thicknesses and 
 | ---------------------------------------- | ----------------------------- | ------------------------------------------------- |
 | Infinity effective focal length          | 1 focal unit                  | 16.9999 mm                                        |
 | Maximum aperture                         | f/4                           | f/4.000                                           |
-| Infinity back focus                      | 2.0714 focal units            | 35.2136 mm paraxial, 35.2140 mm to film           |
-| Infinity track from first vertex to film | Unspecified                   | 94.9656 mm                                        |
+| Infinity back focus                      | 2.0714 focal units            | 35.2136 mm paraxial, 35.2138 mm to film           |
+| Infinity track from first vertex to film | Unspecified                   | 94.9654 mm                                        |
 | Half-field at 20.995 mm image height     | 52°                           | 51.85°                                            |
 | D8, infinity to near                     | 0.0575 to 0.025 focal units   | 0.9775 to 0.4250 mm                               |
 | Near object-to-film distance             | 17.24 focal units (293.08 mm) | 293.12 mm with the infinity focus offset retained |
-| Near rear vertex to film                 | Unspecified                   | 36.5726 mm                                        |
+| Near rear vertex to film                 | Unspecified                   | 36.5724 mm                                        |
 | Near lateral magnification               | Unspecified                   | −0.0799× at 293.08 mm                             |
 
-The stated infinity back focus scales to 35.2138 mm. The film spacing of 35.2140 mm differs from that product by 0.0002 mm and lies 0.0004 mm behind paraxial focus. At the printed 293.08 mm conjugate, the near film plane is 0.0001 mm behind paraxial focus.
+The stated infinity back focus scales to 35.2138 mm, which is the film spacing used here. It lies 0.0002 mm behind paraxial focus. At the printed 293.08 mm conjugate, the near film plane is 0.0001 mm in front of paraxial focus.
 
 ## Values Not Printed in the Patent
 

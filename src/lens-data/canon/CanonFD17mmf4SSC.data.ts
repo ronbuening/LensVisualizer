@@ -228,7 +228,7 @@ const LENS_DATA = {
     ],
     keyframes: [0, 1],
   },
-  gaps: { "8": { label: "D8", values: [[0.9775, 0.425]] }, "20": { label: "BF", values: [[35.214, 36.5726]] } },
+  gaps: { "8": { label: "D8", values: [[0.9775, 0.425]] }, "20": { label: "BF", values: [[35.2138, 36.5724]] } },
   groups: [
     { text: "Front divergent group", fromSurface: "1", toSurface: "10" },
     { text: "Rear convergent group", fromSurface: "11", toSurface: "20" },

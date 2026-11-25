@@ -91,7 +91,7 @@ The entire lens advances for close focus. At the same time D8 narrows by 0.5525 
 | ---------------------- | ---------: | ------------------: |
 | Object to film         |          ∞ |           293.08 mm |
 | D8 between E4 and E5   |  0.9775 mm |           0.4250 mm |
-| Rear vertex to film    | 35.2140 mm |          36.5726 mm |
+| Rear vertex to film    | 35.2138 mm |          36.5724 mm |
 | Effective focal length |  17.000 mm |           17.010 mm |
 
 The patent prints both D8 spacings and the near object distance of 17.24 focal lengths. It gives only the infinity back focus. The near rear spacing comes from the paraxial conjugate and yields a magnification of −0.0799×. The model ends at the printed distance. Canon’s production lens focuses closer, to 0.25 m at 0.10×. [Canon Camera Museum, FD 17mm f/4 S.S.C.](https://global.canon/en/c-museum/product/fd130.html)
