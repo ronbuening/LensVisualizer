@@ -94,6 +94,16 @@ The completed model gives 18.908 mm EFL, f/2.88 and 22.289 mm paraxial back focu
 - The other radii agree with Fig. 16 within 2.5% and stay. Sigma's drawing of the production lens shows L6 and the rear doublet about 10% smaller relative to L1 and steps the edge of the L4–L5 pair. Fig. 16 governs where the two differ.
 - Geometric pupil transmission at the field edge is the same before and after: 75.3% at infinity (37.6°), 78.4% at 800 mm (37.4°) and 81.8% at 400 mm (37.2°). The lands lie outside the clear apertures, and the neighbouring rims already stop every ray the lowered S11 rim stops.
 
+2026-11-24 final check against the drawing:
+
+- The page was compared with Fig. 16 at its printed resolution and with Sigma's construction drawing. Every rim, all three flat lands and the iris position agree with Fig. 16 within one pixel (0.1 mm), so no radius or land changed. Measured from the figure: L1 edge 10.4 mm with the S2 cap ending at 7.4 mm, L2 edge 8.3 mm with the S4 cap ending at 6.5 mm, L3 7.3 mm, the L4–L5 pair 6.5 mm, L6 9.6–9.7 mm, and the rear pair 11.0 mm with the S13 cap ending at 9.2 mm.
+- The three lands and the lowered S11 rim cost no light. Geometric pupil transmission is identical with and without them at every field angle at infinity, 800 mm and 400 mm.
+- The seven Hoya glass labels changed punctuation from "catalog equivalent, production supplier unspecified" to "catalog equivalent; production supplier unspecified", the form used for the other lenses. The catalog entries and dispersion curves are unchanged.
+- L6's printed pair, nd 1.77010 and νd 49.34, recurs in Examples 3, 4 and 6, so it is a real glass. The nearest Hoya entries are M-TAF101 (1.76802 / 49.24) and MC-TAF101-100 (1.76902 / 49.29). Neither agrees at the printed precision, so L6 stays unmatched.
+- Paraxial focus by spectral line agrees with Fig. 17. The model places the C line 0.030 mm and the g line 0.038 mm behind the d-line focus. The figure draws both about 0.03 mm behind it, with a reading uncertainty of 0.01 mm.
+- Focus runs from infinity to 0.40 m with G2 moving toward the object throughout: d7 is 4.99, 4.86, 4.73, 4.58 and 4.42 mm at five evenly spaced positions, and the focus distance reads infinity, 1.60 m, 0.80 m, 0.53 m and 0.40 m. G1, the iris and G3 do not move.
+- Element shapes, the aspherical markers on S1, S12 and S15, the cemented pairs and the group brackets agree with ¶0077–0085 and with the three aspherical elements coloured in Sigma's drawing.
+
 ## Remaining Questions
 
 - The factory prescription, production glass identities and melt data remain unpublished. L6 uses dispersion estimated from its printed nd of 1.77010 and νd of 49.34 because no catalog curve matches that pair.
