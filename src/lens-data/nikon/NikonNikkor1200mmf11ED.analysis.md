@@ -1,54 +1,68 @@
-## Patent Reference and Production Identification
+# NIKON NIKKOR 1200mm f/11 ED
 
-**Patent:** JPS5143920A, sole unnumbered numerical example and Fig.1.
-**Application:** JP11705574A; later examined publication JPS5416856B2.
-**Inventor:** Yoshiyuki Shimizu (清水義之).
-**Applicant:** Nippon Kogaku K.K.
-**Filed:** October14,1974.
-**Published:** April15,1976.
+## Patent Reference and Design Identification
 
-This is a private production-associated patent representative for the pre-Ai Nikkor ED1200mm f/11 prime, not a factory-exact prescription, the rejected US3774991 example or a360–1200zoom. The parent previously cleared the production correspondence. This run independently retrieved the official four-page JPO/INPIT original through its live publication viewer, visually read the cover, duplicate signed tables and Fig.1, and confirmed the source topology and both dimensioned OEM invariants.
+**Patent:** JP S51-43920 A, _Achromatic Objective Lens_ (色消対物レンズ)\
+**Inventors:** Yoshiyuki Shimizu\
+**Assignee:** Nippon Kogaku K.K.\
+**Filed:** October 14, 1974 (Japanese application 49-117055)\
+**Published:** April 15, 1976\
+**Example details:** The claim and description give the same prescription on pages 1 and 2. Figure 1 shows the lens section.
 
-Original PDF127562bytes, SHA256243028c96afb84e9847d2f11a721f78f442978d59b2ca051ec111362a854d6f5. The dimensioned Nikon Sales Manual reproduction and exact original are preserved. The signed thickness/air sum is709.0mm, exactly the OEM optical-stack dimension; printed BFL240.2mm also matches the OEM dimension. Five elements/four groups agree. The patent drawing uses a broken/compressed axial gap; neither it nor the OEM schematic is factory clear-rim metrology. No forced pixel warp, new landmark RMS or inference from unrelated mechanical length is claimed.
+The sole example is a strong match for the 1975 pre-AI 1200mm f/11 ED lens head. The most distinctive evidence is dimensional. Nikon's production drawing places the first and last glass vertices 709.0 mm apart and the film a further 240.2 mm behind the last vertex. Both distances agree with the patent to the printed tenth of a millimetre. The drawing also gives 1036.9 mm between the principal planes, compared with 1036.68 mm calculated from the prescription. Both sections show three air-spaced singlets followed by a small cemented doublet. [Nikon's dimensioned section](https://www.mir.com.my/rb/photography/companies/nikon/nikkoresources/preAI70/1200mmf11EDpreAIopt.gif) · [Japanese patent](https://patents.google.com/patent/JPS5143920A/en)
 
-**Status:** numerical/model evidence passed only in the scoped configuration below. Final qualification HOLD for actual desktop/mobile app QA. No delivery, publication or catalog registration.
+Nikon dates the ED head to its 1975 series and credits Shimizu with the optical design of the earlier focusing-unit family. Its sales manual lists five elements in four groups for the ED head and five in five for the earlier Nikkor-P. The later internal-focusing 1200mm f/11 ED uses nine elements in eight groups. Shimizu's earlier US 3,774,991 also contains two 1200mm f/11 examples. Example IV has five elements in four groups, but its 575 mm air space gives a glass-to-glass length of only 623 mm. Example V has seven elements. The dimensions distinguish the Japanese example even among lenses of the same focal length and speed. [Nikon Tale 50](https://imaging.nikon.com/imaging/information/story/0050/) · [Nikon Tale 66](https://imaging.nikon.com/imaging/information/story/0066/) · [Nikon sales manual](https://www.pacificrimcamera.com/rl/01037/01037.pdf) · [Nikon IF lens manual](https://cdn-10.nikon-cdn.com/pdf/manuals/archive/Nikkor%20ED%201200mm%20f-11IF.pdf) · [US 3,774,991](https://patents.google.com/patent/US3774991A/en)
 
 ## Optical Architecture
 
-Three front spherical singlets (+/−/+) are followed by the literal659mm air space and a rear net-negative cemented doublet. The shared S8 interface is retained once with the material switch from1.51632 to1.66854. No optical cover, filter, asphere, stabilizer or moving/finite-focus state was invented.
+The front section has positive, negative and positive elements in sequence. Across a 659 mm air space, the cemented rear doublet intercepts the converging beam. Its net negative power lengthens the effective focal length to 1199.70 mm while the distance from the first vertex to the film is only 949.2 mm. All nine refracting surfaces are spherical. The patent gives the radii, spacings and back focus in millimetres at the stated 1200 mm scale. The calculated back focal distance is 240.06 mm, placing the printed film plane 0.14 mm behind paraxial focus.
 
-Radii(mm): +412.0,−435.3,−403.2,+445.2,+396.7,−873.9,−195.0,+439.2,−927.5. Thicknesses/gaps(mm):13,8,8,2,10,659,2,7, then240.2 image air. Source first vertex z0, last glass z709.0, flat image z949.2. No normalization or fitting.
+The patent prints f/11 and a 5° full design field. Nikon specifies f/11 and a 2° angle of view on 35 mm film. At the 21.63 mm frame corner the chief ray passes through every opening. At the patent's wider 2.5° half-field it reaches 25.36 mm from the axis at the last surface, outside the 24.4 mm rear clear radius measured from Nikon's drawing. The model therefore covers the Nikon frame and vignettes the outer patent field. [Japanese patent, Figs. 1–2](https://patents.google.com/patent/JPS5143920A/en) · [Nikon sales manual, Section III, sheet 9](https://www.pacificrimcamera.com/rl/01037/01037.pdf)
 
-Independent EFL1199.70106552mm and paraxial BFD240.06038511mm leave the printed image139.614893µm behind Gaussian focus. The source plane is retained. Source full field5° and the parent's OEM4°10′ coverage witness remain documentary; neither is qualified by this central-field trial.
+## Element-by-Element Analysis
 
-## Element-by-Element Source Materials
+The focal lengths below are for the individual elements in air. Figure 1 labels the cemented rear component L4. The letters a and b distinguish its two pieces of glass.
 
-|Element|n_d|ν_d|Placement|
-|---|---:|---:|---|
-|E1|1.50032|81.9|Positive front singlet|
-|E2|1.744|44.9|Negative front singlet|
-|E3|1.62374|47.0|Positive front singlet|
-|E4|1.51632|64.2|Negative member of rear cemented pair|
-|E5|1.66854|39.2|Positive cemented member, sharedS8|
+### L1 — Biconvex positive
 
-## Glass Identification and Wavelength
+nd = 1.50032, νd = 81.9. Glass unmatched, inferred ED. f = +425.23 mm.
 
-Only literal printed n_d/ν_d values are asserted. The source explicitly defines them at the d line but prints no numerical wavelength. Runtime verification uses the helium-d587.5618nm convention. No stock glass, melt, fluorite chemical identity, coating or broadband equivalence was substituted. The high-Abbe front glass alone does not establish an exact modern glass identity or measured production color correction.
+L1 supplies positive power where the incoming beam is widest. It has by far the highest Abbe number in the prescription, making it the likely location of the ED glass identified by Nikon. The production drawing does not mark individual glass types.
 
-## Stop Estimate and Focus
+### L2 — Biconcave negative
 
-The original does not dimension an iris position or radius. This file explicitly estimates the midpoint of sourceD6:329.5+329.5mm, stop z370.5mm. The printed659mm total remains exact. Calculated physical iris radii are31.93203398mm at f/11 control and21.95327336mm at f/16. These are operational estimates, not source or factory mechanical values. Off-axis pupil/vignetting results depend on that estimate; no factory diaphragm location is claimed.
+nd = 1.744, νd = 44.9. Catalog equivalent LAF2 (Hoya). f = −283.24 mm.
 
-Only the printed static infinity state is represented. No focusing-unit translation, finite conjugate, continuous motion, optical zoom or manufacturer close-focus range is inferred.
+The biconcave singlet between the two positive elements diverges the beam. Its stronger dispersion offsets part of the positive elements' longitudinal colour.
 
-## Spherical Surfaces and Clear Apertures
+### L3 — Biconvex positive
 
-All nine source surfaces are spherical. Native profile sag/slope and independent exact sphere intersections were compared. Estimated source-order clear radii are61,61,60,60,59,59,22,22,22mm. OEM diameter context informed their scale; they are not measured factory rims. Native default geometry/import passes with zero automatic trim and no overrides. The data keep actual millimetres; they were not scaled down to fit the UI.
+nd = 1.62374, νd = 47.0. Catalog equivalent E-BAF8 (Hikari). f = +438.76 mm.
 
-## Numerical Evidence and Missing Gate
+L3 shares the front section's converging power with L1. Its lower Abbe number gives these two positive elements different contributions to colour correction.
 
-At f/11 and f/16 controls,1173 independent stop-pupil samples each at−0.5/−0.25/0/+0.25/+0.5° reach the unchanged image without cap losses or unexplained failures. Native/independent exact surface and MTF-pupil/image comparisons pass. Native geometric and scalar sheared-pupil diffraction MTF converge over5–40lp/mm at0/~0.25/~0.5°, with no focus shift or unknown flux. Independent64/96cell geometric MTF at both apertures differs by at most0.00424; grid change<=0.00220. These are monochromatic simulations, not measured factory performance or full-field/color qualification.
+### L4a and L4b — Cemented negative doublet
 
-Six deterministic outputs replay byte-for-byte in fresh Node processes against main d2471ce71c0aac1e3e78574224218f62d73500c6. Bounded dedup reads1209current-main native bodies and a151-family retained inventory plus known later work, including normalized scaled/reversed full signed-curvature fingerprints. No duplicate was found. This is not a fresh physical reread of all unavailable historical ZIPs or every current PR patch. Existing Nikon360–1200is a distinct zoom program.
+- **L4a, biconcave negative.** nd = 1.51632, νd = 64.2. Catalog equivalent S-BSL7 (Ohara). f = −261.27 mm. This member supplies most of the doublet's diverging power.
+- **L4b, biconvex positive.** nd = 1.66854, νd = 39.2. Glass unmatched. f = +446.75 mm. This higher-dispersion glass adds positive power at the back of the lens.
 
-Actual desktop/mobile Builder import, render, controls, exact export and reload/persistence remain unverified. The known unsupported app-browser routes were not retried. The official-source browser was used solely to read the original gazette. No Nikon service was started. QA_REPRODUCTION.md specifies the missing gate; numerical tests do not clear it.
+The members share the spherical interface at surface 8. Together they have a focal length of −637.05 mm.
+
+## Glass Identification and Chromatic Correction
+
+Shimizu describes an objective designed to reduce secondary spectrum without fluorite crystals. Figure 2A plots longitudinal aberration at several wavelengths. At f/11, the calculated marginal d-line ray crosses the axis about 0.10 mm ahead of paraxial focus. The example gives helium d-line indices and Abbe numbers. It supplies neither partial-dispersion values nor a trade name for the front ED glass, so the original lens's secondary spectrum cannot be recovered from the table alone. [Japanese patent, pp. 1–3](https://patents.google.com/patent/JPS5143920A/en)
+
+Three catalog equivalents supply dispersion curves. Hoya LAF2 matches L2 at the printed precision. For L3, Hikari E-BAF8 has the printed index and an Abbe number of 47.04. For L4a, Ohara S-BSL7 differs by +0.00001 in index and −0.06 in Abbe number. These agreements identify optical equivalents. The production glass suppliers are undocumented. [Hoya LAF2](https://refractiveindex.info/?shelf=specs&book=HOYA-optical&page=LAF2) · [Hikari E-BAF8](https://refractiveindex.info/?shelf=specs&book=HIKARI-optical&page=E-BAF8) · [Ohara glass catalog](https://www.ohara-inc.co.jp/en/product/catalog/)
+
+## Focus Mechanism and Diaphragm
+
+The focusing mount advances the entire lens head toward the subject, preserving the 659 mm internal separation. Nikon gives a minimum focus of 50 m with the AU-1 and 43 m with the earlier focusing mount. The model shows infinity because the patent gives no finite spacing or reproduction ratio. Nikon's description of 24× magnification compares the distant image with that from a 50 mm lens. [Nikon sales manual, Section III, sheets 9 and 14](https://www.pacificrimcamera.com/rl/01037/01037.pdf) · [Nikon lens catalog, focusing-mount specifications](https://www.nikonpassion.com/wp-content/uploads/downloads/docs/ObjectifsNikkorAI.pdf)
+
+Nikon explains that the focusing unit's diaphragm vignetted all four corners with the 1200 mm lens. The head therefore carries a manual iris, marked from f/11 to f/64. Its precise axial location is unknown. Placing it halfway between the front and rear sections leaves 329.5 mm on either side and requires a 31.93 mm stop radius for f/11. The lens rims follow Nikon's dimensioned section, with clear radii of 56.8 mm across the three front elements and 24.4 mm across the rear doublet. [Nikon Tale 50, section II](https://imaging.nikon.com/imaging/information/story/0050/) · [Nikon sales manual](https://www.pacificrimcamera.com/rl/01037/01037.pdf) · [Nikon's dimensioned section](https://www.mir.com.my/rb/photography/companies/nikon/nikkoresources/preAI70/1200mmf11EDpreAIopt.gif)
+
+## Sources
+
+- Yoshiyuki Shimizu, _Achromatic Objective Lens_, claim, description and Figures 1–2. [JP S51-43920 A](https://patents.google.com/patent/JPS5143920A/en)
+- Nikon, pre-AI 1200 mm ED lens head, optical and mechanical dimensions. [Sales-manual drawing reproduced by MIR](https://www.mir.com.my/rb/photography/companies/nikon/nikkoresources/preAI70/1200mmf11ed.htm)
+- Nikon, _Nikon System Sales Manual_, Section III, sheets 9 and 14, product 1296. [Manual scan](https://www.pacificrimcamera.com/rl/01037/01037.pdf)
+- Nikon, _The Thousand and One Nights_, on the focusing-unit family and the 1975 ED series. [Tale 50](https://imaging.nikon.com/imaging/information/story/0050/) · [Tale 66](https://imaging.nikon.com/imaging/information/story/0066/)
