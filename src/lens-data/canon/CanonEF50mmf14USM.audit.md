@@ -24,7 +24,7 @@ The seven d-line glass pairs match the Ohara equivalents S-LAH66, S-LAH55, S-TIM
 | Mean index of L5, L6 and L7           | 1.815                                   | 1.815                                                       |
 | Sum of D7–D10 divided by sum of D1–D5 | 0.866                                   | 0.866                                                       |
 
-The image plane coincides with paraxial infinity focus to within 0.0001 mm. The axial marginal ray and the chief ray to the 21.63 mm frame corner clear every refracting surface. The image circle covers the full 36 × 24 mm frame. The lower marginal ray could not be traced at that field angle. Geometric pupil transmission is 100% on axis and 24.3% at the corner. At the edge of the patent field, distortion is −1.87%, consistent with the curve in Figure 6.
+The image plane coincides with paraxial infinity focus to within 0.0001 mm. The axial marginal ray and the chief ray to the 21.63 mm frame corner clear every refracting surface. The image circle covers the full 36 × 24 mm frame. The lower edge of the corner beam is vignetted. Geometric pupil transmission is 100% on axis and 24.3% at the corner. At the edge of the patent field, distortion is −1.87%, consistent with the curve in Figure 6.
 
 ## Values Not Printed in the Patent
 
