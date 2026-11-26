@@ -95,7 +95,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "FCD1 (Hoya catalog equivalent)",
       focalLengthMm: 127.7,
-      role: "Converges the beam ahead of L5. The two menisci balance aberration changes during focusing.",
+      role: "Second UD meniscus and the strongest positive element of the first group. With L5 it balances aberration changes during focusing.",
       apd: "inferred",
       apdNote: "Canon marks element 4 as UD in its optical section. The patent gives an Abbe number of 81.6.",
     },
