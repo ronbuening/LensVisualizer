@@ -46,7 +46,7 @@ const LENS_DATA = {
       indexReference: "d",
       cemented: "C1",
       focalLengthMm: -25.07,
-      glass: "Unmatched (nd 1.796681 / νd 45.37)",
+      glass: "J-LASF017 (spectral proxy; patent nd 1.796681 / νd 45.37; supplier and melt unspecified)",
       role: "The glass substrate supplies most of the negative power of the front group.",
     },
     {

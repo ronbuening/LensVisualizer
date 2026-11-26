@@ -27,7 +27,7 @@ Focal lengths below describe each material in air. The combined focal lengths of
 
 ### L11 — Hybrid negative meniscus
 
-The glass substrate has nd = 1.796681, νd = 45.37 and f = −25.07 mm. Its bonded resin has nd = 1.506250, νd = 55.63 and f = −160.12 mm. Both materials are unmatched. Together they form one lens with f = −21.70 mm. Its strongly concave rear surface supplies much of the front group’s negative power. The resin allows the curvature to vary toward the rim.
+The glass substrate has nd = 1.796681, νd = 45.37 and f = −25.07 mm. Its bonded resin has nd = 1.506250, νd = 55.63 and f = −160.12 mm. Hikari J-LASF017 supplies the substrate’s dispersion curve as a spectral proxy. No catalog material matches the resin. Together they form one lens with f = −21.70 mm. Its strongly concave rear surface supplies much of the front group’s negative power. The resin allows the curvature to vary toward the rim.
 
 ### L12 — Biconcave negative
 
@@ -55,13 +55,16 @@ The unmatched negative meniscus has nd = 1.772789, νd = 49.45 and f = −25.09 
 
 ## Glass Identification and Selection
 
-Table 1 gives helium d-line indices and Abbe numbers for all ten materials, including the resin. The Hikari and Ohara labels supply dispersion curves consistent with seven of those pairs. The same Ohara curve applies to both L21 and L22. The patent leaves the suppliers, resin chemistry and glass melts unspecified. The model therefore keeps the printed index and dispersion even when the material has a catalog counterpart. [Patent, ¶¶0050–0052](https://patents.google.com/patent/JPH08334694A/en)
+Table 1 gives helium d-line indices and Abbe numbers for all ten materials, including the resin. The Hikari and Ohara labels supply dispersion curves for eight of those pairs. The same Ohara curve applies to both L21 and L22. The patent leaves the suppliers, resin chemistry and glass melts unspecified. The model therefore keeps the printed index and dispersion even when the material has a catalog counterpart.
+
+The L11 substrate pair recurs as L12 in Example 3, so it describes a real glass, but no catalog row matches it exactly. Hikari J-LASF017 lies 0.0017 lower in index and 0.06 lower in Abbe number, inside the site’s spectral-proxy tolerance. It lends only its wavelength dependence. With it, the g-line focus of the model stays as close to Figures 3 and 4 as before or closer. L24a’s pair recurs in Example 2 and also has no exact catalog match. The nearest lanthanum crowns, near nd 1.7725 and νd 49.6, would move the telephoto g-line focus 0.05–0.06 mm away from Figure 4, so L24a keeps its printed pair alone. The resin is likewise unmatched. [Patent, Tables 1–3 and Figures 3–4](https://patents.google.com/patent/JPH08334694A/en) [Patent, ¶¶0050–0052](https://patents.google.com/patent/JPH08334694A/en)
 
 The differences below are catalog minus patent. The first doublet combines a lower-index, less dispersive positive glass with a higher-index, more dispersive negative glass. The final doublet uses the opposite order.
 
 | Component               | Catalog counterpart |       Δnd |    Δνd |
 | ----------------------- | ------------------- | --------: | -----: |
-| L11 substrate and resin | Both unmatched      |         — |      — |
+| L11 substrate           | Hikari J-LASF017    | −0.001681 | −0.060 |
+| L11 resin               | Unmatched           |         — |      — |
 | L12                     | Hikari J-LAF3       | +0.000001 | −0.060 |
 | L13                     | Hikari J-LAFH3      |         0 | +0.132 |
 | L21 and L22             | Ohara S-PHM53       |         0 | +0.024 |
