@@ -50,7 +50,7 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1",
-      label: "Front collector",
+      label: "Element 1",
       type: "Biconvex Positive",
       nd: 1.51728,
       vd: 69.6,
@@ -62,7 +62,7 @@ const LENS_DATA = {
     {
       id: 2,
       name: "L2",
-      label: "Front triplet, leading positive",
+      label: "Element 2",
       type: "Biconvex Positive",
       nd: 1.48606,
       vd: 81.5,
@@ -70,12 +70,15 @@ const LENS_DATA = {
       cemented: "C1",
       focalLengthMm: 241.87,
       glass: "Unmatched (nd 1.48606 / νd 81.5)",
+      apd: "inferred",
+      apdNote:
+        "Nikon states ED glass. Cavina places the two ED elements at L2 and L14, the only elements with the ED-class pair 1.48606 / 81.5. Column 5 of the patent makes this triplet an apochromat with special partial-dispersion glass but names no element.",
       role: "The low-dispersion positive member of the front triplet is one of the two likely ED elements.",
     },
     {
       id: 3,
       name: "L3",
-      label: "Front triplet, negative core",
+      label: "Element 3",
       type: "Biconcave Negative",
       nd: 1.7495,
       vd: 35,
@@ -88,7 +91,7 @@ const LENS_DATA = {
     {
       id: 4,
       name: "L4",
-      label: "Front triplet, rear meniscus",
+      label: "Element 4",
       type: "Positive Meniscus",
       nd: 1.59507,
       vd: 35.6,
@@ -101,7 +104,7 @@ const LENS_DATA = {
     {
       id: 5,
       name: "L5",
-      label: "Variator doublet, leading positive",
+      label: "Element 5",
       type: "Biconvex Positive",
       nd: 1.7847,
       vd: 26.1,
@@ -114,7 +117,7 @@ const LENS_DATA = {
     {
       id: 6,
       name: "L6",
-      label: "Variator doublet, rear negative",
+      label: "Element 6",
       type: "Biconcave Negative",
       nd: 1.62041,
       vd: 60.3,
@@ -127,7 +130,7 @@ const LENS_DATA = {
     {
       id: 7,
       name: "L7",
-      label: "First variator singlet",
+      label: "Element 7",
       type: "Biconcave Negative",
       nd: 1.5168,
       vd: 64.2,
@@ -139,7 +142,7 @@ const LENS_DATA = {
     {
       id: 8,
       name: "L8",
-      label: "Second variator singlet",
+      label: "Element 8",
       type: "Biconcave Negative",
       nd: 1.5168,
       vd: 64.2,
@@ -151,7 +154,7 @@ const LENS_DATA = {
     {
       id: 9,
       name: "L9",
-      label: "First compensator doublet, leading meniscus",
+      label: "Element 9",
       type: "Positive Meniscus",
       nd: 1.62041,
       vd: 60.3,
@@ -164,7 +167,7 @@ const LENS_DATA = {
     {
       id: 10,
       name: "L10",
-      label: "First compensator doublet, rear meniscus",
+      label: "Element 10",
       type: "Negative Meniscus",
       nd: 1.59551,
       vd: 39.2,
@@ -177,7 +180,7 @@ const LENS_DATA = {
     {
       id: 11,
       name: "L11",
-      label: "Second compensator doublet, leading positive",
+      label: "Element 11",
       type: "Biconvex Positive",
       nd: 1.51728,
       vd: 69.6,
@@ -190,7 +193,7 @@ const LENS_DATA = {
     {
       id: 12,
       name: "L12",
-      label: "Second compensator doublet, rear meniscus",
+      label: "Element 12",
       type: "Negative Meniscus",
       nd: 1.7552,
       vd: 27.5,
@@ -203,7 +206,7 @@ const LENS_DATA = {
     {
       id: 13,
       name: "L13",
-      label: "Relay entrance singlet",
+      label: "Element 13",
       type: "Biconvex Positive",
       nd: 1.51728,
       vd: 69.6,
@@ -215,7 +218,7 @@ const LENS_DATA = {
     {
       id: 14,
       name: "L14",
-      label: "Relay doublet, leading positive",
+      label: "Element 14",
       type: "Biconvex Positive",
       nd: 1.48606,
       vd: 81.5,
@@ -223,12 +226,15 @@ const LENS_DATA = {
       cemented: "C5",
       focalLengthMm: 89.59,
       glass: "Unmatched (nd 1.48606 / νd 81.5)",
+      apd: "inferred",
+      apdNote:
+        "Nikon states ED glass. Cavina places the two ED elements at L2 and L14, the only elements with the ED-class pair 1.48606 / 81.5. The patent prints no partial dispersion.",
       role: "The positive member of the nearly afocal relay doublet is the second likely ED element.",
     },
     {
       id: 15,
       name: "L15",
-      label: "Relay doublet, rear negative",
+      label: "Element 15",
       type: "Biconcave Negative",
       nd: 1.717,
       vd: 47.9,
@@ -241,7 +247,7 @@ const LENS_DATA = {
     {
       id: 16,
       name: "L16",
-      label: "Rear relay singlet",
+      label: "Element 16",
       type: "Biconvex Positive",
       nd: 1.5168,
       vd: 64.2,
@@ -253,7 +259,7 @@ const LENS_DATA = {
     {
       id: 17,
       name: "L17",
-      label: "Rear doublet, leading negative",
+      label: "Element 17",
       type: "Biconcave Negative",
       nd: 1.76684,
       vd: 46.6,
@@ -266,7 +272,7 @@ const LENS_DATA = {
     {
       id: 18,
       name: "L18",
-      label: "Rear doublet, closing positive",
+      label: "Element 18",
       type: "Biconvex Positive",
       nd: 1.59507,
       vd: 35.6,
