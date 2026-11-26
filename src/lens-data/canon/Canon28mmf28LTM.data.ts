@@ -75,7 +75,7 @@ const LENS_DATA = {
       diagramLabel: "L1a",
       glass: "F4 (SUMITA catalog equivalent)",
       focalLengthMm: -28.76,
-      role: "Negative front member of the first doublet, cemented to L1b at surface 2.",
+      role: "Negative member of the front doublet. Its cemented face against L1b corrects chromatic aberration and limits the aberrations of oblique beams.",
       cemented: "C1",
     },
     {
@@ -89,7 +89,7 @@ const LENS_DATA = {
       diagramLabel: "L1b",
       glass: "Unmatched (nd 1.6970 / νd 54.7)",
       focalLengthMm: 13.34,
-      role: "The stronger positive member gives the front doublet its converging power.",
+      role: "Positive member of the front doublet, which gives the doublet its converging power.",
       cemented: "C1",
     },
     {
@@ -103,7 +103,7 @@ const LENS_DATA = {
       diagramLabel: "L2",
       glass: "FD3 (HOYA catalog equivalent)",
       focalLengthMm: -38.15,
-      role: "Front negative singlet with its steep concave rear face toward the diaphragm.",
+      role: "Negative singlet ahead of the diaphragm. Its steep concave rear face helps correct astigmatism and spherical aberration.",
     },
     {
       id: 4,
@@ -116,7 +116,7 @@ const LENS_DATA = {
       diagramLabel: "L3",
       glass: "PBM28 (OHARA catalog equivalent)",
       focalLengthMm: -45.81,
-      role: "Rear negative singlet with its steep concave front face toward the diaphragm.",
+      role: "Negative singlet behind the diaphragm. Its steep concave front face mirrors L2 and helps correct astigmatism and spherical aberration.",
     },
     {
       id: 5,
@@ -129,7 +129,7 @@ const LENS_DATA = {
       diagramLabel: "L4a",
       glass: "Unmatched (nd 1.6583 / νd 57.1)",
       focalLengthMm: 12.31,
-      role: "Positive member of the rear doublet, following the narrow air space behind L3.",
+      role: "Positive member of the rear doublet and the strongest positive element in the lens.",
       cemented: "C2",
     },
     {
@@ -143,7 +143,7 @@ const LENS_DATA = {
       diagramLabel: "L4b",
       glass: "S-TIL26 (OHARA catalog equivalent)",
       focalLengthMm: -35.13,
-      role: "Negative rear member cemented to L4a at surface 9, with the largest clear rim at its exit face.",
+      role: "Negative member of the rear doublet. Its cemented face against L4a corrects chromatic aberration and limits the aberrations of oblique beams.",
       cemented: "C2",
     },
   ],
@@ -234,7 +234,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 1,
     description:
-      "Derived unit focus. All four groups move together 0.8295 mm toward the subject to focus at Canon’s 1 m minimum. The patent gives only the infinity prescription.",
+      "Unit focus. The whole lens moves 0.8295 mm toward the subject between infinity and Canon’s 1 m minimum, taken from subject to film. The patent gives only the infinity prescription, so the near position is calculated.",
   },
   groups: [
     {
