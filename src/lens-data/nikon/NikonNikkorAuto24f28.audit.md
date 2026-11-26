@@ -31,7 +31,7 @@ The table uses f = 100. Multiplying its lengths by 0.24 gives the 24 mm scale. A
 
 The film lies 0.01091 mm ahead of infinity paraxial focus. At the near position, rounding the object distance to 204.34 mm from the first vertex puts paraxial focus 0.000049 mm behind the film. The 298.49 mm subject-to-film distance follows directly from the printed magnification. Carrying the infinity focus offset into the near position would give 40.93645 mm from the rear vertex to the image and 297.66 mm from the subject to the image at 0.1144×.
 
-The iris limits the axial beam at f/2.8 and the glass edges clear one another throughout focus travel. The corner chief ray clears all rims at both printed positions, reaching the 35 mm frame corner at 42.5° at infinity and 40.9° in the close layout. A meridional ray through the lower edge of the full pupil could not be traced at the corner in either position. At infinity, 59.9% of the pupil area transmits at the corner before glass transmission and illumination losses.
+The iris limits the axial beam at f/2.8 and the glass edges clear one another throughout focus travel. The corner chief ray clears all rims at both printed positions, reaching the 35 mm frame corner at 42.5° at infinity and 40.9° in the close layout. A meridional ray through the lower edge of the full pupil does not reach the corner in either position. At infinity, 59.9% of the pupil area transmits at the corner before glass transmission and illumination losses.
 
 ## Values Not Printed in the Patent
 

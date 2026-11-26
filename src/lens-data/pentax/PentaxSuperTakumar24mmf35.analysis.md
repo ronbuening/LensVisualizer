@@ -84,7 +84,7 @@ A 0.12 mm air gap separates its plane face from L8. Its convex rear face supplie
 
 The patent gives refractive indices and Abbe numbers and refers its aberration curves to the helium d line. Six elements have catalog equivalents consistent with both printed values. The optical contrast matters most at the L6/L7 cemented face. The index rises by 0.13012 there. Takahashi relates that index difference and the common radius to the correction of spherical aberration and to a positive Petzval sum. The patent leaves the glass suppliers unidentified. [Patent, columns 3–5](https://patents.google.com/patent/US3545845A/en)
 
-L8 is the principal uncertainty. Both printings give 1.58487, which yields a focal length of 98.565 on the patent’s scale. Trying 1.56883, the value printed for L6, gives 100.004. It also gives spherical aberration coefficients of 4.61 and 8.01 for faces 16 and 18, close to Table II’s 4.61 and 8.00. That agreement suggests an error in the patent. The available evidence does not identify L8’s glass, so the model uses the printed 1.58487 and νd 53.0.
+L8 is the principal uncertainty. Both printings give 1.58487, which yields a focal length of 98.565 on the patent’s scale. With 1.56883, the value printed for L6, it would be 100.004, and the spherical aberration coefficients would be of 4.61 and 8.01 for faces 16 and 18, close to Table II’s 4.61 and 8.00. That agreement suggests an error in the patent. The available evidence does not identify L8’s glass, so the model uses the printed 1.58487 and νd 53.0.
 
 ## Focus Mechanism
 

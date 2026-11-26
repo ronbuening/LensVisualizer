@@ -122,7 +122,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "SF6 (Schott, inferred)",
       focalLengthMm: -27.83,
-      role: "Diverges the beam entering the rear doublet from the floating air gap.",
+      role: "Diverges the beam at the front of the rear doublet and forms the rear boundary of the variable air gap.",
     },
     {
       id: 8,

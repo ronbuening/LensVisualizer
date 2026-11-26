@@ -28,12 +28,12 @@ The film lies at the d-line paraxial image plane at infinity. With the lens wide
 
 The 52.44 mm between the first and last vertices sets the scale for Fig. 1. Each clear semi-diameter is the height at which the corresponding curve or plane ends in the drawing.
 
-| Surfaces in order | Clear semi-diameters (mm)   |
-| ----------------- | --------------------------- |
-| 1–4               | 20.11, 16.66, 15.97, 15.97  |
-| 5–8               | 11.53, 9.12, 7.79, 7.89     |
+| Surfaces in order | Clear semi-diameters (mm)    |
+| ----------------- | ---------------------------- |
+| 1–4               | 20.11, 16.66, 15.97, 15.97   |
+| 5–8               | 11.53, 9.12, 7.79, 7.89      |
 | 9–13              | 6.01, 6.01, 6.16, 6.11, 5.91 |
-| 14–17             | 6.21, 6.21, 6.90, 6.90      |
+| 14–17             | 6.21, 6.21, 6.90, 6.90       |
 
 The 5.58 mm stop radius follows from the paraxial entrance pupil at f/3.5. The patent gives only the infinity layout and prints no image gap, finite-focus displacement or magnification. The near gap assumes the internal spacings stay fixed as the whole lens moves toward the subject. An object 250 mm from the film requires 38.7951 mm behind L9, an extension of 3.2983 mm. The film position minus paraxial focus is −0.000045 mm at infinity and +0.000032 mm at 0.25 m. At the near setting, the chief ray from the object through the stop center to the film corner clears each rim by at least 1.28 mm.
 
@@ -52,8 +52,8 @@ The Takumar Field Guide dates the original model 43961 to 1967–1971. Its multi
 - The infinity-only model now also reaches the marked 0.25 m. The infinity image gap follows from the paraxial back focus. The close position assumes unit focus and gives 0.139× magnification. Whole-block motion is documented on the later 43962. [Radojuva, focusing of the 43962](https://radojuva.com/en/2022/02/super-multi-coated-takumar-24mm-f-3-5/)
 - Six elements have catalog equivalents for dispersion. The differences below are catalog minus patent. Each element retains its printed index and Abbe number.
 
-| Elements | Catalog equivalent | Δnd        | Δνd   |
-| -------- | ------------------ | ---------: | ----: |
+| Elements | Catalog equivalent |         Δnd |   Δνd |
+| -------- | ------------------ | ----------: | ----: |
 | L1, L4   | Ohara S-BSL7       | −7.5 × 10⁻⁸ | +0.04 |
 | L3       | Ohara S-BSM16      | +9.1 × 10⁻⁷ | −0.01 |
 | L6       | Schott N-BAK4      | −2.5 × 10⁻⁶ | −0.02 |
