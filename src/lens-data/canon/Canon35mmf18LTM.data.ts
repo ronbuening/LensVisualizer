@@ -16,7 +16,7 @@ const LENS_DATA = {
   name: "CANON 35mm f/1.8",
   maker: "Canon",
   visible: true,
-  subtitle: "US 2,854,890, Sole example — Canon / Mukai",
+  subtitle: "US 2,854,890, sole example — Canon / Mukai",
   source: {
     patentNumber: "US 2,854,890",
     patentYear: 1958,
@@ -46,7 +46,7 @@ const LENS_DATA = {
       marketing: 1.8,
       design: 1.8,
     },
-    specs: ["7 ELEMENTS / 4 GROUPS", "DESIGN f = 35.03 mm", "ALL SPHERICAL"],
+    specs: ["7 ELEMENTS / 4 GROUPS", "ALL SPHERICAL", "64° FULL FIELD"],
     closeFocusM: {
       marketing: 1,
     },
