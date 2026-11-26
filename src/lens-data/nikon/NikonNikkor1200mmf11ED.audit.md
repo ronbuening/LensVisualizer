@@ -44,7 +44,7 @@ The other 1200mm f/11 designs differ. The 1964 Nikkor-P has five elements in fiv
 
 Nikon's specifications, as transcribed by MIR, give 1200 mm, f/11, five elements in four groups, a manual diaphragm built into the head from f/11 to f/64, NIC multicoating and an 88 mm thread into any Nikon focusing unit, whose own diaphragm stays at f/4.5. The focusing unit's scale for this head runs from 50 m to infinity. Nikon's depth-of-field table lists the full stops f/11, 16, 22, 32, 45 and 64, starts at 50 m and names the Nikon F and F2 as the cameras. The drawing places the film 46.5 mm behind the focusing unit's mount, the Nikon F flange distance. Nikon's history also mentions use of the focusing-unit lenses on Bronica medium-format cameras through a different focusing unit; `catalog.lensMounts` lists Nikon F only. [MIR, ED head](https://www.mir.com.my/rb/photography/companies/nikon/nikkoresources/preAI70/1200mmf11ed.htm) · [Depth-of-field table](https://www.mir.com.my/rb/photography/companies/nikon/nikkoresources/preAI70/1200mmf11EDpreAIDOF.gif)
 
-MIR's transcription gives the ED head a 4°10′ angle of view, about twice the 2.07° that the 35 mm frame diagonal subtends at 1200 mm; MIR's Nikkor-P page gives 2°. The model's 4.81° rim-limited field covers both figures. The patent describes the lens at infinity only.
+MIR's transcription gives the ED head a 4°10′ angle of view, about twice the 2.07° that the 35 mm frame diagonal subtends at 1200 mm. Nikon's sales specification for product 1296 gives 2° coverage, as MIR's Nikkor-P page does. [Nikon sales manual, Section III, sheets 9 and 14](https://www.pacificrimcamera.com/rl/01037/01037.pdf) The model's 4.81° rim-limited field covers both figures. The patent describes the lens at infinity only.
 
 ## Corrections, 2026-11-25
 
@@ -71,6 +71,6 @@ At infinity the finished model gives 1199.70 mm EFL, f/11.000, a 240.06 mm parax
 - The axial position and blade count of the production iris are undocumented in the cited Nikon material.
 - The glass suppliers and the dispersion curves of L1 and L4b are unknown.
 - The production illumination at the edge of the patent's 5° field is unknown; no measured illumination curve is published.
-- MIR's 4°10′ angle of view for the ED head disagrees with the 2.07° frame diagonal at 1200 mm. Whether the slip is in the transcription or in Nikon's sales manual is unknown.
+- MIR's 4°10′ angle of view for the ED head disagrees with the 2.07° frame diagonal at 1200 mm and with Nikon's later 2° specification; whether the 1974–76 manuals print 4°10′ or the figure entered in transcription is unknown.
 - The Nikkor-P focused to 43 m on the earlier focusing unit and 50 m on the AU-1. Whether the ED head reached 43 m on the earlier unit is undocumented.
 - Whether the examined publication JP S54-16856 B prints the same table is unknown.

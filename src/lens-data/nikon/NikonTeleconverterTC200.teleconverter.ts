@@ -97,7 +97,7 @@ const TELECONVERTER_DATA = {
       indexReference: "d",
       indexReferenceNote: "The patent gives no reference wavelength. The model assumes the helium d line.",
       focalLengthMm: 25.29,
-      role: "Adds converging power between the entrance meniscus and the negative front doublet.",
+      role: "Adds converging power between the entrance meniscus and the negative forward doublet.",
       glass: "Unmatched (nd 1.59507 / νd 35.6)",
     },
     {

@@ -59,7 +59,7 @@ The pre-AI, AI and AI-S versions share the 18-element, 11-group optics. The pre-
 
 ## Corrections, 2026-11-25
 
-- The lens accepts the TC-300 and TC-14 teleconverters, which Nikon's AI-S manual lists among its accessories; Nikon's teleconverter chart also marks the TC-300 usable. The TC-200 and the autofocus converters are not offered, because Nikon does not list them for this lens. [Nikon teleconverter chart](https://service.nikonrepair.eu/article_files/46818/TC_EN.pdf)
+- The lens accepts the TC-300 and TC-14 teleconverters, which Nikon's AI-S manual lists among its accessories; Nikon's teleconverter chart also marks the TC-300 usable. The TC-200 and the autofocus converters are not offered, because Nikon does not list them for this lens. [Nikon AI-S manual text](https://portablemedia.manualsonline.com/manuals/mfg/nikon/ed180600mm.html?p=12) · [Nikon teleconverter chart](https://service.nikonrepair.eu/article_files/46818/TC_EN.pdf)
 - The working aperture was opened from f/11 at every zoom setting to the patent's f/8. The aperture scale runs f/8, 11, 16, 22 and 32, from Nikon's f/8–f/32 scale.
 - The field extends from the former ±1° limit to the corner of the 36 × 24 mm frame at 21.63 mm image height, 6.82° at the short end and 2.06° at the long end, matching the f/8 plots of Fig. 5.
 - The original estimated clear radii (38.0–40.8 mm in the front group, 14.6–16.0 mm in the variator, 15.1–15.5 mm in the compensator, 13.4–15.3 mm ahead of the iris space and 8.9–9.3 mm in the rear relay) held the lens to about f/9.2 at the f/8 setting and cut the axial beam at 20 surfaces. They were replaced by the Fig. 3 radii above. R22–R24 stand 0.4 mm above the central reading of the drawn edge, inside the line width, so that the f/8 axial beam passes.

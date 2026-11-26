@@ -49,7 +49,7 @@ The dealer sheet lists AI-coupled Nikkor primes from 300 to 1200 mm and the 180 
 | 300mm f/4.5 ED with AI coupling | 420.009 mm | f/6.30 | 21.09 mm |
 | AI 600mm f/5.6 IF-ED | 839.993 mm | f/7.84 | 191.94 mm |
 
-The 135 mm f/2.8 falls outside the dealer sheet’s range. The 360–1200 mm zoom reaches the corner in the model despite Nikon’s exclusion of zooms. With the TC-14 the 400 mm f/8 Dodotto reaches 77.6% of the corner height and the 800 mm f/8 ED reaches 63.5%, compared with 100% and 70.0% for the bare lenses.
+The 135 mm f/2.8 falls outside the dealer sheet’s range. The 360–1200 mm zoom reaches the corner in the model despite Nikon’s exclusion of zooms. With the TC-14 the 400 mm f/8 Dodotto reaches 77.6% of the corner height and the 800 mm f/8 ED reaches 63.5%, compared with 100% and 70.0% for the bare lenses. Although the dealer sheet excludes zooms, the manual of the AI-S Zoom-Nikkor ED 180–600 mm f/8 lists the TC-14 among that lens’s accessories. With it the zoom gives 252.21–831.83 mm at f/11.2, the axial beam passes and the corner chief ray reaches the frame at every zoom setting. [Nikon 180–600 mm manual, accessories](https://portablemedia.manualsonline.com/manuals/mfg/nikon/ed180600mm.html?p=12)
 
 ## Corrections, 2026-11-25
 
