@@ -60,9 +60,9 @@ The March 1971 FD lens shares the S.C.'s 70 × 173 mm barrel dimensions and 4 m 
 
 | Element | Patent glass | Hoya equivalent |         Δnd |   Δνd |
 | ------- | ------------ | --------------- | ----------: | ----: |
-| L3      | LaSFo1       | NBFD11          | −0.0000031  | −0.07 |
+| L3      | LaSFo1       | NBFD11          |  −0.0000031 | −0.07 |
 | L5      | LaK8         | LAC8            | −0.00000018 | +0.04 |
-| L6      | F16          | FF5             | +0.0000029  | +0.05 |
+| L6      | F16          | FF5             |  +0.0000029 | +0.05 |
 
 At infinity the model gives 300.468 mm effective focal length, f/5.60, 73.438 mm back focus, a 13.122 mm iris radius and a 4.1° half-field to the 35 mm frame corner.
 
@@ -75,7 +75,7 @@ At infinity the model gives 300.468 mm effective focal length, f/5.60, 73.438 mm
 - The page was compared with Figure 5 and Canon's catalog cutaway, and nothing changed. In the 347 dpi scan the 142.800 mm vertex span covers 1,753 pixels, and the drawn arcs of surfaces 1, 3, 6, 8 and 11 give the same scale within 1% across the axis. The rims read 26.9–27.2 mm for L1, 26.8–27.1 mm for L2, 22.0–22.2 mm for the doublet, 12.0–12.1 mm for L5 and 14.0–14.1 mm for L6, each within about 1% of the stored radius. The diaphragm sits 44.2% of the way across the gap from surface 7, as modeled.
 - No rim lies below its value before the 2026-11-25 rim work, and the lens has no lands. Geometric corner transmission at 4.1° stays 52.6%, a worst loss of 0.0 points.
 - Element names, types, roles and focal lengths, the Front and Rear captions (the patent's 前群 and 後群), the C1 cemented bracket and the diaphragm marker agree with the patent. No element carries a special-dispersion tag, since the patent names ordinary glasses throughout. The page shows infinity focus only, with no group movement.
-- Ohara S-FSL5 (1.48749 / 70.24) lies inside the site's spectral-proxy tolerance for the FK5 pair of L1 and L2. Against Figure 10 it moves the paraxial F focus 0.06 mm and the g focus 0.02 mm farther from the plotted curves, so both elements keep the printed pair. No catalog glass lies within the tolerance of the FK1 pair of L4; the nearest, Hoya FC1 (1.47079 / 66.71), differs by 0.49 in Abbe number. FK5 recurs in Examples 1, 4 and 5, and FK1 in Examples 4 and 5.
+- Ohara S-FSL5 (1.48749 / 70.24) lies inside the site's spectral-proxy tolerance for the FK5 pair of L1 and L2. Against Figure 10 it moves the paraxial F focus 0.06 mm and the g focus 0.02 mm farther from the plotted curves, so both elements keep the printed pair. No catalog glass lies within the tolerance of the FK1 pair of L4; the nearby CDGM H-QK1 row (1.47047 / 66.88) differs by 0.32 in Abbe number. FK5 recurs in Examples 1, 4 and 5, and FK1 in Examples 4 and 5.
 
 ## Remaining Questions
 

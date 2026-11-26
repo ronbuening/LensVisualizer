@@ -39,7 +39,7 @@ At infinity the chief ray reaches a height of 22.00 mm at the patent’s 6.15° 
 | R5–R6    |      24.0 mm | Smallest of the three square front rims   |
 | R7       |      19.0 mm | Outer edge of the fixed negative meniscus |
 | R8       |      16.8 mm | Rear arc ends at the sloping bevel        |
-| R9–R11   |      12.7 mm | One square rim across the cemented pair  |
+| R9–R11   |      12.7 mm | One square rim across the cemented pair   |
 | R12–R13  |      16.4 mm | Square rim, larger than the doublet       |
 
 **Iris and film.** Figure 1 places the iris 46.41 mm behind R1, or 7.05 mm behind R8. The retail cutaway suggests about 59.4 mm behind R1. The patent figure agrees with the text in column 3, which places the diaphragm close to member II. A 15.857 mm iris radius gives a 50.22 mm entrance pupil diameter at f/4. The film lies at the paraxial infinity focus. [Figure 1 and column 3](https://patents.google.com/patent/US4240703A/en) · [MIR retail cutaway](https://www.mir.com.my/rb/photography/companies/canon/fdresources/fdlenses/200mm.htm)
@@ -65,7 +65,7 @@ Example I is a strong match for the New FD 200mm f/4 introduced in June 1979. Th
 | Elements | Catalog equivalent |          Δnd |     Δνd |
 | -------- | ------------------ | -----------: | ------: |
 | L1, L3   | Ohara S-FSL5       | −0.000000065 | +0.1363 |
-| L2       | Sumita BASF8       |  +0.00000169 | −0.0263 |
+| L2       | Hoya BAFD8         |   −0.0000032 |   −0.01 |
 | L4       | Ohara S-BAL35      | −0.000000090 | +0.0350 |
 | L5, L7   | Ohara S-TIH4       |  −0.00000125 | +0.0121 |
 | L6       | Hikari J-BASF6     | +0.000000016 | −0.0261 |
@@ -75,7 +75,7 @@ At infinity the model gives 200.89 mm EFL, f/4.00, 61.156 mm back focus and a 15
 - 2026-11-25 rim review:
   - The rims were compared again with Fig. 1 and the maker's drawing; none changed.
 - 2026-11-26 diagram review:
-  - The drawn section was compared with Fig. 1 at 9.07 pixels/mm and with the retail cutaway, and nothing changed. Fig. 1 gives clear radii of 26.2–26.3 mm for L1, 24.8–24.9 mm for L2, 24.0 mm for L3, 19.0–19.1 mm for the front of L4, 16.4–16.6 mm for its rear, 12.6–12.7 mm for the doublet and 16.2–16.5 mm for L7. Each is within 0.4 mm of the model, and the drawn order of heights and the square rims of L2, the doublet and L7 match.
+  - The drawn section was compared with Fig. 1 at 9.07 pixels/mm and with the retail cutaway, and no rim changed. Fig. 1 gives clear radii of 26.2–26.3 mm for L1, 24.8–24.9 mm for L2, 24.0 mm for L3, 19.0–19.1 mm for the front of L4, 16.4–16.6 mm for its rear, 12.6–12.7 mm for the doublet and 16.2–16.5 mm for L7. Each is within 0.4 mm of the model, and the drawn order of heights and the square rims of L2, the doublet and L7 match.
   - The lens has no lands or cut rims. Every rim keeps the value first read from Fig. 1, so no focus position loses light.
   - The doublet moves steadily toward the film through all eleven positions while members I, II and IV and the iris stay fixed. The focus readout gives 9.14, 3.65, 2.28 and 1.83 m at the 0.2, 0.5 and 0.8 focus positions and at the close end. The last value agrees with the printed 1.826 m to within 1.4 mm.
   - L2's dispersion equivalent changed from Sumita BASF8 to Hoya BAFD8, an exact match (Δnd −0.000003, Δνd −0.01). Figures 2 and 3 plot only the d and g lines. Relative to d, the g-line focus with BASF8 averaged 0.052 mm nearer the lens than Figure 2 at infinity and 0.042 mm nearer than Figure 3 at 9.13f. With BAFD8 the differences are 0.018 and 0.006 mm. The other exact rows tried were Schott SF4 on L5 and L7 (0.015 and 0.017 mm) and Ohara S-BAH28 on L2 (0.015 and 0.027 mm on the far side). Each gave a larger combined difference, and SF4 with either L2 row moves g past the figures to the far side (0.019 mm with BAFD8, 0.052 mm with S-BAH28). The C-line focus moves 0.004 mm and the F-line focus 0.001 mm, and the patent plots neither. At the 6.15° field the model gives +1.6% distortion, and Figure 2 reads about +1.4%. Element types, roles, member brackets, the cemented bracket and the iris position agree with the patent, and no element carries a special-dispersion tag.
