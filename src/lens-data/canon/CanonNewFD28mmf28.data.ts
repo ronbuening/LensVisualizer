@@ -5,8 +5,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * example gives f = 100, f/2.8 and a 76° field. All lengths are scaled by
  * 0.28 to the marketed 28 mm focal length. The seven air-spaced singlets
  * retain the printed indices, Abbe numbers and 35.644 mm back focus. The text
- * names the sodium D line, but every index/Abbe pair is a catalog d-line
- * value, so the file stores them as d-line data.
+ * names the sodium D line, but every index/Abbe pair is a catalog helium
+ * d-line value, so they are entered as d-line data.
  * The patent places the iris between L3 and L4. Its estimated axial position
  * divides that air space into 4.1468 and 1.414 mm. The iris radius follows
  * from f/2.8. Figure 1 supplies the clear rims and the flat land on the back
@@ -19,14 +19,11 @@ const LENS_DATA = {
   maker: "Canon",
   visible: true,
   name: "CANON NEW FD 28mm f/2.8",
-  subtitle: "US 4,176,914, Example 1 — Canon / Fujibayashi",
+  subtitle: "US 4,176,914, sole example — Canon / Fujibayashi",
   source: {
     patentNumber: "US 4,176,914",
     patentYear: 1979,
-    example: {
-      label: "Example 1",
-      id: "1",
-    },
+    example: { label: "Sole example", id: null },
     authors: ["Kazuo Fujibayashi"],
     assignees: ["Canon Inc."],
   },
@@ -46,7 +43,7 @@ const LENS_DATA = {
     closeFocusM: {
       marketing: 0.3,
     },
-    specs: ["7 ELEMENTS / 7 GROUPS", "ALL SPHERICAL", "DESIGN f = 28.01 mm", "RETROFOCUS"],
+    specs: ["7 ELEMENTS / 7 GROUPS", "ALL SPHERICAL", "RETROFOCUS"],
   },
   elements: [
     {
@@ -242,7 +239,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 1e15,
     description:
-      "Infinity focus only. Canon specifies double-helicoid focusing to 0.3 m. The patent gives no close-focus spacings.",
+      "Infinity focus only. Canon lists double-helicoid focusing, with no floating system, to 0.3 m and 0.13×. The patent gives no close-focus spacings.",
   },
   layout: {
     yScFill: 0.65,
