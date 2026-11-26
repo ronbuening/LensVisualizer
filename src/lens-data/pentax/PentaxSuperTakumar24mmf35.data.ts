@@ -34,7 +34,7 @@ const LENS_DATA = {
     errata: [
       {
         status: "unresolved",
-        note: "Both copies of Table I give L8 an index of 1.58487. The resulting focal length is 98.565 against the stated 100, a shortfall of 1.44%. An index of 1.56883 gives 100.004 and brings the spherical aberration coefficients for faces 16 and 18 closer to Table II. The prescription retains the printed index.",
+        note: "Both copies of Table I give L8 an index of 1.58487. The resulting focal length is 98.565 against the stated 100, a shortfall of 1.44%. An index of 1.56883 gives 100.004 and brings the spherical aberration coefficients for faces 16 and 18 closer to Table II. Fig. 2 points the same way: at full aperture the printed index gives d- and g-line spherical aberration of −0.49 and +0.36 (f = 100), against about −0.13 to −0.22 and +0.92 drawn, while 1.56883 gives −0.08 and +0.91. The prescription retains the printed index.",
       },
     ],
   },
