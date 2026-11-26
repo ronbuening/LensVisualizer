@@ -54,11 +54,14 @@ const LENS_DATA = {
       vd: 81.9,
       indexReference: "d",
       focalLengthMm: 425.23,
-      glass: "Unmatched (nd 1.50032 / νd 81.9)",
+      glass: "Unmatched (nd 1.50032 / νd 81.9; partial dispersions fitted to Fig. 2A)",
       apd: "inferred",
       apdNote:
-        "Nikon states that the lens uses ED glass; this element's Abbe number of 81.9 is the only ED-class value in the prescription.",
+        "Nikon states that the lens uses ED glass, and this element's Abbe number of 81.9 is the only ED-class value in the prescription. Its partial dispersions, P g,F 0.5436 and P C,d 0.2986, are fitted to the C- and g-line curves of the patent's Fig. 2A, not printed; they lie near fluorite's.",
       role: "Positive front element and likely ED glass, with the lowest dispersion of the five glasses.",
+      nC: 1.498496,
+      nF: 1.504605,
+      ng: 1.507926,
     },
     {
       id: 2,
