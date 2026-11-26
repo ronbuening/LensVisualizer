@@ -5,13 +5,13 @@ value in air at the reference line. Mirrors and flat plates are classified befor
 
 ## Summary
 
-- **1090** lenses scanned
-- **12379** total elements examined
-- **12250** refractive lens elements with authored focal length compared
+- **1148** lenses scanned
+- **12945** total elements examined
+- **12812** refractive lens elements with authored focal length compared
 - **25** mirrors and Mangin mirrors (not compared)
-- **48** plane-parallel plates and prisms (not compared)
-- **56** remaining elements with no authored focal length (not compared)
-- **103** elements with no authored focal length across all classes (included above)
+- **50** plane-parallel plates and prisms (not compared)
+- **58** remaining elements with no authored focal length (not compared)
+- **107** elements with no authored focal length across all classes (included above)
 - **123** refractive elements differ by more than 1% (1.0% of compared)
 - **51** refractive elements differ by more than 5% (0.4% of compared)
 
@@ -328,6 +328,7 @@ Sorted by absolute percentage difference, largest first.
 | [NIKON R-UW AF ZOOM-NIKKOR 20-35mm f/2.8](../../src/lens-data/nikon/NikonRUWAFZoomNikkor2035mmf28.data.ts) | L7 | Biconcave Negative | -21.80 | -21.75 | +0.05 | +0.22% | — |
 | [NIKON NIKKOR Z DX 50-250mm f/4.5-6.3 VR](../../src/lens-data/nikon/NikonZDX50250mmf4564VR.data.ts) | L42 | Biconcave Negative | -20.60 | -20.55 | +0.05 | +0.22% | — |
 | [SIGMA 40mm f/1.4 DG HSM \| Art](../../src/lens-data/sigma/SigmaArt40mmf14.data.ts) | L6 | Positive Meniscus | 60.60 | 60.47 | -0.13 | -0.22% | — |
+| [OLYMPUS M.ZUIKO DIGITAL ED 8-25mm f/4.0 PRO](../../src/lens-data/olympus/OlympusMZuiko825mmf4PRO.data.ts) | L32 | Negative Meniscus | -18.10 | -18.06 | +0.04 | +0.22% | — |
 | [OLYMPUS ZUIKO AUTO-S 50mm f/1.2](../../src/lens-data/olympus/OlympusZuikoAutoS50mmf12.data.ts) | L3 | Negative Meniscus | -32.90 | -32.83 | +0.07 | +0.22% | — |
 | [OLYMPUS F.ZUIKO 35mm f/2.8 (Olympus XA)](../../src/lens-data/olympus/OlympusXAZuiko35mmf28.data.ts) | L3b | Biconvex Positive | 11.80 | 11.83 | +0.03 | +0.22% | — |
 | [CARL ZEISS JENA SONNAR 50mm f/2](../../src/lens-data/carl-zeiss-jena/ZeissJenaSonnar50f2.data.ts) | L6 | Biconvex Positive | 19.60 | 19.56 | -0.04 | -0.22% | — |
@@ -346,6 +347,7 @@ Sorted by absolute percentage difference, largest first.
 | [PENTAX FA 31mm f/1.8 AL Limited](../../src/lens-data/pentax/PentaxFA31mmf18ALLtd.data.ts) | L6 | Biconvex Positive | 18.80 | 18.84 | +0.04 | +0.21% | — |
 | [NIKON NIKKOR 28mm f/2.8 (Nikon 28Ti)](../../src/lens-data/nikon/Nikon28Ti28mmf28.data.ts) | L3b | Biconcave Negative | -20.90 | -20.94 | -0.04 | -0.21% | — |
 | [LAOWA 24mm f/14 2× Macro Probe](../../src/lens-data/laowa/Laowa24mmf14Probe.data.ts) | L4 | Biconcave Negative | -8.50 | -8.48 | +0.02 | +0.21% | — |
+| [OLYMPUS M.ZUIKO DIGITAL ED 8-25mm f/4.0 PRO](../../src/lens-data/olympus/OlympusMZuiko825mmf4PRO.data.ts) | L35 | Biconvex Positive (1× Asph) | 20.70 | 20.66 | -0.04 | -0.21% | — |
 | [CANON 15-45mm f/2.8-5.6 (Canon PowerShot G1 X Mark III)](../../src/lens-data/canon/CanonPowerShotG1XIII1545mmf2856.data.ts) | P1 | Biconvex Positive (2× Asph) | 18.60 | 18.56 | -0.04 | -0.21% | — |
 | [NIKON AF-S NIKKOR 16-35mm f/4 G ED VR](../../src/lens-data/nikon/NikonNikkorAFS1635mmf4.data.ts) | L32 | Biconcave Negative | -18.80 | -18.84 | -0.04 | -0.20% | — |
 | [SCHNEIDER-KREUZNACH SUPER-ANGULON 75mm f/5.6](../../src/lens-data/schneider-kreuznach/SchneiderSuperAngulon75mmf56.data.ts) | L4 | Biconcave Negative | -27.10 | -27.04 | +0.06 | +0.20% | — |
@@ -463,6 +465,7 @@ Sorted by absolute percentage difference, largest first.
 | [NIKON R-UW AF FISHEYE-NIKKOR 13mm f/2.8](../../src/lens-data/nikon/NikonRUWAFNikkor13mmf28.data.ts) | L2 | Negative Meniscus | -32.30 | -32.35 | -0.05 | -0.15% | — |
 | [SIGMA 40mm f/1.4 DG HSM \| Art](../../src/lens-data/sigma/SigmaArt40mmf14.data.ts) | L3 | Negative Meniscus | -132.10 | -132.30 | -0.20 | -0.15% | — |
 | [SONY SONNAR T* E 24mm f/1.8 ZA](../../src/lens-data/sony/SonyFE24mmf18ZA.data.ts) | L3 | Positive Meniscus | 22.90 | 22.93 | +0.03 | +0.15% | — |
+| [YONGNUO YN 56mm f/1.4 S DA DSM WL PRO](../../src/lens-data/yongnuo/YongnuoYN56mmf14.data.ts) | G9 | Biconcave Negative | -23.10 | -23.13 | -0.03 | -0.15% | — |
 | [VOIGTLÄNDER APO-LANTHAR 50mm f/2 Aspherical](../../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.ts) | Lra | Biconcave Negative | -31.40 | -31.45 | -0.05 | -0.15% | — |
 | [CANON SERENAR 85mm f/1.5](../../src/lens-data/canon/CanonSerenar85mmf15.data.ts) | L4 | Biconcave Negative | -27.30 | -27.26 | +0.04 | +0.15% | — |
 | [NIKON NIKKOR Z 24-200mm f/4-6.3 VR](../../src/lens-data/nikon/NikonNikkorZ24200mmf463VR.data.ts) | L43 | Negative Meniscus | -33.80 | -33.75 | +0.05 | +0.15% | — |
@@ -485,6 +488,7 @@ Sorted by absolute percentage difference, largest first.
 | [NIKON NIKKOR Z 14-24mm f/2.8 S](../../src/lens-data/nikon/NikonZ1424f28S.data.ts) | L36 | Negative Meniscus | -34.00 | -33.95 | +0.05 | +0.14% | — |
 | [NIKON NIKKOR Z DX 18-140mm f/3.5-6.3 VR](../../src/lens-data/nikon/NikonZDX18140mmf3563VR.data.ts) | L41 | Biconvex Positive | 30.70 | 30.66 | -0.04 | -0.14% | — |
 | [CANON RF 24-105mm f/4 L IS USM](../../src/lens-data/canon/CanonRF24105mmf4L.data.ts) | L11 | Biconcave Negative | -19.30 | -19.33 | -0.03 | -0.14% | — |
+| [OLYMPUS M.ZUIKO DIGITAL ED 8-25mm f/4.0 PRO](../../src/lens-data/olympus/OlympusMZuiko825mmf4PRO.data.ts) | L33 | Biconvex Positive | 28.00 | 27.96 | -0.04 | -0.14% | — |
 | [SIGMA 50mm f/2.8 (Sigma DP3 Merrill)](../../src/lens-data/sigma/SigmaDP3M50mmf28.data.ts) | L8 | Positive Meniscus | 33.00 | 32.95 | -0.05 | -0.14% | — |
 | [PANASONIC LUMIX S 35mm f/1.8](../../src/lens-data/panasonic/PanasonicS35mmf18.data.ts) | L16 | Biconvex Positive | 32.90 | 32.85 | -0.05 | -0.14% | — |
 | [SIGMA 35mm f/1.4 DG HSM \| Art](../../src/lens-data/sigma/Sigma35mmf14DGHSMA.data.ts) | L8 | Biconcave Negative | -34.10 | -34.05 | +0.05 | +0.14% | — |
@@ -504,6 +508,7 @@ Sorted by absolute percentage difference, largest first.
 | [SIGMA 50mm f/1.4 DG HSM \| Art](../../src/lens-data/sigma/Sigma50mmf14DGHSMA.data.ts) | L9 | Biconcave Negative | -35.00 | -34.95 | +0.05 | +0.14% | — |
 | [LEICA APO-SUMMICRON 43mm f/2 ASPH. (Leica Q3 43)](../../src/lens-data/leica/LeicaAPO43mmf2.data.ts) | L11 | Neg. Meniscus (2× Asph) | -31.20 | -31.16 | +0.04 | +0.14% | — |
 | [NIKON AF-S NIKKOR 28-300mm f/3.5-5.6 G ED VR](../../src/lens-data/nikon/NikonNikkorAFS28300mmf3556G.data.ts) | L21 | Neg. Meniscus (1× Asph) | -25.00 | -25.04 | -0.04 | -0.14% | — |
+| [YONGNUO YN 56mm f/1.4 S DA DSM WL PRO](../../src/lens-data/yongnuo/YongnuoYN56mmf14.data.ts) | G5 | Biconcave Negative | -18.20 | -18.23 | -0.03 | -0.14% | — |
 | [NIKON AF-P DX NIKKOR 70-300mm f/4.5-6.3 G ED VR](../../src/lens-data/nikon/NikonAFPDX70300mmf4563G.data.ts) | L46 | Biconvex Positive | 35.80 | 35.75 | -0.05 | -0.14% | — |
 | [FUJIFILM FUJINON GF 120mm f/4 R LM OIS WR Macro](../../src/lens-data/fujifilm/FujifilmGF120mmf4RLM.data.ts) | L21 | Biconcave Negative | -34.90 | -34.85 | +0.05 | +0.14% | — |
 | [CANON EF 20-35mm f/2.8 L](../../src/lens-data/canon/CanonEF2035mmf28L.data.ts) | L14 | Biconvex Positive | 27.50 | 27.46 | -0.04 | -0.14% | — |
@@ -556,6 +561,7 @@ Sorted by absolute percentage difference, largest first.
 | [NIKON NIKKOR-N AUTO 28mm f/2](../../src/lens-data/nikon/NikonNikkorN28mmf2.data.ts) | L4 | Biconvex Positive | 23.60 | 23.63 | +0.03 | +0.13% | — |
 | [RICOH GR LENS A12 28mm f/2.5 (Ricoh GXR A12)](../../src/lens-data/ricoh/RicohGXRA1218mmf25.data.ts) | L7 | Biconcave Negative | -12.50 | -12.48 | +0.02 | +0.13% | — |
 | [VOIGTLÄNDER NOKTON 35mm f/1.2 Aspherical](../../src/lens-data/voigtlander/VoigtlanderNokton35mmf12.data.ts) | L3a | Biconvex Positive | 24.20 | 24.17 | -0.03 | -0.13% | — |
+| [SIGMA 20mm f/1.4 DG DN \| Art](../../src/lens-data/sigma/Sigma20mmf14DGDNArt.data.ts) | L11 | Positive Meniscus | 33.10 | 33.14 | +0.04 | +0.13% | — |
 | [SONY FE 28mm f/2](../../src/lens-data/sony/SonyFE28mmf2.data.ts) | L5 | Biconvex Positive (2× Asph) | 24.40 | 24.43 | +0.03 | +0.13% | — |
 | [PENTAX HD D FA* 85mm f/1.4 ED SDM AW](../../src/lens-data/pentax/PentaxDFA85mmf14.data.ts) | L27′ | Biconvex Positive | 27.80 | 27.84 | +0.04 | +0.13% | — |
 | [PENTAX DA 21mm f/3.2 AL Limited](../../src/lens-data/pentax/PentaxDA21mmf32Limited.data.ts) | L5 | Positive Meniscus | 18.90 | 18.88 | -0.02 | -0.13% | — |
@@ -581,6 +587,7 @@ Sorted by absolute percentage difference, largest first.
 | [OLYMPUS ZUIKO 9-36mm f/2-2.4 (Olympus E-10 / E-20)](../../src/lens-data/olympus/OlympusZuiko936mmf224.data.ts) | L13 | Biconvex Positive | 31.00 | 31.04 | +0.04 | +0.13% | — |
 | [NIKON NIKKOR Z DX 16-50mm f/3.5-6.3 VR](../../src/lens-data/nikon/NikonZDX1650mmf3563VR.data.ts) | L21 | Neg. Meniscus (1× Asph) | -32.80 | -32.84 | -0.04 | -0.13% | — |
 | [NIKON PC NIKKOR 19mm f/4 E ED](../../src/lens-data/nikon/NikonNikkorPCE19mmf4E.data.ts) | L26 | Negative Meniscus | -27.10 | -27.07 | +0.03 | +0.13% | — |
+| [YONGNUO YN 33mm f/1.4 DA DSM WL PRO](../../src/lens-data/yongnuo/YongnuoYN33mmf14.data.ts) | G6 | Biconvex Positive | 28.20 | 28.16 | -0.04 | -0.13% | — |
 | [NIKON NIKKOR Z DX 16-50mm f/3.5-6.3 VR](../../src/lens-data/nikon/NikonZDX1650mmf3563VR.data.ts) | L31 | Biconcave Negative (2× Asph) | -24.10 | -24.13 | -0.03 | -0.13% | — |
 | [HASSELBLAD XCD 120mm f/3.5 Macro](../../src/lens-data/hasselblad/HasselbladXCD120mmf35Macro.data.ts) | L32 | Biconcave Negative | -31.60 | -31.64 | -0.04 | -0.13% | — |
 | [CANON EF-S 10-18mm f/4.5-5.6 IS STM](../../src/lens-data/canon/CanonEFS1018mmf4.data.ts) | L12 | Biconcave Negative | -26.70 | -26.67 | +0.03 | +0.13% | — |
@@ -590,6 +597,7 @@ Sorted by absolute percentage difference, largest first.
 | [CANON RF 24-105mm f/2.8 L IS USM Z](../../src/lens-data/canon/CanonRF24105mmf28Z.data.ts) | L5 | Negative Meniscus | -35.00 | -34.96 | +0.04 | +0.12% | — |
 | [CANON SERENAR 28mm f/3.5](../../src/lens-data/canon/CanonSerenar28mmf35.data.ts) | L2 | Biconvex Positive | 18.40 | 18.42 | +0.02 | +0.12% | — |
 | [SIGMA 20mm f/1.4 DG HSM \| Art](../../src/lens-data/sigma/Sigma20mmf14DGHSMArt.data.ts) | E9 | Biconcave Negative | -22.00 | -22.03 | -0.03 | -0.12% | — |
+| [YONGNUO YN 33mm f/1.4 DA DSM WL PRO](../../src/lens-data/yongnuo/YongnuoYN33mmf14.data.ts) | G10 | Biconvex Positive | 43.00 | 42.95 | -0.05 | -0.12% | — |
 | [NIKON W-NIKKOR 35mm f/1.8](../../src/lens-data/nikon/NikonWNikkor35mmf18.data.ts) | L5 | Positive Meniscus | 27.30 | 27.33 | +0.03 | +0.12% | — |
 | [SONY FE 70-200mm f/4 G OSS](../../src/lens-data/sony/SonyFE70200mmf4G.data.ts) | L422 | Biconcave Negative (rear asphere) | -25.20 | -25.17 | +0.03 | +0.12% | — |
 | [CANON RF 135mm f/1.8 L IS USM](../../src/lens-data/canon/CanonRF135f18.data.ts) | L15 | Biconcave Negative | -31.20 | -31.24 | -0.04 | -0.12% | — |
@@ -635,6 +643,7 @@ Sorted by absolute percentage difference, largest first.
 | [FUJIFILM FUJINON XF 50-140mm f/2.8 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmXF50140mmf28R.data.ts) | L22 | Biconcave Negative | -25.20 | -25.17 | +0.03 | +0.12% | — |
 | [FUJIFILM FUJINON XF 50-140mm f/2.8 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmXF50140mmf28R.data.ts) | L21 | Biconvex Positive | 43.20 | 43.15 | -0.05 | -0.12% | — |
 | [SONY FE 85mm f/1.4 GM II](../../src/lens-data/sony/SonyFE85mmf14GMII.data.ts) | L5 | Biconcave Negative | -36.90 | -36.94 | -0.04 | -0.12% | — |
+| [OLYMPUS M.ZUIKO DIGITAL ED 8-25mm f/4.0 PRO](../../src/lens-data/olympus/OlympusMZuiko825mmf4PRO.data.ts) | L42 | Biconcave Negative | -20.80 | -20.82 | -0.02 | -0.12% | — |
 | [NIKON AF-S NIKKOR 18-35mm f/3.5-4.5 G ED](../../src/lens-data/nikon/NikonAFSNikkor1835mmf3545GED.data.ts) | L6 | Biconvex Positive | 37.10 | 37.06 | -0.04 | -0.12% | — |
 | [PENTAX 110 24mm f/2.8](../../src/lens-data/pentax/Pentax11024mmf28.data.ts) | L1 | Negative Meniscus | -36.10 | -36.14 | -0.04 | -0.12% | — |
 | [RICOH GR LENS A12 28mm f/2.5 (Ricoh GXR A12)](../../src/lens-data/ricoh/RicohGXRA1218mmf25.data.ts) | L8 | Biconvex Positive | 15.00 | 14.98 | -0.02 | -0.12% | — |
@@ -687,6 +696,7 @@ Sorted by absolute percentage difference, largest first.
 | [NIKON AF-S NIKKOR 200-500mm f/5.6 E ED VR](../../src/lens-data/nikon/NikonNikkorAFS200500mmf56.data.ts) | L9 | Biconvex Positive | 45.20 | 45.15 | -0.05 | -0.11% | — |
 | [FUJIFILM FUJINON XF 56mm f/1.2 R](../../src/lens-data/fujifilm/FujifilmXF56mmf12.data.ts) | L24 | Biconvex Positive | 22.70 | 22.72 | +0.02 | +0.11% | — |
 | [OLYMPUS ZUIKO 9-36mm f/2-2.4 (Olympus E-10 / E-20)](../../src/lens-data/olympus/OlympusZuiko936mmf224.data.ts) | L11 | Negative Meniscus | -17.80 | -17.78 | +0.02 | +0.11% | — |
+| [SIGMA 20mm f/1.4 DG DN \| Art](../../src/lens-data/sigma/Sigma20mmf14DGDNArt.data.ts) | L4 | Biconcave Negative | -44.00 | -43.95 | +0.05 | +0.11% | — |
 | [SIGMA 35mm f/1.4 DG DN \| Art](../../src/lens-data/sigma/SigmaDGDNA35mmf14.data.ts) | L12 | Biconvex Positive | 30.90 | 30.93 | +0.03 | +0.11% | — |
 | [CANON 15-45mm f/2.8-5.6 (Canon PowerShot G1 X Mark III)](../../src/lens-data/canon/CanonPowerShotG1XIII1545mmf2856.data.ts) | L3p | Biconvex Positive (1× Asph) | 31.10 | 31.07 | -0.03 | -0.11% | — |
 | [CANON EF 50mm f/1.0 L USM](../../src/lens-data/canon/CanonEF50mmf1L.data.ts) | L7 | Biconvex Positive | 28.40 | 28.37 | -0.03 | -0.11% | — |
@@ -711,6 +721,7 @@ Sorted by absolute percentage difference, largest first.
 | [CANON FD 35mm f/2 S.S.C. (I)](../../src/lens-data/canon/CanonFD35mmf2.data.ts) | L2 | Negative Meniscus | -46.60 | -46.55 | +0.05 | +0.11% | — |
 | [NIKON NIKKOR Z 35mm f/1.2 S](../../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) | L19 | Biconcave Negative | -37.40 | -37.44 | -0.04 | -0.11% | — |
 | [PENTAX 110 50mm f/2.8](../../src/lens-data/pentax/Pentax11050mmf28.data.ts) | L5 | Positive Meniscus | 39.80 | 39.84 | +0.04 | +0.11% | — |
+| [YONGNUO YN 33mm f/1.4 DA DSM WL PRO](../../src/lens-data/yongnuo/YongnuoYN33mmf14.data.ts) | G5 | Biconvex Positive | 36.20 | 36.24 | +0.04 | +0.11% | — |
 | [LAOWA 58mm f/2.8 2× Ultra Macro APO](../../src/lens-data/laowa/Laowa58mmf28MacroAPO.data.ts) | L8 | Biconvex Positive | 29.90 | 29.87 | -0.03 | -0.11% | — |
 | [CANON EF-S 10-22mm f/3.5-4.5 USM](../../src/lens-data/canon/CanonEFS1022mmf3545.data.ts) | G23 | Biconvex Positive | 30.40 | 30.43 | +0.03 | +0.10% | — |
 | [FUJIFILM FUJINON XF 16-55mm f/2.8 R LM WR](../../src/lens-data/fujifilm/FujifilmXF1655mmf28R.data.ts) | L34 | Biconvex Pos. (2× Asph) | 19.80 | 19.78 | -0.02 | -0.10% | — |
@@ -787,7 +798,9 @@ Sorted by absolute percentage difference, largest first.
 | [NIKON NIKKOR Z 24-70mm f/2.8 S](../../src/lens-data/nikon/NikonZ2470f28.data.ts) | L41 | Negative Meniscus | -37.70 | -37.74 | -0.04 | -0.10% | — |
 | [NIKON NIKKOR Z 14-30mm f/4 S](../../src/lens-data/nikon/NikonNikkorZ1430mmf4S.data.ts) | L14 | Positive Meniscus | 40.30 | 40.26 | -0.04 | -0.10% | — |
 | [SIGMA 50mm f/2.8 (Sigma DP3 Merrill)](../../src/lens-data/sigma/SigmaDP3M50mmf28.data.ts) | L1 | Positive Meniscus | 33.50 | 33.53 | +0.03 | +0.10% | — |
+| [OLYMPUS M.ZUIKO DIGITAL ED 8-25mm f/4.0 PRO](../../src/lens-data/olympus/OlympusMZuiko825mmf4PRO.data.ts) | L11 | Negative Meniscus | -34.90 | -34.93 | -0.03 | -0.10% | — |
 | [LAOWA 58mm f/2.8 2× Ultra Macro APO](../../src/lens-data/laowa/Laowa58mmf28MacroAPO.data.ts) | L10 | Negative Meniscus | -41.90 | -41.86 | +0.04 | +0.10% | — |
+| [YONGNUO YN 33mm f/1.4 DA DSM WL PRO](../../src/lens-data/yongnuo/YongnuoYN33mmf14.data.ts) | G7 | Biconcave Negative | -16.10 | -16.12 | -0.02 | -0.09% | — |
 | [FUJIFILM FUJINON XF 18mm f/2 R](../../src/lens-data/fujifilm/FujifilmXF18mmf2.data.ts) | L7 | Neg. Meniscus (2× Asph) | -26.70 | -26.73 | -0.03 | -0.09% | — |
 | [SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) | L43 | Biconvex Positive | 50.70 | 50.65 | -0.05 | -0.09% | — |
 | [PENTAX DA 21mm f/3.2 AL Limited](../../src/lens-data/pentax/PentaxDA21mmf32Limited.data.ts) | L4 | Positive Meniscus / Near Plano-Convex | 11.70 | 11.71 | +0.01 | +0.09% | — |
@@ -803,6 +816,7 @@ Sorted by absolute percentage difference, largest first.
 | [NIKON FISHEYE-NIKKOR 6mm f/2.8](../../src/lens-data/nikon/NikonFisheyeNikkor6mmf28.data.ts) | L3 | Negative Meniscus | -37.60 | -37.64 | -0.04 | -0.09% | — |
 | [HASSELBLAD HC 80mm f/2.8](../../src/lens-data/hasselblad/HasselbladHC80mmf28.data.ts) | L6 | Positive Meniscus | 65.80 | 65.74 | -0.06 | -0.09% | — |
 | [PENTAX SMC A* 200mm f/4 MACRO ED](../../src/lens-data/pentax/PentaxA200mmf4MacroED.data.ts) | L9 | Biconcave Negative | -48.20 | -48.24 | -0.04 | -0.09% | — |
+| [OLYMPUS M.ZUIKO DIGITAL ED 8-25mm f/4.0 PRO](../../src/lens-data/olympus/OlympusMZuiko825mmf4PRO.data.ts) | L34 | Negative Meniscus | -25.80 | -25.78 | +0.02 | +0.09% | — |
 | [NIKON PC-E MICRO-NIKKOR 45mm f/2.8 D ED](../../src/lens-data/nikon/NikonMicroNikkorPCE45mmf28D.data.ts) | L32 | Biconcave Negative | -27.30 | -27.27 | +0.03 | +0.09% | — |
 | [FUJIFILM FUJINON XF 50-140mm f/2.8 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmXF50140mmf28R.data.ts) | L49 | Biconvex Positive (fluor-crown) | 36.10 | 36.07 | -0.03 | -0.09% | — |
 | [OLYMPUS ZUIKO AUTO-W 21mm f/2](../../src/lens-data/olympus/OlympusZuikoAuto21mmf2.data.ts) | L2 | Negative Meniscus | -33.50 | -33.53 | -0.03 | -0.09% | — |
@@ -861,6 +875,7 @@ Sorted by absolute percentage difference, largest first.
 | [SONY SONNAR T* FE 55mm f/1.8 ZA](../../src/lens-data/sony/SonyFE55mmf18ZA.data.ts) | L11 | Biconcave Negative | -36.60 | -36.63 | -0.03 | -0.09% | — |
 | [OLYMPUS ZUIKO AUTO-W 21mm f/2](../../src/lens-data/olympus/OlympusZuikoAuto21mmf2.data.ts) | L3 | Negative Meniscus | -23.60 | -23.62 | -0.02 | -0.09% | — |
 | [CANON 15.1-60.4mm f/2.8-5.8 (Canon PowerShot G1 X)](../../src/lens-data/canon/CanonPowerShotG1X1560mmf28.data.ts) | L9 | Negative Meniscus | -8.80 | -8.79 | +0.01 | +0.09% | — |
+| [YONGNUO YN 56mm f/1.4 S DA DSM WL PRO](../../src/lens-data/yongnuo/YongnuoYN56mmf14.data.ts) | G10 | Biconvex Positive | 43.50 | 43.54 | +0.04 | +0.09% | — |
 | [SIGMA 14mm f/4 (Sigma dp0 Quattro)](../../src/lens-data/sigma/SigmaDp0Quattro14mmf4.data.ts) | L3g | Negative Meniscus | -23.80 | -23.78 | +0.02 | +0.09% | — |
 | [OLYMPUS ZUIKO DIGITAL ED 14-35mm f/2.0 SWD](../../src/lens-data/olympus/OlympusMZuiko1435mmf2ED.data.ts) | L17 | Biconvex Positive (ED, 2× Asph) | 41.90 | 41.94 | +0.04 | +0.09% | — |
 | [FUJIFILM FUJINON 18.5mm f/2.8 (Fujifilm X70)](../../src/lens-data/fujifilm/FujifilmX7018mmf28.data.ts) | L32 | Biconvex Positive | 29.10 | 29.13 | +0.03 | +0.09% | — |
@@ -917,6 +932,7 @@ Sorted by absolute percentage difference, largest first.
 | [LEICA SUMMILUX 28mm f/1.7 ASPH. (Leica Q, Q2, Q3)](../../src/lens-data/leica/Leica28mmf17.data.ts) | L7 | Negative Meniscus | -28.90 | -28.88 | +0.02 | +0.08% | — |
 | [CANON EF-S 17-55mm f/2.8 IS USM](../../src/lens-data/canon/CanonEFS1755mmf28IS.data.ts) | L4g | Negative Meniscus | -19.40 | -19.42 | -0.02 | -0.08% | — |
 | [CANON EF 200mm f/2 L IS USM](../../src/lens-data/canon/CanonEF200mmf2LISUSM.data.ts) | L14 | Biconvex Positive | 41.50 | 41.47 | -0.03 | -0.08% | — |
+| [SIGMA 20mm f/1.4 DG DN \| Art](../../src/lens-data/sigma/Sigma20mmf14DGDNArt.data.ts) | L14 | Biconvex Positive | 24.40 | 24.42 | +0.02 | +0.08% | — |
 | [FUJIFILM FUJINON XF 50-140mm f/2.8 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmXF50140mmf28R.data.ts) | L410 | Negative Meniscus (SF6) | -45.50 | -45.46 | +0.04 | +0.08% | — |
 | [LEICA APO-SUMMICRON-M 35mm f/2 ASPH.](../../src/lens-data/leica/LeicaAPO35mmf2.data.ts) | L5 | Biconvex Positive | 53.30 | 53.26 | -0.04 | -0.08% | — |
 | [MINOLTA MD ROKKOR 45mm f/2](../../src/lens-data/minolta/MinoltaRokkor45mmf2MD.data.ts) | L1 | Positive Meniscus | 53.90 | 53.86 | -0.04 | -0.08% | — |
@@ -1038,6 +1054,7 @@ Sorted by absolute percentage difference, largest first.
 | [CANON RF 28-70mm f/2 L USM](../../src/lens-data/canon/CanonRF2870mmf2L.data.ts) | L18 | Biconcave Negative | -45.40 | -45.37 | +0.03 | +0.07% | — |
 | [SONY FE 20-70mm f/4 G](../../src/lens-data/sony/SonyFE2070mmf4G.data.ts) | L31 | Pos. Meniscus (2× Asph) | 55.10 | 55.06 | -0.04 | -0.07% | — |
 | [MINOLTA MD ZOOM 24-35mm f/3.5](../../src/lens-data/minolta/Minolta2435mmf35MDZoom.data.ts) | L9 | Positive Meniscus | 61.10 | 61.15 | +0.05 | +0.07% | — |
+| [OLYMPUS M.ZUIKO DIGITAL ED 8-25mm f/4.0 PRO](../../src/lens-data/olympus/OlympusMZuiko825mmf4PRO.data.ts) | L41 | Biconvex Positive | 43.90 | 43.87 | -0.03 | -0.07% | — |
 | [NIKON NIKKOR Z 14-30mm f/4 S](../../src/lens-data/nikon/NikonNikkorZ1430mmf4S.data.ts) | L51 | Positive Meniscus | 41.90 | 41.87 | -0.03 | -0.07% | — |
 | [SAMYANG AF 35-150mm f/2-2.8 FE / L](../../src/lens-data/samyang/SamyangAF35150mmf228.data.ts) | L16 | Biconvex Positive (2× Asph) | 27.60 | 27.62 | +0.02 | +0.07% | — |
 | [LEICA SUMMILUX 28mm f/1.7 ASPH. (Leica Q, Q2, Q3)](../../src/lens-data/leica/Leica28mmf17.data.ts) | L9 | Biconvex Positive | 22.50 | 22.52 | +0.02 | +0.07% | — |
@@ -1093,6 +1110,7 @@ Sorted by absolute percentage difference, largest first.
 | [CANON RF 24-105mm f/2.8 L IS USM Z](../../src/lens-data/canon/CanonRF24105mmf28Z.data.ts) | L13 | Negative Meniscus | -65.90 | -65.85 | +0.05 | +0.07% | — |
 | [LAOWA 58mm f/2.8 2× Ultra Macro APO](../../src/lens-data/laowa/Laowa58mmf28MacroAPO.data.ts) | L13 | Negative Meniscus | -34.40 | -34.42 | -0.02 | -0.07% | — |
 | [SCHNEIDER-KREUZNACH SUPER-ANGULON 75mm f/5.6](../../src/lens-data/schneider-kreuznach/SchneiderSuperAngulon75mmf56.data.ts) | L5 | Biconcave Negative | -30.70 | -30.72 | -0.02 | -0.07% | — |
+| [YONGNUO YN 56mm f/1.4 S DA DSM WL PRO](../../src/lens-data/yongnuo/YongnuoYN56mmf14.data.ts) | G7 | Biconvex Positive | 37.80 | 37.83 | +0.03 | +0.07% | — |
 | [NIKON NIKKOR Z 24-70mm f/2.8 S](../../src/lens-data/nikon/NikonZ2470f28.data.ts) | L72 | Biconcave Neg. (1× Asph) | -54.90 | -54.94 | -0.04 | -0.07% | — |
 | [VIVITAR SERIES 1 35-85mm f/2.8 VMC](../../src/lens-data/vivitar/VivitarSeries13585mmf28.data.ts) | L12 | Negative Meniscus | -54.90 | -54.94 | -0.04 | -0.07% | — |
 | [PENTAX DA* 50-135mm f/2.8 ED [IF] SDM](../../src/lens-data/pentax/PentaxDA50135mmf28.data.ts) | L16 | Biconvex Positive | 39.00 | 39.03 | +0.03 | +0.07% | — |
@@ -1108,6 +1126,7 @@ Sorted by absolute percentage difference, largest first.
 | [OLYMPUS ZUIKO DIGITAL ED 14-35mm f/2.0 SWD](../../src/lens-data/olympus/OlympusMZuiko1435mmf2ED.data.ts) | L13 | Biconvex Positive (ED) | 78.60 | 78.55 | -0.05 | -0.07% | — |
 | [OLYMPUS G.ZUIKO AUTO-S 50mm f/1.4](../../src/lens-data/olympus/OlympusZuikoAutoS50mmf14.data.ts) | L1 | Positive Meniscus | 61.60 | 61.64 | +0.04 | +0.07% | — |
 | [CARL ZEISS PLANAR T* 50mm f/1.4](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissPlanarT50mmf14.data.ts) | L1 | Positive Meniscus | 72.70 | 72.65 | -0.05 | -0.07% | — |
+| [SIGMA 20mm f/1.4 DG DN \| Art](../../src/lens-data/sigma/Sigma20mmf14DGDNArt.data.ts) | L9 | Negative Meniscus | -53.90 | -53.94 | -0.04 | -0.07% | — |
 | [FUJIFILM FUJINON XF 56mm f/1.2 R WR](../../src/lens-data/fujifilm/FujifilmXF56mmf12RWR.data.ts) | L27 / Ln2 | Biconcave Negative | -40.30 | -40.33 | -0.03 | -0.07% | — |
 | [VOIGTLÄNDER NOKTON 50mm f/1.2 X-Mount](../../src/lens-data/voigtlander/VoigtlanderNoktonX50mmf12.data.ts) | L14 | Negative Meniscus | -64.70 | -64.66 | +0.04 | +0.07% | — |
 | [NIKON AF-S NIKKOR 200-500mm f/5.6 E ED VR](../../src/lens-data/nikon/NikonNikkorAFS200500mmf56.data.ts) | L5 | Biconcave Negative | -57.40 | -57.36 | +0.04 | +0.07% | — |
@@ -1121,6 +1140,7 @@ Sorted by absolute percentage difference, largest first.
 | [PANASONIC LUMIX S PRO 50mm f/1.4](../../src/lens-data/panasonic/PanasonicSPro50mmf14.data.ts) | L10 | Biconvex Positive | 52.00 | 52.04 | +0.04 | +0.07% | — |
 | [SONY PLANAR T* FE 50mm f/1.4 ZA](../../src/lens-data/sony/SonyPlanarFE50mmf14ZA.data.ts) | L31 | Biconvex Positive | 47.20 | 47.17 | -0.03 | -0.07% | — |
 | [NIKON AF-S NIKKOR 16-35mm f/4 G ED VR](../../src/lens-data/nikon/NikonNikkorAFS1635mmf4.data.ts) | L42 | Biconcave Negative | -32.90 | -32.92 | -0.02 | -0.07% | — |
+| [YONGNUO YN 56mm f/1.4 S DA DSM WL PRO](../../src/lens-data/yongnuo/YongnuoYN56mmf14.data.ts) | G8 | Biconvex Positive | 54.70 | 54.66 | -0.04 | -0.07% | — |
 | [NIKON NIKKOR Z 100-400mm f/4.5-5.6 VR S](../../src/lens-data/nikon/NikonNikkorZ100400f4556.data.ts) | L4 | Biconcave Negative | -65.70 | -65.66 | +0.04 | +0.07% | — |
 | [SIGMA 14-24mm f/2.8 DG HSM \| Art](../../src/lens-data/sigma/Sigma1424mmf28DGHSM.data.ts) | L9 | Biconvex Positive | 22.80 | 22.82 | +0.02 | +0.07% | — |
 | [FUJIFILM FUJINON XF 50-140mm f/2.8 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmXF50140mmf28R.data.ts) | L44 | Biconvex Positive (ED) | 35.60 | 35.58 | -0.02 | -0.07% | — |
@@ -1218,6 +1238,7 @@ Sorted by absolute percentage difference, largest first.
 | [CANON EF 70-200mm f/2.8 L IS II USM](../../src/lens-data/canon/CanonEF70200mmf28LII.data.ts) | L20 | Biconvex Positive | 70.90 | 70.85 | -0.05 | -0.06% | — |
 | [SIGMA 20mm f/1.4 DG HSM \| Art](../../src/lens-data/sigma/Sigma20mmf14DGHSMArt.data.ts) | E6 | Biconvex Positive | 46.40 | 46.43 | +0.03 | +0.06% | — |
 | [NIKON AF ZOOM-MICRO NIKKOR 70-180mm f/4.5-5.6 D ED](../../src/lens-data/nikon/NikonAFZoomMicro70180mmf4556D.data.ts) | L16 | Positive Meniscus | 75.10 | 75.15 | +0.05 | +0.06% | — |
+| [SIGMA 20mm f/1.4 DG DN \| Art](../../src/lens-data/sigma/Sigma20mmf14DGDNArt.data.ts) | L2 | Negative Meniscus | -72.60 | -72.65 | -0.05 | -0.06% | — |
 | [CARL ZEISS BIOGON 21mm f/4.5](../../src/lens-data/carl-zeiss-oberkochen/ZeissBiogon21mmf45.data.ts) | L7 | Negative Meniscus | -17.60 | -17.61 | -0.01 | -0.06% | — |
 | [NIKON AF-S NIKKOR 70-200mm f/2.8 G ED VR II](../../src/lens-data/nikon/NikonAFS70200mmf28GVRII.data.ts) | L21 | Negative Meniscus | -47.80 | -47.83 | -0.03 | -0.06% | — |
 | [VOIGTLÄNDER NOKTON 35mm f/1.2 Aspherical](../../src/lens-data/voigtlander/VoigtlanderNokton35mmf12.data.ts) | L3b | Biconcave Negative | -33.20 | -33.18 | +0.02 | +0.06% | — |
@@ -1296,9 +1317,11 @@ Sorted by absolute percentage difference, largest first.
 | [PANASONIC LEICA DG SUMMILUX 12mm f/1.4 ASPH.](../../src/lens-data/panasonic/PanasonicDGSummilux12mmf14.data.ts) | L5 | Biconvex Positive | 40.70 | 40.68 | -0.02 | -0.06% | — |
 | [NIKON AF-S NIKKOR 70-200mm f/2.8 E FL ED VR](../../src/lens-data/nikon/NikonNikkorAFS70200mmf28E.data.ts) | L52 | Biconvex Positive | 61.20 | 61.16 | -0.04 | -0.06% | — |
 | [NIKON AF-S NIKKOR 14-24mm f/2.8 G ED](../../src/lens-data/nikon/NikonNikkorAFS1424mmf28.data.ts) | L15 | Biconvex Positive (1× Asph) | 26.60 | 26.62 | +0.02 | +0.06% | — |
+| [OLYMPUS M.ZUIKO DIGITAL ED 8-25mm f/4.0 PRO](../../src/lens-data/olympus/OlympusMZuiko825mmf4PRO.data.ts) | L31 | Biconvex Positive | 21.50 | 21.49 | -0.01 | -0.06% | — |
 | [NIKON R-UW AF ZOOM-NIKKOR 20-35mm f/2.8](../../src/lens-data/nikon/NikonRUWAFZoomNikkor2035mmf28.data.ts) | L5 | Biconvex Positive | 44.10 | 44.13 | +0.03 | +0.06% | — |
 | [CANON EF 24-70mm f/2.8 L II USM](../../src/lens-data/canon/CanonEF2470mmf28LII.data.ts) | L14 | Biconvex Positive | 62.40 | 62.44 | +0.04 | +0.06% | — |
 | [HASSELBLAD XCD 120mm f/3.5 Macro](../../src/lens-data/hasselblad/HasselbladXCD120mmf35Macro.data.ts) | L23 | Positive Meniscus | 63.60 | 63.64 | +0.04 | +0.06% | — |
+| [SIGMA 20mm f/1.4 DG DN \| Art](../../src/lens-data/sigma/Sigma20mmf14DGDNArt.data.ts) | L15 | Biconvex Positive | 28.90 | 28.88 | -0.02 | -0.06% | — |
 | [HASSELBLAD XCD 120mm f/3.5 Macro](../../src/lens-data/hasselblad/HasselbladXCD120mmf35Macro.data.ts) | L22 | Biconcave Negative | -33.20 | -33.18 | +0.02 | +0.06% | — |
 | [LAOWA 65mm f/2.8 2× Ultra Macro APO](../../src/lens-data/laowa/Laowa65mmf28MacroAPO.data.ts) | L10 | Negative Meniscus | -27.60 | -27.62 | -0.02 | -0.06% | — |
 | [CANON NEW FD 50mm f/1.2](../../src/lens-data/canon/CanonFDn50f12.data.ts) | L3 | Negative Meniscus | -34.10 | -34.12 | -0.02 | -0.06% | — |
@@ -1401,6 +1424,7 @@ Sorted by absolute percentage difference, largest first.
 | [SONY FE 70-200mm f/2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) | L31 | Biconcave Negative | -69.30 | -69.26 | +0.04 | +0.05% | — |
 | [SONY FE 16-35mm f/2.8 GM II](../../src/lens-data/sony/SonyFE1635mmf28GMII.data.ts) | L22 | Positive Meniscus | 34.00 | 33.98 | -0.02 | -0.05% | — |
 | [NIKON NIKKOR Z 85mm f/1.8 S](../../src/lens-data/nikon/NikonZ85f18S.data.ts) | L42 | Biconcave Negative | -38.50 | -38.52 | -0.02 | -0.05% | — |
+| [SIGMA 20mm f/1.4 DG DN \| Art](../../src/lens-data/sigma/Sigma20mmf14DGDNArt.data.ts) | L16 | Negative Meniscus | -90.40 | -90.45 | -0.05 | -0.05% | — |
 | [LEICA SUMMILUX 28mm f/1.7 ASPH. (Leica Q, Q2, Q3)](../../src/lens-data/leica/Leica28mmf17.data.ts) | L8 | Biconcave Negative | -21.70 | -21.71 | -0.01 | -0.05% | — |
 | [OLYMPUS G.ZUIKO AUTO-S 55mm f/1.2](../../src/lens-data/olympus/OlympusZuikoAutoS55mmf12.data.ts) | L3 | Negative Meniscus | -33.20 | -33.22 | -0.02 | -0.05% | — |
 | [SIGMA 85mm f/1.4 DG DN \| Art](../../src/lens-data/sigma/SigmaDGDNA85mmf14.data.ts) | L9 | Positive Meniscus | 60.50 | 60.53 | +0.03 | +0.05% | — |
@@ -1465,6 +1489,7 @@ Sorted by absolute percentage difference, largest first.
 | [SONY FE 20-70mm f/4 G](../../src/lens-data/sony/SonyFE2070mmf4G.data.ts) | L22 | Neg. Meniscus (2× Asph) | -60.00 | -60.03 | -0.03 | -0.05% | — |
 | [NIKON PC-E MICRO-NIKKOR 45mm f/2.8 D ED](../../src/lens-data/nikon/NikonMicroNikkorPCE45mmf28D.data.ts) | L33 | Positive Meniscus | 71.10 | 71.14 | +0.04 | +0.05% | — |
 | [SIGMA 14-24mm f/2.8 DG HSM \| Art](../../src/lens-data/sigma/Sigma1424mmf28DGHSM.data.ts) | L2 | Negative Meniscus | -61.80 | -61.77 | +0.03 | +0.05% | — |
+| [YONGNUO YN 33mm f/1.4 DA DSM WL PRO](../../src/lens-data/yongnuo/YongnuoYN33mmf14.data.ts) | G1 | Negative Meniscus | -50.90 | -50.87 | +0.03 | +0.05% | — |
 | [NIKON AF-S DX NIKKOR 55-200mm f/4-5.6 G ED VR II](../../src/lens-data/nikon/NikonAFSDX55200mmf456G.data.ts) | L37 | Negative Meniscus | -59.10 | -59.07 | +0.03 | +0.05% | — |
 | [SIGMA 50mm f/1.4 DG DN \| Art](../../src/lens-data/sigma/SigmaDGDNArt50mmf14.data.ts) | L5 | Biconvex Positive | 43.10 | 43.08 | -0.02 | -0.05% | — |
 | [LAOWA 24mm f/14 2× Macro Probe](../../src/lens-data/laowa/Laowa24mmf14Probe.data.ts) | L22 | Neg. Meniscus, concave to object | -27.20 | -27.19 | +0.01 | +0.05% | — |
@@ -1472,6 +1497,7 @@ Sorted by absolute percentage difference, largest first.
 | [NIKON AF ZOOM-NIKKOR 35-70mm f/2.8 D](../../src/lens-data/nikon/NikonAFZoomNikkor3570mmf28D.data.ts) | L3 | Biconcave Negative | -60.50 | -60.47 | +0.03 | +0.05% | — |
 | [NIKON R-UW AF ZOOM-NIKKOR 20-35mm f/2.8](../../src/lens-data/nikon/NikonRUWAFZoomNikkor2035mmf28.data.ts) | L6 | Positive Meniscus | 72.60 | 72.56 | -0.04 | -0.05% | — |
 | [HASSELBLAD XCD 90mm f/2.5 V](../../src/lens-data/hasselblad/HasselbladXCD90mmf25V.data.ts) | L6 | Biconcave Negative | -18.40 | -18.39 | +0.01 | +0.05% | — |
+| [YONGNUO YN 33mm f/1.4 DA DSM WL PRO](../../src/lens-data/yongnuo/YongnuoYN33mmf14.data.ts) | G11 | Negative Meniscus | -54.50 | -54.53 | -0.03 | -0.05% | — |
 | [OLYMPUS F.ZUIKO 35mm f/2.8 (Olympus XA)](../../src/lens-data/olympus/OlympusXAZuiko35mmf28.data.ts) | L5 | Positive Meniscus | 70.30 | 70.34 | +0.04 | +0.05% | — |
 | [FUJIFILM FUJINON XF 80mm f/2.8 R LM OIS WR Macro](../../src/lens-data/fujifilm/FujifilmXF80f28.data.ts) | L3a | Biconvex Positive | 68.00 | 67.97 | -0.03 | -0.05% | — |
 | [FUJIFILM FUJINON XF 200mm f/2 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmXF200mmf2R.data.ts) | L3b | Biconvex Positive | 78.30 | 78.34 | +0.04 | +0.05% | — |
@@ -1520,6 +1546,7 @@ Sorted by absolute percentage difference, largest first.
 | [SCHNEIDER-KREUZNACH APO-SYMMAR 100mm f/5.6](../../src/lens-data/schneider-kreuznach/SchneiderAPOSymmar100mmf56.data.ts) | L1 | Biconvex Positive | 32.90 | 32.92 | +0.02 | +0.05% | — |
 | [CARL ZEISS CONTAREX PLANAR 55mm f/1.4](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissContarexPlanar55mmf14.data.ts) | L7 | Biconvex Positive | 59.70 | 59.67 | -0.03 | -0.05% | — |
 | [NIKON AF-P NIKKOR 70-300mm f/4.5-5.6 E ED VR](../../src/lens-data/nikon/NikonAFP70300mmf4556E.data.ts) | L34 | Biconcave Negative | -47.70 | -47.72 | -0.02 | -0.05% | — |
+| [OLYMPUS M.ZUIKO DIGITAL ED 8-25mm f/4.0 PRO](../../src/lens-data/olympus/OlympusMZuiko825mmf4PRO.data.ts) | L21 | Biconvex Positive | 23.50 | 23.49 | -0.01 | -0.05% | — |
 | [CARL ZEISS PLANAR T* 50mm f/1.4](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissPlanarT50mmf14.data.ts) | L2 | Positive Meniscus | 65.40 | 65.43 | +0.03 | +0.05% | — |
 | [SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) | L23 | Biconvex Positive | 20.60 | 20.59 | -0.01 | -0.05% | — |
 | [FUJIFILM FUJINON XF 16-80mm f/4 R OIS WR](../../src/lens-data/fujifilm/FujifilmXF1680mmf4.data.ts) | L51 | Biconvex Positive | 81.00 | 80.96 | -0.04 | -0.05% | — |
@@ -1535,6 +1562,7 @@ Sorted by absolute percentage difference, largest first.
 | [NIKON AF-S NIKKOR 120-300mm f/2.8 E FL ED SR VR](../../src/lens-data/nikon/NikonNikkorAFS120300mmf28.data.ts) | L58 | Biconvex Positive | 49.50 | 49.52 | +0.02 | +0.05% | — |
 | [HASSELBLAD HC 50mm f/3.5](../../src/lens-data/hasselblad/HasselbladHC50mmf4.data.ts) | L23 | Positive Meniscus | 75.60 | 75.56 | -0.04 | -0.05% | — |
 | [NIKON AF-S NIKKOR 85mm f/1.4 G](../../src/lens-data/nikon/NikonNikkor85f14G.data.ts) | L31 | Positive Meniscus | 92.10 | 92.06 | -0.04 | -0.05% | — |
+| [OLYMPUS M.ZUIKO DIGITAL ED 8-25mm f/4.0 PRO](../../src/lens-data/olympus/OlympusMZuiko825mmf4PRO.data.ts) | L53 | Biconvex Positive | 31.20 | 31.21 | +0.01 | +0.05% | — |
 | [NIKON AF-S DX NIKKOR 55-200mm f/4-5.6 G ED VR II](../../src/lens-data/nikon/NikonAFSDX55200mmf456G.data.ts) | L23 | Biconcave Negative | -49.80 | -49.82 | -0.02 | -0.05% | — |
 | [CANON RF 135mm f/1.8 L IS USM](../../src/lens-data/canon/CanonRF135f18.data.ts) | L12 | Biconvex Positive | 38.50 | 38.48 | -0.02 | -0.05% | — |
 | [NIKON NIKKOR Z 35mm f/1.2 S](../../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) | L43 | Plano-Concave Negative | -47.90 | -47.92 | -0.02 | -0.05% | — |
@@ -1624,6 +1652,7 @@ Sorted by absolute percentage difference, largest first.
 | [CARL ZEISS PLANAR T* 50mm f/1.4](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissPlanarT50mmf14.data.ts) | L3 | Negative Meniscus | -33.50 | -33.49 | +0.01 | +0.04% | — |
 | [NIKON AI ZOOM-NIKKOR 35-200mm f/3.5-4.5 S](../../src/lens-data/nikon/NikonAIZoomNikkor35200mmf3545S.data.ts) | L7 | Positive Meniscus | 82.90 | 82.86 | -0.04 | -0.04% | — |
 | [SIGMA 28-45mm f/1.8 DG DN \| Art](../../src/lens-data/sigma/Sigma2845mmf18DN.data.ts) | L18 | Biconcave Negative (2x Asph) | -90.60 | -90.56 | +0.04 | +0.04% | — |
+| [OLYMPUS M.ZUIKO DIGITAL ED 8-25mm f/4.0 PRO](../../src/lens-data/olympus/OlympusMZuiko825mmf4PRO.data.ts) | L22 | Negative Meniscus | -25.50 | -25.49 | +0.01 | +0.04% | — |
 | [NIKON NIKKOR Z 100-400mm f/4.5-5.6 VR S](../../src/lens-data/nikon/NikonNikkorZ100400f4556.data.ts) | L18 | Negative Meniscus | -92.60 | -92.64 | -0.04 | -0.04% | — |
 | [NIKON AF-S NIKKOR 28-300mm f/3.5-5.6 G ED VR](../../src/lens-data/nikon/NikonNikkorAFS28300mmf3556G.data.ts) | L43g | Negative Meniscus (hybrid asphere substrate) | -64.60 | -64.57 | +0.03 | +0.04% | — |
 | [NIKON NIKKOR Z MC 105mm f/2.8 VR S](../../src/lens-data/nikon/NikonZ105f28.data.ts) | L14 | Positive Meniscus | 101.20 | 101.24 | +0.04 | +0.04% | — |
@@ -1652,6 +1681,7 @@ Sorted by absolute percentage difference, largest first.
 | [NIKON NIKKOR Z 135mm f/1.8 S Plena](../../src/lens-data/nikon/NikonZ135f18.data.ts) | L9 | Biconcave Negative | -62.50 | -62.47 | +0.03 | +0.04% | — |
 | [NIKON AF-S DX NIKKOR 55-200mm f/4-5.6 G ED VR II](../../src/lens-data/nikon/NikonAFSDX55200mmf456G.data.ts) | L13 | Biconvex Positive | 71.50 | 71.53 | +0.03 | +0.04% | — |
 | [NIKON AF-S NIKKOR 70-200mm f/2.8 E FL ED VR](../../src/lens-data/nikon/NikonNikkorAFS70200mmf28E.data.ts) | L56 | Positive Meniscus | 100.40 | 100.36 | -0.04 | -0.04% | — |
+| [SIGMA 20mm f/1.4 DG DN \| Art](../../src/lens-data/sigma/Sigma20mmf14DGDNArt.data.ts) | L7 | Positive Meniscus | 43.80 | 43.78 | -0.02 | -0.04% | — |
 | [NIKON NIKKOR Z 24-70mm f/4 S](../../src/lens-data/nikon/NikonNikkorZ2470mmf4S.data.ts) | L31 | Biconvex Positive (1× Asph) | 42.70 | 42.68 | -0.02 | -0.04% | — |
 | [FUJIFILM FUJINON XF 200mm f/2 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmXF200mmf2R.data.ts) | L1f | Biconcave Negative | -101.40 | -101.44 | -0.04 | -0.04% | — |
 | [NIKON AF-S NIKKOR 16-35mm f/4 G ED VR](../../src/lens-data/nikon/NikonNikkorAFS1635mmf4.data.ts) | L33 | Negative Meniscus | -72.80 | -72.77 | +0.03 | +0.04% | — |
@@ -1726,6 +1756,7 @@ Sorted by absolute percentage difference, largest first.
 | [SONY FE 85mm f/1.4 GM II](../../src/lens-data/sony/SonyFE85mmf14GMII.data.ts) | L3 | Positive Meniscus | 101.10 | 101.14 | +0.04 | +0.04% | — |
 | [NIKON AF-P DX NIKKOR 70-300mm f/4.5-6.3 G ED VR](../../src/lens-data/nikon/NikonAFPDX70300mmf4563G.data.ts) | L22 | Positive Meniscus | 35.70 | 35.69 | -0.01 | -0.04% | — |
 | [FUJIFILM FUJINON XF 16-80mm f/4 R OIS WR](../../src/lens-data/fujifilm/FujifilmXF1680mmf4.data.ts) | L12 | Positive Meniscus | 110.00 | 110.04 | +0.04 | +0.04% | — |
+| [SIGMA 20mm f/1.4 DG DN \| Art](../../src/lens-data/sigma/Sigma20mmf14DGDNArt.data.ts) | L17 | Biconcave Negative (2× Asph) | -104.90 | -104.86 | +0.04 | +0.04% | — |
 | [SIGMA 35mm f/1.4 DG HSM \| Art](../../src/lens-data/sigma/Sigma35mmf14DGHSMA.data.ts) | L2 | Biconcave Negative | -91.90 | -91.86 | +0.04 | +0.04% | — |
 | [NIKON NIKKOR Z DX 50-250mm f/4.5-6.3 VR](../../src/lens-data/nikon/NikonZDX50250mmf4564VR.data.ts) | L12 | Negative Meniscus | -108.00 | -107.96 | +0.04 | +0.04% | — |
 | [CANON RF 28-70mm f/2 L USM](../../src/lens-data/canon/CanonRF2870mmf2L.data.ts) | L14 | Biconvex Positive | 55.90 | 55.92 | +0.02 | +0.04% | — |
@@ -1777,6 +1808,7 @@ Sorted by absolute percentage difference, largest first.
 | [OLYMPUS ZUIKO AUTO-MACRO 90mm f/2](../../src/lens-data/olympus/OlympusZuikoAutoMacro90mmf2.data.ts) | L9 | Biconvex Positive | 62.10 | 62.08 | -0.02 | -0.04% | — |
 | [OLYMPUS M.ZUIKO DIGITAL ED 12-100mm f/4.0 IS PRO](../../src/lens-data/olympus/OlympusMZuiko12100mmf4ISPRO.data.ts) | L8 | Biconvex Positive (2× Asph) | 40.40 | 40.38 | -0.02 | -0.04% | — |
 | [SONY FE 70-200mm f/4 G OSS](../../src/lens-data/sony/SonyFE70200mmf4G.data.ts) | L421 | Biconvex Positive | 55.70 | 55.72 | +0.02 | +0.04% | — |
+| [SIGMA 20mm f/1.4 DG DN \| Art](../../src/lens-data/sigma/Sigma20mmf14DGDNArt.data.ts) | L6 | Negative Meniscus | -99.70 | -99.66 | +0.04 | +0.04% | — |
 | [FUJIFILM FUJINON XF 35mm f/1.4 R](../../src/lens-data/fujifilm/FujifilmXF35mmf14R.data.ts) | L21 | Biconcave Negative (2× Asph) | -59.00 | -59.02 | -0.02 | -0.04% | — |
 | [CANON SERENAR 85mm f/1.5](../../src/lens-data/canon/CanonSerenar85mmf15.data.ts) | L1 | Positive Meniscus | 122.20 | 122.25 | +0.05 | +0.04% | — |
 | [FUJIFILM FUJINON XF 23mm f/1.4 R](../../src/lens-data/fujifilm/FujifilmXF23mmf14.data.ts) | L25 | Biconcave Negative | -82.40 | -82.43 | -0.03 | -0.04% | — |
@@ -1822,6 +1854,7 @@ Sorted by absolute percentage difference, largest first.
 | [MINOLTA AF 28-75mm f/2.8 (D)](../../src/lens-data/minolta/MinoltaAF2875mmf28D.data.ts) | L11 | Negative Meniscus | -119.90 | -119.94 | -0.04 | -0.04% | — |
 | [NIKON AF-S NIKKOR 58mm f/1.4 G (patent design candidate)](../../src/lens-data/nikon/Nikon58f14GDesignCandidate.data.ts) | Lcn | Biconcave Negative | -22.30 | -22.29 | +0.01 | +0.04% | — |
 | [CANON 15.1-60.4mm f/2.8-5.8 (Canon PowerShot G1 X)](../../src/lens-data/canon/CanonPowerShotG1X1560mmf28.data.ts) | L11 | Biconvex Positive (1× Asph) | 44.80 | 44.82 | +0.02 | +0.04% | — |
+| [SIGMA 20mm f/1.4 DG DN \| Art](../../src/lens-data/sigma/Sigma20mmf14DGDNArt.data.ts) | L12 | Negative Meniscus | -22.80 | -22.79 | +0.01 | +0.04% | — |
 | [CANON RF 24-240mm f/4-6.3 IS USM](../../src/lens-data/canon/CanonRF24240mmf463.data.ts) | L3 | Positive Meniscus | 123.70 | 123.66 | -0.04 | -0.04% | — |
 | [NIKON AI NIKKOR 135mm f/2.8](../../src/lens-data/nikon/NikonAI135mmf28.data.ts) | L2 | Positive Meniscus | 105.70 | 105.66 | -0.04 | -0.04% | — |
 | [NIKON AF-S NIKKOR 28-300mm f/3.5-5.6 G ED VR](../../src/lens-data/nikon/NikonNikkorAFS28300mmf3556G.data.ts) | L31 | Biconvex Positive | 46.80 | 46.82 | +0.02 | +0.04% | — |
@@ -1879,6 +1912,7 @@ Sorted by absolute percentage difference, largest first.
 | [VOIGTLÄNDER NOKTON 50mm f/1.2 X-Mount](../../src/lens-data/voigtlander/VoigtlanderNoktonX50mmf12.data.ts) | L15 | Negative Meniscus | -27.10 | -27.09 | +0.01 | +0.03% | — |
 | [ENNA MÜNCHEN LITHAGON 35mm f/3.5](../../src/lens-data/enna-munchen/EnnaMunchenLithagon35mmf35.data.ts) | L3 | Biconcave Negative | -13.25 | -13.25 | 0.00 | -0.03% | — |
 | [CANON EF-M 22mm f/2 STM](../../src/lens-data/canon/CanonEFM22mmf2STM.data.ts) | L23 | Biconvex Positive | 14.59 | 14.59 | 0.00 | -0.03% | — |
+| [SIGMA 19mm f/2.8 (Sigma DP1 Merrill)](../../src/lens-data/sigma/SigmaDP1Merrill.data.ts) | G3 | Biconvex Positive | 8.32 | 8.32 | 0.00 | +0.03% | — |
 | [NIKON AF-S NIKKOR 16-35mm f/4 G ED VR](../../src/lens-data/nikon/NikonNikkorAFS1635mmf4.data.ts) | L21 | Negative Meniscus | -50.30 | -50.28 | +0.02 | +0.03% | — |
 | [CANON TS-E 50mm f/2.8 L MACRO](../../src/lens-data/canon/CanonTSE50mmf28L.data.ts) | L7 | Negative Meniscus | -102.30 | -102.27 | +0.03 | +0.03% | — |
 | [SIGMA 85mm f/1.4 DG DN \| Art](../../src/lens-data/sigma/SigmaDGDNA85mmf14.data.ts) | L6 | Positive Meniscus | 107.80 | 107.84 | +0.04 | +0.03% | — |
@@ -1912,6 +1946,7 @@ Sorted by absolute percentage difference, largest first.
 | [NIKON AI ZOOM-NIKKOR 360-1200mm f/11 ED](../../src/lens-data/nikon/NikonAIZoomNikkor3601200mmf11ED.data.ts) | L7 | Biconcave Negative | -142.10 | -142.15 | -0.05 | -0.03% | — |
 | [CANON EF-S 10-22mm f/3.5-4.5 USM](../../src/lens-data/canon/CanonEFS1022mmf3545.data.ts) | G13 | Positive Meniscus | 40.40 | 40.41 | +0.01 | +0.03% | — |
 | [CARL ZEISS ULTRA PRIME SONNAR T* 135mm T1.9](../../src/lens-data/carl-zeiss-oberkochen/ZeissUltraPrimeSonnarT135mmT19.data.ts) | L4 | Biconcave Negative | -42.00 | -42.01 | -0.01 | -0.03% | — |
+| [SIGMA 20mm f/1.4 DG DN \| Art](../../src/lens-data/sigma/Sigma20mmf14DGDNArt.data.ts) | L3 | Positive Meniscus | 115.50 | 115.46 | -0.04 | -0.03% | — |
 | [OLYMPUS ZUIKO AUTO-ZOOM 65-200mm f/4](../../src/lens-data/olympus/OlympusZuikoAutoZoom65200mmf4.data.ts) | L14 | Biconvex Positive | 120.10 | 120.14 | +0.04 | +0.03% | — |
 | [NIKON AF-S NIKKOR 24-70mm f/2.8 E ED VR](../../src/lens-data/nikon/NikonNikkorAFS2470mmf28E.data.ts) | L25 | Biconvex Positive | 71.20 | 71.18 | -0.02 | -0.03% | — |
 | [CANON EF 24-70mm f/2.8 L USM](../../src/lens-data/canon/CanonEF2470mmf28L.data.ts) | L13 | Positive Meniscus | 115.40 | 115.44 | +0.04 | +0.03% | — |
@@ -1958,12 +1993,14 @@ Sorted by absolute percentage difference, largest first.
 | [PENTAX SMC A* 200mm f/4 MACRO ED](../../src/lens-data/pentax/PentaxA200mmf4MacroED.data.ts) | L10 | Biconvex Positive | 143.70 | 143.65 | -0.05 | -0.03% | — |
 | [NIKON NIKKOR Z 14-24mm f/2.8 S](../../src/lens-data/nikon/NikonZ1424f28S.data.ts) | L38 | Biconvex Positive | 27.70 | 27.71 | +0.01 | +0.03% | — |
 | [CARL ZEISS JENA SONNAR 50mm f/1.5](../../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.ts) | L3 | Biconvex Positive | 90.60 | 90.57 | -0.03 | -0.03% | — |
+| [AEG WEITWINKELOBJEKTIV 17mm f/6.3](../../src/lens-data/aeg/AEGWeitwinkelobjektiv17mmf63.data.ts) | L3 | Biconvex Positive | 12.68 | 12.68 | 0.00 | +0.03% | — |
 | [NIKON NIKKOR Z 85mm f/1.8 S](../../src/lens-data/nikon/NikonZ85f18S.data.ts) | L12 | Positive Meniscus | 111.30 | 111.34 | +0.04 | +0.03% | — |
 | [CANON EF-S 17-55mm f/2.8 IS USM](../../src/lens-data/canon/CanonEFS1755mmf28IS.data.ts) | L15 | Positive Meniscus | 124.00 | 123.96 | -0.04 | -0.03% | — |
 | [NIKON AF-S MICRO-NIKKOR 60mm f/2.8 G ED](../../src/lens-data/nikon/NikonAFSMicroNikkor60f28G.data.ts) | L1 | Neg. Meniscus (1× Asph) | -50.00 | -49.98 | +0.02 | +0.03% | — |
 | [CARL ZEISS OLYMPIA-SONNAR 180mm f/2.8](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissOlympiaSonnar180mmf28.data.ts) | L4 | Biconvex Positive | 151.50 | 151.45 | -0.05 | -0.03% | — |
 | [NIKON AF-S NIKKOR 28-300mm f/3.5-5.6 G ED VR](../../src/lens-data/nikon/NikonNikkorAFS28300mmf3556G.data.ts) | L34 | Negative Meniscus | -37.40 | -37.41 | -0.01 | -0.03% | — |
 | [OLYMPUS G.ZUIKO AUTO-S 55mm f/1.2](../../src/lens-data/olympus/OlympusZuikoAutoS55mmf12.data.ts) | L5 | Positive Meniscus | 51.00 | 51.02 | +0.02 | +0.03% | — |
+| [SIGMA 20mm f/1.4 DG DN \| Art](../../src/lens-data/sigma/Sigma20mmf14DGDNArt.data.ts) | L10 | Positive Meniscus | 157.10 | 157.05 | -0.05 | -0.03% | — |
 | [LAOWA 65mm f/2.8 2× Ultra Macro APO](../../src/lens-data/laowa/Laowa65mmf28MacroAPO.data.ts) | L9 | Biconvex Positive | 57.50 | 57.52 | +0.02 | +0.03% | — |
 | [CANON FD 50mm f/1.2 L](../../src/lens-data/canon/CanonFD50mmf12L.data.ts) | L1 | Positive Meniscus | 90.30 | 90.33 | +0.03 | +0.03% | — |
 | [NIKON NIKKOR Z 70-200mm f/2.8 VR S](../../src/lens-data/nikon/NikonNikkorZ70200f28.data.ts) | L62 | Biconvex Positive (1× Asph) | 49.50 | 49.48 | -0.02 | -0.03% | — |
@@ -1978,6 +2015,7 @@ Sorted by absolute percentage difference, largest first.
 | [NIKON NIKKOR Z 24-200mm f/4-6.3 VR](../../src/lens-data/nikon/NikonNikkorZ24200mmf463VR.data.ts) | L41 | Biconvex Positive | 22.90 | 22.89 | -0.01 | -0.03% | — |
 | [CANON RF 28-70mm f/2 L USM](../../src/lens-data/canon/CanonRF2870mmf2L.data.ts) | L6 | Biconvex Positive | 21.50 | 21.49 | -0.01 | -0.03% | — |
 | [NIKON AI ZOOM-NIKKOR 35-200mm f/3.5-4.5 S](../../src/lens-data/nikon/NikonAIZoomNikkor35200mmf3545S.data.ts) | L13 | Positive Meniscus | 109.20 | 109.23 | +0.03 | +0.03% | — |
+| [SIGMA 20mm f/1.4 DG DN \| Art](../../src/lens-data/sigma/Sigma20mmf14DGDNArt.data.ts) | L8 | Biconvex Positive (2× Asph) | 63.60 | 63.58 | -0.02 | -0.03% | — |
 | [NIKON AF-S NIKKOR 28-300mm f/3.5-5.6 G ED VR](../../src/lens-data/nikon/NikonNikkorAFS28300mmf3556G.data.ts) | L12 | Biconvex Positive | 131.20 | 131.24 | +0.04 | +0.03% | — |
 | [SIGMA 28-45mm f/1.8 DG DN \| Art](../../src/lens-data/sigma/Sigma2845mmf18DN.data.ts) | L2 | Negative Meniscus | -109.50 | -109.47 | +0.03 | +0.03% | — |
 | [NIKON NIKKOR Z 70-200mm f/2.8 VR S](../../src/lens-data/nikon/NikonNikkorZ70200f28.data.ts) | L31 | Positive Meniscus | 110.70 | 110.67 | -0.03 | -0.03% | — |
@@ -2090,6 +2128,7 @@ Sorted by absolute percentage difference, largest first.
 | [OLYMPUS ZUIKO AUTO-T 85mm f/2](../../src/lens-data/olympus/OlympusZuiko85mmf2.data.ts) | L2 | Positive Meniscus | 73.30 | 73.28 | -0.02 | -0.03% | — |
 | [SIGMA 85mm f/1.4 DG DN \| Art](../../src/lens-data/sigma/SigmaDGDNA85mmf14.data.ts) | L15 | Biconcave Negative (2× Asph) | -70.00 | -69.98 | +0.02 | +0.03% | — |
 | [FUJIFILM FUJINON XF 56mm f/1.2 R](../../src/lens-data/fujifilm/FujifilmXF56mmf12.data.ts) | L21 | Biconcave Neg. (2× Asph) | -91.10 | -91.07 | +0.03 | +0.03% | — |
+| [OLYMPUS M.ZUIKO DIGITAL ED 8-25mm f/4.0 PRO](../../src/lens-data/olympus/OlympusMZuiko825mmf4PRO.data.ts) | L13 | Biconcave Negative | -31.40 | -31.41 | -0.01 | -0.03% | — |
 | [SIGMA 14mm f/4 (Sigma dp0 Quattro)](../../src/lens-data/sigma/SigmaDp0Quattro14mmf4.data.ts) | L3f | Biconvex Positive | 26.40 | 26.41 | +0.01 | +0.03% | — |
 | [CANON 12.5-62.5mm f/2-3.9 (Canon PowerShot G1 X Mark II)](../../src/lens-data/canon/CanonPowerShotG1XII125625mmf239.data.ts) | L3 | Biconcave Negative | -13.86 | -13.86 | 0.00 | +0.03% | — |
 | [SAMYANG AF 35-150mm f/2-2.8 FE / L](../../src/lens-data/samyang/SamyangAF35150mmf228.data.ts) | L15 | Positive Meniscus | 40.80 | 40.81 | +0.01 | +0.03% | — |
@@ -2147,6 +2186,7 @@ Sorted by absolute percentage difference, largest first.
 | [SAMYANG AF 35-150mm f/2-2.8 FE / L](../../src/lens-data/samyang/SamyangAF35150mmf228.data.ts) | L19 | Biconcave Negative | -49.10 | -49.11 | -0.01 | -0.03% | — |
 | [SONY ZEISS VARIO-SONNAR T* 8.8-73.3mm f/2.8 (Sony Cyber-shot DSC-RX10 / DSC-RX10 II)](../../src/lens-data/sony/ZeissVarioSonnarT88733mmf28SonyDSCRX10M12.data.ts) | L11 | Biconvex Pos. (2x Asph) | 17.98 | 17.98 | 0.00 | +0.03% | — |
 | [SCHNEIDER-KREUZNACH PA-CURTAGON-R 35mm f/4](../../src/lens-data/schneider-kreuznach/LeicaPACurtagonR35mmf4.data.ts) | L5 | Biconcave Negative | -15.06 | -15.06 | 0.00 | +0.03% | — |
+| [SIGMA 20mm f/1.4 DG DN \| Art](../../src/lens-data/sigma/Sigma20mmf14DGDNArt.data.ts) | L5 | Biconvex Positive | 45.70 | 45.69 | -0.01 | -0.03% | — |
 | [NIKON NIKKOR Z 100-400mm f/4.5-5.6 VR S](../../src/lens-data/nikon/NikonNikkorZ100400f4556.data.ts) | L25 | Positive Meniscus | 66.70 | 66.72 | +0.02 | +0.03% | — |
 | [OLYMPUS ZUIKO DIGITAL ED 14-35mm f/2.0 SWD](../../src/lens-data/olympus/OlympusMZuiko1435mmf2ED.data.ts) | L2 | Plano-Convex Positive | 156.00 | 155.96 | -0.04 | -0.03% | — |
 | [NIKON NIKKOR Z 24-120mm f/4 S](../../src/lens-data/nikon/NikonNikkorZ24120mmf4S.data.ts) | L13 | Biconvex Positive | 52.00 | 52.01 | +0.01 | +0.03% | — |
@@ -2181,6 +2221,7 @@ Sorted by absolute percentage difference, largest first.
 | [PENTAX SMC FA 645 120mm f/4 Macro](../../src/lens-data/pentax/Pentax645FA120mmf4.data.ts) | L9 | Biconvex Positive | 102.90 | 102.93 | +0.03 | +0.03% | — |
 | [PENTAX SMC A 645 45mm f/2.8](../../src/lens-data/pentax/Pentax645A45mmf28.data.ts) | L2 | Negative Meniscus | -81.00 | -80.98 | +0.02 | +0.03% | — |
 | [FUJIFILM FUJINON GF 120mm f/4 R LM OIS WR Macro](../../src/lens-data/fujifilm/FujifilmGF120mmf4RLM.data.ts) | L23 | Biconvex Positive | 34.20 | 34.19 | -0.01 | -0.03% | — |
+| [YONGNUO YN 33mm f/1.4 DA DSM WL PRO](../../src/lens-data/yongnuo/YongnuoYN33mmf14.data.ts) | G9 | Biconvex Positive | 38.10 | 38.11 | +0.01 | +0.03% | — |
 | [OLYMPUS ZUIKO AUTO-ZOOM 65-200mm f/4](../../src/lens-data/olympus/OlympusZuikoAutoZoom65200mmf4.data.ts) | L3 | Plano-Convex Positive | 141.30 | 141.34 | +0.04 | +0.03% | — |
 | [SCHNEIDER-KREUZNACH SUPER-SYMMAR XL 110mm f/5.6 ASPHERIC](../../src/lens-data/schneider-kreuznach/SchneiderSuperSymmarXL110mmf56.data.ts) | L5 | Biconcave Negative | -50.60 | -50.61 | -0.01 | -0.03% | — |
 | [OLYMPUS ZUIKO AUTO-T 85mm f/2](../../src/lens-data/olympus/OlympusZuiko85mmf2.data.ts) | L1 | Positive Meniscus | 82.30 | 82.28 | -0.02 | -0.03% | — |
@@ -2218,6 +2259,7 @@ Sorted by absolute percentage difference, largest first.
 | [PANASONIC LEICA DG SUMMILUX 12mm f/1.4 ASPH.](../../src/lens-data/panasonic/PanasonicDGSummilux12mmf14.data.ts) | L11 | Pos. Meniscus (1× Asph) | 124.50 | 124.47 | -0.03 | -0.02% | — |
 | [NIKON R-UW AF FISHEYE-NIKKOR 13mm f/2.8](../../src/lens-data/nikon/NikonRUWAFNikkor13mmf28.data.ts) | L5 | Negative Meniscus | -49.60 | -49.61 | -0.01 | -0.02% | — |
 | [SIGMA 85mm f/1.4 DG DN \| Art](../../src/lens-data/sigma/SigmaDGDNA85mmf14.data.ts) | L3 | Positive Meniscus | 164.20 | 164.16 | -0.04 | -0.02% | — |
+| [SAMSUNG 18-200mm f/3.5-6.3 ED OIS](../../src/lens-data/samsung/SamsungNX18200mmf3563EDOIS.data.ts) | L16 | Biconvex Positive | 19.29 | 19.29 | 0.00 | +0.02% | — |
 | [NIKON AF-S NIKKOR 70-200mm f/2.8 E FL ED VR](../../src/lens-data/nikon/NikonNikkorAFS70200mmf28E.data.ts) | L22 | Biconcave Negative | -92.20 | -92.18 | +0.02 | +0.02% | — |
 | [NIKON NIKKOR Z 35mm f/1.2 S](../../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) | L16 | Biconvex Positive (Symmetric) | 78.40 | 78.42 | +0.02 | +0.02% | — |
 | [CANON EF 70-200mm f/2.8 L IS II USM](../../src/lens-data/canon/CanonEF70200mmf28LII.data.ts) | L16 | Positive Meniscus | 57.50 | 57.49 | -0.01 | -0.02% | — |
@@ -2271,6 +2313,7 @@ Sorted by absolute percentage difference, largest first.
 | [SONY FE 70-200mm f/2.8 GM OSS](../../src/lens-data/sony/SonyFE70200mmf28G.data.ts) | L1R2 | Positive Meniscus | 105.60 | 105.58 | -0.02 | -0.02% | — |
 | [NIKON AF ZOOM-NIKKOR 35-70mm f/2.8 D](../../src/lens-data/nikon/NikonAFZoomNikkor3570mmf28D.data.ts) | L9 | Positive Meniscus | 126.70 | 126.67 | -0.03 | -0.02% | — |
 | [SIGMA 20mm f/1.4 DG HSM \| Art](../../src/lens-data/sigma/Sigma20mmf14DGHSMArt.data.ts) | E10 | Positive Meniscus | 45.10 | 45.09 | -0.01 | -0.02% | — |
+| [SAMSUNG 18-200mm f/3.5-6.3 ED OIS](../../src/lens-data/samsung/SamsungNX18200mmf3563EDOIS.data.ts) | L13 | Biconcave Negative (1× Asph) | -15.03 | -15.03 | 0.00 | -0.02% | — |
 | [MINOLTA MD ZOOM 24-35mm f/3.5](../../src/lens-data/minolta/Minolta2435mmf35MDZoom.data.ts) | L1 | Positive Meniscus | 176.60 | 176.64 | +0.04 | +0.02% | — |
 | [CANON FD 24mm f/2.8 S.S.C.](../../src/lens-data/canon/CanonFD24mmf28SSC.data.ts) | E3 | Negative Meniscus | -20.94 | -20.94 | 0.00 | -0.02% | — |
 | [NIKON AF-S NIKKOR 80-400mm f/4.5-5.6 G ED VR](../../src/lens-data/nikon/NikonNikkorAFS80400mmf4556G.data.ts) | L22 | Biconcave Negative | -80.40 | -80.38 | +0.02 | +0.02% | — |
@@ -2279,6 +2322,7 @@ Sorted by absolute percentage difference, largest first.
 | [NIKON AF-S NIKKOR 70-200mm f/2.8 G ED VR II](../../src/lens-data/nikon/NikonAFS70200mmf28GVRII.data.ts) | L41 | Negative Meniscus | -180.00 | -180.04 | -0.04 | -0.02% | — |
 | [CANON RF 24-240mm f/4-6.3 IS USM](../../src/lens-data/canon/CanonRF24240mmf463.data.ts) | L7 | Biconcave Negative | -40.30 | -40.29 | +0.01 | +0.02% | — |
 | [NIKON FISHEYE-NIKKOR 6mm f/5.6](../../src/lens-data/nikon/NikonFisheyeNikkor6mmf56.data.ts) | L7 | Biconvex Positive | 10.15 | 10.15 | 0.00 | -0.02% | — |
+| [YONGNUO YN 56mm f/1.4 S DA DSM WL PRO](../../src/lens-data/yongnuo/YongnuoYN56mmf14.data.ts) | G1 | Positive Meniscus | 85.80 | 85.78 | -0.02 | -0.02% | — |
 | [NIKON NIKKOR Z 24-50mm f/4-6.3](../../src/lens-data/nikon/NikonNikkorZ2450mmf463.data.ts) | L2a | Positive Meniscus | 46.20 | 46.21 | +0.01 | +0.02% | — |
 | [CANON RF 85mm f/1.2 L USM](../../src/lens-data/canon/CanonRF85mmf12L.data.ts) | L4 | Positive Meniscus | 97.80 | 97.78 | -0.02 | -0.02% | — |
 | [CARL ZEISS DISTAGON T* 35mm f/2 (Zeiss ZX1)](../../src/lens-data/carl-zeiss-oberkochen/ZeissZX1Distagon35mmf2.data.ts) | L2 | Biconvex Positive | 19.95 | 19.95 | 0.00 | +0.02% | — |
@@ -2333,6 +2377,7 @@ Sorted by absolute percentage difference, largest first.
 | [FUJIFILM FUJINON XF 23mm f/2.8 R WR](../../src/lens-data/fujifilm/FujifilmXF23mmf28RWR.data.ts) | L24 | Biconcave Negative | -17.42 | -17.42 | 0.00 | +0.02% | — |
 | [CANON RF 28-70mm f/2 L USM](../../src/lens-data/canon/CanonRF2870mmf2L.data.ts) | L13 | Biconvex Positive | 66.40 | 66.41 | +0.01 | +0.02% | — |
 | [PENTAX 110 24mm f/2.8](../../src/lens-data/pentax/Pentax11024mmf28.data.ts) | L6 | Positive Meniscus | 29.00 | 28.99 | -0.01 | -0.02% | — |
+| [SIGMA 19mm f/2.8 (Sigma DP1 Merrill)](../../src/lens-data/sigma/SigmaDP1Merrill.data.ts) | G2 | Negative Meniscus | -22.44 | -22.44 | 0.00 | +0.02% | — |
 | [NIKON AF-P DX NIKKOR 10-20mm f/4.5-5.6 G VR](../../src/lens-data/nikon/NikonAFPDX1020mmf4556G.data.ts) | L43 | Biconvex Positive | 19.12 | 19.12 | 0.00 | -0.02% | — |
 | [SAMYANG AF 35-150mm f/2-2.8 FE / L](../../src/lens-data/samyang/SamyangAF35150mmf228.data.ts) | L9 | Biconvex Positive | 177.00 | 176.96 | -0.04 | -0.02% | — |
 | [FUJIFILM FUJINON XF 50-140mm f/2.8 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmXF50140mmf28R.data.ts) | L14 | Positive Meniscus (ED) | 195.50 | 195.54 | +0.04 | +0.02% | — |
@@ -2373,6 +2418,7 @@ Sorted by absolute percentage difference, largest first.
 | [OLYMPUS ZUIKO AUTO-MACRO 90mm f/2](../../src/lens-data/olympus/OlympusZuikoAutoMacro90mmf2.data.ts) | L5 | Positive Meniscus | 168.40 | 168.36 | -0.04 | -0.02% | — |
 | [VOIGTLÄNDER MACRO APO-LANTHAR 125mm f/2.5 SL](../../src/lens-data/voigtlander/VoigtlanderMacroApoLanthar125mmf25.data.ts) | L46 | Positive Meniscus | 81.70 | 81.68 | -0.02 | -0.02% | — |
 | [NIKON NIKKOR Z 24-200mm f/4-6.3 VR](../../src/lens-data/nikon/NikonNikkorZ24200mmf463VR.data.ts) | L44 | Biconvex Positive (1× Asph) | 23.50 | 23.50 | 0.00 | +0.02% | — |
+| [YONGNUO YN 33mm f/1.4 DA DSM WL PRO](../../src/lens-data/yongnuo/YongnuoYN33mmf14.data.ts) | G2 | Positive Meniscus | 97.60 | 97.58 | -0.02 | -0.02% | — |
 | [CANON RF 24-105mm f/4 L IS USM](../../src/lens-data/canon/CanonRF24105mmf4L.data.ts) | L1 | Negative Meniscus | -178.80 | -178.76 | +0.04 | +0.02% | — |
 | [NIKON AI NIKKOR 85mm f/1.4 S](../../src/lens-data/nikon/Nikon85f14AIS.data.ts) | L5 | Biconvex Positive | 107.70 | 107.68 | -0.02 | -0.02% | — |
 | [OLYMPUS ZUIKO AUTO-FISHEYE 16mm f/3.5](../../src/lens-data/olympus/OlympusZuiko16mmf35.data.ts) | L1 | Negative Meniscus | -23.32 | -23.32 | 0.00 | -0.02% | — |
@@ -2435,6 +2481,7 @@ Sorted by absolute percentage difference, largest first.
 | [SONY FE 85mm f/1.4 GM II](../../src/lens-data/sony/SonyFE85mmf14GMII.data.ts) | L8 | Biconvex Positive | 100.20 | 100.22 | +0.02 | +0.02% | — |
 | [NIKON R-UW AF FISHEYE-NIKKOR 13mm f/2.8](../../src/lens-data/nikon/NikonRUWAFNikkor13mmf28.data.ts) | L9 | Negative Meniscus | -73.40 | -73.39 | +0.01 | +0.02% | — |
 | [FUJIFILM FUJINON XF 35mm f/1.4 R](../../src/lens-data/fujifilm/FujifilmXF35mmf14R.data.ts) | L13 | Negative Meniscus | -24.70 | -24.70 | 0.00 | +0.02% | — |
+| [KMZ ZENITAR 50mm f/1.2 S](../../src/lens-data/kmz/KMZZenitar50mmf12S.data.ts) | L4 | Negative Meniscus | -22.86 | -22.86 | 0.00 | +0.02% | — |
 | [LEICA SUMMICRON-M 50mm f/2](../../src/lens-data/leica/LeicaSummicronV550mmf2.data.ts) | L1 | Positive Meniscus | 56.70 | 56.71 | +0.01 | +0.02% | — |
 | [SAMYANG AF 18mm f/2.8 FE](../../src/lens-data/samyang/SamyangAF18mmf28.data.ts) | L71 | Biconvex Positive | 18.46 | 18.46 | 0.00 | +0.02% | — |
 | [NIKON AF ZOOM-NIKKOR 28-85mm f/3.5-4.5](../../src/lens-data/nikon/NikonAFZoomNikkor2885mmf3545.data.ts) | L5 | Positive Meniscus | 130.00 | 129.97 | -0.03 | -0.02% | — |
@@ -2451,12 +2498,14 @@ Sorted by absolute percentage difference, largest first.
 | [NIKON AF-S DX NIKKOR 55-300mm f/4.5-5.6 G ED VR](../../src/lens-data/nikon/NikonAFSDX55300mmf4556G.data.ts) | L34 | Biconcave Negative | -26.10 | -26.11 | -0.01 | -0.02% | — |
 | [NIKON NIKKOR Z 100-400mm f/4.5-5.6 VR S](../../src/lens-data/nikon/NikonNikkorZ100400f4556.data.ts) | L15 | Positive Meniscus | 142.00 | 142.03 | +0.03 | +0.02% | — |
 | [FUJIFILM FUJINON XF 16-55mm f/2.8 R LM WR](../../src/lens-data/fujifilm/FujifilmXF1655mmf28R.data.ts) | L33B | Biconcave Negative | -22.00 | -22.00 | 0.00 | -0.02% | — |
+| [SONY DT 18-135mm f/3.5-5.6 SAM](../../src/lens-data/sony/SonyDT18135mmf3556SAM.data.ts) | L32 | Biconvex Positive | 25.08 | 25.08 | 0.00 | -0.02% | — |
 | [CANON NEW FD 14mm f/2.8 L](../../src/lens-data/canon/CanonNewFD14mmf28L.data.ts) | L11 | Biconcave Negative | -28.20 | -28.19 | +0.01 | +0.02% | — |
 | [PENTAX DA 21mm f/3.2 AL Limited](../../src/lens-data/pentax/PentaxDA21mmf32Limited.data.ts) | L8 | Positive Meniscus | 24.00 | 24.00 | 0.00 | +0.02% | — |
 | [NIKON NIKKOR Z DX 18-140mm f/3.5-6.3 VR](../../src/lens-data/nikon/NikonZDX18140mmf3563VR.data.ts) | L51 | Negative Meniscus | -37.70 | -37.71 | -0.01 | -0.02% | — |
 | [NIKON NIKKOR Z 24-120mm f/4 S](../../src/lens-data/nikon/NikonNikkorZ24120mmf4S.data.ts) | L8 | Positive Meniscus | 249.10 | 249.15 | +0.05 | +0.02% | — |
 | [VIVITAR SERIES 1 200mm f/3 VMC](../../src/lens-data/vivitar/VivitarSeries1200mmf3.data.ts) | L3 | Biconcave Negative | -63.20 | -63.21 | -0.01 | -0.02% | — |
 | [CANON EF 70-200mm f/2.8 L IS II USM](../../src/lens-data/canon/CanonEF70200mmf28LII.data.ts) | L5 | Positive Meniscus | 102.00 | 101.98 | -0.02 | -0.02% | — |
+| [SIGMA 19mm f/2.8 (Sigma DP1 Merrill)](../../src/lens-data/sigma/SigmaDP1Merrill.data.ts) | G4 | Negative Meniscus | -10.08 | -10.08 | 0.00 | -0.02% | — |
 | [NIKON AF-P DX NIKKOR 70-300mm f/4.5-6.3 G ED VR](../../src/lens-data/nikon/NikonAFPDX70300mmf4563G.data.ts) | L41 | Biconvex Positive | 40.40 | 40.39 | -0.01 | -0.02% | — |
 | [FUJIFILM FUJINON GF 80mm f/1.7 R WR](../../src/lens-data/fujifilm/FujifilmGF80mmf17R.data.ts) | L12 | Biconcave Negative | -202.50 | -202.46 | +0.04 | +0.02% | — |
 | [PENTAX DA* 16-50mm f/2.8 ED AL [IF] SDM](../../src/lens-data/pentax/PentaxDA1650mmf28.data.ts) | L11 | Negative Meniscus | -179.60 | -179.57 | +0.03 | +0.02% | — |
@@ -2491,7 +2540,9 @@ Sorted by absolute percentage difference, largest first.
 | [NIKON AF-S NIKKOR 120-300mm f/2.8 E FL ED SR VR](../../src/lens-data/nikon/NikonNikkorAFS120300mmf28.data.ts) | L22 | Biconvex Positive | 192.70 | 192.74 | +0.04 | +0.02% | — |
 | [NIKON AF-P DX NIKKOR 10-20mm f/4.5-5.6 G VR](../../src/lens-data/nikon/NikonAFPDX1020mmf4556G.data.ts) | L42 | Biconcave Negative | -19.93 | -19.93 | 0.00 | -0.02% | — |
 | [FUJIFILM FUJINON GF 23mm f/4 R LM WR](../../src/lens-data/fujifilm/FujifilmGF23mmf4.data.ts) | L14 | Biconvex Positive | 18.04 | 18.04 | 0.00 | +0.02% | — |
+| [MINOLTA AF 24-105mm f/3.5-4.5 (D)](../../src/lens-data/minolta/MinoltaAF24105mmf3545D.data.ts) | L5 | Biconcave Negative | -26.20 | -26.20 | 0.00 | +0.02% | — |
 | [NIKON AF-S NIKKOR 80-400mm f/4.5-5.6 G ED VR](../../src/lens-data/nikon/NikonNikkorAFS80400mmf4556G.data.ts) | L13 | Positive Meniscus | 202.20 | 202.24 | +0.04 | +0.02% | — |
+| [YONGNUO YN 50mm f/1.4](../../src/lens-data/yongnuo/YongnuoYN50mmf14.data.ts) | L33 | Biconvex Positive | 25.56 | 25.56 | 0.00 | -0.02% | — |
 | [SONY E 30mm f/3.5 Macro](../../src/lens-data/sony/SonySEL30mmf35.data.ts) | L113 | Nearly Plano-Concave Negative | -21.72 | -21.72 | 0.00 | -0.02% | — |
 | [FUJIFILM FUJINON GF 120mm f/4 R LM OIS WR Macro](../../src/lens-data/fujifilm/FujifilmGF120mmf4RLM.data.ts) | L41 | Positive Meniscus | 122.90 | 122.88 | -0.02 | -0.02% | — |
 | [SONY FE 24-70mm f/2.8 GM II](../../src/lens-data/sony/SonyFE2470mmf28GMII.data.ts) | L33 | Biconcave Negative | -58.20 | -58.21 | -0.01 | -0.02% | — |
@@ -2536,7 +2587,9 @@ Sorted by absolute percentage difference, largest first.
 | [CANON TS-E 50mm f/2.8 L MACRO](../../src/lens-data/canon/CanonTSE50mmf28L.data.ts) | L2 | Biconcave Negative | -58.60 | -58.59 | +0.01 | +0.02% | — |
 | [NIKON AF-S NIKKOR 70-200mm f/2.8 E FL ED VR](../../src/lens-data/nikon/NikonNikkorAFS70200mmf28E.data.ts) | L42 | Negative Meniscus | -89.90 | -89.88 | +0.02 | +0.02% | — |
 | [OLYMPUS M.ZUIKO DIGITAL 17mm f/1.8](../../src/lens-data/olympus/OlympusMZuiko17mmf18.data.ts) | L6 | Biconcave Negative | -10.92 | -10.92 | 0.00 | +0.02% | — |
+| [YONGNUO YN 33mm f/1.4 DA DSM WL PRO](../../src/lens-data/yongnuo/YongnuoYN33mmf14.data.ts) | G3 | Positive Meniscus | 56.30 | 56.29 | -0.01 | -0.02% | — |
 | [NIKON FISHEYE-NIKKOR 6mm f/5.6](../../src/lens-data/nikon/NikonFisheyeNikkor6mmf56.data.ts) | L6 | Biconcave Negative | -11.26 | -11.26 | 0.00 | -0.02% | — |
+| [CANON RF 24mm f/1.8 Macro IS STM](../../src/lens-data/canon/CanonRF24mmf18MacroISSTM.data.ts) | L8 | Biconvex Positive | 26.28 | 26.28 | 0.00 | +0.02% | — |
 | [CARL ZEISS SONNAR SUPERACHROMAT 250mm f/5.6 (Hasselblad V)](../../src/lens-data/carl-zeiss-oberkochen/ZeissSonnarSuperachromat250mmf56.data.ts) | L4 | Positive Meniscus | 148.30 | 148.27 | -0.03 | -0.02% | — |
 | [NIKON 1 NIKKOR VR 10-30mm f/3.5-5.6](../../src/lens-data/nikon/Nikon1Nikkor1030mmf3556.data.ts) | L22 | Positive Meniscus | 18.17 | 18.17 | 0.00 | +0.02% | — |
 | [CANON RF 85mm f/1.2 L USM](../../src/lens-data/canon/CanonRF85mmf12L.data.ts) | L14 | Biconvex Positive | 86.30 | 86.28 | -0.02 | -0.02% | — |
@@ -2587,6 +2640,7 @@ Sorted by absolute percentage difference, largest first.
 | [SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) | L24 | Negative Meniscus | -63.00 | -63.01 | -0.01 | -0.02% | — |
 | [HASSELBLAD HC 210mm f/4](../../src/lens-data/hasselblad/HasselbladHC210mmf4.data.ts) | L2 | Biconvex Positive | 96.00 | 96.02 | +0.02 | +0.02% | — |
 | [SONY FE 600mm f/4 GM OSS](../../src/lens-data/sony/SonyFE600mmF4GMOSS.data.ts) | L42 | Biconvex Positive | 20.76 | 20.76 | 0.00 | -0.02% | — |
+| [YONGNUO YN 33mm f/1.4 DA DSM WL PRO](../../src/lens-data/yongnuo/YongnuoYN33mmf14.data.ts) | G8 | Negative Meniscus | -95.90 | -95.88 | +0.02 | +0.02% | — |
 | [CANON EF-M 28mm f/3.5 Macro IS STM](../../src/lens-data/canon/CanonEFM28mmf34MacroISSTM.data.ts) | 106 | Negative Meniscus | -15.76 | -15.76 | 0.00 | -0.02% | — |
 | [CANON NEW FD 14mm f/2.8 L](../../src/lens-data/canon/CanonNewFD14mmf28L.data.ts) | L12 | Biconcave Negative | -28.67 | -28.67 | 0.00 | +0.02% | — |
 | [NIKON AI ZOOM-NIKKOR 35-200mm f/3.5-4.5 S](../../src/lens-data/nikon/NikonAIZoomNikkor35200mmf3545S.data.ts) | L11 | Positive Meniscus | 130.10 | 130.08 | -0.02 | -0.02% | — |
@@ -2615,6 +2669,7 @@ Sorted by absolute percentage difference, largest first.
 | [SONY FE 70-200mm f/2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) | L71 | Biconvex Positive | 50.50 | 50.51 | +0.01 | +0.02% | — |
 | [NIKON AF NIKKOR 85mm f/1.4 D IF](../../src/lens-data/nikon/Nikon85f14D.data.ts) | L2 | Positive Meniscus | 261.80 | 261.76 | -0.04 | -0.02% | — |
 | [OLYMPUS ZUIKO AUTO-MACRO 50mm f/2](../../src/lens-data/olympus/OlympusZuikoAutoMacro50mmf2.data.ts) | L3 | Positive Meniscus | 50.40 | 50.39 | -0.01 | -0.02% | — |
+| [YONGNUO YN 50mm f/1.4](../../src/lens-data/yongnuo/YongnuoYN50mmf14.data.ts) | L31 | Biconvex Positive | 26.66 | 26.66 | 0.00 | -0.02% | — |
 | [CANON FD 35mm f/2 S.S.C. (I)](../../src/lens-data/canon/CanonFD35mmf2.data.ts) | L1 | Positive Meniscus | 362.50 | 362.56 | +0.06 | +0.02% | — |
 | [NIKON AI NIKKOR 28mm f/3.5](../../src/lens-data/nikon/NikonAI28mmf35.data.ts) | L3 | Biconvex Positive | 23.68 | 23.68 | 0.00 | -0.02% | — |
 | [NIKON AF NIKKOR 28mm f/2.8 D](../../src/lens-data/nikon/NikonAFNikkor28mmf28D.data.ts) | L3 | Biconvex Positive | 23.98 | 23.98 | 0.00 | +0.02% | — |
@@ -2648,6 +2703,7 @@ Sorted by absolute percentage difference, largest first.
 | [CANON EF-S 24mm f/2.8 STM](../../src/lens-data/canon/CanonEFS24mmf28STM.data.ts) | L3 | Positive Meniscus | 19.87 | 19.87 | 0.00 | +0.02% | — |
 | [NIKON AF-S DX NIKKOR 55-300mm f/4.5-5.6 G ED VR](../../src/lens-data/nikon/NikonAFSDX55300mmf4556G.data.ts) | L52 | Negative Meniscus | -94.60 | -94.58 | +0.02 | +0.02% | — |
 | [FUJIFILM FUJINON XF 200mm f/2 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmXF200mmf2R.data.ts) | L1e | Biconvex Positive | 138.60 | 138.58 | -0.02 | -0.02% | — |
+| [SAMSUNG 60mm f/2.8 Macro ED OIS SSA](../../src/lens-data/samsung/SamsungNX60mmf28MacroEDOISSSA.data.ts) | L5 | Biconcave Negative | -27.15 | -27.15 | 0.00 | +0.02% | — |
 | [NIKON NIKKOR Z MC 105mm f/2.8 VR S](../../src/lens-data/nikon/NikonZ105f28.data.ts) | L44 | Negative Meniscus | -60.40 | -60.39 | +0.01 | +0.02% | — |
 | [FUJIFILM FUJINON XF 90mm f/2 R LM WR](../../src/lens-data/fujifilm/FujifilmXF90mmf2.data.ts) | L14 | Biconcave Negative | -58.80 | -58.79 | +0.01 | +0.02% | — |
 | [MINOLTA AF ZOOM 35-70mm f/4](../../src/lens-data/minolta/MinoltaAF3570mmf4.data.ts) | L5 | Biconcave Negative | -21.02 | -21.02 | 0.00 | +0.02% | — |
@@ -2708,6 +2764,7 @@ Sorted by absolute percentage difference, largest first.
 | [SONY FE 70-200mm f/2.8 GM OSS](../../src/lens-data/sony/SonyFE70200mmf28G.data.ts) | L1F2 | Biconvex Positive | 254.10 | 254.14 | +0.04 | +0.02% | — |
 | [SONY E 35mm f/1.8 OSS](../../src/lens-data/sony/SonyE35mmf18.data.ts) | L133 | Biconcave Negative | -10.66 | -10.66 | 0.00 | -0.02% | — |
 | [NIKON AF-S NIKKOR 24-120mm f/4 G ED VR](../../src/lens-data/nikon/NikonAFS24120mmf4G.data.ts) | L21 | Neg. Meniscus (1× Asph) | -19.71 | -19.71 | 0.00 | -0.01% | — |
+| [KMZ ZENITAR 35mm f/1](../../src/lens-data/kmz/KMZZenitar35mmf1.data.ts) | L6 | Biconcave Negative | -23.48 | -23.48 | 0.00 | -0.01% | — |
 | [NIKON AF-S NIKKOR 70-200mm f/2.8 G ED VR II](../../src/lens-data/nikon/NikonAFS70200mmf28GVRII.data.ts) | L51 | Biconvex Positive | 185.60 | 185.57 | -0.03 | -0.01% | — |
 | [CARL ZEISS TOUIT MAKRO-PLANAR T* 50mm f/2.8 Macro](../../src/lens-data/carl-zeiss-oberkochen/ZeissTouit50mmf28Macro.data.ts) | L13 | Biconvex Positive (1× Asph) | 30.37 | 30.37 | 0.00 | -0.01% | — |
 | [NIKON AF-S NIKKOR 24-70mm f/2.8 E ED VR](../../src/lens-data/nikon/NikonNikkorAFS2470mmf28E.data.ts) | L35 | Positive Meniscus | 180.90 | 180.93 | +0.03 | +0.01% | — |
@@ -2726,6 +2783,7 @@ Sorted by absolute percentage difference, largest first.
 | [NIKON AF-S NIKKOR 14-24mm f/2.8 G ED](../../src/lens-data/nikon/NikonNikkorAFS1424mmf28.data.ts) | L7 | Negative Meniscus | -54.90 | -54.91 | -0.01 | -0.01% | — |
 | [CANON EF 50mm f/1.0 L USM](../../src/lens-data/canon/CanonEF50mmf1L.data.ts) | L11 | Positive Meniscus | 148.80 | 148.78 | -0.02 | -0.01% | — |
 | [NIKON NIKKOR 35mm f/2.8 (Nikon 35Ti)](../../src/lens-data/nikon/Nikon35Ti35mmf28.data.ts) | L21 | Biconcave Negative | -18.31 | -18.31 | 0.00 | +0.01% | — |
+| [SAMSUNG 18-200mm f/3.5-6.3 ED OIS](../../src/lens-data/samsung/SamsungNX18200mmf3563EDOIS.data.ts) | L4 | Negative Meniscus | -18.56 | -18.56 | 0.00 | -0.01% | — |
 | [CANON FD 24mm f/2.8 S.S.C.](../../src/lens-data/canon/CanonFD24mmf28SSC.data.ts) | E6 | Biconcave Negative | -18.95 | -18.95 | 0.00 | -0.01% | — |
 | [NIKON FISHEYE-NIKKOR 6mm f/2.8](../../src/lens-data/nikon/NikonFisheyeNikkor6mmf28.data.ts) | L2 | Negative Meniscus | -106.90 | -106.92 | -0.02 | -0.01% | — |
 | [FUJIFILM FUJINON XF 50-140mm f/2.8 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmXF50140mmf28R.data.ts) | L12 | Biconvex Positive (ED) | 136.70 | 136.68 | -0.02 | -0.01% | — |
@@ -2745,6 +2803,7 @@ Sorted by absolute percentage difference, largest first.
 | [NIKON AF-S NIKKOR 14-24mm f/2.8 G ED](../../src/lens-data/nikon/NikonNikkorAFS1424mmf28.data.ts) | L11 | Biconvex Positive | 42.40 | 42.39 | -0.01 | -0.01% | — |
 | [NIKON AF-S NIKKOR 70-200mm f/2.8 G ED VR II](../../src/lens-data/nikon/NikonAFS70200mmf28GVRII.data.ts) | L56 | Biconvex Positive | 92.70 | 92.71 | +0.01 | +0.01% | — |
 | [NIKON NIKKOR Z DX 12-28mm f/3.5-5.6 PZ VR](../../src/lens-data/nikon/NikonNikkorZ1228mmf3556PZ.data.ts) | L14 | Positive Meniscus | 31.10 | 31.10 | 0.00 | -0.01% | — |
+| [YONGNUO YN 50mm f/1.4](../../src/lens-data/yongnuo/YongnuoYN50mmf14.data.ts) | L21 | Biconcave Negative | -31.38 | -31.38 | 0.00 | -0.01% | — |
 | [SIGMA 14-24mm f/2.8 DG HSM \| Art](../../src/lens-data/sigma/Sigma1424mmf28DGHSM.data.ts) | L13 | Negative Meniscus | -44.10 | -44.09 | +0.01 | +0.01% | — |
 | [OLYMPUS M.ZUIKO DIGITAL 14-42mm f/3.5-5.6 II R](../../src/lens-data/olympus/OlympusMZuiko1442mmf3556II.data.ts) | L5 | Biconcave Negative | -11.36 | -11.36 | 0.00 | -0.01% | — |
 | [FUJIFILM FUJINON XF 16-55mm f/2.8 R LM WR](../../src/lens-data/fujifilm/FujifilmXF1655mmf28R.data.ts) | L11 | Negative Meniscus | -179.40 | -179.43 | -0.03 | -0.01% | — |
@@ -2813,6 +2872,7 @@ Sorted by absolute percentage difference, largest first.
 | [SONY ZEISS VARIO-SONNAR T* 8.8-73.3mm f/2.8 (Sony Cyber-shot DSC-RX10 / DSC-RX10 II)](../../src/lens-data/sony/ZeissVarioSonnarT88733mmf28SonyDSCRX10M12.data.ts) | L7 | Neg. Meniscus (2x Asph) | -36.64 | -36.64 | 0.00 | +0.01% | — |
 | [FUJIFILM FUJINON XF 23mm f/2.8 R WR](../../src/lens-data/fujifilm/FujifilmXF23mmf28RWR.data.ts) | L23 | Biconvex Positive | 18.26 | 18.26 | 0.00 | -0.01% | — |
 | [NIKON AF-S NIKKOR 14-24mm f/2.8 G ED](../../src/lens-data/nikon/NikonNikkorAFS1424mmf28.data.ts) | L4 | Pos. Meniscus (Asph resin layer) | 357.60 | 357.55 | -0.05 | -0.01% | — |
+| [SAMSUNG 18-200mm f/3.5-6.3 ED OIS](../../src/lens-data/samsung/SamsungNX18200mmf3563EDOIS.data.ts) | L5 | Biconcave Negative | -26.50 | -26.50 | 0.00 | -0.01% | — |
 | [KODAK ENLARGING EKTAR 100mm f/4.5](../../src/lens-data/kodak/KodakEnlargingEktar100mmf45.data.ts) | L3 | Biconcave Negative | -32.59 | -32.59 | 0.00 | +0.01% | — |
 | [NIKON NIKKOR Z 28mm f/2.8](../../src/lens-data/nikon/NikonZ28f28.data.ts) | L11 | Biconcave Negative | -26.74 | -26.74 | 0.00 | +0.01% | — |
 | [FUJIFILM FUJINON GF 100-200mm f/5.6 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmGF100200mmf56.data.ts) | L22 | Biconcave Negative | -30.05 | -30.05 | 0.00 | +0.01% | — |
@@ -2869,9 +2929,11 @@ Sorted by absolute percentage difference, largest first.
 | [FUJIFILM FUJINON XF 90mm f/2 R LM WR](../../src/lens-data/fujifilm/FujifilmXF90mmf2.data.ts) | L11 | Biconvex Positive | 182.10 | 182.08 | -0.02 | -0.01% | — |
 | [NIKON NIKKOR Z 100-400mm f/4.5-5.6 VR S](../../src/lens-data/nikon/NikonNikkorZ100400f4556.data.ts) | L19 | Positive Meniscus | 77.00 | 76.99 | -0.01 | -0.01% | — |
 | [SONY FE 70-200mm f/4 G OSS](../../src/lens-data/sony/SonyFE70200mmf4G.data.ts) | L431 | Biconvex Positive (front asphere; IS group) | 35.40 | 35.40 | 0.00 | +0.01% | — |
+| [LAOWA 200mm f/2 AF FF](../../src/lens-data/laowa/Laowa200mmf2AFFF.data.ts) | L10 | Biconvex Positive | 33.04 | 33.04 | 0.00 | +0.01% | — |
 | [NIKON AF ZOOM-NIKKOR 28-85mm f/3.5-4.5](../../src/lens-data/nikon/NikonAFZoomNikkor2885mmf3545.data.ts) | L6 | Negative Meniscus | -72.50 | -72.49 | +0.01 | +0.01% | — |
 | [CARL ZEISS DISTAGON T* 28mm f/2](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon28mmf2.data.ts) | L4a | Biconvex Positive | 18.71 | 18.71 | 0.00 | +0.01% | — |
 | [FUJIFILM FUJINON XF 56mm f/1.2 R](../../src/lens-data/fujifilm/FujifilmXF56mmf12.data.ts) | L13 | Positive Meniscus | 139.80 | 139.78 | -0.02 | -0.01% | — |
+| [SIGMA 19mm f/2.8 (Sigma DP1 Merrill)](../../src/lens-data/sigma/SigmaDP1Merrill.data.ts) | G5 | Biconvex Positive | 33.30 | 33.30 | 0.00 | -0.01% | — |
 | [FUJIFILM FUJINON GF 45mm f/2.8 R WR](../../src/lens-data/fujifilm/FujifilmGF45mmf28.data.ts) | L2f | Biconvex Positive (2× Asph) | 29.63 | 29.63 | 0.00 | +0.01% | — |
 | [OLYMPUS E.ZUIKO AUTO-T 135mm f/3.5](../../src/lens-data/olympus/OlympusZuiko135mmf35.data.ts) | L5 | Positive Meniscus | 120.10 | 120.08 | -0.02 | -0.01% | — |
 | [NIKON AI ZOOM-NIKKOR 360-1200mm f/11 ED](../../src/lens-data/nikon/NikonAIZoomNikkor3601200mmf11ED.data.ts) | L10 | Positive Meniscus | 226.00 | 225.97 | -0.03 | -0.01% | — |
@@ -2890,12 +2952,14 @@ Sorted by absolute percentage difference, largest first.
 | [OLYMPUS G.ZUIKO AUTO-W 21mm f/3.5](../../src/lens-data/olympus/OlympusGZuikoAutoW21mmf35.data.ts) | L7 | Positive Meniscus | 36.24 | 36.24 | 0.00 | -0.01% | — |
 | [PENTAX SMC FA 28mm f/2.8 Soft](../../src/lens-data/pentax/PentaxFA28mmf28Soft.data.ts) | E3 | Biconvex Positive | 21.85 | 21.85 | 0.00 | +0.01% | — |
 | [CANON RF 24-105mm f/2.8 L IS USM Z](../../src/lens-data/canon/CanonRF24105mmf28Z.data.ts) | L14 | Biconvex Positive | 50.40 | 50.39 | -0.01 | -0.01% | — |
+| [YONGNUO YN 50mm f/1.4](../../src/lens-data/yongnuo/YongnuoYN50mmf14.data.ts) | L32 | Biconcave Negative | -26.92 | -26.92 | 0.00 | -0.01% | — |
 | [CANON EF 200mm f/2 L IS USM](../../src/lens-data/canon/CanonEF200mmf2LISUSM.data.ts) | L9 | Negative Meniscus | -96.80 | -96.81 | -0.01 | -0.01% | — |
 | [SONY FE 70-200mm f/2.8 GM OSS](../../src/lens-data/sony/SonyFE70200mmf28G.data.ts) | L41 | Pos. Meniscus (1× Asph) | 216.80 | 216.83 | +0.03 | +0.01% | — |
 | [VIVITAR SERIES 1 70-210mm f/2.8-4 VMC](../../src/lens-data/vivitar/VivitarSeries170210mmf284.data.ts) | L12 | Biconvex Positive | 77.60 | 77.59 | -0.01 | -0.01% | — |
 | [NIKON AI ZOOM-NIKKOR 360-1200mm f/11 ED](../../src/lens-data/nikon/NikonAIZoomNikkor3601200mmf11ED.data.ts) | L15 | Biconvex Positive | 167.40 | 167.38 | -0.02 | -0.01% | — |
 | [CANON NEW FD 100mm f/2](../../src/lens-data/canon/CanonNewFD100mmf2.data.ts) | L4 | Biconcave Negative | -38.28 | -38.28 | 0.00 | +0.01% | — |
 | [NIKON AF-S NIKKOR 28-300mm f/3.5-5.6 G ED VR](../../src/lens-data/nikon/NikonNikkorAFS28300mmf3556G.data.ts) | L13 | Positive Meniscus | 130.70 | 130.72 | +0.02 | +0.01% | — |
+| [KONICA HEXANON AR 57mm f/1.2](../../src/lens-data/konica/KonicaHexanonAR57mmf12.data.ts) | L3 | Negative Meniscus | -34.56 | -34.56 | 0.00 | -0.01% | — |
 | [CANON RF 50mm f/1.2 L USM](../../src/lens-data/canon/CanonRF50mmf12L.data.ts) | G9 | Biconvex Positive | 38.96 | 38.96 | 0.00 | -0.01% | — |
 | [CANON EF 20-35mm f/2.8 L](../../src/lens-data/canon/CanonEF2035mmf28L.data.ts) | L12 | Negative Meniscus | -109.90 | -109.91 | -0.01 | -0.01% | — |
 | [SONY PLANAR T* FE 50mm f/1.4 ZA](../../src/lens-data/sony/SonyPlanarFE50mmf14ZA.data.ts) | L11 | Biconvex Positive | 175.00 | 175.02 | +0.02 | +0.01% | — |
@@ -2913,6 +2977,7 @@ Sorted by absolute percentage difference, largest first.
 | [CANON EF 17-40mm f/4 L USM](../../src/lens-data/canon/CanonEF1740mmf4LUSM.data.ts) | E9 | Positive Meniscus | 40.50 | 40.50 | 0.00 | +0.01% | — |
 | [VIVITAR SERIES 1 70-210mm f/3.5 VMC MACRO FOCUSING AUTO ZOOM](../../src/lens-data/vivitar/VivitarSeries170210mmf35.data.ts) | L1 | Negative Meniscus | -159.90 | -159.88 | +0.02 | +0.01% | — |
 | [FUJIFILM FUJINON 23mm f/2 (Fujifilm X100)](../../src/lens-data/fujifilm/FujifilmX10023mmf2.data.ts) | L8 | Plano-Convex Positive | 52.80 | 52.81 | +0.01 | +0.01% | — |
+| [SIGMA 19mm f/2.8 (Sigma DP1 Merrill)](../../src/lens-data/sigma/SigmaDP1Merrill.data.ts) | G7 | Negative Meniscus | -34.73 | -34.73 | 0.00 | -0.01% | — |
 | [PENTAX HD D FA* 85mm f/1.4 ED SDM AW](../../src/lens-data/pentax/PentaxDFA85mmf14.data.ts) | L22 | Positive Meniscus | 102.70 | 102.69 | -0.01 | -0.01% | — |
 | [NIKON AF NIKKOR 20mm f/2.8 D](../../src/lens-data/nikon/NikonAFNikkor20mmf28D.data.ts) | L8 | Positive Meniscus | 34.69 | 34.69 | 0.00 | -0.01% | — |
 | [NIKON AF-S NIKKOR 80-400mm f/4.5-5.6 G ED VR](../../src/lens-data/nikon/NikonNikkorAFS80400mmf4556G.data.ts) | L54 | Plano-Convex Positive | 51.10 | 51.09 | -0.01 | -0.01% | — |
@@ -2928,6 +2993,7 @@ Sorted by absolute percentage difference, largest first.
 | [RODENSTOCK GRANDAGON-N 75mm f/6.8](../../src/lens-data/rodenstock/RodenstockGrandagonN75mmf68.data.ts) | L5 | Negative Meniscus | -35.03 | -35.03 | 0.00 | -0.01% | — |
 | [CANON EF 8-15mm f/4 L Fisheye USM](../../src/lens-data/canon/CanonEF815mmf4LFisheye.data.ts) | L3 | Biconcave Negative | -38.48 | -38.48 | 0.00 | +0.01% | — |
 | [NIKON AF-S NIKKOR 120-300mm f/2.8 E FL ED SR VR](../../src/lens-data/nikon/NikonNikkorAFS120300mmf28.data.ts) | L31 | Biconvex Positive | 164.80 | 164.82 | +0.02 | +0.01% | — |
+| [SAMSUNG 60mm f/2.8 Macro ED OIS SSA](../../src/lens-data/samsung/SamsungNX60mmf28MacroEDOISSSA.data.ts) | L10 | Biconvex Positive | 30.74 | 30.74 | 0.00 | -0.01% | — |
 | [NIKON NIKKOR Z 50mm f/1.8 S](../../src/lens-data/nikon/NikonNikkorZ50f18S.data.ts) | L11 | Biconcave Negative | -36.15 | -36.15 | 0.00 | +0.01% | — |
 | [CANON EF-M 15-45mm f/3.5-6.3 IS STM](../../src/lens-data/canon/CanonEFM1545mmf3563ISSTM.data.ts) | E6 | Biconcave Negative | -35.06 | -35.06 | 0.00 | -0.01% | — |
 | [NIKON NIKKOR Z 135mm f/1.8 S Plena](../../src/lens-data/nikon/NikonZ135f18.data.ts) | L16 | Negative Meniscus | -89.00 | -89.01 | -0.01 | -0.01% | — |
@@ -2962,6 +3028,7 @@ Sorted by absolute percentage difference, largest first.
 | [CARL ZEISS JENA SONNAR 50mm f/1.5](../../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.ts) | L5 | Negative Meniscus | -56.40 | -56.41 | -0.01 | -0.01% | — |
 | [SONY E 30mm f/3.5 Macro](../../src/lens-data/sony/SonySEL30mmf35.data.ts) | L115 | Biconvex Positive (2x Asph) | 14.94 | 14.94 | 0.00 | +0.01% | — |
 | [PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH.](../../src/lens-data/panasonic/PanasonicLeicaDG15mmf17.data.ts) | L2 | Biconcave Negative (2× Asph) | -37.09 | -37.09 | 0.00 | -0.01% | — |
+| [CANON RF 24mm f/1.8 Macro IS STM](../../src/lens-data/canon/CanonRF24mmf18MacroISSTM.data.ts) | L4 | Biconcave Negative | -22.58 | -22.58 | 0.00 | +0.01% | — |
 | [MINOLTA MD ZOOM 28-85mm f/3.5-4.5](../../src/lens-data/minolta/Minolta2885mmf3545MDZoom.data.ts) | E13 | Negative Meniscus | -37.91 | -37.91 | 0.00 | +0.01% | — |
 | [NIKON NIKKOR Z 85mm f/1.8 S](../../src/lens-data/nikon/NikonZ85f18S.data.ts) | L44 | Biconcave Negative | -163.80 | -163.78 | +0.02 | +0.01% | — |
 | [SIGMA 10-20mm f/3.5 EX DC HSM](../../src/lens-data/sigma/Sigma1020mmf35EXDCHSM.data.ts) | L11 | Negative Meniscus | -23.25 | -23.25 | 0.00 | -0.01% | — |
@@ -2978,11 +3045,16 @@ Sorted by absolute percentage difference, largest first.
 | [OLYMPUS ZUIKO AUTO-ZOOM 85-250mm f/5](../../src/lens-data/olympus/OlympusZuikoAutoZoom85250mmf5.data.ts) | L8 | Biconvex Positive | 47.20 | 47.21 | +0.01 | +0.01% | — |
 | [NIKON AF-S NIKKOR 24-120mm f/4 G ED VR](../../src/lens-data/nikon/NikonAFS24120mmf4G.data.ts) | L52 | Positive Meniscus | 44.40 | 44.40 | 0.00 | +0.01% | — |
 | [CANON EF 100mm f/2.8 L Macro IS USM](../../src/lens-data/canon/CanonEF100mmf28LIS.data.ts) | E5 | Biconcave Negative | -34.21 | -34.21 | 0.00 | +0.01% | — |
+| [SONY DT 18-135mm f/3.5-5.6 SAM](../../src/lens-data/sony/SonyDT18135mmf3556SAM.data.ts) | L21 | Negative Meniscus | -22.99 | -22.99 | 0.00 | -0.01% | — |
 | [SONY ZEISS VARIO-SONNAR T* 8.8-73.3mm f/2.8 (Sony Cyber-shot DSC-RX10 / DSC-RX10 II)](../../src/lens-data/sony/ZeissVarioSonnarT88733mmf28SonyDSCRX10M12.data.ts) | L9 | Biconvex Positive | 34.75 | 34.75 | 0.00 | -0.01% | — |
+| [MEIKE AF 85mm f/1.8 FF STM](../../src/lens-data/meike/Meike85mmf18.data.ts) | L4 | Negative Meniscus | -42.06 | -42.06 | 0.00 | -0.01% | — |
 | [NIKON NIKKOR-N 5cm f/1.1](../../src/lens-data/nikon/NikonN5cmf11.data.ts) | L1 | Positive Meniscus | 223.90 | 223.88 | -0.02 | -0.01% | — |
 | [CANON RF 35mm f/1.8 MACRO IS STM](../../src/lens-data/canon/CanonRF35mmF18MACROISSTM.data.ts) | E4 | Positive Meniscus | 19.66 | 19.66 | 0.00 | -0.01% | — |
 | [LAOWA 65mm f/2.8 2× Ultra Macro APO](../../src/lens-data/laowa/Laowa65mmf28MacroAPO.data.ts) | L4 | Positive Meniscus | 66.70 | 66.71 | +0.01 | +0.01% | — |
 | [NIKON AF-S NIKKOR 120-300mm f/2.8 E FL ED SR VR](../../src/lens-data/nikon/NikonNikkorAFS120300mmf28.data.ts) | L41 | Plano-Convex Positive | 147.20 | 147.18 | -0.02 | -0.01% | — |
+| [SIGMA 19mm f/2.8 (Sigma DP1 Merrill)](../../src/lens-data/sigma/SigmaDP1Merrill.data.ts) | G6 | Biconvex Positive (1× Asph) | 22.32 | 22.32 | 0.00 | +0.01% | — |
+| [SAMSUNG 18-200mm f/3.5-6.3 ED OIS](../../src/lens-data/samsung/SamsungNX18200mmf3563EDOIS.data.ts) | L15 | Biconvex Positive (1× Asph) | 31.01 | 31.01 | 0.00 | -0.01% | — |
+| [SONY DT 18-135mm f/3.5-5.6 SAM](../../src/lens-data/sony/SonyDT18135mmf3556SAM.data.ts) | L41 | Biconvex Positive | 27.54 | 27.54 | 0.00 | +0.01% | — |
 | [CARL ZEISS DISTAGON T* 35mm f/1.4](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon35mmf14.data.ts) | L2 | Negative Meniscus | -222.60 | -222.62 | -0.02 | -0.01% | — |
 | [CANON RF 24-70mm f/2.8 L IS USM](../../src/lens-data/canon/CanonRF2470f28.data.ts) | L6 | Positive Meniscus | 42.59 | 42.59 | 0.00 | +0.01% | — |
 | [NIKON AF-S NIKKOR 120-300mm f/2.8 E FL ED SR VR](../../src/lens-data/nikon/NikonNikkorAFS120300mmf28.data.ts) | L11 | Negative Meniscus | -322.40 | -322.36 | +0.04 | +0.01% | — |
@@ -3017,6 +3089,7 @@ Sorted by absolute percentage difference, largest first.
 | [CANON EF-M 22mm f/2 STM](../../src/lens-data/canon/CanonEFM22mmf2STM.data.ts) | L21n | Biconcave Negative | -8.87 | -8.87 | 0.00 | +0.01% | — |
 | [SONY FE 28-70mm f/3.5-5.6 OSS](../../src/lens-data/sony/SonyFE2870mmf3556.data.ts) | G4 | Biconvex Positive (2× Asph) | 29.95 | 29.95 | 0.00 | +0.01% | — |
 | [CANON NEW FD 14mm f/2.8 L](../../src/lens-data/canon/CanonNewFD14mmf28L.data.ts) | L1 | Negative Meniscus | -102.01 | -102.00 | +0.01 | +0.01% | — |
+| [YONGNUO YN 56mm f/1.4 S DA DSM WL PRO](../../src/lens-data/yongnuo/YongnuoYN56mmf14.data.ts) | G3 | Positive Meniscus | 40.50 | 40.50 | 0.00 | +0.01% | — |
 | [FUJIFILM EBC FUJINON SW 65mm f/5.6 (Fujica GSW690 Professional)](../../src/lens-data/fujifilm/FujifilmFujinonSW65mmf56.data.ts) | L2 | Biconvex Positive | 25.99 | 25.99 | 0.00 | -0.01% | — |
 | [CANON RF 24-105mm f/4 L IS USM](../../src/lens-data/canon/CanonRF24105mmf4L.data.ts) | L15 | Biconvex Positive (2× Asph) | 22.50 | 22.50 | 0.00 | +0.01% | — |
 | [SONY FE 24mm f/1.4 GM](../../src/lens-data/sony/SonyFE24mmf14GM.data.ts) | L22 | Biconcave Negative | -36.88 | -36.88 | 0.00 | -0.01% | — |
@@ -3030,6 +3103,7 @@ Sorted by absolute percentage difference, largest first.
 | [SIGMA 105mm f/1.4 DG HSM \| Art](../../src/lens-data/sigma/Sigma105mmf14DGHSMArt.data.ts) | L5 | Positive Meniscus | 353.90 | 353.86 | -0.04 | -0.01% | — |
 | [NIKON NIKKOR Z 70-200mm f/2.8 VR S](../../src/lens-data/nikon/NikonNikkorZ70200f28.data.ts) | L63 | Negative Meniscus | -219.30 | -219.28 | +0.02 | +0.01% | — |
 | [CANON EF-S 17-55mm f/2.8 IS USM](../../src/lens-data/canon/CanonEFS1755mmf28IS.data.ts) | L1 | Negative Meniscus | -135.20 | -135.19 | +0.01 | +0.01% | — |
+| [CANON RF 24mm f/1.8 Macro IS STM](../../src/lens-data/canon/CanonRF24mmf18MacroISSTM.data.ts) | L3 | Positive Meniscus | 24.97 | 24.97 | 0.00 | -0.01% | — |
 | [SIGMA 105mm f/1.4 DG HSM \| Art](../../src/lens-data/sigma/Sigma105mmf14DGHSMArt.data.ts) | L10 | Positive Meniscus | 229.50 | 229.48 | -0.02 | -0.01% | — |
 | [LEICA SUMMILUX-C 100mm T1.4](../../src/lens-data/leica/LeicaSummiluxC100mmT14.data.ts) | L12 | Biconcave Negative (1× Asph) | -40.08 | -40.08 | 0.00 | -0.01% | — |
 | [FUJIFILM FUJINON XF 50-140mm f/2.8 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmXF50140mmf28R.data.ts) | L45 | Biconvex Positive (SF6) | 27.70 | 27.70 | 0.00 | -0.01% | — |
@@ -3047,19 +3121,23 @@ Sorted by absolute percentage difference, largest first.
 | [CANON 12.5-62.5mm f/2-3.9 (Canon PowerShot G1 X Mark II)](../../src/lens-data/canon/CanonPowerShotG1XII125625mmf239.data.ts) | L14 | Positive Meniscus | 33.80 | 33.80 | 0.00 | +0.01% | — |
 | [CANON RF 100-500mm f/4.5-7.1 L IS USM](../../src/lens-data/canon/CanonRF100500mmf4571LISUSM.data.ts) | L52 | Biconvex Positive | 52.11 | 52.10 | -0.01 | -0.01% | — |
 | [CANON EF 50mm f/1.0 L USM](../../src/lens-data/canon/CanonEF50mmf1L.data.ts) | L1 | Positive Meniscus | 278.20 | 278.17 | -0.03 | -0.01% | — |
+| [OLYMPUS M.ZUIKO DIGITAL ED 8-25mm f/4.0 PRO](../../src/lens-data/olympus/OlympusMZuiko825mmf4PRO.data.ts) | L52 | Negative Meniscus | -19.90 | -19.90 | 0.00 | +0.01% | — |
 | [SONY FE 24mm f/1.4 GM](../../src/lens-data/sony/SonyFE24mmf14GM.data.ts) | L25 | Biconvex Positive | 29.81 | 29.81 | 0.00 | -0.01% | — |
 | [NIKON AF-S NIKKOR 70-200mm f/2.8 E FL ED VR](../../src/lens-data/nikon/NikonNikkorAFS70200mmf28E.data.ts) | L12 | Biconvex Positive | 165.20 | 165.22 | +0.02 | +0.01% | — |
 | [FUJIFILM FUJINON GF 55mm f/1.7 R WR](../../src/lens-data/fujifilm/FujifilmGF55mmf17.data.ts) | L25 | Biconcave Negative | -20.42 | -20.42 | 0.00 | -0.01% | — |
 | [RODENSTOCK SIRONAR 100mm f/5.6 (original convertible)](../../src/lens-data/rodenstock/RodenstockOriginalSironar100mmf56.data.ts) | L5 | Biconcave Negative | -24.29 | -24.29 | 0.00 | -0.01% | — |
+| [SAMSUNG 18-200mm f/3.5-6.3 ED OIS](../../src/lens-data/samsung/SamsungNX18200mmf3563EDOIS.data.ts) | L17 | Biconcave Negative | -10.06 | -10.06 | 0.00 | +0.01% | — |
 | [OLYMPUS G.ZUIKO AUTO-S 50mm f/1.4](../../src/lens-data/olympus/OlympusZuikoAutoS50mmf14.data.ts) | L2 | Positive Meniscus | 76.30 | 76.31 | +0.01 | +0.01% | — |
 | [CANON RF 24-70mm f/2.8 L IS USM](../../src/lens-data/canon/CanonRF2470f28.data.ts) | Gfp | Biconvex Positive | 39.60 | 39.60 | 0.00 | +0.01% | — |
 | [CANON 15.1-60.4mm f/2.8-5.8 (Canon PowerShot G1 X)](../../src/lens-data/canon/CanonPowerShotG1X1560mmf28.data.ts) | L3 | Positive Meniscus | 70.50 | 70.49 | -0.01 | -0.01% | — |
 | [SONY FE 12-24mm f/2.8 GM](../../src/lens-data/sony/SonyFE1224mmf28GM.data.ts) | L21 | Negative Meniscus | -48.75 | -48.75 | 0.00 | -0.01% | — |
 | [FUJIFILM FUJINON GF 120mm f/4 R LM OIS WR Macro](../../src/lens-data/fujifilm/FujifilmGF120mmf4RLM.data.ts) | L12 | Biconvex Positive | 70.50 | 70.51 | +0.01 | +0.01% | — |
 | [CANON RF 20mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF20mmf14LVCM.data.ts) | G1 | Negative Meniscus | -53.14 | -53.15 | -0.01 | -0.01% | — |
+| [MINOLTA AF 24-105mm f/3.5-4.5 (D)](../../src/lens-data/minolta/MinoltaAF24105mmf3545D.data.ts) | L6 | Biconvex Positive | 21.76 | 21.76 | 0.00 | -0.01% | — |
 | [NIKON NIKKOR Z DX 12-28mm f/3.5-5.6 PZ VR](../../src/lens-data/nikon/NikonNikkorZ1228mmf3556PZ.data.ts) | L41 | Positive Meniscus | 44.07 | 44.07 | 0.00 | -0.01% | — |
 | [CANON RF 15-35mm f/2.8 L IS USM](../../src/lens-data/canon/CanonRF1535f28.data.ts) | L4 | Biconvex Positive | 47.00 | 47.00 | 0.00 | -0.01% | — |
 | [LAOWA 12mm f/2.8 Zero-D](../../src/lens-data/laowa/Laowa12mmf28ZeroD.data.ts) | L12 | Negative Meniscus | -13.64 | -13.64 | 0.00 | +0.01% | — |
+| [CANON RF 24mm f/1.8 Macro IS STM](../../src/lens-data/canon/CanonRF24mmf18MacroISSTM.data.ts) | L6 | Biconcave Negative | -15.20 | -15.20 | 0.00 | +0.01% | — |
 | [CANON EF 200mm f/2 L IS USM](../../src/lens-data/canon/CanonEF200mmf2LISUSM.data.ts) | L12 | Positive Meniscus | 73.40 | 73.41 | +0.01 | +0.01% | — |
 | [CARL ZEISS JENA SONNAR 50mm f/2](../../src/lens-data/carl-zeiss-jena/ZeissJenaSonnar50f2.data.ts) | L1 | Positive Meniscus | 73.00 | 72.99 | -0.01 | -0.01% | — |
 | [PENTAX HD D FA 21mm f/2.4 ED Limited DC WR](../../src/lens-data/pentax/PentaxHDDFA21mmf24Limited.data.ts) | L9A | Biconvex Positive | 37.32 | 37.32 | 0.00 | +0.01% | — |
@@ -3067,8 +3145,10 @@ Sorted by absolute percentage difference, largest first.
 | [HASSELBLAD HC 50mm f/3.5](../../src/lens-data/hasselblad/HasselbladHC50mmf4.data.ts) | L16 | Negative Meniscus | -75.30 | -75.29 | +0.01 | +0.01% | — |
 | [FUJIFILM FUJINON XF 16-80mm f/4 R OIS WR](../../src/lens-data/fujifilm/FujifilmXF1680mmf4.data.ts) | L42 | Biconcave Negative | -20.30 | -20.30 | 0.00 | -0.01% | — |
 | [CANON R 58mm f/1.2](../../src/lens-data/canon/CanonR58mmf12.data.ts) | L2 | Biconvex Positive | 39.30 | 39.30 | 0.00 | -0.01% | — |
+| [MEIKE 50mm f/0.95](../../src/lens-data/meike/Meike50mmf095.data.ts) | L7 | Positive Meniscus | 44.92 | 44.92 | 0.00 | -0.01% | — |
 | [CANON RF 16-28mm f/2.8 IS STM](../../src/lens-data/canon/CanonRF1628mmF28ISSTM.data.ts) | E8 | Biconvex Positive | 26.69 | 26.69 | 0.00 | -0.01% | — |
 | [FUJIFILM FUJINON XF 23mm f/1.4 R](../../src/lens-data/fujifilm/FujifilmXF23mmf14.data.ts) | L21 | Neg. Meniscus (2× Asph) | -66.60 | -66.61 | -0.01 | -0.01% | — |
+| [SAMSUNG 60mm f/2.8 Macro ED OIS SSA](../../src/lens-data/samsung/SamsungNX60mmf28MacroEDOISSSA.data.ts) | L2 | Biconvex Positive | 34.99 | 34.99 | 0.00 | +0.01% | — |
 | [PENTAX HD D FA* 50mm f/1.4 SDM AW](../../src/lens-data/pentax/PentaxDFA50mmf14SDM.data.ts) | L33 | Negative Meniscus | -43.30 | -43.30 | 0.00 | -0.01% | — |
 | [LAOWA 12mm f/2.8 Zero-D](../../src/lens-data/laowa/Laowa12mmf28ZeroD.data.ts) | L6 | Biconvex Positive | 13.56 | 13.56 | 0.00 | +0.01% | — |
 | [VIVITAR SERIES 1 200mm f/3 VMC](../../src/lens-data/vivitar/VivitarSeries1200mmf3.data.ts) | L6 | Negative Meniscus | -249.40 | -249.38 | +0.02 | +0.01% | — |
@@ -3087,6 +3167,8 @@ Sorted by absolute percentage difference, largest first.
 | [SIGMA 10-18mm f/2.8 DC DN \| Contemporary](../../src/lens-data/sigma/Sigma1018mmf28DCDN.data.ts) | L7 | Positive Meniscus | 21.19 | 21.19 | 0.00 | -0.01% | — |
 | [FUJIFILM FUJINON XF 33mm f/1.4 R LM WR](../../src/lens-data/fujifilm/FujifilmXF33mmf14RLMWR.data.ts) | L11 | Biconcave Negative | -45.82 | -45.82 | 0.00 | -0.01% | — |
 | [CANON RF 100-500mm f/4.5-7.1 L IS USM](../../src/lens-data/canon/CanonRF100500mmf4571LISUSM.data.ts) | L62 | Biconcave Negative | -33.13 | -33.13 | 0.00 | -0.01% | — |
+| [MEIKE 50mm f/0.95](../../src/lens-data/meike/Meike50mmf095.data.ts) | L6 | Biconvex Positive | 21.48 | 21.48 | 0.00 | -0.01% | — |
+| [MINOLTA AF 24-105mm f/3.5-4.5 (D)](../../src/lens-data/minolta/MinoltaAF24105mmf3545D.data.ts) | L7 | Negative Meniscus | -47.37 | -47.37 | 0.00 | +0.01% | — |
 | [NIKON AF DX FISHEYE-NIKKOR 10.5mm f/2.8 G ED](../../src/lens-data/nikon/NikonFisheyeNikkor105mmf28GED.data.ts) | L4a | Biconcave Negative | -10.11 | -10.11 | 0.00 | +0.01% | — |
 | [CANON EF 70-200mm f/2.8 L IS II USM](../../src/lens-data/canon/CanonEF70200mmf28LII.data.ts) | L3 | Positive Meniscus | 226.70 | 226.72 | +0.02 | +0.01% | — |
 | [SONY FE 24-70mm f/2.8 GM II](../../src/lens-data/sony/SonyFE2470mmf28GMII.data.ts) | L11 | Negative Meniscus | -379.30 | -379.34 | -0.04 | -0.01% | — |
@@ -3099,6 +3181,7 @@ Sorted by absolute percentage difference, largest first.
 | [CANON RF 100mm f/2.8 L MACRO IS USM](../../src/lens-data/canon/CanonRF100f28.data.ts) | L7 | Biconvex Positive | 43.00 | 43.00 | 0.00 | -0.01% | — |
 | [KONICA HEXANON 38mm f/2.8 (Konica C35)](../../src/lens-data/konica/KonicaHexanon38mmf28.data.ts) | L1 | Positive Meniscus | 22.37 | 22.37 | 0.00 | +0.01% | — |
 | [CANON RF 85mm f/1.2 L USM](../../src/lens-data/canon/CanonRF85mmf12L.data.ts) | L3 | Positive Meniscus | 134.40 | 134.41 | +0.01 | +0.01% | — |
+| [MEIKE 50mm f/0.95](../../src/lens-data/meike/Meike50mmf095.data.ts) | L4 | Negative Meniscus | -19.39 | -19.39 | 0.00 | +0.01% | — |
 | [PENTAX SMC A* 200mm f/4 MACRO ED](../../src/lens-data/pentax/PentaxA200mmf4MacroED.data.ts) | L1 | Positive Meniscus | 383.90 | 383.86 | -0.04 | -0.01% | — |
 | [CANON EF-M 18-150mm f/3.5-6.3 IS STM](../../src/lens-data/canon/CanonEFM18150mmf3563ISSTM.data.ts) | L5 | Biconcave Negative | -28.08 | -28.08 | 0.00 | +0.01% | — |
 | [CANON EF 70-200mm f/2.8 L IS II USM](../../src/lens-data/canon/CanonEF70200mmf28LII.data.ts) | L8 | Positive Meniscus | 48.50 | 48.50 | 0.00 | -0.01% | — |
@@ -3117,6 +3200,7 @@ Sorted by absolute percentage difference, largest first.
 | [NIKON NIKKOR Z 24-70mm f/4 S](../../src/lens-data/nikon/NikonNikkorZ2470mmf4S.data.ts) | L11 | Negative Meniscus | -167.00 | -167.02 | -0.02 | -0.01% | — |
 | [SONY FE 24mm f/1.4 GM](../../src/lens-data/sony/SonyFE24mmf14GM.data.ts) | L13 | Biconvex Positive | 38.92 | 38.92 | 0.00 | +0.01% | — |
 | [RODENSTOCK GERONAR 210mm f/6.8](../../src/lens-data/rodenstock/RodenstockGeronar210mmf68.data.ts) | L2 | Biconcave Negative | -46.28 | -46.28 | 0.00 | -0.01% | — |
+| [OLYMPUS ZUIKO AUTO-ZOOM 75-150mm f/4](../../src/lens-data/olympus/OlympusZuikoAutoZoom75150mmf4.data.ts) | L9 | Biconvex Positive | 43.76 | 43.76 | 0.00 | +0.01% | — |
 | [NIKON 1 NIKKOR 32mm f/1.2](../../src/lens-data/nikon/Nikon1Nikkor32mmf12.data.ts) | L22 | Biconcave Negative | -35.09 | -35.09 | 0.00 | -0.01% | — |
 | [PENTAX HD D FA* 85mm f/1.4 ED SDM AW](../../src/lens-data/pentax/PentaxDFA85mmf14.data.ts) | L13 | Positive Meniscus | 330.50 | 330.47 | -0.03 | -0.01% | — |
 | [SIGMA 28-45mm f/1.8 DG DN \| Art](../../src/lens-data/sigma/Sigma2845mmf18DN.data.ts) | L15 | Biconcave Negative | -33.90 | -33.90 | 0.00 | +0.01% | — |
@@ -3133,6 +3217,7 @@ Sorted by absolute percentage difference, largest first.
 | [SONY FE 24mm f/1.4 GM](../../src/lens-data/sony/SonyFE24mmf14GM.data.ts) | L23 | Biconvex Positive | 30.41 | 30.41 | 0.00 | -0.01% | — |
 | [CANON 15.1-60.4mm f/2.8-5.8 (Canon PowerShot G1 X)](../../src/lens-data/canon/CanonPowerShotG1X1560mmf28.data.ts) | L6 | Positive Meniscus | 36.80 | 36.80 | 0.00 | -0.01% | — |
 | [NIKON NIKKOR Z MC 105mm f/2.8 VR S](../../src/lens-data/nikon/NikonZ105f28.data.ts) | L31 | Biconvex Positive | 90.80 | 90.81 | +0.01 | +0.01% | — |
+| [OLYMPUS M.ZUIKO DIGITAL ED 8-25mm f/4.0 PRO](../../src/lens-data/olympus/OlympusMZuiko825mmf4PRO.data.ts) | L51 | Biconvex Positive (2× Asph) | 25.60 | 25.60 | 0.00 | +0.01% | — |
 | [CANON EF-S 55-250mm f/4-5.6 IS STM](../../src/lens-data/canon/CanonEFS55250mmf456ISSTM.data.ts) | L52 | Biconcave Negative | -23.74 | -23.74 | 0.00 | +0.01% | — |
 | [LAOWA 12mm f/2.8 Zero-D](../../src/lens-data/laowa/Laowa12mmf28ZeroD.data.ts) | L15 | Biconvex Positive | 20.98 | 20.98 | 0.00 | -0.01% | — |
 | [CARL ZEISS BIOGON 35mm f/2.8 (post-war Contax)](../../src/lens-data/carl-zeiss-oberkochen/ZeissBiogon35mmf28ContaxOpton.data.ts) | L7 | Negative Meniscus | -23.43 | -23.43 | 0.00 | +0.01% | — |
@@ -3143,6 +3228,7 @@ Sorted by absolute percentage difference, largest first.
 | [NIKON NIKKOR Z 58mm f/0.95 S Noct](../../src/lens-data/nikon/NikonZ58f095SNoct.data.ts) | L24 | Biconcave Negative | -42.61 | -42.61 | 0.00 | +0.01% | — |
 | [FUJIFILM EBC FUJINON-W 35mm f/1.9](../../src/lens-data/fujifilm/FujifilmFujinonW35mmf19.data.ts) | L5 | Biconcave Negative | -41.81 | -41.81 | 0.00 | -0.01% | — |
 | [NIKON 1 NIKKOR VR 10-30mm f/3.5-5.6](../../src/lens-data/nikon/Nikon1Nikkor1030mmf3556.data.ts) | L14 | Positive Meniscus | 43.71 | 43.71 | 0.00 | -0.01% | — |
+| [SIGMA 20mm f/1.4 DG DN \| Art](../../src/lens-data/sigma/Sigma20mmf14DGDNArt.data.ts) | L13 | Negative Meniscus | -36.70 | -36.70 | 0.00 | +0.01% | — |
 | [PENTAX HD D FA* 85mm f/1.4 ED SDM AW](../../src/lens-data/pentax/PentaxDFA85mmf14.data.ts) | L11 | Biconcave Negative | -120.90 | -120.89 | +0.01 | +0.01% | — |
 | [NIKON NIKKOR Z DX 12-28mm f/3.5-5.6 PZ VR](../../src/lens-data/nikon/NikonNikkorZ1228mmf3556PZ.data.ts) | L12 | Negative Meniscus | -23.68 | -23.68 | 0.00 | -0.01% | — |
 | [SIGMA 10-20mm f/3.5 EX DC HSM](../../src/lens-data/sigma/Sigma1020mmf35EXDCHSM.data.ts) | L3 | Negative Meniscus | -38.16 | -38.16 | 0.00 | -0.01% | — |
@@ -3151,6 +3237,7 @@ Sorted by absolute percentage difference, largest first.
 | [NIKON AF-S NIKKOR 70-200mm f/2.8 E FL ED VR](../../src/lens-data/nikon/NikonNikkorAFS70200mmf28E.data.ts) | L54 | Plano-Concave Negative | -71.90 | -71.91 | -0.01 | -0.01% | — |
 | [SIGMA APO MACRO 150mm f/2.8 EX DG OS HSM](../../src/lens-data/sigma/SigmaAPOMacro150mmf28OSHSM.data.ts) | L63 | Positive Meniscus | 41.92 | 41.92 | 0.00 | +0.01% | — |
 | [CANON RF 10-20mm f/4 L IS STM](../../src/lens-data/canon/CanonRF1020mmF4LISSTM.data.ts) | E10 | Positive Meniscus | 21.04 | 21.04 | 0.00 | +0.01% | — |
+| [MEIKE 50mm f/0.95](../../src/lens-data/meike/Meike50mmf095.data.ts) | L5 | Biconcave Negative | -20.55 | -20.55 | 0.00 | -0.01% | — |
 | [OLYMPUS ZUIKO 9-36mm f/2-2.4 (Olympus E-10 / E-20)](../../src/lens-data/olympus/OlympusZuiko936mmf224.data.ts) | L3 | Positive Meniscus | 85.50 | 85.49 | -0.01 | -0.01% | — |
 | [NIKON NIKKOR Z 24-70mm f/2.8 S](../../src/lens-data/nikon/NikonZ2470f28.data.ts) | L21 | Neg. Meniscus (1× Asph) | -27.60 | -27.60 | 0.00 | -0.01% | — |
 | [CANON EF-M 32mm f/1.4 STM](../../src/lens-data/canon/CanonEFM32mmf14STM.data.ts) | L5 | Biconvex Positive | 34.17 | 34.17 | 0.00 | -0.01% | — |
@@ -3202,6 +3289,7 @@ Sorted by absolute percentage difference, largest first.
 | [CANON RF 85mm f/1.2 L USM](../../src/lens-data/canon/CanonRF85mmf12L.data.ts) | L9 | Positive Meniscus | 375.20 | 375.17 | -0.03 | -0.01% | — |
 | [SIGMA 30mm f/1.4 DC HSM \| Art](../../src/lens-data/sigma/Sigma30mmf14DCHSMA.data.ts) | L5 | Biconcave Negative | -43.70 | -43.70 | 0.00 | +0.01% | — |
 | [OLYMPUS ZUIKO AUTO-FISHEYE 8mm f/2.8](../../src/lens-data/olympus/OlympusZuikoAutoFisheye8mmf28.data.ts) | L9 | Negative Meniscus | -49.74 | -49.74 | 0.00 | +0.01% | — |
+| [SIGMA 20mm f/1.4 DG DN \| Art](../../src/lens-data/sigma/Sigma20mmf14DGDNArt.data.ts) | L1 | Neg. Meniscus (2× Asph) | -58.40 | -58.39 | +0.01 | +0.01% | — |
 | [NIKON NIKKOR Z 35mm f/1.8 S](../../src/lens-data/nikon/NikonZ35f18S.data.ts) | L21 | Negative Meniscus | -42.40 | -42.40 | 0.00 | +0.01% | — |
 | [VOIGTLÄNDER COLOR-SKOPAR 28mm f/2.8 Aspherical SL IIs](../../src/lens-data/voigtlander/VoigtlanderColorSkopar28mmf28Aspherical.data.ts) | L3 | Positive Meniscus (convex to image) | 25.44 | 25.44 | 0.00 | +0.01% | — |
 | [CARL ZEISS DISTAGON T* 28mm f/2](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon28mmf2.data.ts) | L4b | Biconcave Negative | -31.25 | -31.25 | 0.00 | -0.01% | — |
@@ -3225,7 +3313,9 @@ Sorted by absolute percentage difference, largest first.
 | [SIGMA 10-20mm f/3.5 EX DC HSM](../../src/lens-data/sigma/Sigma1020mmf35EXDCHSM.data.ts) | L4 | Positive Meniscus | 50.69 | 50.69 | 0.00 | -0.01% | — |
 | [CARL ZEISS BIOGON 35mm f/2.8 (post-war Contax)](../../src/lens-data/carl-zeiss-oberkochen/ZeissBiogon35mmf28ContaxOpton.data.ts) | L4 | Biconcave Negative | -25.34 | -25.34 | 0.00 | -0.01% | — |
 | [SONY FE 12-24mm f/2.8 GM](../../src/lens-data/sony/SonyFE1224mmf28GM.data.ts) | L32 | Positive Meniscus (2x Asph) | 51.58 | 51.58 | 0.00 | -0.01% | — |
+| [SAMSUNG 60mm f/2.8 Macro ED OIS SSA](../../src/lens-data/samsung/SamsungNX60mmf28MacroEDOISSSA.data.ts) | L6 | Positive Meniscus | 43.48 | 43.48 | 0.00 | +0.01% | — |
 | [PENTAX HD D FA 21mm f/2.4 ED Limited DC WR](../../src/lens-data/pentax/PentaxHDDFA21mmf24Limited.data.ts) | L2A | Neg. Meniscus (2× Asph) | -46.09 | -46.09 | 0.00 | +0.01% | — |
+| [SAMSUNG 60mm f/2.8 Macro ED OIS SSA](../../src/lens-data/samsung/SamsungNX60mmf28MacroEDOISSSA.data.ts) | L1 | Negative Meniscus | -48.06 | -48.06 | 0.00 | -0.01% | — |
 | [CANON FD 24mm f/2.8 S.S.C.](../../src/lens-data/canon/CanonFD24mmf28SSC.data.ts) | E4 | Biconvex Positive | 46.09 | 46.09 | 0.00 | +0.01% | — |
 | [SIGMA 10-20mm f/3.5 EX DC HSM](../../src/lens-data/sigma/Sigma1020mmf35EXDCHSM.data.ts) | L7 | Biconvex Positive | 34.24 | 34.24 | 0.00 | +0.01% | — |
 | [CANON RF 70-200mm f/2.8 L IS USM](../../src/lens-data/canon/CanonRF70200f28.data.ts) | L8 | Biconcave Negative | -34.67 | -34.67 | 0.00 | -0.01% | — |
@@ -3275,6 +3365,7 @@ Sorted by absolute percentage difference, largest first.
 | [OLYMPUS E.ZUIKO AUTO-T 135mm f/3.5](../../src/lens-data/olympus/OlympusZuiko135mmf35.data.ts) | L3 | Plano-Concave Negative | -132.70 | -132.71 | -0.01 | -0.01% | — |
 | [NIKON NIKKOR-SW 90mm f/4.5](../../src/lens-data/nikon/NikonNikkorSW90mmf45.data.ts) | L1 | Negative Meniscus | -56.07 | -56.07 | 0.00 | +0.01% | — |
 | [NIKON AI-S ZOOM-NIKKOR 35-70mm f/3.5](../../src/lens-data/nikon/NikonAIZoomNikkor3570mmf35.data.ts) | L9 | Biconcave Negative | -22.07 | -22.07 | 0.00 | -0.01% | — |
+| [KMZ ZENITAR 35mm f/1](../../src/lens-data/kmz/KMZZenitar35mmf1.data.ts) | L8 | Biconvex Positive | 53.57 | 53.57 | 0.00 | +0.01% | — |
 | [PENTAX DA* 50-135mm f/2.8 ED [IF] SDM](../../src/lens-data/pentax/PentaxDA50135mmf28.data.ts) | L17 | Negative Meniscus | -42.20 | -42.20 | 0.00 | -0.01% | — |
 | [CANON NEW FD 150-600mm f/5.6 L](../../src/lens-data/canon/CanonFD150600mmf56L.data.ts) | L18 | Negative Meniscus | -55.81 | -55.81 | 0.00 | +0.01% | — |
 | [RODENSTOCK GRANDAGON-N 65mm f/4.5](../../src/lens-data/rodenstock/RodenstockGrandagonN65mmf45.data.ts) | L7 | Negative Meniscus | -42.75 | -42.75 | 0.00 | +0.01% | — |
@@ -3283,6 +3374,7 @@ Sorted by absolute percentage difference, largest first.
 | [SIGMA 17-40mm f/1.8 DC \| Art](../../src/lens-data/sigma/Sigma1740mmf18DCA.data.ts) | L4 | Biconvex Positive | 51.28 | 51.28 | 0.00 | +0.01% | — |
 | [NIKON AF-S NIKKOR 14-24mm f/2.8 G ED](../../src/lens-data/nikon/NikonNikkorAFS1424mmf28.data.ts) | L2 | Neg. Meniscus (1× Asph) | -71.10 | -71.09 | +0.01 | +0.01% | — |
 | [NIKON FISHEYE-NIKKOR 6mm f/5.6](../../src/lens-data/nikon/NikonFisheyeNikkor6mmf56.data.ts) | L2 | Negative Meniscus | -16.78 | -16.78 | 0.00 | -0.01% | — |
+| [SAMSUNG 18-200mm f/3.5-6.3 ED OIS](../../src/lens-data/samsung/SamsungNX18200mmf3563EDOIS.data.ts) | L9 | Biconvex Positive (1× Asph) | 36.98 | 36.98 | 0.00 | -0.01% | — |
 | [CANON RF 24-50mm f/4.5-6.3 IS STM](../../src/lens-data/canon/CanonRF2450mmf463.data.ts) | L2c | Biconvex Positive | 25.80 | 25.80 | 0.00 | -0.01% | — |
 | [NIKON AI-S ZOOM-NIKKOR 35-70mm f/3.5](../../src/lens-data/nikon/NikonAIZoomNikkor3570mmf35.data.ts) | L7 | Positive Meniscus | 58.02 | 58.02 | 0.00 | -0.01% | — |
 | [SIGMA APO MACRO 150mm f/2.8 EX DG OS HSM](../../src/lens-data/sigma/SigmaAPOMacro150mmf28OSHSM.data.ts) | L62 | Biconcave Negative | -38.23 | -38.23 | 0.00 | -0.01% | — |
@@ -3318,6 +3410,7 @@ Sorted by absolute percentage difference, largest first.
 | [PENTAX HD D FA* 50mm f/1.4 SDM AW](../../src/lens-data/pentax/PentaxDFA50mmf14SDM.data.ts) | L22 | Biconvex Positive | 105.20 | 105.19 | -0.01 | -0.01% | — |
 | [RODENSTOCK APO-SIRONAR-W 150mm f/5.6](../../src/lens-data/rodenstock/RodenstockApoSironarW150mmf56.data.ts) | L1 | Positive Meniscus | 297.30 | 297.28 | -0.02 | -0.01% | — |
 | [RODENSTOCK APO-SIRONAR-W 150mm f/5.6 (archived A1 reconstruction)](../../src/lens-data/rodenstock/RodenstockApoSironarW150mmf56A1Reconstruction.data.ts) | L1 | Positive Meniscus | 297.30 | 297.28 | -0.02 | -0.01% | — |
+| [KMZ ZENITAR 35mm f/1](../../src/lens-data/kmz/KMZZenitar35mmf1.data.ts) | L5 | Biconvex Positive | 39.62 | 39.62 | 0.00 | -0.01% | — |
 | [FUJIFILM FUJINON GF 55mm f/1.7 R WR](../../src/lens-data/fujifilm/FujifilmGF55mmf17.data.ts) | L23 | Biconcave Negative | -47.72 | -47.72 | 0.00 | +0.01% | — |
 | [NIKON AF ZOOM-NIKKOR 28-80mm f/3.3-5.6 G](../../src/lens-data/nikon/NikonAFZoomNikkor2880mmf3356.data.ts) | L3 | Biconvex Positive | 35.38 | 35.38 | 0.00 | -0.01% | — |
 | [FUJIFILM FUJINON XF 33mm f/1.4 R LM WR](../../src/lens-data/fujifilm/FujifilmXF33mmf14RLMWR.data.ts) | L21 | Positive Meniscus | 48.96 | 48.96 | 0.00 | +0.01% | — |
@@ -3329,9 +3422,12 @@ Sorted by absolute percentage difference, largest first.
 | [SIGMA 45mm f/2.8 DG DN \| Contemporary](../../src/lens-data/sigma/Sigma45mmf28DGDN.data.ts) | L5 | Biconvex Positive (2× Asph) | 25.55 | 25.55 | 0.00 | -0.01% | — |
 | [FUJIFILM SUPER EBC FUJINON 60mm f/4 (Fujifilm GA645 Professional)](../../src/lens-data/fujifilm/FujifilmGA645Pro60mmf4.data.ts) | L5 | Positive Meniscus | 80.50 | 80.51 | +0.01 | +0.01% | — |
 | [MINOLTA AF 70-200mm f/2.8 APO G (D) SSM](../../src/lens-data/minolta/MinoltaAF70200mmf28APO.data.ts) | L8 | Biconcave Negative | -37.88 | -37.88 | 0.00 | +0.01% | — |
+| [LAOWA 200mm f/2 AF FF](../../src/lens-data/laowa/Laowa200mmf2AFFF.data.ts) | L11 | Biconcave Negative | -52.56 | -52.56 | 0.00 | -0.01% | — |
+| [MEIKE AF 85mm f/1.8 FF STM](../../src/lens-data/meike/Meike85mmf18.data.ts) | L7 | Biconcave Negative | -57.08 | -57.08 | 0.00 | -0.01% | — |
 | [CANON RF 85mm f/2 MACRO IS STM](../../src/lens-data/canon/CanonRF85mmf2Macro.data.ts) | L1 | Positive Meniscus | 200.60 | 200.58 | -0.02 | -0.01% | — |
 | [SIGMA 16mm f/1.4 DC DN \| Contemporary](../../src/lens-data/sigma/Sigma16mmf14DCDN.data.ts) | L18 | Biconcave Negative | -47.14 | -47.14 | 0.00 | +0.01% | — |
 | [SONY FE 600mm f/4 GM OSS](../../src/lens-data/sony/SonyFE600mmF4GMOSS.data.ts) | L37 | Biconvex Positive | 56.63 | 56.63 | 0.00 | +0.01% | — |
+| [KONICA HEXANON AR 57mm f/1.2](../../src/lens-data/konica/KonicaHexanonAR57mmf12.data.ts) | L5 | Biconvex Positive | 26.09 | 26.09 | 0.00 | +0.01% | — |
 | [SIGMA 16mm f/1.4 DC DN \| Contemporary](../../src/lens-data/sigma/Sigma16mmf14DCDN.data.ts) | L14 | Biconcave Negative | -59.08 | -59.08 | 0.00 | -0.01% | — |
 | [CANON RF 50mm f/1.2 L USM](../../src/lens-data/canon/CanonRF50mmf12L.data.ts) | G7 | Positive Meniscus | 42.76 | 42.76 | 0.00 | +0.01% | — |
 | [CARL ZEISS DISTAGON T* 28mm f/2](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon28mmf2.data.ts) | L7 | Positive Meniscus | 48.31 | 48.31 | 0.00 | -0.01% | — |
@@ -3347,8 +3443,10 @@ Sorted by absolute percentage difference, largest first.
 | [NIKON AF-S NIKKOR 200-500mm f/5.6 E ED VR](../../src/lens-data/nikon/NikonNikkorAFS200500mmf56.data.ts) | L2 | Biconvex Positive | 205.20 | 205.18 | -0.02 | -0.01% | — |
 | [NIKON NIKKOR Z DX 50-250mm f/4.5-6.3 VR](../../src/lens-data/nikon/NikonZDX50250mmf4564VR.data.ts) | L33 | Positive Meniscus | 68.70 | 68.69 | -0.01 | -0.01% | — |
 | [SONY FE 28-70mm f/3.5-5.6 OSS](../../src/lens-data/sony/SonyFE2870mmf3556.data.ts) | G2 | Biconcave Negative | -46.38 | -46.38 | 0.00 | +0.01% | — |
+| [YONGNUO YN 56mm f/1.4 S DA DSM WL PRO](../../src/lens-data/yongnuo/YongnuoYN56mmf14.data.ts) | G6 | Negative Meniscus | -202.20 | -202.22 | -0.02 | -0.01% | — |
 | [CANON TS-E 90mm f/2.8 L MACRO](../../src/lens-data/canon/CanonTSE90mmf28L.data.ts) | L8 | Positive Meniscus | 62.13 | 62.13 | 0.00 | -0.01% | — |
 | [OLYMPUS ZUIKO DIGITAL ED 12-60mm f/2.8-4.0 SWD](../../src/lens-data/olympus/OlympusMZuiko1260mmf284ED.data.ts) | L14 | Biconvex Positive (ED) | 24.83 | 24.83 | 0.00 | -0.01% | — |
+| [MINOLTA AF 24-105mm f/3.5-4.5 (D)](../../src/lens-data/minolta/MinoltaAF24105mmf3545D.data.ts) | L9 | Biconvex Positive | 40.94 | 40.94 | 0.00 | -0.01% | — |
 | [CANON RF 15-35mm f/2.8 L IS USM](../../src/lens-data/canon/CanonRF1535f28.data.ts) | L12 | Biconvex Positive | 40.00 | 40.00 | 0.00 | +0.01% | — |
 | [SAMYANG AF 85mm f/1.4 FE](../../src/lens-data/samyang/SamyangAF85mmf14.data.ts) | L6 | Negative Meniscus | -26.43 | -26.43 | 0.00 | -0.01% | — |
 | [NIKON AF-P DX NIKKOR 10-20mm f/4.5-5.6 G VR](../../src/lens-data/nikon/NikonAFPDX1020mmf4556G.data.ts) | L11g | Negative Meniscus | -31.83 | -31.83 | 0.00 | -0.01% | — |
@@ -3358,6 +3456,7 @@ Sorted by absolute percentage difference, largest first.
 | [SONY FE 70-200mm f/4 G OSS](../../src/lens-data/sony/SonyFE70200mmf4G.data.ts) | L411 | Biconvex Positive (front asphere) | 98.00 | 97.99 | -0.01 | -0.01% | — |
 | [CARL ZEISS ULTRA PRIME SONNAR T* 135mm T1.9](../../src/lens-data/carl-zeiss-oberkochen/ZeissUltraPrimeSonnarT135mmT19.data.ts) | L2 | Positive Meniscus | 160.60 | 160.59 | -0.01 | -0.01% | — |
 | [PENTAX SMC FA 645 120mm f/4 Macro](../../src/lens-data/pentax/Pentax645FA120mmf4.data.ts) | L7 | Negative Meniscus | -98.10 | -98.09 | +0.01 | +0.01% | — |
+| [AEG WEITWINKELOBJEKTIV 17mm f/6.3](../../src/lens-data/aeg/AEGWeitwinkelobjektiv17mmf63.data.ts) | L4 | Negative Meniscus | -21.20 | -21.20 | 0.00 | +0.01% | — |
 | [SONY FE 28mm f/2](../../src/lens-data/sony/SonyFE28mmf2.data.ts) | L3 | Negative Meniscus | -119.30 | -119.29 | +0.01 | +0.01% | — |
 | [SONY FE 70-200mm f/2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) | L82 | Neg. Meniscus (convex to image) | -84.50 | -84.49 | +0.01 | +0.01% | — |
 | [PENTAX DA* 50-135mm f/2.8 ED [IF] SDM](../../src/lens-data/pentax/PentaxDA50135mmf28.data.ts) | L10 | Biconvex Positive | 113.40 | 113.41 | +0.01 | +0.01% | — |
@@ -3381,6 +3480,7 @@ Sorted by absolute percentage difference, largest first.
 | [FUJIFILM FUJINON 23mm f/2 (Fujifilm X100V)](../../src/lens-data/fujifilm/FujifilmX100V23mmf2.data.ts) | L31 | Weak Neg. Meniscus (2× Asph) | -328.60 | -328.58 | +0.02 | +0.01% | — |
 | [SIGMA 105mm f/1.4 DG HSM \| Art](../../src/lens-data/sigma/Sigma105mmf14DGHSMArt.data.ts) | L4 | Negative Meniscus | -105.30 | -105.29 | +0.01 | +0.01% | — |
 | [CANON EF-S 55-250mm f/4-5.6 IS STM](../../src/lens-data/canon/CanonEFS55250mmf456ISSTM.data.ts) | L31 | Biconvex Positive | 49.73 | 49.73 | 0.00 | +0.01% | — |
+| [KMZ ZENITAR 50mm f/0.95](../../src/lens-data/kmz/KMZZenitar50mmf095.data.ts) | L9 | Plano-Concave | -36.85 | -36.85 | 0.00 | -0.01% | — |
 | [CANON RF 70-200mm f/2.8 L IS USM](../../src/lens-data/canon/CanonRF70200f28.data.ts) | L6 | Positive Meniscus | 58.34 | 58.34 | 0.00 | +0.01% | — |
 | [CANON EF-M 32mm f/1.4 STM](../../src/lens-data/canon/CanonEFM32mmf14STM.data.ts) | L11 | Biconcave Negative | -25.80 | -25.80 | 0.00 | -0.01% | — |
 | [FUJIFILM FUJINON GF 100-200mm f/5.6 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmGF100200mmf56.data.ts) | L45 | Biconvex Positive | 27.31 | 27.31 | 0.00 | -0.01% | — |
@@ -3391,6 +3491,7 @@ Sorted by absolute percentage difference, largest first.
 | [SIGMA 85mm f/1.4 DG HSM \| Art](../../src/lens-data/sigma/Sigma85mmf14Art.data.ts) | L14 | Biconvex Positive (2× Asph) | 38.40 | 38.40 | 0.00 | -0.01% | — |
 | [NIKON AI NIKKOR 28mm f/2.8 S](../../src/lens-data/nikon/NikonAINikkor28mmf28S.data.ts) | L5 | Plano-Convex | 54.75 | 54.75 | 0.00 | +0.01% | — |
 | [VIVITAR SERIES 1 70-210mm f/3.5 VMC MACRO FOCUSING AUTO ZOOM](../../src/lens-data/vivitar/VivitarSeries170210mmf35.data.ts) | L2 | Biconvex Positive | 114.40 | 114.41 | +0.01 | +0.01% | — |
+| [KONICA HEXANON AR 57mm f/1.2](../../src/lens-data/konica/KonicaHexanonAR57mmf12.data.ts) | L2 | Positive Meniscus | 61.86 | 61.86 | 0.00 | -0.01% | — |
 | [NIKON NIKKOR Z 70-200mm f/2.8 VR S](../../src/lens-data/nikon/NikonNikkorZ70200f28.data.ts) | L91 | Neg. Meniscus (1× Asph) | -214.70 | -214.72 | -0.02 | -0.01% | — |
 | [CANON RF 24-105mm f/2.8 L IS USM Z](../../src/lens-data/canon/CanonRF24105mmf28Z.data.ts) | L2 | Biconvex Positive | 199.90 | 199.91 | +0.01 | +0.01% | — |
 | [CANON RF 20mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF20mmf14LVCM.data.ts) | G3 | Negative Meniscus | -70.04 | -70.03 | +0.01 | +0.01% | — |
@@ -3401,10 +3502,13 @@ Sorted by absolute percentage difference, largest first.
 | [SIGMA 105mm f/1.4 DG HSM \| Art](../../src/lens-data/sigma/Sigma105mmf14DGHSMArt.data.ts) | L17 | Biconvex Positive (2× Asph) | 47.10 | 47.10 | 0.00 | -0.01% | — |
 | [SONY FE 28mm f/2](../../src/lens-data/sony/SonyFE28mmf2.data.ts) | L2 | Negative Meniscus | -30.30 | -30.30 | 0.00 | +0.01% | — |
 | [FUJIFILM FUJINON GF 45mm f/2.8 R WR](../../src/lens-data/fujifilm/FujifilmGF45mmf28.data.ts) | L2e | Biconvex Positive | 43.71 | 43.71 | 0.00 | +0.01% | — |
+| [OLYMPUS M.ZUIKO DIGITAL ED 8-25mm f/4.0 PRO](../../src/lens-data/olympus/OlympusMZuiko825mmf4PRO.data.ts) | L12 | Negative Meniscus (2× Asph) | -33.00 | -33.00 | 0.00 | +0.01% | — |
 | [NIKON AF-S NIKKOR 500mm f/5.6 E PF ED VR](../../src/lens-data/nikon/NikonAFSNikkor500mmf56EPFEDVR.data.ts) | L310 | Biconvex Positive | 35.27 | 35.27 | 0.00 | +0.01% | — |
 | [NIKON AF-S NIKKOR 24-120mm f/4 G ED VR](../../src/lens-data/nikon/NikonAFS24120mmf4G.data.ts) | L34 | Biconvex Positive | 64.94 | 64.94 | 0.00 | -0.01% | — |
 | [SONY FE 24mm f/2.8 G](../../src/lens-data/sony/SonyFE24mmf28G.data.ts) | L1 | Negative Meniscus | -36.45 | -36.45 | 0.00 | +0.01% | — |
+| [LAOWA 200mm f/2 AF FF](../../src/lens-data/laowa/Laowa200mmf2AFFF.data.ts) | L6 | Negative Meniscus | -63.36 | -63.36 | 0.00 | -0.01% | — |
 | [CANON RF 16mm f/2.8 STM](../../src/lens-data/canon/CanonRF16mmf28STM.data.ts) | L5 | Negative Meniscus | -19.27 | -19.27 | 0.00 | +0.01% | — |
+| [OLYMPUS ZUIKO AUTO-ZOOM 75-150mm f/4](../../src/lens-data/olympus/OlympusZuikoAutoZoom75150mmf4.data.ts) | L12 | Biconvex Positive | 41.11 | 41.11 | 0.00 | -0.01% | — |
 | [SONY FE 85mm f/1.4 GM](../../src/lens-data/sony/SonyFE85mmF14GM.data.ts) | L10 | Biconcave Negative | -47.04 | -47.04 | 0.00 | +0.01% | — |
 | [PANASONIC LUMIX S 35mm f/1.8](../../src/lens-data/panasonic/PanasonicS35mmf18.data.ts) | L32 | Negative Meniscus | -70.10 | -70.11 | -0.01 | -0.01% | — |
 | [MINOLTA AF ZOOM 35-70mm f/4](../../src/lens-data/minolta/MinoltaAF3570mmf4.data.ts) | L6 | Biconvex Positive | 47.89 | 47.89 | 0.00 | +0.01% | — |
@@ -3412,6 +3516,7 @@ Sorted by absolute percentage difference, largest first.
 | [FUJIFILM SUPER EBC FUJINON 60mm f/4 (Fujifilm GA645 Professional)](../../src/lens-data/fujifilm/FujifilmGA645Pro60mmf4.data.ts) | L4 | Positive Meniscus | 82.10 | 82.11 | +0.01 | +0.01% | — |
 | [PENTAX SMC FA* 300mm f/4.5 ED [IF]](../../src/lens-data/pentax/PentaxFAStar300mmF45EDIF.data.ts) | L8 | Biconcave Negative | -25.68 | -25.68 | 0.00 | +0.01% | — |
 | [CANON RF 70-200mm f/2.8 L IS USM](../../src/lens-data/canon/CanonRF70200f28.data.ts) | L11 | Biconvex Positive | 54.62 | 54.62 | 0.00 | -0.01% | — |
+| [MINOLTA AF 24-105mm f/3.5-4.5 (D)](../../src/lens-data/minolta/MinoltaAF24105mmf3545D.data.ts) | L4 | Neg. Meniscus (1× Asph) | -19.90 | -19.90 | 0.00 | +0.01% | — |
 | [PENTAX DA* 16-50mm f/2.8 ED AL [IF] SDM](../../src/lens-data/pentax/PentaxDA1650mmf28.data.ts) | L21r | Neg. Meniscus (1× Asph) | -352.90 | -352.93 | -0.03 | -0.01% | — |
 | [CANON RF 24-240mm f/4-6.3 IS USM](../../src/lens-data/canon/CanonRF24240mmf463.data.ts) | L10 | Plano-Concave Negative | -20.50 | -20.50 | 0.00 | -0.01% | — |
 | [FUJIFILM FUJINON GF 100-200mm f/5.6 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmGF100200mmf56.data.ts) | L47 | Biconcave Negative | -50.02 | -50.02 | 0.00 | -0.01% | — |
@@ -3425,6 +3530,7 @@ Sorted by absolute percentage difference, largest first.
 | [LEICA MACRO-ELMARIT-R 60mm f/2.8](../../src/lens-data/leica/LeicaMacroElmaritR60mmf28.data.ts) | L5 | Positive Meniscus | 69.83 | 69.82 | -0.01 | -0.01% | — |
 | [NIKON AF-S NIKKOR 80-400mm f/4.5-5.6 G ED VR](../../src/lens-data/nikon/NikonNikkorAFS80400mmf4556G.data.ts) | L42 | Positive Meniscus | 57.90 | 57.90 | 0.00 | +0.01% | — |
 | [NIKON AF NIKKOR 85mm f/1.4 D IF](../../src/lens-data/nikon/Nikon85f14D.data.ts) | L1a | Positive Meniscus | 313.10 | 313.12 | +0.02 | +0.01% | — |
+| [OLYMPUS ZUIKO AUTO-ZOOM 75-150mm f/4](../../src/lens-data/olympus/OlympusZuikoAutoZoom75150mmf4.data.ts) | L7 | Biconcave Negative | -53.69 | -53.69 | 0.00 | -0.01% | — |
 | [NIKON NIKKOR Z 58mm f/0.95 S Noct](../../src/lens-data/nikon/NikonZ58f095SNoct.data.ts) | L33 | Biconvex Positive | 46.23 | 46.23 | 0.00 | +0.01% | — |
 | [CANON NEW FD 14mm f/2.8 L](../../src/lens-data/canon/CanonNewFD14mmf28L.data.ts) | L2 | Neg. Meniscus (1× Asph) | -1166.65 | -1166.57 | +0.08 | +0.01% | — |
 | [SONY FE 600mm f/4 GM OSS](../../src/lens-data/sony/SonyFE600mmF4GMOSS.data.ts) | L36 | Positive Meniscus | 63.21 | 63.21 | 0.00 | -0.01% | — |
@@ -3468,6 +3574,7 @@ Sorted by absolute percentage difference, largest first.
 | [CANON RF 28-70mm f/2 L USM](../../src/lens-data/canon/CanonRF2870mmf2L.data.ts) | L2 | Positive Meniscus | 134.40 | 134.39 | -0.01 | -0.01% | — |
 | [SONY 70-400mm f/4-5.6 G SSM II](../../src/lens-data/sony/SonySAL70400mmf456G.data.ts) | L62 | Positive Meniscus | 65.76 | 65.76 | 0.00 | +0.01% | — |
 | [NIKON AI ZOOM-NIKKOR 360-1200mm f/11 ED](../../src/lens-data/nikon/NikonAIZoomNikkor3601200mmf11ED.data.ts) | L1 | Biconvex Positive | 517.10 | 517.06 | -0.04 | -0.01% | — |
+| [SIGMA 19mm f/2.8 (Sigma DP1 Merrill)](../../src/lens-data/sigma/SigmaDP1Merrill.data.ts) | G1 | Positive Meniscus | 55.74 | 55.74 | 0.00 | -0.01% | — |
 | [NIKON AF-S NIKKOR 24-120mm f/4 G ED VR](../../src/lens-data/nikon/NikonAFS24120mmf4G.data.ts) | L53 | Negative Meniscus | -32.10 | -32.10 | 0.00 | +0.01% | — |
 | [NIKON NIKKOR Z 24-120mm f/4 S](../../src/lens-data/nikon/NikonNikkorZ24120mmf4S.data.ts) | L6 | Negative Meniscus | -69.50 | -69.50 | 0.00 | +0.01% | — |
 | [CANON RF 50mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF50mmf14LVCM.data.ts) | E6 | Biconvex Positive | 43.09 | 43.09 | 0.00 | +0.01% | — |
@@ -3507,6 +3614,7 @@ Sorted by absolute percentage difference, largest first.
 | [CANON EF 8-15mm f/4 L Fisheye USM](../../src/lens-data/canon/CanonEF815mmf4LFisheye.data.ts) | L11 | Biconvex Positive | 35.46 | 35.46 | 0.00 | +0.01% | — |
 | [FUJIFILM FUJINON XF 50-140mm f/2.8 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmXF50140mmf28R.data.ts) | L24 | Positive Meniscus (heavy flint) | 39.30 | 39.30 | 0.00 | -0.01% | — |
 | [FUJIFILM FUJINON XF 50-140mm f/2.8 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmXF50140mmf28R.data.ts) | L13 | Plano-Convex Positive (Super ED) | 161.40 | 161.39 | -0.01 | -0.01% | — |
+| [SONY DT 18-135mm f/3.5-5.6 SAM](../../src/lens-data/sony/SonyDT18135mmf3556SAM.data.ts) | L31 | Negative Meniscus | -69.05 | -69.05 | 0.00 | -0.01% | — |
 | [NIKON AF NIKKOR 20mm f/2.8 D](../../src/lens-data/nikon/NikonAFNikkor20mmf28D.data.ts) | L6 | Positive Meniscus | 33.06 | 33.06 | 0.00 | +0.01% | — |
 | [SONY FE 24mm f/1.4 GM](../../src/lens-data/sony/SonyFE24mmf14GM.data.ts) | L15 | Biconvex Positive | 43.85 | 43.85 | 0.00 | -0.01% | — |
 | [CANON RF 20mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF20mmf14LVCM.data.ts) | G4 | Biconvex Positive | 24.46 | 24.46 | 0.00 | -0.01% | — |
@@ -3521,9 +3629,11 @@ Sorted by absolute percentage difference, largest first.
 | [FUJIFILM FUJINON GF 20-35mm f/4 R WR](../../src/lens-data/fujifilm/FujifilmGF2035mmf4.data.ts) | L42 | Positive Meniscus ED | 51.98 | 51.98 | 0.00 | -0.01% | — |
 | [SONY E 30mm f/3.5 Macro](../../src/lens-data/sony/SonySEL30mmf35.data.ts) | L112 | Biconvex Positive | 20.50 | 20.50 | 0.00 | -0.01% | — |
 | [SONY FE 90mm f/2.8 Macro G OSS](../../src/lens-data/sony/SonyFE90mmf28.data.ts) | G12 | Negative Meniscus | -70.30 | -70.30 | 0.00 | -0.01% | — |
+| [LAOWA 200mm f/2 AF FF](../../src/lens-data/laowa/Laowa200mmf2AFFF.data.ts) | L4 | Biconcave Negative | -57.31 | -57.31 | 0.00 | -0.01% | — |
 | [NIKON AF-S NIKKOR 24mm f/1.8 G ED](../../src/lens-data/nikon/NikonAFSNikkor24mmf18GED.data.ts) | L1 | Negative Meniscus | -54.77 | -54.77 | 0.00 | -0.01% | — |
 | [CANON RF 10-20mm f/4 L IS STM](../../src/lens-data/canon/CanonRF1020mmF4LISSTM.data.ts) | E16 | Positive Meniscus | 71.72 | 71.72 | 0.00 | -0.01% | — |
 | [MINOLTA MD ZOOM 24-50mm f/4](../../src/lens-data/minolta/Minolta2450mmf4MDZoom.data.ts) | L4 | Biconvex Positive | 73.72 | 73.72 | 0.00 | -0.01% | — |
+| [AEG WEITWINKELOBJEKTIV 17mm f/6.3](../../src/lens-data/aeg/AEGWeitwinkelobjektiv17mmf63.data.ts) | L2 | Negative Meniscus | -32.46 | -32.46 | 0.00 | -0.01% | — |
 | [OLYMPUS M.ZUIKO DIGITAL 14-42mm f/3.5-5.6 II R](../../src/lens-data/olympus/OlympusMZuiko1442mmf3556II.data.ts) | L2 | Neg. Meniscus (2× Asph) | -48.92 | -48.92 | 0.00 | +0.01% | — |
 | [PANASONIC LUMIX S 70-300mm f/4.5-5.6 MACRO O.I.S.](../../src/lens-data/panasonic/PanasonicLumixS70300mmf4556MacroOIS.data.ts) | L13 | Biconcave Negative | -21.68 | -21.68 | 0.00 | +0.01% | — |
 | [RODENSTOCK GRANDAGON-N 75mm f/6.8](../../src/lens-data/rodenstock/RodenstockGrandagonN75mmf68.data.ts) | L4 | Biconvex Positive | 15.24 | 15.24 | 0.00 | +0.01% | — |
@@ -3531,8 +3641,10 @@ Sorted by absolute percentage difference, largest first.
 | [SONY FE 16-35mm f/2.8 GM](../../src/lens-data/sony/SonyFE1635mmF28GM.data.ts) | L10 | Biconvex Positive (1× Asph) | 52.50 | 52.50 | 0.00 | -0.01% | — |
 | [OLYMPUS M.ZUIKO DIGITAL 17mm f/2.8](../../src/lens-data/olympus/OlympusMZuiko17mmf28.data.ts) | L22 | Biconcave Negative | -22.74 | -22.74 | 0.00 | -0.01% | — |
 | [SIGMA 16mm f/1.4 DC DN \| Contemporary](../../src/lens-data/sigma/Sigma16mmf14DCDN.data.ts) | L12 | Negative Meniscus | -32.60 | -32.60 | 0.00 | -0.01% | — |
+| [SAMSUNG 18-200mm f/3.5-6.3 ED OIS](../../src/lens-data/samsung/SamsungNX18200mmf3563EDOIS.data.ts) | L7 | Biconcave Negative | -23.45 | -23.45 | 0.00 | +0.01% | — |
 | [CANON EF-M 18-55mm f/3.5-5.6 IS STM](../../src/lens-data/canon/CanonEFM1855mmf3556ISSTM.data.ts) | L4 | Negative Meniscus | -26.43 | -26.43 | 0.00 | +0.01% | — |
 | [CANON EF-S 55-250mm f/4-5.6 IS STM](../../src/lens-data/canon/CanonEFS55250mmf456ISSTM.data.ts) | L32 | Biconvex Positive | 38.58 | 38.58 | 0.00 | -0.01% | — |
+| [KONICA HEXANON AR 57mm f/1.2](../../src/lens-data/konica/KonicaHexanonAR57mmf12.data.ts) | L4 | Biconcave Negative | -22.13 | -22.13 | 0.00 | -0.01% | — |
 | [SIGMA 35mm f/1.4 DG HSM \| Art](../../src/lens-data/sigma/Sigma35mmf14DGHSMA.data.ts) | L7 | Biconvex Positive | 50.40 | 50.40 | 0.00 | -0.01% | — |
 | [PANASONIC LUMIX S PRO 50mm f/1.4](../../src/lens-data/panasonic/PanasonicSPro50mmf14.data.ts) | L13 | Neg. Meniscus (2× Asph) | -52.30 | -52.30 | 0.00 | +0.01% | — |
 | [MINOLTA MD ZOOM 24-50mm f/4](../../src/lens-data/minolta/Minolta2450mmf4MDZoom.data.ts) | L10 | Positive Meniscus | 49.46 | 49.46 | 0.00 | -0.01% | — |
@@ -3579,6 +3691,7 @@ Sorted by absolute percentage difference, largest first.
 | [CANON RF 70-200mm f/2.8 L IS USM](../../src/lens-data/canon/CanonRF70200f28.data.ts) | L17 | Neg. Meniscus (1× Asph) | -60.64 | -60.64 | 0.00 | +0.01% | — |
 | [HASSELBLAD HC 80mm f/2.8](../../src/lens-data/hasselblad/HasselbladHC80mmf28.data.ts) | L2 | Positive Meniscus | 70.60 | 70.60 | 0.00 | +0.01% | — |
 | [PANASONIC LUMIX S PRO 50mm f/1.4](../../src/lens-data/panasonic/PanasonicSPro50mmf14.data.ts) | L9 | Negative Meniscus | -76.00 | -76.00 | 0.00 | -0.01% | — |
+| [SAMSUNG 18-200mm f/3.5-6.3 ED OIS](../../src/lens-data/samsung/SamsungNX18200mmf3563EDOIS.data.ts) | L10 | Biconvex Positive | 27.63 | 27.63 | 0.00 | -0.01% | — |
 | [OLYMPUS F.ZUIKO AUTO-T 200mm f/5](../../src/lens-data/olympus/OlympusZuikoAutoT200mmf5.data.ts) | L6 | Biconvex Positive | 58.78 | 58.78 | 0.00 | +0.01% | — |
 | [NIKON AI ZOOM-NIKKOR 360-1200mm f/11 ED](../../src/lens-data/nikon/NikonAIZoomNikkor3601200mmf11ED.data.ts) | L17 | Positive Meniscus | 290.10 | 290.12 | +0.02 | +0.01% | — |
 | [NIKON FISHEYE-NIKKOR 6mm f/5.6](../../src/lens-data/nikon/NikonFisheyeNikkor6mmf56.data.ts) | L4 | Positive Meniscus | 17.33 | 17.33 | 0.00 | -0.01% | — |
@@ -3594,8 +3707,10 @@ Sorted by absolute percentage difference, largest first.
 | [CARL ZEISS DISTAGON T* 35mm f/2 (Zeiss ZX1)](../../src/lens-data/carl-zeiss-oberkochen/ZeissZX1Distagon35mmf2.data.ts) | L6 | Biconvex Positive | 52.83 | 52.83 | 0.00 | +0.01% | — |
 | [NIKON R-UW AF MICRO-NIKKOR 50mm f/2.8](../../src/lens-data/nikon/NikonRUWMicroNikkor50mmf28.data.ts) | L2R1 | Positive Meniscus | 68.31 | 68.31 | 0.00 | +0.01% | — |
 | [ENNA MÜNCHEN LITHAGON 35mm f/3.5](../../src/lens-data/enna-munchen/EnnaMunchenLithagon35mmf35.data.ts) | L4 | Biconvex Positive | 19.99 | 19.99 | 0.00 | +0.01% | — |
+| [KMZ ZENITAR 50mm f/1.2 S](../../src/lens-data/kmz/KMZZenitar50mmf12S.data.ts) | L5 | Positive Meniscus | 45.64 | 45.64 | 0.00 | -0.01% | — |
 | [CANON RF 10-20mm f/4 L IS STM](../../src/lens-data/canon/CanonRF1020mmF4LISSTM.data.ts) | E1 | Negative Meniscus (2× Asph) | -62.51 | -62.51 | 0.00 | -0.01% | — |
 | [NIKON AF-S NIKKOR 120-300mm f/2.8 E FL ED SR VR](../../src/lens-data/nikon/NikonNikkorAFS120300mmf28.data.ts) | L13 | Plano-Convex Positive | 312.10 | 312.12 | +0.02 | +0.01% | — |
+| [SONY DT 18-135mm f/3.5-5.6 SAM](../../src/lens-data/sony/SonyDT18135mmf3556SAM.data.ts) | L44 | Biconvex Positive | 34.37 | 34.37 | 0.00 | +0.01% | — |
 | [CARL ZEISS DISTAGON T* 35mm f/1.4](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon35mmf14.data.ts) | L3a | Biconvex Positive | 60.10 | 60.10 | 0.00 | +0.01% | — |
 | [FUJIFILM FUJINON GF 45-100mm f/4 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmGF45100mmf4.data.ts) | L22 | Positive Meniscus (2x Asph) | 218.00 | 218.01 | +0.01 | +0.01% | — |
 | [NIKON AF-S NIKKOR 20mm f/1.8 G ED](../../src/lens-data/nikon/NikonNikkorAFS20mmf18G.data.ts) | L12g | Negative Meniscus | -71.60 | -71.60 | 0.00 | -0.01% | — |
@@ -3610,8 +3725,10 @@ Sorted by absolute percentage difference, largest first.
 | [NIKON NIKKOR Z 58mm f/0.95 S Noct](../../src/lens-data/nikon/NikonZ58f095SNoct.data.ts) | L25 | Biconcave Negative | -46.66 | -46.66 | 0.00 | +0.01% | — |
 | [SIGMA 105mm f/1.4 DG HSM \| Art](../../src/lens-data/sigma/Sigma105mmf14DGHSMArt.data.ts) | L2 | Positive Meniscus | 617.50 | 617.46 | -0.04 | -0.01% | — |
 | [NIKON AF ZOOM-NIKKOR 28-85mm f/3.5-4.5](../../src/lens-data/nikon/NikonAFZoomNikkor2885mmf3545.data.ts) | L14 | Biconvex Positive | 65.40 | 65.40 | 0.00 | -0.01% | — |
+| [SAMSUNG 18-200mm f/3.5-6.3 ED OIS](../../src/lens-data/samsung/SamsungNX18200mmf3563EDOIS.data.ts) | L12 | Biconvex Positive | 51.37 | 51.37 | 0.00 | +0.01% | — |
 | [PENTAX HD D FA* 85mm f/1.4 ED SDM AW](../../src/lens-data/pentax/PentaxDFA85mmf14.data.ts) | L12 | Biconvex Positive | 215.40 | 215.39 | -0.01 | -0.01% | — |
 | [SIGMA 50mm f/1.4 DG HSM \| Art](../../src/lens-data/sigma/Sigma50mmf14DGHSMA.data.ts) | L6 | Positive Meniscus | 97.00 | 96.99 | -0.01 | -0.01% | — |
+| [OLYMPUS ZUIKO AUTO-ZOOM 75-150mm f/4](../../src/lens-data/olympus/OlympusZuikoAutoZoom75150mmf4.data.ts) | L14 | Biconvex Positive | 31.05 | 31.05 | 0.00 | -0.01% | — |
 | [NIKON NIKKOR Z 26mm f/2.8](../../src/lens-data/nikon/NikonZ26f28.data.ts) | L8a | Asph. Resin Layer (1× Asph) | -353.80 | -353.82 | -0.02 | -0.01% | — |
 | [CANON EF-M 18-55mm f/3.5-5.6 IS STM](../../src/lens-data/canon/CanonEFM1855mmf3556ISSTM.data.ts) | L2b | Biconcave Negative (1× Asph) | -27.21 | -27.21 | 0.00 | -0.01% | — |
 | [CANON RF 100-500mm f/4.5-7.1 L IS USM](../../src/lens-data/canon/CanonRF100500mmf4571LISUSM.data.ts) | L82 | Biconcave Negative | -63.16 | -63.16 | 0.00 | +0.01% | — |
@@ -3642,6 +3759,7 @@ Sorted by absolute percentage difference, largest first.
 | [FUJIFILM FUJINON XF 33mm f/1.4 R LM WR](../../src/lens-data/fujifilm/FujifilmXF33mmf14RLMWR.data.ts) | L25 | Negative Meniscus | -22.92 | -22.92 | 0.00 | +0.01% | — |
 | [CANON EF-M 28mm f/3.5 Macro IS STM](../../src/lens-data/canon/CanonEFM28mmf34MacroISSTM.data.ts) | 103 | Positive Meniscus | 77.59 | 77.59 | 0.00 | +0.01% | — |
 | [RODENSTOCK GRANDAGON-N 65mm f/4.5](../../src/lens-data/rodenstock/RodenstockGrandagonN65mmf45.data.ts) | L8 | Negative Meniscus | -43.55 | -43.55 | 0.00 | -0.01% | — |
+| [MINOLTA AF 24-105mm f/3.5-4.5 (D)](../../src/lens-data/minolta/MinoltaAF24105mmf3545D.data.ts) | L11 | Biconvex Positive | 27.97 | 27.97 | 0.00 | -0.01% | — |
 | [CANON RF 100mm f/2.8 L MACRO IS USM](../../src/lens-data/canon/CanonRF100f28.data.ts) | L2 | Biconvex Positive | 41.88 | 41.88 | 0.00 | -0.01% | — |
 | [OLYMPUS F.ZUIKO AUTO-T 200mm f/5](../../src/lens-data/olympus/OlympusZuikoAutoT200mmf5.data.ts) | L3 | Positive Meniscus | 78.91 | 78.91 | 0.00 | -0.01% | — |
 | [NIKON AF-P DX NIKKOR 10-20mm f/4.5-5.6 G VR](../../src/lens-data/nikon/NikonAFPDX1020mmf4556G.data.ts) | L32 | Positive Meniscus | 46.77 | 46.77 | 0.00 | +0.01% | — |
@@ -3653,6 +3771,7 @@ Sorted by absolute percentage difference, largest first.
 | [OLYMPUS ZUIKO AUTO-MACRO 90mm f/2](../../src/lens-data/olympus/OlympusZuikoAutoMacro90mmf2.data.ts) | L1 | Positive Meniscus | 80.20 | 80.20 | 0.00 | +0.01% | — |
 | [MINOLTA AF 70-200mm f/2.8 APO G (D) SSM](../../src/lens-data/minolta/MinoltaAF70200mmf28APO.data.ts) | L15 | Biconvex Positive ED | 68.74 | 68.74 | 0.00 | +0.01% | — |
 | [SIGMA 10-18mm f/2.8 DC DN \| Contemporary](../../src/lens-data/sigma/Sigma1018mmf28DCDN.data.ts) | L9 | Biconvex Positive | 32.12 | 32.12 | 0.00 | +0.01% | — |
+| [AEG WEITWINKELOBJEKTIV 17mm f/6.3](../../src/lens-data/aeg/AEGWeitwinkelobjektiv17mmf63.data.ts) | L5 | Biconvex Positive | 60.30 | 60.30 | 0.00 | -0.01% | — |
 | [LAOWA 58mm f/2.8 2× Ultra Macro APO](../../src/lens-data/laowa/Laowa58mmf28MacroAPO.data.ts) | L1 | Negative Meniscus | -263.90 | -263.91 | -0.01 | -0.01% | — |
 | [PENTAX DA* 50-135mm f/2.8 ED [IF] SDM](../../src/lens-data/pentax/PentaxDA50135mmf28.data.ts) | L18 | Positive Meniscus | 202.00 | 202.01 | +0.01 | +0.01% | — |
 | [SONY 70-400mm f/4-5.6 G SSM II](../../src/lens-data/sony/SonySAL70400mmf456G.data.ts) | L41 | Near-Plano Biconcave Negative | -46.43 | -46.43 | 0.00 | +0.01% | — |
@@ -3683,7 +3802,9 @@ Sorted by absolute percentage difference, largest first.
 | [LAOWA 65mm f/2.8 2× Ultra Macro APO](../../src/lens-data/laowa/Laowa65mmf28MacroAPO.data.ts) | L14 | Plano-Convex Positive | 51.80 | 51.80 | 0.00 | +0.01% | — |
 | [SIGMA 85mm f/1.4 DG HSM \| Art](../../src/lens-data/sigma/Sigma85mmf14Art.data.ts) | L3 | Neg. Meniscus | -164.30 | -164.31 | -0.01 | -0.01% | — |
 | [FUJIFILM SUPER EBC FUJINON 45mm f/4 (Fujifilm GA645W/GA645Wi Professional)](../../src/lens-data/fujifilm/FujifilmGA645WidePro45mmf4.data.ts) | L7 | Negative Meniscus | -55.04 | -55.04 | 0.00 | +0.01% | — |
+| [SONY DT 18-135mm f/3.5-5.6 SAM](../../src/lens-data/sony/SonyDT18135mmf3556SAM.data.ts) | L43 | Negative Meniscus | -52.91 | -52.91 | 0.00 | +0.01% | — |
 | [PENTAX HD D FA 21mm f/2.4 ED Limited DC WR](../../src/lens-data/pentax/PentaxHDDFA21mmf24Limited.data.ts) | L11A | Biconvex Positive (2× Asph) | 41.03 | 41.03 | 0.00 | +0.01% | — |
+| [SONY DT 18-135mm f/3.5-5.6 SAM](../../src/lens-data/sony/SonyDT18135mmf3556SAM.data.ts) | L22 | Biconcave Negative | -24.02 | -24.02 | 0.00 | -0.01% | — |
 | [SONY ZEISS VARIO-SONNAR T* 9-72mm f/2.8-4.5 (Sony Cyber-shot RX100 VI / RX100 VII)](../../src/lens-data/sony/ZeissVarioSonnarT9072mmf2845SonyDSCRX100M67.data.ts) | L51 | Positive Meniscus | 51.63 | 51.63 | 0.00 | +0.01% | — |
 | [CANON RF 100-500mm f/4.5-7.1 L IS USM](../../src/lens-data/canon/CanonRF100500mmf4571LISUSM.data.ts) | L33 | Biconcave Negative | -44.06 | -44.06 | 0.00 | +0.01% | — |
 | [FUJIFILM FUJINON XF 200mm f/2 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmXF200mmf2R.data.ts) | L1c | Biconvex Positive | 145.60 | 145.59 | -0.01 | -0.01% | — |
@@ -3710,6 +3831,7 @@ Sorted by absolute percentage difference, largest first.
 | [FUJIFILM FUJINON GF 20-35mm f/4 R WR](../../src/lens-data/fujifilm/FujifilmGF2035mmf4.data.ts) | L11 | Negative Meniscus | -45.76 | -45.76 | 0.00 | -0.01% | — |
 | [NIKON AF-S NIKKOR 24-70mm f/2.8 G ED](../../src/lens-data/nikon/NikonAFS2470mmf28G.data.ts) | L4g | Biconvex Positive | 74.87 | 74.87 | 0.00 | +0.01% | — |
 | [PENTAX SMC M 40mm f/2.8](../../src/lens-data/pentax/PentaxM40mmf28.data.ts) | L5 | Positive Meniscus | 50.00 | 50.00 | 0.00 | +0.01% | — |
+| [SONY DT 18-135mm f/3.5-5.6 SAM](../../src/lens-data/sony/SonyDT18135mmf3556SAM.data.ts) | L33 | Negative Meniscus | -72.79 | -72.79 | 0.00 | +0.01% | — |
 | [CANON RF 35mm f/1.8 MACRO IS STM](../../src/lens-data/canon/CanonRF35mmF18MACROISSTM.data.ts) | E2 | Biconvex Positive | 47.64 | 47.64 | 0.00 | +0.01% | — |
 | [NIKON AF-P DX NIKKOR 18-55mm f/3.5-5.6 G VR](../../src/lens-data/nikon/NikonAFPDX1855mmf3556G.data.ts) | L12 | Negative Meniscus | -30.61 | -30.61 | 0.00 | -0.01% | — |
 | [CANON EF-M 18-150mm f/3.5-6.3 IS STM](../../src/lens-data/canon/CanonEFM18150mmf3563ISSTM.data.ts) | L9 | Meniscus Negative | -31.33 | -31.33 | 0.00 | -0.01% | — |
@@ -3720,6 +3842,8 @@ Sorted by absolute percentage difference, largest first.
 | [VIVITAR SERIES 1 70-210mm f/2.8-4 VMC](../../src/lens-data/vivitar/VivitarSeries170210mmf284.data.ts) | L10 | Biconvex Positive | 55.50 | 55.50 | 0.00 | -0.01% | — |
 | [NIKON FISHEYE-NIKKOR 6mm f/2.8](../../src/lens-data/nikon/NikonFisheyeNikkor6mmf28.data.ts) | L6 | Weak Biconvex Positive | 172.10 | 172.09 | -0.01 | -0.01% | — |
 | [OLYMPUS M.ZUIKO DIGITAL 14-42mm f/3.5-5.6 II R](../../src/lens-data/olympus/OlympusMZuiko1442mmf3556II.data.ts) | L8 | Positive Meniscus | 93.08 | 93.08 | 0.00 | +0.01% | — |
+| [SAMSUNG 18-200mm f/3.5-6.3 ED OIS](../../src/lens-data/samsung/SamsungNX18200mmf3563EDOIS.data.ts) | L6 | Biconvex Positive | 16.32 | 16.32 | 0.00 | -0.01% | — |
+| [KMZ ZENITAR 50mm f/0.95](../../src/lens-data/kmz/KMZZenitar50mmf095.data.ts) | L7 | Plano-Convex | 95.14 | 95.14 | 0.00 | -0.01% | — |
 | [NIKON 1 NIKKOR 32mm f/1.2](../../src/lens-data/nikon/Nikon1Nikkor32mmf12.data.ts) | L13 | Positive Meniscus | 75.31 | 75.31 | 0.00 | -0.01% | — |
 | [VOIGTLÄNDER ULTRON 50mm f/2](../../src/lens-data/voigtlander/VoigtlanderUltron50f2.data.ts) | L1 | Positive Meniscus | 77.79 | 77.79 | 0.00 | -0.01% | — |
 | [CANON RF 24-70mm f/2.8 L IS USM](../../src/lens-data/canon/CanonRF2470f28.data.ts) | L10 | Biconvex Positive | 44.79 | 44.79 | 0.00 | -0.01% | — |
@@ -3727,7 +3851,9 @@ Sorted by absolute percentage difference, largest first.
 | [FUJIFILM FUJINON GF 32-64mm f/4 R LM WR](../../src/lens-data/fujifilm/FujifilmGF3264mmf4.data.ts) | L21r | Aspherical Resin Layer | -402.10 | -402.08 | +0.02 | +0.01% | — |
 | [PANASONIC LUMIX G 14mm f/2.5 II ASPH.](../../src/lens-data/panasonic/PanasonicG14mmf25II.data.ts) | L3 | Negative Meniscus | -8.16 | -8.16 | 0.00 | +0.01% | — |
 | [FUJIFILM FUJINON GF 23mm f/4 R LM WR](../../src/lens-data/fujifilm/FujifilmGF23mmf4.data.ts) | L32 | Plano-Concave Negative | -31.55 | -31.55 | 0.00 | -0.01% | — |
+| [KMZ ZENITAR 50mm f/0.95](../../src/lens-data/kmz/KMZZenitar50mmf095.data.ts) | L8 | Positive Meniscus | 72.43 | 72.43 | 0.00 | -0.01% | — |
 | [CANON RF 24-70mm f/2.8 L IS USM](../../src/lens-data/canon/CanonRF2470f28.data.ts) | L20 | Negative Meniscus (2× Asph) | -91.93 | -91.93 | 0.00 | +0.01% | — |
+| [MEIKE AF 85mm f/1.8 FF STM](../../src/lens-data/meike/Meike85mmf18.data.ts) | L8 | Biconvex Positive | 54.54 | 54.54 | 0.00 | +0.01% | — |
 | [NIKON NIKKOR 35mm f/2.8 (Nikon 35Ti)](../../src/lens-data/nikon/Nikon35Ti35mmf28.data.ts) | L1 | Positive Meniscus | 45.04 | 45.04 | 0.00 | -0.01% | — |
 | [VOIGTLÄNDER ULTRON 50mm f/2](../../src/lens-data/voigtlander/VoigtlanderUltron50f2.data.ts) | L6 | Biconvex Positive | 45.62 | 45.62 | 0.00 | -0.01% | — |
 | [CANON EF-M 18-55mm f/3.5-5.6 IS STM](../../src/lens-data/canon/CanonEFM1855mmf3556ISSTM.data.ts) | LRb | Biconcave Negative | -18.26 | -18.26 | 0.00 | -0.01% | — |
@@ -3752,6 +3878,7 @@ Sorted by absolute percentage difference, largest first.
 | [SONY FE 20-70mm f/4 G](../../src/lens-data/sony/SonyFE2070mmf4G.data.ts) | L23 | Biconvex Positive | 35.10 | 35.10 | 0.00 | -0.01% | — |
 | [OLYMPUS M.ZUIKO DIGITAL 17mm f/1.8](../../src/lens-data/olympus/OlympusMZuiko17mmf18.data.ts) | L1 | Negative Meniscus (2× Asph) | -25.86 | -25.86 | 0.00 | -0.01% | — |
 | [NIKON AF-S NIKKOR 24mm f/1.8 G ED](../../src/lens-data/nikon/NikonAFSNikkor24mmf18GED.data.ts) | L6 | Biconvex Positive | 35.62 | 35.62 | 0.00 | +0.01% | — |
+| [OLYMPUS ZUIKO AUTO-ZOOM 75-150mm f/4](../../src/lens-data/olympus/OlympusZuikoAutoZoom75150mmf4.data.ts) | L8 | Negative Meniscus | -86.66 | -86.66 | 0.00 | +0.01% | — |
 | [CANON TS-E 90mm f/2.8 L MACRO](../../src/lens-data/canon/CanonTSE90mmf28L.data.ts) | L10 | Biconcave Negative | -85.02 | -85.02 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON GF 80mm f/1.7 R WR](../../src/lens-data/fujifilm/FujifilmGF80mmf17R.data.ts) | L11 | Positive Meniscus | 168.20 | 168.21 | +0.01 | 0.00% | — |
 | [MINOLTA AF 70-200mm f/2.8 APO G (D) SSM](../../src/lens-data/minolta/MinoltaAF70200mmf28APO.data.ts) | L19 | Biconvex Positive | 94.66 | 94.66 | 0.00 | 0.00% | — |
@@ -3779,6 +3906,7 @@ Sorted by absolute percentage difference, largest first.
 | [FUJIFILM FUJINON GF 45mm f/2.8 R WR](../../src/lens-data/fujifilm/FujifilmGF45mmf28.data.ts) | L3b | Plano-Concave Negative | -62.65 | -62.65 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON XF 200mm f/2 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmXF200mmf2R.data.ts) | L1a | Biconvex Positive | 403.10 | 403.12 | +0.02 | 0.00% | — |
 | [NIKON AF-S NIKKOR 28mm f/1.4 E ED](../../src/lens-data/nikon/NikonAFS28f14E.data.ts) | L12 | Negative Meniscus | -68.37 | -68.37 | 0.00 | 0.00% | — |
+| [MEIKE AF 85mm f/1.8 FF STM](../../src/lens-data/meike/Meike85mmf18.data.ts) | L3 | Positive Meniscus | 53.90 | 53.90 | 0.00 | 0.00% | — |
 | [PENTAX SMC 67 MACRO 100mm f/4](../../src/lens-data/pentax/PentaxSMC67100mmf4.data.ts) | LM6 | Positive Meniscus | 55.51 | 55.51 | 0.00 | 0.00% | — |
 | [HASSELBLAD XCD 65mm f/2.8](../../src/lens-data/hasselblad/HasselbladXCD65mmf28.data.ts) | L11 | Negative Meniscus | -135.10 | -135.11 | -0.01 | 0.00% | — |
 | [PENTAX HD D FA* 50mm f/1.4 SDM AW](../../src/lens-data/pentax/PentaxDFA50mmf14SDM.data.ts) | L12 | Biconcave Negative | -60.70 | -60.70 | 0.00 | 0.00% | — |
@@ -3807,16 +3935,20 @@ Sorted by absolute percentage difference, largest first.
 | [OLYMPUS M.ZUIKO DIGITAL 14-42mm f/3.5-5.6 II R](../../src/lens-data/olympus/OlympusMZuiko1442mmf3556II.data.ts) | L7 | Neg. Meniscus (2× Asph) | -53.28 | -53.28 | 0.00 | 0.00% | — |
 | [CANON RF 50mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF50mmf14LVCM.data.ts) | E11 | Biconvex Positive | 44.33 | 44.33 | 0.00 | 0.00% | — |
 | [CANON RF 70-200mm f/2.8 L IS USM](../../src/lens-data/canon/CanonRF70200f28.data.ts) | L14 | Biconvex Positive | 59.90 | 59.90 | 0.00 | 0.00% | — |
+| [YONGNUO YN 56mm f/1.4 S DA DSM WL PRO](../../src/lens-data/yongnuo/YongnuoYN56mmf14.data.ts) | G4 | Biconvex Positive | 38.50 | 38.50 | 0.00 | 0.00% | — |
 | [CANON RF 50mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF50mmf14LVCM.data.ts) | E14 | Biconcave Negative | -39.88 | -39.88 | 0.00 | 0.00% | — |
+| [MEIKE 50mm f/0.95](../../src/lens-data/meike/Meike50mmf095.data.ts) | L1 | Positive Meniscus | 71.84 | 71.84 | 0.00 | 0.00% | — |
 | [VIVITAR SERIES 1 200mm f/3 VMC](../../src/lens-data/vivitar/VivitarSeries1200mmf3.data.ts) | L1 | Positive Meniscus | 101.40 | 101.40 | 0.00 | 0.00% | — |
 | [CARL ZEISS TESSAR 50mm f/3.5](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissTessar50mmf35.data.ts) | L1 | Positive Meniscus | 25.35 | 25.35 | 0.00 | 0.00% | — |
 | [CANON EF 17-40mm f/4 L USM](../../src/lens-data/canon/CanonEF1740mmf4LUSM.data.ts) | E5 | Biconvex Positive | 32.10 | 32.10 | 0.00 | 0.00% | — |
 | [OLYMPUS ZUIKO DIGITAL ED 150mm f/2.0](../../src/lens-data/olympus/OlympusMZuiko150mmf2ED.data.ts) | L11 | Biconvex Positive | 403.20 | 403.22 | +0.02 | 0.00% | — |
+| [KMZ ZENITAR 50mm f/0.95](../../src/lens-data/kmz/KMZZenitar50mmf095.data.ts) | L5 | Positive Meniscus | 81.88 | 81.88 | 0.00 | 0.00% | — |
 | [SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) | L12 | Biconvex Positive | 242.80 | 242.79 | -0.01 | 0.00% | — |
 | [CANON EF-S 10-22mm f/3.5-4.5 USM](../../src/lens-data/canon/CanonEFS1022mmf3545.data.ts) | G11 | Negative Meniscus (1× Asph) | -32.40 | -32.40 | 0.00 | 0.00% | — |
 | [NIKON NIKKOR Z 35mm f/1.8 S](../../src/lens-data/nikon/NikonZ35f18S.data.ts) | L12 | Biconvex Positive | 31.32 | 31.32 | 0.00 | 0.00% | — |
 | [NIKON AI NIKKOR 35mm f/1.4 S](../../src/lens-data/nikon/NikonAINikkor35mmf14S.data.ts) | L8 | Biconvex Positive | 73.57 | 73.57 | 0.00 | 0.00% | — |
 | [SONY ZEISS VARIO-SONNAR T* 8.8-73.3mm f/2.8 (Sony Cyber-shot DSC-RX10 / DSC-RX10 II)](../../src/lens-data/sony/ZeissVarioSonnarT88733mmf28SonyDSCRX10M12.data.ts) | L13 | Biconvex Pos. (2x Asph) | 17.63 | 17.63 | 0.00 | 0.00% | — |
+| [LAOWA 200mm f/2 AF FF](../../src/lens-data/laowa/Laowa200mmf2AFFF.data.ts) | L8 | Negative Meniscus | -73.48 | -73.48 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON GF 55mm f/1.7 R WR](../../src/lens-data/fujifilm/FujifilmGF55mmf17.data.ts) | L21 | Positive Meniscus | 58.40 | 58.40 | 0.00 | 0.00% | — |
 | [SIGMA 50mm f/1.4 DG HSM \| Art](../../src/lens-data/sigma/Sigma50mmf14DGHSMA.data.ts) | L10 | Biconvex Positive | 70.10 | 70.10 | 0.00 | 0.00% | — |
 | [CANON RF 10-20mm f/4 L IS STM](../../src/lens-data/canon/CanonRF1020mmF4LISSTM.data.ts) | E14 | Negative Meniscus | -80.07 | -80.07 | 0.00 | 0.00% | — |
@@ -3828,6 +3960,7 @@ Sorted by absolute percentage difference, largest first.
 | [NIKON AF-S NIKKOR 28-300mm f/3.5-5.6 G ED VR](../../src/lens-data/nikon/NikonNikkorAFS28300mmf3556G.data.ts) | L33 | Negative Meniscus | -55.50 | -55.50 | 0.00 | 0.00% | — |
 | [SONY FE 90mm f/2.8 Macro G OSS](../../src/lens-data/sony/SonyFE90mmf28.data.ts) | G1 | Biconvex Positive | 77.27 | 77.27 | 0.00 | 0.00% | — |
 | [CANON RF 35mm f/1.8 MACRO IS STM](../../src/lens-data/canon/CanonRF35mmF18MACROISSTM.data.ts) | E11 | Negative Meniscus | -68.42 | -68.42 | 0.00 | 0.00% | — |
+| [KMZ ZENITAR 50mm f/0.95](../../src/lens-data/kmz/KMZZenitar50mmf095.data.ts) | L4 | Negative Meniscus | -47.13 | -47.13 | 0.00 | 0.00% | — |
 | [CANON RF 85mm f/1.2 L USM](../../src/lens-data/canon/CanonRF85mmf12L.data.ts) | L8 | Biconcave Negative | -48.60 | -48.60 | 0.00 | 0.00% | — |
 | [CARL ZEISS TOUIT MAKRO-PLANAR T* 50mm f/2.8 Macro](../../src/lens-data/carl-zeiss-oberkochen/ZeissTouit50mmf28Macro.data.ts) | L42 | Biconvex Positive | 25.65 | 25.65 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON GF 20-35mm f/4 R WR](../../src/lens-data/fujifilm/FujifilmGF2035mmf4.data.ts) | L51 | Positive Meniscus Dense Lanthanum Flint | 62.30 | 62.30 | 0.00 | 0.00% | — |
@@ -3857,6 +3990,7 @@ Sorted by absolute percentage difference, largest first.
 | [NIKON AF-S NIKKOR 20mm f/1.8 G ED](../../src/lens-data/nikon/NikonNikkorAFS20mmf18G.data.ts) | L13 | Biconcave Negative | -66.21 | -66.21 | 0.00 | 0.00% | — |
 | [CANON EF 70-200mm f/2.8 L IS II USM](../../src/lens-data/canon/CanonEF70200mmf28LII.data.ts) | L4 | Negative Meniscus | -384.00 | -383.98 | +0.02 | 0.00% | — |
 | [NIKON AF-S DX NIKKOR 55-200mm f/4-5.6 G ED VR II](../../src/lens-data/nikon/NikonAFSDX55200mmf456G.data.ts) | L31 | Biconvex Positive | 50.10 | 50.10 | 0.00 | 0.00% | — |
+| [MINOLTA AF 24-105mm f/3.5-4.5 (D)](../../src/lens-data/minolta/MinoltaAF24105mmf3545D.data.ts) | L8 | Biconvex Positive | 34.15 | 34.15 | 0.00 | 0.00% | — |
 | [OLYMPUS ZUIKO AUTO-ZOOM 85-250mm f/5](../../src/lens-data/olympus/OlympusZuikoAutoZoom85250mmf5.data.ts) | L10 | Biconvex Positive | 75.10 | 75.10 | 0.00 | 0.00% | — |
 | [CANON EF 17-40mm f/4 L USM](../../src/lens-data/canon/CanonEF1740mmf4LUSM.data.ts) | E12 | Biconvex Positive | 29.31 | 29.31 | 0.00 | 0.00% | — |
 | [PENTAX HD D FA 21mm f/2.4 ED Limited DC WR](../../src/lens-data/pentax/PentaxHDDFA21mmf24Limited.data.ts) | L7A | Positive Meniscus | 49.72 | 49.72 | 0.00 | 0.00% | — |
@@ -3887,6 +4021,7 @@ Sorted by absolute percentage difference, largest first.
 | [SIGMA 50mm f/2.8 (Sigma DP3 Merrill)](../../src/lens-data/sigma/SigmaDP3M50mmf28.data.ts) | L2 | Biconvex Positive | 27.60 | 27.60 | 0.00 | 0.00% | — |
 | [NIKON NIKKOR Z 70-200mm f/2.8 VR S II](../../src/lens-data/nikon/NikonNikkorZ70200mmf28VRSII.data.ts) | L43 | Negative Meniscus | -35.20 | -35.20 | 0.00 | 0.00% | — |
 | [LAOWA 15mm f/2 Zero-D](../../src/lens-data/laowa/Laowa15mmf2ZeroD.data.ts) | L12 | Neg. Meniscus (2x Asph) | -91.42 | -91.42 | 0.00 | 0.00% | — |
+| [SAMSUNG 18-200mm f/3.5-6.3 ED OIS](../../src/lens-data/samsung/SamsungNX18200mmf3563EDOIS.data.ts) | L14 | Positive Meniscus | 29.01 | 29.01 | 0.00 | 0.00% | — |
 | [NIKON GYOGYOTTO 20mm f/8](../../src/lens-data/nikon/NikonGyogyotto20mmf8.data.ts) | L1 | Plano-Concave Negative | -32.77 | -32.77 | 0.00 | 0.00% | — |
 | [CANON RF-S 14-30mm f/4-6.3 IS STM PZ](../../src/lens-data/canon/CanonRFS1430mmF463ISSTMPZ.data.ts) | G21 | Positive Meniscus | 83.51 | 83.51 | 0.00 | 0.00% | — |
 | [RICOH GR LENS 18.3mm f/2.8 (Ricoh GR / GR II)](../../src/lens-data/ricoh/RicohGR218mmf28.data.ts) | L7 | Neg. Meniscus (1× Asph) | -240.00 | -239.99 | +0.01 | 0.00% | — |
@@ -3896,8 +4031,10 @@ Sorted by absolute percentage difference, largest first.
 | [NIKON GYOGYOTTO 20mm f/8](../../src/lens-data/nikon/NikonGyogyotto20mmf8.data.ts) | L2 | Thick Negative Meniscus | -45.50 | -45.50 | 0.00 | 0.00% | — |
 | [OLYMPUS ZUIKO AUTO-FISHEYE 8mm f/2.8](../../src/lens-data/olympus/OlympusZuikoAutoFisheye8mmf28.data.ts) | L8 | Positive Meniscus | 80.20 | 80.20 | 0.00 | 0.00% | — |
 | [MINOLTA MD ZOOM 24-50mm f/4](../../src/lens-data/minolta/Minolta2450mmf4MDZoom.data.ts) | L6 | Positive Meniscus | 78.80 | 78.80 | 0.00 | 0.00% | — |
+| [YONGNUO YN 50mm f/1.4](../../src/lens-data/yongnuo/YongnuoYN50mmf14.data.ts) | L35 | Biconvex Positive | 48.28 | 48.28 | 0.00 | 0.00% | — |
 | [NIKON NIKKOR Z 35mm f/1.2 S](../../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) | L14 | Negative Meniscus | -54.10 | -54.10 | 0.00 | 0.00% | — |
 | [NIKON AI NIKKOR 35mm f/1.4 S](../../src/lens-data/nikon/NikonAINikkor35mmf14S.data.ts) | L1 | Negative Meniscus | -100.47 | -100.47 | 0.00 | 0.00% | — |
+| [SONY DT 18-135mm f/3.5-5.6 SAM](../../src/lens-data/sony/SonyDT18135mmf3556SAM.data.ts) | L24 | Negative Meniscus | -40.08 | -40.08 | 0.00 | 0.00% | — |
 | [CANON FD 28mm f/2.8 S.C.](../../src/lens-data/canon/CanonFD28mmf28.data.ts) | L1 | Negative Meniscus | -54.45 | -54.45 | 0.00 | 0.00% | — |
 | [CANON 12.5-62.5mm f/2-3.9 (Canon PowerShot G1 X Mark II)](../../src/lens-data/canon/CanonPowerShotG1XII125625mmf239.data.ts) | L11 | Biconvex Positive | 29.51 | 29.51 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON GF 100-200mm f/5.6 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmGF100200mmf56.data.ts) | L24 | Positive Meniscus | 48.69 | 48.69 | 0.00 | 0.00% | — |
@@ -3944,6 +4081,7 @@ Sorted by absolute percentage difference, largest first.
 | [SONY 70-400mm f/4-5.6 G SSM II](../../src/lens-data/sony/SonySAL70400mmf456G.data.ts) | L53 | Negative Meniscus | -54.37 | -54.37 | 0.00 | 0.00% | — |
 | [SONY FE 12-24mm f/2.8 GM](../../src/lens-data/sony/SonyFE1224mmf28GM.data.ts) | L14 | Biconcave Negative | -114.47 | -114.47 | 0.00 | 0.00% | — |
 | [LAOWA 15mm f/2 Zero-D](../../src/lens-data/laowa/Laowa15mmf2ZeroD.data.ts) | L7 | Biconcave Negative | -39.62 | -39.62 | 0.00 | 0.00% | — |
+| [SAMSUNG 18-200mm f/3.5-6.3 ED OIS](../../src/lens-data/samsung/SamsungNX18200mmf3563EDOIS.data.ts) | L18 | Biconvex Positive | 36.77 | 36.77 | 0.00 | 0.00% | — |
 | [NIKON AF-S NIKKOR 28mm f/1.4 E ED](../../src/lens-data/nikon/NikonAFS28f14E.data.ts) | L28 | Pos. Meniscus (2× Asph) | 99.11 | 99.11 | 0.00 | 0.00% | — |
 | [SONY E 35mm f/1.8 OSS](../../src/lens-data/sony/SonyE35mmf18.data.ts) | L121 | Negative Meniscus | -29.59 | -29.59 | 0.00 | 0.00% | — |
 | [VOIGTLÄNDER MACRO APO-LANTHAR 125mm f/2.5 SL](../../src/lens-data/voigtlander/VoigtlanderMacroApoLanthar125mmf25.data.ts) | L41 | Positive Meniscus | 390.30 | 390.28 | -0.02 | 0.00% | — |
@@ -3953,9 +4091,11 @@ Sorted by absolute percentage difference, largest first.
 | [CANON RF 15-35mm f/2.8 L IS USM](../../src/lens-data/canon/CanonRF1535f28.data.ts) | L3 | Biconcave Negative | -50.16 | -50.16 | 0.00 | 0.00% | — |
 | [SONY 70-400mm f/4-5.6 G SSM II](../../src/lens-data/sony/SonySAL70400mmf456G.data.ts) | L63 | Biconcave Negative | -51.49 | -51.49 | 0.00 | 0.00% | — |
 | [LAOWA 15mm f/4 Wide Angle 1:1 Macro](../../src/lens-data/laowa/Laowa15mmf4Macro.data.ts) | L1 | Positive Meniscus | 177.60 | 177.59 | -0.01 | 0.00% | — |
+| [KMZ ZENITAR 50mm f/1.2 S](../../src/lens-data/kmz/KMZZenitar50mmf12S.data.ts) | L8 | Plano-Convex Positive | 94.78 | 94.78 | 0.00 | 0.00% | — |
 | [NIKON NIKKOR Z 24-200mm f/4-6.3 VR](../../src/lens-data/nikon/NikonNikkorZ24200mmf463VR.data.ts) | L33 | Biconvex Positive | 28.70 | 28.70 | 0.00 | 0.00% | — |
 | [CANON EF 70-300mm f/4-5.6 L IS USM](../../src/lens-data/canon/CanonEF70300mmf4556L.data.ts) | L2 | Negative Meniscus | -131.00 | -131.01 | -0.01 | 0.00% | — |
 | [CANON RF 100-500mm f/4.5-7.1 L IS USM](../../src/lens-data/canon/CanonRF100500mmf4571LISUSM.data.ts) | L51 | Positive Meniscus | 63.84 | 63.84 | 0.00 | 0.00% | — |
+| [MINOLTA AF 24-105mm f/3.5-4.5 (D)](../../src/lens-data/minolta/MinoltaAF24105mmf3545D.data.ts) | L10 | Biconcave Negative | -27.83 | -27.83 | 0.00 | 0.00% | — |
 | [RICOH GR LENS 18.3mm f/2.8 (Ricoh GR / GR II)](../../src/lens-data/ricoh/RicohGR218mmf28.data.ts) | L1 | Neg. Meniscus (1× Asph) | -27.97 | -27.97 | 0.00 | 0.00% | — |
 | [SONY ZEISS VARIO-SONNAR T* 8.8-73.3mm f/2.8 (Sony Cyber-shot DSC-RX10 / DSC-RX10 II)](../../src/lens-data/sony/ZeissVarioSonnarT88733mmf28SonyDSCRX10M12.data.ts) | L2 | Positive Meniscus | 101.43 | 101.43 | 0.00 | 0.00% | — |
 | [NIKON AI ZOOM-NIKKOR 360-1200mm f/11 ED](../../src/lens-data/nikon/NikonAIZoomNikkor3601200mmf11ED.data.ts) | L12 | Biconvex Positive | 217.30 | 217.29 | -0.01 | 0.00% | — |
@@ -3965,6 +4105,7 @@ Sorted by absolute percentage difference, largest first.
 | [FUJIFILM EBC FUJINON-W 35mm f/1.9](../../src/lens-data/fujifilm/FujifilmFujinonW35mmf19.data.ts) | L7 | Positive Meniscus | 71.05 | 71.05 | 0.00 | 0.00% | — |
 | [SONY FE 12-24mm f/2.8 GM](../../src/lens-data/sony/SonyFE1224mmf28GM.data.ts) | L13 | Biconcave Negative | -88.93 | -88.93 | 0.00 | 0.00% | — |
 | [CANON EF 100mm f/2.8 L Macro IS USM](../../src/lens-data/canon/CanonEF100mmf28LIS.data.ts) | E3 | Biconcave Negative | -41.45 | -41.45 | 0.00 | 0.00% | — |
+| [CANON RF 24mm f/1.8 Macro IS STM](../../src/lens-data/canon/CanonRF24mmf18MacroISSTM.data.ts) | L5 | Biconvex Positive | 81.14 | 81.14 | 0.00 | 0.00% | — |
 | [CARL ZEISS DISTAGON T* 28mm f/2](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon28mmf2.data.ts) | L4c | Biconvex Positive | 45.29 | 45.29 | 0.00 | 0.00% | — |
 | [NIKON AF-S NIKKOR 70-200mm f/2.8 E FL ED VR](../../src/lens-data/nikon/NikonNikkorAFS70200mmf28E.data.ts) | L21 | Negative Meniscus | -93.90 | -93.90 | 0.00 | 0.00% | — |
 | [NIKON AF-S VR MICRO-NIKKOR 105mm f/2.8 G IF-ED](../../src/lens-data/nikon/NikonAFS105f28G.data.ts) | L13 | Negative Meniscus | -113.38 | -113.38 | 0.00 | 0.00% | — |
@@ -3977,6 +4118,7 @@ Sorted by absolute percentage difference, largest first.
 | [FUJIFILM FUJINON GF 55mm f/1.7 R WR](../../src/lens-data/fujifilm/FujifilmGF55mmf17.data.ts) | L22 | Biconvex Positive | 82.97 | 82.97 | 0.00 | 0.00% | — |
 | [CANON EF 20-35mm f/2.8 L](../../src/lens-data/canon/CanonEF2035mmf28L.data.ts) | L2 | Positive Meniscus | 191.20 | 191.19 | -0.01 | 0.00% | — |
 | [PENTAX DA 70mm f/2.4 Limited](../../src/lens-data/pentax/PentaxDA70mmf24Limited.data.ts) | L4 | Negative Meniscus | -53.30 | -53.30 | 0.00 | 0.00% | — |
+| [OLYMPUS ZUIKO AUTO-ZOOM 75-150mm f/4](../../src/lens-data/olympus/OlympusZuikoAutoZoom75150mmf4.data.ts) | L15 | Biconcave Negative | -36.36 | -36.36 | 0.00 | 0.00% | — |
 | [FUJIFILM SUPER EBC FUJINON 45mm f/4 (Fujifilm GA645W/GA645Wi Professional)](../../src/lens-data/fujifilm/FujifilmGA645WidePro45mmf4.data.ts) | L1 | Negative Meniscus | -82.69 | -82.69 | 0.00 | 0.00% | — |
 | [NIKON 1 NIKKOR 10mm f/2.8](../../src/lens-data/nikon/Nikon1Nikkor10mmf28.data.ts) | L25 | Biconvex Positive (1× Asph) | 14.65 | 14.65 | 0.00 | 0.00% | — |
 | [CARL ZEISS JENA CARDINAR 100mm f/4](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaCardinar100mmf4.data.ts) | L5 | Positive Meniscus | 87.49 | 87.49 | 0.00 | 0.00% | — |
@@ -4007,6 +4149,7 @@ Sorted by absolute percentage difference, largest first.
 | [SIGMA 15mm f/1.4 DG DN DIAGONAL FISHEYE \| Art](../../src/lens-data/sigma/Sigma15mmf14DGDNDiagonalFisheyeArt.data.ts) | L18 | Biconvex Positive | 53.80 | 53.80 | 0.00 | 0.00% | — |
 | [CANON FL 300mm f/2.8 S.S.C. FLUORITE](../../src/lens-data/canon/CanonFL300mmf28SSCFluorite.data.ts) | L4 | Negative Meniscus | -124.66 | -124.66 | 0.00 | 0.00% | — |
 | [CANON RF 100mm f/2.8 L MACRO IS USM](../../src/lens-data/canon/CanonRF100f28.data.ts) | L16 | Positive Meniscus | 106.82 | 106.82 | 0.00 | 0.00% | — |
+| [CANON RF 24mm f/1.8 Macro IS STM](../../src/lens-data/canon/CanonRF24mmf18MacroISSTM.data.ts) | L7 | Biconvex Positive | 41.73 | 41.73 | 0.00 | 0.00% | — |
 | [NIKON NIKKOR Z 58mm f/0.95 S Noct](../../src/lens-data/nikon/NikonZ58f095SNoct.data.ts) | L22 | Biconvex Positive | 115.19 | 115.19 | 0.00 | 0.00% | — |
 | [CANON RF 16-28mm f/2.8 IS STM](../../src/lens-data/canon/CanonRF1628mmF28ISSTM.data.ts) | E7 | Biconvex Positive | 40.51 | 40.51 | 0.00 | 0.00% | — |
 | [PENTAX SMC A* 200mm f/4 MACRO ED](../../src/lens-data/pentax/PentaxA200mmf4MacroED.data.ts) | L8 | Positive Meniscus | 178.00 | 177.99 | -0.01 | 0.00% | — |
@@ -4074,14 +4217,17 @@ Sorted by absolute percentage difference, largest first.
 | [SONY ZEISS VARIO-SONNAR T* 8.8-73.3mm f/2.8 (Sony Cyber-shot DSC-RX10 / DSC-RX10 II)](../../src/lens-data/sony/ZeissVarioSonnarT88733mmf28SonyDSCRX10M12.data.ts) | L3 | Positive Meniscus | 123.56 | 123.56 | 0.00 | 0.00% | — |
 | [CANON EF 100mm f/2.8 L Macro IS USM](../../src/lens-data/canon/CanonEF100mmf28LIS.data.ts) | E13 | Biconcave Negative | -35.53 | -35.53 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON GF 35-70mm f/4.5-5.6 WR](../../src/lens-data/fujifilm/FujifilmGF3570mmf4556.data.ts) | L22 | Neg. Meniscus (2× Asph) | -51.90 | -51.90 | 0.00 | 0.00% | — |
+| [CANON RF 24mm f/1.8 Macro IS STM](../../src/lens-data/canon/CanonRF24mmf18MacroISSTM.data.ts) | L11 | Negative Meniscus | -104.12 | -104.12 | 0.00 | 0.00% | — |
 | [NIKON NIKKOR Z 58mm f/0.95 S Noct](../../src/lens-data/nikon/NikonZ58f095SNoct.data.ts) | L32 | Biconcave Negative | -47.48 | -47.48 | 0.00 | 0.00% | — |
 | [CARL ZEISS JENA VARIO-PRAKTICAR 35-70mm f/2.7-3.5 MC](../../src/lens-data/carl-zeiss-jena/ZeissVarioPrakticar3570mmf2735.data.ts) | L5 | Negative Meniscus | -98.67 | -98.67 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON GF 55mm f/1.7 R WR](../../src/lens-data/fujifilm/FujifilmGF55mmf17.data.ts) | L32 | Biconcave Negative | -39.54 | -39.54 | 0.00 | 0.00% | — |
+| [YONGNUO YN 50mm f/1.4](../../src/lens-data/yongnuo/YongnuoYN50mmf14.data.ts) | L34 | Biconcave Negative | -23.95 | -23.95 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON GF 23mm f/4 R LM WR](../../src/lens-data/fujifilm/FujifilmGF23mmf4.data.ts) | L34 | Biconcave Negative | -99.21 | -99.21 | 0.00 | 0.00% | — |
 | [NIKON AF NIKKOR 28mm f/1.4 D](../../src/lens-data/nikon/NikonAF28f14D.data.ts) | L7 | Pos. Meniscus (1× Asph) | 95.10 | 95.10 | 0.00 | 0.00% | — |
 | [NIKON NIKKOR Z 70-200mm f/2.8 VR S II](../../src/lens-data/nikon/NikonNikkorZ70200mmf28VRSII.data.ts) | L32 | Positive Meniscus | 88.10 | 88.10 | 0.00 | 0.00% | — |
 | [CANON EF-S 55-250mm f/4-5.6 IS STM](../../src/lens-data/canon/CanonEFS55250mmf456ISSTM.data.ts) | L11 | Plano-Convex Positive | 145.05 | 145.05 | 0.00 | 0.00% | — |
 | [NIKON 1 NIKKOR 32mm f/1.2](../../src/lens-data/nikon/Nikon1Nikkor32mmf12.data.ts) | L17 | Positive Meniscus | 55.98 | 55.98 | 0.00 | 0.00% | — |
+| [KMZ ZENITAR 35mm f/1](../../src/lens-data/kmz/KMZZenitar35mmf1.data.ts) | L2 | Biconvex Positive | 84.66 | 84.66 | 0.00 | 0.00% | — |
 | [RODENSTOCK GERONAR-WA 90mm f/8](../../src/lens-data/rodenstock/RodenstockGeronarWA90mmf8.data.ts) | L2 | Negative Meniscus | -77.72 | -77.72 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON GF 100-200mm f/5.6 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmGF100200mmf56.data.ts) | L11 | Negative Meniscus | -119.46 | -119.46 | 0.00 | 0.00% | — |
 | [NIKON AF-S VR MICRO-NIKKOR 105mm f/2.8 G IF-ED](../../src/lens-data/nikon/NikonAFS105f28G.data.ts) | L10 | Biconvex Positive | 32.77 | 32.77 | 0.00 | 0.00% | — |
@@ -4093,6 +4239,7 @@ Sorted by absolute percentage difference, largest first.
 | [NIKON AI NIKKOR 35mm f/1.4 S](../../src/lens-data/nikon/NikonAINikkor35mmf14S.data.ts) | L4 | Biconcave Negative | -62.44 | -62.44 | 0.00 | 0.00% | — |
 | [OLYMPUS ZUIKO AUTO-W 21mm f/2](../../src/lens-data/olympus/OlympusZuikoAuto21mmf2.data.ts) | L4b | Plano-Convex | 686.40 | 686.38 | -0.02 | 0.00% | — |
 | [CANON RF 100mm f/2.8 L MACRO IS USM](../../src/lens-data/canon/CanonRF100f28.data.ts) | L12 | Plano-Convex Positive | 57.69 | 57.69 | 0.00 | 0.00% | — |
+| [KMZ ZENITAR 35mm f/1](../../src/lens-data/kmz/KMZZenitar35mmf1.data.ts) | L1 | Negative Meniscus | -59.44 | -59.44 | 0.00 | 0.00% | — |
 | [NIKON AF-S VR MICRO-NIKKOR 105mm f/2.8 G IF-ED](../../src/lens-data/nikon/NikonAFS105f28G.data.ts) | L4 | Plano-Convex | 50.73 | 50.73 | 0.00 | 0.00% | — |
 | [CANON RF 24-70mm f/2.8 L IS USM](../../src/lens-data/canon/CanonRF2470f28.data.ts) | L18 | Biconcave Negative (2× Asph) | -126.62 | -126.62 | 0.00 | 0.00% | — |
 | [NIKON GUGUTTO MACRO 120mm f/4.5](../../src/lens-data/nikon/NikonGugotto120mmf45.data.ts) | L2 | Biconcave Negative | -72.95 | -72.95 | 0.00 | 0.00% | — |
@@ -4100,20 +4247,24 @@ Sorted by absolute percentage difference, largest first.
 | [CANON RF 24-240mm f/4-6.3 IS USM](../../src/lens-data/canon/CanonRF24240mmf463.data.ts) | L15 | Biconcave Negative | -99.60 | -99.60 | 0.00 | 0.00% | — |
 | [MINOLTA AF 70-200mm f/2.8 APO G (D) SSM](../../src/lens-data/minolta/MinoltaAF70200mmf28APO.data.ts) | L5 | Positive Meniscus | 93.41 | 93.41 | 0.00 | 0.00% | — |
 | [SONY FE 24mm f/2.8 G](../../src/lens-data/sony/SonyFE24mmf28G.data.ts) | L8 | Biconcave Negative | -25.62 | -25.62 | 0.00 | 0.00% | — |
+| [SONY DT 18-135mm f/3.5-5.6 SAM](../../src/lens-data/sony/SonyDT18135mmf3556SAM.data.ts) | L11 | Negative Meniscus | -135.61 | -135.61 | 0.00 | 0.00% | — |
 | [NIKON AF-P DX NIKKOR 18-55mm f/3.5-5.6 G VR](../../src/lens-data/nikon/NikonAFPDX1855mmf3556G.data.ts) | L31 | Negative Meniscus | -60.90 | -60.90 | 0.00 | 0.00% | — |
 | [CANON RF 100mm f/2.8 L MACRO IS USM](../../src/lens-data/canon/CanonRF100f28.data.ts) | L11 | Positive Meniscus | 61.70 | 61.70 | 0.00 | 0.00% | — |
 | [NIKON AF-S VR MICRO-NIKKOR 105mm f/2.8 G IF-ED](../../src/lens-data/nikon/NikonAFS105f28G.data.ts) | L5 | Biconcave Negative | -40.85 | -40.85 | 0.00 | 0.00% | — |
 | [CANON RF 100-500mm f/4.5-7.1 L IS USM](../../src/lens-data/canon/CanonRF100500mmf4571LISUSM.data.ts) | L31 | Biconvex Positive | 68.05 | 68.05 | 0.00 | 0.00% | — |
 | [NIKON AF-S NIKKOR 80-400mm f/4.5-5.6 G ED VR](../../src/lens-data/nikon/NikonNikkorAFS80400mmf4556G.data.ts) | L23 | Biconcave Negative | -33.70 | -33.70 | 0.00 | 0.00% | — |
+| [OLYMPUS M.ZUIKO DIGITAL ED 8-25mm f/4.0 PRO](../../src/lens-data/olympus/OlympusMZuiko825mmf4PRO.data.ts) | L14 | Positive Meniscus | 31.80 | 31.80 | 0.00 | 0.00% | — |
 | [SONY FE 24mm f/1.4 GM](../../src/lens-data/sony/SonyFE24mmf14GM.data.ts) | L27 | Biconcave Negative (2× Asph) | -126.92 | -126.92 | 0.00 | 0.00% | — |
 | [OLYMPUS F.ZUIKO AUTO-T 200mm f/5](../../src/lens-data/olympus/OlympusZuikoAutoT200mmf5.data.ts) | L2 | Negative Meniscus | -135.37 | -135.37 | 0.00 | 0.00% | — |
 | [PENTAX SMC FA* 300mm f/4.5 ED [IF]](../../src/lens-data/pentax/PentaxFAStar300mmF45EDIF.data.ts) | L4 | Biconvex Positive | 68.76 | 68.76 | 0.00 | 0.00% | — |
+| [KMZ ZENITAR 50mm f/1.2 S](../../src/lens-data/kmz/KMZZenitar50mmf12S.data.ts) | L6 | Positive Meniscus | 103.47 | 103.47 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON GF 110mm f/2 R LM WR](../../src/lens-data/fujifilm/FujifilmGF110mmf2RLM.data.ts) | L31 | Positive Meniscus | 85.10 | 85.10 | 0.00 | 0.00% | — |
 | [CANON RF 135mm f/1.8 L IS USM](../../src/lens-data/canon/CanonRF135f18.data.ts) | L4 | Negative Meniscus | -45.70 | -45.70 | 0.00 | 0.00% | — |
 | [CANON RF 50mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF50mmf14LVCM.data.ts) | E1 | Positive Meniscus | 144.31 | 144.31 | 0.00 | 0.00% | — |
 | [NIKON AI MICRO-NIKKOR 105mm f/2.8 S](../../src/lens-data/nikon/NikonAIMicroNikkor105mmf28S.data.ts) | L31 | Positive Meniscus | 130.32 | 130.32 | 0.00 | 0.00% | — |
 | [CANON EF-S 55-250mm f/4-5.6 IS STM](../../src/lens-data/canon/CanonEFS55250mmf456ISSTM.data.ts) | L33 | Biconcave Negative | -38.55 | -38.55 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON GF 45mm f/2.8 R WR](../../src/lens-data/fujifilm/FujifilmGF45mmf28.data.ts) | L1c | Positive Meniscus | 63.38 | 63.38 | 0.00 | 0.00% | — |
+| [YONGNUO YN 56mm f/1.4 S DA DSM WL PRO](../../src/lens-data/yongnuo/YongnuoYN56mmf14.data.ts) | G2 | Biconcave Negative | -64.00 | -64.00 | 0.00 | 0.00% | — |
 | [SAMYANG AF 18mm f/2.8 FE](../../src/lens-data/samyang/SamyangAF18mmf28.data.ts) | L51 | Positive Meniscus | 48.97 | 48.97 | 0.00 | 0.00% | — |
 | [PENTAX HD D FA 21mm f/2.4 ED Limited DC WR](../../src/lens-data/pentax/PentaxHDDFA21mmf24Limited.data.ts) | L3A | Negative Meniscus | -95.26 | -95.26 | 0.00 | 0.00% | — |
 | [NIKON AF-P NIKKOR 70-300mm f/4.5-5.6 E ED VR](../../src/lens-data/nikon/NikonAFP70300mmf4556E.data.ts) | L51 | Negative Meniscus | -100.90 | -100.90 | 0.00 | 0.00% | — |
@@ -4126,6 +4277,7 @@ Sorted by absolute percentage difference, largest first.
 | [CANON RF 100-500mm f/4.5-7.1 L IS USM](../../src/lens-data/canon/CanonRF100500mmf4571LISUSM.data.ts) | L32 | Biconvex Positive | 55.31 | 55.31 | 0.00 | 0.00% | — |
 | [CANON RF 135mm f/1.8 L IS USM](../../src/lens-data/canon/CanonRF135f18.data.ts) | L6 | Biconcave Negative | -194.80 | -194.81 | -0.01 | 0.00% | — |
 | [MINOLTA MD ZOOM 28-85mm f/3.5-4.5](../../src/lens-data/minolta/Minolta2885mmf3545MDZoom.data.ts) | E4 | Positive Meniscus | 125.01 | 125.01 | 0.00 | 0.00% | — |
+| [OLYMPUS ZUIKO AUTO-ZOOM 75-150mm f/4](../../src/lens-data/olympus/OlympusZuikoAutoZoom75150mmf4.data.ts) | L13 | Biconcave Negative | -19.73 | -19.73 | 0.00 | 0.00% | — |
 | [CANON EF 8-15mm f/4 L Fisheye USM](../../src/lens-data/canon/CanonEF815mmf4LFisheye.data.ts) | L13 | Biconvex Positive | 31.96 | 31.96 | 0.00 | 0.00% | — |
 | [NIKON 1 NIKKOR 32mm f/1.2](../../src/lens-data/nikon/Nikon1Nikkor32mmf12.data.ts) | L12 | Positive Meniscus | 87.12 | 87.12 | 0.00 | 0.00% | — |
 | [CANON NEW FD 150-600mm f/5.6 L](../../src/lens-data/canon/CanonFD150600mmf56L.data.ts) | L17 | Biconcave Negative | -123.09 | -123.09 | 0.00 | 0.00% | — |
@@ -4142,6 +4294,7 @@ Sorted by absolute percentage difference, largest first.
 | [PANASONIC LUMIX S 35mm f/1.8](../../src/lens-data/panasonic/PanasonicS35mmf18.data.ts) | L18 | Pos. Meniscus (2× Asph) | 76.30 | 76.30 | 0.00 | 0.00% | — |
 | [RODENSTOCK GERONAR-WA 90mm f/8](../../src/lens-data/rodenstock/RodenstockGeronarWA90mmf8.data.ts) | L1 | Positive Meniscus | 64.91 | 64.91 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON GF 100-200mm f/5.6 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmGF100200mmf56.data.ts) | L44 | Biconvex Positive | 29.85 | 29.85 | 0.00 | 0.00% | — |
+| [KONICA HEXANON AR 57mm f/1.2](../../src/lens-data/konica/KonicaHexanonAR57mmf12.data.ts) | L1 | Positive Meniscus | 91.95 | 91.95 | 0.00 | 0.00% | — |
 | [MIRANDA AUTO EC 200mm f/3.5](../../src/lens-data/miranda/MirandaAutoEC200mmf35.data.ts) | L2 | Positive Meniscus | 106.76 | 106.76 | 0.00 | 0.00% | — |
 | [VOIGTLÄNDER ULTRON Vintage Line 28mm f/2 Aspherical](../../src/lens-data/voigtlander/VoigtlanderUltron28f2.data.ts) | L6 | Biconcave Negative | -12.16 | -12.16 | 0.00 | 0.00% | — |
 | [NIKON AI-S ZOOM-NIKKOR 35-70mm f/3.5](../../src/lens-data/nikon/NikonAIZoomNikkor3570mmf35.data.ts) | L5 | Biconvex Positive | 59.25 | 59.25 | 0.00 | 0.00% | — |
@@ -4159,6 +4312,7 @@ Sorted by absolute percentage difference, largest first.
 | [CANON EF-S 55-250mm f/4-5.6 IS STM](../../src/lens-data/canon/CanonEFS55250mmf456ISSTM.data.ts) | L21 | Biconcave Negative | -24.39 | -24.39 | 0.00 | 0.00% | — |
 | [NIKON AI MICRO-NIKKOR 105mm f/2.8 S](../../src/lens-data/nikon/NikonAIMicroNikkor105mmf28S.data.ts) | L21a | Biconcave Negative | -40.91 | -40.91 | 0.00 | 0.00% | — |
 | [CANON EF-M 18-150mm f/3.5-6.3 IS STM](../../src/lens-data/canon/CanonEFM18150mmf3563ISSTM.data.ts) | L7 | Meniscus Negative | -38.47 | -38.47 | 0.00 | 0.00% | — |
+| [CANON RF 24mm f/1.8 Macro IS STM](../../src/lens-data/canon/CanonRF24mmf18MacroISSTM.data.ts) | L2 | Biconvex Positive | 27.61 | 27.61 | 0.00 | 0.00% | — |
 | [CANON RF 15-35mm f/2.8 L IS USM](../../src/lens-data/canon/CanonRF1535f28.data.ts) | L11 | Biconcave Negative | -21.72 | -21.72 | 0.00 | 0.00% | — |
 | [CANON NEW FD 100mm f/2](../../src/lens-data/canon/CanonNewFD100mmf2.data.ts) | L3 | Negative Meniscus | -129.38 | -129.38 | 0.00 | 0.00% | — |
 | [LEICA ELMAR-M 135mm f/4](../../src/lens-data/leica/LeicaElmarM135mmf4.data.ts) | L4 | Biconcave Negative | -34.14 | -34.14 | 0.00 | 0.00% | — |
@@ -4202,6 +4356,7 @@ Sorted by absolute percentage difference, largest first.
 | [SONY 70-400mm f/4-5.6 G SSM II](../../src/lens-data/sony/SonySAL70400mmf456G.data.ts) | L51 | Negative Meniscus | -77.06 | -77.06 | 0.00 | 0.00% | — |
 | [NIKON 1 NIKKOR VR 10-100mm f/4-5.6](../../src/lens-data/nikon/Nikon1Nikkor10100mmf4VR.data.ts) | L32 | Biconvex Positive | 15.45 | 15.45 | 0.00 | 0.00% | — |
 | [OLYMPUS ZUIKO AUTO-FISHEYE 16mm f/3.5](../../src/lens-data/olympus/OlympusZuiko16mmf35.data.ts) | L7a | Negative Meniscus | -35.71 | -35.71 | 0.00 | 0.00% | — |
+| [SAMSUNG 60mm f/2.8 Macro ED OIS SSA](../../src/lens-data/samsung/SamsungNX60mmf28MacroEDOISSSA.data.ts) | L7 | Positive Meniscus | 160.61 | 160.61 | 0.00 | 0.00% | — |
 | [CANON EF-M 18-150mm f/3.5-6.3 IS STM](../../src/lens-data/canon/CanonEFM18150mmf3563ISSTM.data.ts) | L2 | Biconvex Positive | 88.85 | 88.85 | 0.00 | 0.00% | — |
 | [CANON RF-S 18-45mm f/4.5-6.3 IS STM](../../src/lens-data/canon/CanonRFS1845mmf4563ISSTM.data.ts) | L3 | Positive Meniscus | 74.25 | 74.25 | 0.00 | 0.00% | — |
 | [CANON EF-M 18-55mm f/3.5-5.6 IS STM](../../src/lens-data/canon/CanonEFM1855mmf3556ISSTM.data.ts) | L2a | Negative Meniscus | -18.94 | -18.94 | 0.00 | 0.00% | — |
@@ -4219,11 +4374,13 @@ Sorted by absolute percentage difference, largest first.
 | [NIKON TV-NIKKOR 11.5-69mm f/1.2 (Nikon S-100)](../../src/lens-data/nikon/NikonTVNikkor11569mmf12NikonS100.data.ts) | L4a | Biconcave Negative | -17.37 | -17.37 | 0.00 | 0.00% | — |
 | [SONY FE 70-200mm f/4 G OSS](../../src/lens-data/sony/SonyFE70200mmf4G.data.ts) | L32 | Negative Meniscus | -97.70 | -97.70 | 0.00 | 0.00% | — |
 | [NIKON AF-S NIKKOR 24mm f/1.8 G ED](../../src/lens-data/nikon/NikonAFSNikkor24mmf18GED.data.ts) | L10 | Negative Meniscus | -68.30 | -68.30 | 0.00 | 0.00% | — |
+| [KMZ ZENITAR 50mm f/0.95](../../src/lens-data/kmz/KMZZenitar50mmf095.data.ts) | L1 | Plano-Concave | -137.83 | -137.83 | 0.00 | 0.00% | — |
 | [SONY SONNAR T* FE 55mm f/1.8 ZA](../../src/lens-data/sony/SonyFE55mmf18ZA.data.ts) | L21 | Neg. Meniscus (2× Asph) | -49.30 | -49.30 | 0.00 | 0.00% | — |
 | [OLYMPUS ZUIKO AUTO-FISHEYE 8mm f/2.8](../../src/lens-data/olympus/OlympusZuikoAutoFisheye8mmf28.data.ts) | L1 | Negative Meniscus | -43.82 | -43.82 | 0.00 | 0.00% | — |
 | [SIGMA 60mm f/2.8 DN \| Art](../../src/lens-data/sigma/Sigma60mmf28DN.data.ts) | L1b | Plano-Convex Positive | 35.56 | 35.56 | 0.00 | 0.00% | — |
 | [SONY FE 24mm f/2.8 G](../../src/lens-data/sony/SonyFE24mmf28G.data.ts) | L5 | Biconvex Positive | 15.19 | 15.19 | 0.00 | 0.00% | — |
 | [SONY FE 600mm f/4 GM OSS](../../src/lens-data/sony/SonyFE600mmF4GMOSS.data.ts) | L31 | Biconvex Positive | 139.58 | 139.58 | 0.00 | 0.00% | — |
+| [SAMSUNG 60mm f/2.8 Macro ED OIS SSA](../../src/lens-data/samsung/SamsungNX60mmf28MacroEDOISSSA.data.ts) | L11 | Biconvex Positive | 60.24 | 60.24 | 0.00 | 0.00% | — |
 | [NIKON AF-S NIKKOR 500mm f/5.6 E PF ED VR](../../src/lens-data/nikon/NikonAFSNikkor500mmf56EPFEDVR.data.ts) | L32 | Biconvex Positive | 49.69 | 49.69 | 0.00 | 0.00% | — |
 | [SONY FE 135mm f/1.8 GM](../../src/lens-data/sony/SonyFE135mmf18GM.data.ts) | L13 | Negative Meniscus | -72.30 | -72.30 | 0.00 | 0.00% | — |
 | [RODENSTOCK GRANDAGON-N 75mm f/6.8](../../src/lens-data/rodenstock/RodenstockGrandagonN75mmf68.data.ts) | L6 | Negative Meniscus | -46.66 | -46.66 | 0.00 | 0.00% | — |
@@ -4238,6 +4395,7 @@ Sorted by absolute percentage difference, largest first.
 | [CARL ZEISS JENA BIOGON 35mm f/2.8 (pre-war)](../../src/lens-data/carl-zeiss-jena/ZeissBiogon35mmf28Prewar.data.ts) | L4 | Plano-Concave | -13.15 | -13.15 | 0.00 | 0.00% | — |
 | [NIKON AF-S NIKKOR 70-200mm f/2.8 E FL ED VR](../../src/lens-data/nikon/NikonNikkorAFS70200mmf28E.data.ts) | L24 | Biconcave Negative | -96.80 | -96.80 | 0.00 | 0.00% | — |
 | [SIGMA 24mm f/1.4 DG DN \| Art](../../src/lens-data/sigma/Sigma24mmf14ArtDN.data.ts) | L10 | Biconcave Negative | -89.40 | -89.40 | 0.00 | 0.00% | — |
+| [MEIKE 50mm f/0.95](../../src/lens-data/meike/Meike50mmf095.data.ts) | L3 | Positive Meniscus | 53.86 | 53.86 | 0.00 | 0.00% | — |
 | [CANON EF-M 18-150mm f/3.5-6.3 IS STM](../../src/lens-data/canon/CanonEFM18150mmf3563ISSTM.data.ts) | L3 | Meniscus Positive | 88.03 | 88.03 | 0.00 | 0.00% | — |
 | [PANASONIC LUMIX G 14mm f/2.5 II ASPH.](../../src/lens-data/panasonic/PanasonicG14mmf25II.data.ts) | L4 | Positive Meniscus | 11.83 | 11.83 | 0.00 | 0.00% | — |
 | [OLYMPUS ZUIKO AUTO-S 50mm f/1.2](../../src/lens-data/olympus/OlympusZuikoAutoS50mmf12.data.ts) | L6 | Biconvex Positive | 78.10 | 78.10 | 0.00 | 0.00% | — |
@@ -4259,10 +4417,12 @@ Sorted by absolute percentage difference, largest first.
 | [OLYMPUS ZUIKO AUTO-FISHEYE 16mm f/3.5](../../src/lens-data/olympus/OlympusZuiko16mmf35.data.ts) | L2 | Positive Meniscus | 59.10 | 59.10 | 0.00 | 0.00% | — |
 | [MINOLTA AF APO TELE 200mm f/2.8](../../src/lens-data/minolta/MinoltaAF200mmf28.data.ts) | L7 | Negative Meniscus | -156.68 | -156.68 | 0.00 | 0.00% | — |
 | [CANON RF 100-500mm f/4.5-7.1 L IS USM](../../src/lens-data/canon/CanonRF100500mmf4571LISUSM.data.ts) | L23 | Positive Meniscus | 106.95 | 106.95 | 0.00 | 0.00% | — |
+| [SAMSUNG 60mm f/2.8 Macro ED OIS SSA](../../src/lens-data/samsung/SamsungNX60mmf28MacroEDOISSSA.data.ts) | L4 | Plano-Concave | -31.81 | -31.81 | 0.00 | 0.00% | — |
 | [VIVITAR SERIES 1 70-210mm f/3.5 VMC MACRO FOCUSING AUTO ZOOM](../../src/lens-data/vivitar/VivitarSeries170210mmf35.data.ts) | L12 | Biconvex Positive | 58.30 | 58.30 | 0.00 | 0.00% | — |
 | [CANON EF-S 18-55mm f/3.5-5.6 IS](../../src/lens-data/canon/CanonEFS1855mmf3556IS.data.ts) | L31 | Biconcave Negative | -13.71 | -13.71 | 0.00 | 0.00% | — |
 | [NIKON AF-S NIKKOR 28mm f/1.4 E ED](../../src/lens-data/nikon/NikonAFS28f14E.data.ts) | L13 | Biconvex Positive | 86.86 | 86.86 | 0.00 | 0.00% | — |
 | [NIKON REFLEX-NIKKOR 1000mm f/11](../../src/lens-data/nikon/NikonReflexNikkor1000mmf11.data.ts) | L3 | Biconvex Positive | 283.10 | 283.11 | +0.01 | 0.00% | — |
+| [KMZ ZENITAR 35mm f/1](../../src/lens-data/kmz/KMZZenitar35mmf1.data.ts) | L7 | Biconvex Positive | 79.95 | 79.95 | 0.00 | 0.00% | — |
 | [LEICA ELMARIT-R 35mm f/2.8](../../src/lens-data/leica/LeicaElmaritR35mmf28.data.ts) | L2 | Biconvex Positive | 16.46 | 16.46 | 0.00 | 0.00% | — |
 | [PENTAX SMC FA* 300mm f/4.5 ED [IF]](../../src/lens-data/pentax/PentaxFAStar300mmF45EDIF.data.ts) | L1 | Positive Meniscus | 114.81 | 114.81 | 0.00 | 0.00% | — |
 | [SONY 70-400mm f/4-5.6 G SSM II](../../src/lens-data/sony/SonySAL70400mmf456G.data.ts) | L32 | Biconcave Negative | -41.57 | -41.57 | 0.00 | 0.00% | — |
@@ -4279,6 +4439,8 @@ Sorted by absolute percentage difference, largest first.
 | [NIKON AF-S NIKKOR 28mm f/1.4 E ED](../../src/lens-data/nikon/NikonAFS28f14E.data.ts) | L24 | Biconcave Negative | -24.97 | -24.97 | 0.00 | 0.00% | — |
 | [SIGMA 15mm f/1.4 DG DN DIAGONAL FISHEYE \| Art](../../src/lens-data/sigma/Sigma15mmf14DGDNDiagonalFisheyeArt.data.ts) | L12 | Biconvex Positive | 122.20 | 122.20 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON GF 45-100mm f/4 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmGF45100mmf4.data.ts) | L34 | Positive Meniscus (1x Asph) | 392.40 | 392.39 | -0.01 | 0.00% | — |
+| [SAMSUNG 60mm f/2.8 Macro ED OIS SSA](../../src/lens-data/samsung/SamsungNX60mmf28MacroEDOISSSA.data.ts) | L3 | Pos. Meniscus (1× Asph) | 40.44 | 40.44 | 0.00 | 0.00% | — |
+| [SAMSUNG 60mm f/2.8 Macro ED OIS SSA](../../src/lens-data/samsung/SamsungNX60mmf28MacroEDOISSSA.data.ts) | L8 | Biconvex Positive | 135.39 | 135.39 | 0.00 | 0.00% | — |
 | [SONY FE 20-70mm f/4 G](../../src/lens-data/sony/SonyFE2070mmf4G.data.ts) | L62 | Negative Meniscus | -82.80 | -82.80 | 0.00 | 0.00% | — |
 | [CANON EF 8-15mm f/4 L Fisheye USM](../../src/lens-data/canon/CanonEF815mmf4LFisheye.data.ts) | L5 | Neg. Meniscus (1× Asph) | -37.94 | -37.94 | 0.00 | 0.00% | — |
 | [NIKON AF ZOOM-NIKKOR 28-80mm f/3.5-5.6 D](../../src/lens-data/nikon/NikonAFZoomNikkor2880mmf3556.data.ts) | L7 | Biconcave Negative | -18.14 | -18.14 | 0.00 | 0.00% | — |
@@ -4286,7 +4448,10 @@ Sorted by absolute percentage difference, largest first.
 | [NIKON NIKKOR Z 50mm f/1.8 S](../../src/lens-data/nikon/NikonNikkorZ50f18S.data.ts) | L33 | Concave-Plano Negative | -77.52 | -77.52 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON XF 16-55mm f/2.8 R LM WR II](../../src/lens-data/fujifilm/FujifilmXF16555mmf28RLMWRII.data.ts) | L21 | Neg. Meniscus (2× Asph) | -18.45 | -18.45 | 0.00 | 0.00% | — |
 | [OLYMPUS ZUIKO AUTO-FISHEYE 8mm f/2.8](../../src/lens-data/olympus/OlympusZuikoAutoFisheye8mmf28.data.ts) | L4 | Negative Meniscus | -24.30 | -24.30 | 0.00 | 0.00% | — |
+| [OLYMPUS ZUIKO AUTO-ZOOM 75-150mm f/4](../../src/lens-data/olympus/OlympusZuikoAutoZoom75150mmf4.data.ts) | L6 | Biconcave Negative | -58.75 | -58.75 | 0.00 | 0.00% | — |
+| [KMZ ZENITAR 50mm f/1.2 S](../../src/lens-data/kmz/KMZZenitar50mmf12S.data.ts) | L1 | Plano-Convex Positive | 117.61 | 117.61 | 0.00 | 0.00% | — |
 | [MINOLTA AF 70-200mm f/2.8 APO G (D) SSM](../../src/lens-data/minolta/MinoltaAF70200mmf28APO.data.ts) | L17 | Biconvex Positive | 125.49 | 125.49 | 0.00 | 0.00% | — |
+| [SIGMA 19mm f/2.8 (Sigma DP1 Merrill)](../../src/lens-data/sigma/SigmaDP1Merrill.data.ts) | G9 | Biconvex Positive (1× Asph) | 67.63 | 67.63 | 0.00 | 0.00% | — |
 | [CANON RF 10-20mm f/4 L IS STM](../../src/lens-data/canon/CanonRF1020mmF4LISSTM.data.ts) | E15 | Negative Meniscus (2× Asph) | -62.05 | -62.05 | 0.00 | 0.00% | — |
 | [NIKON NIKKOR Z 58mm f/0.95 S Noct](../../src/lens-data/nikon/NikonZ58f095SNoct.data.ts) | L23 | Biconvex Positive | 123.54 | 123.54 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON XF 33mm f/1.4 R LM WR](../../src/lens-data/fujifilm/FujifilmXF33mmf14RLMWR.data.ts) | L24 | Positive Meniscus (ED) | 86.50 | 86.50 | 0.00 | 0.00% | — |
@@ -4302,6 +4467,7 @@ Sorted by absolute percentage difference, largest first.
 | [SIGMA APO MACRO 150mm f/2.8 EX DG OS HSM](../../src/lens-data/sigma/SigmaAPOMacro150mmf28OSHSM.data.ts) | L24 | Biconcave Negative | -93.11 | -93.11 | 0.00 | 0.00% | — |
 | [NIKON NIKKOR-S AUTO 50mm f/1.4](../../src/lens-data/nikon/NikonNikkorSAuto50mmf14.data.ts) | L5 | Positive Meniscus | 35.30 | 35.30 | 0.00 | 0.00% | — |
 | [NIKON AF-S DX NIKKOR 18-105mm f/3.5-5.6 G ED VR](../../src/lens-data/nikon/NikonAFSDX18105f3556GEDVR.data.ts) | L21 | Negative Meniscus | -19.61 | -19.61 | 0.00 | 0.00% | — |
+| [SIGMA 19mm f/2.8 (Sigma DP1 Merrill)](../../src/lens-data/sigma/SigmaDP1Merrill.data.ts) | G8 | Negative Meniscus | -41.20 | -41.20 | 0.00 | 0.00% | — |
 | [PENTAX SMC A 645 45mm f/2.8](../../src/lens-data/pentax/Pentax645A45mmf28.data.ts) | L3 | Negative Meniscus | -66.00 | -66.00 | 0.00 | 0.00% | — |
 | [CANON NEW FD 150-600mm f/5.6 L](../../src/lens-data/canon/CanonFD150600mmf56L.data.ts) | L8 | Biconcave Negative | -86.76 | -86.76 | 0.00 | 0.00% | — |
 | [NIKON REFLEX-NIKKOR·C 500mm f/8](../../src/lens-data/nikon/NikonReflexNikkorC500mmf8.data.ts) | L4 | Negative Meniscus | -947.00 | -947.02 | -0.02 | 0.00% | — |
@@ -4319,6 +4485,7 @@ Sorted by absolute percentage difference, largest first.
 | [KONICA HEXAR 35mm f/2 (Konica Hexar AF)](../../src/lens-data/konica/KonicaHexar35mmf2.data.ts) | L4 | Negative Meniscus | -52.92 | -52.92 | 0.00 | 0.00% | — |
 | [SONY FE 90mm f/2.8 Macro G OSS](../../src/lens-data/sony/SonyFE90mmf28.data.ts) | G8 | Negative Meniscus | -105.12 | -105.12 | 0.00 | 0.00% | — |
 | [SIGMA 10-20mm f/3.5 EX DC HSM](../../src/lens-data/sigma/Sigma1020mmf35EXDCHSM.data.ts) | L2 | Aspheric Negative Meniscus | -89.70 | -89.70 | 0.00 | 0.00% | — |
+| [KMZ ZENITAR 35mm f/1](../../src/lens-data/kmz/KMZZenitar35mmf1.data.ts) | L9 | Negative Meniscus | -84.51 | -84.51 | 0.00 | 0.00% | — |
 | [NIKON AF-S NIKKOR 500mm f/5.6 E PF ED VR](../../src/lens-data/nikon/NikonAFSNikkor500mmf56EPFEDVR.data.ts) | L37 | Negative Meniscus ED | -61.79 | -61.79 | 0.00 | 0.00% | — |
 | [VOIGTLÄNDER ULTRON Vintage Line 28mm f/2 Aspherical](../../src/lens-data/voigtlander/VoigtlanderUltron28f2.data.ts) | L8 | Biconvex Positive | 18.17 | 18.17 | 0.00 | 0.00% | — |
 | [CANON RF 100mm f/2.8 L MACRO IS USM](../../src/lens-data/canon/CanonRF100f28.data.ts) | L3 | Biconvex Positive | 127.06 | 127.06 | 0.00 | 0.00% | — |
@@ -4333,6 +4500,7 @@ Sorted by absolute percentage difference, largest first.
 | [SONY FE 85mm f/1.4 GM](../../src/lens-data/sony/SonyFE85mmF14GM.data.ts) | L6 | Positive Meniscus | 31.80 | 31.80 | 0.00 | 0.00% | — |
 | [NIKON AF-S NIKKOR 500mm f/5.6 E PF ED VR](../../src/lens-data/nikon/NikonAFSNikkor500mmf56EPFEDVR.data.ts) | L15 | Negative Meniscus | -113.26 | -113.26 | 0.00 | 0.00% | — |
 | [VOIGTLÄNDER NOKTON 35mm f/1.2 Aspherical](../../src/lens-data/voigtlander/VoigtlanderNokton35mmf12.data.ts) | L4 | Neg. Meniscus (1× Asph) | -1183.30 | -1183.27 | +0.03 | 0.00% | — |
+| [SAMSUNG 60mm f/2.8 Macro ED OIS SSA](../../src/lens-data/samsung/SamsungNX60mmf28MacroEDOISSSA.data.ts) | L9 | Biconcave Negative | -38.27 | -38.27 | 0.00 | 0.00% | — |
 | [NIKON SERIES E 100mm f/2.8](../../src/lens-data/nikon/NikonSeriesE100mmf28.data.ts) | L3 | Negative Meniscus | -32.36 | -32.36 | 0.00 | 0.00% | — |
 | [NIKON AI ZOOM-NIKKOR 360-1200mm f/11 ED](../../src/lens-data/nikon/NikonAIZoomNikkor3601200mmf11ED.data.ts) | L4 | Positive Meniscus | 658.20 | 658.18 | -0.02 | 0.00% | — |
 | [SIGMA 85mm f/1.4 DG HSM \| Art](../../src/lens-data/sigma/Sigma85mmf14Art.data.ts) | L1 | Pos. Meniscus | 364.50 | 364.49 | -0.01 | 0.00% | — |
@@ -4343,6 +4511,7 @@ Sorted by absolute percentage difference, largest first.
 | [CANON EF 28-135mm f/3.5-5.6 IS USM](../../src/lens-data/canon/CanonEF28135mmf3556IS.data.ts) | L6 | Biconvex Positive | 20.12 | 20.12 | 0.00 | 0.00% | — |
 | [CANON EF 24-70mm f/2.8 L II USM](../../src/lens-data/canon/CanonEF2470mmf28LII.data.ts) | L2 | Positive Meniscus | 117.70 | 117.70 | 0.00 | 0.00% | — |
 | [CANON RF 100mm f/2.8 L MACRO IS USM](../../src/lens-data/canon/CanonRF100f28.data.ts) | L13 | Biconvex Positive | 37.59 | 37.59 | 0.00 | 0.00% | — |
+| [LAOWA 200mm f/2 AF FF](../../src/lens-data/laowa/Laowa200mmf2AFFF.data.ts) | L1 | Positive Meniscus | 208.96 | 208.96 | 0.00 | 0.00% | — |
 | [PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH.](../../src/lens-data/panasonic/PanasonicLeicaDG15mmf17.data.ts) | L1 | Biconcave Negative | -22.49 | -22.49 | 0.00 | 0.00% | — |
 | [FUJIFILM EBC FUJINON-W 35mm f/1.9](../../src/lens-data/fujifilm/FujifilmFujinonW35mmf19.data.ts) | L8 | Positive Meniscus | 123.83 | 123.83 | 0.00 | 0.00% | — |
 | [VIVITAR SERIES 1 450mm f/4.5 VMC ASPHERICAL MIRROR](../../src/lens-data/vivitar/VivitarSeries1450mmf45.data.ts) | L3 | Negative Meniscus | -183.85 | -183.85 | 0.00 | 0.00% | — |
@@ -4350,6 +4519,9 @@ Sorted by absolute percentage difference, largest first.
 | [NIKON NIKKOR Z 35mm f/1.8 S](../../src/lens-data/nikon/NikonZ35f18S.data.ts) | L15 | Biconvex Positive | 23.22 | 23.22 | 0.00 | 0.00% | — |
 | [OLYMPUS M.ZUIKO DIGITAL ED 12-200mm f/3.5-6.3](../../src/lens-data/olympus/OlympusMZuikoED12200mmf3563.data.ts) | L9 | Biconvex Positive (Double Aspherical) | 18.76 | 18.76 | 0.00 | 0.00% | — |
 | [CANON EF 8-15mm f/4 L Fisheye USM](../../src/lens-data/canon/CanonEF815mmf4LFisheye.data.ts) | L14 | Positive Meniscus | 178.80 | 178.80 | 0.00 | 0.00% | — |
+| [MEIKE AF 85mm f/1.8 FF STM](../../src/lens-data/meike/Meike85mmf18.data.ts) | L6 | Biconcave Negative | -43.50 | -43.50 | 0.00 | 0.00% | — |
+| [KMZ ZENITAR 50mm f/1.2 S](../../src/lens-data/kmz/KMZZenitar50mmf12S.data.ts) | L3 | Negative Meniscus | -37.11 | -37.11 | 0.00 | 0.00% | — |
+| [OLYMPUS ZUIKO AUTO-ZOOM 75-150mm f/4](../../src/lens-data/olympus/OlympusZuikoAutoZoom75150mmf4.data.ts) | L10 | Positive Meniscus | 66.73 | 66.73 | 0.00 | 0.00% | — |
 | [RODENSTOCK SIRONAR-N 100mm f/5.6](../../src/lens-data/rodenstock/RodenstockSironarN100mmf56.data.ts) | L5 | Plano-Concave Negative | -28.13 | -28.13 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON XF 50-140mm f/2.8 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmXF50140mmf28R.data.ts) | L23 | Biconcave Negative (ED) | -38.40 | -38.40 | 0.00 | 0.00% | — |
 | [PANASONIC LUMIX S PRO 50mm f/1.4](../../src/lens-data/panasonic/PanasonicSPro50mmf14.data.ts) | L6 | Biconvex Positive | 61.40 | 61.40 | 0.00 | 0.00% | — |
@@ -4364,8 +4536,10 @@ Sorted by absolute percentage difference, largest first.
 | [CANON SERENAR 100mm f/3.5 I](../../src/lens-data/canon/CanonSerenar100mmf35.data.ts) | L2 | Positive Meniscus | 148.78 | 148.78 | 0.00 | 0.00% | — |
 | [NIKON NIKKOR-N 5cm f/1.1](../../src/lens-data/nikon/NikonN5cmf11.data.ts) | L7 | Plano-Convex | 81.10 | 81.10 | 0.00 | 0.00% | — |
 | [SONY FE 85mm f/1.4 GM](../../src/lens-data/sony/SonyFE85mmF14GM.data.ts) | L3 | Positive Meniscus | 221.31 | 221.31 | 0.00 | 0.00% | — |
+| [KONICA HEXANON AR 57mm f/1.2](../../src/lens-data/konica/KonicaHexanonAR57mmf12.data.ts) | L7 | Biconvex Positive | 90.76 | 90.76 | 0.00 | 0.00% | — |
 | [OLYMPUS ZUIKO AUTO-T 600mm f/6.5](../../src/lens-data/olympus/OlympusZuiko600mmf65.data.ts) | L3 | Biconvex Positive | 203.03 | 203.03 | 0.00 | 0.00% | — |
 | [NIKON AI ZOOM-NIKKOR 35-105mm f/3.5-4.5 S](../../src/lens-data/nikon/NikonAIZoomNikkor35105mmf3545.data.ts) | L1 | Negative Meniscus | -118.30 | -118.30 | 0.00 | 0.00% | — |
+| [SAMSUNG 18-200mm f/3.5-6.3 ED OIS](../../src/lens-data/samsung/SamsungNX18200mmf3563EDOIS.data.ts) | L1 | Negative Meniscus | -167.71 | -167.71 | 0.00 | 0.00% | — |
 | [CANON FD 24mm f/2.8 S.S.C.](../../src/lens-data/canon/CanonFD24mmf28SSC.data.ts) | E7 | Negative Meniscus | -151.16 | -151.16 | 0.00 | 0.00% | — |
 | [MINOLTA AF 70-200mm f/2.8 APO G (D) SSM](../../src/lens-data/minolta/MinoltaAF70200mmf28APO.data.ts) | L2 | Biconvex Positive ED | 199.99 | 199.99 | 0.00 | 0.00% | — |
 | [SIGMA 60mm f/2.8 DN \| Art](../../src/lens-data/sigma/Sigma60mmf28DN.data.ts) | L3b | Negative Meniscus | -36.56 | -36.56 | 0.00 | 0.00% | — |
@@ -4373,6 +4547,7 @@ Sorted by absolute percentage difference, largest first.
 | [NIKON AF-S NIKKOR 500mm f/5.6 E PF ED VR](../../src/lens-data/nikon/NikonAFSNikkor500mmf56EPFEDVR.data.ts) | L13 | Biconcave Negative | -192.76 | -192.76 | 0.00 | 0.00% | — |
 | [CANON RF 10-20mm f/4 L IS STM](../../src/lens-data/canon/CanonRF1020mmF4LISSTM.data.ts) | E3 | Negative Meniscus | -87.21 | -87.21 | 0.00 | 0.00% | — |
 | [SIGMA 17-40mm f/1.8 DC \| Art](../../src/lens-data/sigma/Sigma1740mmf18DCA.data.ts) | L12 | Biconvex Positive | 29.09 | 29.09 | 0.00 | 0.00% | — |
+| [SAMSUNG 18-200mm f/3.5-6.3 ED OIS](../../src/lens-data/samsung/SamsungNX18200mmf3563EDOIS.data.ts) | L2 | Biconvex Positive | 106.34 | 106.34 | 0.00 | 0.00% | — |
 | [NIKON NIKKOR-S AUTO 50mm f/1.4](../../src/lens-data/nikon/NikonNikkorSAuto50mmf14.data.ts) | L2 | Positive Meniscus | 43.10 | 43.10 | 0.00 | 0.00% | — |
 | [CANON RF 24-70mm f/2.8 L IS USM](../../src/lens-data/canon/CanonRF2470f28.data.ts) | L14 | Positive Meniscus | 129.10 | 129.10 | 0.00 | 0.00% | — |
 | [OLYMPUS G.ZUIKO AUTO-W 21mm f/3.5](../../src/lens-data/olympus/OlympusGZuikoAutoW21mmf35.data.ts) | L4 | Biconvex Positive | 17.46 | 17.46 | 0.00 | 0.00% | — |
@@ -4382,6 +4557,7 @@ Sorted by absolute percentage difference, largest first.
 | [CANON EF-M 18-55mm f/3.5-5.6 IS STM](../../src/lens-data/canon/CanonEFM1855mmf3556ISSTM.data.ts) | L1b | Positive Meniscus | 61.00 | 61.00 | 0.00 | 0.00% | — |
 | [CANON RF 24-70mm f/2.8 L IS USM](../../src/lens-data/canon/CanonRF2470f28.data.ts) | G2p | Positive Meniscus | 160.58 | 160.58 | 0.00 | 0.00% | — |
 | [NIKON NIKKOR Z DX 12-28mm f/3.5-5.6 PZ VR](../../src/lens-data/nikon/NikonNikkorZ1228mmf3556PZ.data.ts) | L13 | Biconcave Negative | -16.06 | -16.06 | 0.00 | 0.00% | — |
+| [MINOLTA AF 24-105mm f/3.5-4.5 (D)](../../src/lens-data/minolta/MinoltaAF24105mmf3545D.data.ts) | L12 | Neg. Meniscus (2× Asph) | -51.68 | -51.68 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON GF 23mm f/4 R LM WR](../../src/lens-data/fujifilm/FujifilmGF23mmf4.data.ts) | L13 | Negative Meniscus | -45.12 | -45.12 | 0.00 | 0.00% | — |
 | [NIKON AF NIKKOR 85mm f/1.4 D IF](../../src/lens-data/nikon/Nikon85f14D.data.ts) | L8 | Positive Meniscus | 1300.20 | 1300.17 | -0.03 | 0.00% | — |
 | [NIKON NIKKOR Z DX 18-140mm f/3.5-6.3 VR](../../src/lens-data/nikon/NikonZDX18140mmf3563VR.data.ts) | L31r | Pos. Meniscus (1× Asph) | 630.60 | 630.61 | +0.01 | 0.00% | — |
@@ -4402,6 +4578,8 @@ Sorted by absolute percentage difference, largest first.
 | [NIKON AF-S DX NIKKOR 18-105mm f/3.5-5.6 G ED VR](../../src/lens-data/nikon/NikonAFSDX18105f3556GEDVR.data.ts) | L23 | Biconvex Positive | 18.13 | 18.13 | 0.00 | 0.00% | — |
 | [CANON RF 24-105mm f/2.8 L IS USM Z](../../src/lens-data/canon/CanonRF24105mmf28Z.data.ts) | L3 | Biconvex Positive | 153.30 | 153.30 | 0.00 | 0.00% | — |
 | [NIKON AI-S ZOOM-NIKKOR 35-70mm f/3.5](../../src/lens-data/nikon/NikonAIZoomNikkor3570mmf35.data.ts) | L1 | Biconvex Positive | 97.03 | 97.03 | 0.00 | 0.00% | — |
+| [OLYMPUS ZUIKO AUTO-ZOOM 75-150mm f/4](../../src/lens-data/olympus/OlympusZuikoAutoZoom75150mmf4.data.ts) | L11 | Positive Meniscus | 176.13 | 176.13 | 0.00 | 0.00% | — |
+| [LAOWA 200mm f/2 AF FF](../../src/lens-data/laowa/Laowa200mmf2AFFF.data.ts) | L5 | Biconvex Positive | 75.15 | 75.15 | 0.00 | 0.00% | — |
 | [CANON EF 24mm f/1.4 L II USM](../../src/lens-data/canon/CanonEF24mmf14LII.data.ts) | E7 | Biconcave Negative | -22.73 | -22.73 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON GF 100-200mm f/5.6 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmGF100200mmf56.data.ts) | L48 | Biconvex Positive (2× Asph) | 39.83 | 39.83 | 0.00 | 0.00% | — |
 | [SIGMA 17-40mm f/1.8 DC \| Art](../../src/lens-data/sigma/Sigma1740mmf18DCA.data.ts) | L13 | Biconvex Positive | 35.08 | 35.08 | 0.00 | 0.00% | — |
@@ -4413,29 +4591,36 @@ Sorted by absolute percentage difference, largest first.
 | [FUJIFILM FUJINON XF 23mm f/1.4 R LM WR](../../src/lens-data/fujifilm/FujifilmXF23mmf14RLMWR.data.ts) | L23 | Biconcave Negative | -17.25 | -17.25 | 0.00 | 0.00% | — |
 | [CARL ZEISS TOUIT MAKRO-PLANAR T* 50mm f/2.8 Macro](../../src/lens-data/carl-zeiss-oberkochen/ZeissTouit50mmf28Macro.data.ts) | L63 | Biconvex Positive | 83.51 | 83.51 | 0.00 | 0.00% | — |
 | [NIKON AF-S NIKKOR 24-70mm f/2.8 E ED VR](../../src/lens-data/nikon/NikonNikkorAFS2470mmf28E.data.ts) | L13 | Positive Meniscus | 80.20 | 80.20 | 0.00 | 0.00% | — |
+| [OLYMPUS ZUIKO AUTO-ZOOM 75-150mm f/4](../../src/lens-data/olympus/OlympusZuikoAutoZoom75150mmf4.data.ts) | L1 | Positive Meniscus | 185.13 | 185.13 | 0.00 | 0.00% | — |
 | [SIGMA 17-40mm f/1.8 DC \| Art](../../src/lens-data/sigma/Sigma1740mmf18DCA.data.ts) | L5 | Biconvex Positive | 47.11 | 47.11 | 0.00 | 0.00% | — |
 | [NIKON NIKKOR Z 70-200mm f/2.8 VR S](../../src/lens-data/nikon/NikonNikkorZ70200f28.data.ts) | L13 | Positive Meniscus | 243.40 | 243.40 | 0.00 | 0.00% | — |
 | [PENTAX HD D FA 21mm f/2.4 ED Limited DC WR](../../src/lens-data/pentax/PentaxHDDFA21mmf24Limited.data.ts) | L4A | Biconvex Positive | 34.24 | 34.24 | 0.00 | 0.00% | — |
+| [PENTAX SMC PENTAX 24mm f/2.8](../../src/lens-data/pentax/PentaxSMCK24mmf28.data.ts) | L7 | Biconcave Negative | -21.18 | -21.18 | 0.00 | 0.00% | — |
 | [PENTAX DA* 300mm f/4 ED [IF] SDM](../../src/lens-data/pentax/PentaxDAStar300mmF4EDIFSDM.data.ts) | L13 | Biconcave Negative | -223.37 | -223.37 | 0.00 | 0.00% | — |
 | [NIKON AF NIKKOR 28mm f/1.4 D](../../src/lens-data/nikon/NikonAF28f14D.data.ts) | L3 | Negative Meniscus | -65.08 | -65.08 | 0.00 | 0.00% | — |
 | [NIKON NIKKOR-SW 90mm f/4.5](../../src/lens-data/nikon/NikonNikkorSW90mmf45.data.ts) | L2C | Positive Meniscus | 80.04 | 80.04 | 0.00 | 0.00% | — |
 | [CANON RF 20mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF20mmf14LVCM.data.ts) | G13 | Biconvex Positive | 38.67 | 38.67 | 0.00 | 0.00% | — |
 | [CANON EF-S 55-250mm f/4-5.6 IS STM](../../src/lens-data/canon/CanonEFS55250mmf456ISSTM.data.ts) | L42 | Biconvex Positive | 33.37 | 33.37 | 0.00 | 0.00% | — |
+| [P. ANGÉNIEUX TYPE M1 25mm f/0.95](../../src/lens-data/angenieux/AngenieuxTypeM125mmf095.data.ts) | L6 | Biconvex Positive | 18.16 | 18.16 | 0.00 | 0.00% | — |
 | [NIKON AF-S VR MICRO-NIKKOR 105mm f/2.8 G IF-ED](../../src/lens-data/nikon/NikonAFS105f28G.data.ts) | L9 | Negative Meniscus | -65.28 | -65.28 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON GF 35-70mm f/4.5-5.6 WR](../../src/lens-data/fujifilm/FujifilmGF3570mmf4556.data.ts) | L31 | Negative Meniscus | -90.49 | -90.49 | 0.00 | 0.00% | — |
+| [SONY DT 18-135mm f/3.5-5.6 SAM](../../src/lens-data/sony/SonyDT18135mmf3556SAM.data.ts) | L23 | Biconvex Positive | 21.90 | 21.90 | 0.00 | 0.00% | — |
 | [MINOLTA MD ROKKOR 50mm f/1.4](../../src/lens-data/minolta/MinoltaRokkor50mmf14MD.data.ts) | L2 | Positive Meniscus | 76.70 | 76.70 | 0.00 | 0.00% | — |
 | [SIGMA 10-18mm f/2.8 DC DN \| Contemporary](../../src/lens-data/sigma/Sigma1018mmf28DCDN.data.ts) | L13 | Biconcave Negative (2× Asph) | -37.03 | -37.03 | 0.00 | 0.00% | — |
+| [SONY DT 18-135mm f/3.5-5.6 SAM](../../src/lens-data/sony/SonyDT18135mmf3556SAM.data.ts) | L42 | Negative Meniscus | -39.76 | -39.76 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON XF 16-55mm f/2.8 R LM WR II](../../src/lens-data/fujifilm/FujifilmXF16555mmf28RLMWRII.data.ts) | L23 | Biconvex Positive | 16.99 | 16.99 | 0.00 | 0.00% | — |
 | [SONY FE 600mm f/4 GM OSS](../../src/lens-data/sony/SonyFE600mmF4GMOSS.data.ts) | L32 | Biconcave Negative | -79.77 | -79.77 | 0.00 | 0.00% | — |
 | [CANON TS-E 90mm f/2.8 L MACRO](../../src/lens-data/canon/CanonTSE90mmf28L.data.ts) | L2 | Positive Meniscus | 102.89 | 102.89 | 0.00 | 0.00% | — |
 | [LAOWA 65mm f/2.8 2× Ultra Macro APO](../../src/lens-data/laowa/Laowa65mmf28MacroAPO.data.ts) | L2 | Positive Meniscus | 142.00 | 142.00 | 0.00 | 0.00% | — |
 | [OLYMPUS M.ZUIKO DIGITAL ED 12-200mm f/3.5-6.3](../../src/lens-data/olympus/OlympusMZuikoED12200mmf3563.data.ts) | L10 | Negative Meniscus | -15.55 | -15.55 | 0.00 | 0.00% | — |
+| [P. ANGÉNIEUX TYPE M1 25mm f/0.95](../../src/lens-data/angenieux/AngenieuxTypeM125mmf095.data.ts) | L3 | Positive Meniscus | 21.40 | 21.40 | 0.00 | 0.00% | — |
 | [OLYMPUS F.ZUIKO AUTO-T 200mm f/5](../../src/lens-data/olympus/OlympusZuikoAutoT200mmf5.data.ts) | L1 | Positive Meniscus | 161.10 | 161.10 | 0.00 | 0.00% | — |
 | [NIKON AF-S NIKKOR 24mm f/1.8 G ED](../../src/lens-data/nikon/NikonAFSNikkor24mmf18GED.data.ts) | L11 | Biconvex Positive ED | 30.27 | 30.27 | 0.00 | 0.00% | — |
 | [CANON EF 28-135mm f/3.5-5.6 IS USM](../../src/lens-data/canon/CanonEF28135mmf3556IS.data.ts) | L9 | Biconvex Positive | 19.34 | 19.34 | 0.00 | 0.00% | — |
 | [CANON EF-M 18-150mm f/3.5-6.3 IS STM](../../src/lens-data/canon/CanonEFM18150mmf3563ISSTM.data.ts) | L15 | Biconcave Negative | -16.92 | -16.92 | 0.00 | 0.00% | — |
 | [NIKON AF NIKKOR 28mm f/1.4 D](../../src/lens-data/nikon/NikonAF28f14D.data.ts) | L1 | Negative Meniscus | -79.66 | -79.66 | 0.00 | 0.00% | — |
 | [ENNA MÜNCHEN ULTRA-LITHAGON 28mm f/3.5](../../src/lens-data/enna-munchen/EnnaMunchenUltraLithagon28mmf35.data.ts) | L6 | Plano-Convex | 23.75 | 23.75 | 0.00 | 0.00% | — |
+| [KMZ ZENITAR 35mm f/1](../../src/lens-data/kmz/KMZZenitar35mmf1.data.ts) | L4 | Biconvex Positive | 54.41 | 54.41 | 0.00 | 0.00% | — |
 | [SONY FE 85mm f/1.4 GM](../../src/lens-data/sony/SonyFE85mmF14GM.data.ts) | L5 | Biconcave Negative | -31.00 | -31.00 | 0.00 | 0.00% | — |
 | [NIKON AF-P DX NIKKOR 10-20mm f/4.5-5.6 G VR](../../src/lens-data/nikon/NikonAFPDX1020mmf4556G.data.ts) | L13 | Biconcave Negative | -56.71 | -56.71 | 0.00 | 0.00% | — |
 | [OLYMPUS G.ZUIKO AUTO-W 21mm f/3.5](../../src/lens-data/olympus/OlympusGZuikoAutoW21mmf35.data.ts) | L5 | Biconcave Negative | -21.07 | -21.07 | 0.00 | 0.00% | — |
@@ -4449,6 +4634,7 @@ Sorted by absolute percentage difference, largest first.
 | [SONY E 50mm f/1.8 OSS](../../src/lens-data/sony/SonyE50mmf18OSS.data.ts) | L216 | Biconvex Positive | 18.03 | 18.03 | 0.00 | 0.00% | — |
 | [CANON FD 24mm f/2.8 S.S.C.](../../src/lens-data/canon/CanonFD24mmf28SSC.data.ts) | E2 | Positive Meniscus | 101.36 | 101.36 | 0.00 | 0.00% | — |
 | [RODENSTOCK SIRONAR-N 100mm f/5.6](../../src/lens-data/rodenstock/RodenstockSironarN100mmf56.data.ts) | L3 | Positive Meniscus | 128.29 | 128.29 | 0.00 | 0.00% | — |
+| [PENTAX SMC FA* 300mm f/2.8 ED [IF]](../../src/lens-data/pentax/PentaxFAStar300mmF28EDIF.data.ts) | L5 | Positive Meniscus | 80.65 | 80.65 | 0.00 | 0.00% | — |
 | [MINOLTA MD ZOOM 24-50mm f/4](../../src/lens-data/minolta/Minolta2450mmf4MDZoom.data.ts) | L7 | Biconvex Positive | 78.37 | 78.37 | 0.00 | 0.00% | — |
 | [CANON RF 50mm f/1.2 L USM](../../src/lens-data/canon/CanonRF50mmf12L.data.ts) | G8 | Biconcave Negative | -26.19 | -26.19 | 0.00 | 0.00% | — |
 | [CANON RF 70-200mm f/2.8 L IS USM](../../src/lens-data/canon/CanonRF70200f28.data.ts) | L3 | Plano-Convex Positive | 117.29 | 117.29 | 0.00 | 0.00% | — |
@@ -4461,6 +4647,7 @@ Sorted by absolute percentage difference, largest first.
 | [PENTAX SUPER-TAKUMAR 35mm f/2](../../src/lens-data/pentax/PentaxSuperTakumar35mmf2.data.ts) | L5 | Biconcave Negative | -22.04 | -22.04 | 0.00 | 0.00% | — |
 | [NIKON AF DX FISHEYE-NIKKOR 10.5mm f/2.8 G ED](../../src/lens-data/nikon/NikonFisheyeNikkor105mmf28GED.data.ts) | L2 | Negative Meniscus | -37.52 | -37.52 | 0.00 | 0.00% | — |
 | [CANON RF 50mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF50mmf14LVCM.data.ts) | E7 | Positive Meniscus | 124.71 | 124.71 | 0.00 | 0.00% | — |
+| [LAOWA 200mm f/2 AF FF](../../src/lens-data/laowa/Laowa200mmf2AFFF.data.ts) | L7 | Positive Meniscus | 98.74 | 98.74 | 0.00 | 0.00% | — |
 | [NIKON SERIES E 100mm f/2.8](../../src/lens-data/nikon/NikonSeriesE100mmf28.data.ts) | L4 | Positive Meniscus | 138.69 | 138.69 | 0.00 | 0.00% | — |
 | [AGFA SOLAGON 50mm f/2](../../src/lens-data/agfa/AgfaSolagon50mmf2.data.ts) | L2 | Plano-Convex Positive | 25.37 | 25.37 | 0.00 | 0.00% | — |
 | [CANON NEW FD 150-600mm f/5.6 L](../../src/lens-data/canon/CanonFD150600mmf56L.data.ts) | L14 | Biconvex Positive | 212.80 | 212.80 | 0.00 | 0.00% | — |
@@ -4481,6 +4668,7 @@ Sorted by absolute percentage difference, largest first.
 | [FUJIFILM FUJINON GF 32-64mm f/4 R LM WR](../../src/lens-data/fujifilm/FujifilmGF3264mmf4.data.ts) | L34 | Negative Meniscus | -123.70 | -123.70 | 0.00 | 0.00% | — |
 | [NIKON 1 NIKKOR 11-27.5mm f/3.5-5.6](../../src/lens-data/nikon/Nikon1Nikkor1127mmf3556.data.ts) | L2 | Biconcave Negative ED | -45.97 | -45.97 | 0.00 | 0.00% | — |
 | [SIGMA 60mm f/2.8 DN \| Art](../../src/lens-data/sigma/Sigma60mmf28DN.data.ts) | L3c | Positive Meniscus | 21.27 | 21.27 | 0.00 | 0.00% | — |
+| [KMZ ZENITAR 35mm f/1](../../src/lens-data/kmz/KMZZenitar35mmf1.data.ts) | L3 | Negative Meniscus | -133.62 | -133.62 | 0.00 | 0.00% | — |
 | [NIKON 1 NIKKOR VR 10-100mm f/4-5.6](../../src/lens-data/nikon/Nikon1Nikkor10100mmf4VR.data.ts) | L401 | Biconvex Positive | 18.33 | 18.33 | 0.00 | 0.00% | — |
 | [NIKON AI ZOOM-NIKKOR 50-135mm f/3.5 S](../../src/lens-data/nikon/NikonAIZoomNikko50135mmf35S.data.ts) | 4L7 | Negative Meniscus | -69.89 | -69.89 | 0.00 | 0.00% | — |
 | [AGFA SOLAGON 50mm f/2](../../src/lens-data/agfa/AgfaSolagon50mmf2.data.ts) | L3 | Plano-Concave Negative | -18.84 | -18.84 | 0.00 | 0.00% | — |
@@ -4496,6 +4684,7 @@ Sorted by absolute percentage difference, largest first.
 | [NIKON AF-S NIKKOR 80-400mm f/4.5-5.6 G ED VR](../../src/lens-data/nikon/NikonNikkorAFS80400mmf4556G.data.ts) | L11 | Neg. Meniscus | -210.50 | -210.50 | 0.00 | 0.00% | — |
 | [OLYMPUS ZUIKO AUTO-W 18mm f/3.5](../../src/lens-data/olympus/OlympusZuikoAutoW18mmf35.data.ts) | L9 | Biconcave Negative | -12.66 | -12.66 | 0.00 | 0.00% | — |
 | [OLYMPUS M.ZUIKO DIGITAL ED 12mm f/2.0](../../src/lens-data/olympus/OlympusMZuiko12mmf2.data.ts) | L10 | Biconvex Positive (2× Asph) | 15.95 | 15.95 | 0.00 | 0.00% | — |
+| [P. ANGÉNIEUX TYPE M1 25mm f/0.95](../../src/lens-data/angenieux/AngenieuxTypeM125mmf095.data.ts) | L4 | Negative Meniscus | -12.15 | -12.15 | 0.00 | 0.00% | — |
 | [LAOWA 58mm f/2.8 2× Ultra Macro APO](../../src/lens-data/laowa/Laowa58mmf28MacroAPO.data.ts) | L4 | Positive Meniscus | 73.70 | 73.70 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON GF 20-35mm f/4 R WR](../../src/lens-data/fujifilm/FujifilmGF2035mmf4.data.ts) | L32 | Biconcave Negative | -14.57 | -14.57 | 0.00 | 0.00% | — |
 | [NIKON NIKKOR Z 70-200mm f/2.8 VR S II](../../src/lens-data/nikon/NikonNikkorZ70200mmf28VRSII.data.ts) | L51 | Biconvex Positive | 130.73 | 130.73 | 0.00 | 0.00% | — |
@@ -4516,6 +4705,7 @@ Sorted by absolute percentage difference, largest first.
 | [SONY E 50mm f/1.8 OSS](../../src/lens-data/sony/SonyE50mmf18OSS.data.ts) | L231 | Biconvex Positive | 27.86 | 27.86 | 0.00 | 0.00% | — |
 | [SONY FE 600mm f/4 GM OSS](../../src/lens-data/sony/SonyFE600mmF4GMOSS.data.ts) | L12 | Biconvex Positive | 252.09 | 252.09 | 0.00 | 0.00% | — |
 | [SONY FE 28-70mm f/3.5-5.6 OSS](../../src/lens-data/sony/SonyFE2870mmf3556.data.ts) | G9 | Positive Meniscus | 104.85 | 104.85 | 0.00 | 0.00% | — |
+| [CANON RF 24mm f/1.8 Macro IS STM](../../src/lens-data/canon/CanonRF24mmf18MacroISSTM.data.ts) | L9 | Positive Meniscus | 215.73 | 215.73 | 0.00 | 0.00% | — |
 | [CANON FL 300mm f/2.8 S.S.C. FLUORITE](../../src/lens-data/canon/CanonFL300mmf28SSCFluorite.data.ts) | L2 | Biconcave Negative | -155.70 | -155.70 | 0.00 | 0.00% | — |
 | [LEICA MACRO-ELMARIT-R 60mm f/2.8](../../src/lens-data/leica/LeicaMacroElmaritR60mmf28.data.ts) | L6 | Positive Meniscus | 66.54 | 66.54 | 0.00 | 0.00% | — |
 | [NIKON PC NIKKOR 19mm f/4 E ED](../../src/lens-data/nikon/NikonNikkorPCE19mmf4E.data.ts) | L28 | Asph. Coating Layer (modeled resin) | 2191.20 | 2191.24 | +0.04 | 0.00% | — |
@@ -4540,6 +4730,7 @@ Sorted by absolute percentage difference, largest first.
 | [NIKON 1 NIKKOR VR 10-100mm f/4-5.6](../../src/lens-data/nikon/Nikon1Nikkor10100mmf4VR.data.ts) | L403 | Positive Meniscus | 21.66 | 21.66 | 0.00 | 0.00% | — |
 | [NIKON R-UW AF ZOOM-NIKKOR 20-35mm f/2.8](../../src/lens-data/nikon/NikonRUWAFZoomNikkor2035mmf28.data.ts) | L2 | Negative Meniscus | -60.70 | -60.70 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON XF 16-55mm f/2.8 R LM WR](../../src/lens-data/fujifilm/FujifilmXF1655mmf28R.data.ts) | L24 | Negative Meniscus | -48.60 | -48.60 | 0.00 | 0.00% | — |
+| [OLYMPUS ZUIKO AUTO-ZOOM 75-150mm f/4](../../src/lens-data/olympus/OlympusZuikoAutoZoom75150mmf4.data.ts) | L4 | Biconcave Negative | -122.22 | -122.22 | 0.00 | 0.00% | — |
 | [NIKON 1 NIKKOR VR 10-100mm f/4-5.6](../../src/lens-data/nikon/Nikon1Nikkor10100mmf4VR.data.ts) | L409 | Negative Meniscus | -15.21 | -15.21 | 0.00 | 0.00% | — |
 | [CANON NEW FD 150-600mm f/5.6 L](../../src/lens-data/canon/CanonFD150600mmf56L.data.ts) | L10 | Positive Meniscus | 82.06 | 82.06 | 0.00 | 0.00% | — |
 | [NIKON UV-NIKKOR AUTO 55mm f/4](../../src/lens-data/nikon/NikonUvNikkor55mmf4.data.ts) | L3 | Biconvex Positive | 29.13 | 29.13 | 0.00 | 0.00% | — |
@@ -4560,10 +4751,13 @@ Sorted by absolute percentage difference, largest first.
 | [CANON RF 100mm f/2.8 L MACRO IS USM](../../src/lens-data/canon/CanonRF100f28.data.ts) | L4 | Biconvex Positive | 72.24 | 72.24 | 0.00 | 0.00% | — |
 | [SONY ZEISS VARIO-SONNAR T* 9-72mm f/2.8-4.5 (Sony Cyber-shot RX100 VI / RX100 VII)](../../src/lens-data/sony/ZeissVarioSonnarT9072mmf2845SonyDSCRX100M67.data.ts) | L22 | Biconcave Negative (1× Asph) | -16.55 | -16.55 | 0.00 | 0.00% | — |
 | [SIGMA 14-24mm f/2.8 DG HSM \| Art](../../src/lens-data/sigma/Sigma1424mmf28DGHSM.data.ts) | L17 | Positive Meniscus (2x Asph) | 131.80 | 131.80 | 0.00 | 0.00% | — |
+| [PENTAX SMC FA* 300mm f/2.8 ED [IF]](../../src/lens-data/pentax/PentaxFAStar300mmF28EDIF.data.ts) | L6 | Positive Meniscus | 158.44 | 158.44 | 0.00 | 0.00% | — |
+| [SAMSUNG 18-200mm f/3.5-6.3 ED OIS](../../src/lens-data/samsung/SamsungNX18200mmf3563EDOIS.data.ts) | L8 | Negative Meniscus | -297.47 | -297.47 | 0.00 | 0.00% | — |
 | [OLYMPUS M.ZUIKO DIGITAL ED 12mm f/2.0](../../src/lens-data/olympus/OlympusMZuiko12mmf2.data.ts) | L4 | Biconcave Negative | -18.61 | -18.61 | 0.00 | 0.00% | — |
 | [CANON EF 100mm f/2.8 L Macro IS USM](../../src/lens-data/canon/CanonEF100mmf28LIS.data.ts) | E8 | Positive Meniscus | 252.70 | 252.70 | 0.00 | 0.00% | — |
 | [NIKON AF ZOOM-NIKKOR 28-80mm f/3.5-5.6 D](../../src/lens-data/nikon/NikonAFZoomNikkor2880mmf3556.data.ts) | L8 | Biconvex Positive | 29.13 | 29.13 | 0.00 | 0.00% | — |
 | [PENTAX SUPER-TAKUMAR 35mm f/2](../../src/lens-data/pentax/PentaxSuperTakumar35mmf2.data.ts) | L7 | Biconvex Positive | 18.90 | 18.90 | 0.00 | 0.00% | — |
+| [KMZ ZENITAR 50mm f/1.2 S](../../src/lens-data/kmz/KMZZenitar50mmf12S.data.ts) | L2 | Positive Meniscus | 104.86 | 104.86 | 0.00 | 0.00% | — |
 | [SCHNEIDER-KREUZNACH VARIOGON 45-100mm f/2.8](../../src/lens-data/schneider-kreuznach/SchneiderVariogon2845100.data.ts) | L12 | Positive Meniscus | 26.75 | 26.75 | 0.00 | 0.00% | — |
 | [CANON 15-45mm f/2.8-5.6 (Canon PowerShot G1 X Mark III)](../../src/lens-data/canon/CanonPowerShotG1XIII1545mmf2856.data.ts) | N2 | Neg. Meniscus (2× Asph) | -95.00 | -95.00 | 0.00 | 0.00% | — |
 | [CANON FD 24mm f/2.8 S.S.C.](../../src/lens-data/canon/CanonFD24mmf28SSC.data.ts) | E1 | Negative Meniscus | -61.13 | -61.13 | 0.00 | 0.00% | — |
@@ -4573,12 +4767,14 @@ Sorted by absolute percentage difference, largest first.
 | [NIKON AF-S NIKKOR 24-120mm f/4 G ED VR](../../src/lens-data/nikon/NikonAFS24120mmf4G.data.ts) | L33 | Biconvex Positive | 29.93 | 29.93 | 0.00 | 0.00% | — |
 | [NIKON 1 NIKKOR VR 10-100mm f/4-5.6](../../src/lens-data/nikon/Nikon1Nikkor10100mmf4VR.data.ts) | L31 | Negative Meniscus | -31.20 | -31.20 | 0.00 | 0.00% | — |
 | [SONY 70-400mm f/4-5.6 G SSM II](../../src/lens-data/sony/SonySAL70400mmf456G.data.ts) | L13 | Biconvex Positive | 172.54 | 172.54 | 0.00 | 0.00% | — |
+| [AEG WEITWINKELOBJEKTIV 17mm f/6.3](../../src/lens-data/aeg/AEGWeitwinkelobjektiv17mmf63.data.ts) | L1 | Negative Meniscus | -83.72 | -83.72 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON GF 55mm f/1.7 R WR](../../src/lens-data/fujifilm/FujifilmGF55mmf17.data.ts) | L33 | Negative Meniscus | -157.97 | -157.97 | 0.00 | 0.00% | — |
 | [TAMRON SP AF 60mm f/2 Di II LD [IF] MACRO 1:1 (G005)](../../src/lens-data/tamron/TamronSPAF60mmf2Di.data.ts) | L6 | Biconcave Negative | -25.57 | -25.57 | 0.00 | 0.00% | — |
 | [NIKON NIKKOR-S AUTO 5cm f/2](../../src/lens-data/nikon/NikonNikkorSAuto50mmf2.data.ts) | L6 | Positive Meniscus | 32.41 | 32.41 | 0.00 | 0.00% | — |
 | [SONY ZEISS VARIO-SONNAR T* 9-72mm f/2.8-4.5 (Sony Cyber-shot RX100 VI / RX100 VII)](../../src/lens-data/sony/ZeissVarioSonnarT9072mmf2845SonyDSCRX100M67.data.ts) | L32 | Biconvex Positive (2× Asph) | 55.11 | 55.11 | 0.00 | 0.00% | — |
 | [PANASONIC LUMIX G 25mm f/1.7 ASPH.](../../src/lens-data/panasonic/PanasonicLumixG25mmf17.data.ts) | L5 | Biconvex Positive | 27.47 | 27.47 | 0.00 | 0.00% | — |
 | [CARL ZEISS TESSAR 50mm f/3.5](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissTessar50mmf35.data.ts) | L4 | Biconvex Positive | 12.08 | 12.08 | 0.00 | 0.00% | — |
+| [YONGNUO YN 50mm f/1.4](../../src/lens-data/yongnuo/YongnuoYN50mmf14.data.ts) | L12 | Positive Meniscus | 101.69 | 101.69 | 0.00 | 0.00% | — |
 | [OLYMPUS M.ZUIKO DIGITAL 17mm f/1.8](../../src/lens-data/olympus/OlympusMZuiko17mmf18.data.ts) | L5 | Negative Meniscus | -36.41 | -36.41 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON XF 18-120mm f/4 LM PZ WR](../../src/lens-data/fujifilm/FujifilmFujinonXf18120mmf40LMPZWR.data.ts) | L32 | Negative Meniscus | -26.18 | -26.18 | 0.00 | 0.00% | — |
 | [SIGMA 45mm f/2.8 DG DN \| Contemporary](../../src/lens-data/sigma/Sigma45mmf28DGDN.data.ts) | L7 | Negative Meniscus | -79.59 | -79.59 | 0.00 | 0.00% | — |
@@ -4589,6 +4785,7 @@ Sorted by absolute percentage difference, largest first.
 | [CANON EF 24mm f/1.4 L II USM](../../src/lens-data/canon/CanonEF24mmf14LII.data.ts) | E6 | Biconvex Positive | 25.77 | 25.78 | 0.00 | 0.00% | — |
 | [CANON RF 100mm f/2.8 L MACRO IS USM](../../src/lens-data/canon/CanonRF100f28.data.ts) | L1 | Biconcave Negative | -33.78 | -33.78 | 0.00 | 0.00% | — |
 | [RODENSTOCK ROGONAR-S 50mm f/2.8](../../src/lens-data/rodenstock/RodenstockRogonarS50mmf28.data.ts) | L2 | Biconcave Negative | -18.17 | -18.17 | 0.00 | 0.00% | — |
+| [OLYMPUS ZUIKO AUTO-ZOOM 75-150mm f/4](../../src/lens-data/olympus/OlympusZuikoAutoZoom75150mmf4.data.ts) | L2 | Negative Meniscus | -149.54 | -149.54 | 0.00 | 0.00% | — |
 | [NIKON ULTRA-MICRO-NIKKOR 29.5mm f/1.2](../../src/lens-data/nikon/NikonUltraMicroNikkor295mmf12.data.ts) | L1 | Negative Meniscus | -275.43 | -275.43 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON XF 18-120mm f/4 LM PZ WR](../../src/lens-data/fujifilm/FujifilmFujinonXf18120mmf40LMPZWR.data.ts) | L52 | Negative Meniscus | -33.54 | -33.54 | 0.00 | 0.00% | — |
 | [NIKON AI ZOOM-NIKKOR 25-50mm f/4](../../src/lens-data/nikon/NikonAIZoomNikkor2550mmf4.data.ts) | L8 | Negative Meniscus | -20.88 | -20.88 | 0.00 | 0.00% | — |
@@ -4606,6 +4803,7 @@ Sorted by absolute percentage difference, largest first.
 | [NIKON AI NIKKOR 35mm f/1.4 S](../../src/lens-data/nikon/NikonAINikkor35mmf14S.data.ts) | L2 | Negative Meniscus | -102.43 | -102.43 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON GF 23mm f/4 R LM WR](../../src/lens-data/fujifilm/FujifilmGF23mmf4.data.ts) | L23 | Negative Meniscus | -86.67 | -86.67 | 0.00 | 0.00% | — |
 | [NIKON NIKKOR Z 35mm f/1.8 S](../../src/lens-data/nikon/NikonZ35f18S.data.ts) | L23 | Pos. Meniscus (2× Asph) | 130.98 | 130.98 | 0.00 | 0.00% | — |
+| [MINOLTA AF 24-105mm f/3.5-4.5 (D)](../../src/lens-data/minolta/MinoltaAF24105mmf3545D.data.ts) | L1 | Negative Meniscus | -196.77 | -196.77 | 0.00 | 0.00% | — |
 | [SONY FE 85mm f/1.4 GM](../../src/lens-data/sony/SonyFE85mmF14GM.data.ts) | L11 | Negative Meniscus | -112.37 | -112.37 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON XF 23mm f/1.4 R LM WR](../../src/lens-data/fujifilm/FujifilmXF23mmf14RLMWR.data.ts) | L21 | Biconvex Positive | 25.84 | 25.84 | 0.00 | 0.00% | — |
 | [NIKON AF-S NIKKOR 24-120mm f/4 G ED VR](../../src/lens-data/nikon/NikonAFS24120mmf4G.data.ts) | L11 | Negative Meniscus | -168.71 | -168.71 | 0.00 | 0.00% | — |
@@ -4622,13 +4820,19 @@ Sorted by absolute percentage difference, largest first.
 | [MINOLTA AF 70-200mm f/2.8 APO G (D) SSM](../../src/lens-data/minolta/MinoltaAF70200mmf28APO.data.ts) | L1 | Negative Meniscus | -258.77 | -258.77 | 0.00 | 0.00% | — |
 | [CANON FD 28mm f/2.8 S.C.](../../src/lens-data/canon/CanonFD28mmf28.data.ts) | L3 | Positive Meniscus | 57.45 | 57.45 | 0.00 | 0.00% | — |
 | [SONY FE 600mm f/4 GM OSS](../../src/lens-data/sony/SonyFE600mmF4GMOSS.data.ts) | L33 | Biconvex Positive | 69.40 | 69.40 | 0.00 | 0.00% | — |
+| [PENTAX SMC FA* 300mm f/2.8 ED [IF]](../../src/lens-data/pentax/PentaxFAStar300mmF28EDIF.data.ts) | L7 | Biconcave Negative | -59.74 | -59.74 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON XF 23mm f/2 R WR](../../src/lens-data/fujifilm/FujifilmXF23mmf2RWR.data.ts) | L31 | Biconcave Negative | -36.90 | -36.90 | 0.00 | 0.00% | — |
 | [SIGMA 10-18mm f/2.8 DC DN \| Contemporary](../../src/lens-data/sigma/Sigma1018mmf28DCDN.data.ts) | L12 | Biconvex Positive | 24.41 | 24.41 | 0.00 | 0.00% | — |
+| [PENTAX SMC PENTAX 24mm f/2.8](../../src/lens-data/pentax/PentaxSMCK24mmf28.data.ts) | L6 | Biconvex Positive | 17.94 | 17.94 | 0.00 | 0.00% | — |
+| [PENTAX SMC PENTAX 24mm f/2.8](../../src/lens-data/pentax/PentaxSMCK24mmf28.data.ts) | L8 | Positive Meniscus | 33.56 | 33.56 | 0.00 | 0.00% | — |
 | [KODAK WIDE-FIELD EKTAR 100mm f/6.3](../../src/lens-data/kodak/KodakWideFieldEktar100mmf63.data.ts) | L4 | Positive Meniscus | 47.00 | 47.00 | 0.00 | 0.00% | — |
+| [OLYMPUS ZUIKO AUTO-ZOOM 75-150mm f/4](../../src/lens-data/olympus/OlympusZuikoAutoZoom75150mmf4.data.ts) | L5 | Biconvex Positive | 64.45 | 64.45 | 0.00 | 0.00% | — |
+| [PENTAX SMC FA* 300mm f/2.8 ED [IF]](../../src/lens-data/pentax/PentaxFAStar300mmF28EDIF.data.ts) | L9 | Biconcave Negative | -86.88 | -86.88 | 0.00 | 0.00% | — |
 | [CANON NEW FD 100mm f/2](../../src/lens-data/canon/CanonNewFD100mmf2.data.ts) | L5 | Negative Meniscus | -94.67 | -94.67 | 0.00 | 0.00% | — |
 | [NIKON 1 NIKKOR VR 10-100mm f/4-5.6](../../src/lens-data/nikon/Nikon1Nikkor10100mmf4VR.data.ts) | L407 | Biconcave Negative | -11.06 | -11.06 | 0.00 | 0.00% | — |
 | [SIGMA 20mm f/1.4 DG HSM \| Art](../../src/lens-data/sigma/Sigma20mmf14DGHSMArt.data.ts) | E13 | Biconvex Positive | 39.50 | 39.50 | 0.00 | 0.00% | — |
 | [CARL ZEISS JENA BIOGON 35mm f/2.8 (pre-war)](../../src/lens-data/carl-zeiss-jena/ZeissBiogon35mmf28Prewar.data.ts) | L5 | Negative Meniscus | -34.12 | -34.12 | 0.00 | 0.00% | — |
+| [SAMSUNG 60mm f/2.8 Macro ED OIS SSA](../../src/lens-data/samsung/SamsungNX60mmf28MacroEDOISSSA.data.ts) | L12 | Biconcave Negative | -73.82 | -73.82 | 0.00 | 0.00% | — |
 | [NIKON REFLEX-NIKKOR 1000mm f/11](../../src/lens-data/nikon/NikonReflexNikkor1000mmf11.data.ts) | L1 | Plano-Convex Positive | 1316.00 | 1316.02 | +0.02 | 0.00% | — |
 | [NIKON 1 NIKKOR VR 10-100mm f/4-5.6](../../src/lens-data/nikon/Nikon1Nikkor10100mmf4VR.data.ts) | L24 | Negative Meniscus | -30.57 | -30.57 | 0.00 | 0.00% | — |
 | [CANON RF 24-70mm f/2.8 L IS USM](../../src/lens-data/canon/CanonRF2470f28.data.ts) | L16 | Negative Meniscus | -120.00 | -120.00 | 0.00 | 0.00% | — |
@@ -4663,6 +4867,7 @@ Sorted by absolute percentage difference, largest first.
 | [SONY FE 70-200mm f/4 Macro G OSS II](../../src/lens-data/sony/SonyFE70200mmF4MacroGOSSII.data.ts) | L53 | Biconvex Positive (2x Asph) | 32.41 | 32.41 | 0.00 | 0.00% | — |
 | [VIVITAR SERIES 1 70-210mm f/2.8-4 VMC](../../src/lens-data/vivitar/VivitarSeries170210mmf284.data.ts) | L2 | Biconvex Positive | 67.60 | 67.60 | 0.00 | 0.00% | — |
 | [CANON RF 24-50mm f/4.5-6.3 IS STM](../../src/lens-data/canon/CanonRF2450mmf463.data.ts) | L1P | Positive Meniscus | 67.52 | 67.52 | 0.00 | 0.00% | — |
+| [MEIKE AF 85mm f/1.8 FF STM](../../src/lens-data/meike/Meike85mmf18.data.ts) | L9 | Biconvex Positive | 63.57 | 63.57 | 0.00 | 0.00% | — |
 | [VIVITAR SERIES 1 450mm f/4.5 VMC ASPHERICAL MIRROR](../../src/lens-data/vivitar/VivitarSeries1450mmf45.data.ts) | L8 | Negative Meniscus | -73.36 | -73.36 | 0.00 | 0.00% | — |
 | [NIKON AF-S NIKKOR 70-200mm f/2.8 E FL ED VR](../../src/lens-data/nikon/NikonNikkorAFS70200mmf28E.data.ts) | L13 | Positive Meniscus | 243.40 | 243.40 | 0.00 | 0.00% | — |
 | [CANON EF 50mm f/1.2 L USM](../../src/lens-data/canon/CanonEF50mmf12LUSM.data.ts) | L5 | Biconvex Positive | 29.09 | 29.09 | 0.00 | 0.00% | — |
@@ -4670,6 +4875,8 @@ Sorted by absolute percentage difference, largest first.
 | [OLYMPUS ZUIKO AUTO-W 21mm f/2](../../src/lens-data/olympus/OlympusZuikoAuto21mmf2.data.ts) | L5 | Negative Meniscus | -57.96 | -57.96 | 0.00 | 0.00% | — |
 | [LEICA SUPER-VARIO-ELMAR-TL 11-23mm f/3.5-4.5 ASPH.](../../src/lens-data/leica/LeicaSuperVarioElmarTL1123mmf3545Asph.data.ts) | L1 | Negative Meniscus | -37.13 | -37.13 | 0.00 | 0.00% | — |
 | [NIKON AI MICRO-NIKKOR 105mm f/2.8 S](../../src/lens-data/nikon/NikonAIMicroNikkor105mmf28S.data.ts) | L11 | Biconvex Positive | 90.15 | 90.15 | 0.00 | 0.00% | — |
+| [MEIKE 50mm f/0.95](../../src/lens-data/meike/Meike50mmf095.data.ts) | L2 | Positive Meniscus | 110.54 | 110.54 | 0.00 | 0.00% | — |
+| [YONGNUO YN 50mm f/1.4](../../src/lens-data/yongnuo/YongnuoYN50mmf14.data.ts) | L11 | Positive Meniscus | 155.81 | 155.81 | 0.00 | 0.00% | — |
 | [SONY FE 600mm f/4 GM OSS](../../src/lens-data/sony/SonyFE600mmF4GMOSS.data.ts) | L13 | Biconcave Negative | -157.07 | -157.07 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON GF 30mm f/5.6 T/S](../../src/lens-data/fujifilm/FujifilmGF30mmf56TS.data.ts) | L33 | Biconvex Positive | 32.99 | 32.99 | 0.00 | 0.00% | — |
 | [SIGMA 17-40mm f/1.8 DC \| Art](../../src/lens-data/sigma/Sigma1740mmf18DCA.data.ts) | L15 | Negative Meniscus | -39.78 | -39.78 | 0.00 | 0.00% | — |
@@ -4677,6 +4884,7 @@ Sorted by absolute percentage difference, largest first.
 | [LAOWA 12mm f/2.8 Zero-D](../../src/lens-data/laowa/Laowa12mmf28ZeroD.data.ts) | L14 | Negative Meniscus | -28.47 | -28.47 | 0.00 | 0.00% | — |
 | [NIKON AF-S DX NIKKOR 18-105mm f/3.5-5.6 G ED VR](../../src/lens-data/nikon/NikonAFSDX18105f3556GEDVR.data.ts) | L42 | Positive Meniscus | 23.05 | 23.05 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON 35mm f/4 (Fujifilm GFX100RF)](../../src/lens-data/fujifilm/FujifilmGFX100RF35mmf4.data.ts) | L17 | Positive Meniscus (2x Asph) | 34.51 | 34.51 | 0.00 | 0.00% | — |
+| [LAOWA 200mm f/2 AF FF](../../src/lens-data/laowa/Laowa200mmf2AFFF.data.ts) | L3 | Biconvex Positive | 111.75 | 111.75 | 0.00 | 0.00% | — |
 | [PENTAX SMC FA 28mm f/2.8 Soft](../../src/lens-data/pentax/PentaxFA28mmf28Soft.data.ts) | E1 | Weak Biconvex Positive | 339.34 | 339.34 | 0.00 | 0.00% | — |
 | [NIKON AF-S NIKKOR 500mm f/5.6 E PF ED VR](../../src/lens-data/nikon/NikonAFSNikkor500mmf56EPFEDVR.data.ts) | L22 | Biconcave Negative | -87.82 | -87.82 | 0.00 | 0.00% | — |
 | [NIKON AF-S NIKKOR 24-120mm f/4 G ED VR](../../src/lens-data/nikon/NikonAFS24120mmf4G.data.ts) | L12 | Biconvex Positive | 134.77 | 134.77 | 0.00 | 0.00% | — |
@@ -4690,6 +4898,7 @@ Sorted by absolute percentage difference, largest first.
 | [CANON NEW FD 150-600mm f/5.6 L](../../src/lens-data/canon/CanonFD150600mmf56L.data.ts) | L16 | Negative Meniscus | -103.12 | -103.12 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON XF 18-120mm f/4 LM PZ WR](../../src/lens-data/fujifilm/FujifilmFujinonXf18120mmf40LMPZWR.data.ts) | L24 | Negative Meniscus | -36.56 | -36.56 | 0.00 | 0.00% | — |
 | [NIKON AI ZOOM-NIKKOR 360-1200mm f/11 ED](../../src/lens-data/nikon/NikonAIZoomNikkor3601200mmf11ED.data.ts) | L13 | Negative Meniscus | -457.70 | -457.69 | +0.01 | 0.00% | — |
+| [YONGNUO YN 50mm f/1.4](../../src/lens-data/yongnuo/YongnuoYN50mmf14.data.ts) | L22 | Biconvex Positive | 122.33 | 122.33 | 0.00 | 0.00% | — |
 | [NIKON GUGUTTO MACRO 120mm f/4.5](../../src/lens-data/nikon/NikonGugotto120mmf45.data.ts) | L3 | Negative Meniscus (convex to image) | -283.62 | -283.62 | 0.00 | 0.00% | — |
 | [PANASONIC LUMIX G 14mm f/2.5 II ASPH.](../../src/lens-data/panasonic/PanasonicG14mmf25II.data.ts) | L2 | Positive Meniscus | 16.96 | 16.96 | 0.00 | 0.00% | — |
 | [SIGMA 24mm f/1.4 DG DN \| Art](../../src/lens-data/sigma/Sigma24mmf14ArtDN.data.ts) | L7 | Negative Meniscus | -60.90 | -60.90 | 0.00 | 0.00% | — |
@@ -4716,6 +4925,7 @@ Sorted by absolute percentage difference, largest first.
 | [OLYMPUS ZUIKO AUTO-W 28mm f/2](../../src/lens-data/olympus/OlympusZuikoAutoW28mmf2.data.ts) | L2 | Negative Meniscus | -31.66 | -31.66 | 0.00 | 0.00% | — |
 | [CANON RF 24-105mm f/2.8 L IS USM Z](../../src/lens-data/canon/CanonRF24105mmf28Z.data.ts) | L24 | Negative Meniscus | -70.90 | -70.90 | 0.00 | 0.00% | — |
 | [NIKON NIKKOR Z 28mm f/2.8](../../src/lens-data/nikon/NikonZ28f28.data.ts) | L24g | Plano-Convex Positive | 21.77 | 21.77 | 0.00 | 0.00% | — |
+| [SONY DT 18-135mm f/3.5-5.6 SAM](../../src/lens-data/sony/SonyDT18135mmf3556SAM.data.ts) | L21r | Aspherical Resin Layer | -288.17 | -288.17 | 0.00 | 0.00% | — |
 | [SONY E 18-55mm f/3.5-5.6 OSS](../../src/lens-data/sony/SonyE1855mmf3556.data.ts) | L4 | Biconcave Negative (1x Asph) | -18.58 | -18.58 | 0.00 | 0.00% | — |
 | [OLYMPUS ZUIKO AUTO-W 18mm f/3.5](../../src/lens-data/olympus/OlympusZuikoAutoW18mmf35.data.ts) | L2 | Negative Meniscus | -30.88 | -30.88 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON GF 55mm f/1.7 R WR](../../src/lens-data/fujifilm/FujifilmGF55mmf17.data.ts) | L27 | Biconcave Negative | -23.41 | -23.41 | 0.00 | 0.00% | — |
@@ -4728,6 +4938,7 @@ Sorted by absolute percentage difference, largest first.
 | [NIKON AF-S NIKKOR 24mm f/1.4 G ED](../../src/lens-data/nikon/NikonNikkorAFS24mmf14G.data.ts) | L25 | Biconvex Positive ED | 45.97 | 45.97 | 0.00 | 0.00% | — |
 | [KONICA HEXANON AR 35mm f/2.8](../../src/lens-data/konica/KonicaHexanonAR35mmf28.data.ts) | L1 | Negative Meniscus | -40.27 | -40.27 | 0.00 | 0.00% | — |
 | [CANON EF 24mm f/1.4 L II USM](../../src/lens-data/canon/CanonEF24mmf14LII.data.ts) | E9 | Biconvex Positive | 38.99 | 38.99 | 0.00 | 0.00% | — |
+| [NIKON AF-S NIKKOR 50mm f/1.4 G](../../src/lens-data/nikon/NikonAFSNikkor50mmf14G.data.ts) | L5 | Biconvex Positive | 37.01 | 37.01 | 0.00 | 0.00% | — |
 | [KONICA HEXAR 35mm f/2 (Konica Hexar AF)](../../src/lens-data/konica/KonicaHexar35mmf2.data.ts) | L1 | Positive Meniscus | 46.01 | 46.01 | 0.00 | 0.00% | — |
 | [NIKON AI NIKKOR 24mm f/2](../../src/lens-data/nikon/NikonAINikkor24mmf2.data.ts) | L8b | Biconcave Negative | -20.85 | -20.85 | 0.00 | 0.00% | — |
 | [RODENSTOCK RODAGON-WA 80mm f/4](../../src/lens-data/rodenstock/RodenstockRodagonWA80mmf4.data.ts) | L2 | Plano-Concave Negative | -21.35 | -21.35 | 0.00 | 0.00% | — |
@@ -4737,11 +4948,14 @@ Sorted by absolute percentage difference, largest first.
 | [LEICA MACRO-ELMARIT-R 60mm f/2.8](../../src/lens-data/leica/LeicaMacroElmaritR60mmf28.data.ts) | L4 | Negative Meniscus | -70.29 | -70.29 | 0.00 | 0.00% | — |
 | [PENTAX DA* 50-135mm f/2.8 ED [IF] SDM](../../src/lens-data/pentax/PentaxDA50135mmf28.data.ts) | L5 | Biconvex Positive | 96.40 | 96.40 | 0.00 | 0.00% | — |
 | [NIKON AF ZOOM-NIKKOR 28-80mm f/3.3-5.6 G](../../src/lens-data/nikon/NikonAFZoomNikkor2880mmf3356.data.ts) | L2 | Positive Meniscus | 80.34 | 80.34 | 0.00 | 0.00% | — |
+| [MINOLTA AF 24-105mm f/3.5-4.5 (D)](../../src/lens-data/minolta/MinoltaAF24105mmf3545D.data.ts) | L3 | Positive Meniscus | 112.89 | 112.89 | 0.00 | 0.00% | — |
 | [NIKON AF ZOOM-NIKKOR 28-80mm f/3.3-5.6 G](../../src/lens-data/nikon/NikonAFZoomNikkor2880mmf3356.data.ts) | L1r | Thin Resin Aspherical Layer | -254.93 | -254.93 | 0.00 | 0.00% | — |
 | [NIKON PC NIKKOR 19mm f/4 E ED](../../src/lens-data/nikon/NikonNikkorPCE19mmf4E.data.ts) | L12 | Negative Meniscus | -105.40 | -105.40 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON 35mm f/4 (Fujifilm GFX100RF)](../../src/lens-data/fujifilm/FujifilmGFX100RF35mmf4.data.ts) | L15 | Biconvex Positive | 15.96 | 15.97 | 0.00 | 0.00% | — |
 | [PENTAX SUPER-TAKUMAR 35mm f/2](../../src/lens-data/pentax/PentaxSuperTakumar35mmf2.data.ts) | L3 | Biconvex Positive | 38.57 | 38.57 | 0.00 | 0.00% | — |
 | [MINOLTA AF 28mm f/2](../../src/lens-data/minolta/MinoltaAF28mmf2.data.ts) | L6 | Biconcave Negative | -18.29 | -18.28 | 0.00 | 0.00% | — |
+| [OLYMPUS ZUIKO AUTO-ZOOM 75-150mm f/4](../../src/lens-data/olympus/OlympusZuikoAutoZoom75150mmf4.data.ts) | L3 | Positive Meniscus | 87.23 | 87.23 | 0.00 | 0.00% | — |
+| [CANON RF 24mm f/1.8 Macro IS STM](../../src/lens-data/canon/CanonRF24mmf18MacroISSTM.data.ts) | L1 | Negative Meniscus | -34.08 | -34.08 | 0.00 | 0.00% | — |
 | [OLYMPUS G.ZUIKO AUTO-W 21mm f/3.5](../../src/lens-data/olympus/OlympusGZuikoAutoW21mmf35.data.ts) | L1 | Positive Meniscus | 90.84 | 90.84 | 0.00 | 0.00% | — |
 | [SONY E 18-55mm f/3.5-5.6 OSS](../../src/lens-data/sony/SonyE1855mmf3556.data.ts) | L8 | Negative Meniscus | -27.78 | -27.78 | 0.00 | 0.00% | — |
 | [NIKON NIKKOR-S AUTO 5cm f/2](../../src/lens-data/nikon/NikonNikkorSAuto50mmf2.data.ts) | L5 | Negative Meniscus | -25.51 | -25.51 | 0.00 | 0.00% | — |
@@ -4779,6 +4993,7 @@ Sorted by absolute percentage difference, largest first.
 | [NIKON NIKKOR Z 70-200mm f/2.8 VR S II](../../src/lens-data/nikon/NikonNikkorZ70200mmf28VRSII.data.ts) | L11 | Positive Meniscus | 327.78 | 327.78 | 0.00 | 0.00% | — |
 | [VOIGTLÄNDER NOKTON Vintage Line 50mm f/1.5 Aspherical II VM](../../src/lens-data/voigtlander/VoigtlanderNokton50mmf15AsphericalVM.data.ts) | L5 | Biconcave Negative | -24.55 | -24.55 | 0.00 | 0.00% | — |
 | [PANASONIC LUMIX G VARIO 12-32mm f/3.5-5.6 ASPH. MEGA O.I.S.](../../src/lens-data/panasonic/PanasonicLumixGVario1232mmf3556MegaOIS.data.ts) | L6 | Biconvex Positive | 9.03 | 9.03 | 0.00 | 0.00% | — |
+| [PENTAX SMC FA* 300mm f/2.8 ED [IF]](../../src/lens-data/pentax/PentaxFAStar300mmF28EDIF.data.ts) | L1 | Biconvex Positive | 253.47 | 253.47 | 0.00 | 0.00% | — |
 | [CANON NEW FD 150-600mm f/5.6 L](../../src/lens-data/canon/CanonFD150600mmf56L.data.ts) | L5 | Biconvex Positive | 386.76 | 386.76 | 0.00 | 0.00% | — |
 | [CARL ZEISS DISTAGON T* 35mm f/2 (Zeiss ZX1)](../../src/lens-data/carl-zeiss-oberkochen/ZeissZX1Distagon35mmf2.data.ts) | L5 | Positive Meniscus | 25.24 | 25.24 | 0.00 | 0.00% | — |
 | [NIKON FISHEYE-NIKKOR 6mm f/5.6](../../src/lens-data/nikon/NikonFisheyeNikkor6mmf56.data.ts) | L8 | Positive Meniscus | 24.83 | 24.83 | 0.00 | 0.00% | — |
@@ -4802,6 +5017,7 @@ Sorted by absolute percentage difference, largest first.
 | [OLYMPUS ZUIKO AUTO-W 28mm f/2](../../src/lens-data/olympus/OlympusZuikoAutoW28mmf2.data.ts) | L4a | Negative Meniscus | -47.53 | -47.53 | 0.00 | 0.00% | — |
 | [SIGMA 17-40mm f/1.8 DC \| Art](../../src/lens-data/sigma/Sigma1740mmf18DCA.data.ts) | L2 | Neg. Meniscus (2× Asph) | -193.43 | -193.43 | 0.00 | 0.00% | — |
 | [CANON EF-M 28mm f/3.5 Macro IS STM](../../src/lens-data/canon/CanonEFM28mmf34MacroISSTM.data.ts) | 109a | Positive Meniscus | 63.44 | 63.44 | 0.00 | 0.00% | — |
+| [KMZ ZENITAR 50mm f/1.2 S](../../src/lens-data/kmz/KMZZenitar50mmf12S.data.ts) | L7 | Plano-Convex Positive | 73.42 | 73.42 | 0.00 | 0.00% | — |
 | [PENTAX SMC PENTAX 18mm f/3.5](../../src/lens-data/pentax/PentaxSMCK18mmf35.data.ts) | L7 | Biconvex Positive | 18.13 | 18.13 | 0.00 | 0.00% | — |
 | [PENTAX DA 21mm f/3.2 AL Limited](../../src/lens-data/pentax/PentaxDA21mmf32Limited.data.ts) | L8r | Aspheric Resin Layer | -1945.60 | -1945.58 | +0.02 | 0.00% | — |
 | [PENTAX HD D FA* 85mm f/1.4 ED SDM AW](../../src/lens-data/pentax/PentaxDFA85mmf14.data.ts) | L14 | Biconvex Positive | 231.90 | 231.90 | 0.00 | 0.00% | — |
@@ -4821,11 +5037,15 @@ Sorted by absolute percentage difference, largest first.
 | [NIKON AF-S NIKKOR 500mm f/5.6 E PF ED VR](../../src/lens-data/nikon/NikonAFSNikkor500mmf56EPFEDVR.data.ts) | L39 | Biconvex Positive | 45.13 | 45.13 | 0.00 | 0.00% | — |
 | [SIGMA 45mm f/2.8 DG DN \| Contemporary](../../src/lens-data/sigma/Sigma45mmf28DGDN.data.ts) | L8 | Biconvex Positive | 83.60 | 83.60 | 0.00 | 0.00% | — |
 | [SONY FE 28-70mm f/3.5-5.6 OSS](../../src/lens-data/sony/SonyFE2870mmf3556.data.ts) | G1 | Negative Meniscus | -49.53 | -49.53 | 0.00 | 0.00% | — |
+| [KONICA HEXANON AR 57mm f/1.2](../../src/lens-data/konica/KonicaHexanonAR57mmf12.data.ts) | L6 | Positive Meniscus | 149.66 | 149.66 | 0.00 | 0.00% | — |
 | [NIKON AF NIKKOR 28mm f/1.4 D](../../src/lens-data/nikon/NikonAF28f14D.data.ts) | L5 | Biconvex Positive | 30.79 | 30.79 | 0.00 | 0.00% | — |
+| [MINOLTA AF 24-105mm f/3.5-4.5 (D)](../../src/lens-data/minolta/MinoltaAF24105mmf3545D.data.ts) | L2 | Biconvex Positive | 130.76 | 130.76 | 0.00 | 0.00% | — |
 | [PANASONIC LUMIX G FISHEYE 8mm f/3.5](../../src/lens-data/panasonic/PanasonicLumixG8mmf35.data.ts) | L7 | Positive Meniscus | 14.98 | 14.98 | 0.00 | 0.00% | — |
 | [KONICA HEXAR 35mm f/2 (Konica Hexar AF)](../../src/lens-data/konica/KonicaHexar35mmf2.data.ts) | L6 | Biconvex Positive | 29.99 | 29.99 | 0.00 | 0.00% | — |
 | [CANON NEW FD 150-600mm f/5.6 L](../../src/lens-data/canon/CanonFD150600mmf56L.data.ts) | L4 | Negative Meniscus | -368.44 | -368.44 | 0.00 | 0.00% | — |
+| [SONY DT 18-135mm f/3.5-5.6 SAM](../../src/lens-data/sony/SonyDT18135mmf3556SAM.data.ts) | L12 | Positive Meniscus | 91.50 | 91.50 | 0.00 | 0.00% | — |
 | [SONY FE 24mm f/1.4 GM](../../src/lens-data/sony/SonyFE24mmf14GM.data.ts) | L31 | Biconvex Positive | 165.59 | 165.59 | 0.00 | 0.00% | — |
+| [KMZ ZENITAR 50mm f/0.95](../../src/lens-data/kmz/KMZZenitar50mmf095.data.ts) | L6 | Plano-Convex | 102.42 | 102.42 | 0.00 | 0.00% | — |
 | [LEICA SUPER-VARIO-ELMAR-TL 11-23mm f/3.5-4.5 ASPH.](../../src/lens-data/leica/LeicaSuperVarioElmarTL1123mmf3545Asph.data.ts) | L4 | Biconcave Negative | -44.80 | -44.80 | 0.00 | 0.00% | — |
 | [SIGMA 17-40mm f/1.8 DC \| Art](../../src/lens-data/sigma/Sigma1740mmf18DCA.data.ts) | L6 | Negative Meniscus | -109.50 | -109.50 | 0.00 | 0.00% | — |
 | [NIKON AF-S NIKKOR 500mm f/5.6 E PF ED VR](../../src/lens-data/nikon/NikonAFSNikkor500mmf56EPFEDVR.data.ts) | L11 | Biconvex Positive Low-Dispersion | 275.70 | 275.70 | 0.00 | 0.00% | — |
@@ -4836,6 +5056,7 @@ Sorted by absolute percentage difference, largest first.
 | [NIKON AF-S NIKKOR 24-70mm f/2.8 E ED VR](../../src/lens-data/nikon/NikonNikkorAFS2470mmf28E.data.ts) | L12r | Asph. Resin Layer | 2115.90 | 2115.88 | -0.02 | 0.00% | — |
 | [NIKON NIKKOR Z 35mm f/1.8 S](../../src/lens-data/nikon/NikonZ35f18S.data.ts) | L31 | Neg. Meniscus (2× Asph) | -97.34 | -97.34 | 0.00 | 0.00% | — |
 | [NIKON AI-S ZOOM-NIKKOR 35-70mm f/3.5](../../src/lens-data/nikon/NikonAIZoomNikkor3570mmf35.data.ts) | L3 | Negative Meniscus | -78.98 | -78.98 | 0.00 | 0.00% | — |
+| [PENTAX SMC FA* 300mm f/2.8 ED [IF]](../../src/lens-data/pentax/PentaxFAStar300mmF28EDIF.data.ts) | L8 | Biconvex Positive | 63.87 | 63.87 | 0.00 | 0.00% | — |
 | [PENTAX SMC PENTAX 18mm f/3.5](../../src/lens-data/pentax/PentaxSMCK18mmf35.data.ts) | L9 | Positive Meniscus | 28.05 | 28.05 | 0.00 | 0.00% | — |
 | [NIKON AF-S DX NIKKOR 18-105mm f/3.5-5.6 G ED VR](../../src/lens-data/nikon/NikonAFSDX18105f3556GEDVR.data.ts) | L41 | Biconcave Negative | -14.52 | -14.52 | 0.00 | 0.00% | — |
 | [NIKON AF-S NIKKOR 28mm f/1.4 E ED](../../src/lens-data/nikon/NikonAFS28f14E.data.ts) | L12r | Negative Meniscus (1× Asph) | -368.90 | -368.90 | 0.00 | 0.00% | — |
@@ -4846,6 +5067,7 @@ Sorted by absolute percentage difference, largest first.
 | [LAOWA 12mm f/2.8 Zero-D](../../src/lens-data/laowa/Laowa12mmf28ZeroD.data.ts) | L4 | Plano-Convex Positive | 22.07 | 22.07 | 0.00 | 0.00% | — |
 | [OLYMPUS M.ZUIKO DIGITAL ED 12mm f/2.0](../../src/lens-data/olympus/OlympusMZuiko12mmf2.data.ts) | L5 | Positive Meniscus | 22.19 | 22.19 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON GF 45mm f/2.8 R WR](../../src/lens-data/fujifilm/FujifilmGF45mmf28.data.ts) | L1a | Negative Meniscus | -44.43 | -44.43 | 0.00 | 0.00% | — |
+| [P. ANGÉNIEUX TYPE M1 25mm f/0.95](../../src/lens-data/angenieux/AngenieuxTypeM125mmf095.data.ts) | L8 | Biconvex Positive | 34.35 | 34.35 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON XF 16-80mm f/4 R OIS WR](../../src/lens-data/fujifilm/FujifilmXF1680mmf4.data.ts) | L32 | Negative Meniscus | -16.50 | -16.50 | 0.00 | 0.00% | — |
 | [SONY E 20mm f/2.8](../../src/lens-data/sony/SonyE20mmf28.data.ts) | L5 | Biconvex Positive (2× Asph) | 14.20 | 14.20 | 0.00 | 0.00% | — |
 | [LEICA SUMMILUX-C 40mm T1.4](../../src/lens-data/leica/LeicaSummiluxC40mmT14.data.ts) | L6 | Negative Meniscus | -24.39 | -24.39 | 0.00 | 0.00% | — |
@@ -4854,6 +5076,7 @@ Sorted by absolute percentage difference, largest first.
 | [PENTAX SUPER-TAKUMAR 35mm f/2](../../src/lens-data/pentax/PentaxSuperTakumar35mmf2.data.ts) | L6 | Negative Meniscus | -32.14 | -32.14 | 0.00 | 0.00% | — |
 | [CANON EF 24-70mm f/2.8 L USM](../../src/lens-data/canon/CanonEF2470mmf28L.data.ts) | L11 | Neg. Meniscus (front asph) | -59.90 | -59.90 | 0.00 | 0.00% | — |
 | [NIKON NIKKOR Z 50mm f/1.8 S](../../src/lens-data/nikon/NikonNikkorZ50f18S.data.ts) | L13 | Pos. Meniscus (concave to obj.) | 82.18 | 82.18 | 0.00 | 0.00% | — |
+| [KMZ ZENITAR 50mm f/0.95](../../src/lens-data/kmz/KMZZenitar50mmf095.data.ts) | L3 | Positive Meniscus | 148.12 | 148.12 | 0.00 | 0.00% | — |
 | [SONY ZEISS VARIO-SONNAR T* 8.8-73.3mm f/2.8 (Sony Cyber-shot DSC-RX10 / DSC-RX10 II)](../../src/lens-data/sony/ZeissVarioSonnarT88733mmf28SonyDSCRX10M12.data.ts) | L12 | Biconcave Neg. (2x Asph) | -26.03 | -26.03 | 0.00 | 0.00% | — |
 | [NIKON AF-P DX NIKKOR 10-20mm f/4.5-5.6 G VR](../../src/lens-data/nikon/NikonAFPDX1020mmf4556G.data.ts) | L41 | Positive Meniscus (1× Asph) | 148.46 | 148.46 | 0.00 | 0.00% | — |
 | [LEICA MACRO-ELMARIT-R 60mm f/2.8](../../src/lens-data/leica/LeicaMacroElmaritR60mmf28.data.ts) | L2 | Positive Meniscus | 32.70 | 32.70 | 0.00 | 0.00% | — |
@@ -4862,6 +5085,7 @@ Sorted by absolute percentage difference, largest first.
 | [CANON R 58mm f/1.2](../../src/lens-data/canon/CanonR58mmf12.data.ts) | L6 | Plano-Convex | 123.09 | 123.09 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON GF 30mm f/5.6 T/S](../../src/lens-data/fujifilm/FujifilmGF30mmf56TS.data.ts) | L13 | Negative Meniscus (ED) | -54.23 | -54.23 | 0.00 | 0.00% | — |
 | [CARL ZEISS JENA VARIO-PRAKTICAR 35-70mm f/2.7-3.5 MC](../../src/lens-data/carl-zeiss-jena/ZeissVarioPrakticar3570mmf2735.data.ts) | L8 | Biconvex Positive | 41.56 | 41.56 | 0.00 | 0.00% | — |
+| [PENTAX SMC PENTAX 24mm f/2.8](../../src/lens-data/pentax/PentaxSMCK24mmf28.data.ts) | L2 | Negative Meniscus | -30.32 | -30.33 | 0.00 | 0.00% | — |
 | [SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) | L32 | Biconvex Positive | 200.90 | 200.90 | 0.00 | 0.00% | — |
 | [MINOLTA AF 100mm f/2.8 Macro](../../src/lens-data/minolta/MinoltaAF100mmf28Macro.data.ts) | L7 | Negative Meniscus | -244.90 | -244.90 | 0.00 | 0.00% | — |
 | [NIKON NEW NIKKOR 20mm f/4](../../src/lens-data/nikon/NikonNikkor20mmf4.data.ts) | L5b | Plano-Convex | 31.65 | 31.65 | 0.00 | 0.00% | — |
@@ -4872,8 +5096,10 @@ Sorted by absolute percentage difference, largest first.
 | [CANON NEW FD 150-600mm f/5.6 L](../../src/lens-data/canon/CanonFD150600mmf56L.data.ts) | L3 | Negative Meniscus | -356.75 | -356.75 | 0.00 | 0.00% | — |
 | [NIKON AF-S DX NIKKOR 18-105mm f/3.5-5.6 G ED VR](../../src/lens-data/nikon/NikonAFSDX18105f3556GEDVR.data.ts) | L33 | Biconvex Positive | 38.83 | 38.83 | 0.00 | 0.00% | — |
 | [SCHNEIDER-KREUZNACH VARIOGON 45-100mm f/2.8](../../src/lens-data/schneider-kreuznach/SchneiderVariogon2845100.data.ts) | L6 | Biconvex Positive | 48.98 | 48.98 | 0.00 | 0.00% | — |
+| [PENTAX SMC FA* 300mm f/2.8 ED [IF]](../../src/lens-data/pentax/PentaxFAStar300mmF28EDIF.data.ts) | L4 | Negative Meniscus | -117.08 | -117.08 | 0.00 | 0.00% | — |
 | [MINOLTA AF APO TELE 200mm f/2.8](../../src/lens-data/minolta/MinoltaAF200mmf28.data.ts) | L6 | Biconcave Negative | -46.13 | -46.13 | 0.00 | 0.00% | — |
 | [NIKON AF-S NIKKOR 500mm f/5.6 E PF ED VR](../../src/lens-data/nikon/NikonAFSNikkor500mmf56EPFEDVR.data.ts) | L14 | Positive Meniscus PF Substrate | 358.27 | 358.27 | 0.00 | 0.00% | — |
+| [NIKON AF-S NIKKOR 50mm f/1.4 G](../../src/lens-data/nikon/NikonAFSNikkor50mmf14G.data.ts) | L4 | Biconcave Negative | -22.11 | -22.11 | 0.00 | 0.00% | — |
 | [CANON RF 50mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF50mmf14LVCM.data.ts) | E15 | Negative Meniscus | -146.02 | -146.02 | 0.00 | 0.00% | — |
 | [OLYMPUS ZUIKO AUTO-W 28mm f/2](../../src/lens-data/olympus/OlympusZuikoAutoW28mmf2.data.ts) | L6 | Positive Meniscus | 42.57 | 42.57 | 0.00 | 0.00% | — |
 | [SIGMA APO MACRO 150mm f/2.8 EX DG OS HSM](../../src/lens-data/sigma/SigmaAPOMacro150mmf28OSHSM.data.ts) | L21 | Negative Meniscus | -97.03 | -97.03 | 0.00 | 0.00% | — |
@@ -4938,6 +5164,7 @@ Sorted by absolute percentage difference, largest first.
 | [SIGMA 100-400mm f/5-6.3 DG DN OS \| Contemporary](../../src/lens-data/sigma/Sigma100400mmf563DGDNOSContemporary.data.ts) | L20 | Biconcave Negative | -42.51 | -42.51 | 0.00 | 0.00% | — |
 | [OLYMPUS ZUIKO DIGITAL ED 12-60mm f/2.8-4.0 SWD](../../src/lens-data/olympus/OlympusMZuiko1260mmf284ED.data.ts) | L2 | Plano-Convex Positive | 142.98 | 142.98 | 0.00 | 0.00% | — |
 | [NIKON AF-S DX NIKKOR 18-105mm f/3.5-5.6 G ED VR](../../src/lens-data/nikon/NikonAFSDX18105f3556GEDVR.data.ts) | L52 | Biconvex Positive | 26.80 | 26.80 | 0.00 | 0.00% | — |
+| [LAOWA 200mm f/2 AF FF](../../src/lens-data/laowa/Laowa200mmf2AFFF.data.ts) | L2 | Positive Meniscus | 277.92 | 277.92 | 0.00 | 0.00% | — |
 | [PANASONIC LUMIX S PRO 16-35mm f/4](../../src/lens-data/panasonic/PanasonicLumixSPro1635mmf4.data.ts) | P | Negative Meniscus Resin Layer (1× Asph) | -98.43 | -98.43 | 0.00 | 0.00% | — |
 | [CARL ZEISS JENA PRAKTICAR 50mm f/1.4](../../src/lens-data/carl-zeiss-jena/ZeissPlanar50mmf14Praktica.data.ts) | L5 | Positive Meniscus | 57.20 | 57.19 | 0.00 | 0.00% | — |
 | [MINOLTA AF 28mm f/2](../../src/lens-data/minolta/MinoltaAF28mmf2.data.ts) | L5 | Positive Meniscus | 41.62 | 41.62 | 0.00 | 0.00% | — |
@@ -4955,6 +5182,7 @@ Sorted by absolute percentage difference, largest first.
 | [SONY FE 24mm f/2.8 G](../../src/lens-data/sony/SonyFE24mmf28G.data.ts) | L6 | Negative Meniscus | -69.15 | -69.15 | 0.00 | 0.00% | — |
 | [MINOLTA AF 28mm f/2](../../src/lens-data/minolta/MinoltaAF28mmf2.data.ts) | L3 | Negative Meniscus | -55.01 | -55.01 | 0.00 | 0.00% | — |
 | [NIKON AI ZOOM-NIKKOR 25-50mm f/4](../../src/lens-data/nikon/NikonAIZoomNikkor2550mmf4.data.ts) | L5a | Biconvex Positive | 65.00 | 65.00 | 0.00 | 0.00% | — |
+| [LAOWA 200mm f/2 AF FF](../../src/lens-data/laowa/Laowa200mmf2AFFF.data.ts) | L9 | Negative Meniscus | -247.91 | -247.91 | 0.00 | 0.00% | — |
 | [OLYMPUS M.ZUIKO DIGITAL ED 12-200mm f/3.5-6.3](../../src/lens-data/olympus/OlympusMZuikoED12200mmf3563.data.ts) | L12 | Positive Meniscus | 61.28 | 61.28 | 0.00 | 0.00% | — |
 | [LEICA ELMARIT-R 35mm f/2.8](../../src/lens-data/leica/LeicaElmaritR35mmf28.data.ts) | L1 | Negative Meniscus | -54.91 | -54.91 | 0.00 | 0.00% | — |
 | [PENTAX SMC A* 135mm f/1.8](../../src/lens-data/pentax/PentaxA135mmf18.data.ts) | L4 | Negative Meniscus | -48.52 | -48.52 | 0.00 | 0.00% | — |
@@ -4967,6 +5195,7 @@ Sorted by absolute percentage difference, largest first.
 | [SONY ZEISS VARIO-SONNAR T* 8.8-73.3mm f/2.8 (Sony Cyber-shot DSC-RX10 / DSC-RX10 II)](../../src/lens-data/sony/ZeissVarioSonnarT88733mmf28SonyDSCRX10M12.data.ts) | L1 | Negative Meniscus | -216.23 | -216.23 | 0.00 | 0.00% | — |
 | [NIKON AI ZOOM-NIKKOR 50-135mm f/3.5 S](../../src/lens-data/nikon/NikonAIZoomNikko50135mmf35S.data.ts) | 3L1 | Biconcave Negative | -46.84 | -46.84 | 0.00 | 0.00% | — |
 | [NIKON AF ZOOM-NIKKOR 28-80mm f/3.5-5.6 D](../../src/lens-data/nikon/NikonAFZoomNikkor2880mmf3556.data.ts) | L2 | Negative Meniscus | -35.47 | -35.47 | 0.00 | 0.00% | — |
+| [MEIKE AF 85mm f/1.8 FF STM](../../src/lens-data/meike/Meike85mmf18.data.ts) | L5 | Positive Meniscus | 158.32 | 158.32 | 0.00 | 0.00% | — |
 | [OLYMPUS G.ZUIKO AUTO-W 28mm f/3.5](../../src/lens-data/olympus/OlympusZuiko28mmf35.data.ts) | L7 | Plano-Convex Positive | 24.54 | 24.54 | 0.00 | 0.00% | — |
 | [SIGMA 35mm f/1.4 DG HSM \| Art](../../src/lens-data/sigma/Sigma35mmf14DGHSMA.data.ts) | L11 | Biconvex Positive | 50.00 | 50.00 | 0.00 | 0.00% | — |
 | [NIKON AF-S NIKKOR 500mm f/5.6 E PF ED VR](../../src/lens-data/nikon/NikonAFSNikkor500mmf56EPFEDVR.data.ts) | L21 | Biconvex Positive | 190.40 | 190.40 | 0.00 | 0.00% | — |
@@ -4987,6 +5216,7 @@ Sorted by absolute percentage difference, largest first.
 | [NIKON DODOTTO 400mm f/8](../../src/lens-data/nikon/NikonDodotto400mmf8.data.ts) | L2 | Negative Meniscus | -181.11 | -181.11 | 0.00 | 0.00% | — |
 | [SIGMA 45mm f/2.8 DG DN \| Contemporary](../../src/lens-data/sigma/Sigma45mmf28DGDN.data.ts) | L3 | Biconcave Negative | -14.26 | -14.26 | 0.00 | 0.00% | — |
 | [SIGMA 16mm f/1.4 DC DN \| Contemporary](../../src/lens-data/sigma/Sigma16mmf14DCDN.data.ts) | L42 | Biconvex Positive | 38.35 | 38.35 | 0.00 | 0.00% | — |
+| [PENTAX SMC PENTAX 24mm f/2.8](../../src/lens-data/pentax/PentaxSMCK24mmf28.data.ts) | L5 | Negative Meniscus | -39.16 | -39.15 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON XF 23mm f/1.4 R LM WR](../../src/lens-data/fujifilm/FujifilmXF23mmf14RLMWR.data.ts) | L11 | Biconcave Negative | -70.88 | -70.88 | 0.00 | 0.00% | — |
 | [NIKON AI ZOOM-NIKKOR 80-200mm f/4](../../src/lens-data/nikon/NikonAINikkor80200mmf4.data.ts) | L22 | Biconcave Negative | -60.14 | -60.14 | 0.00 | 0.00% | — |
 | [TAMRON SP AF 180mm f/3.5 Di LD [IF] MACRO 1:1 (B01)](../../src/lens-data/tamron/TamronSPAF180mmf35Di.data.ts) | L8 | Negative Meniscus | -59.30 | -59.30 | 0.00 | 0.00% | — |
@@ -5056,6 +5286,7 @@ Sorted by absolute percentage difference, largest first.
 | [NIKON NIKKOR Z 58mm f/0.95 S Noct](../../src/lens-data/nikon/NikonZ58f095SNoct.data.ts) | L14 | Biconvex Positive | 126.47 | 126.47 | 0.00 | 0.00% | — |
 | [NIKON AF-S VR MICRO-NIKKOR 105mm f/2.8 G IF-ED](../../src/lens-data/nikon/NikonAFS105f28G.data.ts) | L8 | Biconvex Positive | 115.62 | 115.62 | 0.00 | 0.00% | — |
 | [PANASONIC LUMIX G FISHEYE 8mm f/3.5](../../src/lens-data/panasonic/PanasonicLumixG8mmf35.data.ts) | L3 | Positive Meniscus | 38.84 | 38.85 | 0.00 | 0.00% | — |
+| [P. ANGÉNIEUX TYPE M1 25mm f/0.95](../../src/lens-data/angenieux/AngenieuxTypeM125mmf095.data.ts) | L2 | Positive Meniscus | 67.71 | 67.71 | 0.00 | 0.00% | — |
 | [NIKON AI MICRO-NIKKOR 105mm f/2.8 S](../../src/lens-data/nikon/NikonAIMicroNikkor105mmf28S.data.ts) | L32 | Biconcave Negative | -43.97 | -43.97 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON XF 23mm f/1.4 R LM WR](../../src/lens-data/fujifilm/FujifilmXF23mmf14RLMWR.data.ts) | L17 | Biconvex Positive | 52.83 | 52.83 | 0.00 | 0.00% | — |
 | [NIKON TV-NIKKOR 11.5-69mm f/1.2 (Nikon S-100)](../../src/lens-data/nikon/NikonTVNikkor11569mmf12NikonS100.data.ts) | L5 | Negative Meniscus | -40.55 | -40.55 | 0.00 | 0.00% | — |
@@ -5134,6 +5365,7 @@ Sorted by absolute percentage difference, largest first.
 | [OLYMPUS M.ZUIKO DIGITAL ED 12mm f/2.0](../../src/lens-data/olympus/OlympusMZuiko12mmf2.data.ts) | L3 | Biconvex Positive | 32.16 | 32.16 | 0.00 | 0.00% | — |
 | [CANON RF 20mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF20mmf14LVCM.data.ts) | G8 | Biconvex Positive | 51.55 | 51.55 | 0.00 | 0.00% | — |
 | [SIGMA 100-400mm f/5-6.3 DG DN OS \| Contemporary](../../src/lens-data/sigma/Sigma100400mmf563DGDNOSContemporary.data.ts) | L8 | Biconcave Negative | -38.69 | -38.69 | 0.00 | 0.00% | — |
+| [PENTAX SMC FA* 300mm f/2.8 ED [IF]](../../src/lens-data/pentax/PentaxFAStar300mmF28EDIF.data.ts) | L2 | Positive Meniscus | 297.68 | 297.68 | 0.00 | 0.00% | — |
 | [PANASONIC LUMIX S 70-300mm f/4.5-5.6 MACRO O.I.S.](../../src/lens-data/panasonic/PanasonicLumixS70300mmf4556MacroOIS.data.ts) | L3 | Positive Meniscus | 176.31 | 176.32 | 0.00 | 0.00% | — |
 | [PENTAX SMC FA* 300mm f/4.5 ED [IF]](../../src/lens-data/pentax/PentaxFAStar300mmF45EDIF.data.ts) | L2 | Positive Meniscus | 282.73 | 282.73 | 0.00 | 0.00% | — |
 | [MINOLTA AF 28mm f/2](../../src/lens-data/minolta/MinoltaAF28mmf2.data.ts) | L2 | Negative Meniscus | -56.78 | -56.78 | 0.00 | 0.00% | — |
@@ -5151,6 +5383,7 @@ Sorted by absolute percentage difference, largest first.
 | [OLYMPUS ZUIKO AUTO-FISHEYE 8mm f/2.8](../../src/lens-data/olympus/OlympusZuikoAutoFisheye8mmf28.data.ts) | L3 | Negative Meniscus | -33.31 | -33.31 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON GF 500mm f/5.6 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmFujinonGf500mmf56RLMOISWR.data.ts) | L36 | Biconcave Negative | -77.33 | -77.33 | 0.00 | 0.00% | — |
 | [SONY FE 70-200mm f/4 Macro G OSS II](../../src/lens-data/sony/SonyFE70200mmF4MacroGOSSII.data.ts) | L25 | Biconvex Positive | 43.59 | 43.59 | 0.00 | 0.00% | — |
+| [CANON RF 24mm f/1.8 Macro IS STM](../../src/lens-data/canon/CanonRF24mmf18MacroISSTM.data.ts) | L10 | Positive Meniscus | 143.27 | 143.27 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON XF 16-55mm f/2.8 R LM WR II](../../src/lens-data/fujifilm/FujifilmXF16555mmf28RLMWRII.data.ts) | L13 | Positive Meniscus | 94.81 | 94.81 | 0.00 | 0.00% | — |
 | [PANASONIC LUMIX S PRO 16-35mm f/4](../../src/lens-data/panasonic/PanasonicLumixSPro1635mmf4.data.ts) | L10 | Biconcave Negative | -18.74 | -18.74 | 0.00 | 0.00% | — |
 | [SONY FE 600mm f/4 GM OSS](../../src/lens-data/sony/SonyFE600mmF4GMOSS.data.ts) | L44 | Negative Meniscus | -91.61 | -91.61 | 0.00 | 0.00% | — |
@@ -5159,8 +5392,10 @@ Sorted by absolute percentage difference, largest first.
 | [PANASONIC LEICA DG VARIO-ELMARIT 8-18mm f/2.8-4.0 ASPH.](../../src/lens-data/panasonic/PanasonicLeicaDG818mmf284.data.ts) | L11 | Biconcave Negative | -12.06 | -12.06 | 0.00 | 0.00% | — |
 | [PANASONIC LUMIX G FISHEYE 8mm f/3.5](../../src/lens-data/panasonic/PanasonicLumixG8mmf35.data.ts) | L10 | Biconvex Positive | 103.18 | 103.18 | 0.00 | 0.00% | — |
 | [NIKON AF-S NIKKOR 24-120mm f/4 G ED VR](../../src/lens-data/nikon/NikonAFS24120mmf4G.data.ts) | L22 | Negative Meniscus | -68.66 | -68.66 | 0.00 | 0.00% | — |
+| [NIKON AF-S NIKKOR 50mm f/1.4 G](../../src/lens-data/nikon/NikonAFSNikkor50mmf14G.data.ts) | L3 | Negative Meniscus | -36.72 | -36.72 | 0.00 | 0.00% | — |
 | [CANON RF 24-240mm f/4-6.3 IS USM](../../src/lens-data/canon/CanonRF24240mmf463.data.ts) | L1 | Negative Meniscus | -160.90 | -160.90 | 0.00 | 0.00% | — |
 | [PANASONIC LUMIX G FISHEYE 8mm f/3.5](../../src/lens-data/panasonic/PanasonicLumixG8mmf35.data.ts) | L6 | Positive Meniscus | 26.52 | 26.52 | 0.00 | 0.00% | — |
+| [MEIKE AF 85mm f/1.8 FF STM](../../src/lens-data/meike/Meike85mmf18.data.ts) | L2 | Positive Meniscus | 132.56 | 132.56 | 0.00 | 0.00% | — |
 | [SONY FE 600mm f/4 GM OSS](../../src/lens-data/sony/SonyFE600mmF4GMOSS.data.ts) | L16 | Positive Meniscus | 233.84 | 233.84 | 0.00 | 0.00% | — |
 | [HASSELBLAD HC 150mm f/3.2](../../src/lens-data/hasselblad/HasselbladHC150mmf32.data.ts) | L8 | Negative Meniscus | -51.10 | -51.10 | 0.00 | 0.00% | — |
 | [SCHNEIDER-KREUZNACH VARIOGON 45-100mm f/2.8](../../src/lens-data/schneider-kreuznach/SchneiderVariogon2845100.data.ts) | L3 | Positive Meniscus | 93.28 | 93.27 | 0.00 | 0.00% | — |
@@ -5170,6 +5405,7 @@ Sorted by absolute percentage difference, largest first.
 | [NIKON TV-NIKKOR 11.5-69mm f/1.2 (Nikon S-100)](../../src/lens-data/nikon/NikonTVNikkor11569mmf12NikonS100.data.ts) | L6 | Positive Meniscus | 61.92 | 61.92 | 0.00 | 0.00% | — |
 | [CANON EF 28-135mm f/3.5-5.6 IS USM](../../src/lens-data/canon/CanonEF28135mmf3556IS.data.ts) | L2 | Positive Meniscus | 86.82 | 86.82 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON 35mm f/4 (Fujifilm GFX100RF)](../../src/lens-data/fujifilm/FujifilmGFX100RF35mmf4.data.ts) | L16 | Weak Negative Meniscus | -96.99 | -96.99 | 0.00 | 0.00% | — |
+| [YONGNUO YN 33mm f/1.4 DA DSM WL PRO](../../src/lens-data/yongnuo/YongnuoYN33mmf14.data.ts) | G4 | Negative Meniscus | -59.10 | -59.10 | 0.00 | 0.00% | — |
 | [RODENSTOCK RODAGON-WA 80mm f/4](../../src/lens-data/rodenstock/RodenstockRodagonWA80mmf4.data.ts) | L1 | Plano-Convex Positive | 29.81 | 29.81 | 0.00 | 0.00% | — |
 | [MINOLTA AF 70-200mm f/2.8 APO G (D) SSM](../../src/lens-data/minolta/MinoltaAF70200mmf28APO.data.ts) | L13 | Negative Meniscus | -100.48 | -100.48 | 0.00 | 0.00% | — |
 | [CANON RF 20mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF20mmf14LVCM.data.ts) | G7 | Negative Meniscus | -129.29 | -129.29 | 0.00 | 0.00% | — |
@@ -5206,6 +5442,7 @@ Sorted by absolute percentage difference, largest first.
 | [PANASONIC LUMIX G VARIO 12-32mm f/3.5-5.6 ASPH. MEGA O.I.S.](../../src/lens-data/panasonic/PanasonicLumixGVario1232mmf3556MegaOIS.data.ts) | L8 | Biconvex Positive | 31.52 | 31.52 | 0.00 | 0.00% | — |
 | [PANASONIC LUMIX G FISHEYE 8mm f/3.5](../../src/lens-data/panasonic/PanasonicLumixG8mmf35.data.ts) | L8 | Negative Meniscus | -13.57 | -13.57 | 0.00 | 0.00% | — |
 | [SONY FE 600mm f/4 GM OSS](../../src/lens-data/sony/SonyFE600mmF4GMOSS.data.ts) | L17 | Negative Meniscus | -253.33 | -253.33 | 0.00 | 0.00% | — |
+| [NIKON AF-S NIKKOR 50mm f/1.4 G](../../src/lens-data/nikon/NikonAFSNikkor50mmf14G.data.ts) | L2 | Positive Meniscus | 86.72 | 86.72 | 0.00 | 0.00% | — |
 | [NIKON SERIES E 135mm f/2.8](../../src/lens-data/nikon/NikonSeriesE135mmf28.data.ts) | L4 | Positive Meniscus | 195.18 | 195.18 | 0.00 | 0.00% | — |
 | [LAOWA 15mm f/2 Zero-D](../../src/lens-data/laowa/Laowa15mmf2ZeroD.data.ts) | L8 | Negative Meniscus | -49.98 | -49.98 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON GF 500mm f/5.6 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmFujinonGf500mmf56RLMOISWR.data.ts) | L32 | Negative Meniscus | -24.26 | -24.26 | 0.00 | 0.00% | — |
@@ -5213,6 +5450,7 @@ Sorted by absolute percentage difference, largest first.
 | [OLYMPUS ZUIKO AUTO-W 28mm f/2](../../src/lens-data/olympus/OlympusZuikoAutoW28mmf2.data.ts) | L1 | Positive Meniscus | 86.27 | 86.27 | 0.00 | 0.00% | — |
 | [PANASONIC LUMIX G 25mm f/1.7 ASPH.](../../src/lens-data/panasonic/PanasonicLumixG25mmf17.data.ts) | L2 | Negative Meniscus | -20.59 | -20.59 | 0.00 | 0.00% | — |
 | [VOIGTLÄNDER ULTRON 27mm f/2](../../src/lens-data/voigtlander/VoigtlanderUltron27mmf2.data.ts) | L2r | Biconvex Positive | 12.03 | 12.03 | 0.00 | 0.00% | — |
+| [SAMSUNG 18-200mm f/3.5-6.3 ED OIS](../../src/lens-data/samsung/SamsungNX18200mmf3563EDOIS.data.ts) | L11 | Biconcave Negative | -27.34 | -27.34 | 0.00 | 0.00% | — |
 | [NIKON 1 NIKKOR 11-27.5mm f/3.5-5.6](../../src/lens-data/nikon/Nikon1Nikkor1127mmf3556.data.ts) | L4 | Biconvex Positive | 26.01 | 26.01 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON XF 23mm f/1.4 R LM WR](../../src/lens-data/fujifilm/FujifilmXF23mmf14RLMWR.data.ts) | L26 | Positive Meniscus (2× Asph) | 90.03 | 90.03 | 0.00 | 0.00% | — |
 | [NIKON UV-NIKKOR 105mm f/4.5](../../src/lens-data/nikon/NikonUvNikkor105mmf45.data.ts) | E6 | Negative Meniscus | -93.86 | -93.86 | 0.00 | 0.00% | — |
@@ -5224,13 +5462,16 @@ Sorted by absolute percentage difference, largest first.
 | [TAMRON SP AF 60mm f/2 Di II LD [IF] MACRO 1:1 (G005)](../../src/lens-data/tamron/TamronSPAF60mmf2Di.data.ts) | L7 | Biconcave Negative | -36.40 | -36.40 | 0.00 | 0.00% | — |
 | [CANON EF 24mm f/1.4 L II USM](../../src/lens-data/canon/CanonEF24mmf14LII.data.ts) | E1 | Negative Meniscus (convex to object) | -58.10 | -58.10 | 0.00 | 0.00% | — |
 | [PANASONIC LUMIX S PRO 16-35mm f/4](../../src/lens-data/panasonic/PanasonicLumixSPro1635mmf4.data.ts) | L12 | Biconcave Negative | -38.51 | -38.51 | 0.00 | 0.00% | — |
+| [SAMSUNG 18-200mm f/3.5-6.3 ED OIS](../../src/lens-data/samsung/SamsungNX18200mmf3563EDOIS.data.ts) | L3 | Positive Meniscus | 116.88 | 116.88 | 0.00 | 0.00% | — |
 | [CANON EF 50mm f/1.2 L USM](../../src/lens-data/canon/CanonEF50mmf12LUSM.data.ts) | L8 | Biconvex Positive (1× Asph) | 54.54 | 54.54 | 0.00 | 0.00% | — |
 | [CANON FD 300mm f/4 S.S.C.](../../src/lens-data/canon/CanonFD300mmf4SSC.data.ts) | L5 | Biconvex Positive | 112.96 | 112.96 | 0.00 | 0.00% | — |
 | [NIKON AI NIKKOR 35mm f/2](../../src/lens-data/nikon/NikonAINikkor35mmf2.data.ts) | L1 | Plano-Convex Positive | 157.66 | 157.66 | 0.00 | 0.00% | — |
+| [PANASONIC LUMIX G VARIO 45-150mm f/4.0-5.6 ASPH. MEGA O.I.S.](../../src/lens-data/panasonic/PanasonicLumixGVario45150mmf456MegaOIS.data.ts) | L8 | Biconcave Negative | -10.21 | -10.21 | 0.00 | 0.00% | — |
 | [PANASONIC LUMIX S PRO 16-35mm f/4](../../src/lens-data/panasonic/PanasonicLumixSPro1635mmf4.data.ts) | L5 | Biconvex Positive (2× Asph) | 28.36 | 28.36 | 0.00 | 0.00% | — |
 | [MIRANDA AUTO EC 200mm f/3.5](../../src/lens-data/miranda/MirandaAutoEC200mmf35.data.ts) | L1 | Biconvex Positive | 138.10 | 138.10 | 0.00 | 0.00% | — |
 | [NIKON 1 NIKKOR VR 10-100mm f/4-5.6](../../src/lens-data/nikon/Nikon1Nikkor10100mmf4VR.data.ts) | L22 | Negative Meniscus | -27.71 | -27.71 | 0.00 | 0.00% | — |
 | [NIKON AF-S NIKKOR 28mm f/1.4 E ED](../../src/lens-data/nikon/NikonAFS28f14E.data.ts) | L23 | Biconvex Positive | 56.49 | 56.49 | 0.00 | 0.00% | — |
+| [MEIKE AF 85mm f/1.8 FF STM](../../src/lens-data/meike/Meike85mmf18.data.ts) | L1 | Biconvex Positive | 189.44 | 189.44 | 0.00 | 0.00% | — |
 | [PENTAX SMC TAKUMAR 6x7 600mm f/4](../../src/lens-data/pentax/PentaxSMCTakumar6x7600mmf4.data.ts) | L6 | Negative Meniscus | -94.79 | -94.79 | 0.00 | 0.00% | — |
 | [NIKON NEW NIKKOR 20mm f/4](../../src/lens-data/nikon/NikonNikkor20mmf4.data.ts) | L6b | Positive Meniscus | 43.09 | 43.09 | 0.00 | 0.00% | — |
 | [VOIGTLÄNDER ULTRON 27mm f/2](../../src/lens-data/voigtlander/VoigtlanderUltron27mmf2.data.ts) | L2f | Biconcave Negative | -10.18 | -10.18 | 0.00 | 0.00% | — |
@@ -5283,8 +5524,10 @@ Sorted by absolute percentage difference, largest first.
 | [CANON TS-E 135mm f/4 L MACRO](../../src/lens-data/canon/CanonTSE135mmf4L.data.ts) | G9 | Negative Meniscus | -91.06 | -91.06 | 0.00 | 0.00% | — |
 | [NIKON AF-S NIKKOR 24-70mm f/2.8 G ED](../../src/lens-data/nikon/NikonAFS2470mmf28G.data.ts) | L10 | Negative Meniscus | -74.89 | -74.89 | 0.00 | 0.00% | — |
 | [SONY FE 600mm f/4 GM OSS](../../src/lens-data/sony/SonyFE600mmF4GMOSS.data.ts) | L15 | Biconcave Negative | -232.15 | -232.15 | 0.00 | 0.00% | — |
+| [P. ANGÉNIEUX TYPE M1 25mm f/0.95](../../src/lens-data/angenieux/AngenieuxTypeM125mmf095.data.ts) | L5 | Biconcave Negative | -11.89 | -11.89 | 0.00 | 0.00% | — |
 | [SIGMA 100-400mm f/5-6.3 DG DN OS \| Contemporary](../../src/lens-data/sigma/Sigma100400mmf563DGDNOSContemporary.data.ts) | L9 | Biconvex Positive | 73.66 | 73.66 | 0.00 | 0.00% | — |
 | [SCHNEIDER-KREUZNACH VARIOGON 45-100mm f/2.8](../../src/lens-data/schneider-kreuznach/SchneiderVariogon2845100.data.ts) | L11 | Negative Meniscus | -36.98 | -36.97 | 0.00 | 0.00% | — |
+| [SONY DT 18-135mm f/3.5-5.6 SAM](../../src/lens-data/sony/SonyDT18135mmf3556SAM.data.ts) | L13 | Positive Meniscus | 125.47 | 125.47 | 0.00 | 0.00% | — |
 | [SIGMA 100-400mm f/5-6.3 DG DN OS \| Contemporary](../../src/lens-data/sigma/Sigma100400mmf563DGDNOSContemporary.data.ts) | L10 | Biconvex Positive | 98.61 | 98.62 | 0.00 | 0.00% | — |
 | [CARL ZEISS JENA BIOGON 35mm f/2.8 (pre-war)](../../src/lens-data/carl-zeiss-jena/ZeissBiogon35mmf28Prewar.data.ts) | L1 | Positive Meniscus | 40.11 | 40.11 | 0.00 | 0.00% | — |
 | [TAMRON SP AF 60mm f/2 Di II LD [IF] MACRO 1:1 (G005)](../../src/lens-data/tamron/TamronSPAF60mmf2Di.data.ts) | L8 | Positive Meniscus, convex to object | 38.73 | 38.73 | 0.00 | 0.00% | — |
@@ -5336,7 +5579,9 @@ Sorted by absolute percentage difference, largest first.
 | [SCHNEIDER-KREUZNACH SUPER-SYMMAR HM 120mm f/5.6](../../src/lens-data/schneider-kreuznach/SchneiderSuperSymmarHM120mmf56.data.ts) | L1 | Negative Meniscus, convex to object | -114.27 | -114.27 | 0.00 | 0.00% | — |
 | [CANON EF 28-135mm f/3.5-5.6 IS USM](../../src/lens-data/canon/CanonEF28135mmf3556IS.data.ts) | L1 | Negative Meniscus | -124.44 | -124.44 | 0.00 | 0.00% | — |
 | [SCHNEIDER-KREUZNACH SUPER-ANGULON 90mm f/8](../../src/lens-data/schneider-kreuznach/SchneiderSuperAngulon90mmf8.data.ts) | L4 | Plano-Convex Positive | 21.82 | 21.82 | 0.00 | 0.00% | — |
+| [KMZ ZENITAR 50mm f/0.95](../../src/lens-data/kmz/KMZZenitar50mmf095.data.ts) | L2 | Biconvex Positive | 113.45 | 113.45 | 0.00 | 0.00% | — |
 | [PANASONIC LUMIX G 25mm f/1.7 ASPH.](../../src/lens-data/panasonic/PanasonicLumixG25mmf17.data.ts) | L1 | Positive Meniscus | 28.75 | 28.75 | 0.00 | 0.00% | — |
+| [NIKON AF-S NIKKOR 50mm f/1.4 G](../../src/lens-data/nikon/NikonAFSNikkor50mmf14G.data.ts) | L1 | Positive Meniscus | 62.92 | 62.92 | 0.00 | 0.00% | — |
 | [VOIGTLÄNDER NOKTON Vintage Line 75mm f/1.5 Aspherical VM](../../src/lens-data/voigtlander/VoigtlanderNokton75mmf15AsphericalVM.data.ts) | L3 | Positive Meniscus | 103.43 | 103.43 | 0.00 | 0.00% | — |
 | [LEICA SUPER-VARIO-ELMAR-TL 11-23mm f/3.5-4.5 ASPH.](../../src/lens-data/leica/LeicaSuperVarioElmarTL1123mmf3545Asph.data.ts) | L5 | Positive Meniscus | 39.32 | 39.32 | 0.00 | 0.00% | — |
 | [TAMRON SP AF 60mm f/2 Di II LD [IF] MACRO 1:1 (G005)](../../src/lens-data/tamron/TamronSPAF60mmf2Di.data.ts) | L4 | Biconcave Negative | -42.00 | -42.00 | 0.00 | 0.00% | — |
@@ -5346,6 +5591,7 @@ Sorted by absolute percentage difference, largest first.
 | [PANASONIC LUMIX G VARIO 7-14mm f/4 ASPH.](../../src/lens-data/panasonic/PanasonicLumixGVario714mmf4.data.ts) | L6 | Negative Meniscus | -14.40 | -14.40 | 0.00 | 0.00% | — |
 | [OLYMPUS ZUIKO AUTO-W 18mm f/3.5](../../src/lens-data/olympus/OlympusZuikoAutoW18mmf35.data.ts) | L3 | Negative Meniscus | -31.92 | -31.92 | 0.00 | 0.00% | — |
 | [SCHNEIDER-KREUZNACH SUPER-SYMMAR HM 120mm f/5.6](../../src/lens-data/schneider-kreuznach/SchneiderSuperSymmarHM120mmf56.data.ts) | L4b | Negative Meniscus, concave to object | -118.59 | -118.59 | 0.00 | 0.00% | — |
+| [SCHNEIDER-KREUZNACH 28mm LS f/4.5 ASPHERICAL](../../src/lens-data/schneider-kreuznach/SchneiderKreuznach28mmLSf45.data.ts) | L10 | Biconcave Negative | -17.27 | -17.27 | 0.00 | 0.00% | — |
 | [MINOLTA AF ZOOM 35-70mm f/4](../../src/lens-data/minolta/MinoltaAF3570mmf4.data.ts) | L2r | Aspherical Resin Layer | -718.76 | -718.76 | 0.00 | 0.00% | — |
 | [SCHNEIDER-KREUZNACH VARIOGON 45-100mm f/2.8](../../src/lens-data/schneider-kreuznach/SchneiderVariogon2845100.data.ts) | L8 | Negative Meniscus | -40.44 | -40.44 | 0.00 | 0.00% | — |
 | [PENTAX SMC PENTAX 18mm f/3.5](../../src/lens-data/pentax/PentaxSMCK18mmf35.data.ts) | L10 | Negative Meniscus | -44.13 | -44.13 | 0.00 | 0.00% | — |
@@ -5356,9 +5602,11 @@ Sorted by absolute percentage difference, largest first.
 | [FUJIFILM FUJINON GF 500mm f/5.6 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmFujinonGf500mmf56RLMOISWR.data.ts) | L44 | Biconvex Positive | 24.45 | 24.45 | 0.00 | 0.00% | — |
 | [MINOLTA AF 28mm f/2](../../src/lens-data/minolta/MinoltaAF28mmf2.data.ts) | L8 | Weak Biconvex Positive | 53.16 | 53.16 | 0.00 | 0.00% | — |
 | [OLYMPUS H.ZUIKO AUTO-W 24mm f/2.8](../../src/lens-data/olympus/OlympusZuiko24mmf28.data.ts) | L5a | Positive Meniscus, concave to object | 13.83 | 13.83 | 0.00 | 0.00% | — |
+| [PENTAX SMC FA* 300mm f/2.8 ED [IF]](../../src/lens-data/pentax/PentaxFAStar300mmF28EDIF.data.ts) | L3 | Plano-Concave Negative | -256.84 | -256.84 | 0.00 | 0.00% | — |
 | [SONY FE 12-24mm f/2.8 GM](../../src/lens-data/sony/SonyFE1224mmf28GM.data.ts) | L12 | Negative Meniscus (2x Asph) | -59.03 | -59.03 | 0.00 | 0.00% | — |
 | [NIKON AI NIKKOR 28mm f/3.5](../../src/lens-data/nikon/NikonAI28mmf35.data.ts) | L1 | Positive Meniscus | 191.29 | 191.29 | 0.00 | 0.00% | — |
 | [LEICA SUMMILUX-C 100mm T1.4](../../src/lens-data/leica/LeicaSummiluxC100mmT14.data.ts) | L9 | Positive Meniscus | 127.11 | 127.11 | 0.00 | 0.00% | — |
+| [PENTAX SMC PENTAX 24mm f/2.8](../../src/lens-data/pentax/PentaxSMCK24mmf28.data.ts) | L3 | Negative Meniscus | -19.86 | -19.86 | 0.00 | 0.00% | — |
 | [PANASONIC LUMIX G 14mm f/2.5 II ASPH.](../../src/lens-data/panasonic/PanasonicG14mmf25II.data.ts) | L6 | Biconcave Negative (1× Asph) | -60.84 | -60.85 | 0.00 | 0.00% | — |
 | [PENTAX SMC PENTAX 18mm f/3.5](../../src/lens-data/pentax/PentaxSMCK18mmf35.data.ts) | L11 | Biconvex Positive | 33.95 | 33.95 | 0.00 | 0.00% | — |
 | [SONY FE 70-200mm f/4 Macro G OSS II](../../src/lens-data/sony/SonyFE70200mmF4MacroGOSSII.data.ts) | L72 | Biconcave Negative (2x Asph) | -48.40 | -48.40 | 0.00 | 0.00% | — |
@@ -5383,6 +5631,7 @@ Sorted by absolute percentage difference, largest first.
 | [CANON EF-S 18-55mm f/3.5-5.6 IS](../../src/lens-data/canon/CanonEFS1855mmf3556IS.data.ts) | L21 | Positive Meniscus | 78.63 | 78.63 | 0.00 | 0.00% | — |
 | [SIGMA 17-40mm f/1.8 DC \| Art](../../src/lens-data/sigma/Sigma1740mmf18DCA.data.ts) | L7 | Negative Meniscus | -122.43 | -122.43 | 0.00 | 0.00% | — |
 | [NIKON 1 NIKKOR VR 10-100mm f/4-5.6](../../src/lens-data/nikon/Nikon1Nikkor10100mmf4VR.data.ts) | L11 | Negative Meniscus | -49.34 | -49.34 | 0.00 | 0.00% | — |
+| [P. ANGÉNIEUX TYPE M1 25mm f/0.95](../../src/lens-data/angenieux/AngenieuxTypeM125mmf095.data.ts) | L1 | Positive Meniscus | 85.08 | 85.08 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON 35mm f/4 (Fujifilm GFX100RF)](../../src/lens-data/fujifilm/FujifilmGFX100RF35mmf4.data.ts) | L13 | Biconvex Positive | 34.62 | 34.62 | 0.00 | 0.00% | — |
 | [PANASONIC LEICA DG NOCTICRON 42.5mm f/1.2 ASPH. POWER O.I.S.](../../src/lens-data/panasonic/PanasonicDGNocticron42mmf12.data.ts) | L14 | Biconcave Negative | -33.11 | -33.11 | 0.00 | 0.00% | — |
 | [SONY FE 14mm f/1.8 GM](../../src/lens-data/sony/SonyFE14mmf18GM.data.ts) | L10 | Biconcave Negative | -15.55 | -15.55 | 0.00 | 0.00% | — |
@@ -5403,6 +5652,7 @@ Sorted by absolute percentage difference, largest first.
 | [SIGMA 10-18mm f/2.8 DC DN \| Contemporary](../../src/lens-data/sigma/Sigma1018mmf28DCDN.data.ts) | L2 | Neg. Meniscus (2× Asph) | -41.78 | -41.78 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON XF 18-120mm f/4 LM PZ WR](../../src/lens-data/fujifilm/FujifilmFujinonXf18120mmf40LMPZWR.data.ts) | L13 | Positive Meniscus | 89.51 | 89.51 | 0.00 | 0.00% | — |
 | [NIKON REFLEX-NIKKOR 500mm f/8 (New)](../../src/lens-data/nikon/NikonReflexNikkor500mmf8New.data.ts) | L23 | Positive Meniscus | 125.62 | 125.62 | 0.00 | 0.00% | — |
+| [P. ANGÉNIEUX TYPE M1 25mm f/0.95](../../src/lens-data/angenieux/AngenieuxTypeM125mmf095.data.ts) | L7 | Biconvex Positive | 37.89 | 37.89 | 0.00 | 0.00% | — |
 | [CARL ZEISS JENA PRAKTICAR 50mm f/1.4](../../src/lens-data/carl-zeiss-jena/ZeissPlanar50mmf14Praktica.data.ts) | L6 | Biconvex Positive | 82.27 | 82.26 | 0.00 | 0.00% | — |
 | [NIKON AI NIKKOR 180mm f/2.8 ED](../../src/lens-data/nikon/NikonAINikkor180mmf28.data.ts) | L3 | Positive Meniscus | 170.90 | 170.90 | 0.00 | 0.00% | — |
 | [SIGMA 16mm f/1.4 DC DN \| Contemporary](../../src/lens-data/sigma/Sigma16mmf14DCDN.data.ts) | L41 | Negative Meniscus | -45.90 | -45.90 | 0.00 | 0.00% | — |
@@ -5416,6 +5666,7 @@ Sorted by absolute percentage difference, largest first.
 | [SONY VARIO-TESSAR T* E 16-70mm f/4 ZA OSS](../../src/lens-data/sony/SonyVarioTessarTE1670mmf4ZAOSS.data.ts) | L21 | Neg. Meniscus (2× Asph) | -15.92 | -15.92 | 0.00 | 0.00% | — |
 | [NIKON NIKKOR Z DX 12-28mm f/3.5-5.6 PZ VR](../../src/lens-data/nikon/NikonNikkorZ1228mmf3556PZ.data.ts) | L26 | Pos. Meniscus (1× Asph) | 94.15 | 94.15 | 0.00 | 0.00% | — |
 | [CANON RF 100-500mm f/4.5-7.1 L IS USM](../../src/lens-data/canon/CanonRF100500mmf4571LISUSM.data.ts) | L54 | Plano-Convex Positive | 93.30 | 93.30 | 0.00 | 0.00% | — |
+| [PANASONIC LUMIX G VARIO 45-150mm f/4.0-5.6 ASPH. MEGA O.I.S.](../../src/lens-data/panasonic/PanasonicLumixGVario45150mmf456MegaOIS.data.ts) | L3 | Biconcave Negative | -18.17 | -18.17 | 0.00 | 0.00% | — |
 | [PENTAX SUPER-TAKUMAR 28mm f/3.5](../../src/lens-data/pentax/PentaxSuperTakumar28mmf35.data.ts) | L4 | Biconvex Positive | 28.23 | 28.23 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON GF 30mm f/5.6 T/S](../../src/lens-data/fujifilm/FujifilmGF30mmf56TS.data.ts) | L32 | Biconcave Negative | -30.81 | -30.81 | 0.00 | 0.00% | — |
 | [NIKON NIKKOR Z 24-120mm f/4 S](../../src/lens-data/nikon/NikonNikkorZ24120mmf4S.data.ts) | L10 | Negative Meniscus | -31.10 | -31.10 | 0.00 | 0.00% | — |
@@ -5426,6 +5677,7 @@ Sorted by absolute percentage difference, largest first.
 | [SONY FE 14mm f/1.8 GM](../../src/lens-data/sony/SonyFE14mmf18GM.data.ts) | L5 | Biconcave Negative | -12.50 | -12.50 | 0.00 | 0.00% | — |
 | [NIKON 1 NIKKOR VR 10-100mm f/4-5.6](../../src/lens-data/nikon/Nikon1Nikkor10100mmf4VR.data.ts) | L402 | Negative Meniscus | -27.36 | -27.36 | 0.00 | 0.00% | — |
 | [TAMRON SP AF 60mm f/2 Di II LD [IF] MACRO 1:1 (G005)](../../src/lens-data/tamron/TamronSPAF60mmf2Di.data.ts) | L9 | Biconvex Positive | 59.52 | 59.52 | 0.00 | 0.00% | — |
+| [PENTAX SMC PENTAX 24mm f/2.8](../../src/lens-data/pentax/PentaxSMCK24mmf28.data.ts) | L4 | Positive Meniscus | 22.24 | 22.24 | 0.00 | 0.00% | — |
 | [SCHNEIDER-KREUZNACH VARIOGON 45-100mm f/2.8](../../src/lens-data/schneider-kreuznach/SchneiderVariogon2845100.data.ts) | L7 | Positive Meniscus | 82.64 | 82.64 | 0.00 | 0.00% | — |
 | [CANON EF-S 18-55mm f/3.5-5.6 IS](../../src/lens-data/canon/CanonEFS1855mmf3556IS.data.ts) | L41 | Negative Meniscus (1× Asph) | -211.97 | -211.97 | 0.00 | 0.00% | — |
 | [TAMRON SP AF 180mm f/3.5 Di LD [IF] MACRO 1:1 (B01)](../../src/lens-data/tamron/TamronSPAF180mmf35Di.data.ts) | L2 | Positive Meniscus | 152.54 | 152.54 | 0.00 | 0.00% | — |
@@ -5462,6 +5714,7 @@ Sorted by absolute percentage difference, largest first.
 | [FUJIFILM FUJINON XF 33mm f/1.4 R LM WR](../../src/lens-data/fujifilm/FujifilmXF33mmf14RLMWR.data.ts) | L23 | Positive Meniscus (ED) | 37.06 | 37.06 | 0.00 | 0.00% | — |
 | [LEICA ELMARIT-TL 18mm f/2.8 ASPH.](../../src/lens-data/leica/LeicaElmaritTL18mmf28.data.ts) | L5 | Biconcave Negative | -10.59 | -10.59 | 0.00 | 0.00% | — |
 | [SONY VARIO-TESSAR T* E 16-70mm f/4 ZA OSS](../../src/lens-data/sony/SonyVarioTessarTE1670mmf4ZAOSS.data.ts) | L51 | Biconcave Negative (2× Asph) | -20.98 | -20.98 | 0.00 | 0.00% | — |
+| [NIKON AF-S NIKKOR 50mm f/1.4 G](../../src/lens-data/nikon/NikonAFSNikkor50mmf14G.data.ts) | L6 | Positive Meniscus | 85.44 | 85.44 | 0.00 | 0.00% | — |
 | [PANASONIC LUMIX G VARIO 12-32mm f/3.5-5.6 ASPH. MEGA O.I.S.](../../src/lens-data/panasonic/PanasonicLumixGVario1232mmf3556MegaOIS.data.ts) | L4 | Positive Meniscus (2× Asph) | 16.08 | 16.08 | 0.00 | 0.00% | — |
 | [OLYMPUS M.ZUIKO DIGITAL ED 12-200mm f/3.5-6.3](../../src/lens-data/olympus/OlympusMZuikoED12200mmf3563.data.ts) | L13 | Negative Meniscus | -14.88 | -14.88 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON GF 500mm f/5.6 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmFujinonGf500mmf56RLMOISWR.data.ts) | L13 | Plano-Convex Positive | 114.15 | 114.15 | 0.00 | 0.00% | — |
@@ -5493,6 +5746,7 @@ Sorted by absolute percentage difference, largest first.
 | [SONY VARIO-TESSAR T* FE 16-35mm f/4 ZA OSS](../../src/lens-data/sony/SonyVarioTessarTFE1635mmf4ZAOSS.data.ts) | L41 | Negative Meniscus | -21.02 | -21.02 | 0.00 | 0.00% | — |
 | [CANON RF 24-50mm f/4.5-6.3 IS STM](../../src/lens-data/canon/CanonRF2450mmf463.data.ts) | G2 | Neg. Meniscus (1× Asph) | -112.73 | -112.73 | 0.00 | 0.00% | — |
 | [CANON EF-S 18-55mm f/3.5-5.6 IS](../../src/lens-data/canon/CanonEFS1855mmf3556IS.data.ts) | L12 | Negative Meniscus | -29.41 | -29.41 | 0.00 | 0.00% | — |
+| [NIKON AF-S NIKKOR 50mm f/1.4 G](../../src/lens-data/nikon/NikonAFSNikkor50mmf14G.data.ts) | L7 | Positive Meniscus | 111.06 | 111.07 | 0.00 | 0.00% | — |
 | [SONY ZEISS VARIO-SONNAR T* 9-72mm f/2.8-4.5 (Sony Cyber-shot RX100 VI / RX100 VII)](../../src/lens-data/sony/ZeissVarioSonnarT9072mmf2845SonyDSCRX100M67.data.ts) | L61 | Pos. Meniscus (2× Asph) | 174.25 | 174.25 | 0.00 | 0.00% | — |
 | [SONY E 50mm f/1.8 OSS](../../src/lens-data/sony/SonyE50mmf18OSS.data.ts) | L211 | Biconvex Positive | 46.54 | 46.54 | 0.00 | 0.00% | — |
 | [CARL ZEISS B-DISTAGON 35mm f/4 (Contarex)](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon35mmf4.data.ts) | LV | Biconcave Negative | -8.36 | -8.36 | 0.00 | 0.00% | — |
@@ -5503,6 +5757,7 @@ Sorted by absolute percentage difference, largest first.
 | [FUJIFILM FUJINON GF 100-200mm f/5.6 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmGF100200mmf56.data.ts) | L25 | Negative Meniscus | -55.55 | -55.55 | 0.00 | 0.00% | — |
 | [SIGMA 100-400mm f/5-6.3 DG DN OS \| Contemporary](../../src/lens-data/sigma/Sigma100400mmf563DGDNOSContemporary.data.ts) | L4 | Positive Meniscus | 121.46 | 121.46 | 0.00 | 0.00% | — |
 | [SONY FE 70-200mm f/4 Macro G OSS II](../../src/lens-data/sony/SonyFE70200mmF4MacroGOSSII.data.ts) | L13 | Positive Meniscus, convex to object | 305.71 | 305.71 | 0.00 | 0.00% | — |
+| [PANASONIC LUMIX G VARIO 45-150mm f/4.0-5.6 ASPH. MEGA O.I.S.](../../src/lens-data/panasonic/PanasonicLumixGVario45150mmf456MegaOIS.data.ts) | L7 | Biconvex Positive | 17.28 | 17.28 | 0.00 | 0.00% | — |
 | [NIKON AF-S DX ZOOM-NIKKOR 18-55mm f/3.5-5.6 G ED II](../../src/lens-data/nikon/NikonAFSDXZoomNikkor1855mmf3556GEDII.data.ts) | L2ap | Biconvex Positive | 28.63 | 28.63 | 0.00 | 0.00% | — |
 | [NIKON AF-S NIKKOR 24mm f/1.4 G ED](../../src/lens-data/nikon/NikonNikkorAFS24mmf14G.data.ts) | L11 | Negative Meniscus | -64.83 | -64.82 | 0.00 | 0.00% | — |
 | [OLYMPUS H.ZUIKO AUTO-W 24mm f/2.8](../../src/lens-data/olympus/OlympusZuiko24mmf28.data.ts) | L2 | Negative Meniscus, convex to object | -21.56 | -21.56 | 0.00 | 0.00% | — |
@@ -5527,6 +5782,7 @@ Sorted by absolute percentage difference, largest first.
 | [PANASONIC LUMIX G VARIO 12-32mm f/3.5-5.6 ASPH. MEGA O.I.S.](../../src/lens-data/panasonic/PanasonicLumixGVario1232mmf3556MegaOIS.data.ts) | L2 | Biconcave Negative (2× Asph) | -28.13 | -28.13 | 0.00 | 0.00% | — |
 | [MAMIYA AF APO 300mm f/4.5 IF](../../src/lens-data/mamiya/MamiyaAFAPO300mmf45IF.data.ts) | L4 | Positive Meniscus (convex to object) | 160.99 | 160.99 | 0.00 | 0.00% | — |
 | [CANON 50mm f/0.95](../../src/lens-data/canon/Canon50mmf095Canon7.data.ts) | L6 | Biconvex Positive | 30.24 | 30.24 | 0.00 | 0.00% | — |
+| [SCHNEIDER-KREUZNACH 28mm LS f/4.5 ASPHERICAL](../../src/lens-data/schneider-kreuznach/SchneiderKreuznach28mmLSf45.data.ts) | L11 | Biconvex Positive | 25.10 | 25.10 | 0.00 | 0.00% | — |
 | [NIKON AF ZOOM-NIKKOR 28-80mm f/3.5-5.6 D](../../src/lens-data/nikon/NikonAFZoomNikkor2880mmf3556.data.ts) | L4 | Positive Meniscus | 69.65 | 69.65 | 0.00 | 0.00% | — |
 | [SONY FE 70-200mm f/4 Macro G OSS II](../../src/lens-data/sony/SonyFE70200mmF4MacroGOSSII.data.ts) | L11 | Negative Meniscus, convex to object | -314.82 | -314.82 | 0.00 | 0.00% | — |
 | [SONY FE 85mm f/1.4 GM](../../src/lens-data/sony/SonyFE85mmF14GM.data.ts) | L2 | Positive Meniscus | 172.05 | 172.05 | 0.00 | 0.00% | — |
@@ -5548,6 +5804,7 @@ Sorted by absolute percentage difference, largest first.
 | [LEICA ELMARIT-TL 18mm f/2.8 ASPH.](../../src/lens-data/leica/LeicaElmaritTL18mmf28.data.ts) | L6 | Biconvex Positive | 9.53 | 9.53 | 0.00 | 0.00% | — |
 | [NIKON 1 NIKKOR 32mm f/1.2](../../src/lens-data/nikon/Nikon1Nikkor32mmf12.data.ts) | L11 | Positive Meniscus | 49.83 | 49.83 | 0.00 | 0.00% | — |
 | [NIKON R-UW AF MICRO-NIKKOR 50mm f/2.8](../../src/lens-data/nikon/NikonRUWMicroNikkor50mmf28.data.ts) | L42 | Biconcave Negative | -38.04 | -38.04 | 0.00 | 0.00% | — |
+| [SCHNEIDER-KREUZNACH 28mm LS f/4.5 ASPHERICAL](../../src/lens-data/schneider-kreuznach/SchneiderKreuznach28mmLSf45.data.ts) | L8 | Negative Meniscus | -23.62 | -23.62 | 0.00 | 0.00% | — |
 | [SONY VARIO-TESSAR T* E 16-70mm f/4 ZA OSS](../../src/lens-data/sony/SonyVarioTessarTE1670mmf4ZAOSS.data.ts) | L33 | Negative Meniscus | -32.05 | -32.05 | 0.00 | 0.00% | — |
 | [LEITZ TELYT 200mm f/4 (Visoflex)](../../src/lens-data/leica/LeicaTelyt200mmf4.data.ts) | L2 | Biconcave Negative | -144.90 | -144.90 | 0.00 | 0.00% | — |
 | [SIGMA 16mm f/1.4 DC DN \| Contemporary](../../src/lens-data/sigma/Sigma16mmf14DCDN.data.ts) | L11 | Positive Meniscus | 349.76 | 349.76 | 0.00 | 0.00% | — |
@@ -5575,6 +5832,7 @@ Sorted by absolute percentage difference, largest first.
 | [NIKON 1 NIKKOR 11-27.5mm f/3.5-5.6](../../src/lens-data/nikon/Nikon1Nikkor1127mmf3556.data.ts) | L1 | Negative Meniscus (1x Asph) | -14.26 | -14.26 | 0.00 | 0.00% | — |
 | [PANASONIC LEICA DG VARIO-ELMARIT 8-18mm f/2.8-4.0 ASPH.](../../src/lens-data/panasonic/PanasonicLeicaDG818mmf284.data.ts) | L4 | Positive Meniscus | 21.15 | 21.15 | 0.00 | 0.00% | — |
 | [FUJIFILM EBC X-FUJINON W 24mm f/2.8 DM](../../src/lens-data/fujifilm/FujifilmXFujinonSW24mmf28DMEBC.data.ts) | L3 | Negative Meniscus | -33.06 | -33.06 | 0.00 | 0.00% | — |
+| [PANASONIC LUMIX G VARIO 45-150mm f/4.0-5.6 ASPH. MEGA O.I.S.](../../src/lens-data/panasonic/PanasonicLumixGVario45150mmf456MegaOIS.data.ts) | L4 | Positive Meniscus | 24.54 | 24.54 | 0.00 | 0.00% | — |
 | [CANON RF 50mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF50mmf14LVCM.data.ts) | E2 | Aspherical Resin Layer | 2076.28 | 2076.28 | 0.00 | 0.00% | — |
 | [TAMRON SP AF 180mm f/3.5 Di LD [IF] MACRO 1:1 (B01)](../../src/lens-data/tamron/TamronSPAF180mmf35Di.data.ts) | L4 | Biconvex Positive | 156.66 | 156.66 | 0.00 | 0.00% | — |
 | [AGFA COLOR-TELINEAR 90mm f/4](../../src/lens-data/agfa/AgfaColorTelinear90mmf4.data.ts) | L4 | Biconcave Negative | -16.78 | -16.78 | 0.00 | 0.00% | — |
@@ -5584,7 +5842,9 @@ Sorted by absolute percentage difference, largest first.
 | [SIGMA APO 50-500mm f/4-6.3 EX RF HSM](../../src/lens-data/sigma/SigmaAPO50500mmf463EXRFHSM.data.ts) | L12 | Positive Meniscus | 36.31 | 36.31 | 0.00 | 0.00% | — |
 | [SIGMA 10-18mm f/2.8 DC DN \| Contemporary](../../src/lens-data/sigma/Sigma1018mmf28DCDN.data.ts) | L5 | Positive Meniscus | 66.89 | 66.89 | 0.00 | 0.00% | — |
 | [MINOLTA AF 400mm f/4.5 APO G](../../src/lens-data/minolta/MinoltaAF400mmf45APOG.data.ts) | L5 | Positive Meniscus (concave to image) | 224.07 | 224.07 | 0.00 | 0.00% | — |
+| [SCHNEIDER-KREUZNACH 28mm LS f/4.5 ASPHERICAL](../../src/lens-data/schneider-kreuznach/SchneiderKreuznach28mmLSf45.data.ts) | L13 | Plano-Convex Positive | 42.24 | 42.24 | 0.00 | 0.00% | — |
 | [OLYMPUS M.ZUIKO DIGITAL ED 12-200mm f/3.5-6.3](../../src/lens-data/olympus/OlympusMZuikoED12200mmf3563.data.ts) | L14 | Positive Meniscus | 54.57 | 54.57 | 0.00 | 0.00% | — |
+| [PANASONIC LUMIX G VARIO 45-150mm f/4.0-5.6 ASPH. MEGA O.I.S.](../../src/lens-data/panasonic/PanasonicLumixGVario45150mmf456MegaOIS.data.ts) | L5 | Biconcave Negative | -45.56 | -45.56 | 0.00 | 0.00% | — |
 | [PANASONIC LEICA DG NOCTICRON 42.5mm f/1.2 ASPH. POWER O.I.S.](../../src/lens-data/panasonic/PanasonicDGNocticron42mmf12.data.ts) | L9 | Negative Meniscus | -40.54 | -40.54 | 0.00 | 0.00% | — |
 | [NIKON ZOOM-NIKKOR AUTO 80-200mm f/4.5](../../src/lens-data/nikon/NikonAutoZoomNikkor80200mmf45.data.ts) | L2 | Biconvex Positive | 119.35 | 119.35 | 0.00 | 0.00% | — |
 | [CANON EF 28-135mm f/3.5-5.6 IS USM](../../src/lens-data/canon/CanonEF28135mmf3556IS.data.ts) | L14 | Biconvex Positive | 76.15 | 76.15 | 0.00 | 0.00% | — |
@@ -5634,6 +5894,8 @@ Sorted by absolute percentage difference, largest first.
 | [FUJIFILM FUJINON XF 16-55mm f/2.8 R LM WR II](../../src/lens-data/fujifilm/FujifilmXF16555mmf28RLMWRII.data.ts) | L32 | Negative Meniscus | -37.92 | -37.92 | 0.00 | 0.00% | — |
 | [SONY E 18-200mm f/3.5-6.3 OSS LE](../../src/lens-data/sony/SonyE18200mmf3563OSSLE.data.ts) | L17 | Negative Meniscus | -34.69 | -34.69 | 0.00 | 0.00% | — |
 | [SONY VARIO-TESSAR T* E 16-70mm f/4 ZA OSS](../../src/lens-data/sony/SonyVarioTessarTE1670mmf4ZAOSS.data.ts) | L31 | Negative Meniscus | -36.91 | -36.91 | 0.00 | 0.00% | — |
+| [PANASONIC LUMIX G VARIO 45-150mm f/4.0-5.6 ASPH. MEGA O.I.S.](../../src/lens-data/panasonic/PanasonicLumixGVario45150mmf456MegaOIS.data.ts) | L9 | Biconvex Positive (1× Asph) | 34.38 | 34.38 | 0.00 | 0.00% | — |
+| [PANASONIC LUMIX G VARIO 45-150mm f/4.0-5.6 ASPH. MEGA O.I.S.](../../src/lens-data/panasonic/PanasonicLumixGVario45150mmf456MegaOIS.data.ts) | L10 | Negative Meniscus | -40.34 | -40.34 | 0.00 | 0.00% | — |
 | [SONY E PZ 16-50mm f/3.5-5.6 OSS](../../src/lens-data/sony/SonyEPZ1650mmf3556OSS.data.ts) | L7 | Biconvex Positive | 46.87 | 46.87 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON GF 500mm f/5.6 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmFujinonGf500mmf56RLMOISWR.data.ts) | L45 | Plano-Concave Negative | -27.48 | -27.48 | 0.00 | 0.00% | — |
 | [SCHNEIDER-KREUZNACH CURTAGON 35mm f/2.8](../../src/lens-data/schneider-kreuznach/SchneiderCurtagon2835gen2.data.ts) | L5 | Biconvex Positive | 49.42 | 49.42 | 0.00 | 0.00% | — |
@@ -5678,6 +5940,7 @@ Sorted by absolute percentage difference, largest first.
 | [PANASONIC LEICA DG VARIO-ELMARIT 8-18mm f/2.8-4.0 ASPH.](../../src/lens-data/panasonic/PanasonicLeicaDG818mmf284.data.ts) | L3 | Biconcave Negative | -22.58 | -22.58 | 0.00 | 0.00% | — |
 | [PANASONIC LUMIX S PRO 70-200mm f/2.8 O.I.S.](../../src/lens-data/panasonic/PanasonicLumixSPro70200mmf28OIS.data.ts) | L17 | Positive Meniscus (convex to image) | 57.77 | 57.77 | 0.00 | 0.00% | — |
 | [SCHNEIDER-KREUZNACH CURTAGON 35mm f/2.8](../../src/lens-data/schneider-kreuznach/SchneiderCurtagon2835gen2.data.ts) | L4 | Biconcave Negative | -16.34 | -16.34 | 0.00 | 0.00% | — |
+| [SCHNEIDER-KREUZNACH 28mm LS f/4.5 ASPHERICAL](../../src/lens-data/schneider-kreuznach/SchneiderKreuznach28mmLSf45.data.ts) | L14 | Negative Meniscus | -36.31 | -36.31 | 0.00 | 0.00% | — |
 | [TAMRON SP AF 60mm f/2 Di II LD [IF] MACRO 1:1 (G005)](../../src/lens-data/tamron/TamronSPAF60mmf2Di.data.ts) | L2 | Biconvex Positive | 103.95 | 103.95 | 0.00 | 0.00% | — |
 | [PENTAX SMC A* 135mm f/1.8](../../src/lens-data/pentax/PentaxA135mmf18.data.ts) | L2 | Negative Meniscus | -119.21 | -119.21 | 0.00 | 0.00% | — |
 | [OLYMPUS M.ZUIKO DIGITAL ED 12-200mm f/3.5-6.3](../../src/lens-data/olympus/OlympusMZuikoED12200mmf3563.data.ts) | L1 | Negative Meniscus | -267.41 | -267.41 | 0.00 | 0.00% | — |
@@ -5700,6 +5963,7 @@ Sorted by absolute percentage difference, largest first.
 | [PENTAX ULTRA-ACHROMATIC-TAKUMAR 85mm f/4.5](../../src/lens-data/pentax/PentaxUltraAchromaticTakumar85mmf45.data.ts) | L5 | Biconvex Positive | 47.02 | 47.02 | 0.00 | 0.00% | — |
 | [PANASONIC LUMIX G FISHEYE 8mm f/3.5](../../src/lens-data/panasonic/PanasonicLumixG8mmf35.data.ts) | L4 | Biconcave Negative | -33.90 | -33.90 | 0.00 | 0.00% | — |
 | [PANASONIC LUMIX S PRO 70-200mm f/2.8 O.I.S.](../../src/lens-data/panasonic/PanasonicLumixSPro70200mmf28OIS.data.ts) | L6 | Biconcave Negative | -61.92 | -61.92 | 0.00 | 0.00% | — |
+| [PENTAX SMC PENTAX 24mm f/2.8](../../src/lens-data/pentax/PentaxSMCK24mmf28.data.ts) | L1 | Positive Meniscus | 137.29 | 137.29 | 0.00 | 0.00% | — |
 | [NIKON AI NIKKOR 24mm f/2](../../src/lens-data/nikon/NikonAINikkor24mmf2.data.ts) | L8a | Positive Meniscus | 215.28 | 215.28 | 0.00 | 0.00% | — |
 | [SIGMA 10-20mm f/3.5 EX DC HSM](../../src/lens-data/sigma/Sigma1020mmf35EXDCHSM.data.ts) | H1 | Aspherical Resin Layer | -931.35 | -931.35 | 0.00 | 0.00% | — |
 | [PANASONIC LUMIX S PRO 70-200mm f/2.8 O.I.S.](../../src/lens-data/panasonic/PanasonicLumixSPro70200mmf28OIS.data.ts) | L9 | Biconvex Positive | 55.60 | 55.60 | 0.00 | 0.00% | — |
@@ -5715,6 +5979,7 @@ Sorted by absolute percentage difference, largest first.
 | [PENTAX SMC A 645 45mm f/2.8](../../src/lens-data/pentax/Pentax645A45mmf28.data.ts) | L4 | Near Plano-Convex Positive | 79.00 | 79.00 | 0.00 | 0.00% | — |
 | [LEICA ELMARIT-TL 18mm f/2.8 ASPH.](../../src/lens-data/leica/LeicaElmaritTL18mmf28.data.ts) | L2 | Neg. Meniscus (2× Asph) | -23.84 | -23.84 | 0.00 | 0.00% | — |
 | [SONY E 18-200mm f/3.5-6.3 OSS LE](../../src/lens-data/sony/SonyE18200mmf3563OSSLE.data.ts) | L9 | Negative Meniscus | -66.64 | -66.64 | 0.00 | 0.00% | — |
+| [SONY DT 18-135mm f/3.5-5.6 SAM](../../src/lens-data/sony/SonyDT18135mmf3556SAM.data.ts) | L42r | Aspherical Resin Layer | 225.23 | 225.23 | 0.00 | 0.00% | — |
 | [SCHNEIDER-KREUZNACH SUPER-ANGULON 90mm f/8](../../src/lens-data/schneider-kreuznach/SchneiderSuperAngulon90mmf8.data.ts) | L2 | Negative Meniscus | -65.42 | -65.42 | 0.00 | 0.00% | — |
 | [NIKON AF FISHEYE-NIKKOR 16mm f/2.8 D](../../src/lens-data/nikon/NikonAFFisheyeNikkor16mmf28D.data.ts) | L2 | Negative Meniscus, convex to object | -27.05 | -27.05 | 0.00 | 0.00% | — |
 | [SONY E 18-200mm f/3.5-6.3 OSS LE](../../src/lens-data/sony/SonyE18200mmf3563OSSLE.data.ts) | L13 | Biconvex Positive | 17.61 | 17.61 | 0.00 | 0.00% | — |
@@ -5763,6 +6028,9 @@ Sorted by absolute percentage difference, largest first.
 | [CANON 50mm f/0.95](../../src/lens-data/canon/Canon50mmf095Canon7.data.ts) | L3 | Biconvex Positive | 34.17 | 34.17 | 0.00 | 0.00% | — |
 | [PANASONIC LUMIX S PRO 70-200mm f/2.8 O.I.S.](../../src/lens-data/panasonic/PanasonicLumixSPro70200mmf28OIS.data.ts) | L8 | Biconcave Negative | -75.58 | -75.58 | 0.00 | 0.00% | — |
 | [MINOLTA MD ZOOM 50-135mm f/3.5](../../src/lens-data/minolta/Minolta50135mmf35MDZoom.data.ts) | G8 | Biconvex Positive | 55.21 | 55.21 | 0.00 | 0.00% | — |
+| [PANASONIC LUMIX G VARIO 45-150mm f/4.0-5.6 ASPH. MEGA O.I.S.](../../src/lens-data/panasonic/PanasonicLumixGVario45150mmf456MegaOIS.data.ts) | L12 | Positive Meniscus | 54.81 | 54.81 | 0.00 | 0.00% | — |
+| [SCHNEIDER-KREUZNACH 28mm LS f/4.5 ASPHERICAL](../../src/lens-data/schneider-kreuznach/SchneiderKreuznach28mmLSf45.data.ts) | L6 | Negative Meniscus | -43.13 | -43.13 | 0.00 | 0.00% | — |
+| [NIKON AF-S NIKKOR 50mm f/1.4 G](../../src/lens-data/nikon/NikonAFSNikkor50mmf14G.data.ts) | L8 | Biconvex Positive | 110.41 | 110.41 | 0.00 | 0.00% | — |
 | [TAMRON SP AF 180mm f/3.5 Di LD [IF] MACRO 1:1 (B01)](../../src/lens-data/tamron/TamronSPAF180mmf35Di.data.ts) | L3 | Biconcave Negative | -143.17 | -143.17 | 0.00 | 0.00% | — |
 | [SONY E 18-200mm f/3.5-6.3 OSS LE](../../src/lens-data/sony/SonyE18200mmf3563OSSLE.data.ts) | L15 | Biconcave Negative (Hybrid Asph) | -13.11 | -13.11 | 0.00 | 0.00% | — |
 | [NIKON ZOOM-NIKKOR AUTO 80-200mm f/4.5](../../src/lens-data/nikon/NikonAutoZoomNikkor80200mmf45.data.ts) | L8 | Negative Meniscus | -127.19 | -127.18 | 0.00 | 0.00% | — |
@@ -5803,6 +6071,7 @@ Sorted by absolute percentage difference, largest first.
 | [SIGMA APO 50-500mm f/4.5-6.3 DG OS HSM](../../src/lens-data/sigma/SigmaAPO50500mmf4563DGOSHSM.data.ts) | E18 | Negative Meniscus | -67.02 | -67.02 | 0.00 | 0.00% | — |
 | [NIKON NIKKOR-S AUTO 5cm f/2](../../src/lens-data/nikon/NikonNikkorSAuto50mmf2.data.ts) | L3 | Positive Meniscus | 65.57 | 65.57 | 0.00 | 0.00% | — |
 | [NIKON AI AF MICRO-NIKKOR 105mm f/2.8 S](../../src/lens-data/nikon/NikonAiAFMicroNikkor105mmf28S.data.ts) | L7 | Positive Meniscus | 90.99 | 90.99 | 0.00 | 0.00% | — |
+| [SCHNEIDER-KREUZNACH 28mm LS f/4.5 ASPHERICAL](../../src/lens-data/schneider-kreuznach/SchneiderKreuznach28mmLSf45.data.ts) | L2 | Negative Meniscus (Aspheric) | -70.93 | -70.93 | 0.00 | 0.00% | — |
 | [NIKON AF-S DX ZOOM-NIKKOR 18-55mm f/3.5-5.6 G ED II](../../src/lens-data/nikon/NikonAFSDXZoomNikkor1855mmf3556GEDII.data.ts) | L1p | Positive Meniscus | 77.97 | 77.97 | 0.00 | 0.00% | — |
 | [PENTAX HD DA 55-300mm f/4.5-6.3 ED PLM WR RE](../../src/lens-data/pentax/HDPentaxDA55300mmF4563EDPLMWRRE.data.ts) | L13 | Positive Meniscus | 92.80 | 92.79 | 0.00 | 0.00% | — |
 | [SCHNEIDER-KREUZNACH CURTAGON 35mm f/2.8](../../src/lens-data/schneider-kreuznach/SchneiderCurtagon2835gen2.data.ts) | L6 | Positive Meniscus | 50.53 | 50.54 | 0.00 | 0.00% | — |
@@ -5829,6 +6098,7 @@ Sorted by absolute percentage difference, largest first.
 | [PENTAX HD D FA 150-450mm f/4.5-5.6 ED DC AW](../../src/lens-data/pentax/HDPentaxDFA150450mmF4556EDDCAW.data.ts) | L22 | Biconcave Negative | -66.49 | -66.49 | 0.00 | 0.00% | — |
 | [SCHNEIDER-KREUZNACH SUPER-SYMMAR HM 120mm f/5.6](../../src/lens-data/schneider-kreuznach/SchneiderSuperSymmarHM120mmf56.data.ts) | L3 | Positive Meniscus, convex to object | 495.62 | 495.61 | 0.00 | 0.00% | — |
 | [SONY VARIO-TESSAR T* E 16-70mm f/4 ZA OSS](../../src/lens-data/sony/SonyVarioTessarTE1670mmf4ZAOSS.data.ts) | L12 | Positive Meniscus | 109.58 | 109.58 | 0.00 | 0.00% | — |
+| [PANASONIC LUMIX G VARIO 45-150mm f/4.0-5.6 ASPH. MEGA O.I.S.](../../src/lens-data/panasonic/PanasonicLumixGVario45150mmf456MegaOIS.data.ts) | L1 | Negative Meniscus | -116.78 | -116.78 | 0.00 | 0.00% | — |
 | [OLYMPUS G.ZUIKO AUTO-W 25mm f/2.8](../../src/lens-data/olympus/OlympusPenFZuiko25mmf28.data.ts) | L4 | Positive Meniscus | 19.76 | 19.76 | 0.00 | 0.00% | — |
 | [OLYMPUS E.ZUIKO AUTO-T 1000mm f/11](../../src/lens-data/olympus/OlympusEZuiko1000mmf11.data.ts) | L2 | Biconcave Negative | -109.97 | -109.97 | 0.00 | 0.00% | — |
 | [SIGMA 100-400mm f/5-6.3 DG DN OS \| Contemporary](../../src/lens-data/sigma/Sigma100400mmf563DGDNOSContemporary.data.ts) | L22 | Negative Meniscus | -122.70 | -122.70 | 0.00 | 0.00% | — |
@@ -5855,12 +6125,14 @@ Sorted by absolute percentage difference, largest first.
 | [KONICA UC HEXANON AR 28mm f/1.8](../../src/lens-data/konica/KonicaUCHexanonAR28mmf18.data.ts) | L2 | Biconvex Positive | 88.71 | 88.71 | 0.00 | 0.00% | — |
 | [CANON EF 500mm f/4 L IS USM](../../src/lens-data/canon/CanonEF500mmf4LISUSM.data.ts) | L3c-3 | Negative Meniscus | -118.84 | -118.84 | 0.00 | 0.00% | — |
 | [SCHNEIDER-KREUZNACH CURTAGON 35mm f/2.8](../../src/lens-data/schneider-kreuznach/SchneiderCurtagon2835gen2.data.ts) | L3 | Positive Meniscus | 54.15 | 54.15 | 0.00 | 0.00% | — |
+| [SCHNEIDER-KREUZNACH 28mm LS f/4.5 ASPHERICAL](../../src/lens-data/schneider-kreuznach/SchneiderKreuznach28mmLSf45.data.ts) | L9 | Biconvex Positive | 31.49 | 31.49 | 0.00 | 0.00% | — |
 | [NIKON AF-I NIKKOR 400mm f/2.8 D IF-ED](../../src/lens-data/nikon/NikonAFINikkorED400mmf28DIF.data.ts) | L14b | Positive Meniscus | 127.06 | 127.06 | 0.00 | 0.00% | — |
 | [RODENSTOCK ROGONAR-S 50mm f/2.8](../../src/lens-data/rodenstock/RodenstockRogonarS50mmf28.data.ts) | L3 | Near-Plano-Concave Negative | -32.45 | -32.45 | 0.00 | 0.00% | — |
 | [VOIGTLÄNDER COLOR-SKOPAR 28mm f/2.8 Aspherical](../../src/lens-data/voigtlander/VoigtlanderColorSkopar28mmf28.data.ts) | L4 | Biconcave Negative | -13.15 | -13.15 | 0.00 | 0.00% | — |
 | [PENTAX HD D FA 150-450mm f/4.5-5.6 ED DC AW](../../src/lens-data/pentax/HDPentaxDFA150450mmF4556EDDCAW.data.ts) | L54 | Biconcave Negative | -58.84 | -58.84 | 0.00 | 0.00% | — |
 | [NIKON AF-S DX ZOOM-NIKKOR 18-55mm f/3.5-5.6 G ED II](../../src/lens-data/nikon/NikonAFSDXZoomNikkor1855mmf3556GEDII.data.ts) | Lbp | Biconvex Positive | 21.59 | 21.59 | 0.00 | 0.00% | — |
 | [LEICA SUMMILUX-C 40mm T1.4](../../src/lens-data/leica/LeicaSummiluxC40mmT14.data.ts) | L5 | Positive Meniscus | 52.49 | 52.49 | 0.00 | 0.00% | — |
+| [SCHNEIDER-KREUZNACH 28mm LS f/4.5 ASPHERICAL](../../src/lens-data/schneider-kreuznach/SchneiderKreuznach28mmLSf45.data.ts) | L7 | Positive Meniscus | 44.15 | 44.15 | 0.00 | 0.00% | — |
 | [PENTAX HD DA 55-300mm f/4.5-6.3 ED PLM WR RE](../../src/lens-data/pentax/HDPentaxDA55300mmF4563EDPLMWRRE.data.ts) | L33F | Biconcave Negative | -45.28 | -45.28 | 0.00 | 0.00% | — |
 | [VIVITAR SERIES 1 135mm f/2.3 AUTO TELEPHOTO](../../src/lens-data/vivitar/VivitarSeries1135mmf23.data.ts) | L4 | Biconvex Positive | 47.58 | 47.58 | 0.00 | 0.00% | — |
 | [NIKON AI ZOOM-NIKKOR 80-200mm f/4](../../src/lens-data/nikon/NikonAINikkor80200mmf4.data.ts) | L11b | Biconvex Positive | 93.23 | 93.23 | 0.00 | 0.00% | — |
@@ -5900,6 +6172,7 @@ Sorted by absolute percentage difference, largest first.
 | [NIKON AI AF MICRO-NIKKOR 105mm f/2.8 S](../../src/lens-data/nikon/NikonAiAFMicroNikkor105mmf28S.data.ts) | L2 | Positive Meniscus | 77.81 | 77.81 | 0.00 | 0.00% | — |
 | [SONY FE 70-200mm f/4 Macro G OSS II](../../src/lens-data/sony/SonyFE70200mmF4MacroGOSSII.data.ts) | L22 | Negative Meniscus, concave to object | -126.05 | -126.05 | 0.00 | 0.00% | — |
 | [VOIGTLÄNDER SUPER-DYNAREX 200mm f/4 (Bessamatic)](../../src/lens-data/voigtlander/VoigtlanderSuperDynarex200mmf4.data.ts) | L4 | Positive Meniscus | 125.86 | 125.86 | 0.00 | 0.00% | — |
+| [PANASONIC LUMIX G VARIO 45-150mm f/4.0-5.6 ASPH. MEGA O.I.S.](../../src/lens-data/panasonic/PanasonicLumixGVario45150mmf456MegaOIS.data.ts) | L6 | Biconvex Positive (1× Asph) | 21.95 | 21.95 | 0.00 | 0.00% | — |
 | [NIKON AI NIKKOR 24mm f/2](../../src/lens-data/nikon/NikonAINikkor24mmf2.data.ts) | L1 | Positive Meniscus | 169.62 | 169.62 | 0.00 | 0.00% | — |
 | [MAMIYA AF APO 300mm f/4.5 IF](../../src/lens-data/mamiya/MamiyaAFAPO300mmf45IF.data.ts) | L8 | Negative Meniscus (convex to image) | -120.65 | -120.65 | 0.00 | 0.00% | — |
 | [SONY VARIO-TESSAR T* E 16-70mm f/4 ZA OSS](../../src/lens-data/sony/SonyVarioTessarTE1670mmf4ZAOSS.data.ts) | L13 | Positive Meniscus | 89.84 | 89.84 | 0.00 | 0.00% | — |
@@ -5910,6 +6183,7 @@ Sorted by absolute percentage difference, largest first.
 | [PANASONIC LUMIX S PRO 70-200mm f/2.8 O.I.S.](../../src/lens-data/panasonic/PanasonicLumixSPro70200mmf28OIS.data.ts) | L12 | Biconcave Negative | -27.77 | -27.77 | 0.00 | 0.00% | — |
 | [CANON EF 24mm f/1.4 L II USM](../../src/lens-data/canon/CanonEF24mmf14LII.data.ts) | E12 | Biconvex Positive | 36.74 | 36.74 | 0.00 | 0.00% | — |
 | [SIGMA APO 50-500mm f/4.5-6.3 DG OS HSM](../../src/lens-data/sigma/SigmaAPO50500mmf4563DGOSHSM.data.ts) | E9 | Biconvex Positive | 52.26 | 52.26 | 0.00 | 0.00% | — |
+| [PENTAX SMC PENTAX 24mm f/2.8](../../src/lens-data/pentax/PentaxSMCK24mmf28.data.ts) | L9 | Biconvex Positive | 50.39 | 50.39 | 0.00 | 0.00% | — |
 | [PENTAX SMC DA 17-70mm f/4 AL [IF] SDM](../../src/lens-data/pentax/PentaxDA1770mmf4ALSDM.data.ts) | L4g | Negative Meniscus | -21.80 | -21.80 | 0.00 | 0.00% | — |
 | [OLYMPUS H.ZUIKO AUTO-W 24mm f/2.8 (US 3,994,574 Design)](../../src/lens-data/olympus/OlympusZuikoAutoW24mmf28.data.ts) | L5a | Biconvex Positive | 27.76 | 27.76 | 0.00 | 0.00% | — |
 | [SONY VARIO-TESSAR T* FE 16-35mm f/4 ZA OSS](../../src/lens-data/sony/SonyVarioTessarTFE1635mmf4ZAOSS.data.ts) | L22 | Negative Meniscus (1× Asph) | -52.53 | -52.53 | 0.00 | 0.00% | — |
@@ -5953,6 +6227,7 @@ Sorted by absolute percentage difference, largest first.
 | [SONY DT 16-50mm f/2.8 SSM](../../src/lens-data/sony/SonyDT1650mmf28SSM.data.ts) | G7 | Biconcave Negative | -18.79 | -18.79 | 0.00 | 0.00% | — |
 | [SCHNEIDER-KREUZNACH SUPER-SYMMAR HM 120mm f/5.6](../../src/lens-data/schneider-kreuznach/SchneiderSuperSymmarHM120mmf56.data.ts) | L2b | Negative Meniscus, convex to object | -91.90 | -91.90 | 0.00 | 0.00% | — |
 | [TAMRON SP AF 70-200mm f/2.8 Di LD [IF] MACRO](../../src/lens-data/tamron/TamronA00170200mmf28.data.ts) | L1 | Negative Meniscus | -130.58 | -130.58 | 0.00 | 0.00% | — |
+| [SCHNEIDER-KREUZNACH 28mm LS f/4.5 ASPHERICAL](../../src/lens-data/schneider-kreuznach/SchneiderKreuznach28mmLSf45.data.ts) | L1 | Negative Meniscus | -135.90 | -135.90 | 0.00 | 0.00% | — |
 | [SIGMA APO 50-500mm f/4.5-6.3 DG OS HSM](../../src/lens-data/sigma/SigmaAPO50500mmf4563DGOSHSM.data.ts) | E20 | Biconcave Negative | -25.65 | -25.65 | 0.00 | 0.00% | — |
 | [SONY FE 14mm f/1.8 GM](../../src/lens-data/sony/SonyFE14mmf18GM.data.ts) | L12 | Biconcave Negative | -36.19 | -36.19 | 0.00 | 0.00% | — |
 | [NIKON TV-NIKKOR 11.5-69mm f/1.2 (Nikon S-100)](../../src/lens-data/nikon/NikonTVNikkor11569mmf12NikonS100.data.ts) | L1a | Negative Meniscus | -103.99 | -103.99 | 0.00 | 0.00% | — |
@@ -5983,6 +6258,7 @@ Sorted by absolute percentage difference, largest first.
 | [OLYMPUS G.ZUIKO AUTO-T 60mm f/1.5](../../src/lens-data/olympus/OlympusPenFZuiko60mmf15.data.ts) | L2 | Positive Meniscus | 174.16 | 174.16 | 0.00 | 0.00% | — |
 | [NIKON AF-I NIKKOR 400mm f/2.8 D IF-ED](../../src/lens-data/nikon/NikonAFINikkorED400mmf28DIF.data.ts) | L3b | Negative Meniscus | -312.20 | -312.20 | 0.00 | 0.00% | — |
 | [OLYMPUS M.ZUIKO DIGITAL ED 40-150mm f/4.0-5.6 R](../../src/lens-data/olympus/OlympusMZuiko40150mmf456R.data.ts) | L9 | Biconcave Negative | -26.66 | -26.66 | 0.00 | 0.00% | — |
+| [SCHNEIDER-KREUZNACH 28mm LS f/4.5 ASPHERICAL](../../src/lens-data/schneider-kreuznach/SchneiderKreuznach28mmLSf45.data.ts) | L3 | Negative Meniscus | -78.37 | -78.37 | 0.00 | 0.00% | — |
 | [PANASONIC LEICA DG NOCTICRON 42.5mm f/1.2 ASPH. POWER O.I.S.](../../src/lens-data/panasonic/PanasonicDGNocticron42mmf12.data.ts) | L8 | Biconvex Positive (1× Asph) | 40.73 | 40.73 | 0.00 | 0.00% | — |
 | [OLYMPUS M.ZUIKO DIGITAL ED 12-200mm f/3.5-6.3](../../src/lens-data/olympus/OlympusMZuikoED12200mmf3563.data.ts) | L2 | Positive Meniscus | 129.01 | 129.01 | 0.00 | 0.00% | — |
 | [MINOLTA MD ZOOM 50-135mm f/3.5](../../src/lens-data/minolta/Minolta50135mmf35MDZoom.data.ts) | G7 | Negative Meniscus | -112.69 | -112.69 | 0.00 | 0.00% | — |
@@ -6020,6 +6296,7 @@ Sorted by absolute percentage difference, largest first.
 | [VOIGTLÄNDER SUPER-DYNAREX 200mm f/4 (Bessamatic)](../../src/lens-data/voigtlander/VoigtlanderSuperDynarex200mmf4.data.ts) | L2 | Negative Meniscus | -254.85 | -254.85 | 0.00 | 0.00% | — |
 | [NIKON AF FISHEYE-NIKKOR 16mm f/2.8 D](../../src/lens-data/nikon/NikonAFFisheyeNikkor16mmf28D.data.ts) | L32 | Negative Meniscus | -38.23 | -38.23 | 0.00 | 0.00% | — |
 | [SONY DT 16-50mm f/2.8 SSM](../../src/lens-data/sony/SonyDT1650mmf28SSM.data.ts) | G16 | Biconvex Positive | 41.24 | 41.24 | 0.00 | 0.00% | — |
+| [SCHNEIDER-KREUZNACH 28mm LS f/4.5 ASPHERICAL](../../src/lens-data/schneider-kreuznach/SchneiderKreuznach28mmLSf45.data.ts) | L12 | Positive Meniscus | 78.55 | 78.55 | 0.00 | 0.00% | — |
 | [SIGMA APO 50-500mm f/4.5-6.3 DG OS HSM](../../src/lens-data/sigma/SigmaAPO50500mmf4563DGOSHSM.data.ts) | E3 | Positive Meniscus | 288.47 | 288.47 | 0.00 | 0.00% | — |
 | [VOIGTLÄNDER APO-SKOPAR 90mm f/2.8 VM / SL IIs](../../src/lens-data/voigtlander/VoigtlanderApoSkopar90mmf28.data.ts) | L7 | Negative Meniscus (convex to image) | -42.85 | -42.85 | 0.00 | 0.00% | — |
 | [AGFA COLOR-MAGNOLAR II 100mm f/4.5](../../src/lens-data/agfa/AgfaColorMagnolarII100mmf45.data.ts) | L4 | Weakly Biconcave Negative | -47.04 | -47.04 | 0.00 | 0.00% | — |
@@ -6029,6 +6306,7 @@ Sorted by absolute percentage difference, largest first.
 | [OLYMPUS M.ZUIKO DIGITAL ED 40-150mm f/4.0-5.6 R](../../src/lens-data/olympus/OlympusMZuiko40150mmf456R.data.ts) | L5 | Negative Meniscus | -43.37 | -43.37 | 0.00 | 0.00% | — |
 | [PENTAX HD D FA 150-450mm f/4.5-5.6 ED DC AW](../../src/lens-data/pentax/HDPentaxDFA150450mmF4556EDDCAW.data.ts) | L13 | Biconvex Positive | 259.96 | 259.96 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON GF 30mm f/5.6 T/S](../../src/lens-data/fujifilm/FujifilmGF30mmf56TS.data.ts) | L11 | Neg. Meniscus (2× Asph) | -43.62 | -43.62 | 0.00 | 0.00% | — |
+| [SCHNEIDER-KREUZNACH 28mm LS f/4.5 ASPHERICAL](../../src/lens-data/schneider-kreuznach/SchneiderKreuznach28mmLSf45.data.ts) | L4 | Negative Meniscus | -124.37 | -124.37 | 0.00 | 0.00% | — |
 | [OLYMPUS M.ZUIKO DIGITAL ED 40-150mm f/4.0-5.6 R](../../src/lens-data/olympus/OlympusMZuiko40150mmf456R.data.ts) | L10 | Biconvex Positive | 40.29 | 40.29 | 0.00 | 0.00% | — |
 | [SCHNEIDER-KREUZNACH TECHNIKA SUPER-ANGULON 75mm f/8](../../src/lens-data/schneider-kreuznach/SchneiderTechnikaSuperAngulon75mmf8.data.ts) | L1 | Negative Meniscus | -43.62 | -43.62 | 0.00 | 0.00% | — |
 | [MAMIYA-SEKOR ZOOM E 28-50mm f/3.5-4.5](../../src/lens-data/mamiya/MamiyaSekorZoomE2850mmf3545.data.ts) | L1 | Biconvex Positive | 186.91 | 186.91 | 0.00 | 0.00% | — |
@@ -6038,7 +6316,9 @@ Sorted by absolute percentage difference, largest first.
 | [OLYMPUS ZUIKO DIGITAL ED 40-150mm f/4.0-5.6](../../src/lens-data/olympus/OlympusZuikoDigitalED40150mmf456.data.ts) | L9 | Negative Meniscus | -31.82 | -31.82 | 0.00 | 0.00% | — |
 | [TAMRON SP 90mm f/2.8 Di MACRO 1:1 VC USD (F004)](../../src/lens-data/tamron/TamronSP90mmf28Di.data.ts) | L11 | Negative Meniscus | -41.25 | -41.25 | 0.00 | 0.00% | — |
 | [PENTAX HD DA 55-300mm f/4.5-6.3 ED PLM WR RE](../../src/lens-data/pentax/HDPentaxDA55300mmF4563EDPLMWRRE.data.ts) | L42 | Biconcave Negative | -25.57 | -25.57 | 0.00 | 0.00% | — |
+| [SCHNEIDER-KREUZNACH 28mm LS f/4.5 ASPHERICAL](../../src/lens-data/schneider-kreuznach/SchneiderKreuznach28mmLSf45.data.ts) | L5 | Biconvex Positive | 22.82 | 22.82 | 0.00 | 0.00% | — |
 | [OLYMPUS G.ZUIKO AUTO-T 60mm f/1.5](../../src/lens-data/olympus/OlympusPenFZuiko60mmf15.data.ts) | L1 | Positive Meniscus | 163.03 | 163.03 | 0.00 | 0.00% | — |
+| [PANASONIC LUMIX G VARIO 45-150mm f/4.0-5.6 ASPH. MEGA O.I.S.](../../src/lens-data/panasonic/PanasonicLumixGVario45150mmf456MegaOIS.data.ts) | L2 | Biconvex Positive | 56.53 | 56.53 | 0.00 | 0.00% | — |
 | [CANON EF 500mm f/4 L IS USM](../../src/lens-data/canon/CanonEF500mmf4LISUSM.data.ts) | L1b-1 | Biconvex Positive | 230.75 | 230.75 | 0.00 | 0.00% | — |
 | [SONY E 18-200mm f/3.5-6.3 OSS LE](../../src/lens-data/sony/SonyE18200mmf3563OSSLE.data.ts) | L15r | Hybrid Resin Layer (1× Asph) | 435.57 | 435.57 | 0.00 | 0.00% | — |
 | [OLYMPUS ZUIKO DIGITAL ED 40-150mm f/4.0-5.6](../../src/lens-data/olympus/OlympusZuikoDigitalED40150mmf456.data.ts) | L12 | Negative Meniscus | -37.68 | -37.68 | 0.00 | 0.00% | — |
@@ -6267,6 +6547,8 @@ Sorted by absolute percentage difference, largest first.
 | [PANASONIC LEICA DC VARIO-ELMARIT 8.8-176mm f/2.8-4.5 ASPH. (Panasonic Lumix FZ2500 / FZ2000 / FZH1)](../../src/lens-data/panasonic/LeicaDCVarioElmarit88176mmf2845ASPHPanasonicFZ2500FZ2000FZH1.data.ts) | L8 | Biconvex Positive | 15.76 | 15.76 | 0.00 | 0.00% | — |
 | [CANON RF 24mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF24mmF14LVCM.data.ts) | E10 | Biconcave Negative | -20.21 | -20.21 | 0.00 | 0.00% | — |
 | [CANON 8.8-220mm f/2.8-5.6 (Canon PowerShot G3 X)](../../src/lens-data/canon/CanonPowerShotG3X.data.ts) | L18 | Positive Meniscus | 18.08 | 18.08 | 0.00 | 0.00% | — |
+| [VIVITAR 24mm f/2](../../src/lens-data/vivitar/Vivitar24mmf2.data.ts) | L6 | Biconcave Negative | -17.33 | -17.33 | 0.00 | 0.00% | — |
+| [PENTAX SMC M 20mm f/4](../../src/lens-data/pentax/PentaxM20mmf4.data.ts) | L6 | Biconcave Negative | -21.28 | -21.28 | 0.00 | 0.00% | — |
 | [CANON EF 200-400mm f/4 L IS USM EXTENDER 1.4× — EXT IN](../../src/lens-data/canon/CanonEF200400mmf4LISUSMExtender14xExtenderIn.data.ts) | E29 | Biconvex Positive | 25.50 | 25.50 | 0.00 | 0.00% | — |
 | [MINOLTA MD FISHEYE ROKKOR-X 7.5mm f/4](../../src/lens-data/minolta/MinoltaMDFisheyeRokkorX75mmf4.data.ts) | L2 | Negative Meniscus | -20.94 | -20.94 | 0.00 | 0.00% | — |
 | [NIKON AF-S VR ZOOM-NIKKOR 24-120mm f/3.5-5.6 G IF-ED](../../src/lens-data/nikon/NikonAFSVRZoomNikkor24120mmf3556GIFED.data.ts) | L3AP | Biconvex Positive | 23.93 | 23.93 | 0.00 | 0.00% | — |
@@ -6286,6 +6568,7 @@ Sorted by absolute percentage difference, largest first.
 | [TAMRON 28-300mm f/3.5-6.3 Di VC PZD](../../src/lens-data/tamron/TamronA01028300mmf3563.data.ts) | L18 | Biconcave Negative Substrate | -23.58 | -23.58 | 0.00 | 0.00% | — |
 | [CANON EF 24mm f/1.4 L USM](../../src/lens-data/canon/CanonEF24mmf14L.data.ts) | L8 | Biconcave Negative | -20.16 | -20.16 | 0.00 | 0.00% | — |
 | [OLYMPUS ZUIKO DIGITAL ED 7-14mm f/4.0](../../src/lens-data/olympus/OlympusZuikoDigitalED714mmf4.data.ts) | L15 | Biconcave Negative | -24.57 | -24.57 | 0.00 | 0.00% | — |
+| [PENTAX SMC M 20mm f/4](../../src/lens-data/pentax/PentaxM20mmf4.data.ts) | L2 | Negative Meniscus | -22.79 | -22.79 | 0.00 | 0.00% | — |
 | [NIKON AF-S FISHEYE NIKKOR 8-15mm f/3.5-4.5 E ED](../../src/lens-data/nikon/NikonAFSFisheye815mmf3545EED.data.ts) | L23 | Biconcave Negative | -13.27 | -13.27 | 0.00 | 0.00% | — |
 | [CANON EF 11-24mm f/4 L USM](../../src/lens-data/canon/CanonEF1124mmf4L.data.ts) | E8 | Biconvex Positive | 19.76 | 19.76 | 0.00 | 0.00% | — |
 | [PANASONIC LUMIX S 14-28mm f/4-5.6 MACRO](../../src/lens-data/panasonic/PanasonicLumixS1428mmF456.data.ts) | L11 | Biconvex Positive | 23.17 | 23.17 | 0.00 | 0.00% | — |
@@ -6298,6 +6581,7 @@ Sorted by absolute percentage difference, largest first.
 | [MINOLTA MD FISHEYE ROKKOR-X 7.5mm f/4](../../src/lens-data/minolta/MinoltaMDFisheyeRokkorX75mmf4.data.ts) | L3b | Biconcave Negative | -8.03 | -8.03 | 0.00 | 0.00% | — |
 | [CANON EF-S 18-55mm f/3.5-5.6](../../src/lens-data/canon/CanonEFS1855mmf3556.data.ts) | E9 | Positive Meniscus | 23.15 | 23.15 | 0.00 | 0.00% | — |
 | [SAMYANG AF 14mm f/2.8 FE](../../src/lens-data/samyang/SamyangAF14mmf28FE.data.ts) | L141 | Biconvex Positive | 22.43 | 22.43 | 0.00 | 0.00% | — |
+| [VIVITAR 28mm f/2](../../src/lens-data/vivitar/Vivitar28mmf2.data.ts) | L6 | Biconcave Negative | -16.61 | -16.61 | 0.00 | 0.00% | — |
 | [NIKON SERIES E ZOOM 75-150mm f/3.5](../../src/lens-data/nikon/NikonSeriesE75150mmf35.data.ts) | L8 | Negative Meniscus | -76.38 | -76.38 | 0.00 | 0.00% | — |
 | [SONY VARIO-SONNAR T* 24-70mm f/2.8 ZA SSM](../../src/lens-data/sony/SonyVarioSonnarT2470mmf28ZASSM.data.ts) | G4 | Negative Meniscus (1× Asph) | -25.12 | -25.12 | 0.00 | 0.00% | — |
 | [MINOLTA MC W.ROKKOR-SG 28mm f/3.5](../../src/lens-data/minolta/Minolta28mmf35MCWRokkorv2.data.ts) | L6 | Positive Meniscus | 25.86 | 25.86 | 0.00 | 0.00% | — |
@@ -6351,6 +6635,7 @@ Sorted by absolute percentage difference, largest first.
 | [FUJIFILM FUJINON XF 100-400mm f/4.5-5.6 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmFujinonXf100400mmf4556RLMOISWR.data.ts) | L3C | Biconcave Negative | -29.63 | -29.63 | 0.00 | 0.00% | — |
 | [NIKON NIKKOR Z 24-70mm f/2.8 S II](../../src/lens-data/nikon/NikonNikkorZ2470mmf28SII.data.ts) | L11 | Biconvex Positive | 28.13 | 28.13 | 0.00 | 0.00% | — |
 | [SONY ZEISS VARIO-SONNAR T* 10.4-37.1mm f/1.8-4.9 (Sony Cyber-shot DSC-RX100 / DSC-RX100 II)](../../src/lens-data/sony/ZeissVarioSonnarT104371mmf1849SonyDSCRX100M12.data.ts) | L41 | Biconvex Positive (2× Asph) | 29.78 | 29.78 | 0.00 | 0.00% | — |
+| [PENTAX SMC M 20mm f/4](../../src/lens-data/pentax/PentaxM20mmf4.data.ts) | L3 | Negative Meniscus | -21.58 | -21.58 | 0.00 | 0.00% | — |
 | [NIKON NIKKOR Z 180-600mm f/5.6-6.3 VR](../../src/lens-data/nikon/NikonNikkorZ180600mmf5663VR.data.ts) | L23 | Biconvex Positive | 23.49 | 23.49 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON XF 16mm f/1.4 R WR](../../src/lens-data/fujifilm/FujifilmFujinonXf16mmf14RWR.data.ts) | L14 | Biconvex Positive | 29.02 | 29.02 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON XF 10-24mm f/4 R OIS](../../src/lens-data/fujifilm/FujifilmFujinonXf1024mmf4ROIS.data.ts) | L12 | Neg. Meniscus (2× Asph) | -25.00 | -25.00 | 0.00 | 0.00% | — |
@@ -6522,6 +6807,7 @@ Sorted by absolute percentage difference, largest first.
 | [LEICA SUPER-ANGULON-R 21mm f/4](../../src/lens-data/leica/LeicaSuperAngulonR21mmf4.data.ts) | L5 | Biconvex Positive | 25.16 | 25.16 | 0.00 | 0.00% | — |
 | [CARL ZEISS DISTAGON T* 25mm f/2.8 (C/Y)](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagonTf2825mmContax.data.ts) | L6 | Biconcave Negative | -18.11 | -18.11 | 0.00 | 0.00% | — |
 | [VOIGTLÄNDER PORTRAIT HELIAR 75mm f/1.8](../../src/lens-data/voigtlander/VoigtlanderPortraitHeliar75mmf18.data.ts) | L4f | Biconvex Positive | 38.86 | 38.86 | 0.00 | 0.00% | — |
+| [VIVITAR 24mm f/2](../../src/lens-data/vivitar/Vivitar24mmf2.data.ts) | L4 | Biconvex Positive | 31.59 | 31.59 | 0.00 | 0.00% | — |
 | [TAMRON 70-180mm f/2.8 Di III VC VXD G2](../../src/lens-data/tamron/TamronA06570180mmf28DiIIIVCVXDG2.data.ts) | L12 | Biconcave Negative | -34.48 | -34.48 | 0.00 | 0.00% | — |
 | [SONY VARIO-SONNAR T* 24-70mm f/2.8 ZA SSM](../../src/lens-data/sony/SonyVarioSonnarT2470mmf28ZASSM.data.ts) | G15 | Biconvex Positive | 37.36 | 37.36 | 0.00 | 0.00% | — |
 | [NIKON AI AF ZOOM-NIKKOR 24-120mm f/3.5-5.6 D IF](../../src/lens-data/nikon/NikonAFNikkor24120mmf3556D.data.ts) | L25 | Negative Meniscus | -33.39 | -33.39 | 0.00 | 0.00% | — |
@@ -6529,6 +6815,7 @@ Sorted by absolute percentage difference, largest first.
 | [CANON EF 28-200mm f/3.5-5.6 USM](../../src/lens-data/canon/CanonEF28200mmf3556USM.data.ts) | L14 | Biconvex Positive (1× Asph) | 28.64 | 28.64 | 0.00 | 0.00% | — |
 | [VILTROX AF 14mm f/4 AIR](../../src/lens-data/viltrox/ViltroxAF14mmf4Air.data.ts) | L2 | Neg. Meniscus (2× Asph) | -31.10 | -31.10 | 0.00 | 0.00% | — |
 | [KONICA FL-HEXANON AR 300mm f/6.3](../../src/lens-data/konica/KonicaFLHexanonAR300mmf63.data.ts) | L9 | Negative Meniscus | -36.00 | -36.00 | 0.00 | 0.00% | — |
+| [PENTAX SMC M 28mm f/2.8](../../src/lens-data/pentax/PentaxM28mmf28.data.ts) | L6 | Positive Meniscus | 31.12 | 31.12 | 0.00 | 0.00% | — |
 | [CANON EF 300mm f/2.8 L IS USM](../../src/lens-data/canon/CanonEF300mmf28LISUSM.data.ts) | E13 | Biconvex Positive | 37.82 | 37.82 | 0.00 | 0.00% | — |
 | [CANON EF 15mm f/2.8 Fisheye](../../src/lens-data/canon/CanonEF15mmf28.data.ts) | L4 | Biconvex Positive | 32.84 | 32.84 | 0.00 | 0.00% | — |
 | [VILTROX AF 35mm f/1.8 FE](../../src/lens-data/viltrox/ViltroxAF35mmf18FE.data.ts) | L22 | Biconvex Positive | 37.80 | 37.80 | 0.00 | 0.00% | — |
@@ -6581,16 +6868,19 @@ Sorted by absolute percentage difference, largest first.
 | [NIKON SERIES E ZOOM 75-150mm f/3.5](../../src/lens-data/nikon/NikonSeriesE75150mmf35.data.ts) | L10 | Biconcave Negative | -354.44 | -354.44 | 0.00 | 0.00% | — |
 | [YASHICA ML 300mm f/5.6 C](../../src/lens-data/yashica/YashicaML300mmf56.data.ts) | L4 | Biconcave Negative | -30.41 | -30.41 | 0.00 | 0.00% | — |
 | [VOIGTLÄNDER APO-LANTHAR 28mm f/2 Aspherical VM](../../src/lens-data/voigtlander/VoigtlanderAPOLanthar28mmf2Aspherical.data.ts) | L10r | Negative Meniscus | -36.37 | -36.37 | 0.00 | 0.00% | — |
+| [VIVITAR 24mm f/2](../../src/lens-data/vivitar/Vivitar24mmf2.data.ts) | L2 | Negative Meniscus | -30.25 | -30.25 | 0.00 | 0.00% | — |
 | [PENTAX HD DA 18-50mm f/4-5.6 DC WR RE](../../src/lens-data/pentax/HDPentaxDA1850mmF456DCWRRE.data.ts) | L43 | Negative Meniscus | -27.93 | -27.93 | 0.00 | 0.00% | — |
 | [NIKON ZOOM-NIKKOR 5.6-16.8mm f/2.7-4.8 (Nikon COOLPIX SQ)](../../src/lens-data/nikon/NikonZoomNikkor56168mmf2748CoolpixSQ.data.ts) | L12 | Biconcave Negative | -12.18 | -12.18 | 0.00 | 0.00% | — |
 | [PANASONIC LEICA DC VARIO-SUMMILUX 4.7-17.7mm f/1.4-2.3 (Panasonic Lumix DMC-LX7; Leica D-Lux 6)](../../src/lens-data/panasonic/LeicaDCVarioSummilux47177mmf1423PanasonicLX7.data.ts) | L3 | Biconcave Negative | -34.71 | -34.71 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON XF 18mm f/1.4 R LM WR](../../src/lens-data/fujifilm/FujifilmFujinonXf18mmf14RLMWR.data.ts) | L17 | Biconvex Positive | 28.62 | 28.62 | 0.00 | 0.00% | — |
 | [PENTAX HD DA 16-85mm f/3.5-5.6 ED DC WR](../../src/lens-data/pentax/HDPentaxDA1685mmF3556EDDCWR.data.ts) | L33 | Negative Meniscus | -31.52 | -31.52 | 0.00 | 0.00% | — |
+| [PENTAX SMC M 28mm f/2.8](../../src/lens-data/pentax/PentaxM28mmf28.data.ts) | L4 | Biconvex Positive | 21.00 | 21.00 | 0.00 | 0.00% | — |
 | [SCHNEIDER-KREUZNACH CINEGON 10mm f/1.8](../../src/lens-data/schneider-kreuznach/SchneiderCinegon1810.data.ts) | L2 | Positive Lens | 23.46 | 23.46 | 0.00 | 0.00% | — |
 | [SIGMA 24mm f/2 DG DN \| Contemporary](../../src/lens-data/sigma/Sigma24mmf2DGDN.data.ts) | L14 | Biconvex Positive | 30.71 | 30.71 | 0.00 | 0.00% | — |
 | [HASSELBLAD HC 50mm f/3.5 II](../../src/lens-data/hasselblad/HasselbladHC3550II.data.ts) | L8 | Biconcave Negative | -31.24 | -31.24 | 0.00 | 0.00% | — |
 | [CANON 35mm f/1.5](../../src/lens-data/canon/Canon35mmf15LTM.data.ts) | L8 | Biconvex Positive | 41.09 | 41.09 | 0.00 | 0.00% | — |
 | [OLYMPUS M.ZUIKO DIGITAL ED 75-300mm f/4.8-6.7](../../src/lens-data/olympus/OlympusMZuiko75300mmf4867.data.ts) | E16 | Biconcave Negative | -23.18 | -23.18 | 0.00 | 0.00% | — |
+| [VIVITAR 28mm f/2](../../src/lens-data/vivitar/Vivitar28mmf2.data.ts) | L2 | Negative Meniscus | -36.05 | -36.05 | 0.00 | 0.00% | — |
 | [ZEISS BATIS 18mm f/2.8](../../src/lens-data/carl-zeiss-oberkochen/ZeissBatis2818.data.ts) | L115 | Negative Meniscus | -35.92 | -35.92 | 0.00 | 0.00% | — |
 | [CANON NEW FD 35-105mm f/3.5](../../src/lens-data/canon/CanonNewFD35105mmf35.data.ts) | L5 | Negative Meniscus | -32.24 | -32.24 | 0.00 | 0.00% | — |
 | [CANON EF 70-200mm f/4 L IS USM](../../src/lens-data/canon/CanonEF70200mmf4LISUSM.data.ts) | L3-1 | Biconvex Positive | 42.29 | 42.29 | 0.00 | 0.00% | — |
@@ -6622,6 +6912,7 @@ Sorted by absolute percentage difference, largest first.
 | [NIKON AF-S FISHEYE NIKKOR 8-15mm f/3.5-4.5 E ED](../../src/lens-data/nikon/NikonAFSFisheye815mmf3545EED.data.ts) | L24 | Biconvex Positive | 11.73 | 11.73 | 0.00 | 0.00% | — |
 | [YASHICA YASHINON-DX 21mm f/3.3](../../src/lens-data/yashica/YashicaYashinonDX21mmf33.data.ts) | L5 | Biconcave Negative | -13.40 | -13.40 | 0.00 | 0.00% | — |
 | [SONY VARIO-SONNAR T* 24-70mm f/2.8 ZA SSM](../../src/lens-data/sony/SonyVarioSonnarT2470mmf28ZASSM.data.ts) | G5 | Biconcave Negative | -26.64 | -26.64 | 0.00 | 0.00% | — |
+| [PENTAX SMC M 20mm f/4](../../src/lens-data/pentax/PentaxM20mmf4.data.ts) | L4 | Biconvex Positive | 23.83 | 23.83 | 0.00 | 0.00% | — |
 | [CANON RF 35mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF35mmF14LVCM.data.ts) | L9 | Negative Meniscus | -26.84 | -26.84 | 0.00 | 0.00% | — |
 | [CANON EF-S 17-85mm f/4-5.6 IS USM](../../src/lens-data/canon/CanonEFS1785mmf456ISUSM.data.ts) | E8 | Negative Meniscus | -26.27 | -26.27 | 0.00 | 0.00% | — |
 | [CANON RF 200-800mm f/6.3-9 IS USM](../../src/lens-data/canon/CanonRF200800mmF639ISUSM.data.ts) | L3b | Negative Meniscus | -40.00 | -40.00 | 0.00 | 0.00% | — |
@@ -6710,6 +7001,7 @@ Sorted by absolute percentage difference, largest first.
 | [TAMRON 70-180mm f/2.8 Di III VC VXD G2](../../src/lens-data/tamron/TamronA06570180mmf28DiIIIVCVXDG2.data.ts) | L10 | Negative Meniscus | -39.42 | -39.42 | 0.00 | 0.00% | — |
 | [TAMRON SP 70-200mm f/2.8 Di VC USD](../../src/lens-data/tamron/TamronSPA00970200mmf28VC.data.ts) | L22 | Negative Meniscus | -45.47 | -45.47 | 0.00 | 0.00% | — |
 | [SAMYANG AF 14mm f/2.8 FE](../../src/lens-data/samyang/SamyangAF14mmf28FE.data.ts) | L31 | Negative Meniscus (2x Asph) | -46.18 | -46.18 | 0.00 | 0.00% | — |
+| [VIVITAR 24mm f/2](../../src/lens-data/vivitar/Vivitar24mmf2.data.ts) | L7 | Positive Meniscus | 38.47 | 38.47 | 0.00 | 0.00% | — |
 | [CANON EF 28-200mm f/3.5-5.6 USM](../../src/lens-data/canon/CanonEF28200mmf3556USM.data.ts) | L16 | Negative Meniscus | -30.24 | -30.24 | 0.00 | 0.00% | — |
 | [NIKON AI AF-S NIKKOR 300mm f/2.8 D IF-ED](../../src/lens-data/nikon/NikonAFSNikkor300mmf28DIFED.data.ts) | L22b | Biconcave Negative | -47.92 | -47.92 | 0.00 | 0.00% | — |
 | [NIKON AF-S DX NIKKOR 16-80mm f/2.8-4 E ED VR](../../src/lens-data/nikon/NikonAFSDXNikkor1680mmf284EEDVR.data.ts) | L33 | Negative Meniscus | -31.94 | -31.94 | 0.00 | 0.00% | — |
@@ -7046,6 +7338,7 @@ Sorted by absolute percentage difference, largest first.
 | [NIKON AF-S ZOOM-NIKKOR 17-35mm f/2.8 D IF-ED](../../src/lens-data/nikon/NikonAFSZoomNikkor1735mmf28DIFED.data.ts) | L8 | Biconcave Negative | -24.95 | -24.95 | 0.00 | 0.00% | — |
 | [LEICA SUPER-VARIO-ELMAR-SL 16-35mm f/3.5-4.5 ASPH.](../../src/lens-data/leica/LeicaSuperVarioElmarSL1635mmf3545Asph.data.ts) | L4 | Biconcave Negative | -23.41 | -23.41 | 0.00 | 0.00% | — |
 | [CANON EF 180mm f/3.5 L Macro USM](../../src/lens-data/canon/CanonEF180mmf35LMacroUSM.data.ts) | L9 | Positive Meniscus | 62.66 | 62.66 | 0.00 | 0.00% | — |
+| [PENTAX SMC M 28mm f/2.8](../../src/lens-data/pentax/PentaxM28mmf28.data.ts) | L2 | Positive Meniscus | 63.18 | 63.18 | 0.00 | 0.00% | — |
 | [SIGMA 60-600mm f/4.5-6.3 DG DN OS \| Sports](../../src/lens-data/sigma/Sigma60600mmf4563DGDNOS.data.ts) | L7 | Biconvex Positive | 62.00 | 62.00 | 0.00 | 0.00% | — |
 | [OLYMPUS M.ZUIKO DIGITAL ED 150-400mm f/4.5 TC1.25× IS PRO](../../src/lens-data/olympus/OlympusMZuiko150400mmf45TC125ISPRO.data.ts) | L15 | Biconvex Positive | 60.03 | 60.03 | 0.00 | 0.00% | — |
 | [OLYMPUS M.ZUIKO DIGITAL ED 150-400mm f/4.5 TC1.25× IS PRO](../../src/lens-data/olympus/OlympusMZuiko150400mmf45TC125ISPROTCIn.data.ts) | L15 | Biconvex Positive | 60.03 | 60.03 | 0.00 | 0.00% | — |
@@ -7098,6 +7391,7 @@ Sorted by absolute percentage difference, largest first.
 | [NIKON AF-S FISHEYE NIKKOR 8-15mm f/3.5-4.5 E ED](../../src/lens-data/nikon/NikonAFSFisheye815mmf3545EED.data.ts) | L210 | Positive Meniscus, convex to object | 36.34 | 36.34 | 0.00 | 0.00% | — |
 | [CANON EF-S 17-85mm f/4-5.6 IS USM](../../src/lens-data/canon/CanonEFS1785mmf456ISUSM.data.ts) | E12 | Positive Meniscus | 28.30 | 28.30 | 0.00 | 0.00% | — |
 | [OLYMPUS M.ZUIKO DIGITAL ED 150-400mm f/4.5 TC1.25× IS PRO](../../src/lens-data/olympus/OlympusMZuiko150400mmf45TC125ISPROTCIn.data.ts) | L22 | Biconvex Positive | 21.59 | 21.59 | 0.00 | 0.00% | — |
+| [VIVITAR 24mm f/2](../../src/lens-data/vivitar/Vivitar24mmf2.data.ts) | L3 | Negative Meniscus | -41.97 | -41.97 | 0.00 | 0.00% | — |
 | [PENTAX HD DA 20-40mm f/2.8-4 ED Limited DC WR](../../src/lens-data/pentax/HDPentaxDA2040mmF284EDLimitedDCWR.data.ts) | L26 | Negative Meniscus | -50.20 | -50.20 | 0.00 | 0.00% | — |
 | [CARL ZEISS PLANAR 80mm f/2.8 (Graflex XL)](../../src/lens-data/carl-zeiss-oberkochen/ZeissPlanar80mmf28GraflexXL.data.ts) | LV | Positive Meniscus | 69.55 | 69.55 | 0.00 | 0.00% | — |
 | [SONY FE 50-150mm f/2 GM](../../src/lens-data/sony/SonyFE50150mmF2GM.data.ts) | E8 | Biconvex Positive (2× Asph) | 70.08 | 70.08 | 0.00 | 0.00% | — |
@@ -7129,6 +7423,7 @@ Sorted by absolute percentage difference, largest first.
 | [NIKON NIKKOR Z 180-600mm f/5.6-6.3 VR](../../src/lens-data/nikon/NikonNikkorZ180600mmf5663VR.data.ts) | L5 | Biconvex Positive | 63.36 | 63.36 | 0.00 | 0.00% | — |
 | [ZEISS BATIS 85mm f/1.8](../../src/lens-data/carl-zeiss-oberkochen/ZeissBatis1885.data.ts) | L1 | Positive Meniscus | 72.52 | 72.52 | 0.00 | 0.00% | — |
 | [TAMRON 28-300mm f/3.5-6.3 Di VC PZD](../../src/lens-data/tamron/TamronA01028300mmf3563.data.ts) | L13 | Biconcave Negative (1× Asph) | -19.48 | -19.48 | 0.00 | 0.00% | — |
+| [PENTAX SMC M 28mm f/2.8](../../src/lens-data/pentax/PentaxM28mmf28.data.ts) | L5 | Biconcave Negative | -21.29 | -21.29 | 0.00 | 0.00% | — |
 | [SONY FE 50-150mm f/2 GM](../../src/lens-data/sony/SonyFE50150mmF2GM.data.ts) | E5 | Biconcave Negative | -67.66 | -67.66 | 0.00 | 0.00% | — |
 | [TAMRON 70-180mm f/2.8 Di III VC VXD G2](../../src/lens-data/tamron/TamronA06570180mmf28DiIIIVCVXDG2.data.ts) | L13 | Positive Meniscus | 65.52 | 65.52 | 0.00 | 0.00% | — |
 | [SONY VARIO-SONNAR T* 24-70mm f/2.8 ZA SSM](../../src/lens-data/sony/SonyVarioSonnarT2470mmf28ZASSM.data.ts) | G7 | Negative Meniscus | -62.35 | -62.35 | 0.00 | 0.00% | — |
@@ -7212,6 +7507,7 @@ Sorted by absolute percentage difference, largest first.
 | [CANON EF 24mm f/1.4 L USM](../../src/lens-data/canon/CanonEF24mmf14L.data.ts) | L10 | Positive Meniscus, convex to image | 43.60 | 43.60 | 0.00 | 0.00% | — |
 | [OLYMPUS M.ZUIKO DIGITAL ED 45mm f/1.2 PRO](../../src/lens-data/olympus/OlympusMZuiko45mmf12PRO.data.ts) | L1 | Plano-Convex | 67.96 | 67.96 | 0.00 | 0.00% | — |
 | [SCHNEIDER-KREUZNACH TV-VARIOGON 20-600mm f/2.1-6.6](../../src/lens-data/schneider-kreuznach/SchneiderTVVariogon216620600.data.ts) | L21 | Biconvex Positive | 42.99 | 42.99 | 0.00 | 0.00% | — |
+| [VIVITAR 28mm f/2](../../src/lens-data/vivitar/Vivitar28mmf2.data.ts) | L7 | Positive Meniscus | 44.25 | 44.25 | 0.00 | 0.00% | — |
 | [OLYMPUS ZUIKO DIGITAL ED 90-250mm f/2.8](../../src/lens-data/olympus/OlympusZuikoDigitalED90250mmf28.data.ts) | L17 | Biconvex Positive | 58.91 | 58.91 | 0.00 | 0.00% | — |
 | [OLYMPUS M.ZUIKO DIGITAL ED 75-300mm f/4.8-6.7](../../src/lens-data/olympus/OlympusMZuiko75300mmf4867.data.ts) | E14 | Biconvex Positive | 37.76 | 37.76 | 0.00 | 0.00% | — |
 | [SCHNEIDER-KREUZNACH TV-VARIOGON 20-600mm f/2.1-6.6](../../src/lens-data/schneider-kreuznach/SchneiderTVVariogon216620600.data.ts) | L30 | Biconvex Positive | 52.10 | 52.10 | 0.00 | 0.00% | — |
@@ -7497,6 +7793,7 @@ Sorted by absolute percentage difference, largest first.
 | [LAOWA 105mm f/2 Smooth Trans Focus (STF)](../../src/lens-data/laowa/Laowa105mmf2STF.data.ts) | L7 | Biconvex Positive | 102.54 | 102.54 | 0.00 | 0.00% | — |
 | [ZEISS BATIS 18mm f/2.8](../../src/lens-data/carl-zeiss-oberkochen/ZeissBatis2818.data.ts) | L131 | Positive Meniscus | 80.28 | 80.28 | 0.00 | 0.00% | — |
 | [PANASONIC LUMIX S PRO 70-200mm f/4 O.I.S.](../../src/lens-data/panasonic/PanasonicLumixSPro70200mmf4OIS.data.ts) | L13 | Biconvex Positive | 51.11 | 51.11 | 0.00 | 0.00% | — |
+| [PENTAX SMC M 20mm f/4](../../src/lens-data/pentax/PentaxM20mmf4.data.ts) | L8 | Positive Meniscus | 101.20 | 101.20 | 0.00 | 0.00% | — |
 | [CANON EF 100-400mm f/4.5-5.6 L IS USM](../../src/lens-data/canon/CanonEF100400mmf4556LISUSM.data.ts) | E7 | Biconvex Positive | 71.39 | 71.39 | 0.00 | 0.00% | — |
 | [OLYMPUS M.ZUIKO DIGITAL ED 40-150mm f/4.0-5.6 R](../../src/lens-data/olympus/OlympusMZuiko40150mmf456R.data.ts) | L2 | Negative Meniscus | -190.08 | -190.08 | 0.00 | 0.00% | — |
 | [SIGMA 60-600mm f/4.5-6.3 DG DN OS \| Sports](../../src/lens-data/sigma/Sigma60600mmf4563DGDNOS.data.ts) | L15 | Biconcave Negative | -56.95 | -56.95 | 0.00 | 0.00% | — |
@@ -7559,6 +7856,7 @@ Sorted by absolute percentage difference, largest first.
 | [CANON EF 70-300mm f/4-5.6 IS USM](../../src/lens-data/canon/CanonEF70300mmf456ISUSM.data.ts) | E8 | Biconvex Positive | 61.91 | 61.91 | 0.00 | 0.00% | — |
 | [RICOH LENS A16 24-85mm f/3.5-5.5 (Ricoh GXR A16)](../../src/lens-data/ricoh/RicohLensA162485mmf3555.data.ts) | L7 | Biconvex Positive (2× Asph) | 20.44 | 20.44 | 0.00 | 0.00% | — |
 | [SCHNEIDER-KREUZNACH VARIOGON 8-40mm f/1.8](../../src/lens-data/schneider-kreuznach/SchneiderVariogon18840.data.ts) | L1 | Biconvex Positive | 58.10 | 58.10 | 0.00 | 0.00% | — |
+| [VIVITAR 28mm f/2](../../src/lens-data/vivitar/Vivitar28mmf2.data.ts) | L8 | Biconvex Positive | 36.13 | 36.13 | 0.00 | 0.00% | — |
 | [VILTROX AF 75mm f/1.2 PRO](../../src/lens-data/viltrox/ViltroxAF75mmf12STMEDIF.data.ts) | L2 | Positive Meniscus | 98.52 | 98.52 | 0.00 | 0.00% | — |
 | [CANON EF 28-105mm f/3.5-4.5 II USM](../../src/lens-data/canon/CanonEF28105mmf3545II.data.ts) | L2d | Biconcave Negative | -35.71 | -35.71 | 0.00 | 0.00% | — |
 | [TAMRON SP 24-70mm f/2.8 Di VC USD](../../src/lens-data/tamron/TamronSPA0072470mmf28VC.data.ts) | L16 | Biconcave Negative (2× Asph) | -87.87 | -87.87 | 0.00 | 0.00% | — |
@@ -7717,6 +8015,7 @@ Sorted by absolute percentage difference, largest first.
 | [NIKON AF-S NIKKOR 500mm f/4 E FL ED VR](../../src/lens-data/nikon/NikonAFSNIKKOR500mmf4EFLEDVR.data.ts) | L38 | Biconvex Positive | 54.84 | 54.84 | 0.00 | 0.00% | — |
 | [PENTAX SMC DA 16-45mm f/4 ED AL](../../src/lens-data/pentax/PentaxDA1645mmF4EDAL.data.ts) | L11 | Negative Meniscus | -38.10 | -38.10 | 0.00 | 0.00% | — |
 | [PANASONIC LEICA DC VARIO-SUMMILUX 4.7-17.7mm f/1.4-2.3 (Panasonic Lumix DMC-LX7; Leica D-Lux 6)](../../src/lens-data/panasonic/LeicaDCVarioSummilux47177mmf1423PanasonicLX7.data.ts) | L1 | Biconvex Positive | 98.56 | 98.56 | 0.00 | 0.00% | — |
+| [PENTAX SMC M 28mm f/2.8](../../src/lens-data/pentax/PentaxM28mmf28.data.ts) | L3 | Negative Meniscus | -18.66 | -18.66 | 0.00 | 0.00% | — |
 | [VILTROX AF 75mm f/1.2 PRO](../../src/lens-data/viltrox/ViltroxAF75mmf12STMEDIF.data.ts) | L7 | Negative Meniscus | -57.49 | -57.49 | 0.00 | 0.00% | — |
 | [SIGMA 70-300mm f/4-5.6 DG OS](../../src/lens-data/sigma/Sigma70300mmf456DGOS.data.ts) | E15 | Positive Meniscus | 77.55 | 77.55 | 0.00 | 0.00% | — |
 | [SIGMA APO 80-400mm f/4.5-5.6 EX OS](../../src/lens-data/sigma/Sigma80400mmf4556EXOS.data.ts) | L12 | Positive Meniscus | 47.07 | 47.07 | 0.00 | 0.00% | — |
@@ -7795,6 +8094,7 @@ Sorted by absolute percentage difference, largest first.
 | [CANON EF 35mm f/2 IS USM](../../src/lens-data/canon/CanonEF35mmf2ISUSM.data.ts) | E1 | Negative Meniscus | -113.40 | -113.40 | 0.00 | 0.00% | — |
 | [LEICA SUMMILUX-M 50mm f/1.4 I](../../src/lens-data/leica/LeicaSummiluxM50mmf14I.data.ts) | L6 | Biconvex Positive | 85.95 | 85.95 | 0.00 | 0.00% | — |
 | [NIKON AF MICRO-NIKKOR 200mm f/4 D IF-ED](../../src/lens-data/nikon/NikonAFMicroNikkor200mmf4D.data.ts) | L12 | Biconvex Positive | 122.47 | 122.47 | 0.00 | 0.00% | — |
+| [VIVITAR 24mm f/2](../../src/lens-data/vivitar/Vivitar24mmf2.data.ts) | L1 | Positive Meniscus | 127.33 | 127.33 | 0.00 | 0.00% | — |
 | [LAOWA 180mm f/4.5 1.5× Ultra Macro APO](../../src/lens-data/laowa/Laowa180mmf45UltraMacroAPO.data.ts) | L11 | Negative Meniscus | -78.13 | -78.13 | 0.00 | 0.00% | — |
 | [LAOWA 180mm f/4.5 1.5× Ultra Macro APO — AF](../../src/lens-data/laowa/Laowa180mmf45UltraMacroAPOAF.data.ts) | L11 | Negative Meniscus | -78.13 | -78.13 | 0.00 | 0.00% | — |
 | [NIKON NIKKOR Z 800mm f/6.3 VR S](../../src/lens-data/nikon/NikonNIKKORZ800mmf63VRS.data.ts) | L17 | Biconcave Negative | -83.96 | -83.96 | 0.00 | 0.00% | — |
@@ -8210,6 +8510,7 @@ Sorted by absolute percentage difference, largest first.
 | [FUJIFILM FUJINON XF 100-400mm f/4.5-5.6 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmFujinonXf100400mmf4556RLMOISWR.data.ts) | L5B | Plano-Concave Negative | -30.00 | -30.00 | 0.00 | 0.00% | — |
 | [TAMRON SP 70-200mm f/2.8 Di VC USD](../../src/lens-data/tamron/TamronSPA00970200mmf28VC.data.ts) | L2 | Positive Meniscus | 205.60 | 205.60 | 0.00 | 0.00% | — |
 | [SIGMA MACRO 70mm f/2.8 EX DG](../../src/lens-data/sigma/Sigma70mmf28EXDGMacro.data.ts) | E3 | Positive Meniscus | 80.72 | 80.72 | 0.00 | 0.00% | — |
+| [PENTAX SMC M 28mm f/2.8](../../src/lens-data/pentax/PentaxM28mmf28.data.ts) | L7 | Positive Meniscus | 54.18 | 54.18 | 0.00 | 0.00% | — |
 | [NIKON AF-S DX NIKKOR 16-80mm f/2.8-4 E ED VR](../../src/lens-data/nikon/NikonAFSDXNikkor1680mmf284EEDVR.data.ts) | L13 | Positive Meniscus | 99.49 | 99.49 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON XF 70-300mm f/4-5.6 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmFujinonXf70300mmf456RLMOISWR.data.ts) | L24 | Negative Meniscus | -54.40 | -54.40 | 0.00 | 0.00% | — |
 | [OLYMPUS M.ZUIKO DIGITAL ED 75-300mm f/4.8-6.7](../../src/lens-data/olympus/OlympusMZuiko75300mmf4867.data.ts) | E18 | Negative Meniscus | -26.02 | -26.02 | 0.00 | 0.00% | — |
@@ -8324,6 +8625,7 @@ Sorted by absolute percentage difference, largest first.
 | [NIKON AI-S ZOOM-NIKKOR 80-200mm f/2.8 ED](../../src/lens-data/nikon/NikonAISZoomNikkor80200mmf28ED.data.ts) | L5a | Biconvex Positive | 73.98 | 73.98 | 0.00 | 0.00% | — |
 | [NIKON ZOOM-NIKKOR 100-300mm f/5.6](../../src/lens-data/nikon/NikonAISZoomNikkor100300mmf56.data.ts) | L3b | Negative Meniscus | -109.72 | -109.72 | 0.00 | 0.00% | — |
 | [PENTAX SMC A ZOOM 35-70mm f/4](../../src/lens-data/pentax/PentaxA3570mmf4.data.ts) | L4 | Biconvex Positive | 41.32 | 41.32 | 0.00 | 0.00% | — |
+| [PENTAX SMC M 20mm f/4](../../src/lens-data/pentax/PentaxM20mmf4.data.ts) | L1 | Positive Meniscus | 110.79 | 110.79 | 0.00 | 0.00% | — |
 | [MIRANDA AUTO EC 135mm f/2.8](../../src/lens-data/miranda/MirandaAutoEC135mmf28.data.ts) | L2 | Positive Meniscus | 103.53 | 103.53 | 0.00 | 0.00% | — |
 | [PENTAX HD DA* 11-18mm f/2.8 ED DC AW](../../src/lens-data/pentax/PentaxD1118mmF28EDDCWR.data.ts) | L12g | Negative Meniscus | -34.56 | -34.56 | 0.00 | 0.00% | — |
 | [NIKON NIKKOR Z 800mm f/6.3 VR S](../../src/lens-data/nikon/NikonNIKKORZ800mmf63VRS.data.ts) | L36 | Biconvex Positive | 29.44 | 29.44 | 0.00 | 0.00% | — |
@@ -8362,6 +8664,7 @@ Sorted by absolute percentage difference, largest first.
 | [CANON 8.8-220mm f/2.8-5.6 (Canon PowerShot G3 X)](../../src/lens-data/canon/CanonPowerShotG3X.data.ts) | L14 | Negative Meniscus | -22.39 | -22.39 | 0.00 | 0.00% | — |
 | [SONY 70-300mm f/4.5-5.6 G SSM](../../src/lens-data/sony/SonySAL70300mmf4556GSSM.data.ts) | L44 | Negative Meniscus | -49.23 | -49.23 | 0.00 | 0.00% | — |
 | [NIKON NIKKOR Z 180-600mm f/5.6-6.3 VR](../../src/lens-data/nikon/NikonNikkorZ180600mmf5663VR.data.ts) | L9 | Biconvex Positive | 113.38 | 113.38 | 0.00 | 0.00% | — |
+| [PENTAX SMC M 20mm f/4](../../src/lens-data/pentax/PentaxM20mmf4.data.ts) | L5 | Positive Meniscus | 30.34 | 30.34 | 0.00 | 0.00% | — |
 | [NIKON AI AF ZOOM-NIKKOR 80-200mm f/2.8 ED](../../src/lens-data/nikon/NikonAFZoomNikkor80200mmf28ED.data.ts) | L33 | Negative Meniscus | -77.41 | -77.41 | 0.00 | 0.00% | — |
 | [NIKON AF-S NIKKOR 500mm f/4 E FL ED VR](../../src/lens-data/nikon/NikonAFSNIKKOR500mmf4EFLEDVR.data.ts) | L14 | Negative Meniscus, convex to object | -161.16 | -161.16 | 0.00 | 0.00% | — |
 | [CANON EF 600mm f/4 L IS II USM](../../src/lens-data/canon/CanonEF600mmf4LISIIUSM.data.ts) | L12 | Biconvex Positive | 241.64 | 241.64 | 0.00 | 0.00% | — |
@@ -8393,6 +8696,7 @@ Sorted by absolute percentage difference, largest first.
 | [SIGMA APO 80-400mm f/4.5-5.6 EX OS](../../src/lens-data/sigma/Sigma80400mmf4556EXOS.data.ts) | L2 | Biconvex Positive | 212.32 | 212.32 | 0.00 | 0.00% | — |
 | [NIKON AF-S FISHEYE NIKKOR 8-15mm f/3.5-4.5 E ED](../../src/lens-data/nikon/NikonAFSFisheye815mmf3545EED.data.ts) | L28 | Negative Meniscus, concave to object | -45.23 | -45.23 | 0.00 | 0.00% | — |
 | [OLYMPUS M.ZUIKO DIGITAL ED 8mm f/1.8 Fisheye PRO](../../src/lens-data/olympus/OlympusMZuiko8mmf18FisheyePRO.data.ts) | L3 | Biconvex Positive | 54.73 | 54.73 | 0.00 | 0.00% | — |
+| [VIVITAR 24mm f/2](../../src/lens-data/vivitar/Vivitar24mmf2.data.ts) | L8 | Biconvex Positive | 39.89 | 39.89 | 0.00 | 0.00% | — |
 | [NIKON AI AF ZOOM-NIKKOR 20-35mm f/2.8 D IF](../../src/lens-data/nikon/NikonAFZoomNikkor2035mmf28DIF.data.ts) | L11 | Negative Meniscus (1× Asph) | -42.85 | -42.85 | 0.00 | 0.00% | — |
 | [PENTAX HD DA645 28-45mm f/4.5 ED AW SR](../../src/lens-data/pentax/HDPentaxDA6452845mmF45EDAWSR.data.ts) | L12 | Negative Meniscus, convex to object | -89.29 | -89.29 | 0.00 | 0.00% | — |
 | [TAMRON 50-300mm f/4.5-6.3 Di III VC VXD](../../src/lens-data/tamron/TamronA06950300mmf4563.data.ts) | L15 | Biconvex Positive | 36.65 | 36.65 | 0.00 | 0.00% | — |
@@ -8626,6 +8930,7 @@ Sorted by absolute percentage difference, largest first.
 | [SCHNEIDER-KREUZNACH TV-VARIOGON 20-600mm f/2.1-6.6](../../src/lens-data/schneider-kreuznach/SchneiderTVVariogon216620600.data.ts) | L7 | Biconvex Positive | 288.11 | 288.11 | 0.00 | 0.00% | — |
 | [NIKON AI AF VR ZOOM-NIKKOR 80-400mm f/4.5-5.6 D ED](../../src/lens-data/nikon/NikonAFVRZoomNikkor80400mmf4556DED.data.ts) | L12 | Biconvex Positive | 224.57 | 224.57 | 0.00 | 0.00% | — |
 | [CANON EF 600mm f/4 L IS II USM](../../src/lens-data/canon/CanonEF600mmf4LISIIUSM.data.ts) | L13 | Biconcave Negative | -190.67 | -190.67 | 0.00 | 0.00% | — |
+| [FUJIFILM EBC FUJINON W 24mm f/2.8](../../src/lens-data/fujifilm/FujifilmEBCFujinonW24mmf28M42.data.ts) | L6 | Biconcave Negative | -15.60 | -15.60 | 0.00 | 0.00% | — |
 | [OM SYSTEM M.ZUIKO DIGITAL ED 90mm f/3.5 MACRO IS PRO](../../src/lens-data/olympus/OMSystem90mmF35MacroISPRO.data.ts) | L9 | Negative Meniscus | -84.76 | -84.76 | 0.00 | 0.00% | — |
 | [OLYMPUS ZUIKO DIGITAL ED 90-250mm f/2.8](../../src/lens-data/olympus/OlympusZuikoDigitalED90250mmf28.data.ts) | L2 | Biconvex Positive | 226.30 | 226.30 | 0.00 | 0.00% | — |
 | [NIKON AF-S NIKKOR 70-200mm f/4 G ED VR](../../src/lens-data/nikon/NikonAFSNikkor70200mmf4GEDVR.data.ts) | L12 | Negative Meniscus | -177.52 | -177.52 | 0.00 | 0.00% | — |
@@ -8670,6 +8975,7 @@ Sorted by absolute percentage difference, largest first.
 | [HASSELBLAD XCD 25mm f/2.5 V](../../src/lens-data/hasselblad/HasselbladXcd25mmF25V.data.ts) | L7 | Negative Meniscus | -53.41 | -53.41 | 0.00 | 0.00% | — |
 | [MINOLTA MD ZOOM 75-150mm f/4](../../src/lens-data/minolta/Minolta75150mmf40MDZoom.data.ts) | L1 | Biconvex Positive | 140.63 | 140.63 | 0.00 | 0.00% | — |
 | [NIKON AI AF-S NIKKOR 500mm f/4 D IF-ED](../../src/lens-data/nikon/NikonAFSNikkor500mmf4DIFED.data.ts) | L11 | Biconvex Positive | 331.04 | 331.04 | 0.00 | 0.00% | — |
+| [FUJIFILM EBC FUJINON W 24mm f/2.8](../../src/lens-data/fujifilm/FujifilmEBCFujinonW24mmf28M42.data.ts) | L9 | Biconvex Positive | 34.39 | 34.39 | 0.00 | 0.00% | — |
 | [CANON RF 24-105mm f/4-7.1 IS STM](../../src/lens-data/canon/CanonRF24105mmf471ISSTM.data.ts) | L11 | Negative Meniscus | -31.64 | -31.64 | 0.00 | 0.00% | — |
 | [CANON EF 20mm f/2.8 USM](../../src/lens-data/canon/CanonEF20mmf28.data.ts) | L11 | Negative Meniscus | -96.92 | -96.92 | 0.00 | 0.00% | — |
 | [CANON EF 100-300mm f/4.5-5.6 USM](../../src/lens-data/canon/CanonEF100300mmf4556USM.data.ts) | E7 | Biconvex Positive | 52.66 | 52.66 | 0.00 | 0.00% | — |
@@ -8699,6 +9005,7 @@ Sorted by absolute percentage difference, largest first.
 | [VILTROX AF 75mm f/1.2 PRO](../../src/lens-data/viltrox/ViltroxAF75mmf12STMEDIF.data.ts) | L12 | Plano-Concave Negative | -50.22 | -50.22 | 0.00 | 0.00% | — |
 | [TAMRON 50-300mm f/4.5-6.3 Di III VC VXD](../../src/lens-data/tamron/TamronA06950300mmf4563.data.ts) | L1 | Negative Meniscus | -151.40 | -151.40 | 0.00 | 0.00% | — |
 | [SONY FE 8-14mm f/3.5 Fisheye G](../../src/lens-data/sony/SonyFE814mmf35FisheyeG.data.ts) | L7 | Positive Meniscus, convex to object | 78.44 | 78.44 | 0.00 | 0.00% | — |
+| [PANASONIC LUMIX G VARIO 45-150mm f/4.0-5.6 ASPH. MEGA O.I.S.](../../src/lens-data/panasonic/PanasonicLumixGVario45150mmf456MegaOIS.data.ts) | L11 | Negative Meniscus | -83.75 | -83.75 | 0.00 | 0.00% | — |
 | [OLYMPUS M.ZUIKO DIGITAL ED 45mm f/1.2 PRO](../../src/lens-data/olympus/OlympusMZuiko45mmf12PRO.data.ts) | L7 | Biconcave Negative | -24.45 | -24.45 | 0.00 | 0.00% | — |
 | [TAMRON AF 28-200mm f/3.8-5.6 Super XR Aspherical [IF] MACRO](../../src/lens-data/tamron/TamronA0328200mmf3856.data.ts) | L10 | Biconcave Negative | -36.97 | -36.97 | 0.00 | 0.00% | — |
 | [SONY 70-300mm f/4.5-5.6 G SSM](../../src/lens-data/sony/SonySAL70300mmf4556GSSM.data.ts) | L32 | Negative Meniscus | -71.08 | -71.08 | 0.00 | 0.00% | — |
@@ -8845,6 +9152,7 @@ Sorted by absolute percentage difference, largest first.
 | [FUJIFILM FUJINON XF 18mm f/1.4 R LM WR](../../src/lens-data/fujifilm/FujifilmFujinonXf18mmf14RLMWR.data.ts) | L15 | Pos. Meniscus (1× Asph) | 62.75 | 62.75 | 0.00 | 0.00% | — |
 | [CANON RF 800mm f/11 IS STM](../../src/lens-data/canon/CanonRF800mmf11ISSTM.data.ts) | E5 | Positive Meniscus | 169.05 | 169.05 | 0.00 | 0.00% | — |
 | [KINOPTIK SUPER-TEGEA 1.9mm f/1.9 FISHEYE](../../src/lens-data/kinoptik/KinoptikSuperTegea19mmf19Fisheye.data.ts) | L22 | Biconvex Positive | 18.61 | 18.61 | 0.00 | 0.00% | — |
+| [FUJIFILM EBC FUJINON W 24mm f/2.8](../../src/lens-data/fujifilm/FujifilmEBCFujinonW24mmf28M42.data.ts) | L7 | Positive Meniscus | 33.79 | 33.79 | 0.00 | 0.00% | — |
 | [NIKON NIKKOR 800mm f/8 ED](../../src/lens-data/nikon/NikonNikkor800mmf8ED.data.ts) | L3 | Biconvex Positive | 436.60 | 436.60 | 0.00 | 0.00% | — |
 | [PENTAX HD D FA645 MACRO 90mm f/2.8 ED AW SR](../../src/lens-data/pentax/PentaxDFA64590mmf28EDAWSRMacro.data.ts) | L13 | Biconvex Positive | 91.91 | 91.91 | 0.00 | 0.00% | — |
 | [SIGMA 28-105mm f/2.8 DG DN Art](../../src/lens-data/sigma/Sigma28105mmf28DGDNArt.data.ts) | L8 | Biconvex Positive (2× Asph) | 59.19 | 59.19 | 0.00 | 0.00% | — |
@@ -8914,6 +9222,7 @@ Sorted by absolute percentage difference, largest first.
 | [SONY FE 8-14mm f/3.5 Fisheye G](../../src/lens-data/sony/SonyFE814mmf35FisheyeG.data.ts) | L12 | Positive Meniscus, concave to object (2× Asph) | 64.06 | 64.06 | 0.00 | 0.00% | — |
 | [TAMRON SP 24-70mm f/2.8 Di VC USD](../../src/lens-data/tamron/TamronSPA0072470mmf28VC.data.ts) | L4r | Negative Meniscus (1× Asph) | -310.09 | -310.09 | 0.00 | 0.00% | — |
 | [NIKON AF DC-NIKKOR 135mm f/2 D](../../src/lens-data/nikon/NikonAFDCNikkor135mmf2.data.ts) | L2 | Biconcave Negative | -537.32 | -537.32 | 0.00 | 0.00% | — |
+| [PENTAX SMC M 20mm f/4](../../src/lens-data/pentax/PentaxM20mmf4.data.ts) | L7 | Biconvex Positive | 23.82 | 23.82 | 0.00 | 0.00% | — |
 | [SIGMA 60-600mm f/4.5-6.3 DG OS HSM \| Sports](../../src/lens-data/sigma/Sigma60600mmf4563DGOSHSM.data.ts) | L18 | Negative Meniscus | -71.05 | -71.05 | 0.00 | 0.00% | — |
 | [SIGMA 100-400mm f/5-6.3 DG DN OS \| Contemporary](../../src/lens-data/sigma/Sigma100400mmf563DGDNOSContemporary.data.ts) | L2 | Biconvex Positive | 183.90 | 183.90 | 0.00 | 0.00% | — |
 | [LEICA SUPER-VARIO-ELMAR-SL 16-35mm f/3.5-4.5 ASPH.](../../src/lens-data/leica/LeicaSuperVarioElmarSL1635mmf3545Asph.data.ts) | L7 | Negative Meniscus | -108.68 | -108.68 | 0.00 | 0.00% | — |
@@ -8936,6 +9245,7 @@ Sorted by absolute percentage difference, largest first.
 | [PANASONIC LUMIX S PRO 70-200mm f/4 O.I.S.](../../src/lens-data/panasonic/PanasonicLumixSPro70200mmf4OIS.data.ts) | L15 | Positive Meniscus, concave to object | 50.24 | 50.24 | 0.00 | 0.00% | — |
 | [PENTAX HD DA 18-50mm f/4-5.6 DC WR RE](../../src/lens-data/pentax/HDPentaxDA1850mmF456DCWRRE.data.ts) | L12r | Bonded Aspheric Resin Layer | -168.66 | -168.66 | 0.00 | 0.00% | — |
 | [SIGMA 70-300mm f/4-5.6 DG OS](../../src/lens-data/sigma/Sigma70300mmf456DGOS.data.ts) | E1 | Positive Meniscus | 163.48 | 163.48 | 0.00 | 0.00% | — |
+| [VIVITAR 24mm f/2](../../src/lens-data/vivitar/Vivitar24mmf2.data.ts) | L5 | Plano-Convex Positive | 31.80 | 31.80 | 0.00 | 0.00% | — |
 | [NIKON AI AF ZOOM-NIKKOR 80-200mm f/2.8 ED](../../src/lens-data/nikon/NikonAFZoomNikkor80200mmf28ED.data.ts) | L31 | Biconvex Positive | 121.34 | 121.34 | 0.00 | 0.00% | — |
 | [NIKON AI AF-S ZOOM-NIKKOR 80-200mm f/2.8 D IF-ED](../../src/lens-data/nikon/NikonAFSZoomNikkor80200mmf28DIFED.data.ts) | L1 | Negative Meniscus | -384.36 | -384.36 | 0.00 | 0.00% | — |
 | [NIKON AI ZOOM-NIKKOR 80-200mm f/4.5](../../src/lens-data/nikon/NikonAINikkor80200mmf45.data.ts) | L8 | Negative Meniscus | -82.94 | -82.94 | 0.00 | 0.00% | — |
@@ -9024,6 +9334,7 @@ Sorted by absolute percentage difference, largest first.
 | [HASSELBLAD XCD 25mm f/2.5 V](../../src/lens-data/hasselblad/HasselbladXcd25mmF25V.data.ts) | L5 | Negative Meniscus | -49.26 | -49.26 | 0.00 | 0.00% | — |
 | [CANON EF 28-90mm f/4-5.6 II USM](../../src/lens-data/canon/CanonEF2890mmf456II.data.ts) | E3 | Positive Meniscus, convex to object | 76.59 | 76.59 | 0.00 | 0.00% | — |
 | [SIGMA 14-24mm f/2.8 DG DN \| Art](../../src/lens-data/sigma/Sigma1424mmf28DGDNA.data.ts) | L5 | Positive Meniscus | 63.95 | 63.95 | 0.00 | 0.00% | — |
+| [FUJIFILM EBC FUJINON W 24mm f/2.8](../../src/lens-data/fujifilm/FujifilmEBCFujinonW24mmf28M42.data.ts) | L3 | Negative Meniscus | -27.37 | -27.37 | 0.00 | 0.00% | — |
 | [NIKON AF-S ZOOM-NIKKOR 17-35mm f/2.8 D IF-ED](../../src/lens-data/nikon/NikonAFSZoomNikkor1735mmf28DIFED.data.ts) | L2g | Negative Meniscus | -601.89 | -601.89 | 0.00 | 0.00% | — |
 | [SIGMA APO 80-400mm f/4.5-5.6 EX OS](../../src/lens-data/sigma/Sigma80400mmf4556EXOS.data.ts) | L1 | Negative Meniscus | -316.59 | -316.59 | 0.00 | 0.00% | — |
 | [CANON EF 28-105mm f/3.5-4.5 II USM](../../src/lens-data/canon/CanonEF28105mmf3545II.data.ts) | L1b | Positive Meniscus | 93.68 | 93.68 | 0.00 | 0.00% | — |
@@ -9068,6 +9379,7 @@ Sorted by absolute percentage difference, largest first.
 | [NIKON AI AF-S NIKKOR 500mm f/4 D IF-ED](../../src/lens-data/nikon/NikonAFSNikkor500mmf4DIFED.data.ts) | L22a | Positive Meniscus | 138.65 | 138.65 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON XF 16mm f/2.8 R WR](../../src/lens-data/fujifilm/FujifilmFujinonXf16mmf28RWR.data.ts) | L11 | Negative Meniscus | -65.69 | -65.69 | 0.00 | 0.00% | — |
 | [SIGMA 24mm f/2 DG DN \| Contemporary](../../src/lens-data/sigma/Sigma24mmf2DGDN.data.ts) | L22 | Positive Meniscus | 91.65 | 91.65 | 0.00 | 0.00% | — |
+| [FUJIFILM EBC FUJINON W 24mm f/2.8](../../src/lens-data/fujifilm/FujifilmEBCFujinonW24mmf28M42.data.ts) | L2 | Negative Meniscus | -43.23 | -43.23 | 0.00 | 0.00% | — |
 | [NIKON AI AF DC-NIKKOR 105mm f/2 D](../../src/lens-data/nikon/NikonAiAFDCNikkor105mmf2D.data.ts) | L1 | Positive Meniscus | 79.45 | 79.45 | 0.00 | 0.00% | — |
 | [PENTAX HD DA645 28-45mm f/4.5 ED AW SR](../../src/lens-data/pentax/HDPentaxDA6452845mmF45EDAWSR.data.ts) | L45 | Biconvex Positive | 52.81 | 52.81 | 0.00 | 0.00% | — |
 | [CANON EF-M 55-200mm f/4.5-6.3 IS STM](../../src/lens-data/canon/CanonEFM55200mmf4563ISSTM.data.ts) | L10 | Meniscus Positive (2× Asph) | 171.39 | 171.39 | 0.00 | 0.00% | — |
@@ -9079,7 +9391,7 @@ Sorted by absolute percentage difference, largest first.
 | [NIKON AF MICRO-NIKKOR 200mm f/4 D IF-ED](../../src/lens-data/nikon/NikonAFMicroNikkor200mmf4D.data.ts) | L51 | Positive Meniscus (convex to image) | 160.18 | 160.18 | 0.00 | 0.00% | — |
 | [NIKON AF-S NIKKOR 600mm f/4 E FL ED VR](../../src/lens-data/nikon/NikonAFSNikkor600mmf4EFLEDVR.data.ts) | L14 | Negative Meniscus | -202.89 | -202.89 | 0.00 | 0.00% | — |
 | [VOIGTLÄNDER PORTRAIT HELIAR 75mm f/1.8](../../src/lens-data/voigtlander/VoigtlanderPortraitHeliar75mmf18.data.ts) | L4r | Biconcave Negative | -106.84 | -106.84 | 0.00 | 0.00% | — |
-| [MINOR PHOTOGRAPHIC OBJECTIVE 65mm f/2](../../src/lens-data/unattributed/MinorUS1360667Figure2.data.ts) | L2 | Plano-Convex | 60.93 | 60.93 | 0.00 | 0.00% | — |
+| [MINOR PHOTOGRAPHIC OBJECTIVE (Figure 2 patent reconstruction)](../../src/lens-data/unattributed/MinorUS1360667Figure2.data.ts) | L2 | Plano-Convex | 60.93 | 60.93 | 0.00 | 0.00% | — |
 | [LEICA SUMMICRON 35mm f/2 I](../../src/lens-data/leica/LeicaSummicron35mmf2I.data.ts) | L1 | Positive Meniscus | 123.69 | 123.69 | 0.00 | 0.00% | — |
 | [PANASONIC LUMIX S PRO 24-70mm f/2.8](../../src/lens-data/panasonic/PanasonicLumixSPro2470mmf28.data.ts) | L2 | Positive Meniscus, convex to object | 335.27 | 335.27 | 0.00 | 0.00% | — |
 | [SIGMA 50mm f/1.2 DG DN \| Art](../../src/lens-data/sigma/Sigma50mmf12DGDNArt.data.ts) | L17 | Biconcave Negative (2× Asph) | -165.84 | -165.84 | 0.00 | 0.00% | — |
@@ -9097,6 +9409,7 @@ Sorted by absolute percentage difference, largest first.
 | [MINOLTA AF 80-200mm f/2.8 APO](../../src/lens-data/minolta/MinoltaAF80200mmf28APO.data.ts) | L6 | Biconcave Negative | -46.02 | -46.02 | 0.00 | 0.00% | — |
 | [CANON EF 600mm f/4 L IS II USM](../../src/lens-data/canon/CanonEF600mmf4LISIIUSM.data.ts) | L15 | Negative Meniscus | -731.59 | -731.59 | 0.00 | 0.00% | — |
 | [PENTAX HD D FA645 MACRO 90mm f/2.8 ED AW SR](../../src/lens-data/pentax/PentaxDFA64590mmf28EDAWSRMacro.data.ts) | L18 | Biconvex Positive (1x Asph) | 55.73 | 55.73 | 0.00 | 0.00% | — |
+| [VIVITAR 28mm f/2](../../src/lens-data/vivitar/Vivitar28mmf2.data.ts) | L4 | Positive Meniscus | 40.38 | 40.38 | 0.00 | 0.00% | — |
 | [HASSELBLAD XCD 30mm f/3.5](../../src/lens-data/hasselblad/HasselbladXCD3530.data.ts) | L1 | Positive Meniscus | 216.23 | 216.23 | 0.00 | 0.00% | — |
 | [TAMRON 70-180mm f/2.8 Di III VC VXD G2](../../src/lens-data/tamron/TamronA06570180mmf28DiIIIVCVXDG2.data.ts) | L17 | Biconvex Positive | 80.22 | 80.22 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON XF 16mm f/1.4 R WR](../../src/lens-data/fujifilm/FujifilmFujinonXf16mmf14RWR.data.ts) | L25 | Negative Meniscus | -63.79 | -63.79 | 0.00 | 0.00% | — |
@@ -9107,6 +9420,7 @@ Sorted by absolute percentage difference, largest first.
 | [SIGMA 70-300mm f/4-5.6 DG OS](../../src/lens-data/sigma/Sigma70300mmf456DGOS.data.ts) | E11 | Biconvex Positive | 104.69 | 104.69 | 0.00 | 0.00% | — |
 | [CANON RF 600mm f/11 IS STM](../../src/lens-data/canon/CanonRF600mmf11ISSTM.data.ts) | E10 | Biconvex Positive | 98.01 | 98.01 | 0.00 | 0.00% | — |
 | [CANON RF 800mm f/11 IS STM](../../src/lens-data/canon/CanonRF800mmf11ISSTM.data.ts) | E11 | Biconvex Positive | 98.01 | 98.01 | 0.00 | 0.00% | — |
+| [FUJIFILM EBC FUJINON W 24mm f/2.8](../../src/lens-data/fujifilm/FujifilmEBCFujinonW24mmf28M42.data.ts) | L8 | Positive Meniscus (convex to rear) | 37.22 | 37.22 | 0.00 | 0.00% | — |
 | [NIKON AI AF VR ZOOM-NIKKOR 80-400mm f/4.5-5.6 D ED](../../src/lens-data/nikon/NikonAFVRZoomNikkor80400mmf4556DED.data.ts) | L22b | Positive Meniscus | 69.17 | 69.17 | 0.00 | 0.00% | — |
 | [NIKON NIKKOR 800mm f/8 ED](../../src/lens-data/nikon/NikonNikkor800mmf8ED.data.ts) | L5 | Plano-Convex Positive | 373.84 | 373.84 | 0.00 | 0.00% | — |
 | [PENTAX SMC FA 28-105mm f/4-5.6 POWER ZOOM](../../src/lens-data/pentax/PentaxFA28105mmF456PowerZoom.data.ts) | L1 | Biconvex Positive | 249.80 | 249.80 | 0.00 | 0.00% | — |
@@ -9124,6 +9438,7 @@ Sorted by absolute percentage difference, largest first.
 | [NIKON NIKKOR Z 800mm f/6.3 VR S](../../src/lens-data/nikon/NikonNIKKORZ800mmf63VRS.data.ts) | L39 | Biconvex Positive | 34.84 | 34.84 | 0.00 | 0.00% | — |
 | [NIKON AF-S VR ZOOM-NIKKOR 70-200mm f/2.8 G IF-ED](../../src/lens-data/nikon/NikonAFSVRZoomNikkor70200mmf28GIFED.data.ts) | L24 | Biconcave Negative | -74.62 | -74.62 | 0.00 | 0.00% | — |
 | [CANON EF 180mm f/3.5 L Macro USM](../../src/lens-data/canon/CanonEF180mmf35LMacroUSM.data.ts) | L2 | Biconvex Positive | 112.41 | 112.41 | 0.00 | 0.00% | — |
+| [PENTAX SMC M 28mm f/2.8](../../src/lens-data/pentax/PentaxM28mmf28.data.ts) | L1 | Negative Meniscus | -329.43 | -329.43 | 0.00 | 0.00% | — |
 | [NIKON AI AF-S ZOOM-NIKKOR 80-200mm f/2.8 D IF-ED](../../src/lens-data/nikon/NikonAFSZoomNikkor80200mmf28DIFED.data.ts) | L4 | Negative Meniscus | -508.11 | -508.11 | 0.00 | 0.00% | — |
 | [MEYER OPTIK GÖRLITZ KINO-PLASMAT 100mm f/2](../../src/lens-data/meyer-optik-goerlitz/MeyerOptikGorlitz100mmf2KinoPlasmat.data.ts) | L4 | Negative Meniscus | -117.17 | -117.17 | 0.00 | 0.00% | — |
 | [CANON EF 600mm f/4 L IS USM](../../src/lens-data/canon/CanonEF600mmf4LISUSM.data.ts) | L1b-2 | Biconcave Negative | -230.53 | -230.53 | 0.00 | 0.00% | — |
@@ -9141,6 +9456,7 @@ Sorted by absolute percentage difference, largest first.
 | [NIKON NIKKOR Z 180-600mm f/5.6-6.3 VR](../../src/lens-data/nikon/NikonNikkorZ180600mmf5663VR.data.ts) | L2 | Biconvex Positive | 209.51 | 209.51 | 0.00 | 0.00% | — |
 | [CANON EF 70-200mm f/2.8 L IS USM](../../src/lens-data/canon/CanonEF70200mmf28LISUSM.data.ts) | L12 | Plano-Convex Positive | 163.19 | 163.19 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON XF 100-400mm f/4.5-5.6 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmFujinonXf100400mmf4556RLMOISWR.data.ts) | L1A | Negative Meniscus | -216.08 | -216.08 | 0.00 | 0.00% | — |
+| [VIVITAR 28mm f/2](../../src/lens-data/vivitar/Vivitar28mmf2.data.ts) | L1 | Positive Meniscus | 130.95 | 130.95 | 0.00 | 0.00% | — |
 | [CANON 50mm f/2.8](../../src/lens-data/canon/Canon50mmf28.data.ts) | L1 | Positive Meniscus | 29.89 | 29.89 | 0.00 | 0.00% | — |
 | [CANON EF 100-300mm f/4.5-5.6 USM](../../src/lens-data/canon/CanonEF100300mmf4556USM.data.ts) | ITO | Negative Meniscus Adhesive Layer | -892.82 | -892.82 | 0.00 | 0.00% | — |
 | [CANON EF 100-300mm f/5.6](../../src/lens-data/canon/CanonEF100300mmf56.data.ts) | L3 | Biconvex Positive | 222.69 | 222.69 | 0.00 | 0.00% | — |
@@ -9156,7 +9472,7 @@ Sorted by absolute percentage difference, largest first.
 | [NIKON AF-S NIKKOR 70-200mm f/4 G ED VR](../../src/lens-data/nikon/NikonAFSNikkor70200mmf4GEDVR.data.ts) | L11 | Positive Meniscus | 442.20 | 442.20 | 0.00 | 0.00% | — |
 | [SIGMA 14-24mm f/2.8 DG DN \| Art](../../src/lens-data/sigma/Sigma1424mmf28DGDNA.data.ts) | L1 | Neg. Meniscus (1× Asph) | -54.01 | -54.01 | 0.00 | 0.00% | — |
 | [ZEISS BATIS 18mm f/2.8](../../src/lens-data/carl-zeiss-oberkochen/ZeissBatis2818.data.ts) | L112 | Negative Meniscus | -49.20 | -49.20 | 0.00 | 0.00% | — |
-| [MINOR PHOTOGRAPHIC OBJECTIVE 65mm f/2](../../src/lens-data/unattributed/MinorUS1360667Figure2.data.ts) | L4 | Biconvex Positive | 67.35 | 67.35 | 0.00 | 0.00% | — |
+| [MINOR PHOTOGRAPHIC OBJECTIVE (Figure 2 patent reconstruction)](../../src/lens-data/unattributed/MinorUS1360667Figure2.data.ts) | L4 | Biconvex Positive | 67.35 | 67.35 | 0.00 | 0.00% | — |
 | [TAMRON SP 24-70mm f/2.8 Di VC USD](../../src/lens-data/tamron/TamronSPA0072470mmf28VC.data.ts) | L1 | Negative Meniscus | -180.13 | -180.13 | 0.00 | 0.00% | — |
 | [KINOPTIK SUPER-TEGEA 1.9mm f/1.9 FISHEYE](../../src/lens-data/kinoptik/KinoptikSuperTegea19mmf19Fisheye.data.ts) | L16 | Negative Meniscus | -98.29 | -98.29 | 0.00 | 0.00% | — |
 | [NIKON AF-S DX ZOOM-NIKKOR 12-24mm f/4 G IF-ED](../../src/lens-data/nikon/NikonAFSDXZoomNikkor1224mmf4GIFED.data.ts) | L2 | Biconvex Positive | 89.66 | 89.66 | 0.00 | 0.00% | — |
@@ -9221,8 +9537,9 @@ Sorted by absolute percentage difference, largest first.
 | [NIKON AI AF-S NIKKOR 500mm f/4 D IF-ED](../../src/lens-data/nikon/NikonAFSNikkor500mmf4DIFED.data.ts) | L12 | Biconvex Positive | 324.18 | 324.18 | 0.00 | 0.00% | — |
 | [CANON EF 200-400mm f/4 L IS USM EXTENDER 1.4×](../../src/lens-data/canon/CanonEF200400mmf4LISUSMExtender14x.data.ts) | E3 | Positive Meniscus | 304.65 | 304.65 | 0.00 | 0.00% | — |
 | [CANON EF 200-400mm f/4 L IS USM EXTENDER 1.4× — EXT IN](../../src/lens-data/canon/CanonEF200400mmf4LISUSMExtender14xExtenderIn.data.ts) | E3 | Positive Meniscus | 304.65 | 304.65 | 0.00 | 0.00% | — |
+| [FUJIFILM EBC FUJINON W 24mm f/2.8](../../src/lens-data/fujifilm/FujifilmEBCFujinonW24mmf28M42.data.ts) | L1 | Positive Meniscus | 107.21 | 107.21 | 0.00 | 0.00% | — |
 | [SIGMA 24mm f/2 DG DN \| Contemporary](../../src/lens-data/sigma/Sigma24mmf2DGDN.data.ts) | L13 | Biconcave Negative | -48.09 | -48.09 | 0.00 | 0.00% | — |
-| [MINOR PHOTOGRAPHIC OBJECTIVE 65mm f/2](../../src/lens-data/unattributed/MinorUS1360667Figure2.data.ts) | L1 | Positive Meniscus | 113.04 | 113.04 | 0.00 | 0.00% | — |
+| [MINOR PHOTOGRAPHIC OBJECTIVE (Figure 2 patent reconstruction)](../../src/lens-data/unattributed/MinorUS1360667Figure2.data.ts) | L1 | Positive Meniscus | 113.04 | 113.04 | 0.00 | 0.00% | — |
 | [SIGMA 14-24mm f/2.8 DG DN \| Art](../../src/lens-data/sigma/Sigma1424mmf28DGDNA.data.ts) | L18 | Pos. Meniscus (2× Asph) | 165.83 | 165.83 | 0.00 | 0.00% | — |
 | [SIGMA 24mm f/3.5 DG DN \| Contemporary](../../src/lens-data/sigma/Sigma24mmf35DGDN.data.ts) | L22 | Negative Meniscus | -19.29 | -19.29 | 0.00 | 0.00% | — |
 | [CANON RF 35mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF35mmF14LVCM.data.ts) | L8 | Positive Meniscus | 154.17 | 154.17 | 0.00 | 0.00% | — |
@@ -9301,9 +9618,11 @@ Sorted by absolute percentage difference, largest first.
 | [CANON FL 85-300mm f/5](../../src/lens-data/canon/CanonFL85300mmf5.data.ts) | L3 | Positive Meniscus | 640.84 | 640.84 | 0.00 | 0.00% | — |
 | [TAMRON 35-150mm f/2-2.8 Di III VXD (A058)](../../src/lens-data/tamron/TamronA05835150mmf228.data.ts) | L19 | Negative Meniscus | -32.03 | -32.03 | 0.00 | 0.00% | — |
 | [NIKON AF-S VR ZOOM-NIKKOR 200-400mm f/4 G IF-ED](../../src/lens-data/nikon/NikonAFSVRZoomNikkor200400mmf4GIFED.data.ts) | L18 | Positive Meniscus | 168.08 | 168.08 | 0.00 | 0.00% | — |
+| [VIVITAR 28mm f/2](../../src/lens-data/vivitar/Vivitar28mmf2.data.ts) | L3 | Negative Meniscus | -63.23 | -63.23 | 0.00 | 0.00% | — |
 | [OLYMPUS ZUIKO DIGITAL ED 50-200mm f/2.8-3.5 SWD](../../src/lens-data/olympus/OlympusZuikoDigitalED50200mmf2835SWD.data.ts) | L21 | Negative Meniscus | -244.68 | -244.68 | 0.00 | 0.00% | — |
 | [NIKON AI AF ZOOM-NIKKOR 24-120mm f/3.5-5.6 D IF](../../src/lens-data/nikon/NikonAFNikkor24120mmf3556D.data.ts) | L21r | Hybrid Aspheric Resin Layer | -382.76 | -382.76 | 0.00 | 0.00% | — |
 | [OLYMPUS M.ZUIKO DIGITAL ED 75mm f/1.8](../../src/lens-data/olympus/OlympusMZuiko75mmf18.data.ts) | L9 | Biconcave Negative | -22.16 | -22.16 | 0.00 | 0.00% | — |
+| [FUJIFILM EBC FUJINON W 24mm f/2.8](../../src/lens-data/fujifilm/FujifilmEBCFujinonW24mmf28M42.data.ts) | L5 | Biconvex Positive | 31.66 | 31.66 | 0.00 | 0.00% | — |
 | [NIKON ZOOM-NIKKOR AUTO 50-300mm f/4.5](../../src/lens-data/nikon/NikonZoomNikkorAuto50300mmf45.data.ts) | L3 | Positive Meniscus | 470.05 | 470.05 | 0.00 | 0.00% | — |
 | [SONY FE 400mm f/2.8 GM OSS](../../src/lens-data/sony/SonyFE400mmF28GMOSS.data.ts) | L38 | Biconcave Negative | -21.72 | -21.72 | 0.00 | 0.00% | — |
 | [CANON EF 600mm f/4 L IS III USM](../../src/lens-data/canon/CanonEF600mmf4LISIIIUSM.data.ts) | E4 | Positive Meniscus | 281.94 | 281.94 | 0.00 | 0.00% | — |
@@ -9461,6 +9780,7 @@ Sorted by absolute percentage difference, largest first.
 | [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) | L76 | Biconcave Negative | -19.04 | -19.04 | 0.00 | 0.00% | — |
 | [PENTAX SMC FA J 75-300mm f/4.5-5.8 AL](../../src/lens-data/pentax/PentaxFAJ75300mmF4558AL.data.ts) | L4 | Biconcave Negative | -24.64 | -24.64 | 0.00 | 0.00% | — |
 | [THYPOCH KSANA 21mm f/3.5 ASPH.](../../src/lens-data/thypoch/ThypochKsana21mmf35.data.ts) | L4 | Biconvex Positive | 11.24 | 11.24 | 0.00 | 0.00% | — |
+| [FUJIFILM EBC FUJINON W 24mm f/2.8](../../src/lens-data/fujifilm/FujifilmEBCFujinonW24mmf28M42.data.ts) | L4 | Positive Meniscus (convex to rear) | 174.96 | 174.96 | 0.00 | 0.00% | — |
 | [PENTAX HD D FA 28-105mm f/3.5-5.6 ED DC WR](../../src/lens-data/pentax/PentaxDFA28105mmF3556EDDCWR.data.ts) | L41 | Biconcave Negative | -25.34 | -25.34 | 0.00 | 0.00% | — |
 | [SAMYANG AF 14mm f/2.8 EF](../../src/lens-data/samyang/SamyangAF14mmf28EF.data.ts) | L93 | Biconvex Positive | 18.10 | 18.10 | 0.00 | 0.00% | — |
 | [KINOPTIK TEGEA 9.8mm f/1.8](../../src/lens-data/kinoptik/KinoptikTegea98mmf18.data.ts) | L10 | Biconvex Positive | 25.98 | 25.98 | 0.00 | 0.00% | — |
@@ -9735,7 +10055,7 @@ Sorted by absolute percentage difference, largest first.
 | [PENTAX HD D FA* 70-200mm f/2.8 ED DC AW](../../src/lens-data/pentax/PentaxDFA70200mmF28EDDCWR.data.ts) | L13 | Negative Meniscus, convex to image | -205.12 | -205.12 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON XF 18-135mm f/3.5-5.6 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmFujinonXf18135mmf3556RLMOISWR.data.ts) | L13 | Positive Meniscus | 95.67 | 95.67 | 0.00 | 0.00% | — |
 | [FUJIFILM TCL-X100 33mm f/2 (Fujifilm X100)](../../src/lens-data/fujifilm/FujifilmX100TCLX100.data.ts) | L35 | Biconvex Positive | 9.88 | 9.88 | 0.00 | 0.00% | — |
-| [MINOR PHOTOGRAPHIC OBJECTIVE 65mm f/2](../../src/lens-data/unattributed/MinorUS1360667Figure2.data.ts) | L3 | Biconcave Negative | -31.76 | -31.76 | 0.00 | 0.00% | — |
+| [MINOR PHOTOGRAPHIC OBJECTIVE (Figure 2 patent reconstruction)](../../src/lens-data/unattributed/MinorUS1360667Figure2.data.ts) | L3 | Biconcave Negative | -31.76 | -31.76 | 0.00 | 0.00% | — |
 | [CANON EF-S 18-200mm f/3.5-5.6 IS](../../src/lens-data/canon/CanonEFS18200mmf3556IS.data.ts) | E3 | Meniscus Positive | 103.53 | 103.53 | 0.00 | 0.00% | — |
 | [YASHICA ZOOM 25-75mm f/4-5.6 (Yashica Samurai Z)](../../src/lens-data/yashica/YashicaSamuraiZ2575mmf456.data.ts) | L9 | Biconvex Positive | 39.93 | 39.93 | 0.00 | 0.00% | — |
 | [CANON EF 28mm f/2.8](../../src/lens-data/canon/CanonEF28mmf28.data.ts) | L1 | Negative Meniscus (1× Asph) | -40.13 | -40.13 | 0.00 | 0.00% | — |
@@ -10085,6 +10405,7 @@ Sorted by absolute percentage difference, largest first.
 | [NIKON ZOOM-NIKKOR 28-45mm f/4.5](../../src/lens-data/nikon/NikonZoomNikkor2845mmf45.data.ts) | L9 | Negative Meniscus | -31.49 | -31.49 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON XF 16-50mm f/2.8-4.8 R LM WR](../../src/lens-data/fujifilm/FujifilmFujinonXf1650mmf2848RLMWR.data.ts) | L12 | Biconcave Negative (2× Asph) | -42.94 | -42.94 | 0.00 | 0.00% | — |
 | [CARL ZEISS JENA FLEKTOGON 50mm f/4](../../src/lens-data/carl-zeiss-jena/ZeissFlektogon50mmf4.data.ts) | L4 | Positive Meniscus | 344.37 | 344.37 | 0.00 | 0.00% | — |
+| [PENTAX DA 14mm f/2.8 ED [IF]](../../src/lens-data/pentax/PentaxDA14mmf28EDIF.data.ts) | L6 | Negative Meniscus | -129.28 | -129.28 | 0.00 | 0.00% | — |
 | [VOIGTLÄNDER TELOMAR 100mm f/5.5](../../src/lens-data/voigtlander/VoigtlanderTelomar100mmf55.data.ts) | L1 | Biconvex Positive | 27.86 | 27.86 | 0.00 | 0.00% | — |
 | [CARL ZEISS JENA PI-FLEKTOGON 30mm f/2.8 (1975 e-line reconstruction)](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaPIFlektogon30mmf28Printed1975ELine.data.ts) | L1 | Negative Meniscus | -111.65 | -111.65 | 0.00 | 0.00% | — |
 | [TAMRON AF 18-270mm f/3.5-6.3 Di II VC LD ASPHERICAL [IF] MACRO (B003)](../../src/lens-data/tamron/TamronB00318270mmf3563DiIIVC.data.ts) | L8 | Negative Meniscus | -112.29 | -112.29 | 0.00 | 0.00% | — |
@@ -10093,6 +10414,7 @@ Sorted by absolute percentage difference, largest first.
 | [FUJIFILM FUJINON XF 8-16mm f/2.8 R LM WR](../../src/lens-data/fujifilm/FujifilmFujinonXf816mmf28RLMWR.data.ts) | L11 | Negative Meniscus | -71.65 | -71.65 | 0.00 | 0.00% | — |
 | [CANON EF 100mm f/2 USM](../../src/lens-data/canon/CanonEF100mmf2USM.data.ts) | L7 | Negative Meniscus | -119.53 | -119.53 | 0.00 | 0.00% | — |
 | [NIKON ZOOM-NIKKOR 28-45mm f/4.5](../../src/lens-data/nikon/NikonZoomNikkor2845mmf45.data.ts) | L2 | Positive Meniscus | 96.71 | 96.71 | 0.00 | 0.00% | — |
+| [PENTAX SMC M 120mm f/2.8](../../src/lens-data/pentax/PentaxM120mmf28.data.ts) | L4 | Positive Meniscus | 99.99 | 99.99 | 0.00 | 0.00% | — |
 | [VOIGTLÄNDER COLOR-HELIAR 105mm f/3.5 (Voigtländer Bessa II)](../../src/lens-data/voigtlander/VoigtlanderColorHeliar105mmf35.data.ts) | L5 | Biconvex Positive | 31.42 | 31.42 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON XF 8-16mm f/2.8 R LM WR](../../src/lens-data/fujifilm/FujifilmFujinonXf816mmf28RLMWR.data.ts) | L14 | Biconcave Negative | -38.10 | -38.10 | 0.00 | 0.00% | — |
 | [LAOWA 90mm f/2.8 2× Ultra Macro APO](../../src/lens-data/laowa/Laowa90mmf28UltraMacroAPO.data.ts) | L1 | Positive Meniscus | 624.74 | 624.74 | 0.00 | 0.00% | — |
@@ -10109,11 +10431,14 @@ Sorted by absolute percentage difference, largest first.
 | [TAMRON 18-270mm f/3.5-6.3 Di II VC PZD (B008)](../../src/lens-data/tamron/TamronB00818270mmf3563DiIIVCPZD.data.ts) | L4r | Hybrid Aspheric Resin | -1362.97 | -1362.97 | 0.00 | 0.00% | — |
 | [LAOWA 90mm f/2.8 2× Ultra Macro APO](../../src/lens-data/laowa/Laowa90mmf28UltraMacroAPO.data.ts) | L6 | Negative Meniscus | -121.77 | -121.77 | 0.00 | 0.00% | — |
 | [VOIGTLÄNDER TELOMAR 100mm f/5.5](../../src/lens-data/voigtlander/VoigtlanderTelomar100mmf55.data.ts) | L5 | Biconvex Positive | 45.82 | 45.82 | 0.00 | 0.00% | — |
+| [PENTAX DA 14mm f/2.8 ED [IF]](../../src/lens-data/pentax/PentaxDA14mmf28EDIF.data.ts) | L9 | Positive Meniscus | 184.20 | 184.20 | 0.00 | 0.00% | — |
 | [NIKON AI NIKKOR 300mm f/2 S IF-ED](../../src/lens-data/nikon/NikonAiSNikkor300mmf2IFED.data.ts) | L10 | Negative Meniscus | -500.95 | -500.95 | 0.00 | 0.00% | — |
+| [OLYMPUS H.ZUIKO AUTO-W 35mm f/2](../../src/lens-data/olympus/OlympusHZuiko35mmf2.data.ts) | L3 | Negative Meniscus | -31.52 | -31.52 | 0.00 | 0.00% | — |
 | [MINOLTA MD 28mm f/2.8 (5 elements / 5 groups)](../../src/lens-data/minolta/Minolta28mmf28MDv2.data.ts) | L4 | Positive Meniscus | 31.85 | 31.85 | 0.00 | 0.00% | — |
 | [SONY FE 50mm f/1.4 GM](../../src/lens-data/sony/SonyFE50mmF14GM.data.ts) | L13 | Positive Meniscus | 194.35 | 194.35 | 0.00 | 0.00% | — |
 | [NIKON ZOOM-NIKKOR 28-45mm f/4.5](../../src/lens-data/nikon/NikonZoomNikkor2845mmf45.data.ts) | L7 | Positive Meniscus | 32.44 | 32.44 | 0.00 | 0.00% | — |
 | [CARL ZEISS PLANAR 80mm f/2.8 (6×6)](../../src/lens-data/carl-zeiss-oberkochen/ZeissPlanar2880.data.ts) | L2 | Positive Meniscus | 48.91 | 48.91 | 0.00 | 0.00% | — |
+| [PENTAX SMC M* 300mm f/4](../../src/lens-data/pentax/PentaxMStar300mmf4.data.ts) | L2 | Positive Meniscus | 196.60 | 196.60 | 0.00 | 0.00% | — |
 | [NIKON PC-NIKKOR 35mm f/2.8](../../src/lens-data/nikon/NikonPCNikkor35mmf28.data.ts) | L1 | Negative Meniscus | -65.59 | -65.59 | 0.00 | 0.00% | — |
 | [NIKON NIKKOR 600mm f/5.6 ED](../../src/lens-data/nikon/NikonNikkor600mmf56ED.data.ts) | L5 | Biconvex Positive | 131.58 | 131.58 | 0.00 | 0.00% | — |
 | [SCHNEIDER-KREUZNACH RETINA-CURTAGON 28mm f/4](../../src/lens-data/schneider-kreuznach/SchneiderCurtagon428.data.ts) | L7 | Biconvex Positive | 16.87 | 16.87 | 0.00 | 0.00% | — |
@@ -10123,16 +10448,19 @@ Sorted by absolute percentage difference, largest first.
 | [NIKON 1 NIKKOR VR 10-30mm f/3.5-5.6 PD-ZOOM](../../src/lens-data/nikon/Nikon1NikkorVR1030mmf3556PDZoom.data.ts) | L41 | Pos. Meniscus (2× Asph) | 34.98 | 34.98 | 0.00 | 0.00% | — |
 | [MINOLTA MD TELE ROKKOR 135mm f/2.8](../../src/lens-data/minolta/Minolta135mmf28MDTeleRokkor.data.ts) | L2 | Positive Meniscus | 106.89 | 106.89 | 0.00 | 0.00% | — |
 | [VILTROX AF 50mm f/1.4 PRO](../../src/lens-data/viltrox/ViltroxAF50mmf14Pro.data.ts) | L12 | Meniscus Positive | 143.48 | 143.48 | 0.00 | 0.00% | — |
+| [P. ANGÉNIEUX RETROFOCUS TYPE R61 24mm f/3.5](../../src/lens-data/angenieux/AngenieuxRetrofocusR6124mmf35.data.ts) | L4 | Negative Meniscus | -36.11 | -36.11 | 0.00 | 0.00% | — |
 | [CANON RF 15-30mm f/4.5-6.3 IS STM](../../src/lens-data/canon/CanonRF1530mmf4563ISSTM.data.ts) | E13 | Positive Meniscus | 72.63 | 72.63 | 0.00 | 0.00% | — |
 | [SIGMA 24mm f/1.4 DG HSM \| Art](../../src/lens-data/sigma/Sigma24mmf14DGHSMArt.data.ts) | L4 | Biconvex Positive | 72.70 | 72.70 | 0.00 | 0.00% | — |
 | [SIGMA 24mm f/1.4 DG HSM \| Art](../../src/lens-data/sigma/Sigma24mmf14DGHSMArt.data.ts) | L10 | Positive Meniscus | 73.23 | 73.23 | 0.00 | 0.00% | — |
 | [OLYMPUS ZUIKO AUTO-T 180mm f/2.8](../../src/lens-data/olympus/OlympusZuikoAutoT180mmf28.data.ts) | L5 | Positive Meniscus | 220.73 | 220.73 | 0.00 | 0.00% | — |
 | [NIKON NEW NIKKOR 35mm f/2.8](../../src/lens-data/nikon/NikonNikkor35mmf28.data.ts) | L5 | Positive Meniscus | 36.80 | 36.80 | 0.00 | 0.00% | — |
+| [VOIGTLÄNDER COLOR-SKOPAR 18mm f/2.8 Aspherical X-Mount](../../src/lens-data/voigtlander/VoigtlanderColorSkopar18mmf28X.data.ts) | L21 | Negative Meniscus | -18.69 | -18.69 | 0.00 | 0.00% | — |
 | [SIGMA 100-400mm f/5-6.3 DG OS HSM \| Contemporary](../../src/lens-data/sigma/Sigma100400mmf563DGOSHSMContemporary.data.ts) | L1 | Negative Meniscus | -150.67 | -150.67 | 0.00 | 0.00% | — |
 | [LEICA SUMMICRON-C 40mm f/2](../../src/lens-data/leica/LeicaSummicronC40mmf2.data.ts) | L5 | Positive Meniscus | 75.40 | 75.40 | 0.00 | 0.00% | — |
 | [MEYER OPTIK GÖRLITZ ORESTEGOR 500mm f/5.6](../../src/lens-data/meyer-optik-goerlitz/MeyerOptikGorlitz500mmf56Orestegor.data.ts) | L1 | Biconvex Positive | 231.71 | 231.71 | 0.00 | 0.00% | — |
 | [CANON EF 50mm f/2.5 Compact Macro](../../src/lens-data/canon/CanonEF50mmf25CompactMacro.data.ts) | L8 | Negative Meniscus | -116.39 | -116.39 | 0.00 | 0.00% | — |
 | [TAMRON SP 70-150mm f/2.8 SOFT (51A)](../../src/lens-data/tamron/TamronSP70150mmf28Soft51A.data.ts) | Z1 | Meniscus Negative | -155.28 | -155.28 | 0.00 | 0.00% | — |
+| [YONGNUO YN 85mm f/1.8 S DF DSM](../../src/lens-data/yongnuo/YongnuoYN85mmf18SDFDSM.data.ts) | L32 | Negative Meniscus | -313.32 | -313.32 | 0.00 | 0.00% | — |
 | [MINOLTA MD 135mm f/2.8](../../src/lens-data/minolta/Minolta135mmf28MD.data.ts) | L5 | Positive Meniscus | 156.87 | 156.87 | 0.00 | 0.00% | — |
 | [SCHNEIDER-KREUZNACH CINEGON 6.5mm f/1.9](../../src/lens-data/schneider-kreuznach/SchneiderCinegon1965.data.ts) | L6 | Positive Meniscus | 29.61 | 29.61 | 0.00 | 0.00% | — |
 | [SIGMA 500mm f/4 DG OS HSM \| Sports](../../src/lens-data/sigma/Sigma500mmf4DGOSHSMsports.data.ts) | L2 | Negative Meniscus | -317.65 | -317.65 | 0.00 | 0.00% | — |
@@ -10142,30 +10470,40 @@ Sorted by absolute percentage difference, largest first.
 | [MINOLTA MD 28mm f/2.8 (5 elements / 5 groups)](../../src/lens-data/minolta/Minolta28mmf28MDv2.data.ts) | L1 | Negative Meniscus | -40.18 | -40.18 | 0.00 | 0.00% | — |
 | [SIGMA 18-50mm f/2.8-4.5 DC OS HSM](../../src/lens-data/sigma/Sigma1850mmf2845DCOSHSM.data.ts) | L7 | Negative Meniscus | -40.46 | -40.46 | 0.00 | 0.00% | — |
 | [VOIGTLÄNDER NOKTON 50mm f/1.5](../../src/lens-data/voigtlander/VoigtlanderNokton50mmf15.data.ts) | L1 | Negative Meniscus | -81.00 | -81.00 | 0.00 | 0.00% | — |
+| [PENTAX SMC M 150mm f/3.5](../../src/lens-data/pentax/PentaxM150mmf35.data.ts) | L2 | Biconcave Negative | -121.61 | -121.61 | 0.00 | 0.00% | — |
 | [VOIGTLÄNDER NOKTON 50mm f/1.5](../../src/lens-data/voigtlander/VoigtlanderNokton50mmf15.data.ts) | L2 | Positive Meniscus | 40.59 | 40.59 | 0.00 | 0.00% | — |
 | [VOIGTLÄNDER NOKTON 50mm f/1.5](../../src/lens-data/voigtlander/VoigtlanderNokton50mmf15.data.ts) | L3 | Positive Meniscus | 40.59 | 40.59 | 0.00 | 0.00% | — |
 | [NIKON AF ZOOM-NIKKOR 28-200mm f/3.5-5.6 G IF-ED](../../src/lens-data/nikon/NikonAFZoomNikkor28200mmf3556GIFED.data.ts) | L11a | Negative Meniscus | -164.17 | -164.17 | 0.00 | 0.00% | — |
 | [SAMYANG AF 24mm f/1.8 FE](../../src/lens-data/samyang/SamyangAF24mmf18FE.data.ts) | L61 | Negative Meniscus | -82.92 | -82.92 | 0.00 | 0.00% | — |
 | [ZEISS OTUS ML 85mm f/1.4](../../src/lens-data/carl-zeiss-oberkochen/ZeissOtusML85mmf14.data.ts) | L11 | Negative Meniscus | -83.02 | -83.02 | 0.00 | 0.00% | — |
 | [NIKON AF ZOOM-NIKKOR 28-200mm f/3.5-5.6 G IF-ED](../../src/lens-data/nikon/NikonAFZoomNikkor28200mmf3556GIFED.data.ts) | L21r | Negative Meniscus (1× Asph, Hybrid Resin) | -1328.98 | -1328.98 | 0.00 | 0.00% | — |
+| [VOIGTLÄNDER COLOR-SKOPAR 18mm f/2.8 Aspherical X-Mount](../../src/lens-data/voigtlander/VoigtlanderColorSkopar18mmf28X.data.ts) | L20 | Positive Meniscus | 20.79 | 20.79 | 0.00 | 0.00% | — |
 | [P. ANGÉNIEUX DEM 180mm f/2.3 APO](../../src/lens-data/angenieux/AngenieuxDEM180mmf23APO.data.ts) | L2 | Positive Meniscus | 125.69 | 125.69 | 0.00 | 0.00% | — |
 | [SCHNEIDER-KREUZNACH RETINA-CURTAGON 28mm f/4](../../src/lens-data/schneider-kreuznach/SchneiderCurtagon428.data.ts) | L6 | Negative Meniscus | -168.35 | -168.35 | 0.00 | 0.00% | — |
+| [PENTAX SMC A 28mm f/2.8](../../src/lens-data/pentax/PentaxA28mmf28.data.ts) | L6 | Positive Meniscus | 42.55 | 42.55 | 0.00 | 0.00% | — |
+| [PENTAX SMC M 200mm f/4](../../src/lens-data/pentax/PentaxM200mmf4.data.ts) | L3 | Positive Meniscus | 170.63 | 170.63 | 0.00 | 0.00% | — |
 | [NIKON NIKKOR-SW 75mm f/4.5](../../src/lens-data/nikon/NikonNikkorSW75mmf45.data.ts) | L3A | Positive Meniscus | 21.34 | 21.34 | 0.00 | 0.00% | — |
 | [ZEISS OTUS ML 85mm f/1.4](../../src/lens-data/carl-zeiss-oberkochen/ZeissOtusML85mmf14.data.ts) | L1 | Positive Meniscus | 343.17 | 343.17 | 0.00 | 0.00% | — |
 | [SCHNEIDER-KREUZNACH VARIOGON 10-40mm f/2.8](../../src/lens-data/schneider-kreuznach/SchneiderVariogon281040.data.ts) | L2 | Biconvex Positive | 86.84 | 86.84 | 0.00 | 0.00% | — |
+| [NIKON EL-NIKKOR 50mm f/2.8](../../src/lens-data/nikon/NikonELNikkor50mmf28.data.ts) | L4 | Positive Meniscus | 43.49 | 43.49 | 0.00 | 0.00% | — |
 | [CANON RF 14mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF14mmF14LVCM.data.ts) | L4 | Positive Meniscus | 87.85 | 87.85 | 0.00 | 0.00% | — |
+| [SIGMA 30mm f/2.8 DN \| Art](../../src/lens-data/sigma/Sigma30mmf28DNArt.data.ts) | L2 | Biconcave Negative | -22.02 | -22.02 | 0.00 | 0.00% | — |
+| [PENTAX SMC M 200mm f/4](../../src/lens-data/pentax/PentaxM200mmf4.data.ts) | L4 | Positive Meniscus | 353.73 | 353.73 | 0.00 | 0.00% | — |
 | [MINOLTA RF 250mm f/5.6](../../src/lens-data/minolta/Minolta250mmf56RF.data.ts) | L3 | Clear Central Primary Plug | -354.90 | -354.90 | 0.00 | 0.00% | — |
 | [KONICA HEXANON AR 21mm f/2.8](../../src/lens-data/konica/KonicaHexanonAR21mmf28.data.ts) | L3 | Negative Meniscus | -44.51 | -44.51 | 0.00 | 0.00% | — |
+| [VOIGTLÄNDER COLOR-SKOPAR 50mm f/2.2 VM](../../src/lens-data/voigtlander/VoigtlanderColorSkopar50mmf22VM.data.ts) | L7 | Positive Meniscus | 178.21 | 178.21 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON XF 8-16mm f/2.8 R LM WR](../../src/lens-data/fujifilm/FujifilmFujinonXf816mmf28RLMWR.data.ts) | L21 | Biconvex Positive (2x Asph) | 22.44 | 22.44 | 0.00 | 0.00% | — |
 | [TAMRON 14-150mm f/3.5-5.8 Di III (C001)](../../src/lens-data/tamron/TamronC00114150mmf3558.data.ts) | L4r | Hybrid Aspherical Resin Layer | -719.48 | -719.48 | 0.00 | 0.00% | — |
 | [MAMIYA-SEKOR SFC 150mm f/4 SOFT FOCUS](../../src/lens-data/mamiya/MamiyaSekorSFC150mmf4SoftFocus.data.ts) | L3 | Biconcave Negative | -45.35 | -45.35 | 0.00 | 0.00% | — |
 | [NIKON PC-NIKKOR 35mm f/2.8](../../src/lens-data/nikon/NikonPCNikkor35mmf28.data.ts) | L4 | Biconvex Positive | 23.08 | 23.08 | 0.00 | 0.00% | — |
+| [PENTAX SMC M 135mm f/3.5](../../src/lens-data/pentax/PentaxM135mmf35.data.ts) | L5 | Negative Meniscus | -46.78 | -46.78 | 0.00 | 0.00% | — |
 | [NIKON AF-S NIKKOR 180-400mm f/4 E TC1.4 FL ED VR](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14.data.ts) | L16 | Positive Meniscus | 374.56 | 374.56 | 0.00 | 0.00% | — |
 | [NIKON AF-S NIKKOR 180-400mm f/4 E TC1.4 FL ED VR — TC 1.4x Engaged](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14TCIn.data.ts) | L16 | Positive Meniscus | 374.56 | 374.56 | 0.00 | 0.00% | — |
 | [PENTAX DA 50mm f/1.8](../../src/lens-data/pentax/PentaxDA50mmf18.data.ts) | L6 | Biconvex Positive | 47.19 | 47.19 | 0.00 | 0.00% | — |
 | [TAMRON SP AF 200-500mm f/5-6.3 Di LD [IF]](../../src/lens-data/tamron/TamronA08200500mmf563.data.ts) | E7 | Biconvex Positive | 94.64 | 94.64 | 0.00 | 0.00% | — |
 | [PENTAX DA 50mm f/1.8](../../src/lens-data/pentax/PentaxDA50mmf18.data.ts) | L1 | Positive Meniscus | 47.55 | 47.55 | 0.00 | 0.00% | — |
 | [LEICA ELMARIT-R 28mm f/2.8](../../src/lens-data/leica/LeicaElmaritR28mmf28TableIII.data.ts) | L1 | Negative Meniscus | -95.38 | -95.38 | 0.00 | 0.00% | — |
+| [FUJIFILM FUJINON XF 150-600mm f/5.6-8 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmXF150600mmf568RLMOISWR.data.ts) | L56 | Biconcave Negative | -23.86 | -23.86 | 0.00 | 0.00% | — |
 | [NIKON AF-S DX MICRO-NIKKOR 40mm f/2.8 G](../../src/lens-data/nikon/NikonAFSDXMicroNikkor40mmf28G.data.ts) | L13 | Biconvex Positive | 23.87 | 23.87 | 0.00 | 0.00% | — |
 | [KONICA UC ZOOM HEXANON AR 45-100mm f/3.5](../../src/lens-data/konica/KonicaUCZoomHexanonAR45100mmf35.data.ts) | L3 | Positive Meniscus | 95.73 | 95.73 | 0.00 | 0.00% | — |
 | [NIKON AF-S DX MICRO-NIKKOR 40mm f/2.8 G](../../src/lens-data/nikon/NikonAFSDXMicroNikkor40mmf28G.data.ts) | L14 | Biconcave Negative | -24.06 | -24.06 | 0.00 | 0.00% | — |
@@ -10179,6 +10517,7 @@ Sorted by absolute percentage difference, largest first.
 | [LEICA SUMMILUX-M 35mm f/1.4 ASPHERICAL](../../src/lens-data/leica/LeicaSummiluxM35mmf14Aspherical.data.ts) | L9 | Biconcave Negative | -24.79 | -24.79 | 0.00 | 0.00% | — |
 | [NIKON IX-NIKKOR 30-60mm f/4-5.6](../../src/lens-data/nikon/NikonIXNikkor3060mmf456.data.ts) | L5 | Biconcave Negative | -12.40 | -12.40 | 0.00 | 0.00% | — |
 | [SCHNEIDER-KREUZNACH CINELUX PREMIÈRE 35mm f/1.7](../../src/lens-data/schneider-kreuznach/SchneiderCineluxPremiere35mmf17.data.ts) | 30 | Biconvex Positive | 49.61 | 49.61 | 0.00 | 0.00% | — |
+| [PENTAX DA 14mm f/2.8 ED [IF]](../../src/lens-data/pentax/PentaxDA14mmf28EDIF.data.ts) | L2 | Negative Meniscus | -50.22 | -50.22 | 0.00 | 0.00% | — |
 | [KONICA UC ZOOM HEXANON AR 45-100mm f/3.5](../../src/lens-data/konica/KonicaUCZoomHexanonAR45100mmf35.data.ts) | L11 | Biconvex Positive | 100.58 | 100.58 | 0.00 | 0.00% | — |
 | [ZEISS OTUS ML 85mm f/1.4](../../src/lens-data/carl-zeiss-oberkochen/ZeissOtusML85mmf14.data.ts) | L2 | Positive Meniscus | 201.35 | 201.35 | 0.00 | 0.00% | — |
 | [TOKINA AT-X 70-200mm f/4 PRO FX VCM-S](../../src/lens-data/tokina/TokinaATX70200mmf4PROFXVCMS.data.ts) | L12 | Positive Meniscus | 100.85 | 100.85 | 0.00 | 0.00% | — |
@@ -10186,6 +10525,7 @@ Sorted by absolute percentage difference, largest first.
 | [FUJIFILM EBC FUJINON 85mm f/4 SOFT-FOCUS](../../src/lens-data/fujifilm/FujifilmFujinon85mmf40SFEBC.data.ts) | G2 | Positive Meniscus | 406.89 | 406.89 | 0.00 | 0.00% | — |
 | [NIKON AF-S NIKKOR 400mm f/2.8 E FL ED VR](../../src/lens-data/nikon/NikonAFSNIKKOR400mmf28EFLEDVR.data.ts) | L11 | Biconvex Positive | 409.94 | 409.94 | 0.00 | 0.00% | — |
 | [SIGMA 500mm f/4 DG OS HSM \| Sports](../../src/lens-data/sigma/Sigma500mmf4DGOSHSMsports.data.ts) | L5 | Positive Meniscus | 102.49 | 102.49 | 0.00 | 0.00% | — |
+| [PENTAX SMC A 28mm f/2.8](../../src/lens-data/pentax/PentaxA28mmf28.data.ts) | L1 | Negative Meniscus | -51.36 | -51.36 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON XF 50mm f/2 R WR](../../src/lens-data/fujifilm/FujifilmFujinonXf50mmf2RWR.data.ts) | L14 | Biconvex Positive (2× Asph) | 51.36 | 51.36 | 0.00 | 0.00% | — |
 | [OLYMPUS E.ZUIKO AUTO-T 200mm f/4](../../src/lens-data/olympus/OlympusEZuikoAutoT200mmf4.data.ts) | L5 | Positive Meniscus | 205.52 | 205.52 | 0.00 | 0.00% | — |
 | [KONICA HEXANON AR 21mm f/2.8](../../src/lens-data/konica/KonicaHexanonAR21mmf28.data.ts) | L4 | Negative Meniscus | -51.65 | -51.65 | 0.00 | 0.00% | — |
@@ -10202,6 +10542,7 @@ Sorted by absolute percentage difference, largest first.
 | [CARL ZEISS PLANAR 80mm f/2.8 (6×6)](../../src/lens-data/carl-zeiss-oberkochen/ZeissPlanar2880.data.ts) | L1 | Negative Meniscus | -105.52 | -105.52 | 0.00 | 0.00% | — |
 | [NIKON NIKKOR Z 20mm f/1.8 S](../../src/lens-data/nikon/NikonNikkorZ20mmf18S.data.ts) | L36 | Negative Meniscus | -26.41 | -26.41 | 0.00 | 0.00% | — |
 | [NIKON AF-S DX NIKKOR 10-24mm f/3.5-4.5 G ED](../../src/lens-data/nikon/NikonAFSDXNikkor1024mmf3545GED.data.ts) | L14 | Negative Meniscus | -211.37 | -211.37 | 0.00 | 0.00% | — |
+| [PENTAX SUPER-TAKUMAR 300mm f/4](../../src/lens-data/pentax/PentaxSuperTakumar300mmf4.data.ts) | L2 | Biconcave Negative | -212.35 | -212.35 | 0.00 | 0.00% | — |
 | [LEICA NOCTILUX-M 35mm f/1.2 ASPH.](../../src/lens-data/leica/LeicaNoctiluxM35mmf12ASPH.data.ts) | L5 | Plano-convex Positive | 26.54 | 26.54 | 0.00 | 0.00% | — |
 | [CARL ZEISS MIROTAR 500mm f/4.5](../../src/lens-data/carl-zeiss-oberkochen/ZeissMirotarf45500mm.data.ts) | L1 | Positive Meniscus | 1718.11 | 1718.11 | 0.00 | 0.00% | — |
 | [NIKON NIKKOR 300mm f/4.5 ED](../../src/lens-data/nikon/NikonNikkor300mmf45ED.data.ts) | L5 | Biconcave Negative | -53.76 | -53.76 | 0.00 | 0.00% | — |
@@ -10241,7 +10582,9 @@ Sorted by absolute percentage difference, largest first.
 | [TAMRON 14-150mm f/3.5-5.8 Di III (C001)](../../src/lens-data/tamron/TamronC00114150mmf3558.data.ts) | L1 | Negative Meniscus | -113.75 | -113.75 | 0.00 | 0.00% | — |
 | [LEICA SUMMICRON-C 40mm f/2](../../src/lens-data/leica/LeicaSummicronC40mmf2.data.ts) | L2 | Positive Meniscus | 28.44 | 28.44 | 0.00 | 0.00% | — |
 | [VILTROX AF 50mm f/1.4 PRO](../../src/lens-data/viltrox/ViltroxAF50mmf14Pro.data.ts) | L14 | Biconcave Negative | -57.03 | -57.03 | 0.00 | 0.00% | — |
+| [OM SYSTEM M.ZUIKO DIGITAL ED 20mm f/1.4 PRO](../../src/lens-data/olympus/OMSystem20mmF14PRO.data.ts) | L3 | Biconcave Negative | -57.13 | -57.13 | 0.00 | 0.00% | — |
 | [YASHICA ML 35mm f/2.8 (early diamond-grip)](../../src/lens-data/yashica/YashicaML35mmf28Early.data.ts) | L1 | Meniscus Negative | -57.41 | -57.41 | 0.00 | 0.00% | — |
+| [PENTAX SMC DA* 55mm f/1.4 SDM](../../src/lens-data/pentax/PentaxDAStar55mmf14.data.ts) | L8 | Biconvex Positive | 115.52 | 115.52 | 0.00 | 0.00% | — |
 | [CANON EF 35mm f/2](../../src/lens-data/canon/CanonEF35mmf2.data.ts) | L6 | Biconvex Positive | 28.90 | 28.90 | 0.00 | 0.00% | — |
 | [NIKON AF-S VR NIKKOR 200mm f/2 G IF-ED](../../src/lens-data/nikon/NikonAFSVR200mmf2GIFED.data.ts) | L13 | Biconcave Negative | -115.80 | -115.80 | 0.00 | 0.00% | — |
 | [PANASONIC LUMIX G VARIO 12-60mm f/3.5-5.6 ASPH. POWER O.I.S.](../../src/lens-data/panasonic/PanasonicLumixG1260mmF3556.data.ts) | L8 | Meniscus Negative | -14.50 | -14.50 | 0.00 | 0.00% | — |
@@ -10258,6 +10601,7 @@ Sorted by absolute percentage difference, largest first.
 | [OLYMPUS E.ZUIKO AUTO-T 200mm f/4](../../src/lens-data/olympus/OlympusEZuikoAutoT200mmf4.data.ts) | L2 | Biconvex Positive | 118.37 | 118.37 | 0.00 | 0.00% | — |
 | [VOIGTLÄNDER NOKTON 60mm f/0.95](../../src/lens-data/voigtlander/VoigtlanderNokton60mmf95.data.ts) | L5 | Near-Plano-Convex Positive | 59.27 | 59.27 | 0.00 | 0.00% | — |
 | [SIGMA 24-70mm f/3.5-5.6 ASPHERICAL HF](../../src/lens-data/sigma/Sigma2470mmf3556AsphericalHF.data.ts) | L5 | Biconvex Positive | 29.64 | 29.64 | 0.00 | 0.00% | — |
+| [SIGMA 500mm f/5.6 DG DN OS \| Sports](../../src/lens-data/sigma/Sigma500mmf56DGDNosSports.data.ts) | L3 | Negative Meniscus | -237.90 | -237.90 | 0.00 | 0.00% | — |
 | [TAMRON 18-270mm f/3.5-6.3 Di II VC PZD (B008)](../../src/lens-data/tamron/TamronB00818270mmf3563DiIIVCPZD.data.ts) | L11 | Negative Meniscus | -59.62 | -59.62 | 0.00 | 0.00% | — |
 | [LEICA SUMMILUX-M 35mm f/1.4 ASPHERICAL](../../src/lens-data/leica/LeicaSummiluxM35mmf14Aspherical.data.ts) | L5 | Positive Meniscus (concave to object) | 59.64 | 59.64 | 0.00 | 0.00% | — |
 | [MINOLTA AF 24mm f/2.8](../../src/lens-data/minolta/MinoltaAF24mmf28.data.ts) | L1 | Positive Meniscus | 238.58 | 238.58 | 0.00 | 0.00% | — |
@@ -10270,6 +10614,7 @@ Sorted by absolute percentage difference, largest first.
 | [PANASONIC LUMIX G VARIO 100-300mm f/4.0-5.6 MEGA O.I.S.](../../src/lens-data/panasonic/PanasonicLumixGVario100300mmf456MegaOIS.data.ts) | L7 | Biconvex Positive | 30.27 | 30.27 | 0.00 | 0.00% | — |
 | [LEICA ELMARIT-R 28mm f/2.8](../../src/lens-data/leica/LeicaElmaritR28mmf28TableIII.data.ts) | L3 | Negative Meniscus | -30.29 | -30.29 | 0.00 | 0.00% | — |
 | [SCHNEIDER-KREUZNACH CINEGON 6.5mm f/1.9](../../src/lens-data/schneider-kreuznach/SchneiderCinegon1965.data.ts) | L4 | Biconvex Positive | 30.29 | 30.29 | 0.00 | 0.00% | — |
+| [CANON EF-S 60mm f/2.8 Macro USM](../../src/lens-data/canon/CanonEFS60mmf28MacroUSM.data.ts) | L1 | Biconvex Positive | 60.68 | 60.68 | 0.00 | 0.00% | — |
 | [CARL ZEISS JENA SONNAR 50mm f/1.5 (US 2,186,621 Design)](../../src/lens-data/carl-zeiss-jena/ZeissJenaSonnar50mmf15US2186621.data.ts) | L1 | Positive Meniscus | 60.74 | 60.74 | 0.00 | 0.00% | — |
 | [VOIGTLÄNDER NOKTON 35mm f/1.2 X-Mount](../../src/lens-data/voigtlander/VoigtlanderNokton35mmf12X.data.ts) | L3 | Negative Meniscus | -15.19 | -15.19 | 0.00 | 0.00% | — |
 | [TAMRON AF 18-270mm f/3.5-6.3 Di II VC LD ASPHERICAL [IF] MACRO (B003)](../../src/lens-data/tamron/TamronB00318270mmf3563DiIIVC.data.ts) | L18 | Biconvex Positive | 61.10 | 61.10 | 0.00 | 0.00% | — |
@@ -10277,10 +10622,12 @@ Sorted by absolute percentage difference, largest first.
 | [CARL ZEISS JENA SONNAR 50mm f/1.5 (US 2,186,621 Design)](../../src/lens-data/carl-zeiss-jena/ZeissJenaSonnar50mmf15US2186621.data.ts) | L4 | Biconcave Negative | -15.32 | -15.32 | 0.00 | 0.00% | — |
 | [PENTAX SMC FA* 28-70mm f/2.8 AL](../../src/lens-data/pentax/PentaxFAStar2870mmf28AL.data.ts) | L10 | Biconcave Negative | -30.67 | -30.67 | 0.00 | 0.00% | — |
 | [OLYMPUS ZUIKO AUTO-T 180mm f/2](../../src/lens-data/olympus/OlympusZuikoAutoT180mmf2.data.ts) | L8 | Biconvex Positive | 61.61 | 61.61 | 0.00 | 0.00% | — |
+| [FUJIFILM FUJINON XF 150-600mm f/5.6-8 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmXF150600mmf568RLMOISWR.data.ts) | L42 | Biconvex Positive | 61.61 | 61.61 | 0.00 | 0.00% | — |
 | [CANON EF 300mm f/4 L IS USM](../../src/lens-data/canon/CanonEF300mmf4LISUSM.data.ts) | E11 | Biconcave Negative | -30.86 | -30.86 | 0.00 | 0.00% | — |
 | [NIKON AF ZOOM-NIKKOR 28-200mm f/3.5-5.6 G IF-ED](../../src/lens-data/nikon/NikonAFZoomNikkor28200mmf3556GIFED.data.ts) | L31 | Biconvex Positive | 30.87 | 30.87 | 0.00 | 0.00% | — |
 | [VOIGTLÄNDER DYNAR 100mm f/6](../../src/lens-data/voigtlander/VoigtlanderDynarF6.data.ts) | L1 | Biconvex Positive | 30.89 | 30.89 | 0.00 | 0.00% | — |
 | [PENTAX SMC D FA645 25mm f/4 AL [IF] SDM AW](../../src/lens-data/pentax/PentaxDFA64525mmF4ALIFSDMAW.data.ts) | F1 | Negative Meniscus | -61.84 | -61.84 | 0.00 | 0.00% | — |
+| [FUJIFILM FUJINON XF 150-600mm f/5.6-8 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmXF150600mmf568RLMOISWR.data.ts) | L61 | Biconvex Positive | 30.98 | 30.98 | 0.00 | 0.00% | — |
 | [NIKON IX-NIKKOR 30-60mm f/4-5.6](../../src/lens-data/nikon/NikonIXNikkor3060mmf456.data.ts) | L4 | Biconvex Positive | 31.05 | 31.05 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON GF 32-90mm T3.5 PZ OIS WR](../../src/lens-data/fujifilm/FujifilmGF3290mmT35PZOISWR.data.ts) | L11 | Negative Meniscus | -248.76 | -248.76 | 0.00 | 0.00% | — |
 | [NIKON AF-S DX NIKKOR 10-24mm f/3.5-4.5 G ED](../../src/lens-data/nikon/NikonAFSDXNikkor1024mmf3545GED.data.ts) | L8 | Biconcave Negative | -15.56 | -15.56 | 0.00 | 0.00% | — |
@@ -10294,6 +10641,7 @@ Sorted by absolute percentage difference, largest first.
 | [MIRANDA AUTO E 50mm f/1.4](../../src/lens-data/miranda/MirandaAutoE50mmf14.data.ts) | L6 | Positive Meniscus | 62.60 | 62.60 | 0.00 | 0.00% | — |
 | [PENTAX SMC FA* 80-200mm f/2.8 ED [IF]](../../src/lens-data/pentax/PentaxFAStar80200mmF28EDIF.data.ts) | L13 | Positive Meniscus | 125.32 | 125.32 | 0.00 | 0.00% | — |
 | [KONICA HEXANON 135mm f/3.5](../../src/lens-data/konica/KonicaHexanon135mmf35.data.ts) | L1 | Positive Meniscus | 125.36 | 125.36 | 0.00 | 0.00% | — |
+| [FUJIFILM FUJINON XF 150-600mm f/5.6-8 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmXF150600mmf568RLMOISWR.data.ts) | L62 | Biconcave Negative | -31.35 | -31.35 | 0.00 | 0.00% | — |
 | [PANASONIC LUMIX G VARIO 100-300mm f/4.0-5.6 MEGA O.I.S.](../../src/lens-data/panasonic/PanasonicLumixGVario100300mmf456MegaOIS.data.ts) | L13 | Positive Meniscus | 31.44 | 31.44 | 0.00 | 0.00% | — |
 | [NIKON NIKKOR 300mm f/4.5 ED](../../src/lens-data/nikon/NikonNikkor300mmf45ED.data.ts) | L3 | Positive Meniscus | 251.92 | 251.92 | 0.00 | 0.00% | — |
 | [NIKON NIKKOR-QD·C AUTO 15mm f/5.6](../../src/lens-data/nikon/NikonNikkor15mmf56.data.ts) | L6 | Biconcave Negative | -15.76 | -15.76 | 0.00 | 0.00% | — |
@@ -10301,11 +10649,14 @@ Sorted by absolute percentage difference, largest first.
 | [PANASONIC LEICA DG MACRO-ELMARIT 45mm f/2.8 ASPH. MEGA O.I.S.](../../src/lens-data/panasonic/PanasonicLeicaDGMacroElmarit45mmF28ASPHMegaOIS.data.ts) | L1 | Biconvex Positive | 126.07 | 126.07 | 0.00 | 0.00% | — |
 | [NIKON AF-S DX MICRO-NIKKOR 40mm f/2.8 G](../../src/lens-data/nikon/NikonAFSDXMicroNikkor40mmf28G.data.ts) | L23 | Biconvex Positive (rear asphere) | 31.54 | 31.54 | 0.00 | 0.00% | — |
 | [LEICA NOCTILUX-M 35mm f/1.2 ASPH.](../../src/lens-data/leica/LeicaNoctiluxM35mmf12ASPH.data.ts) | L6 | Biconcave Negative | -15.77 | -15.77 | 0.00 | 0.00% | — |
+| [SIGMA 500mm f/5.6 DG DN OS \| Sports](../../src/lens-data/sigma/Sigma500mmf56DGDNosSports.data.ts) | L20 | Negative Meniscus | -63.07 | -63.07 | 0.00 | 0.00% | — |
 | [SIGMA 18-50mm f/2.8-4.5 DC OS HSM](../../src/lens-data/sigma/Sigma1850mmf2845DCOSHSM.data.ts) | L11 | Biconcave Negative | -15.77 | -15.77 | 0.00 | 0.00% | — |
+| [SIGMA 30mm f/2.8 DN \| Art](../../src/lens-data/sigma/Sigma30mmf28DNArt.data.ts) | L4 | Biconvex Positive | 15.79 | 15.79 | 0.00 | 0.00% | — |
 | [SONY VARIO-TESSAR T* FE 24-70mm f/4 ZA OSS](../../src/lens-data/sony/SonyVarioTessarTFE2470mmF4ZAOSS.data.ts) | L1 | Negative Meniscus | -252.60 | -252.60 | 0.00 | 0.00% | — |
 | [NIKON AI NIKKOR 300mm f/2 S IF-ED](../../src/lens-data/nikon/NikonAiSNikkor300mmf2IFED.data.ts) | L7 | Biconcave Negative | -126.40 | -126.40 | 0.00 | 0.00% | — |
 | [CANON EF 400mm f/2.8 L IS III USM](../../src/lens-data/canon/CanonEF400mmf28LISIIIUSM.data.ts) | L1-7 | Positive Meniscus | 126.57 | 126.57 | 0.00 | 0.00% | — |
 | [TAMRON 18-200mm f/3.5-6.3 Di III VC (B011)](../../src/lens-data/tamron/TamronB01118200mmf3563VC.data.ts) | L7 | Negative Meniscus (1x Asph) | -31.67 | -31.67 | 0.00 | 0.00% | — |
+| [PENTAX SMC A 28mm f/2.8](../../src/lens-data/pentax/PentaxA28mmf28.data.ts) | L3 | Biconvex Positive | 31.69 | 31.69 | 0.00 | 0.00% | — |
 | [SIGMA 18-50mm f/2.8-4.5 DC OS HSM](../../src/lens-data/sigma/Sigma1850mmf2845DCOSHSM.data.ts) | L1 | Negative Meniscus | -63.45 | -63.45 | 0.00 | 0.00% | — |
 | [SIGMA 24-70mm f/3.5-5.6 ASPHERICAL HF](../../src/lens-data/sigma/Sigma2470mmf3556AsphericalHF.data.ts) | L8 | Positive Meniscus | 31.73 | 31.73 | 0.00 | 0.00% | — |
 | [KONICA HEXANON AR 21mm f/2.8](../../src/lens-data/konica/KonicaHexanonAR21mmf28.data.ts) | L7 | Biconcave Negative | -15.87 | -15.87 | 0.00 | 0.00% | — |
@@ -10314,23 +10665,30 @@ Sorted by absolute percentage difference, largest first.
 | [CANON EF 35mm f/1.4 L II USM](../../src/lens-data/canon/CanonEF35mmf14LIIUSM.data.ts) | E10 | Biconcave Negative | -31.81 | -31.81 | 0.00 | 0.00% | — |
 | [CANON RF 15-30mm f/4.5-6.3 IS STM](../../src/lens-data/canon/CanonRF1530mmf4563ISSTM.data.ts) | E9 | Negative Meniscus | -15.92 | -15.92 | 0.00 | 0.00% | — |
 | [NIKON NIKKOR-QD·C AUTO 15mm f/5.6](../../src/lens-data/nikon/NikonNikkor15mmf56.data.ts) | L5 | Negative Meniscus | -63.73 | -63.73 | 0.00 | 0.00% | — |
+| [FUJIFILM FUJINON XF 150-600mm f/5.6-8 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmXF150600mmf568RLMOISWR.data.ts) | L23 | Positive Meniscus | 127.73 | 127.73 | 0.00 | 0.00% | — |
+| [VOIGTLÄNDER NOKTON 23mm f/1.2 Aspherical X-Mount](../../src/lens-data/voigtlander/VoigtlanderNokton23mmf12X.data.ts) | L3f | Biconvex Positive | 15.99 | 15.99 | 0.00 | 0.00% | — |
 | [OLYMPUS M.ZUIKO DIGITAL ED 17mm f/1.2 PRO](../../src/lens-data/olympus/OlympusMZuikoDigitalED17mmF12Pro.data.ts) | L1 | Negative Meniscus | -63.96 | -63.96 | 0.00 | 0.00% | — |
 | [OLYMPUS E.ZUIKO AUTO-T 100mm f/2.8](../../src/lens-data/olympus/OlympusEZuiko100mmf28.data.ts) | L5 | Positive Meniscus | 127.99 | 127.99 | 0.00 | 0.00% | — |
 | [PENTAX SUPER-TAKUMAR 50mm f/1.4 (8-element)](../../src/lens-data/pentax/PentaxSuperTakumar50mmf14EightElement.data.ts) | L7 | Positive Meniscus | 64.16 | 64.16 | 0.00 | 0.00% | — |
+| [VOIGTLÄNDER COLOR-SKOPAR 50mm f/2.2 VM](../../src/lens-data/voigtlander/VoigtlanderColorSkopar50mmf22VM.data.ts) | L8 | Negative Meniscus | -64.18 | -64.18 | 0.00 | 0.00% | — |
 | [NIKON AI NIKKOR 300mm f/2 S IF-ED](../../src/lens-data/nikon/NikonAiSNikkor300mmf2IFED.data.ts) | L4 | Positive Meniscus | 513.50 | 513.50 | 0.00 | 0.00% | — |
 | [VILTROX AF 27mm f/1.2 PRO XF](../../src/lens-data/viltrox/ViltroxAF27mmf12XF.data.ts) | L31 | Biconvex Positive | 32.11 | 32.11 | 0.00 | 0.00% | — |
 | [KONICA UC ZOOM HEXANON AR 45-100mm f/3.5](../../src/lens-data/konica/KonicaUCZoomHexanonAR45100mmf35.data.ts) | L5 | Biconcave Negative | -64.27 | -64.27 | 0.00 | 0.00% | — |
 | [CANON FL-F 300mm f/5.6](../../src/lens-data/canon/CanonFLF300mmf56.data.ts) | L1 | Biconvex Positive | 128.69 | 128.69 | 0.00 | 0.00% | — |
+| [FUJIFILM FUJINON XF 150-600mm f/5.6-8 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmXF150600mmf568RLMOISWR.data.ts) | L55 | Biconvex Positive | 32.18 | 32.18 | 0.00 | 0.00% | — |
 | [MINOLTA AF 24mm f/2.8](../../src/lens-data/minolta/MinoltaAF24mmf28.data.ts) | L3 | Negative Meniscus | -32.20 | -32.20 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON XF 8-16mm f/2.8 R LM WR](../../src/lens-data/fujifilm/FujifilmFujinonXf816mmf28RLMWR.data.ts) | L51 | Biconvex Positive | 64.43 | 64.43 | 0.00 | 0.00% | — |
 | [OLYMPUS ZUIKO DIGITAL ED 300mm f/2.8](../../src/lens-data/olympus/OlympusZuikoDigitalED300mmf28.data.ts) | L1 | Negative Meniscus | -515.78 | -515.78 | 0.00 | 0.00% | — |
 | [NIKON AI AF ZOOM-NIKKOR 24-85mm f/2.8-4 D IF](../../src/lens-data/nikon/NikonAIAFZoomNikkor2485mmf284DIF.data.ts) | Lasp | Neg. Meniscus (1× Asph) | -64.52 | -64.52 | 0.00 | 0.00% | — |
+| [SIGMA 500mm f/5.6 DG DN OS \| Sports](../../src/lens-data/sigma/Sigma500mmf56DGDNosSports.data.ts) | L2 | Positive Meniscus | 258.26 | 258.26 | 0.00 | 0.00% | — |
 | [OLYMPUS ZUIKO AUTO-T 180mm f/2](../../src/lens-data/olympus/OlympusZuikoAutoT180mmf2.data.ts) | L7 | Biconcave Negative | -64.64 | -64.64 | 0.00 | 0.00% | — |
 | [LEICA ELMARIT-R 28mm f/2.8](../../src/lens-data/leica/LeicaElmaritR28mmf28TableIII.data.ts) | L8 | Biconvex Positive | 32.37 | 32.37 | 0.00 | 0.00% | — |
 | [HASSELBLAD HC 35mm f/3.5](../../src/lens-data/hasselblad/HasselbladHC3535Fujinon.data.ts) | L4 | Positive Meniscus | 259.41 | 259.41 | 0.00 | 0.00% | — |
 | [NIKON NIKKOR 300mm f/4.5 ED](../../src/lens-data/nikon/NikonNikkor300mmf45ED.data.ts) | L1 | Biconvex Positive | 129.95 | 129.95 | 0.00 | 0.00% | — |
 | [NIKON 38-105mm f/4-7.8 (Nikon Zoom 700VR)](../../src/lens-data/nikon/NikonZoom700VR38105mmf478.data.ts) | L1 | Biconcave Negative | -32.50 | -32.50 | 0.00 | 0.00% | — |
+| [SIGMA 500mm f/5.6 DG DN OS \| Sports](../../src/lens-data/sigma/Sigma500mmf56DGDNosSports.data.ts) | L10 | Negative Meniscus | -65.06 | -65.06 | 0.00 | 0.00% | — |
 | [VIVITAR SERIES 1 90mm f/2.5 MACRO](../../src/lens-data/vivitar/VivitarSeries190mmf25Macro.data.ts) | L8 | Negative Meniscus | -130.36 | -130.36 | 0.00 | 0.00% | — |
+| [PENTAX SMC M 28mm f/3.5](../../src/lens-data/pentax/PentaxM28mmf35.data.ts) | L1 | Positive Meniscus | 130.60 | 130.60 | 0.00 | 0.00% | — |
 | [NIKON NIKKOR-O 2.1cm f/4](../../src/lens-data/nikon/NikonNikkorO21mmf4.data.ts) | L3 | Biconcave Negative | -8.17 | -8.17 | 0.00 | 0.00% | — |
 | [SIGMA 17mm f/4 DG DN \| Contemporary](../../src/lens-data/sigma/Sigma17mmf4DGDNContemporary.data.ts) | L6 | Positive Meniscus | 16.33 | 16.33 | 0.00 | 0.00% | — |
 | [PENTAX-06 TELEPHOTO ZOOM 15-45mm f/2.8](../../src/lens-data/pentax/Pentax06TelephotoZoom1545mmF28.data.ts) | L11 | Negative Meniscus | -130.68 | -130.68 | 0.00 | 0.00% | — |
@@ -10338,23 +10696,30 @@ Sorted by absolute percentage difference, largest first.
 | [LEICA SUMMILUX-TL 35mm f/1.4 ASPH.](../../src/lens-data/leica/LeicaSummiluxTL35mmf14Asph.data.ts) | L16 | Biconcave Negative | -16.39 | -16.39 | 0.00 | 0.00% | — |
 | [VILTROX AF 23mm f/1.4](../../src/lens-data/viltrox/ViltroxAF23mmf14E.data.ts) | L22 | Biconvex Positive | 16.41 | 16.41 | 0.00 | 0.00% | — |
 | [CANON EF 35mm f/1.4 L II USM](../../src/lens-data/canon/CanonEF35mmf14LIIUSM.data.ts) | E11 | Negative Meniscus | -32.84 | -32.84 | 0.00 | 0.00% | — |
+| [OLYMPUS H.ZUIKO AUTO-W 35mm f/2](../../src/lens-data/olympus/OlympusHZuiko35mmf2.data.ts) | L5 | Biconcave Negative | -32.89 | -32.89 | 0.00 | 0.00% | — |
 | [TOKINA AT-X 70-200mm f/4 PRO FX VCM-S](../../src/lens-data/tokina/TokinaATX70200mmf4PROFXVCMS.data.ts) | L8 | Positive Meniscus | 65.89 | 65.89 | 0.00 | 0.00% | — |
 | [NIKON AI AF ZOOM-NIKKOR 24-85mm f/2.8-4 D IF](../../src/lens-data/nikon/NikonAIAFZoomNikkor2485mmf284DIF.data.ts) | L23n | Negative Meniscus | -32.95 | -32.95 | 0.00 | 0.00% | — |
 | [PENTAX SMC FA* 28-70mm f/2.8 AL](../../src/lens-data/pentax/PentaxFAStar2870mmf28AL.data.ts) | L2 | Biconcave Negative | -65.93 | -65.93 | 0.00 | 0.00% | — |
+| [VOIGTLÄNDER COLOR-SKOPAR 18mm f/2.8 Aspherical X-Mount](../../src/lens-data/voigtlander/VoigtlanderColorSkopar18mmf28X.data.ts) | L22 | Biconvex Positive (2× Asph) | 33.01 | 33.01 | 0.00 | 0.00% | — |
 | [TAMRON SP AF 200-500mm f/5-6.3 Di LD [IF]](../../src/lens-data/tamron/TamronA08200500mmf563.data.ts) | E12 | Negative Meniscus | -66.04 | -66.04 | 0.00 | 0.00% | — |
 | [CANON EF 28mm f/2.8 IS USM](../../src/lens-data/canon/CanonEF28mmf28ISUSM.data.ts) | L4 | Biconvex Positive | 16.55 | 16.55 | 0.00 | 0.00% | — |
 | [CANON EF 50mm f/2.5 Compact Macro](../../src/lens-data/canon/CanonEF50mmf25CompactMacro.data.ts) | L5 | Biconcave Negative | -16.56 | -16.56 | 0.00 | 0.00% | — |
+| [FUJIFILM FUJINON XF 150-600mm f/5.6-8 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmXF150600mmf568RLMOISWR.data.ts) | L52 | Biconcave Negative | -33.14 | -33.14 | 0.00 | 0.00% | — |
 | [KODAK EKTAR 52mm f/1.5](../../src/lens-data/kodak/KodakEktar52mmf15.data.ts) | III | Positive Meniscus | 33.20 | 33.20 | 0.00 | 0.00% | — |
 | [NIKON NIKKOR-SW 75mm f/4.5](../../src/lens-data/nikon/NikonNikkorSW75mmf45.data.ts) | L2C | Positive Meniscus | 66.40 | 66.40 | 0.00 | 0.00% | — |
 | [TAMRON SP 70-300mm f/4-5.6 Di VC USD](../../src/lens-data/tamron/TamronA00570300mmf456VC.data.ts) | L115 | Biconvex Positive | 33.21 | 33.21 | 0.00 | 0.00% | — |
 | [KODAK EKTAR 52mm f/1.5](../../src/lens-data/kodak/KodakEktar52mmf15.data.ts) | VII | Biconvex Positive | 33.23 | 33.23 | 0.00 | 0.00% | — |
 | [SIGMA 18-35mm f/1.8 DC HSM \| Art](../../src/lens-data/sigma/Sigma1835mmf18DCHSMArt.data.ts) | L16 | Biconcave Negative | -33.26 | -33.26 | 0.00 | 0.00% | — |
+| [NIKON EL-NIKKOR 50mm f/2.8](../../src/lens-data/nikon/NikonELNikkor50mmf28.data.ts) | L1 | Positive Meniscus | 66.54 | 66.54 | 0.00 | 0.00% | — |
 | [NIKON AF MICRO-NIKKOR 60mm f/2.8 D](../../src/lens-data/nikon/NikonAFMicroNikkor60mmf28D.data.ts) | L5 | Biconvex Positive | 33.28 | 33.28 | 0.00 | 0.00% | — |
 | [CANON EF 35mm f/1.4 L II USM](../../src/lens-data/canon/CanonEF35mmf14LIIUSM.data.ts) | E14 | Positive Meniscus (front asphere) | 66.60 | 66.60 | 0.00 | 0.00% | — |
+| [OM SYSTEM M.ZUIKO DIGITAL ED 20mm f/1.4 PRO](../../src/lens-data/olympus/OMSystem20mmF14PRO.data.ts) | L1 | Positive Meniscus | 133.27 | 133.27 | 0.00 | 0.00% | — |
 | [TAMRON 14-150mm f/3.5-5.8 Di III (C001)](../../src/lens-data/tamron/TamronC00114150mmf3558.data.ts) | L5 | Biconcave Negative | -16.68 | -16.68 | 0.00 | 0.00% | — |
 | [VILTROX AF 85mm f/1.4 PRO](../../src/lens-data/viltrox/ViltroxAF85mmf14Pro.data.ts) | L08 | Biconvex Positive | 33.43 | 33.43 | 0.00 | 0.00% | — |
+| [VOIGTLÄNDER COLOR-SKOPAR 18mm f/2.8 Aspherical X-Mount](../../src/lens-data/voigtlander/VoigtlanderColorSkopar18mmf28X.data.ts) | L16 | Negative Meniscus | -33.46 | -33.46 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON GF 32-90mm T3.5 PZ OIS WR](../../src/lens-data/fujifilm/FujifilmGF3290mmT35PZOISWR.data.ts) | L13 | Positive Meniscus | 133.83 | 133.83 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON XF 14mm f/2.8 R](../../src/lens-data/fujifilm/FujifilmFujinonXf14mmf28R.data.ts) | L35 | Biconcave Negative | -16.77 | -16.77 | 0.00 | 0.00% | — |
+| [OLYMPUS F.ZUIKO AUTO-T 300mm f/4.5](../../src/lens-data/olympus/OlympusFZuikoAutoT300mmf45.data.ts) | L3a | Biconvex Positive | 134.46 | 134.46 | 0.00 | 0.00% | — |
 | [CANON TS-E 24mm f/3.5 L II](../../src/lens-data/canon/CanonTSE24mmf35LII.data.ts) | L16 | Positive Meniscus | 134.48 | 134.48 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON XF 14mm f/2.8 R](../../src/lens-data/fujifilm/FujifilmFujinonXf14mmf28R.data.ts) | L11 | Negative Meniscus | -33.62 | -33.62 | 0.00 | 0.00% | — |
 | [NIKON AI AF ZOOM-NIKKOR 24-85mm f/2.8-4 D IF](../../src/lens-data/nikon/NikonAIAFZoomNikkor2485mmf284DIF.data.ts) | L4n | Biconcave Negative | -16.82 | -16.82 | 0.00 | 0.00% | — |
@@ -10370,9 +10735,11 @@ Sorted by absolute percentage difference, largest first.
 | [CANON TS-E 24mm f/3.5 L II](../../src/lens-data/canon/CanonTSE24mmf35LII.data.ts) | L1 | Neg. Meniscus (1× Asph) | -33.97 | -33.97 | 0.00 | 0.00% | — |
 | [CANON EF 300mm f/4 L IS USM](../../src/lens-data/canon/CanonEF300mmf4LISUSM.data.ts) | E2 | Positive Meniscus | 271.77 | 271.77 | 0.00 | 0.00% | — |
 | [YASHICA ML 35mm f/2.8 (early diamond-grip)](../../src/lens-data/yashica/YashicaML35mmf28Early.data.ts) | L6 | Meniscus Positive | 33.99 | 33.99 | 0.00 | 0.00% | — |
+| [OLYMPUS F.ZUIKO AUTO-T 300mm f/4.5](../../src/lens-data/olympus/OlympusFZuikoAutoT300mmf45.data.ts) | L1 | Biconvex Positive | 136.04 | 136.04 | 0.00 | 0.00% | — |
 | [LAOWA 55mm f/2.8 Tilt-Shift 1× Macro](../../src/lens-data/laowa/Laowa55mmf28TiltShift1xMacro.data.ts) | L3 | Biconvex Positive | 68.12 | 68.12 | 0.00 | 0.00% | — |
 | [OLYMPUS M.ZUIKO DIGITAL ED 17mm f/1.2 PRO](../../src/lens-data/olympus/OlympusMZuikoDigitalED17mmF12Pro.data.ts) | L9 | Negative Meniscus | -136.43 | -136.43 | 0.00 | 0.00% | — |
 | [NIKON AF-S VR NIKKOR 200mm f/2 G IF-ED](../../src/lens-data/nikon/NikonAFSVR200mmf2GIFED.data.ts) | L12 | Biconvex Positive | 136.79 | 136.79 | 0.00 | 0.00% | — |
+| [VOIGTLÄNDER NOKTON 23mm f/1.2 Aspherical X-Mount](../../src/lens-data/voigtlander/VoigtlanderNokton23mmf12X.data.ts) | L4r | Biconvex Positive | 17.10 | 17.10 | 0.00 | 0.00% | — |
 | [SIGMA 56mm f/1.4 DC DN \| Contemporary](../../src/lens-data/sigma/Sigma56mmf14DCDNContemporary.data.ts) | L32 | Biconvex Positive | 17.12 | 17.12 | 0.00 | 0.00% | — |
 | [LEICA NOCTILUX-M 35mm f/1.2 ASPH.](../../src/lens-data/leica/LeicaNoctiluxM35mmf12ASPH.data.ts) | L8 | Biconvex Positive | 17.13 | 17.13 | 0.00 | 0.00% | — |
 | [NIKON AF-S NIKKOR 180-400mm f/4 E TC1.4 FL ED VR](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14.data.ts) | L42 | Biconvex Positive | 68.57 | 68.57 | 0.00 | 0.00% | — |
@@ -10382,13 +10749,17 @@ Sorted by absolute percentage difference, largest first.
 | [NIKON NIKKOR AUTO 28mm f/2.8](../../src/lens-data/nikon/NikonNewNikkorAuto28mmf28.data.ts) | L2 | Negative Meniscus | -34.38 | -34.38 | 0.00 | 0.00% | — |
 | [TAMRON 14-150mm f/3.5-5.8 Di III (C001)](../../src/lens-data/tamron/TamronC00114150mmf3558.data.ts) | L16 | Negative Meniscus | -68.82 | -68.82 | 0.00 | 0.00% | — |
 | [CANON EF 300mm f/4 L IS USM](../../src/lens-data/canon/CanonEF300mmf4LISUSM.data.ts) | E8 | Negative Meniscus | -68.87 | -68.87 | 0.00 | 0.00% | — |
+| [FUJIFILM FUJINON XF 150-600mm f/5.6-8 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmXF150600mmf568RLMOISWR.data.ts) | L21 | Biconcave Negative | -68.93 | -68.93 | 0.00 | 0.00% | — |
+| [PENTAX DA 14mm f/2.8 ED [IF]](../../src/lens-data/pentax/PentaxDA14mmf28EDIF.data.ts) | L7 | Negative Meniscus | -17.25 | -17.25 | 0.00 | 0.00% | — |
 | [VILTROX AF 50mm f/1.4 PRO](../../src/lens-data/viltrox/ViltroxAF50mmf14Pro.data.ts) | L13 | Biconvex Positive | 69.12 | 69.12 | 0.00 | 0.00% | — |
 | [LEICA SUMMILUX-M 50mm f/1.4 II](../../src/lens-data/leica/LeicaSummiluxM50mmf14II.data.ts) | L1 | Positive Meniscus | 69.12 | 69.12 | 0.00 | 0.00% | — |
+| [PENTAX SMC M* 300mm f/4](../../src/lens-data/pentax/PentaxMStar300mmf4.data.ts) | L5 | Biconcave Negative | -17.29 | -17.29 | 0.00 | 0.00% | — |
 | [NIKON IX-NIKKOR 30-60mm f/4-5.6](../../src/lens-data/nikon/NikonIXNikkor3060mmf456.data.ts) | L6 | Positive Meniscus | 34.62 | 34.62 | 0.00 | 0.00% | — |
 | [CANON RF 15-30mm f/4.5-6.3 IS STM](../../src/lens-data/canon/CanonRF1530mmf4563ISSTM.data.ts) | E6 | Negative Meniscus | -34.63 | -34.63 | 0.00 | 0.00% | — |
 | [TAMRON 18-400mm f/3.5-6.3 Di II VC HLD](../../src/lens-data/tamron/TamronB02818400mmf3563.data.ts) | L12 | Biconcave Negative (1x Asph) | -17.31 | -17.31 | 0.00 | 0.00% | — |
 | [SIGMA 100-400mm f/5-6.3 DG OS HSM \| Contemporary](../../src/lens-data/sigma/Sigma100400mmf563DGOSHSMContemporary.data.ts) | L9 | Positive Meniscus | 69.29 | 69.29 | 0.00 | 0.00% | — |
 | [CANON TS-E 24mm f/3.5 L II](../../src/lens-data/canon/CanonTSE24mmf35LII.data.ts) | L8 | Negative Meniscus | -69.31 | -69.31 | 0.00 | 0.00% | — |
+| [SIGMA 500mm f/5.6 DG DN OS \| Sports](../../src/lens-data/sigma/Sigma500mmf56DGDNosSports.data.ts) | L9 | Positive Meniscus | 138.72 | 138.72 | 0.00 | 0.00% | — |
 | [VOIGTLÄNDER SKOPARON 35mm f/3.5](../../src/lens-data/voigtlander/VoigtlanderSkoparon35mmf35.data.ts) | L4 | Biconcave Negative | -17.35 | -17.35 | 0.00 | 0.00% | — |
 | [YASHICA AUTO YASHINON-DS 20mm f/3.3](../../src/lens-data/yashica/YashicaAutoYashinonDS20mmf33.data.ts) | L10 | Positive Meniscus | 34.70 | 34.70 | 0.00 | 0.00% | — |
 | [TAMRON 18-200mm f/3.5-6.3 Di III VC (B011)](../../src/lens-data/tamron/TamronB01118200mmf3563VC.data.ts) | L8 | Biconvex Positive (2x Asph) | 34.71 | 34.71 | 0.00 | 0.00% | — |
@@ -10397,6 +10768,7 @@ Sorted by absolute percentage difference, largest first.
 | [CANON RF 14mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF14mmF14LVCM.data.ts) | L3 | Biconcave Negative (1× Asph) | -34.81 | -34.81 | 0.00 | 0.00% | — |
 | [MINOLTA AF 24mm f/2.8](../../src/lens-data/minolta/MinoltaAF24mmf28.data.ts) | L2 | Negative Meniscus | -69.75 | -69.75 | 0.00 | 0.00% | — |
 | [SIGMA 200mm f/2 DG OS \| Sports](../../src/lens-data/sigma/Sigma200mmf2DGOSSports.data.ts) | L2 | Positive Meniscus | 279.71 | 279.71 | 0.00 | 0.00% | — |
+| [CANON EF-S 60mm f/2.8 Macro USM](../../src/lens-data/canon/CanonEFS60mmf28MacroUSM.data.ts) | L9 | Biconvex Positive | 17.49 | 17.49 | 0.00 | 0.00% | — |
 | [VOIGTLÄNDER NOKTON 50mm f/1.5](../../src/lens-data/voigtlander/VoigtlanderNokton50mmf15.data.ts) | L7 | Biconvex Positive | 35.00 | 35.00 | 0.00 | 0.00% | — |
 | [VILTROX AF 23mm f/1.4](../../src/lens-data/viltrox/ViltroxAF23mmf14E.data.ts) | L15 | Negative Meniscus | -70.03 | -70.03 | 0.00 | 0.00% | — |
 | [NIKON AF-S DX VR ZOOM-NIKKOR 18-200mm f/3.5-5.6 G IF-ED](../../src/lens-data/nikon/NikonAFSDXVRZoomNikkor18200mmf3556GIFED.data.ts) | L44 | Positive Meniscus | 70.03 | 70.03 | 0.00 | 0.00% | — |
@@ -10435,8 +10807,10 @@ Sorted by absolute percentage difference, largest first.
 | [SCHNEIDER-KREUZNACH CINEGON 6.5mm f/1.9](../../src/lens-data/schneider-kreuznach/SchneiderCinegon1965.data.ts) | L1 | Biconvex Positive | 35.99 | 35.99 | 0.00 | 0.00% | — |
 | [NIKON AF-S DX ZOOM-NIKKOR 18-70mm f/3.5-4.5 G IF-ED](../../src/lens-data/nikon/NikonAFSDXZoomNikkor1870mmf3545GIFED.data.ts) | L11 | Negative Meniscus (convex to object) | -144.35 | -144.35 | 0.00 | 0.00% | — |
 | [VILTROX AF 27mm f/1.2 PRO XF](../../src/lens-data/viltrox/ViltroxAF27mmf12XF.data.ts) | L41 | Biconcave Negative | -36.10 | -36.10 | 0.00 | 0.00% | — |
+| [YONGNUO YN 85mm f/1.8 S DF DSM](../../src/lens-data/yongnuo/YongnuoYN85mmf18SDFDSM.data.ts) | L21 | Biconcave Negative | -72.34 | -72.34 | 0.00 | 0.00% | — |
 | [MINOLTA AF 135mm f/2.8 [T4.5] STF](../../src/lens-data/minolta/MinoltaSTF135mmf28T45.data.ts) | L2 | Negative Meniscus | -144.95 | -144.95 | 0.00 | 0.00% | — |
 | [NIKON AF-S DX NIKKOR 10-24mm f/3.5-4.5 G ED](../../src/lens-data/nikon/NikonAFSDXNikkor1024mmf3545GED.data.ts) | L12 | Biconvex Positive | 18.13 | 18.13 | 0.00 | 0.00% | — |
+| [FUJIFILM FUJINON XF 150-600mm f/5.6-8 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmXF150600mmf568RLMOISWR.data.ts) | L54 | Negative Meniscus | -72.64 | -72.64 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON GF 110mm f/5.6 T/S Macro](../../src/lens-data/fujifilm/FujifilmGF110mmf56TSMacro.data.ts) | L22 | Biconcave Negative | -72.66 | -72.66 | 0.00 | 0.00% | — |
 | [PENTAX SMC FA* 28-70mm f/2.8 AL](../../src/lens-data/pentax/PentaxFAStar2870mmf28AL.data.ts) | L3 | Positive Meniscus | 72.69 | 72.69 | 0.00 | 0.00% | — |
 | [SIGMA 18-50mm f/2.8-4.5 DC OS HSM](../../src/lens-data/sigma/Sigma1850mmf2845DCOSHSM.data.ts) | L4 | Biconcave Negative | -36.35 | -36.35 | 0.00 | 0.00% | — |
@@ -10446,6 +10820,7 @@ Sorted by absolute percentage difference, largest first.
 | [SIGMA 70mm f/2.8 DG MACRO \| Art](../../src/lens-data/sigma/Sigma70mmf28DGMacroArt.data.ts) | L1 | Biconcave Negative | -73.17 | -73.17 | 0.00 | 0.00% | — |
 | [LAOWA 55mm f/2.8 Tilt-Shift 1× Macro](../../src/lens-data/laowa/Laowa55mmf28TiltShift1xMacro.data.ts) | L11 | Negative Meniscus | -73.19 | -73.19 | 0.00 | 0.00% | — |
 | [SCHACHT S-TRAVENAR 135mm f/2.8](../../src/lens-data/schacht/SchachtSTravenar135mmf28.data.ts) | L4 | Biconvex Positive | 146.44 | 146.44 | 0.00 | 0.00% | — |
+| [CANON RF 85mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF85mmf14LVCM.data.ts) | L7 | Biconvex Positive | 36.63 | 36.63 | 0.00 | 0.00% | — |
 | [NIKON AI NIKKOR 200mm f/2 S IF-ED](../../src/lens-data/nikon/NikonAiNikkor200mmf2IFED.data.ts) | L11 | Biconvex Positive | 293.56 | 293.56 | 0.00 | 0.00% | — |
 | [CANON EF-M 11-22mm f/4-5.6 IS STM](../../src/lens-data/canon/CanonEFM1122mmf456ISSTM.data.ts) | L4 | Positive Meniscus | 73.41 | 73.41 | 0.00 | 0.00% | — |
 | [NIKON AF-S DX NIKKOR 10-24mm f/3.5-4.5 G ED](../../src/lens-data/nikon/NikonAFSDXNikkor1024mmf3545GED.data.ts) | L7 | Negative Meniscus | -36.79 | -36.79 | 0.00 | 0.00% | — |
@@ -10462,6 +10837,7 @@ Sorted by absolute percentage difference, largest first.
 | [SONY FE 50mm f/1.4 GM](../../src/lens-data/sony/SonyFE50mmF14GM.data.ts) | L18 | Biconvex Positive | 74.09 | 74.09 | 0.00 | 0.00% | — |
 | [SIGMA 100-400mm f/5-6.3 DG OS HSM \| Contemporary](../../src/lens-data/sigma/Sigma100400mmf563DGOSHSMContemporary.data.ts) | L21 | Biconvex Positive | 37.05 | 37.05 | 0.00 | 0.00% | — |
 | [KONICA ZOOM-HEXANON AR 35-70mm f/4](../../src/lens-data/konica/KonicaZoomHexanonAR3570mmf4.data.ts) | E7 | Biconcave Negative | -18.53 | -18.53 | 0.00 | 0.00% | — |
+| [OM SYSTEM M.ZUIKO DIGITAL ED 20mm f/1.4 PRO](../../src/lens-data/olympus/OMSystem20mmF14PRO.data.ts) | L8 | Biconvex Positive | 37.12 | 37.12 | 0.00 | 0.00% | — |
 | [VOIGTLÄNDER NOKTON 60mm f/0.95](../../src/lens-data/voigtlander/VoigtlanderNokton60mmf95.data.ts) | L7 | Near-Plano-Concave Negative | -37.14 | -37.14 | 0.00 | 0.00% | — |
 | [NIKON NIKKOR AUTO 28mm f/2.8](../../src/lens-data/nikon/NikonNewNikkorAuto28mmf28.data.ts) | L7 | Biconvex Positive | 37.19 | 37.19 | 0.00 | 0.00% | — |
 | [FUJIFILM EBC FUJINON 85mm f/4 SOFT-FOCUS](../../src/lens-data/fujifilm/FujifilmFujinon85mmf40SFEBC.data.ts) | G3 | Negative Meniscus | -74.82 | -74.82 | 0.00 | 0.00% | — |
@@ -10496,6 +10872,7 @@ Sorted by absolute percentage difference, largest first.
 | [THYPOCH SIMERA 50mm f/1.4 ASPH.](../../src/lens-data/thypoch/ThypochSimera50mmf14.data.ts) | L6 | Biconvex Positive | 19.07 | 19.07 | 0.00 | 0.00% | — |
 | [SIGMA 35mm f/2 DG DN \| Contemporary](../../src/lens-data/sigma/Sigma35mmf2DGDNContemporary.data.ts) | L7 | Negative Meniscus (2x Asph) | -76.31 | -76.31 | 0.00 | 0.00% | — |
 | [SIGMA 70mm f/2.8 DG MACRO \| Art](../../src/lens-data/sigma/Sigma70mmf28DGMacroArt.data.ts) | L6 | Biconvex Positive | 38.17 | 38.17 | 0.00 | 0.00% | — |
+| [PENTAX SMC ZOOM 5.8-17.4mm f/2.6-4.8 (Pentax Optio S)](../../src/lens-data/pentax/PentaxOptioS58174mmf2648.data.ts) | L2 | Positive Meniscus (2× Asph) | 19.09 | 19.09 | 0.00 | 0.00% | — |
 | [RICOH GR LENS 6.0mm f/1.9 (Ricoh GR DIGITAL III)](../../src/lens-data/ricoh/RicohGRDigitalIII60mmF19.data.ts) | L8 | Positive Meniscus (Front Asphere) | 38.19 | 38.19 | 0.00 | 0.00% | — |
 | [MAMIYA-SEKOR MACRO C 80mm f/4](../../src/lens-data/mamiya/MamiyaSekorMacroC80mmf4.data.ts) | L4 | Negative Meniscus | -305.57 | -305.57 | 0.00 | 0.00% | — |
 | [TAMRON 20-40mm f/2.8 Di III VXD (A062)](../../src/lens-data/tamron/TamronA0622040mmf28DiIIIVXD.data.ts) | L9 | Biconcave Negative | -38.22 | -38.22 | 0.00 | 0.00% | — |
@@ -10509,9 +10886,11 @@ Sorted by absolute percentage difference, largest first.
 | [NIKON AF-S NIKKOR 180-400mm f/4 E TC1.4 FL ED VR](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14.data.ts) | L18 | Positive Meniscus | 307.62 | 307.62 | 0.00 | 0.00% | — |
 | [NIKON AF-S NIKKOR 180-400mm f/4 E TC1.4 FL ED VR — TC 1.4x Engaged](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14TCIn.data.ts) | L18 | Positive Meniscus | 307.62 | 307.62 | 0.00 | 0.00% | — |
 | [SIGMA 90mm f/2.8 DG DN \| Contemporary](../../src/lens-data/sigma/Sigma90mmf28DGDN.data.ts) | L33 | Positive Meniscus | 76.92 | 76.92 | 0.00 | 0.00% | — |
+| [YONGNUO YN 85mm f/1.8 S DF DSM](../../src/lens-data/yongnuo/YongnuoYN85mmf18SDFDSM.data.ts) | L33 | Positive Meniscus | 307.76 | 307.76 | 0.00 | 0.00% | — |
 | [NIKON AF-S NIKKOR 24-85mm f/3.5-4.5 G ED VR](../../src/lens-data/nikon/NikonAFSNikkor2485mmf3545GEDVR.data.ts) | L21b | Negative Meniscus | -19.24 | -19.24 | 0.00 | 0.00% | — |
 | [SIGMA 500mm f/4 DG OS HSM \| Sports](../../src/lens-data/sigma/Sigma500mmf4DGOSHSMsports.data.ts) | L8 | Biconvex Positive | 77.06 | 77.06 | 0.00 | 0.00% | — |
 | [OLYMPUS E.ZUIKO AUTO-T 200mm f/4](../../src/lens-data/olympus/OlympusEZuikoAutoT200mmf4.data.ts) | L3 | Biconcave Negative | -154.13 | -154.13 | 0.00 | 0.00% | — |
+| [PENTAX SMC TAKUMAR 6x7 300mm f/4](../../src/lens-data/pentax/PentaxSMCTakumar6x7300mmf4.data.ts) | L5 | Negative Meniscus | -154.25 | -154.25 | 0.00 | 0.00% | — |
 | [VOIGTLÄNDER TELOMAR 180mm f/5.5](../../src/lens-data/voigtlander/VoigtlanderTelomar180mmf55.data.ts) | L2 | Biconcave Negative | -77.16 | -77.16 | 0.00 | 0.00% | — |
 | [LEICA MACRO-ELMAR-M 90mm f/4](../../src/lens-data/leica/LeicaMacroElmarM90mmf4.data.ts) | L4 | Positive Meniscus | 154.32 | 154.32 | 0.00 | 0.00% | — |
 | [NIKON AF-S DX ZOOM-NIKKOR 18-70mm f/3.5-4.5 G IF-ED](../../src/lens-data/nikon/NikonAFSDXZoomNikkor1870mmf3545GIFED.data.ts) | L22 | Biconcave Negative | -19.29 | -19.29 | 0.00 | 0.00% | — |
@@ -10527,9 +10906,11 @@ Sorted by absolute percentage difference, largest first.
 | [VOIGTLÄNDER TELE-DYNAR 100mm f/6.3 (patent-normalized)](../../src/lens-data/voigtlander/VoigtlanderTeleDynar100mmf63.data.ts) | L5 | Biconvex Positive | 38.85 | 38.85 | 0.00 | 0.00% | — |
 | [SONY VARIO-TESSAR T* FE 24-70mm f/4 ZA OSS](../../src/lens-data/sony/SonyVarioTessarTFE2470mmF4ZAOSS.data.ts) | L11 | Neg. Meniscus (2× Asph) | -38.92 | -38.92 | 0.00 | 0.00% | — |
 | [KONICA ZOOM-HEXANON AR 35-70mm f/4](../../src/lens-data/konica/KonicaZoomHexanonAR3570mmf4.data.ts) | E8 | Biconvex Positive | 38.95 | 38.95 | 0.00 | 0.00% | — |
+| [PENTAX SMC DA* 55mm f/1.4 SDM](../../src/lens-data/pentax/PentaxDAStar55mmf14.data.ts) | L2 | Positive Meniscus | 77.92 | 77.92 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON XF 50mm f/2 R WR](../../src/lens-data/fujifilm/FujifilmFujinonXf50mmf2RWR.data.ts) | L31 | Biconcave Negative | -38.97 | -38.97 | 0.00 | 0.00% | — |
 | [NIKON 1 NIKKOR VR 10-30mm f/3.5-5.6 PD-ZOOM](../../src/lens-data/nikon/Nikon1NikkorVR1030mmf3556PDZoom.data.ts) | L23 | Negative Meniscus | -19.50 | -19.50 | 0.00 | 0.00% | — |
 | [NIKON AF-S DX ZOOM-NIKKOR 18-70mm f/3.5-4.5 G IF-ED](../../src/lens-data/nikon/NikonAFSDXZoomNikkor1870mmf3545GIFED.data.ts) | L51 | Positive Meniscus (concave to object) | 39.02 | 39.02 | 0.00 | 0.00% | — |
+| [PENTAX SMC M 28mm f/3.5](../../src/lens-data/pentax/PentaxM28mmf35.data.ts) | L3 | Biconvex Positive | 19.55 | 19.55 | 0.00 | 0.00% | — |
 | [NIKON AF-S VR NIKKOR 200mm f/2 G IF-ED](../../src/lens-data/nikon/NikonAFSVR200mmf2GIFED.data.ts) | L31 | Biconvex Positive | 78.30 | 78.30 | 0.00 | 0.00% | — |
 | [NIKON AF NIKKOR 35mm f/2 D](../../src/lens-data/nikon/NikonAFNikkor35mmf2D.data.ts) | L5 | Positive Meniscus | 39.28 | 39.28 | 0.00 | 0.00% | — |
 | [KONICA UC ZOOM HEXANON AR 80-200mm f/4](../../src/lens-data/konica/KonicaUCZoomHexanonAR80200mmf4.data.ts) | L1a | Negative Meniscus | -157.46 | -157.46 | 0.00 | 0.00% | — |
@@ -10550,6 +10931,7 @@ Sorted by absolute percentage difference, largest first.
 | [FUJIFILM FUJINON GF 32-90mm T3.5 PZ OIS WR](../../src/lens-data/fujifilm/FujifilmGF3290mmT35PZOISWR.data.ts) | L31 | Negative Meniscus | -39.79 | -39.79 | 0.00 | 0.00% | — |
 | [VILTROX AF 27mm f/1.2 PRO XF](../../src/lens-data/viltrox/ViltroxAF27mmf12XF.data.ts) | L54 | Neg. Meniscus (2× Asph) | -79.60 | -79.60 | 0.00 | 0.00% | — |
 | [SIGMA 90mm f/2.8 DG DN \| Contemporary](../../src/lens-data/sigma/Sigma90mmf28DGDN.data.ts) | L12 | Positive Meniscus | 79.65 | 79.65 | 0.00 | 0.00% | — |
+| [PENTAX SMC DA* 55mm f/1.4 SDM](../../src/lens-data/pentax/PentaxDAStar55mmf14.data.ts) | L3 | Negative Meniscus | -39.85 | -39.85 | 0.00 | 0.00% | — |
 | [OLYMPUS M.ZUIKO DIGITAL ED 14-42mm f/3.5-5.6](../../src/lens-data/olympus/OlympusMZuikoDigitalED1442mmf3556.data.ts) | L22 | Biconvex Positive | 19.96 | 19.96 | 0.00 | 0.00% | — |
 | [MINOLTA MC FISH-EYE ROKKOR-OK 16mm f/2.8](../../src/lens-data/minolta/MinoltaMCFishEyeRokkorOK16mmf28.data.ts) | G4 | Biconvex Positive | 40.08 | 40.08 | 0.00 | 0.00% | — |
 | [ZEISS OTUS ML 85mm f/1.4](../../src/lens-data/carl-zeiss-oberkochen/ZeissOtusML85mmf14.data.ts) | L10f | Positive Meniscus | 40.11 | 40.11 | 0.00 | 0.00% | — |
@@ -10558,6 +10940,7 @@ Sorted by absolute percentage difference, largest first.
 | [PENTAX SMC FA* 80-200mm f/2.8 ED [IF]](../../src/lens-data/pentax/PentaxFAStar80200mmF28EDIF.data.ts) | L15 | Negative Meniscus | -40.23 | -40.23 | 0.00 | 0.00% | — |
 | [OLYMPUS ZUIKO AUTO-T 180mm f/2](../../src/lens-data/olympus/OlympusZuikoAutoT180mmf2.data.ts) | L3 | Biconcave Negative | -80.52 | -80.52 | 0.00 | 0.00% | — |
 | [SIGMA 100-400mm f/5-6.3 DG OS HSM \| Contemporary](../../src/lens-data/sigma/Sigma100400mmf563DGOSHSMContemporary.data.ts) | L5 | Biconvex Positive | 161.11 | 161.11 | 0.00 | 0.00% | — |
+| [PENTAX SMC DA* 55mm f/1.4 SDM](../../src/lens-data/pentax/PentaxDAStar55mmf14.data.ts) | L5 | Biconcave Negative | -20.15 | -20.15 | 0.00 | 0.00% | — |
 | [PANASONIC LUMIX G VARIO 100-300mm f/4.0-5.6 MEGA O.I.S.](../../src/lens-data/panasonic/PanasonicLumixGVario100300mmf456MegaOIS.data.ts) | L12 | Negative Meniscus | -40.30 | -40.30 | 0.00 | 0.00% | — |
 | [CANON EF-S 18-135mm f/3.5-5.6 IS STM](../../src/lens-data/canon/CanonEFS18135mmf3556ISSTM.data.ts) | E8 | Biconvex Positive | 40.31 | 40.31 | 0.00 | 0.00% | — |
 | [KINOPTIK TEGEA 5.7mm f/1.8](../../src/lens-data/kinoptik/KinoptikTegea57mmf18.data.ts) | L5 | Positive Meniscus | 20.19 | 20.19 | 0.00 | 0.00% | — |
@@ -10565,8 +10948,11 @@ Sorted by absolute percentage difference, largest first.
 | [TAMRON 18-270mm f/3.5-6.3 Di II VC PZD (B008)](../../src/lens-data/tamron/TamronB00818270mmf3563DiIIVCPZD.data.ts) | L4 | Negative Meniscus | -20.20 | -20.20 | 0.00 | 0.00% | — |
 | [SIGMA 24-70mm f/3.5-5.6 ASPHERICAL HF](../../src/lens-data/sigma/Sigma2470mmf3556AsphericalHF.data.ts) | L7 | Biconvex Positive | 40.40 | 40.40 | 0.00 | 0.00% | — |
 | [SIGMA 24mm f/1.8 EX DG ASPHERICAL MACRO](../../src/lens-data/sigma/Sigma24mmf18EXDGAsphericalMacro.data.ts) | L8 | Biconcave Negative | -20.21 | -20.21 | 0.00 | 0.00% | — |
+| [CANON EF-S 60mm f/2.8 Macro USM](../../src/lens-data/canon/CanonEFS60mmf28MacroUSM.data.ts) | L7 | Biconvex Positive | 20.21 | 20.21 | 0.00 | 0.00% | — |
 | [SONY ZEISS VARIO-SONNAR T* 14.3-71.5mm f/2.8-4.8 (Sony Cyber-shot DSC-R1)](../../src/lens-data/sony/ZeissVarioSonnarT143715mmf2848SonyDCSR1.data.ts) | G3c | Composite Asphere Layer | -161.87 | -161.87 | 0.00 | 0.00% | — |
+| [CANON EF-S 60mm f/2.8 Macro USM](../../src/lens-data/canon/CanonEFS60mmf28MacroUSM.data.ts) | L5 | Negative Meniscus | -20.23 | -20.23 | 0.00 | 0.00% | — |
 | [LEICA SUMMICRON-C 40mm f/2](../../src/lens-data/leica/LeicaSummicronC40mmf2.data.ts) | L4 | Negative Meniscus | -40.67 | -40.67 | 0.00 | 0.00% | — |
+| [PENTAX DA 14mm f/2.8 ED [IF]](../../src/lens-data/pentax/PentaxDA14mmf28EDIF.data.ts) | L3 | Negative Meniscus | -40.68 | -40.68 | 0.00 | 0.00% | — |
 | [OLYMPUS ZUIKO AUTO-T 180mm f/2](../../src/lens-data/olympus/OlympusZuikoAutoT180mmf2.data.ts) | L4 | Positive Meniscus | 162.76 | 162.76 | 0.00 | 0.00% | — |
 | [CARL ZEISS JENA PI-FLEKTOGON 30mm f/2.8 (1975 e-line reconstruction)](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaPIFlektogon30mmf28Printed1975ELine.data.ts) | L7 | Biconvex Positive | 81.51 | 81.51 | 0.00 | 0.00% | — |
 | [SIGMA 100-400mm f/5-6.3 DG OS HSM \| Contemporary](../../src/lens-data/sigma/Sigma100400mmf563DGOSHSMContemporary.data.ts) | L3 | Biconvex Positive | 163.12 | 163.12 | 0.00 | 0.00% | — |
@@ -10578,16 +10964,19 @@ Sorted by absolute percentage difference, largest first.
 | [VOIGTLÄNDER DYNARON 100mm f/4.5](../../src/lens-data/voigtlander/VoigtlanderDynaron100mmf45.data.ts) | L5 | Biconcave Negative | -20.48 | -20.48 | 0.00 | 0.00% | — |
 | [LAOWA 55mm f/2.8 Tilt-Shift 1× Macro](../../src/lens-data/laowa/Laowa55mmf28TiltShift1xMacro.data.ts) | L6 | Biconcave Negative | -20.54 | -20.54 | 0.00 | 0.00% | — |
 | [CANON RF 14mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF14mmF14LVCM.data.ts) | L6 | Biconvex Positive | 20.57 | 20.57 | 0.00 | 0.00% | — |
+| [YONGNUO YN 85mm f/1.8 S DF DSM](../../src/lens-data/yongnuo/YongnuoYN85mmf18SDFDSM.data.ts) | L34 | Negative Meniscus | -82.38 | -82.38 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON XF 14mm f/2.8 R](../../src/lens-data/fujifilm/FujifilmFujinonXf14mmf28R.data.ts) | L12 | Neg. Meniscus (2× Asph) | -20.62 | -20.62 | 0.00 | 0.00% | — |
 | [SIGMA MACRO 70mm f/2.8 EX DG](../../src/lens-data/sigma/Sigma70mmf28EXDGMacro.data.ts) | E9 | Plano-Concave | -82.53 | -82.53 | 0.00 | 0.00% | — |
 | [SIGMA 500mm f/4 DG OS HSM \| Sports](../../src/lens-data/sigma/Sigma500mmf4DGOSHSMsports.data.ts) | L1 | Biconvex Positive | 330.50 | 330.50 | 0.00 | 0.00% | — |
 | [CANON EF-S 18-135mm f/3.5-5.6 IS STM](../../src/lens-data/canon/CanonEFS18135mmf3556ISSTM.data.ts) | E1 | Negative Meniscus | -165.36 | -165.36 | 0.00 | 0.00% | — |
 | [PENTAX SMC FA* 80-200mm f/2.8 ED [IF]](../../src/lens-data/pentax/PentaxFAStar80200mmF28EDIF.data.ts) | L6 | Biconcave Negative | -41.45 | -41.45 | 0.00 | 0.00% | — |
 | [NIKON AF-S NIKKOR 35mm f/1.8 G ED](../../src/lens-data/nikon/NikonAFSNikkor35mmf18GED.data.ts) | L14 | Biconvex Positive | 41.49 | 41.49 | 0.00 | 0.00% | — |
+| [FUJIFILM FUJINON XF 150-600mm f/5.6-8 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmXF150600mmf568RLMOISWR.data.ts) | L11 | Negative Meniscus | -332.21 | -332.21 | 0.00 | 0.00% | — |
 | [MEYER OPTIK GÖRLITZ LYDITH 30mm f/3.5](../../src/lens-data/meyer-optik-goerlitz/MeyerOptikGorlitz30mmf35Lydith.data.ts) | L3 | Positive Meniscus | 41.54 | 41.54 | 0.00 | 0.00% | — |
 | [NIKON PC-NIKKOR 35mm f/2.8](../../src/lens-data/nikon/NikonPCNikkor35mmf28.data.ts) | L7 | Positive Meniscus | 41.54 | 41.54 | 0.00 | 0.00% | — |
 | [VOIGTLÄNDER DYNARON 100mm f/4.5](../../src/lens-data/voigtlander/VoigtlanderDynaron100mmf45.data.ts) | L4 | Biconvex Positive | 83.09 | 83.09 | 0.00 | 0.00% | — |
 | [SIGMA 200mm f/2 DG OS \| Sports](../../src/lens-data/sigma/Sigma200mmf2DGOSSports.data.ts) | L10 | Biconcave Negative | -41.56 | -41.56 | 0.00 | 0.00% | — |
+| [SIGMA 500mm f/5.6 DG DN OS \| Sports](../../src/lens-data/sigma/Sigma500mmf56DGDNosSports.data.ts) | L17 | Biconvex Positive | 20.81 | 20.81 | 0.00 | 0.00% | — |
 | [SIGMA 18-35mm f/1.8 DC HSM \| Art](../../src/lens-data/sigma/Sigma1835mmf18DCHSMArt.data.ts) | L1 | Negative Meniscus (1× Asph) | -41.64 | -41.64 | 0.00 | 0.00% | — |
 | [TAMRON AF 18-270mm f/3.5-6.3 Di II VC LD ASPHERICAL [IF] MACRO (B003)](../../src/lens-data/tamron/TamronB00318270mmf3563DiIIVC.data.ts) | L6 | Biconvex Positive | 20.86 | 20.86 | 0.00 | 0.00% | — |
 | [P. ANGÉNIEUX DEM 180mm f/2.3 APO](../../src/lens-data/angenieux/AngenieuxDEM180mmf23APO.data.ts) | L3 | Plano-Concave Negative | -166.98 | -166.98 | 0.00 | 0.00% | — |
@@ -10611,9 +11000,11 @@ Sorted by absolute percentage difference, largest first.
 | [NIKON AF-S NIKKOR 24-85mm f/3.5-4.5 G ED VR](../../src/lens-data/nikon/NikonAFSNikkor2485mmf3545GEDVR.data.ts) | L33 | Biconvex Positive | 42.35 | 42.35 | 0.00 | 0.00% | — |
 | [THYPOCH SIMERA 50mm f/1.4 ASPH.](../../src/lens-data/thypoch/ThypochSimera50mmf14.data.ts) | L3 | Negative Meniscus | -21.18 | -21.18 | 0.00 | 0.00% | — |
 | [SCHNEIDER-KREUZNACH CINEGON 6.5mm f/1.9](../../src/lens-data/schneider-kreuznach/SchneiderCinegon1965.data.ts) | L7 | Biconcave Negative | -5.30 | -5.30 | 0.00 | 0.00% | — |
+| [PENTAX SMC TAKUMAR 6x7 300mm f/4](../../src/lens-data/pentax/PentaxSMCTakumar6x7300mmf4.data.ts) | L3 | Positive Meniscus | 339.59 | 339.59 | 0.00 | 0.00% | — |
 | [NIKON AF-S NIKKOR 180-400mm f/4 E TC1.4 FL ED VR](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14.data.ts) | L33 | Negative Meniscus | -170.00 | -170.00 | 0.00 | 0.00% | — |
 | [NIKON AF-S NIKKOR 180-400mm f/4 E TC1.4 FL ED VR — TC 1.4x Engaged](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14TCIn.data.ts) | L33 | Negative Meniscus | -170.00 | -170.00 | 0.00 | 0.00% | — |
 | [CANON TS-E 24mm f/3.5 L II](../../src/lens-data/canon/CanonTSE24mmf35LII.data.ts) | L14 | Negative Meniscus | -21.25 | -21.25 | 0.00 | 0.00% | — |
+| [CANON RF 85mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF85mmf14LVCM.data.ts) | L6 | Biconcave Negative | -42.54 | -42.54 | 0.00 | 0.00% | — |
 | [LEICA SUMMILUX-M 35mm f/1.4](../../src/lens-data/leica/LeicaSummilux35mmf14.data.ts) | L7 | Positive Meniscus | 42.55 | 42.55 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON XF 14mm f/2.8 R](../../src/lens-data/fujifilm/FujifilmFujinonXf14mmf28R.data.ts) | L32 | Positive Meniscus | 21.28 | 21.28 | 0.00 | 0.00% | — |
 | [NIKON AF-S NIKKOR 300mm f/4 E PF ED VR](../../src/lens-data/nikon/NikonAFSNIKKOR300mmf4EPFEDVR.data.ts) | L15 | Negative Meniscus | -85.13 | -85.13 | 0.00 | 0.00% | — |
@@ -10624,25 +11015,33 @@ Sorted by absolute percentage difference, largest first.
 | [NIKON NEW NIKKOR 35mm f/2.8](../../src/lens-data/nikon/NikonNikkor35mmf28.data.ts) | L1 | Negative Meniscus | -42.71 | -42.71 | 0.00 | 0.00% | — |
 | [KODAK EKTAR 52mm f/1.5](../../src/lens-data/kodak/KodakEktar52mmf15.data.ts) | V | Biconvex Positive | 21.37 | 21.37 | 0.00 | 0.00% | — |
 | [TAMRON SP 70-150mm f/2.8 SOFT (51A)](../../src/lens-data/tamron/TamronSP70150mmf28Soft51A.data.ts) | Z3 | Meniscus Positive | 171.08 | 171.08 | 0.00 | 0.00% | — |
+| [CANON EF-S 60mm f/2.8 Macro USM](../../src/lens-data/canon/CanonEFS60mmf28MacroUSM.data.ts) | L6 | Biconcave Negative | -21.39 | -21.39 | 0.00 | 0.00% | — |
 | [NIKON AF-S NIKKOR 300mm f/4 E PF ED VR](../../src/lens-data/nikon/NikonAFSNIKKOR300mmf4EPFEDVR.data.ts) | L29 | Negative Meniscus | -85.69 | -85.69 | 0.00 | 0.00% | — |
 | [NIKON NIKKOR AUTO 28mm f/2.8](../../src/lens-data/nikon/NikonNewNikkorAuto28mmf28.data.ts) | L4 | Biconvex Positive | 21.42 | 21.42 | 0.00 | 0.00% | — |
+| [FUJIFILM FUJINON XF 150-600mm f/5.6-8 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmXF150600mmf568RLMOISWR.data.ts) | L22 | Biconcave Negative | -85.70 | -85.70 | 0.00 | 0.00% | — |
+| [SIGMA 500mm f/5.6 DG DN OS \| Sports](../../src/lens-data/sigma/Sigma500mmf56DGDNosSports.data.ts) | L11 | Biconvex Positive | 42.85 | 42.85 | 0.00 | 0.00% | — |
 | [SIGMA 100-400mm f/5-6.3 DG OS HSM \| Contemporary](../../src/lens-data/sigma/Sigma100400mmf563DGOSHSMContemporary.data.ts) | L13 | Positive Meniscus | 85.84 | 85.84 | 0.00 | 0.00% | — |
 | [VOIGTLÄNDER TELOMAR 100mm f/5.5](../../src/lens-data/voigtlander/VoigtlanderTelomar100mmf55.data.ts) | L3 | Biconvex Positive | 85.88 | 85.88 | 0.00 | 0.00% | — |
 | [SIGMA 200mm f/2 DG OS \| Sports](../../src/lens-data/sigma/Sigma200mmf2DGOSSports.data.ts) | L3 | Negative Meniscus | -171.81 | -171.81 | 0.00 | 0.00% | — |
+| [P. ANGÉNIEUX RETROFOCUS TYPE R61 24mm f/3.5](../../src/lens-data/angenieux/AngenieuxRetrofocusR6124mmf35.data.ts) | L8 | Biconvex Positive | 21.49 | 21.49 | 0.00 | 0.00% | — |
 | [LEICA SUMMILUX-M 35mm f/1.4](../../src/lens-data/leica/LeicaSummilux35mmf14.data.ts) | L5 | Negative Meniscus | -21.50 | -21.50 | 0.00 | 0.00% | — |
 | [NIKON AF-S DX NIKKOR 10-24mm f/3.5-4.5 G ED](../../src/lens-data/nikon/NikonAFSDXNikkor1024mmf3545GED.data.ts) | L1 | Neg. Meniscus (2× Asph) | -21.55 | -21.55 | 0.00 | 0.00% | — |
 | [CANON FL-F 300mm f/5.6](../../src/lens-data/canon/CanonFLF300mmf56.data.ts) | L3 | Positive Meniscus | 345.35 | 345.35 | 0.00 | 0.00% | — |
 | [SIGMA 85mm f/1.4 EX DG HSM](../../src/lens-data/sigma/Sigma85mmf14EXDGHSM.data.ts) | E1 | Positive Meniscus | 345.98 | 345.98 | 0.00 | 0.00% | — |
 | [SIGMA 100-400mm f/5-6.3 DG OS HSM \| Contemporary](../../src/lens-data/sigma/Sigma100400mmf563DGOSHSMContemporary.data.ts) | L20 | Biconcave Negative | -43.38 | -43.38 | 0.00 | 0.00% | — |
 | [CANON EF 400mm f/2.8 L IS III USM](../../src/lens-data/canon/CanonEF400mmf28LISIIIUSM.data.ts) | L3C-3 | Negative Meniscus | -86.94 | -86.94 | 0.00 | 0.00% | — |
+| [CANON EF-S 60mm f/2.8 Macro USM](../../src/lens-data/canon/CanonEFS60mmf28MacroUSM.data.ts) | L10 | Biconcave Negative | -21.74 | -21.74 | 0.00 | 0.00% | — |
 | [VOIGTLÄNDER TELE-DYNAR 100mm f/6.3 (patent-normalized)](../../src/lens-data/voigtlander/VoigtlanderTeleDynar100mmf63.data.ts) | L1 | Biconvex Positive | 21.77 | 21.77 | 0.00 | 0.00% | — |
 | [NIKON AF-S NIKKOR 180-400mm f/4 E TC1.4 FL ED VR — TC 1.4x Engaged](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14TCIn.data.ts) | Lx6 | Biconcave Negative | -21.80 | -21.80 | 0.00 | 0.00% | — |
 | [LAOWA 55mm f/2.8 Tilt-Shift 1× Macro](../../src/lens-data/laowa/Laowa55mmf28TiltShift1xMacro.data.ts) | L13 | Positive Meniscus | 43.67 | 43.67 | 0.00 | 0.00% | — |
+| [PENTAX SUPER-TAKUMAR 300mm f/4](../../src/lens-data/pentax/PentaxSuperTakumar300mmf4.data.ts) | L4 | Biconcave Negative | -43.69 | -43.69 | 0.00 | 0.00% | — |
 | [CARL ZEISS JENA BIOTAR 50mm f/1.4](../../src/lens-data/carl-zeiss-jena/ZeissBiotar50mmf14.data.ts) | L5 | Biconvex Positive | 21.92 | 21.92 | 0.00 | 0.00% | — |
 | [VILTROX MF 20mm f/1.8](../../src/lens-data/viltrox/ViltroxMF20mmf18FE.data.ts) | L11 | Negative Meniscus | -87.70 | -87.70 | 0.00 | 0.00% | — |
+| [PENTAX SMC M 28mm f/3.5](../../src/lens-data/pentax/PentaxM28mmf35.data.ts) | L6 | Positive Meniscus | 43.85 | 43.85 | 0.00 | 0.00% | — |
 | [VILTROX AF 27mm f/1.2 PRO XF](../../src/lens-data/viltrox/ViltroxAF27mmf12XF.data.ts) | L11 | Positive Meniscus | 87.78 | 87.78 | 0.00 | 0.00% | — |
 | [PENTAX SMC FA 20-35mm f/4 AL](../../src/lens-data/pentax/PentaxFA2035mmF4AL.data.ts) | L10 | Positive Meniscus (1× Asph) | 43.95 | 43.95 | 0.00 | 0.00% | — |
 | [FUJIFILM SUPER EBC FUJINON 7.1-28.4mm f/2-2.8 (Fujifilm X10)](../../src/lens-data/fujifilm/FujifilmX1071284mmf228.data.ts) | L21 | Negative Meniscus | -10.99 | -10.99 | 0.00 | 0.00% | — |
+| [OM SYSTEM M.ZUIKO DIGITAL ED 20mm f/1.4 PRO](../../src/lens-data/olympus/OMSystem20mmF14PRO.data.ts) | L6 | Biconvex Positive (1× Asph) | 21.99 | 21.99 | 0.00 | 0.00% | — |
 | [NIKON AF-S DX NIKKOR 10-24mm f/3.5-4.5 G ED](../../src/lens-data/nikon/NikonAFSDXNikkor1024mmf3545GED.data.ts) | L4 | Positive Meniscus | 22.03 | 22.03 | 0.00 | 0.00% | — |
 | [TAMRON 18-400mm f/3.5-6.3 Di II VC HLD](../../src/lens-data/tamron/TamronB02818400mmf3563.data.ts) | L1 | Negative Meniscus | -176.38 | -176.38 | 0.00 | 0.00% | — |
 | [VIVITAR SERIES 1 90mm f/2.5 MACRO](../../src/lens-data/vivitar/VivitarSeries190mmf25Macro.data.ts) | L6 | Biconvex Positive | 88.22 | 88.22 | 0.00 | 0.00% | — |
@@ -10658,16 +11057,19 @@ Sorted by absolute percentage difference, largest first.
 | [NIKON AF-S NIKKOR 180-400mm f/4 E TC1.4 FL ED VR](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14.data.ts) | L41 | Negative Meniscus | -89.10 | -89.10 | 0.00 | 0.00% | — |
 | [NIKON AF-S NIKKOR 180-400mm f/4 E TC1.4 FL ED VR — TC 1.4x Engaged](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14TCIn.data.ts) | L41 | Negative Meniscus | -89.10 | -89.10 | 0.00 | 0.00% | — |
 | [NIKON AF-S DX ZOOM-NIKKOR 18-70mm f/3.5-4.5 G IF-ED](../../src/lens-data/nikon/NikonAFSDXZoomNikkor1870mmf3545GIFED.data.ts) | L24 | Negative Meniscus (concave to object) | -44.58 | -44.58 | 0.00 | 0.00% | — |
+| [PENTAX SMC M 28mm f/3.5](../../src/lens-data/pentax/PentaxM28mmf35.data.ts) | L2 | Negative Meniscus | -22.30 | -22.30 | 0.00 | 0.00% | — |
 | [SIGMA 24mm f/1.8 EX DG ASPHERICAL MACRO](../../src/lens-data/sigma/Sigma24mmf18EXDGAsphericalMacro.data.ts) | L9 | Positive Meniscus | 89.22 | 89.22 | 0.00 | 0.00% | — |
 | [CANON EF 300mm f/4 L IS USM](../../src/lens-data/canon/CanonEF300mmf4LISUSM.data.ts) | E7 | Biconcave Negative | -89.24 | -89.24 | 0.00 | 0.00% | — |
 | [NIKON AF-S DX NIKKOR 10-24mm f/3.5-4.5 G ED](../../src/lens-data/nikon/NikonAFSDXNikkor1024mmf3545GED.data.ts) | L5 | Negative Meniscus | -22.33 | -22.33 | 0.00 | 0.00% | — |
 | [SIGMA 70mm f/2.8 DG MACRO \| Art](../../src/lens-data/sigma/Sigma70mmf28DGMacroArt.data.ts) | L5 | Biconvex Positive | 89.35 | 89.35 | 0.00 | 0.00% | — |
+| [SIGMA 500mm f/5.6 DG DN OS \| Sports](../../src/lens-data/sigma/Sigma500mmf56DGDNosSports.data.ts) | L13 | Biconcave Negative | -44.72 | -44.72 | 0.00 | 0.00% | — |
 | [NIKON AF-S NIKKOR 180-400mm f/4 E TC1.4 FL ED VR](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14.data.ts) | L14 | Negative Meniscus | -178.90 | -178.90 | 0.00 | 0.00% | — |
 | [NIKON AF-S NIKKOR 180-400mm f/4 E TC1.4 FL ED VR — TC 1.4x Engaged](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14TCIn.data.ts) | L14 | Negative Meniscus | -178.90 | -178.90 | 0.00 | 0.00% | — |
 | [NIKON AF-S NIKKOR 800mm f/5.6 E FL ED VR](../../src/lens-data/nikon/NikonAFSNikkor800mmf56EFLEDVR.data.ts) | L11 | Biconvex Positive | 178.99 | 178.99 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON XF 50mm f/2 R WR](../../src/lens-data/fujifilm/FujifilmFujinonXf50mmf2RWR.data.ts) | L32 | Biconvex Positive | 22.38 | 22.38 | 0.00 | 0.00% | — |
 | [NIKON AF ZOOM-NIKKOR 28-200mm f/3.5-5.6 G IF-ED](../../src/lens-data/nikon/NikonAFZoomNikkor28200mmf3556GIFED.data.ts) | L23 | Biconvex Positive | 22.40 | 22.40 | 0.00 | 0.00% | — |
 | [PANASONIC LEICA DG MACRO-ELMARIT 45mm f/2.8 ASPH. MEGA O.I.S.](../../src/lens-data/panasonic/PanasonicLeicaDGMacroElmarit45mmF28ASPHMegaOIS.data.ts) | L2 | Negative Meniscus | -44.81 | -44.81 | 0.00 | 0.00% | — |
+| [PENTAX SMC M 135mm f/3.5](../../src/lens-data/pentax/PentaxM135mmf35.data.ts) | L3 | Positive Meniscus | 89.67 | 89.67 | 0.00 | 0.00% | — |
 | [CANON EF 35mm f/2](../../src/lens-data/canon/CanonEF35mmf2.data.ts) | L7 | Biconvex Positive | 44.87 | 44.87 | 0.00 | 0.00% | — |
 | [OLYMPUS M.ZUIKO DIGITAL ED 12-50mm f/3.5-6.3 EZ](../../src/lens-data/olympus/OlympusMZuiko1250mmf3563EZ.data.ts) | L4 | Negative Meniscus | -44.91 | -44.91 | 0.00 | 0.00% | — |
 | [MAMIYA-SEKOR SFC 150mm f/4 SOFT FOCUS](../../src/lens-data/mamiya/MamiyaSekorSFC150mmf4SoftFocus.data.ts) | L4 | Biconvex Positive | 22.47 | 22.47 | 0.00 | 0.00% | — |
@@ -10695,6 +11097,7 @@ Sorted by absolute percentage difference, largest first.
 | [OLYMPUS M.ZUIKO DIGITAL ED 14-42mm f/3.5-5.6](../../src/lens-data/olympus/OlympusMZuikoDigitalED1442mmf3556.data.ts) | L24 | Positive Meniscus | 45.39 | 45.39 | 0.00 | 0.00% | — |
 | [CANON EF-S 55-250mm f/4-5.6 IS](../../src/lens-data/canon/CanonEFS55250mmf456IS.data.ts) | L35 | Negative Meniscus | -45.41 | -45.41 | 0.00 | 0.00% | — |
 | [SIGMA 90mm f/2.8 DG DN \| Contemporary](../../src/lens-data/sigma/Sigma90mmf28DGDN.data.ts) | L22 | Biconvex Positive (2× Asph) | 45.45 | 45.45 | 0.00 | 0.00% | — |
+| [P. ANGÉNIEUX RETROFOCUS TYPE R61 24mm f/3.5](../../src/lens-data/angenieux/AngenieuxRetrofocusR6124mmf35.data.ts) | L5 | Biconvex Positive | 45.45 | 45.45 | 0.00 | 0.00% | — |
 | [PENTAX SUPER-TAKUMAR 50mm f/1.4 (8-element)](../../src/lens-data/pentax/PentaxSuperTakumar50mmf14EightElement.data.ts) | L1 | Positive Meniscus | 90.91 | 90.91 | 0.00 | 0.00% | — |
 | [SIGMA 28mm f/1.8 EX DG ASPHERICAL MACRO](../../src/lens-data/sigma/Sigma28mmf18EXDGAsphericalMacro.data.ts) | L5 | Positive Meniscus | 91.04 | 91.04 | 0.00 | 0.00% | — |
 | [CANON FL-F 300mm f/5.6](../../src/lens-data/canon/CanonFLF300mmf56.data.ts) | L2 | Positive Meniscus | 182.09 | 182.09 | 0.00 | 0.00% | — |
@@ -10713,6 +11116,7 @@ Sorted by absolute percentage difference, largest first.
 | [SIGMA 17mm f/4 DG DN \| Contemporary](../../src/lens-data/sigma/Sigma17mmf4DGDNContemporary.data.ts) | L1 | Negative Meniscus (2x Asph) | -45.88 | -45.88 | 0.00 | 0.00% | — |
 | [SONY E 55-210mm f/4.5-6.3 OSS](../../src/lens-data/sony/SonyE55210mmf4563OSS.data.ts) | E12 | Biconvex Positive | 22.94 | 22.94 | 0.00 | 0.00% | — |
 | [CANON EF 35mm f/1.4 L USM](../../src/lens-data/canon/CanonEF35mmf14LUSM.data.ts) | E8 | Biconcave Negative | -22.95 | -22.95 | 0.00 | 0.00% | — |
+| [PENTAX DA 14mm f/2.8 ED [IF]](../../src/lens-data/pentax/PentaxDA14mmf28EDIF.data.ts) | L12 | Biconvex Positive | 45.91 | 45.91 | 0.00 | 0.00% | — |
 | [PENTAX SMC FA 20-35mm f/4 AL](../../src/lens-data/pentax/PentaxFA2035mmF4AL.data.ts) | L2R | Negative Meniscus (1× Asph) | -183.77 | -183.77 | 0.00 | 0.00% | — |
 | [LAOWA 90mm f/2.8 2× Ultra Macro APO](../../src/lens-data/laowa/Laowa90mmf28UltraMacroAPO.data.ts) | L10 | Biconcave Negative | -22.99 | -22.99 | 0.00 | 0.00% | — |
 | [VOIGTLÄNDER DYNAR 100mm f/6](../../src/lens-data/voigtlander/VoigtlanderDynarF6.data.ts) | L5 | Biconvex Positive | 22.99 | 22.99 | 0.00 | 0.00% | — |
@@ -10726,6 +11130,7 @@ Sorted by absolute percentage difference, largest first.
 | [CANON EF-S 18-135mm f/3.5-5.6 IS STM](../../src/lens-data/canon/CanonEFS18135mmf3556ISSTM.data.ts) | E14 | Positive Meniscus | 23.17 | 23.17 | 0.00 | 0.00% | — |
 | [VILTROX AF 50mm f/1.4 PRO](../../src/lens-data/viltrox/ViltroxAF50mmf14Pro.data.ts) | L10 | Biconvex Positive (2× Asph) | 46.37 | 46.37 | 0.00 | 0.00% | — |
 | [OLYMPUS ZUIKO AUTO-T 180mm f/2](../../src/lens-data/olympus/OlympusZuikoAutoT180mmf2.data.ts) | L9 | Biconcave Negative | -46.39 | -46.39 | 0.00 | 0.00% | — |
+| [PENTAX SMC M* 300mm f/4](../../src/lens-data/pentax/PentaxMStar300mmf4.data.ts) | L3 | Biconcave Negative | -92.90 | -92.90 | 0.00 | 0.00% | — |
 | [ZEISS OTUS ML 85mm f/1.4](../../src/lens-data/carl-zeiss-oberkochen/ZeissOtusML85mmf14.data.ts) | L9f | Negative Meniscus | -46.47 | -46.47 | 0.00 | 0.00% | — |
 | [NIKON AF-S VR NIKKOR 200mm f/2 G IF-ED](../../src/lens-data/nikon/NikonAFSVR200mmf2GIFED.data.ts) | L33 | Biconvex Positive | 93.01 | 93.01 | 0.00 | 0.00% | — |
 | [LEICA SUMMILUX-TL 35mm f/1.4 ASPH.](../../src/lens-data/leica/LeicaSummiluxTL35mmf14Asph.data.ts) | L17 | Biconvex Positive | 23.25 | 23.25 | 0.00 | 0.00% | — |
@@ -10744,6 +11149,8 @@ Sorted by absolute percentage difference, largest first.
 | [NIKON 1 NIKKOR VR 10-30mm f/3.5-5.6 PD-ZOOM](../../src/lens-data/nikon/Nikon1NikkorVR1030mmf3556PDZoom.data.ts) | L31 | Neg. Meniscus (2× Asph) | -23.48 | -23.48 | 0.00 | 0.00% | — |
 | [SIGMA 28mm f/1.8 EX DG ASPHERICAL MACRO](../../src/lens-data/sigma/Sigma28mmf18EXDGAsphericalMacro.data.ts) | L9 | Positive Meniscus | 94.09 | 94.09 | 0.00 | 0.00% | — |
 | [SCHNEIDER-KREUZNACH CINELUX PREMIÈRE 35mm f/1.7](../../src/lens-data/schneider-kreuznach/SchneiderCineluxPremiere35mmf17.data.ts) | 26 | Biconcave Negative | -23.55 | -23.55 | 0.00 | 0.00% | — |
+| [YONGNUO YN 85mm f/1.8 S DF DSM](../../src/lens-data/yongnuo/YongnuoYN85mmf18SDFDSM.data.ts) | L31 | Positive Meniscus | 47.11 | 47.11 | 0.00 | 0.00% | — |
+| [SIGMA 500mm f/5.6 DG DN OS \| Sports](../../src/lens-data/sigma/Sigma500mmf56DGDNosSports.data.ts) | L5 | Biconcave Negative | -94.28 | -94.28 | 0.00 | 0.00% | — |
 | [MINOLTA MD 28mm f/2.8 (5 elements / 5 groups)](../../src/lens-data/minolta/Minolta28mmf28MDv2.data.ts) | L5 | Positive Meniscus | 47.18 | 47.18 | 0.00 | 0.00% | — |
 | [NIKON ZOOM-NIKKOR 28-45mm f/4.5](../../src/lens-data/nikon/NikonZoomNikkor2845mmf45.data.ts) | L8 | Biconcave Negative | -11.81 | -11.81 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON GF 32-90mm T3.5 PZ OIS WR](../../src/lens-data/fujifilm/FujifilmGF3290mmT35PZOISWR.data.ts) | L53 | Biconvex Positive | 47.23 | 47.23 | 0.00 | 0.00% | — |
@@ -10765,6 +11172,8 @@ Sorted by absolute percentage difference, largest first.
 | [CANON EF 300mm f/4 L IS USM](../../src/lens-data/canon/CanonEF300mmf4LISUSM.data.ts) | E10 | Biconvex Positive | 47.83 | 47.83 | 0.00 | 0.00% | — |
 | [LEICA SUMMILUX-M 35mm f/1.4 ASPHERICAL](../../src/lens-data/leica/LeicaSummiluxM35mmf14Aspherical.data.ts) | L3 | Biconvex Positive (1× Asph) | 23.92 | 23.92 | 0.00 | 0.00% | — |
 | [CANON EF-S 55-250mm f/4-5.6 IS](../../src/lens-data/canon/CanonEFS55250mmf456IS.data.ts) | L13 | Positive Meniscus | 95.76 | 95.76 | 0.00 | 0.00% | — |
+| [CANON RF 85mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF85mmf14LVCM.data.ts) | L2 | Positive Meniscus | 95.79 | 95.79 | 0.00 | 0.00% | — |
+| [OLYMPUS F.ZUIKO AUTO-T 300mm f/4.5](../../src/lens-data/olympus/OlympusFZuikoAutoT300mmf45.data.ts) | L3b | Biconcave Negative | -191.70 | -191.70 | 0.00 | 0.00% | — |
 | [OLYMPUS ZUIKO DIGITAL ED 300mm f/2.8](../../src/lens-data/olympus/OlympusZuikoDigitalED300mmf28.data.ts) | L2 | Biconvex Positive | 191.77 | 191.77 | 0.00 | 0.00% | — |
 | [LEICA NOCTILUX-M 35mm f/1.2 ASPH.](../../src/lens-data/leica/LeicaNoctiluxM35mmf12ASPH.data.ts) | L2 | Biconvex Positive | 23.98 | 23.98 | 0.00 | 0.00% | — |
 | [CANON EF 50mm f/2.5 Compact Macro](../../src/lens-data/canon/CanonEF50mmf25CompactMacro.data.ts) | L4 | Positive Meniscus | 95.97 | 95.97 | 0.00 | 0.00% | — |
@@ -10785,6 +11194,8 @@ Sorted by absolute percentage difference, largest first.
 | [SIGMA 18-50mm f/2.8-4.5 DC OS HSM](../../src/lens-data/sigma/Sigma1850mmf2845DCOSHSM.data.ts) | L3 | Biconcave Negative | -97.85 | -97.85 | 0.00 | 0.00% | — |
 | [NIKON AF-S NIKKOR 180-400mm f/4 E TC1.4 FL ED VR](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14.data.ts) | L31 | Positive Meniscus | 391.59 | 391.59 | 0.00 | 0.00% | — |
 | [NIKON AF-S NIKKOR 180-400mm f/4 E TC1.4 FL ED VR — TC 1.4x Engaged](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14TCIn.data.ts) | L31 | Positive Meniscus | 391.59 | 391.59 | 0.00 | 0.00% | — |
+| [YONGNUO YN 85mm f/1.8 S DF DSM](../../src/lens-data/yongnuo/YongnuoYN85mmf18SDFDSM.data.ts) | L12 | Positive Meniscus | 98.07 | 98.07 | 0.00 | 0.00% | — |
+| [PENTAX SMC M 120mm f/2.8](../../src/lens-data/pentax/PentaxM120mmf28.data.ts) | L5 | Negative Meniscus | -49.05 | -49.05 | 0.00 | 0.00% | — |
 | [LEICA NOCTILUX-M 35mm f/1.2 ASPH.](../../src/lens-data/leica/LeicaNoctiluxM35mmf12ASPH.data.ts) | L7 | Biconvex Positive (1× Asph) | 24.53 | 24.53 | 0.00 | 0.00% | — |
 | [KONICA UC ZOOM HEXANON AR 80-200mm f/4](../../src/lens-data/konica/KonicaUCZoomHexanonAR80200mmf4.data.ts) | L9 | Biconcave Negative | -24.56 | -24.56 | 0.00 | 0.00% | — |
 | [TAMRON SP 70-150mm f/2.8 SOFT (51A)](../../src/lens-data/tamron/TamronSP70150mmf28Soft51A.data.ts) | Z9 | Biconvex Positive | 98.44 | 98.44 | 0.00 | 0.00% | — |
@@ -10803,16 +11214,19 @@ Sorted by absolute percentage difference, largest first.
 | [HASSELBLAD HC 35mm f/3.5](../../src/lens-data/hasselblad/HasselbladHC3535Fujinon.data.ts) | L7 | Positive Meniscus | 99.56 | 99.56 | 0.00 | 0.00% | — |
 | [TAMRON SP 70-150mm f/2.8 SOFT (51A)](../../src/lens-data/tamron/TamronSP70150mmf28Soft51A.data.ts) | Z5 | Meniscus Positive | 99.73 | 99.73 | 0.00 | 0.00% | — |
 | [TAMRON 20-40mm f/2.8 Di III VXD (A062)](../../src/lens-data/tamron/TamronA0622040mmf28DiIIIVXD.data.ts) | L1 | Negative Meniscus | -49.90 | -49.90 | 0.00 | 0.00% | — |
+| [SIGMA 30mm f/2.8 DN \| Art](../../src/lens-data/sigma/Sigma30mmf28DNArt.data.ts) | L7 | Biconvex Positive | 49.91 | 49.91 | 0.00 | 0.00% | — |
 | [MEYER OPTIK GÖRLITZ DOUBLE-PLASMAT 135mm f/4.5 (patent model)](../../src/lens-data/meyer-optik-goerlitz/MeyerOptikGorlitz135mmf45DoublePlasmat.data.ts) | L3′ | Biconvex Positive | 49.94 | 49.94 | 0.00 | 0.00% | — |
 | [MEYER OPTIK GÖRLITZ DOUBLE-PLASMAT 135mm f/4.5 (patent model)](../../src/lens-data/meyer-optik-goerlitz/MeyerOptikGorlitz135mmf45DoublePlasmat.data.ts) | L3 | Biconvex Positive | 49.94 | 49.94 | 0.00 | 0.00% | — |
 | [CANON RF 14mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF14mmF14LVCM.data.ts) | L10 | Biconvex Positive | 24.97 | 24.97 | 0.00 | 0.00% | — |
 | [NIKON AF-S DX MICRO-NIKKOR 85mm f/3.5 G ED VR](../../src/lens-data/nikon/NikonAFSDXMicroNikkor85mmf35GEDVR.data.ts) | L12 | Positive Meniscus | 99.95 | 99.95 | 0.00 | 0.00% | — |
+| [PENTAX SMC TAKUMAR 6x7 300mm f/4](../../src/lens-data/pentax/PentaxSMCTakumar6x7300mmf4.data.ts) | L1 | Biconvex Positive | 200.01 | 200.01 | 0.00 | 0.00% | — |
 | [TAMRON AF 18-250mm f/3.5-6.3 Di II LD Aspherical [IF] MACRO (A18)](../../src/lens-data/tamron/TamronA1818250mmf3563DiII.data.ts) | L5 | Biconcave Negative | -25.10 | -25.10 | 0.00 | 0.00% | — |
 | [CANON EF 35mm f/1.4 L II USM](../../src/lens-data/canon/CanonEF35mmf14LIIUSM.data.ts) | E8 | Biconvex Positive | 50.24 | 50.24 | 0.00 | 0.00% | — |
 | [PENTAX SMC FA* 80-200mm f/2.8 ED [IF]](../../src/lens-data/pentax/PentaxFAStar80200mmF28EDIF.data.ts) | L7 | Positive Meniscus | 50.32 | 50.32 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON XC 13-33mm f/3.5-6.3 OIS](../../src/lens-data/fujifilm/FujifilmFujinonXC1333mmf3563OIS.data.ts) | L23 | Biconvex Positive | 12.58 | 12.58 | 0.00 | 0.00% | — |
 | [CANON EF 35mm f/2](../../src/lens-data/canon/CanonEF35mmf2.data.ts) | L5 | Biconcave Negative | -50.34 | -50.34 | 0.00 | 0.00% | — |
 | [ZEISS OTUS ML 85mm f/1.4](../../src/lens-data/carl-zeiss-oberkochen/ZeissOtusML85mmf14.data.ts) | L6f | Positive Meniscus | 101.02 | 101.02 | 0.00 | 0.00% | — |
+| [VOIGTLÄNDER NOKTON 23mm f/1.2 Aspherical X-Mount](../../src/lens-data/voigtlander/VoigtlanderNokton23mmf12X.data.ts) | L2f | Negative Meniscus | -101.12 | -101.12 | 0.00 | 0.00% | — |
 | [CANON EF 400mm f/4 DO IS USM](../../src/lens-data/canon/CanonEF400mmf4DOISUSM.data.ts) | L5 | Positive Meniscus | 202.34 | 202.34 | 0.00 | 0.00% | — |
 | [P. ANGÉNIEUX RETROFOCUS TYPE R1 35mm f/2.5](../../src/lens-data/angenieux/AngenieuxRetrofocusR135mmf25.data.ts) | L2 | Biconvex Positive | 50.62 | 50.62 | 0.00 | 0.00% | — |
 | [LEICA SUMMICRON-C 40mm f/2](../../src/lens-data/leica/LeicaSummicronC40mmf2.data.ts) | L1 | Positive Meniscus | 50.63 | 50.63 | 0.00 | 0.00% | — |
@@ -10845,6 +11259,7 @@ Sorted by absolute percentage difference, largest first.
 | [SIGMA 70mm f/2.8 DG MACRO \| Art](../../src/lens-data/sigma/Sigma70mmf28DGMacroArt.data.ts) | L7 | Biconcave Negative | -25.95 | -25.95 | 0.00 | 0.00% | — |
 | [PENTAX SMC FA 20-35mm f/4 AL](../../src/lens-data/pentax/PentaxFA2035mmF4AL.data.ts) | L7 | Biconvex Positive | 25.97 | 25.97 | 0.00 | 0.00% | — |
 | [NIKON AF-S NIKKOR 800mm f/5.6 E FL ED VR](../../src/lens-data/nikon/NikonAFSNikkor800mmf56EFLEDVR.data.ts) | L7 | Positive Meniscus, concave to object | 103.94 | 103.94 | 0.00 | 0.00% | — |
+| [P. ANGÉNIEUX RETROFOCUS TYPE R61 24mm f/3.5](../../src/lens-data/angenieux/AngenieuxRetrofocusR6124mmf35.data.ts) | L1 | Negative Meniscus | -103.95 | -103.95 | 0.00 | 0.00% | — |
 | [VILTROX AF 50mm f/1.8 FE](../../src/lens-data/viltrox/ViltroxAF50mmf18FE.data.ts) | L23 | Biconvex Positive (2× Asph) | 26.02 | 26.02 | 0.00 | 0.00% | — |
 | [CANON CINE-SERVO 17-120mm T2.95-3.9 (CN7×17 KAS S/E1)](../../src/lens-data/canon/CanonCINESERVO17120mmT29539EF.data.ts) | L10 | Biconvex Positive | 104.14 | 104.14 | 0.00 | 0.00% | — |
 | [CANON EF 400mm f/2.8 L IS III USM](../../src/lens-data/canon/CanonEF400mmf28LISIIIUSM.data.ts) | L3B-2 | Biconcave Negative | -52.07 | -52.07 | 0.00 | 0.00% | — |
@@ -10867,9 +11282,11 @@ Sorted by absolute percentage difference, largest first.
 | [P. ANGÉNIEUX DEM 180mm f/2.3 APO](../../src/lens-data/angenieux/AngenieuxDEM180mmf23APO.data.ts) | L4 | Negative Meniscus | -53.27 | -53.27 | 0.00 | 0.00% | — |
 | [PANASONIC LEICA DG MACRO-ELMARIT 45mm f/2.8 ASPH. MEGA O.I.S.](../../src/lens-data/panasonic/PanasonicLeicaDGMacroElmarit45mmF28ASPHMegaOIS.data.ts) | L9 | Negative Meniscus | -26.64 | -26.64 | 0.00 | 0.00% | — |
 | [P. ANGÉNIEUX RETROFOCUS TYPE R1 35mm f/2.5](../../src/lens-data/angenieux/AngenieuxRetrofocusR135mmf25.data.ts) | L5b | Biconvex Positive | 13.37 | 13.37 | 0.00 | 0.00% | — |
+| [PENTAX SMC M 150mm f/3.5](../../src/lens-data/pentax/PentaxM150mmf35.data.ts) | L1 | Positive Meniscus | 107.40 | 107.40 | 0.00 | 0.00% | — |
 | [CARL ZEISS MIROTAR 500mm f/4.5](../../src/lens-data/carl-zeiss-oberkochen/ZeissMirotarf45500mm.data.ts) | L2 | Negative Meniscus | -1721.39 | -1721.39 | 0.00 | 0.00% | — |
 | [MEYER OPTIK GÖRLITZ LYDITH 30mm f/3.5](../../src/lens-data/meyer-optik-goerlitz/MeyerOptikGorlitz30mmf35Lydith.data.ts) | L4 | Biconcave Negative | -13.50 | -13.50 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON GF 32-90mm T3.5 PZ OIS WR](../../src/lens-data/fujifilm/FujifilmGF3290mmT35PZOISWR.data.ts) | L38 | Biconvex Positive | 54.04 | 54.04 | 0.00 | 0.00% | — |
+| [PENTAX DA 14mm f/2.8 ED [IF]](../../src/lens-data/pentax/PentaxDA14mmf28EDIF.data.ts) | L1 | Positive Meniscus | 432.47 | 432.47 | 0.00 | 0.00% | — |
 | [NIKON NIKKOR 600mm f/5.6 ED](../../src/lens-data/nikon/NikonNikkor600mmf56ED.data.ts) | L2 | Biconcave Negative | -216.39 | -216.39 | 0.00 | 0.00% | — |
 | [CANON CINE-SERVO 17-120mm T2.95-3.9 (CN7×17 KAS S/E1)](../../src/lens-data/canon/CanonCINESERVO17120mmT29539EF.data.ts) | L19 | Negative Meniscus | -54.18 | -54.18 | 0.00 | 0.00% | — |
 | [SCHNEIDER-KREUZNACH RETINA-CURTAGON 28mm f/4](../../src/lens-data/schneider-kreuznach/SchneiderCurtagon428.data.ts) | L2 | Negative Meniscus | -54.21 | -54.21 | 0.00 | 0.00% | — |
@@ -10877,6 +11294,7 @@ Sorted by absolute percentage difference, largest first.
 | [RICOH GR LENS 6.0mm f/1.9 (Ricoh GR DIGITAL III)](../../src/lens-data/ricoh/RicohGRDigitalIII60mmF19.data.ts) | L4 | Biconvex Positive | 13.58 | 13.58 | 0.00 | 0.00% | — |
 | [NIKON AI NIKKOR 50mm f/1.8 S](../../src/lens-data/nikon/NikonAINikkor50mmf18S.data.ts) | L4a | Negative Meniscus | -27.23 | -27.23 | 0.00 | 0.00% | — |
 | [SONY FE 50mm f/1.4 GM](../../src/lens-data/sony/SonyFE50mmF14GM.data.ts) | L15 | Biconcave Negative | -27.25 | -27.25 | 0.00 | 0.00% | — |
+| [PENTAX SMC M 135mm f/3.5](../../src/lens-data/pentax/PentaxM135mmf35.data.ts) | L4 | Positive Meniscus | 109.02 | 109.02 | 0.00 | 0.00% | — |
 | [TAMRON AF 18-270mm f/3.5-6.3 Di II VC LD ASPHERICAL [IF] MACRO (B003)](../../src/lens-data/tamron/TamronB00318270mmf3563DiIIVC.data.ts) | L13g | Biconcave Negative | -27.29 | -27.29 | 0.00 | 0.00% | — |
 | [CANON EF-S 55-250mm f/4-5.6 IS](../../src/lens-data/canon/CanonEFS55250mmf456IS.data.ts) | L36 | Biconvex Positive | 54.60 | 54.60 | 0.00 | 0.00% | — |
 | [NIKON NIKKOR 300mm f/4.5 ED](../../src/lens-data/nikon/NikonNikkor300mmf45ED.data.ts) | L4 | Positive Meniscus | 218.44 | 218.44 | 0.00 | 0.00% | — |
@@ -10890,6 +11308,7 @@ Sorted by absolute percentage difference, largest first.
 | [SIGMA 200mm f/2 DG OS \| Sports](../../src/lens-data/sigma/Sigma200mmf2DGOSSports.data.ts) | L17 | Positive Meniscus | 110.66 | 110.66 | 0.00 | 0.00% | — |
 | [VOIGTLÄNDER CINE-TELE-ANASTIGMAT 100mm f/4.5 (patent model)](../../src/lens-data/voigtlander/VoigtlanderCineTeleAnastigmat100mmf45.data.ts) | L4 | Biconvex Positive | 55.35 | 55.35 | 0.00 | 0.00% | — |
 | [CANON EF 50mm f/2.5 Compact Macro](../../src/lens-data/canon/CanonEF50mmf25CompactMacro.data.ts) | L3 | Negative Meniscus | -27.67 | -27.67 | 0.00 | 0.00% | — |
+| [FUJIFILM FUJINON XF 150-600mm f/5.6-8 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmXF150600mmf568RLMOISWR.data.ts) | L33 | Biconvex Positive | 110.75 | 110.75 | 0.00 | 0.00% | — |
 | [SCHNEIDER-KREUZNACH VARIOGON 10-40mm f/2.8](../../src/lens-data/schneider-kreuznach/SchneiderVariogon281040.data.ts) | L3 | Biconcave Negative | -111.16 | -111.16 | 0.00 | 0.00% | — |
 | [SCHNEIDER-KREUZNACH CINELUX PREMIÈRE 35mm f/1.7](../../src/lens-data/schneider-kreuznach/SchneiderCineluxPremiere35mmf17.data.ts) | 28 | Biconcave Negative | -55.59 | -55.59 | 0.00 | 0.00% | — |
 | [VILTROX AF 50mm f/1.4 PRO](../../src/lens-data/viltrox/ViltroxAF50mmf14Pro.data.ts) | L08 | Meniscus Positive | 55.61 | 55.61 | 0.00 | 0.00% | — |
@@ -10900,11 +11319,15 @@ Sorted by absolute percentage difference, largest first.
 | [NIKON AF-S NIKKOR 300mm f/4 E PF ED VR](../../src/lens-data/nikon/NikonAFSNIKKOR300mmf4EPFEDVR.data.ts) | L27 | Biconcave Negative | -56.00 | -56.00 | 0.00 | 0.00% | — |
 | [MINOLTA MD 135mm f/2.8](../../src/lens-data/minolta/Minolta135mmf28MD.data.ts) | L2 | Positive Meniscus | 112.09 | 112.09 | 0.00 | 0.00% | — |
 | [CANON RF 50mm f/1.8 STM](../../src/lens-data/canon/CanonRF50mmf18STM.data.ts) | L11 | Positive Meniscus | 56.39 | 56.39 | 0.00 | 0.00% | — |
+| [CANON RF 85mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF85mmf14LVCM.data.ts) | L14 | Negative Meniscus | -112.98 | -112.98 | 0.00 | 0.00% | — |
 | [CANON RF 50mm f/1.8 STM](../../src/lens-data/canon/CanonRF50mmf18STM.data.ts) | L22 | Pos. Meniscus (2× Asph) | 113.05 | 113.05 | 0.00 | 0.00% | — |
 | [KONICA HEXANON AR 24mm f/2.8](../../src/lens-data/konica/KonicaHexanonAR24mmf28.data.ts) | L4 | Plano-Convex Positive | 57.09 | 57.09 | 0.00 | 0.00% | — |
+| [VOIGTLÄNDER NOKTON 23mm f/1.2 Aspherical X-Mount](../../src/lens-data/voigtlander/VoigtlanderNokton23mmf12X.data.ts) | L5r | Biconcave Negative | -14.28 | -14.28 | 0.00 | 0.00% | — |
 | [NIKON AI NIKKOR 50mm f/1.8 S](../../src/lens-data/nikon/NikonAINikkor50mmf18S.data.ts) | L3 | Negative Meniscus | -28.58 | -28.58 | 0.00 | 0.00% | — |
 | [LEICA SUMMILUX-M 35mm f/1.4](../../src/lens-data/leica/LeicaSummilux35mmf14.data.ts) | L6 | Positive Meniscus | 28.60 | 28.60 | 0.00 | 0.00% | — |
+| [PENTAX SMC M* 300mm f/4](../../src/lens-data/pentax/PentaxMStar300mmf4.data.ts) | L7 | Negative Meniscus | -57.47 | -57.47 | 0.00 | 0.00% | — |
 | [SCHNEIDER-KREUZNACH CINELUX PREMIÈRE 35mm f/1.7](../../src/lens-data/schneider-kreuznach/SchneiderCineluxPremiere35mmf17.data.ts) | 22 | Meniscus Positive (Aspheric) | 115.35 | 115.35 | 0.00 | 0.00% | — |
+| [FUJIFILM FUJINON XF 150-600mm f/5.6-8 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmXF150600mmf568RLMOISWR.data.ts) | L12 | Biconvex Positive | 230.72 | 230.72 | 0.00 | 0.00% | — |
 | [LAOWA 90mm f/2.8 2× Ultra Macro APO](../../src/lens-data/laowa/Laowa90mmf28UltraMacroAPO.data.ts) | L7 | Biconvex Positive | 28.85 | 28.85 | 0.00 | 0.00% | — |
 | [TAMRON 18-270mm f/3.5-6.3 Di II VC PZD (B008)](../../src/lens-data/tamron/TamronB00818270mmf3563DiIIVCPZD.data.ts) | L12 | Biconcave Negative (Aspheric) | -14.45 | -14.45 | 0.00 | 0.00% | — |
 | [MINOLTA MC FISH-EYE ROKKOR-OK 16mm f/2.8](../../src/lens-data/minolta/MinoltaMCFishEyeRokkorOK16mmf28.data.ts) | G9 | Biconcave Negative | -28.98 | -28.98 | 0.00 | 0.00% | — |
@@ -10920,6 +11343,7 @@ Sorted by absolute percentage difference, largest first.
 | [MEYER OPTIK GÖRLITZ ORESTEGOR 500mm f/5.6](../../src/lens-data/meyer-optik-goerlitz/MeyerOptikGorlitz500mmf56Orestegor.data.ts) | L2 | Negative Meniscus | -472.64 | -472.64 | 0.00 | 0.00% | — |
 | [TAMRON 18-270mm f/3.5-6.3 Di II VC PZD (B008)](../../src/lens-data/tamron/TamronB00818270mmf3563DiIIVCPZD.data.ts) | L7 | Negative Meniscus | -29.55 | -29.55 | 0.00 | 0.00% | — |
 | [TAMRON 14-150mm f/3.5-5.8 Di III (C001)](../../src/lens-data/tamron/TamronC00114150mmf3558.data.ts) | L6 | Biconvex Positive | 14.79 | 14.79 | 0.00 | 0.00% | — |
+| [PENTAX SMC M* 300mm f/4](../../src/lens-data/pentax/PentaxMStar300mmf4.data.ts) | L6 | Biconvex Positive | 29.59 | 29.59 | 0.00 | 0.00% | — |
 | [PANASONIC LUMIX G VARIO 12-60mm f/3.5-5.6 ASPH. POWER O.I.S.](../../src/lens-data/panasonic/PanasonicLumixG1260mmF3556.data.ts) | L4 | Biconcave Negative | -29.71 | -29.71 | 0.00 | 0.00% | — |
 | [SIGMA 500mm f/4 DG OS HSM \| Sports](../../src/lens-data/sigma/Sigma500mmf4DGOSHSMsports.data.ts) | L14 | Biconvex Positive | 59.42 | 59.42 | 0.00 | 0.00% | — |
 | [VOIGTLÄNDER NOKTON 60mm f/0.95](../../src/lens-data/voigtlander/VoigtlanderNokton60mmf95.data.ts) | L1 | Biconcave Negative | -237.81 | -237.81 | 0.00 | 0.00% | — |
@@ -10928,6 +11352,7 @@ Sorted by absolute percentage difference, largest first.
 | [PENTAX SMC FA* 80-200mm f/2.8 ED [IF]](../../src/lens-data/pentax/PentaxFAStar80200mmF28EDIF.data.ts) | L11 | Negative Meniscus | -119.86 | -119.86 | 0.00 | 0.00% | — |
 | [SCHNEIDER-KREUZNACH RETINA-CURTAGON 28mm f/4](../../src/lens-data/schneider-kreuznach/SchneiderCurtagon428.data.ts) | L1 | Negative Meniscus | -60.03 | -60.03 | 0.00 | 0.00% | — |
 | [YASHICA ML 35mm f/2.8 (early diamond-grip)](../../src/lens-data/yashica/YashicaML35mmf28Early.data.ts) | L4 | Biconvex Positive | 30.06 | 30.06 | 0.00 | 0.00% | — |
+| [VIVITAR 28mm f/2](../../src/lens-data/vivitar/Vivitar28mmf2.data.ts) | L5 | Plano-Convex Positive | 30.19 | 30.19 | 0.00 | 0.00% | — |
 | [SCHNEIDER-KREUZNACH CINEGON 6.5mm f/1.9](../../src/lens-data/schneider-kreuznach/SchneiderCinegon1965.data.ts) | L3 | Biconcave Negative | -60.41 | -60.41 | 0.00 | 0.00% | — |
 | [TAMRON 18-200mm f/3.5-6.3 Di III VC (B011)](../../src/lens-data/tamron/TamronB01118200mmf3563VC.data.ts) | L2 | Biconvex Positive | 120.82 | 120.82 | 0.00 | 0.00% | — |
 | [LAOWA 55mm f/2.8 Tilt-Shift 1× Macro](../../src/lens-data/laowa/Laowa55mmf28TiltShift1xMacro.data.ts) | L8 | Negative Meniscus | -30.52 | -30.52 | 0.00 | 0.00% | — |
@@ -11083,6 +11508,12 @@ Sorted by absolute percentage difference, largest first.
 | [CANON EF-S 55-250mm f/4-5.6 IS](../../src/lens-data/canon/CanonEFS55250mmf456IS.data.ts) | L32 | Biconvex Positive | 65.06 | 65.06 | 0.00 | 0.00% | — |
 | [CANON EF-S 55-250mm f/4-5.6 IS](../../src/lens-data/canon/CanonEFS55250mmf456IS.data.ts) | L33 | Positive Meniscus | 71.28 | 71.28 | 0.00 | 0.00% | — |
 | [CANON EF-S 55-250mm f/4-5.6 IS](../../src/lens-data/canon/CanonEFS55250mmf456IS.data.ts) | L34 | Biconcave Negative | -41.31 | -41.31 | 0.00 | 0.00% | — |
+| [CANON EF-S 60mm f/2.8 Macro USM](../../src/lens-data/canon/CanonEFS60mmf28MacroUSM.data.ts) | L2 | Biconvex Positive | 35.84 | 35.84 | 0.00 | 0.00% | — |
+| [CANON EF-S 60mm f/2.8 Macro USM](../../src/lens-data/canon/CanonEFS60mmf28MacroUSM.data.ts) | L3 | Biconcave Negative | -28.95 | -28.95 | 0.00 | 0.00% | — |
+| [CANON EF-S 60mm f/2.8 Macro USM](../../src/lens-data/canon/CanonEFS60mmf28MacroUSM.data.ts) | L4 | Biconvex Positive | 56.61 | 56.61 | 0.00 | 0.00% | — |
+| [CANON EF-S 60mm f/2.8 Macro USM](../../src/lens-data/canon/CanonEFS60mmf28MacroUSM.data.ts) | L8 | Biconvex Positive | 38.86 | 38.86 | 0.00 | 0.00% | — |
+| [CANON EF-S 60mm f/2.8 Macro USM](../../src/lens-data/canon/CanonEFS60mmf28MacroUSM.data.ts) | L11 | Positive Meniscus | 21.64 | 21.64 | 0.00 | 0.00% | — |
+| [CANON EF-S 60mm f/2.8 Macro USM](../../src/lens-data/canon/CanonEFS60mmf28MacroUSM.data.ts) | L12 | Biconcave Negative | -14.95 | -14.95 | 0.00 | 0.00% | — |
 | [CANON FL-F 300mm f/5.6](../../src/lens-data/canon/CanonFLF300mmf56.data.ts) | L4 | Biconcave Negative | -84.20 | -84.20 | 0.00 | 0.00% | — |
 | [CANON FL-F 300mm f/5.6](../../src/lens-data/canon/CanonFLF300mmf56.data.ts) | L5 | Biconcave Negative | -41.80 | -41.80 | 0.00 | 0.00% | — |
 | [CANON FL-F 300mm f/5.6](../../src/lens-data/canon/CanonFLF300mmf56.data.ts) | L6 | Biconvex Positive | 71.49 | 71.49 | 0.00 | 0.00% | — |
@@ -11110,6 +11541,16 @@ Sorted by absolute percentage difference, largest first.
 | [CANON RF 15-30mm f/4.5-6.3 IS STM](../../src/lens-data/canon/CanonRF1530mmf4563ISSTM.data.ts) | E12 | Positive Meniscus (2× Asph) | 185.12 | 185.12 | 0.00 | 0.00% | — |
 | [CANON RF 50mm f/1.8 STM](../../src/lens-data/canon/CanonRF50mmf18STM.data.ts) | L13 | Negative Meniscus | -17.74 | -17.74 | 0.00 | 0.00% | — |
 | [CANON RF 50mm f/1.8 STM](../../src/lens-data/canon/CanonRF50mmf18STM.data.ts) | L23 | Biconvex Positive | 41.57 | 41.57 | 0.00 | 0.00% | — |
+| [CANON RF 85mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF85mmf14LVCM.data.ts) | L1 | Positive Meniscus | 199.60 | 199.60 | 0.00 | 0.00% | — |
+| [CANON RF 85mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF85mmf14LVCM.data.ts) | L3 | Positive Meniscus | 94.17 | 94.17 | 0.00 | 0.00% | — |
+| [CANON RF 85mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF85mmf14LVCM.data.ts) | L4 | Negative Meniscus | -68.08 | -68.08 | 0.00 | 0.00% | — |
+| [CANON RF 85mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF85mmf14LVCM.data.ts) | L5 | Negative Meniscus | -64.86 | -64.86 | 0.00 | 0.00% | — |
+| [CANON RF 85mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF85mmf14LVCM.data.ts) | L8 | Negative Meniscus | -54.38 | -54.38 | 0.00 | 0.00% | — |
+| [CANON RF 85mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF85mmf14LVCM.data.ts) | L9 | Biconvex Positive | 31.78 | 31.78 | 0.00 | 0.00% | — |
+| [CANON RF 85mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF85mmf14LVCM.data.ts) | L10 | Biconcave Negative | -33.47 | -33.47 | 0.00 | 0.00% | — |
+| [CANON RF 85mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF85mmf14LVCM.data.ts) | L11 | Positive Meniscus | 109.14 | 109.14 | 0.00 | 0.00% | — |
+| [CANON RF 85mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF85mmf14LVCM.data.ts) | L12 | Biconvex Positive | 23.28 | 23.28 | 0.00 | 0.00% | — |
+| [CANON RF 85mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF85mmf14LVCM.data.ts) | L13 | Biconcave Negative | -45.97 | -45.97 | 0.00 | 0.00% | — |
 | [CANON TS-E 24mm f/3.5 L II](../../src/lens-data/canon/CanonTSE24mmf35LII.data.ts) | L2 | Negative Meniscus | -54.54 | -54.54 | 0.00 | 0.00% | — |
 | [CANON TS-E 24mm f/3.5 L II](../../src/lens-data/canon/CanonTSE24mmf35LII.data.ts) | L4 | Biconvex Positive | 25.47 | 25.47 | 0.00 | 0.00% | — |
 | [CANON TS-E 24mm f/3.5 L II](../../src/lens-data/canon/CanonTSE24mmf35LII.data.ts) | L5 | Negative Meniscus | -40.12 | -40.12 | 0.00 | 0.00% | — |
@@ -11192,6 +11633,17 @@ Sorted by absolute percentage difference, largest first.
 | [FUJIFILM FUJINON XF 14mm f/2.8 R](../../src/lens-data/fujifilm/FujifilmFujinonXf14mmf28R.data.ts) | L31 | Biconcave Negative | -17.62 | -17.62 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON XF 14mm f/2.8 R](../../src/lens-data/fujifilm/FujifilmFujinonXf14mmf28R.data.ts) | L34 | Pos. Meniscus (2× Asph) | 44.52 | 44.52 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON XF 14mm f/2.8 R](../../src/lens-data/fujifilm/FujifilmFujinonXf14mmf28R.data.ts) | L36 | Biconvex Positive | 22.90 | 22.90 | 0.00 | 0.00% | — |
+| [FUJIFILM FUJINON XF 150-600mm f/5.6-8 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmXF150600mmf568RLMOISWR.data.ts) | L13 | Plano-Convex Positive | 239.21 | 239.21 | 0.00 | 0.00% | — |
+| [FUJIFILM FUJINON XF 150-600mm f/5.6-8 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmXF150600mmf568RLMOISWR.data.ts) | L31 | Plano-Convex Positive | 156.00 | 156.00 | 0.00 | 0.00% | — |
+| [FUJIFILM FUJINON XF 150-600mm f/5.6-8 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmXF150600mmf568RLMOISWR.data.ts) | L32 | Plano-Convex Positive | 249.20 | 249.20 | 0.00 | 0.00% | — |
+| [FUJIFILM FUJINON XF 150-600mm f/5.6-8 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmXF150600mmf568RLMOISWR.data.ts) | L34 | Plano-Concave Negative | -123.01 | -123.01 | 0.00 | 0.00% | — |
+| [FUJIFILM FUJINON XF 150-600mm f/5.6-8 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmXF150600mmf568RLMOISWR.data.ts) | L41 | Negative Meniscus | -113.73 | -113.73 | 0.00 | 0.00% | — |
+| [FUJIFILM FUJINON XF 150-600mm f/5.6-8 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmXF150600mmf568RLMOISWR.data.ts) | L51 | Positive Meniscus | 57.53 | 57.53 | 0.00 | 0.00% | — |
+| [FUJIFILM FUJINON XF 150-600mm f/5.6-8 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmXF150600mmf568RLMOISWR.data.ts) | L53 | Biconvex Positive | 39.20 | 39.20 | 0.00 | 0.00% | — |
+| [FUJIFILM FUJINON XF 150-600mm f/5.6-8 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmXF150600mmf568RLMOISWR.data.ts) | L57 | Biconcave Negative | -36.05 | -36.05 | 0.00 | 0.00% | — |
+| [FUJIFILM FUJINON XF 150-600mm f/5.6-8 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmXF150600mmf568RLMOISWR.data.ts) | L58 | Biconvex Positive | 19.69 | 19.69 | 0.00 | 0.00% | — |
+| [FUJIFILM FUJINON XF 150-600mm f/5.6-8 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmXF150600mmf568RLMOISWR.data.ts) | L59 | Biconcave Negative | -13.28 | -13.28 | 0.00 | 0.00% | — |
+| [FUJIFILM FUJINON XF 150-600mm f/5.6-8 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmXF150600mmf568RLMOISWR.data.ts) | L60 | Biconvex Positive | 31.63 | 31.63 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON XF 16-50mm f/2.8-4.8 R LM WR](../../src/lens-data/fujifilm/FujifilmFujinonXf1650mmf2848RLMWR.data.ts) | L21 | Positive Meniscus | 49.57 | 49.57 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON XF 50mm f/2 R WR](../../src/lens-data/fujifilm/FujifilmFujinonXf50mmf2RWR.data.ts) | L11 | Biconvex Positive | 46.70 | 46.70 | 0.00 | 0.00% | — |
 | [FUJIFILM FUJINON XF 50mm f/2 R WR](../../src/lens-data/fujifilm/FujifilmFujinonXf50mmf2RWR.data.ts) | L15 | Biconcave Negative | -14.26 | -14.26 | 0.00 | 0.00% | — |
@@ -11263,6 +11715,19 @@ Sorted by absolute percentage difference, largest first.
 | [KONICA HEXANON AR 24mm f/2.8](../../src/lens-data/konica/KonicaHexanonAR24mmf28.data.ts) | L6 | Biconcave Negative | -25.43 | -25.43 | 0.00 | 0.00% | — |
 | [KONICA HEXANON AR 24mm f/2.8](../../src/lens-data/konica/KonicaHexanonAR24mmf28.data.ts) | L7 | Positive Meniscus | 37.17 | 37.17 | 0.00 | 0.00% | — |
 | [KONICA HEXANON AR 24mm f/2.8](../../src/lens-data/konica/KonicaHexanonAR24mmf28.data.ts) | L8 | Biconvex Positive | 65.11 | 65.11 | 0.00 | 0.00% | — |
+| [KONICA LENS 35-105mm f/3.8-8.5 (Konica AiBORG)](../../src/lens-data/konica/KonicaAiBORG35105mmf3885.data.ts) | L1 | Negative Meniscus | -78.74 | -78.74 | 0.00 | 0.00% | — |
+| [KONICA LENS 35-105mm f/3.8-8.5 (Konica AiBORG)](../../src/lens-data/konica/KonicaAiBORG35105mmf3885.data.ts) | L2 | Positive Meniscus | 50.79 | 50.79 | 0.00 | 0.00% | — |
+| [KONICA LENS 35-105mm f/3.8-8.5 (Konica AiBORG)](../../src/lens-data/konica/KonicaAiBORG35105mmf3885.data.ts) | L3 | Biconcave Negative | -22.00 | -22.00 | 0.00 | 0.00% | — |
+| [KONICA LENS 35-105mm f/3.8-8.5 (Konica AiBORG)](../../src/lens-data/konica/KonicaAiBORG35105mmf3885.data.ts) | L4 | Biconvex Positive | 22.77 | 22.77 | 0.00 | 0.00% | — |
+| [KONICA LENS 35-105mm f/3.8-8.5 (Konica AiBORG)](../../src/lens-data/konica/KonicaAiBORG35105mmf3885.data.ts) | L5 | Biconcave Negative | -33.29 | -33.29 | 0.00 | 0.00% | — |
+| [KONICA LENS 35-105mm f/3.8-8.5 (Konica AiBORG)](../../src/lens-data/konica/KonicaAiBORG35105mmf3885.data.ts) | L6 | Positive Meniscus | 32.00 | 32.00 | 0.00 | 0.00% | — |
+| [KONICA LENS 35-105mm f/3.8-8.5 (Konica AiBORG)](../../src/lens-data/konica/KonicaAiBORG35105mmf3885.data.ts) | L7 | Negative Meniscus | -22.97 | -22.97 | 0.00 | 0.00% | — |
+| [KONICA LENS 35-105mm f/3.8-8.5 (Konica AiBORG)](../../src/lens-data/konica/KonicaAiBORG35105mmf3885.data.ts) | L8 | Biconvex Positive | 20.81 | 20.81 | 0.00 | 0.00% | — |
+| [KONICA LENS 35-105mm f/3.8-8.5 (Konica AiBORG)](../../src/lens-data/konica/KonicaAiBORG35105mmf3885.data.ts) | L9 | Biconvex Positive | 56.48 | 56.48 | 0.00 | 0.00% | — |
+| [KONICA LENS 35-105mm f/3.8-8.5 (Konica AiBORG)](../../src/lens-data/konica/KonicaAiBORG35105mmf3885.data.ts) | L10 | Pos. Meniscus (1× Asph) | 444.37 | 444.37 | 0.00 | 0.00% | — |
+| [KONICA LENS 35-105mm f/3.8-8.5 (Konica AiBORG)](../../src/lens-data/konica/KonicaAiBORG35105mmf3885.data.ts) | L11 | Positive Meniscus | 30.62 | 30.62 | 0.00 | 0.00% | — |
+| [KONICA LENS 35-105mm f/3.8-8.5 (Konica AiBORG)](../../src/lens-data/konica/KonicaAiBORG35105mmf3885.data.ts) | L12 | Biconcave Negative | -18.63 | -18.63 | 0.00 | 0.00% | — |
+| [KONICA LENS 35-105mm f/3.8-8.5 (Konica AiBORG)](../../src/lens-data/konica/KonicaAiBORG35105mmf3885.data.ts) | L13 | Negative Meniscus | -62.73 | -62.73 | 0.00 | 0.00% | — |
 | [KONICA UC ZOOM HEXANON AR 45-100mm f/3.5](../../src/lens-data/konica/KonicaUCZoomHexanonAR45100mmf35.data.ts) | L1 | Negative Meniscus | -133.71 | -133.71 | 0.00 | 0.00% | — |
 | [KONICA UC ZOOM HEXANON AR 45-100mm f/3.5](../../src/lens-data/konica/KonicaUCZoomHexanonAR45100mmf35.data.ts) | L4 | Negative Meniscus | -29.43 | -29.43 | 0.00 | 0.00% | — |
 | [KONICA UC ZOOM HEXANON AR 45-100mm f/3.5](../../src/lens-data/konica/KonicaUCZoomHexanonAR45100mmf35.data.ts) | L6 | Positive Meniscus | 65.56 | 65.56 | 0.00 | 0.00% | — |
@@ -11660,6 +12125,10 @@ Sorted by absolute percentage difference, largest first.
 | [NIKON AI NIKKOR 50mm f/1.8 S](../../src/lens-data/nikon/NikonAINikkor50mmf18S.data.ts) | L1 | Positive Meniscus | 65.74 | 65.74 | 0.00 | 0.00% | — |
 | [NIKON AI NIKKOR 50mm f/1.8 S](../../src/lens-data/nikon/NikonAINikkor50mmf18S.data.ts) | L4b | Positive Meniscus | 28.86 | 28.86 | 0.00 | 0.00% | — |
 | [NIKON AI NIKKOR 50mm f/1.8 S](../../src/lens-data/nikon/NikonAINikkor50mmf18S.data.ts) | L5 | Biconvex Positive | 64.54 | 64.54 | 0.00 | 0.00% | — |
+| [NIKON EL-NIKKOR 50mm f/2.8](../../src/lens-data/nikon/NikonELNikkor50mmf28.data.ts) | L2 | Biconvex Positive | 26.94 | 26.94 | 0.00 | 0.00% | — |
+| [NIKON EL-NIKKOR 50mm f/2.8](../../src/lens-data/nikon/NikonELNikkor50mmf28.data.ts) | L3 | Biconcave Negative | -17.93 | -17.93 | 0.00 | 0.00% | — |
+| [NIKON EL-NIKKOR 50mm f/2.8](../../src/lens-data/nikon/NikonELNikkor50mmf28.data.ts) | L5 | Biconcave Negative | -17.16 | -17.16 | 0.00 | 0.00% | — |
+| [NIKON EL-NIKKOR 50mm f/2.8](../../src/lens-data/nikon/NikonELNikkor50mmf28.data.ts) | L6 | Biconvex Positive | 20.79 | 20.79 | 0.00 | 0.00% | — |
 | [NIKON IX-NIKKOR 30-60mm f/4-5.6](../../src/lens-data/nikon/NikonIXNikkor3060mmf456.data.ts) | L1 | Negative Meniscus | -22.97 | -22.97 | 0.00 | 0.00% | — |
 | [NIKON IX-NIKKOR 30-60mm f/4-5.6](../../src/lens-data/nikon/NikonIXNikkor3060mmf456.data.ts) | L2 | Positive Meniscus | 65.28 | 65.28 | 0.00 | 0.00% | — |
 | [NIKON NEW NIKKOR 35mm f/2.8](../../src/lens-data/nikon/NikonNikkor35mmf28.data.ts) | L3 | Biconvex Positive | 25.09 | 25.09 | 0.00 | 0.00% | — |
@@ -11702,6 +12171,15 @@ Sorted by absolute percentage difference, largest first.
 | [OLYMPUS E.ZUIKO AUTO-T 100mm f/2.8](../../src/lens-data/olympus/OlympusEZuiko100mmf28.data.ts) | L3 | Positive Meniscus | 198.65 | 198.65 | 0.00 | 0.00% | — |
 | [OLYMPUS E.ZUIKO AUTO-T 100mm f/2.8](../../src/lens-data/olympus/OlympusEZuiko100mmf28.data.ts) | L4 | Negative Meniscus | -33.40 | -33.40 | 0.00 | 0.00% | — |
 | [OLYMPUS E.ZUIKO AUTO-T 200mm f/4](../../src/lens-data/olympus/OlympusEZuikoAutoT200mmf4.data.ts) | L1 | Plano-Convex Positive | 163.53 | 163.53 | 0.00 | 0.00% | — |
+| [OLYMPUS F.ZUIKO AUTO-T 300mm f/4.5](../../src/lens-data/olympus/OlympusFZuikoAutoT300mmf45.data.ts) | L2 | Biconcave Negative | -217.80 | -217.80 | 0.00 | 0.00% | — |
+| [OLYMPUS F.ZUIKO AUTO-T 300mm f/4.5](../../src/lens-data/olympus/OlympusFZuikoAutoT300mmf45.data.ts) | L4a | Biconcave Negative | -43.91 | -43.91 | 0.00 | 0.00% | — |
+| [OLYMPUS F.ZUIKO AUTO-T 300mm f/4.5](../../src/lens-data/olympus/OlympusFZuikoAutoT300mmf45.data.ts) | L4b | Biconvex Positive | 67.18 | 67.18 | 0.00 | 0.00% | — |
+| [OLYMPUS H.ZUIKO AUTO-W 35mm f/2](../../src/lens-data/olympus/OlympusHZuiko35mmf2.data.ts) | L1 | Positive Meniscus | 58.76 | 58.76 | 0.00 | 0.00% | — |
+| [OLYMPUS H.ZUIKO AUTO-W 35mm f/2](../../src/lens-data/olympus/OlympusHZuiko35mmf2.data.ts) | L2 | Negative Meniscus | -32.92 | -32.92 | 0.00 | 0.00% | — |
+| [OLYMPUS H.ZUIKO AUTO-W 35mm f/2](../../src/lens-data/olympus/OlympusHZuiko35mmf2.data.ts) | L4a | Biconvex Positive | 20.86 | 20.86 | 0.00 | 0.00% | — |
+| [OLYMPUS H.ZUIKO AUTO-W 35mm f/2](../../src/lens-data/olympus/OlympusHZuiko35mmf2.data.ts) | L4b | Negative Meniscus | -223.00 | -223.00 | 0.00 | 0.00% | — |
+| [OLYMPUS H.ZUIKO AUTO-W 35mm f/2](../../src/lens-data/olympus/OlympusHZuiko35mmf2.data.ts) | L6 | Positive Meniscus | 37.60 | 37.60 | 0.00 | 0.00% | — |
+| [OLYMPUS H.ZUIKO AUTO-W 35mm f/2](../../src/lens-data/olympus/OlympusHZuiko35mmf2.data.ts) | L7 | Biconvex Positive | 50.45 | 50.45 | 0.00 | 0.00% | — |
 | [OLYMPUS M.ZUIKO DIGITAL ED 12-50mm f/3.5-6.3 EZ](../../src/lens-data/olympus/OlympusMZuiko1250mmf3563EZ.data.ts) | L1 | Negative Meniscus | -34.18 | -34.18 | 0.00 | 0.00% | — |
 | [OLYMPUS M.ZUIKO DIGITAL ED 12-50mm f/3.5-6.3 EZ](../../src/lens-data/olympus/OlympusMZuiko1250mmf3563EZ.data.ts) | L2 | Aspherical Negative Meniscus | -38.69 | -38.69 | 0.00 | 0.00% | — |
 | [OLYMPUS M.ZUIKO DIGITAL ED 12-50mm f/3.5-6.3 EZ](../../src/lens-data/olympus/OlympusMZuiko1250mmf3563EZ.data.ts) | L3 | Positive Meniscus | 37.81 | 37.81 | 0.00 | 0.00% | — |
@@ -11752,10 +12230,21 @@ Sorted by absolute percentage difference, largest first.
 | [OLYMPUS ZUIKO DIGITAL ED 300mm f/2.8](../../src/lens-data/olympus/OlympusZuikoDigitalED300mmf28.data.ts) | L10 | Biconcave Negative | -85.52 | -85.52 | 0.00 | 0.00% | — |
 | [OLYMPUS ZUIKO DIGITAL ED 300mm f/2.8](../../src/lens-data/olympus/OlympusZuikoDigitalED300mmf28.data.ts) | L11 | Positive Meniscus | 71.09 | 71.09 | 0.00 | 0.00% | — |
 | [OLYMPUS ZUIKO DIGITAL ED 300mm f/2.8](../../src/lens-data/olympus/OlympusZuikoDigitalED300mmf28.data.ts) | L12 | Negative Meniscus | -175.55 | -175.55 | 0.00 | 0.00% | — |
+| [OM SYSTEM M.ZUIKO DIGITAL ED 20mm f/1.4 PRO](../../src/lens-data/olympus/OMSystem20mmF14PRO.data.ts) | L2 | Negative Meniscus | -42.43 | -42.43 | 0.00 | 0.00% | — |
+| [OM SYSTEM M.ZUIKO DIGITAL ED 20mm f/1.4 PRO](../../src/lens-data/olympus/OMSystem20mmF14PRO.data.ts) | L4 | Biconvex Positive | 54.47 | 54.47 | 0.00 | 0.00% | — |
+| [OM SYSTEM M.ZUIKO DIGITAL ED 20mm f/1.4 PRO](../../src/lens-data/olympus/OMSystem20mmF14PRO.data.ts) | L5 | Biconcave Negative | -15.79 | -15.79 | 0.00 | 0.00% | — |
+| [OM SYSTEM M.ZUIKO DIGITAL ED 20mm f/1.4 PRO](../../src/lens-data/olympus/OMSystem20mmF14PRO.data.ts) | L7 | Biconvex Positive | 32.92 | 32.92 | 0.00 | 0.00% | — |
+| [OM SYSTEM M.ZUIKO DIGITAL ED 20mm f/1.4 PRO](../../src/lens-data/olympus/OMSystem20mmF14PRO.data.ts) | L9 | Negative Meniscus | -34.61 | -34.61 | 0.00 | 0.00% | — |
+| [OM SYSTEM M.ZUIKO DIGITAL ED 20mm f/1.4 PRO](../../src/lens-data/olympus/OMSystem20mmF14PRO.data.ts) | L10 | Biconvex Positive (2× Asph) | 32.05 | 32.05 | 0.00 | 0.00% | — |
+| [OM SYSTEM M.ZUIKO DIGITAL ED 20mm f/1.4 PRO](../../src/lens-data/olympus/OMSystem20mmF14PRO.data.ts) | L11 | Negative Meniscus | -73.30 | -73.30 | 0.00 | 0.00% | — |
 | [P. ANGÉNIEUX DEM 180mm f/2.3 APO](../../src/lens-data/angenieux/AngenieuxDEM180mmf23APO.data.ts) | L1 | Biconvex Positive | 139.81 | 139.81 | 0.00 | 0.00% | — |
 | [P. ANGÉNIEUX RETROFOCUS TYPE R1 35mm f/2.5](../../src/lens-data/angenieux/AngenieuxRetrofocusR135mmf25.data.ts) | L1 | Negative Meniscus | -91.92 | -91.92 | 0.00 | 0.00% | — |
 | [P. ANGÉNIEUX RETROFOCUS TYPE R1 35mm f/2.5](../../src/lens-data/angenieux/AngenieuxRetrofocusR135mmf25.data.ts) | L3 | Positive Meniscus | 52.81 | 52.81 | 0.00 | 0.00% | — |
 | [P. ANGÉNIEUX RETROFOCUS TYPE R1 35mm f/2.5](../../src/lens-data/angenieux/AngenieuxRetrofocusR135mmf25.data.ts) | L5a | Negative Meniscus | -23.91 | -23.91 | 0.00 | 0.00% | — |
+| [P. ANGÉNIEUX RETROFOCUS TYPE R61 24mm f/3.5](../../src/lens-data/angenieux/AngenieuxRetrofocusR6124mmf35.data.ts) | L2 | Biconvex Positive | 225.02 | 225.02 | 0.00 | 0.00% | — |
+| [P. ANGÉNIEUX RETROFOCUS TYPE R61 24mm f/3.5](../../src/lens-data/angenieux/AngenieuxRetrofocusR6124mmf35.data.ts) | L3 | Biconvex Positive | 225.19 | 225.19 | 0.00 | 0.00% | — |
+| [P. ANGÉNIEUX RETROFOCUS TYPE R61 24mm f/3.5](../../src/lens-data/angenieux/AngenieuxRetrofocusR6124mmf35.data.ts) | L6 | Positive Meniscus | 39.08 | 39.08 | 0.00 | 0.00% | — |
+| [P. ANGÉNIEUX RETROFOCUS TYPE R61 24mm f/3.5](../../src/lens-data/angenieux/AngenieuxRetrofocusR6124mmf35.data.ts) | L7 | Biconcave Negative | -17.02 | -17.02 | 0.00 | 0.00% | — |
 | [PANASONIC LEICA DC VARIO-ELMARIT 4.5-108mm f/2.8 (Panasonic Lumix DMC-FZ300)](../../src/lens-data/panasonic/LeicaDCVarioElmarit45108mmf28PanasonicFZ300.data.ts) | L2 | Biconvex Positive | 95.41 | 95.41 | 0.00 | 0.00% | — |
 | [PANASONIC LEICA DC VARIO-ELMARIT 4.5-108mm f/2.8 (Panasonic Lumix DMC-FZ300)](../../src/lens-data/panasonic/LeicaDCVarioElmarit45108mmf28PanasonicFZ300.data.ts) | L4 | Neg. Meniscus (2× Asph) | -14.22 | -14.22 | 0.00 | 0.00% | — |
 | [PANASONIC LEICA DC VARIO-ELMARIT 4.5-108mm f/2.8 (Panasonic Lumix DMC-FZ300)](../../src/lens-data/panasonic/LeicaDCVarioElmarit45108mmf28PanasonicFZ300.data.ts) | L5 | Biconcave Negative | -11.08 | -11.08 | 0.00 | 0.00% | — |
@@ -11807,6 +12296,11 @@ Sorted by absolute percentage difference, largest first.
 | [PANASONIC LUMIX S 26mm f/8](../../src/lens-data/panasonic/PanasonicLumixS26mmF8.data.ts) | L1 | Positive Meniscus | 36.87 | 36.87 | 0.00 | 0.00% | — |
 | [PANASONIC LUMIX S 26mm f/8](../../src/lens-data/panasonic/PanasonicLumixS26mmF8.data.ts) | L4 | Negative Meniscus | -12.12 | -12.12 | 0.00 | 0.00% | — |
 | [PANASONIC LUMIX S 26mm f/8](../../src/lens-data/panasonic/PanasonicLumixS26mmF8.data.ts) | L5 | Positive Meniscus | 32.17 | 32.17 | 0.00 | 0.00% | — |
+| [PENTAX DA 14mm f/2.8 ED [IF]](../../src/lens-data/pentax/PentaxDA14mmf28EDIF.data.ts) | L4 | Positive Meniscus | 69.82 | 69.82 | 0.00 | 0.00% | — |
+| [PENTAX DA 14mm f/2.8 ED [IF]](../../src/lens-data/pentax/PentaxDA14mmf28EDIF.data.ts) | L5 | Biconvex Positive | 27.90 | 27.90 | 0.00 | 0.00% | — |
+| [PENTAX DA 14mm f/2.8 ED [IF]](../../src/lens-data/pentax/PentaxDA14mmf28EDIF.data.ts) | L8 | Positive Meniscus | 35.15 | 35.15 | 0.00 | 0.00% | — |
+| [PENTAX DA 14mm f/2.8 ED [IF]](../../src/lens-data/pentax/PentaxDA14mmf28EDIF.data.ts) | L10 | Biconcave Negative | -28.15 | -28.15 | 0.00 | 0.00% | — |
+| [PENTAX DA 14mm f/2.8 ED [IF]](../../src/lens-data/pentax/PentaxDA14mmf28EDIF.data.ts) | L11 | Biconvex Positive | 26.77 | 26.77 | 0.00 | 0.00% | — |
 | [PENTAX DA 50mm f/1.8](../../src/lens-data/pentax/PentaxDA50mmf18.data.ts) | L2 | Positive Meniscus | 92.19 | 92.19 | 0.00 | 0.00% | — |
 | [PENTAX DA 50mm f/1.8](../../src/lens-data/pentax/PentaxDA50mmf18.data.ts) | L3 | Negative Meniscus | -26.69 | -26.69 | 0.00 | 0.00% | — |
 | [PENTAX DA 50mm f/1.8](../../src/lens-data/pentax/PentaxDA50mmf18.data.ts) | L4 | Negative Meniscus | -30.34 | -30.34 | 0.00 | 0.00% | — |
@@ -11817,12 +12311,21 @@ Sorted by absolute percentage difference, largest first.
 | [PENTAX SMC A 200mm f/4](../../src/lens-data/pentax/PentaxA200mmf4.data.ts) | L4 | Positive Meniscus | 241.75 | 241.75 | 0.00 | 0.00% | — |
 | [PENTAX SMC A 200mm f/4](../../src/lens-data/pentax/PentaxA200mmf4.data.ts) | L5 | Biconcave Negative | -29.79 | -29.79 | 0.00 | 0.00% | — |
 | [PENTAX SMC A 200mm f/4](../../src/lens-data/pentax/PentaxA200mmf4.data.ts) | L6 | Biconvex Positive | 54.62 | 54.62 | 0.00 | 0.00% | — |
+| [PENTAX SMC A 28mm f/2.8](../../src/lens-data/pentax/PentaxA28mmf28.data.ts) | L2 | Negative Meniscus | -52.27 | -52.27 | 0.00 | 0.00% | — |
+| [PENTAX SMC A 28mm f/2.8](../../src/lens-data/pentax/PentaxA28mmf28.data.ts) | L4 | Biconvex Positive | 33.43 | 33.43 | 0.00 | 0.00% | — |
+| [PENTAX SMC A 28mm f/2.8](../../src/lens-data/pentax/PentaxA28mmf28.data.ts) | L5 | Biconcave Negative | -16.80 | -16.80 | 0.00 | 0.00% | — |
+| [PENTAX SMC A 28mm f/2.8](../../src/lens-data/pentax/PentaxA28mmf28.data.ts) | L7 | Positive Meniscus | 45.15 | 45.15 | 0.00 | 0.00% | — |
 | [PENTAX SMC D FA645 25mm f/4 AL [IF] SDM AW](../../src/lens-data/pentax/PentaxDFA64525mmF4ALIFSDMAW.data.ts) | F3 | Biconcave Negative | -51.02 | -51.02 | 0.00 | 0.00% | — |
 | [PENTAX SMC D FA645 25mm f/4 AL [IF] SDM AW](../../src/lens-data/pentax/PentaxDFA64525mmF4ALIFSDMAW.data.ts) | R1 | Biconvex Positive | 27.49 | 27.49 | 0.00 | 0.00% | — |
 | [PENTAX SMC D FA645 25mm f/4 AL [IF] SDM AW](../../src/lens-data/pentax/PentaxDFA64525mmF4ALIFSDMAW.data.ts) | R3 | Biconvex Positive | 48.98 | 48.98 | 0.00 | 0.00% | — |
 | [PENTAX SMC D FA645 25mm f/4 AL [IF] SDM AW](../../src/lens-data/pentax/PentaxDFA64525mmF4ALIFSDMAW.data.ts) | R4 | Biconcave Negative | -23.16 | -23.16 | 0.00 | 0.00% | — |
 | [PENTAX SMC D FA645 25mm f/4 AL [IF] SDM AW](../../src/lens-data/pentax/PentaxDFA64525mmF4ALIFSDMAW.data.ts) | R5 | Biconvex Positive | 29.40 | 29.40 | 0.00 | 0.00% | — |
 | [PENTAX SMC D FA645 25mm f/4 AL [IF] SDM AW](../../src/lens-data/pentax/PentaxDFA64525mmF4ALIFSDMAW.data.ts) | R7 | Biconvex Positive (1× Asph) | 40.50 | 40.50 | 0.00 | 0.00% | — |
+| [PENTAX SMC DA* 55mm f/1.4 SDM](../../src/lens-data/pentax/PentaxDAStar55mmf14.data.ts) | L1 | Positive Meniscus | 77.35 | 77.35 | 0.00 | 0.00% | — |
+| [PENTAX SMC DA* 55mm f/1.4 SDM](../../src/lens-data/pentax/PentaxDAStar55mmf14.data.ts) | L4 | Plano-Concave | -257.98 | -257.98 | 0.00 | 0.00% | — |
+| [PENTAX SMC DA* 55mm f/1.4 SDM](../../src/lens-data/pentax/PentaxDAStar55mmf14.data.ts) | L6 | Biconvex Positive | 26.09 | 26.09 | 0.00 | 0.00% | — |
+| [PENTAX SMC DA* 55mm f/1.4 SDM](../../src/lens-data/pentax/PentaxDAStar55mmf14.data.ts) | L7 | Positive Meniscus | 105.65 | 105.65 | 0.00 | 0.00% | — |
+| [PENTAX SMC DA* 55mm f/1.4 SDM](../../src/lens-data/pentax/PentaxDAStar55mmf14.data.ts) | L9 | Plano-Convex | 358.47 | 358.47 | 0.00 | 0.00% | — |
 | [PENTAX SMC F 135mm f/2.8 [IF]](../../src/lens-data/pentax/PentaxF135mmf28IF.data.ts) | 12 | Positive Meniscus | 165.39 | 165.39 | 0.00 | 0.00% | — |
 | [PENTAX SMC F 135mm f/2.8 [IF]](../../src/lens-data/pentax/PentaxF135mmf28IF.data.ts) | 14 | Positive Meniscus | 126.66 | 126.66 | 0.00 | 0.00% | — |
 | [PENTAX SMC F 135mm f/2.8 [IF]](../../src/lens-data/pentax/PentaxF135mmf28IF.data.ts) | 16 | Positive Meniscus | 87.38 | 87.38 | 0.00 | 0.00% | — |
@@ -11851,13 +12354,40 @@ Sorted by absolute percentage difference, largest first.
 | [PENTAX SMC FA* 80-200mm f/2.8 ED [IF]](../../src/lens-data/pentax/PentaxFAStar80200mmF28EDIF.data.ts) | L9 | Biconvex Positive | 116.86 | 116.86 | 0.00 | 0.00% | — |
 | [PENTAX SMC FA* 80-200mm f/2.8 ED [IF]](../../src/lens-data/pentax/PentaxFAStar80200mmF28EDIF.data.ts) | L10 | Biconvex Positive | 81.95 | 81.95 | 0.00 | 0.00% | — |
 | [PENTAX SMC FA* 80-200mm f/2.8 ED [IF]](../../src/lens-data/pentax/PentaxFAStar80200mmF28EDIF.data.ts) | L16 | Positive Meniscus | 112.35 | 112.35 | 0.00 | 0.00% | — |
+| [PENTAX SMC M 120mm f/2.8](../../src/lens-data/pentax/PentaxM120mmf28.data.ts) | L1 | Positive Meniscus | 121.41 | 121.41 | 0.00 | 0.00% | — |
+| [PENTAX SMC M 120mm f/2.8](../../src/lens-data/pentax/PentaxM120mmf28.data.ts) | L2 | Biconcave Negative | -109.01 | -109.01 | 0.00 | 0.00% | — |
+| [PENTAX SMC M 120mm f/2.8](../../src/lens-data/pentax/PentaxM120mmf28.data.ts) | L3 | Positive Meniscus | 84.53 | 84.53 | 0.00 | 0.00% | — |
+| [PENTAX SMC M 135mm f/3.5](../../src/lens-data/pentax/PentaxM135mmf35.data.ts) | L1 | Positive Meniscus | 103.03 | 103.03 | 0.00 | 0.00% | — |
+| [PENTAX SMC M 135mm f/3.5](../../src/lens-data/pentax/PentaxM135mmf35.data.ts) | L2 | Biconcave Negative | -107.84 | -107.84 | 0.00 | 0.00% | — |
+| [PENTAX SMC M 150mm f/3.5](../../src/lens-data/pentax/PentaxM150mmf35.data.ts) | L3 | Positive Meniscus | 104.11 | 104.11 | 0.00 | 0.00% | — |
+| [PENTAX SMC M 150mm f/3.5](../../src/lens-data/pentax/PentaxM150mmf35.data.ts) | L4 | Positive Meniscus | 110.08 | 110.08 | 0.00 | 0.00% | — |
+| [PENTAX SMC M 150mm f/3.5](../../src/lens-data/pentax/PentaxM150mmf35.data.ts) | L5 | Negative Meniscus | -48.14 | -48.14 | 0.00 | 0.00% | — |
+| [PENTAX SMC M 200mm f/4](../../src/lens-data/pentax/PentaxM200mmf4.data.ts) | L1 | Positive Meniscus | 133.63 | 133.63 | 0.00 | 0.00% | — |
+| [PENTAX SMC M 200mm f/4](../../src/lens-data/pentax/PentaxM200mmf4.data.ts) | L2 | Biconcave Negative | -162.35 | -162.35 | 0.00 | 0.00% | — |
+| [PENTAX SMC M 200mm f/4](../../src/lens-data/pentax/PentaxM200mmf4.data.ts) | L5 | Biconcave Negative | -33.97 | -33.97 | 0.00 | 0.00% | — |
+| [PENTAX SMC M 200mm f/4](../../src/lens-data/pentax/PentaxM200mmf4.data.ts) | L6 | Biconvex Positive | 60.78 | 60.78 | 0.00 | 0.00% | — |
+| [PENTAX SMC M 28mm f/3.5](../../src/lens-data/pentax/PentaxM28mmf35.data.ts) | L4 | Biconcave Negative | -15.86 | -15.86 | 0.00 | 0.00% | — |
+| [PENTAX SMC M 28mm f/3.5](../../src/lens-data/pentax/PentaxM28mmf35.data.ts) | L5 | Positive Meniscus | 32.53 | 32.53 | 0.00 | 0.00% | — |
 | [PENTAX SMC M 50mm f/1.7](../../src/lens-data/pentax/PentaxM50mmf17.data.ts) | L1 | Biconvex Positive | 84.64 | 84.64 | 0.00 | 0.00% | — |
 | [PENTAX SMC M 50mm f/1.7](../../src/lens-data/pentax/PentaxM50mmf17.data.ts) | L2 | Positive Meniscus | 48.90 | 48.90 | 0.00 | 0.00% | — |
 | [PENTAX SMC M 50mm f/1.7](../../src/lens-data/pentax/PentaxM50mmf17.data.ts) | L3 | Negative Meniscus | -29.13 | -29.13 | 0.00 | 0.00% | — |
 | [PENTAX SMC M 50mm f/1.7](../../src/lens-data/pentax/PentaxM50mmf17.data.ts) | L4 | Biconcave Negative | -27.26 | -27.26 | 0.00 | 0.00% | — |
 | [PENTAX SMC M 50mm f/1.7](../../src/lens-data/pentax/PentaxM50mmf17.data.ts) | L5 | Biconvex Positive | 30.34 | 30.34 | 0.00 | 0.00% | — |
 | [PENTAX SMC M 50mm f/1.7](../../src/lens-data/pentax/PentaxM50mmf17.data.ts) | L6 | Biconvex Positive | 54.28 | 54.28 | 0.00 | 0.00% | — |
+| [PENTAX SMC M* 300mm f/4](../../src/lens-data/pentax/PentaxMStar300mmf4.data.ts) | L1 | Biconvex Positive | 160.09 | 160.09 | 0.00 | 0.00% | — |
+| [PENTAX SMC M* 300mm f/4](../../src/lens-data/pentax/PentaxMStar300mmf4.data.ts) | L4 | Positive Meniscus | 116.82 | 116.82 | 0.00 | 0.00% | — |
+| [PENTAX SMC M* 300mm f/4](../../src/lens-data/pentax/PentaxMStar300mmf4.data.ts) | L8 | Biconvex Positive | 57.03 | 57.03 | 0.00 | 0.00% | — |
+| [PENTAX SMC TAKUMAR 6x7 300mm f/4](../../src/lens-data/pentax/PentaxSMCTakumar6x7300mmf4.data.ts) | L2 | Biconcave Negative | -207.70 | -207.70 | 0.00 | 0.00% | — |
+| [PENTAX SMC TAKUMAR 6x7 300mm f/4](../../src/lens-data/pentax/PentaxSMCTakumar6x7300mmf4.data.ts) | L4 | Biconvex Positive | 242.26 | 242.26 | 0.00 | 0.00% | — |
+| [PENTAX SMC ZOOM 5.8-17.4mm f/2.6-4.8 (Pentax Optio S)](../../src/lens-data/pentax/PentaxOptioS58174mmf2648.data.ts) | L1 | Negative Meniscus | -8.35 | -8.35 | 0.00 | 0.00% | — |
+| [PENTAX SMC ZOOM 5.8-17.4mm f/2.6-4.8 (Pentax Optio S)](../../src/lens-data/pentax/PentaxOptioS58174mmf2648.data.ts) | L3 | Biconvex Positive (2× Asph) | 7.89 | 7.89 | 0.00 | 0.00% | — |
+| [PENTAX SMC ZOOM 5.8-17.4mm f/2.6-4.8 (Pentax Optio S)](../../src/lens-data/pentax/PentaxOptioS58174mmf2648.data.ts) | L4 | Positive Meniscus | 13.32 | 13.32 | 0.00 | 0.00% | — |
+| [PENTAX SMC ZOOM 5.8-17.4mm f/2.6-4.8 (Pentax Optio S)](../../src/lens-data/pentax/PentaxOptioS58174mmf2648.data.ts) | L5 | Negative Meniscus | -4.63 | -4.63 | 0.00 | 0.00% | — |
+| [PENTAX SMC ZOOM 5.8-17.4mm f/2.6-4.8 (Pentax Optio S)](../../src/lens-data/pentax/PentaxOptioS58174mmf2648.data.ts) | L6 | Biconvex Positive | 12.44 | 12.44 | 0.00 | 0.00% | — |
 | [PENTAX SUPER-TAKUMAR 135mm f/2.5](../../src/lens-data/pentax/PentaxSuperTakumar135mmf2.5.data.ts) | L4 | Plano-Concave Negative | -37.50 | -37.50 | 0.00 | 0.00% | — |
+| [PENTAX SUPER-TAKUMAR 300mm f/4](../../src/lens-data/pentax/PentaxSuperTakumar300mmf4.data.ts) | L1 | Biconvex Positive | 208.25 | 208.25 | 0.00 | 0.00% | — |
+| [PENTAX SUPER-TAKUMAR 300mm f/4](../../src/lens-data/pentax/PentaxSuperTakumar300mmf4.data.ts) | L3 | Positive Meniscus | 188.46 | 188.46 | 0.00 | 0.00% | — |
+| [PENTAX SUPER-TAKUMAR 300mm f/4](../../src/lens-data/pentax/PentaxSuperTakumar300mmf4.data.ts) | L5 | Biconvex Positive | 67.49 | 67.49 | 0.00 | 0.00% | — |
 | [PENTAX SUPER-TAKUMAR 50mm f/1.4 (8-element)](../../src/lens-data/pentax/PentaxSuperTakumar50mmf14EightElement.data.ts) | L2 | Positive Meniscus | 59.79 | 59.79 | 0.00 | 0.00% | — |
 | [PENTAX SUPER-TAKUMAR 50mm f/1.4 (8-element)](../../src/lens-data/pentax/PentaxSuperTakumar50mmf14EightElement.data.ts) | L3 | Negative Meniscus | -36.39 | -36.39 | 0.00 | 0.00% | — |
 | [PENTAX SUPER-TAKUMAR 50mm f/1.4 (8-element)](../../src/lens-data/pentax/PentaxSuperTakumar50mmf14EightElement.data.ts) | L4 | Biconcave Negative | -21.21 | -21.21 | 0.00 | 0.00% | — |
@@ -11994,6 +12524,10 @@ Sorted by absolute percentage difference, largest first.
 | [SIGMA 28mm f/1.8 EX DG ASPHERICAL MACRO](../../src/lens-data/sigma/Sigma28mmf18EXDGAsphericalMacro.data.ts) | L7 | Positive Meniscus | 71.13 | 71.13 | 0.00 | 0.00% | — |
 | [SIGMA 28mm f/1.8 EX DG ASPHERICAL MACRO](../../src/lens-data/sigma/Sigma28mmf18EXDGAsphericalMacro.data.ts) | L8 | Biconcave Negative | -20.52 | -20.52 | 0.00 | 0.00% | — |
 | [SIGMA 28mm f/1.8 EX DG ASPHERICAL MACRO](../../src/lens-data/sigma/Sigma28mmf18EXDGAsphericalMacro.data.ts) | L10 | Biconvex Positive | 55.83 | 55.83 | 0.00 | 0.00% | — |
+| [SIGMA 30mm f/2.8 DN \| Art](../../src/lens-data/sigma/Sigma30mmf28DNArt.data.ts) | L1 | Biconvex Positive | 19.80 | 19.80 | 0.00 | 0.00% | — |
+| [SIGMA 30mm f/2.8 DN \| Art](../../src/lens-data/sigma/Sigma30mmf28DNArt.data.ts) | L3 | Biconcave Negative | -12.20 | -12.20 | 0.00 | 0.00% | — |
+| [SIGMA 30mm f/2.8 DN \| Art](../../src/lens-data/sigma/Sigma30mmf28DNArt.data.ts) | L5 | Biconvex Positive | 23.03 | 23.03 | 0.00 | 0.00% | — |
+| [SIGMA 30mm f/2.8 DN \| Art](../../src/lens-data/sigma/Sigma30mmf28DNArt.data.ts) | L6 | Biconcave Negative | -34.00 | -34.00 | 0.00 | 0.00% | — |
 | [SIGMA 35mm f/2 DG DN \| Contemporary](../../src/lens-data/sigma/Sigma35mmf2DGDNContemporary.data.ts) | L1 | Biconcave Negative | -34.56 | -34.56 | 0.00 | 0.00% | — |
 | [SIGMA 35mm f/2 DG DN \| Contemporary](../../src/lens-data/sigma/Sigma35mmf2DGDNContemporary.data.ts) | L2 | Biconvex Positive | 44.29 | 44.29 | 0.00 | 0.00% | — |
 | [SIGMA 35mm f/2 DG DN \| Contemporary](../../src/lens-data/sigma/Sigma35mmf2DGDNContemporary.data.ts) | L4 | Biconvex Positive (2x Asph) | 25.11 | 25.11 | 0.00 | 0.00% | — |
@@ -12005,6 +12539,17 @@ Sorted by absolute percentage difference, largest first.
 | [SIGMA 500mm f/4 DG OS HSM \| Sports](../../src/lens-data/sigma/Sigma500mmf4DGOSHSMsports.data.ts) | L11 | Biconcave Negative | -39.55 | -39.55 | 0.00 | 0.00% | — |
 | [SIGMA 500mm f/4 DG OS HSM \| Sports](../../src/lens-data/sigma/Sigma500mmf4DGOSHSMsports.data.ts) | L12 | Biconcave Negative | -56.23 | -56.23 | 0.00 | 0.00% | — |
 | [SIGMA 500mm f/4 DG OS HSM \| Sports](../../src/lens-data/sigma/Sigma500mmf4DGOSHSMsports.data.ts) | L15 | Biconcave Negative | -67.45 | -67.45 | 0.00 | 0.00% | — |
+| [SIGMA 500mm f/5.6 DG DN OS \| Sports](../../src/lens-data/sigma/Sigma500mmf56DGDNosSports.data.ts) | L1 | Positive Meniscus | 277.62 | 277.62 | 0.00 | 0.00% | — |
+| [SIGMA 500mm f/5.6 DG DN OS \| Sports](../../src/lens-data/sigma/Sigma500mmf56DGDNosSports.data.ts) | L4 | Positive Meniscus | 199.83 | 199.83 | 0.00 | 0.00% | — |
+| [SIGMA 500mm f/5.6 DG DN OS \| Sports](../../src/lens-data/sigma/Sigma500mmf56DGDNosSports.data.ts) | L6 | Biconvex Positive | 131.99 | 131.99 | 0.00 | 0.00% | — |
+| [SIGMA 500mm f/5.6 DG DN OS \| Sports](../../src/lens-data/sigma/Sigma500mmf56DGDNosSports.data.ts) | L7 | Negative Meniscus | -56.78 | -56.78 | 0.00 | 0.00% | — |
+| [SIGMA 500mm f/5.6 DG DN OS \| Sports](../../src/lens-data/sigma/Sigma500mmf56DGDNosSports.data.ts) | L8 | Positive Meniscus | 60.07 | 60.07 | 0.00 | 0.00% | — |
+| [SIGMA 500mm f/5.6 DG DN OS \| Sports](../../src/lens-data/sigma/Sigma500mmf56DGDNosSports.data.ts) | L12 | Biconcave Negative | -41.40 | -41.40 | 0.00 | 0.00% | — |
+| [SIGMA 500mm f/5.6 DG DN OS \| Sports](../../src/lens-data/sigma/Sigma500mmf56DGDNosSports.data.ts) | L14 | Biconvex Positive | 40.03 | 40.03 | 0.00 | 0.00% | — |
+| [SIGMA 500mm f/5.6 DG DN OS \| Sports](../../src/lens-data/sigma/Sigma500mmf56DGDNosSports.data.ts) | L15 | Biconcave Negative | -21.10 | -21.10 | 0.00 | 0.00% | — |
+| [SIGMA 500mm f/5.6 DG DN OS \| Sports](../../src/lens-data/sigma/Sigma500mmf56DGDNosSports.data.ts) | L16 | Positive Meniscus | 34.65 | 34.65 | 0.00 | 0.00% | — |
+| [SIGMA 500mm f/5.6 DG DN OS \| Sports](../../src/lens-data/sigma/Sigma500mmf56DGDNosSports.data.ts) | L18 | Biconcave Negative | -14.85 | -14.85 | 0.00 | 0.00% | — |
+| [SIGMA 500mm f/5.6 DG DN OS \| Sports](../../src/lens-data/sigma/Sigma500mmf56DGDNosSports.data.ts) | L19 | Biconvex Positive | 31.72 | 31.72 | 0.00 | 0.00% | — |
 | [SIGMA 56mm f/1.4 DC DN \| Contemporary](../../src/lens-data/sigma/Sigma56mmf14DCDNContemporary.data.ts) | L11 | Positive Meniscus | 130.49 | 130.49 | 0.00 | 0.00% | — |
 | [SIGMA 56mm f/1.4 DC DN \| Contemporary](../../src/lens-data/sigma/Sigma56mmf14DCDNContemporary.data.ts) | L12 | Biconvex Positive (Asph) | 67.82 | 67.82 | 0.00 | 0.00% | — |
 | [SIGMA 56mm f/1.4 DC DN \| Contemporary](../../src/lens-data/sigma/Sigma56mmf14DCDNContemporary.data.ts) | L14 | Biconvex Positive | 26.73 | 26.73 | 0.00 | 0.00% | — |
@@ -12253,6 +12798,14 @@ Sorted by absolute percentage difference, largest first.
 | [VIVITAR SERIES 1 90mm f/2.5 MACRO](../../src/lens-data/vivitar/VivitarSeries190mmf25Macro.data.ts) | L3 | Negative Meniscus | -46.52 | -46.52 | 0.00 | 0.00% | — |
 | [VOIGTLÄNDER CINE-TELE-ANASTIGMAT 100mm f/4.5 (patent model)](../../src/lens-data/voigtlander/VoigtlanderCineTeleAnastigmat100mmf45.data.ts) | L2 | Plano-Concave | -53.08 | -53.08 | 0.00 | 0.00% | — |
 | [VOIGTLÄNDER CINE-TELE-ANASTIGMAT 100mm f/4.5 (patent model)](../../src/lens-data/voigtlander/VoigtlanderCineTeleAnastigmat100mmf45.data.ts) | L3 | Biconcave Negative | -28.78 | -28.78 | 0.00 | 0.00% | — |
+| [VOIGTLÄNDER COLOR-SKOPAR 18mm f/2.8 Aspherical X-Mount](../../src/lens-data/voigtlander/VoigtlanderColorSkopar18mmf28X.data.ts) | L17 | Biconvex Positive | 34.10 | 34.10 | 0.00 | 0.00% | — |
+| [VOIGTLÄNDER COLOR-SKOPAR 18mm f/2.8 Aspherical X-Mount](../../src/lens-data/voigtlander/VoigtlanderColorSkopar18mmf28X.data.ts) | L18 | Biconcave Negative | -7.35 | -7.35 | 0.00 | 0.00% | — |
+| [VOIGTLÄNDER COLOR-SKOPAR 18mm f/2.8 Aspherical X-Mount](../../src/lens-data/voigtlander/VoigtlanderColorSkopar18mmf28X.data.ts) | L19 | Biconvex Positive | 6.13 | 6.13 | 0.00 | 0.00% | — |
+| [VOIGTLÄNDER COLOR-SKOPAR 50mm f/2.2 VM](../../src/lens-data/voigtlander/VoigtlanderColorSkopar50mmf22VM.data.ts) | L1 | Positive Meniscus | 57.00 | 57.00 | 0.00 | 0.00% | — |
+| [VOIGTLÄNDER COLOR-SKOPAR 50mm f/2.2 VM](../../src/lens-data/voigtlander/VoigtlanderColorSkopar50mmf22VM.data.ts) | L2 | Positive Meniscus | 54.29 | 54.29 | 0.00 | 0.00% | — |
+| [VOIGTLÄNDER COLOR-SKOPAR 50mm f/2.2 VM](../../src/lens-data/voigtlander/VoigtlanderColorSkopar50mmf22VM.data.ts) | L3 | Negative Meniscus | -28.53 | -28.53 | 0.00 | 0.00% | — |
+| [VOIGTLÄNDER COLOR-SKOPAR 50mm f/2.2 VM](../../src/lens-data/voigtlander/VoigtlanderColorSkopar50mmf22VM.data.ts) | L4 | Negative Meniscus | -21.46 | -21.46 | 0.00 | 0.00% | — |
+| [VOIGTLÄNDER COLOR-SKOPAR 50mm f/2.2 VM](../../src/lens-data/voigtlander/VoigtlanderColorSkopar50mmf22VM.data.ts) | L5 | Positive Meniscus | 13.93 | 13.93 | 0.00 | 0.00% | — |
 | [VOIGTLÄNDER DYNAR 100mm f/6](../../src/lens-data/voigtlander/VoigtlanderDynarF6.data.ts) | L2 | Negative Meniscus | -195.33 | -195.33 | 0.00 | 0.00% | — |
 | [VOIGTLÄNDER DYNAR 100mm f/6](../../src/lens-data/voigtlander/VoigtlanderDynarF6.data.ts) | L3 | Biconcave Negative | -26.31 | -26.31 | 0.00 | 0.00% | — |
 | [VOIGTLÄNDER DYNAR 100mm f/6](../../src/lens-data/voigtlander/VoigtlanderDynarF6.data.ts) | L4 | Biconcave Negative | -35.60 | -35.60 | 0.00 | 0.00% | — |
@@ -12266,6 +12819,12 @@ Sorted by absolute percentage difference, largest first.
 | [VOIGTLÄNDER MACRO APO-ULTRON 35mm f/2 X-Mount](../../src/lens-data/voigtlander/VoigtlanderMacroAPOUltron35mmf2X.data.ts) | L4r | Biconvex Positive | 17.04 | 17.04 | 0.00 | 0.00% | — |
 | [VOIGTLÄNDER MACRO APO-ULTRON 35mm f/2 X-Mount](../../src/lens-data/voigtlander/VoigtlanderMacroAPOUltron35mmf2X.data.ts) | L5f | Positive Meniscus | 13.87 | 13.87 | 0.00 | 0.00% | — |
 | [VOIGTLÄNDER MACRO APO-ULTRON 35mm f/2 X-Mount](../../src/lens-data/voigtlander/VoigtlanderMacroAPOUltron35mmf2X.data.ts) | L5r | Negative Meniscus | -19.78 | -19.78 | 0.00 | 0.00% | — |
+| [VOIGTLÄNDER NOKTON 23mm f/1.2 Aspherical X-Mount](../../src/lens-data/voigtlander/VoigtlanderNokton23mmf12X.data.ts) | L1 | Biconcave Negative | -18.88 | -18.88 | 0.00 | 0.00% | — |
+| [VOIGTLÄNDER NOKTON 23mm f/1.2 Aspherical X-Mount](../../src/lens-data/voigtlander/VoigtlanderNokton23mmf12X.data.ts) | L2r | Biconvex Positive | 24.18 | 24.18 | 0.00 | 0.00% | — |
+| [VOIGTLÄNDER NOKTON 23mm f/1.2 Aspherical X-Mount](../../src/lens-data/voigtlander/VoigtlanderNokton23mmf12X.data.ts) | L3r | Biconcave Negative | -32.07 | -32.07 | 0.00 | 0.00% | — |
+| [VOIGTLÄNDER NOKTON 23mm f/1.2 Aspherical X-Mount](../../src/lens-data/voigtlander/VoigtlanderNokton23mmf12X.data.ts) | L4f | Biconcave Negative | -12.75 | -12.75 | 0.00 | 0.00% | — |
+| [VOIGTLÄNDER NOKTON 23mm f/1.2 Aspherical X-Mount](../../src/lens-data/voigtlander/VoigtlanderNokton23mmf12X.data.ts) | L5f | Biconvex Positive | 13.06 | 13.06 | 0.00 | 0.00% | — |
+| [VOIGTLÄNDER NOKTON 23mm f/1.2 Aspherical X-Mount](../../src/lens-data/voigtlander/VoigtlanderNokton23mmf12X.data.ts) | L6 | Biconvex Positive | 48.60 | 48.60 | 0.00 | 0.00% | — |
 | [VOIGTLÄNDER NOKTON 35mm f/1.2 X-Mount](../../src/lens-data/voigtlander/VoigtlanderNokton35mmf12X.data.ts) | L6f | Biconcave Negative | -11.97 | -11.97 | 0.00 | 0.00% | — |
 | [VOIGTLÄNDER NOKTON 35mm f/1.2 X-Mount](../../src/lens-data/voigtlander/VoigtlanderNokton35mmf12X.data.ts) | L7 | Biconvex Positive | 37.82 | 37.82 | 0.00 | 0.00% | — |
 | [VOIGTLÄNDER NOKTON 50mm f/1.5](../../src/lens-data/voigtlander/VoigtlanderNokton50mmf15.data.ts) | L5 | Biconcave Negative | -17.37 | -17.37 | 0.00 | 0.00% | — |
@@ -12297,6 +12856,9 @@ Sorted by absolute percentage difference, largest first.
 | [YASHICA ML 35mm f/2.8 (early diamond-grip)](../../src/lens-data/yashica/YashicaML35mmf28Early.data.ts) | L3 | Biconvex Positive | 28.01 | 28.01 | 0.00 | 0.00% | — |
 | [YASHICA ML 35mm f/2.8 (early diamond-grip)](../../src/lens-data/yashica/YashicaML35mmf28Early.data.ts) | L5 | Biconcave Negative | -19.46 | -19.46 | 0.00 | 0.00% | — |
 | [YASHICA ML 35mm f/2.8 (early diamond-grip)](../../src/lens-data/yashica/YashicaML35mmf28Early.data.ts) | L7 | Meniscus Positive | 58.84 | 58.84 | 0.00 | 0.00% | — |
+| [YONGNUO YN 85mm f/1.8 S DF DSM](../../src/lens-data/yongnuo/YongnuoYN85mmf18SDFDSM.data.ts) | L11 | Positive Meniscus | 87.12 | 87.12 | 0.00 | 0.00% | — |
+| [YONGNUO YN 85mm f/1.8 S DF DSM](../../src/lens-data/yongnuo/YongnuoYN85mmf18SDFDSM.data.ts) | L13 | Negative Meniscus | -36.26 | -36.26 | 0.00 | 0.00% | — |
+| [YONGNUO YN 85mm f/1.8 S DF DSM](../../src/lens-data/yongnuo/YongnuoYN85mmf18SDFDSM.data.ts) | L14 | Positive Meniscus | 71.00 | 71.00 | 0.00 | 0.00% | — |
 | [ZEISS OTUS ML 85mm f/1.4](../../src/lens-data/carl-zeiss-oberkochen/ZeissOtusML85mmf14.data.ts) | L4 | Biconvex Positive | 68.28 | 68.28 | 0.00 | 0.00% | — |
 | [ZEISS OTUS ML 85mm f/1.4](../../src/lens-data/carl-zeiss-oberkochen/ZeissOtusML85mmf14.data.ts) | L6r | Negative Meniscus | -45.31 | -45.31 | 0.00 | 0.00% | — |
 | [ZEISS OTUS ML 85mm f/1.4](../../src/lens-data/carl-zeiss-oberkochen/ZeissOtusML85mmf14.data.ts) | L7 | Biconcave Negative | -92.33 | -92.33 | 0.00 | 0.00% | — |
@@ -12361,6 +12923,7 @@ hidden blocker fixture, whose blocking behavior is outside the focal-length form
 | [CANON EF 600mm f/4 L IS USM](../../src/lens-data/canon/CanonEF600mmf4LISUSM.data.ts) | HG | Plane-Parallel Plate | absent | ∞ | absent (no authored focal length) |
 | [CANON EF 600mm f/4 L IS USM](../../src/lens-data/canon/CanonEF600mmf4LISUSM.data.ts) | FL | Plane-Parallel Plate | absent | ∞ | absent (no authored focal length) |
 | [CARL ZEISS JENA VARIO-PRAKTICAR 35-70mm f/2.7-3.5 MC](../../src/lens-data/carl-zeiss-jena/ZeissVarioPrakticar3570mmf2735.data.ts) | P | Plane-Parallel Plate | absent | ∞ | absent (no authored focal length) |
+| [LAOWA 200mm f/2 AF FF](../../src/lens-data/laowa/Laowa200mmf2AFFF.data.ts) | Rear filter | Plane-Parallel Plate | absent | ∞ | absent (no authored focal length) |
 | [LAOWA 24mm f/14 2× Macro Probe](../../src/lens-data/laowa/Laowa24mmf14Probe.data.ts) | P2 | Plane-Parallel Plate | 0 | ∞ | 0 (zero-power sentinel) |
 | [LAOWA 24mm f/14 2× Macro Probe](../../src/lens-data/laowa/Laowa24mmf14Probe.data.ts) | P3 | Plane-Parallel Plate | 0 | ∞ | 0 (zero-power sentinel) |
 | [MINOLTA AF REFLEX 500mm f/8](../../src/lens-data/minolta/MinoltaAFReflex500mmf8.data.ts) | F | Plane-Parallel Plate | absent | ∞ | absent (no authored focal length) |
@@ -12390,6 +12953,7 @@ hidden blocker fixture, whose blocking behavior is outside the focal-length form
 | [NIKON R-UW AF MICRO-NIKKOR 50mm f/2.8](../../src/lens-data/nikon/NikonRUWMicroNikkor50mmf28.data.ts) | PL | Parallel Flat Plate | ∞ | ∞ | ∞ (explicit infinity) |
 | [NIKON TV-NIKKOR 11.5-69mm f/1.2 (Nikon S-100)](../../src/lens-data/nikon/NikonTVNikkor11569mmf12NikonS100.data.ts) | P | Plane-Parallel Plate | absent | ∞ | absent (no authored focal length) |
 | [OLYMPUS ZUIKO 9-36mm f/2-2.4 (Olympus E-10 / E-20)](../../src/lens-data/olympus/OlympusZuiko936mmf224.data.ts) | P1 | Plane-Parallel Prism | 0 | ∞ | 0 (zero-power sentinel) |
+| [PENTAX SMC FA* 300mm f/2.8 ED [IF]](../../src/lens-data/pentax/PentaxFAStar300mmF28EDIF.data.ts) | F | Plane-Parallel Plate | absent | ∞ | absent (no authored focal length) |
 | [REFERENCE Annular Ring Blocker](../../src/lens-data/reference/ReferenceAnnularRingBlocker.data.ts) | MASK | Annular Blocker | absent | ∞ | absent (no authored focal length) |
 | [REFERENCE Folded Diffractive Plate](../../src/lens-data/reference/ReferenceFoldedDiffractivePlate.data.ts) | PF | Diffractive Phase Plate | 200 | ∞ | No zero-power convention; authored power is not modeled by the refractive formula |
 | [SCHNEIDER-KREUZNACH VARIOGON 8-40mm f/1.8](../../src/lens-data/schneider-kreuznach/SchneiderVariogon18840.data.ts) | P | Plane-Parallel Prism | absent | ∞ | absent (no authored focal length) |
@@ -12407,6 +12971,7 @@ Remaining refractive elements that declare no authored `focalLengthMm` or `fl`; 
 | [LEICA ELMARIT-TL 18mm f/2.8 ASPH.](../../src/lens-data/leica/LeicaElmaritTL18mmf28.data.ts) | C1 | UV Resin Cement Layer | 29147.51 | 0.005 mm optical bond layer between L3 and L4, transcribed explicitly from the patent table. |
 | [LEICA ELMARIT-TL 18mm f/2.8 ASPH.](../../src/lens-data/leica/LeicaElmaritTL18mmf28.data.ts) | C2 | UV Resin Cement Layer | 4662263.36 | 0.005 mm optical bond layer between L5 and L6, transcribed explicitly from the patent table. |
 | [LEICA SUMMICRON-SL 50mm f/2 ASPH.](../../src/lens-data/leica/LeicaSummicronSl50mmF2Asph.data.ts) | C1 | Optical Cement Layer | 359130.49 | Cement layer of the L3–L4 doublet D1: the 0.01 mm adhesive layer printed in the patent prescription; not counted as a lens element |
+| [MINOLTA AF 24-105mm f/3.5-4.5 (D)](../../src/lens-data/minolta/MinoltaAF24105mmf3545D.data.ts) | C1 | Cement Layer | 4551758.70 | 0.010 mm cement layer between L1 and L2, as printed in the patent; not counted as a lens element |
 | [NIKON AF-S DX VR ZOOM-NIKKOR 18-200mm f/3.5-5.6 G IF-ED](../../src/lens-data/nikon/NikonAFSDXVRZoomNikkor18200mmf3556GIFED.data.ts) | L21r | Aspheric Resin Layer | -672.71 | Modeling entry for the thin bonded resin layer carrying surface 6A; not an additional physical lens. |
 | [NIKON AF-S DX VR ZOOM-NIKKOR 18-200mm f/3.5-5.6 G IF-ED](../../src/lens-data/nikon/NikonAFSDXVRZoomNikkor18200mmf3556GIFED.data.ts) | L34r | Aspheric Resin Layer | -1547.17 | Modeling entry for the thin bonded resin layer carrying surface 21A; not an additional physical lens. |
 | [NIKON AF-S NIKKOR 18-35mm f/3.5-4.5 G ED](../../src/lens-data/nikon/NikonAFSNikkor1835mmf3545GED.data.ts) | L2r | Composite Aspherical Resin Layer | -241.17 | Thin molded resin layer forming aspherical surface 3A. |
@@ -12424,6 +12989,7 @@ Remaining refractive elements that declare no authored `focalLengthMm` or `fl`; 
 | [NIKON AF-S NIKKOR 300mm f/4 E PF ED VR](../../src/lens-data/nikon/NikonAFSNIKKOR300mmf4EPFEDVR.data.ts) | DOE-R2 | Diffractive Resin Layer | 189801.52 | Second active UV-curing resin medium; surface 8 carries the diffractive phase polynomial. |
 | [NIKON AF-S NIKKOR 500mm f/5.6 E PF ED VR](../../src/lens-data/nikon/NikonAFSNikkor500mmf56EPFEDVR.data.ts) | GDa | Thin Bonded Diffractive Material | 696565.74 | First 0.2 mm medium in the bonded PF stack. |
 | [NIKON AF-S NIKKOR 500mm f/5.6 E PF ED VR](../../src/lens-data/nikon/NikonAFSNikkor500mmf56EPFEDVR.data.ts) | GDb | Thin Bonded Phase Layer | 424808.61 | Second 0.3 mm medium and carrier of the radial phase interaction. |
+| [NIKON AF-S NIKKOR 50mm f/1.4 G](../../src/lens-data/nikon/NikonAFSNikkor50mmf14G.data.ts) | C1 | Cement Layer | 13608332.58 | Printed 0.0100 mm cement layer between L4 and L5; not counted as a lens element. |
 | [NIKON AF-S VR ZOOM-NIKKOR 24-120mm f/3.5-5.6 G IF-ED](../../src/lens-data/nikon/NikonAFSVRZoomNikkor24120mmf3556GIFED.data.ts) | L21r | Bonded Aspheric Resin/Composite Layer | 380940.45 | 0.2000 mm source-listed aspheric medium modeled separately from physical L21; resin/composite technology is inferred, and chemistry/supplier are unspecified. |
 | [NIKON AF-S VR ZOOM-NIKKOR 24-120mm f/3.5-5.6 G IF-ED](../../src/lens-data/nikon/NikonAFSVRZoomNikkor24120mmf3556GIFED.data.ts) | L21 | Negative Meniscus | -18.65 | High-index substrate of physical L21; bonded-layer composite EFL is -18.658750 mm. |
 | [NIKON AF-S ZOOM-NIKKOR 24-85mm f/3.5-4.5 G IF-ED](../../src/lens-data/nikon/NikonAFSZoomNikkor2485mmf3545GIFED.data.ts) | L1 | Negative Meniscus | -118.98 |  |
