@@ -67,7 +67,7 @@ nd = 1.71299, νd = 53.8, S-LAL8, f = +33.32 mm. L10 adds convergence behind the
 
 ### L11 — positive meniscus
 
-nd = 1.84666, νd = 23.8, S-TIH53, f = +28.92 mm. The strongly curved image-side face sits across a 0.22 mm axial air gap from L12. The patent describes contact at the margin (¶0025).
+nd = 1.84666, νd = 23.8, S-TIH53, f = +28.92 mm. The strongly curved image-side face sits across a 0.22 mm axial air gap from L12. The patent describes contact at the margin (¶0025). As Figure 1 draws it, the edge of L11, 8.2 mm from the axis, lies inside the concave front face of L12, which continues out to L12's edge at 8.8 mm.
 
 ### L12 — biconcave negative
 

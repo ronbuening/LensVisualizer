@@ -9,8 +9,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * other gaps and the f-number are interpolated between adjacent printed positions.
  * The rear spacing at each printed position is the paraxial back focal distance.
  *
- * Figure 1 supplies the clear radii. The radii at surfaces 3, 8, 9, 23, 28 and 29
- * also allow for the clearance between the neighbouring surfaces. Figures 5–7 give
+ * Figure 1 supplies the clear radii. Surfaces 3, 8, 9, 28 and 29 stop short of the
+ * drawing where neighbouring faces would otherwise meet; flat lands carry surfaces
+ * 8, 9, 28 and 29 out to the drawn element edges. Figures 5–7 give
  * the f-numbers used to size the main diaphragm. The separate moving stop has a
  * drawn radius of 6.6 mm and restricts the axial beam near the middle of the zoom.
  * The fifteen glass elements form twelve air-separated components. The bonded
@@ -261,12 +262,12 @@ const LENS_DATA = {
       asphere: { K: 0, A4: 6.122e-7, A6: 2.798e-10, A8: 5.866e-11, A10: -6.974e-13 },
     },
     { label: "7", R: 72.35, d: 1.15, sd: 13.6, medium: 5 },
-    { label: "8", R: 12.37, d: 5.34, sd: 9.25 },
-    { label: "9", R: -71.85, d: 2.08, sd: 9.25, medium: 6 },
+    { label: "8", R: 12.37, d: 5.34, sd: 9.25, rimExtensionSd: 13.6 },
+    { label: "9", R: -71.85, d: 2.08, sd: 9.25, rimExtensionSd: 10, medium: 6 },
     { label: "10", R: -25.42, d: 0.8, sd: 10, medium: 7 },
     { label: "11", R: 35.59, d: 0.11, sd: 10 },
-    { label: "12", R: 24.07, d: 2.21, sd: 9.8, medium: 8 },
-    { label: "13", R: 177.18, sd: 9.8 },
+    { label: "12", R: 24.07, d: 2.21, sd: 8.9, medium: 8 },
+    { label: "13", R: 177.18, sd: 8.9 },
     { label: "STO", R: "flat", d: 0.2 },
     { label: "15", R: 24.97, d: 0.8, sd: 8, medium: 9 },
     { label: "16", R: 15.39, d: 3.6, sd: 8, medium: 10 },
@@ -274,15 +275,15 @@ const LENS_DATA = {
     { label: "18", R: 30.05, d: 2.23, sd: 8.2, medium: 11 },
     { label: "19", R: -109.9, sd: 8.2 },
     { label: "MP", R: "flat", sd: 6.6 },
-    { label: "21", R: -47.4, d: 2.41, sd: 8.8, medium: 12 },
-    { label: "22", R: -16.52, d: 0.22, sd: 8.8 },
-    { label: "23", R: -15.38, d: 0.8, sd: 8.3, medium: 13 },
+    { label: "21", R: -47.4, d: 2.41, sd: 8.2, medium: 12 },
+    { label: "22", R: -16.52, d: 0.22, sd: 8.2 },
+    { label: "23", R: -15.38, d: 0.8, sd: 8.8, medium: 13 },
     { label: "24", R: 62.32, sd: 8.8 },
     { label: "25", R: 291.11, d: 5.36, sd: 11.4, medium: 14 },
     { label: "26", R: -17.58, d: 0.12, sd: 11.4 },
     { label: "27", R: 61.13, d: 3.49, sd: 12.6, medium: 15 },
-    { label: "28", R: -49.31, d: 2.07, sd: 11 },
-    { label: "29", R: -21.19, d: 1.1, sd: 11, medium: 16 },
+    { label: "28", R: -49.31, d: 2.07, sd: 11, rimExtensionSd: 12.6 },
+    { label: "29", R: -21.19, d: 1.1, sd: 11, rimExtensionSd: 12.6, medium: 16 },
     { label: "30", R: -142.46, sd: 12.6 },
   ],
 

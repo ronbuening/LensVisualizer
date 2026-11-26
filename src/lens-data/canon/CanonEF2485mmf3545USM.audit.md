@@ -37,27 +37,26 @@ The surfaces keep positive clearances. At all fifteen zoom positions a chief ray
 
 ## Values Not Printed in the Patent
 
-The patent prints no clear radii. They are scaled from Figure 1(A) at 11.69 px/mm on the 600 dpi sheet, from the 74.15 mm distance between the first and last glass vertices. Six radii combine the drawing with surface clearance.
+The patent prints no clear radii. They are scaled from Figure 1(A) at 11.69 px/mm on the 600 dpi sheet, from the 74.15 mm distance between the first and last glass vertices. Five radii stop short of the drawing for surface clearance; flat lands carry surfaces 8, 9, 28 and 29 out to the drawn element edges.
 
-| Surfaces | Semi-diameter (mm) | Basis                                                                               |
-| -------- | -----------------: | ----------------------------------------------------------------------------------- |
-| 1–2      |               28.0 | Drawn front doublet edge                                                            |
-| 3        |               27.9 | Drawn 28.0; the faces of L2 meet near 28.18 mm, so the rim keeps a positive edge    |
-| 4–5      |               24.0 | Drawn L3 edge                                                                       |
-| 6A–7     |               13.6 | Drawn edge of the hybrid element                                                    |
-| 8        |               9.25 | Drawn about 9.7; the air space to surface 9 closes near 9.69 mm                     |
-| 9        |               9.25 | Drawn 10.0; held to the same height by that air space                               |
-| 10–11    |               10.0 | Drawn L5/L6 edge                                                                    |
-| 12–13    |                9.8 | Drawn L7 edge (9.84)                                                                |
-| 15–17    |                8.0 | Drawn C4 edge (8.04)                                                                |
-| 18–19    |                8.2 | Drawn L10 edge (8.17)                                                               |
-| 21–22    |                8.8 | Drawn L11 edge (8.81)                                                               |
-| 23       |                8.3 | Drawn 8.81; beside the marginal contact of ¶0025 the air space to surface 22 closes |
-| 24       |                8.8 | Drawn L12 edge (8.81)                                                               |
-| 25–26    |               11.4 | Drawn L13 edge                                                                      |
-| 27       |               12.6 | Drawn L14 edge (12.66)                                                              |
-| 28–29    |               11.0 | Drawn 12.66; the air space between L14 and L15 closes near 11.59 mm                 |
-| 30       |               12.6 | Drawn L15 edge (12.66)                                                              |
+| Surfaces | Semi-diameter (mm) | Basis                                                                                                                          |
+| -------- | -----------------: | ------------------------------------------------------------------------------------------------------------------------------ |
+| 1–2      |               28.0 | Drawn front doublet edge                                                                                                       |
+| 3        |               27.9 | Drawn 28.0; the faces of L2 meet near 28.18 mm, so the rim keeps a positive edge                                               |
+| 4–5      |               24.0 | Drawn L3 edge                                                                                                                  |
+| 6A–7     |               13.6 | Drawn edge of the hybrid element                                                                                               |
+| 8        | 9.25, land to 13.6 | Curve drawn to about 9.8; the air space to surface 9 closes near 9.69 mm, and a flat land reaches the drawn 13.6 mm edge of L4 |
+| 9        | 9.25, land to 10.0 | Held to 9.25 by that air space; a flat land reaches the drawn L5/L6 edge                                                       |
+| 10–11    |               10.0 | Drawn L5/L6 edge                                                                                                               |
+| 12–13    |                8.9 | Drawn L7 edge (8.85), below the L5/L6 edge as in Canon's drawing                                                               |
+| 15–17    |                8.0 | Drawn C4 edge (8.04)                                                                                                           |
+| 18–19    |                8.2 | Drawn L10 edge (8.17)                                                                                                          |
+| 21–22    |                8.2 | Drawn L11 edge (8.2), resting inside the concave front face of L12 (¶0025 marginal contact)                                    |
+| 23–24    |                8.8 | Drawn L12 edge (8.7); surface 23 clears surface 22 with L11 at 8.2                                                             |
+| 25–26    |               11.4 | Drawn L13 edge                                                                                                                 |
+| 27       |               12.6 | Drawn L14 edge (12.66)                                                                                                         |
+| 28–29    | 11.0, land to 12.6 | Drawn 12.66; the air space between L14 and L15 closes near 11.59 mm, so flat lands carry both faces to the drawn edge          |
+| 30       |               12.6 | Drawn L15 edge (12.66)                                                                                                         |
 
 - **Stop openings.** Figure 1 draws MP at a radius of about 6.59 mm at wide and 6.68 mm at tele; a constant 6.6 mm stands for it. SP is drawn near 7 mm at both ends (6.97 at wide, about 7.07 at tele). Its radius is calculated from the printed f-numbers at each position: 6.36, 7.08 and 6.87 mm at the printed positions. Paragraph 0028 describes a fixed SP opening and an independently moving MP; the two drawn openings cannot reproduce all three printed apertures as fixed radii.
 - **Image plane and zoom motion.** The last air space at each printed position is the paraxial back focal distance. Straight interpolation of all six spaces would leave up to 0.829 mm of defocus between wide and middle and 0.264 mm between middle and tele. At twelve calculated positions D13 places the paraxial image on the fixed image plane; D5, D19, D20, D24, the last air space and the f-number vary linearly between adjacent printed positions. D19 + D20 + D24 remains 11.46 mm, so G3 and G5 travel together. The rounded prescription leaves the nominally fixed G4 within a 0.038 mm range relative to the image plane. Defocus is at most 0.00010 mm at the fifteen positions and 0.0175 mm between them.
@@ -113,6 +112,15 @@ The production lens is 24–85 mm f/3.5–4.5; the example is 24.84–82.06 mm f
 | L14         | S-LAM54     | +0.0000079 | +0.02 |
 
 At infinity the finished model gives 24.850 / 50.053 / 82.191 mm EFL, f/3.58 / 4.01 / 4.68 at the main stop (f/4.20 at 50 mm through both stops), 37.907 / 43.302 / 46.355 mm of back focus, main-stop radii of 6.363 / 7.080 / 6.870 mm and frame-corner half-fields of 42.9° / 22.7° / 14.2°.
+
+2026-11-25 rim review:
+
+- Surfaces 12–13 (L7): 9.8 → 8.9 mm. Figure 1 draws L7 at 8.85 mm, below the edge of the L5/L6 doublet, and Canon's drawing also shows it smaller than the doublet.
+- Surfaces 21–22 (L11): 8.8 → 8.2 mm; surface 23 (front of L12): 8.3 → 8.8 mm. Figure 1 draws L11 at 8.2 mm inside the concave front face of L12, which runs out to L12's 8.7 mm edge; the previous values put L11 above the front of L12.
+- Surface 8: a flat land from 9.25 to 13.6 mm, the vertical step that Figure 1 and Canon's drawing show on the rear of L4.
+- Surface 9: a flat land from 9.25 to 10.0 mm, bringing the front of L5 to the drawn edge of its cemented pair.
+- Surfaces 28 and 29: flat lands from 11.0 to 12.6 mm, so L14 and L15 reach the drawn 12.6 mm edge while their faces stay apart.
+- Corner illumination is 30.5% at 24.84 mm, 47.3% at 50 mm and 42.9% at 82.06 mm both before and after, with no change at any field of the fifteen zoom positions. The f-numbers, the traced field and the image circle are unchanged.
 
 ## Remaining Questions
 
