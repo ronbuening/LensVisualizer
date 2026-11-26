@@ -9,13 +9,13 @@
 **Published:** 13 March 1972\
 **Example details:** Example 3 (実施例 3), numerical table on page 5, section in Figure 5 and aberration plots in Figure 10.
 
-Example 3 is the probable design of the FD 300mm f/5.6 S.C., introduced in March 1973. The patent names ordinary optical glasses for all six elements and gives a first-vertex-to-image length of 0.7198 times the nominal focal length. Canon describes the S.C. as an ordinary-glass telephoto with a ratio of 0.72. The patent's 8.2° field also agrees closely with Canon's 8°15′ for the 36 × 24 mm frame. [Canon Camera Museum, 1973 S.C.](https://global.canon/en/c-museum/product/fd179.html) · [Canon lens catalog, p. 32](https://www.360icon.com/PDF/CanonLenses.pdf) · [Canon FD lens specifications](https://www.pacificrimcamera.com/rl/00354/00354.pdf)
+Example 3 is the probable design of the FD 300mm f/5.6 S.C., introduced in March 1973. The patent names ordinary optical glasses for all six elements and gives a first-vertex-to-image length of 0.7198 times the nominal focal length. Canon describes the S.C. as an ordinary-glass telephoto with a ratio of 0.72. The patent's 8.2° field also agrees closely with Canon's 8°15′ for the 36 × 24 mm frame. [Canon Camera Museum, 1973 S.C.](https://global.canon/en/c-museum/product/fd179.html) · [Canon lens catalog, p. 32](https://www.pacificrimcamera.com/rl/00253/00253.pdf) · [Canon FD lens specifications](https://www.pacificrimcamera.com/rl/00354/00354.pdf)
 
-Canon lists six elements in five groups. Its cutaway shows two air-spaced rear singlets, as in Figure 5. In the front assembly the cement line between L3 and L4 is indistinct, which leaves the exact prescription uncertain. [Canon lens catalog, p. 32](https://www.360icon.com/PDF/CanonLenses.pdf) · [Canon Camera Museum, 1973 S.C.](https://global.canon/en/c-museum/product/fd179.html)
+Canon lists six elements in five groups. Its cutaway shows two air-spaced rear singlets, as in Figure 5. In the front assembly the cement line between L3 and L4 is indistinct, which leaves the exact prescription uncertain. [Canon lens catalog, p. 32](https://www.pacificrimcamera.com/rl/00253/00253.pdf) · [Canon Camera Museum, 1973 S.C.](https://global.canon/en/c-museum/product/fd179.html)
 
 The specifications here apply to the 1973 Spectra Coating (S.C.) lens. The March 1971 FD version shares its construction count, 173 mm barrel length and 4 m minimum focus. The March 1977 Super Spectra Coating (S.S.C.) version has rear focusing, a longer, lighter barrel and a 3 m minimum. The June 1979 New FD also focuses to 3 m and closes to f/32. The S.C. closes to f/22. [Canon system brochure, coating designations](https://www.pacificrimcamera.com/rl/00354/00354.pdf) · [1971 FD](https://global.canon/en/c-museum/product/fd178.html) · [1973 S.C.](https://global.canon/en/c-museum/product/fd179.html) · [1977 S.S.C.](https://global.canon/en/c-museum/product/fd180.html) · [1979 New FD](https://global.canon/en/c-museum/product/nfd229.html)
 
-Of the other examples in JP S47-8749 B, Example 1 covers a wider 12.4° field. Example 2 uses two fluorite elements, a feature Canon identifies in its FL-F 300mm f/5.6. Example 4 has six separate groups. Example 5 also has six elements in five groups, but L3 and L4 are separated by air and the rear pair is cemented. That rear construction differs from Canon's S.C. cutaway. [Canon Camera Museum, FL-F 300mm f/5.6](https://global.canon/en/c-museum/product/fl117.html) · [Canon lens catalog, p. 32](https://www.360icon.com/PDF/CanonLenses.pdf)
+Of the other examples in JP S47-8749 B, Example 1 covers a wider 12.4° field. Example 2 uses two fluorite elements, a feature Canon identifies in its FL-F 300mm f/5.6. Example 4 has six separate groups. Example 5 also has six elements in five groups, but L3 and L4 are separated by air and the rear pair is cemented. That rear construction differs from Canon's S.C. cutaway. [Canon Camera Museum, FL-F 300mm f/5.6](https://global.canon/en/c-museum/product/fl117.html) · [Canon lens catalog, p. 32](https://www.pacificrimcamera.com/rl/00253/00253.pdf)
 
 ## Optical Architecture
 
@@ -59,7 +59,7 @@ The FK5 catalog glass has an Abbe number of 70.4, compared with 70.0 for both fr
 
 ## Focus Mechanism
 
-The patent gives one prescription at infinity, without finite spacings or close-focus magnification. All six elements stay at their infinity positions in the model. The production S.C. focuses to 4 m from the film plane and reaches 0.09×. Canon provided extra focusing travel to compensate for temperature changes down to −30 °C. Its cutaway leaves the motion of the individual groups uncertain. [Canon Camera Museum, 1973 S.C.](https://global.canon/en/c-museum/product/fd179.html) · [Canon FD instructions, “Distance Scale”](https://www.pacificrimcamera.com/rl/03486/03486.pdf) · [Canon lens catalog, p. 32](https://www.360icon.com/PDF/CanonLenses.pdf)
+The patent gives one prescription at infinity, without finite spacings or close-focus magnification. All six elements stay at their infinity positions in the model. The production S.C. focuses to 4 m from the film plane and reaches 0.09×. Canon provided extra focusing travel to compensate for temperature changes down to −30 °C. Its cutaway leaves the motion of the individual groups uncertain. [Canon Camera Museum, 1973 S.C.](https://global.canon/en/c-museum/product/fd179.html) · [Canon FD instructions, “Distance Scale”](https://www.pacificrimcamera.com/rl/03486/03486.pdf) · [Canon lens catalog, p. 32](https://www.pacificrimcamera.com/rl/00253/00253.pdf)
 
 ## Image Plane, Aperture and Field
 
@@ -71,8 +71,8 @@ The glass rims follow the outlines in Figure 5. The 26.9 mm front radius just cl
 
 ## Sources and References
 
-- Japan Patent Office, JP S47-8749 B, _Short, high-performance telephoto lens_. Example 3 and first-order summary on p. 5, third-order coefficients on p. 7, Figures 5 and 10.
-- Production cutaway, glass, telephoto ratio and focusing allowance on p. 32. [Canon lens catalog](https://www.360icon.com/PDF/CanonLenses.pdf)
+- Japan Patent Office, JP S47-8749 B, _Short, high-performance telephoto lens_. Example 3 and first-order summary on p. 5, third-order coefficients on p. 7, Figures 5 and 10. [J-PlatPat](https://www.j-platpat.inpit.go.jp/c1801/PU/JP-S47-008749/12/en)
+- Production cutaway, glass, telephoto ratio and focusing allowance on p. 32. [Canon lens catalog](https://www.pacificrimcamera.com/rl/00253/00253.pdf)
 - FD mount, frame dimensions, field angle and coating designations. [Canon system brochure](https://www.pacificrimcamera.com/rl/00354/00354.pdf)
 - Focus distance measured from the film plane. [Canon FD instructions, “Distance Scale”](https://www.pacificrimcamera.com/rl/03486/03486.pdf)
 - Release dates, construction, diaphragms, minimum focus and magnification by version. [1973 S.C.](https://global.canon/en/c-museum/product/fd179.html) · [1971 FD](https://global.canon/en/c-museum/product/fd178.html) · [1977 S.S.C.](https://global.canon/en/c-museum/product/fd180.html) · [1979 New FD](https://global.canon/en/c-museum/product/nfd229.html)

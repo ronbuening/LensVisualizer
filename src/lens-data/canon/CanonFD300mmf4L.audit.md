@@ -54,8 +54,8 @@ The May 1980 New FD L cutaway shows a flat protector ahead of the six powered si
 - Canon's 3 m minimum is measured from the film plane and gives 0.11× magnification. The model retains the infinity spacings because the patent gives no rear-group travel at 10f from which to establish a close or intermediate position. [Canon FD L](https://global.canon/en/c-museum/product/fd177.html) · [Canon New F-1 manual](https://www.mir.com.my/rb/photography/hardwares/manuals/canonnewf1manual/htm/flash.html) · [Patent, Figures 11–12](https://patentimages.storage.googleapis.com/84/1b/72/204175dc61b55d/US4251133.pdf#page=7)
 - The five glass labels supply catalog dispersion for all six powered elements while preserving the patent's d-line indices and Abbe numbers. The differences below are catalog minus patent. The largest magnitudes are 0.0000022 in nd and 0.051 in νd when rounded upward.
 
-| Elements | Catalog equivalent |         Δnd |    Δνd |
-| -------- | ------------------ | ----------: | -----: |
+| Elements | Catalog equivalent |         Δnd |     Δνd |
+| -------- | ------------------ | ----------: | ------: |
 | L1, L3   | Sumita K-PFK80     | −0.00000138 | +0.0504 |
 | L2       | Ohara S-LAH53      | −0.00000218 | +0.0260 |
 | L4       | Ohara S-BAL35      | −0.00000009 | +0.0350 |
