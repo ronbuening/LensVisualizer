@@ -5,7 +5,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * spacings and seven d-line glass pairs. All printed lengths are scaled by ×35
  * from f = 1 to 35 mm. The description and Claim 2 differ on r10 and ν7.
  * The clear radii come from Canon's lens section and Fig. 1, with clearance
- * for the f/1.8 axial beam at the front of the triplet. The stop position is
+ * for the f/1.8 axial beam at the front of the triplet. As both drawings
+ * show, L3's concave rear face ends in a flat land short of the doublet's
+ * edge; the land sits just outside the f/1.8 beam. The stop position is
  * estimated within the central air space and its radius follows from f/1.8.
  * Paraxial focus gives the film spacing at infinity and the extension for
  * unit focusing to Canon's 1 m minimum.
@@ -181,7 +183,8 @@ const LENS_DATA = {
       label: "5",
       R: 9.345,
       d: 4.745,
-      sd: 7.8,
+      sd: 8.8,
+      rimCutDepthMm: 3.24,
     },
     {
       label: "STO",

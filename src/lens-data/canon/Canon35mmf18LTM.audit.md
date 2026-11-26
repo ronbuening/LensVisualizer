@@ -39,7 +39,7 @@ The film plane lies at the paraxial infinity focus, 24.2578 mm behind surface 11
 
 ## Values Not Printed in the Patent
 
-**Iris.** The central air space is 8.05 mm. The iris sits 4.745 mm behind surface 5 and 3.305 mm ahead of surface 6, 12.2 mm behind the front vertex. The diaphragm marks in Canon’s section lie about 0.6 mm farther forward, but the rear rim of L3 reaches 11.65 mm behind the front vertex, which limits how far forward the iris can sit. The f/1.8 entrance pupil gives a paraxial iris radius of 6.781 mm.
+**Iris.** The central air space is 8.05 mm. The iris sits 4.745 mm behind surface 5 and 3.305 mm ahead of surface 6, 12.2 mm behind the front vertex. The diaphragm marks in Canon’s section lie about 0.6 mm farther forward; L3’s flat rear land, 10.70 mm behind the front vertex, leaves either position in air. The f/1.8 entrance pupil gives a paraxial iris radius of 6.781 mm.
 
 **Clear radii.** Canon’s p. 17 section measures about 16.5 pixels/mm from its vertex spacings, and Figure 1 about 16.6 pixels/mm. The two drawings and the full-aperture rays give the following clear radii.
 
@@ -47,7 +47,7 @@ The film plane lies at the paraxial infinity focus, 24.2578 mm behind surface 11
 | -------- | ------------ | ---------------------------------------------------------------------------------- |
 | 1, 2     | 11.2 mm      | Front singlet outline                                                              |
 | 3, 4     | 8.8 mm       | Doublet edge, 8.6–8.9 mm in the booklet and 8.9 mm in Figure 1                     |
-| 5        | 7.8 mm       | Curved rear face of the doublet                                                    |
+| 5        | 7.08 mm      | Face ends near 6.5 mm (Figure 1), 7.3 mm (booklet); flat land to the 8.8 mm edge   |
 | 6, 7     | 6.75 mm      | The drawn 6.2–6.5 mm would cut the axial beam. L4’s two surfaces meet near 6.9 mm. |
 | 8, 9     | 8.3 mm       | Booklet edge near 8.4 mm, below L6’s knife edge near 8.5 mm                        |
 | 10, 11   | 10.6 mm      | Rear singlet, about 10.6 mm in the booklet and 10.8 mm in Figure 1                 |
@@ -75,6 +75,11 @@ Canon’s p. 17 section and Figure 1 agree element by element: the positive fron
 - The product metadata follow Canon’s booklet and museum page: 35 mm, f/1.8, seven elements in four groups, f/1.8 to f/22, 1 m closest focus, Leica thread mount and 35 mm full frame. The design focal length is the calculated 35.03 mm in place of 35 mm. No blade count is given because neither Canon source states one.
 
 The finished model gives 35.029 mm EFL, f/1.800, 24.258 mm back focus, 47.953 mm from front vertex to film, a 6.781 mm iris radius and a 32.2° corner half-field at infinity.
+
+2026-11-25 rim review:
+
+- Surface 5: L3’s concave rear face now ends 7.08 mm from the axis in a flat land 3.24 mm behind its vertex, and its drawn edge rises from 7.8 to 8.8 mm to meet the doublet’s edge, so L3 is square at the rim as both drawings show. Figure 1, at 16.6 pixels/mm from the first to the last vertex (the L1 and L2 front arcs follow their table radii at that scale), ends the curved face near 6.5 mm, 0.74 of the 8.8 mm edge (±0.01 for one pixel); Canon’s section ends it near 7.3 mm. The land sits at the smallest radius that clears the wide-open beams at both focus distances, which reach 7.02 mm. Corner illumination at f/1.8 is unchanged: 10.3% at infinity and 13.8% at 1 m, before and after.
+- The other rims were compared again with Figure 1 and Canon’s section and kept, all within the drawings’ precision: L1 near 11.3 mm, L7 at 10.7–11.3 mm to its thin drawn tips, and the L5–L6 edge at 8.5–8.7 mm against L6’s knife edge near 8.5 mm. Both drawings also show a flat shoulder on L5 outside L4’s edge; it lies on a cemented face and is not drawn.
 
 ## Remaining Questions
 
