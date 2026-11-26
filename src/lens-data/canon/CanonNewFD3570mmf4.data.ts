@@ -1,17 +1,15 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
- * US 4,299,452, Embodiment 1, by Keiji Ikemori for Canon. The radii, thicknesses
- * and separations use 0.36 mm per unit in the patent's normalized table.
- * The intergroup gaps at 36, 54 and 68.508 mm are printed. Twelve intermediate
- * gaps follow the two groups' zoom motion. The rear air space at each position
- * is the paraxial back focal distance for infinity on a fixed film plane.
- * Group I reverses direction near telephoto. No finite-focus spacing is printed.
- * The iris is placed halfway between R10 and R11, with its radius derived from f/4.
- * Clear radii follow Figure 1. Figure 1 draws L1/L2 and L6/L7 touching, so R2 (15.94)
- * and R12/R13 (8.51) stop just short of where the spheres meet (gap allowance 0.98).
- * R7/R8 follow the axial marginal-ray heights. At telephoto the printed spherical
- * surfaces R12 and R13 meet inside the f/4 marginal ray.
+ * US 4,299,452, Embodiment 1, by Keiji Ikemori for Canon. All patent lengths use
+ * 0.36 mm per normalized unit. The group spacings at 36, 54 and 68.508 mm are
+ * printed. Twelve intermediate spacings are calculated for a fixed film plane
+ * at paraxial infinity focus. Group I reverses direction near telephoto.
+ * The patent gives no finite-focus spacings. The iris lies halfway between R10
+ * and R11 in the model, with its radius calculated for f/4. Clear radii follow
+ * Figure 1 except at R7/R8, which clear the axial ray, and at two drawn contacts.
+ * R2 (15.94 mm) and R12/R13 (8.51 mm) leave at least 2% of the axial air gaps
+ * open at the rim. At telephoto R12 and R13 meet inside the nominal f/4 beam.
  */
 const LENS_DATA = {
   schema: 2,
@@ -55,7 +53,7 @@ const LENS_DATA = {
       name: "L2",
       label: "Element 2",
       type: "Biconcave Negative",
-      role: "Second negative lens of group I. Its rear surface bounds the air space ahead of L3.",
+      role: "Provides most of the front group's negative power. The air space between L2 and L3 helps control spherical aberration at telephoto.",
       nd: 1.65844,
       vd: 50.9,
       indexReference: "d",
@@ -91,7 +89,7 @@ const LENS_DATA = {
       name: "L5",
       label: "Element 5",
       type: "Positive Meniscus",
-      role: "Second positive lens of group II. It works with L4 immediately ahead of the iris.",
+      role: "Concentrates positive power with L4 ahead of the iris, bringing the rear group's front principal plane toward the subject.",
       nd: 1.60311,
       vd: 60.7,
       indexReference: "d",

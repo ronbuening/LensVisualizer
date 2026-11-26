@@ -14,6 +14,8 @@ Canon introduced the manual-focus New FD 35–70mm f/4 in June 1979. Its product
 
 The other two embodiments also use eight elements. Comparing the sixteen axial vertices with the production cutaway gives an RMS difference of 0.70 pixel for Embodiment 1, against 1.68 and 1.76 pixels for Embodiments 2 and 3. Only Embodiment 1 has the production aperture of f/4. The alternatives are f/3.5 and f/4.5. This strongly identifies Embodiment 1 with the production lens. The cutaway does not establish the exact production radii or the clear aperture of each surface. [US 4,299,452](https://patents.justia.com/patent/4299452)
 
+Canon sold the Super Spectra-coated f/4 alongside the faster FD 35–70mm f/2.8–3.5 S.S.C. The May 1981 f/4 AF kept the f/4 optics and added solid-state triangulation autofocus. It reaches 1 m automatically and 0.5 m manually. The March 1983 New FD 35–70mm f/3.5–4.5 uses a different formula with nine elements in eight groups. [Canon FD Lens Guide, sheet SG2-A30](https://www.galimbertipaolo.it/CanonFD/FDLensGuide1.pdf) · [Canon Camera Museum, f/4 AF](https://global.canon/en/c-museum/product/nfd244.html) · [Canon Camera Museum, f/3.5–4.5](https://global.canon/en/c-museum/product/nfd242.html)
+
 ## Optical Architecture
 
 Figure 1 divides the eight singlets into two moving assemblies. Group I has negative power (−58.00 mm) and group II has positive power (+39.26 mm). Their separation sets the focal length. From wide to telephoto the rear assembly advances 22.00 mm toward the subject. The front assembly initially moves toward the film, then reverses direction near 58 mm. This allows the zoom to hold the image plane fixed as the intergroup air space closes from 30.4884 to 0.4752 mm.
@@ -87,17 +89,20 @@ The patent's glass table describes L1–L2 as extra-dense crowns, L3 and L7 as d
 
 ## Focus Mechanism
 
-The patent describes advancing group I toward the subject for closer focus, independently of group II. The production cutaway shows the corresponding three-element front assembly in a single position, so it gives no independent measure of focusing travel. The patent gives no finite object distance, magnification or corresponding group spacing for Embodiment 1, so the model covers infinity focus only. Canon specifies a minimum focus distance of 0.5 m and maximum magnification of 0.15× for the production lens. It has six diaphragm blades and stops down to f/22. [Canon Camera Museum](https://global.canon/en/c-museum/product/nfd243.html) · [US 4,299,452](https://patents.justia.com/patent/4299452)
+In Embodiment 1, group I moves toward the subject independently of group II for closer focus. Canon also describes front-group focusing in its two-group zooms. The cutaway shows the front three elements in one position, and the patent gives no finite object distance, magnification or group spacing. The model therefore focuses only at infinity. [US 4,299,452](https://patents.justia.com/patent/4299452) · [Canon FD Lenses catalog](https://www.pacificrimcamera.com/rl/03873/03873.pdf)
+
+The manual-focus lens reaches 0.5 m from the film plane throughout the zoom using the ordinary focusing ring, without a separate macro setting. Canon gives a maximum magnification of 0.15×. The six-blade iris has full-stop markings at f/4, 5.6, 8, 11, 16 and 22. [Canon Camera Museum](https://global.canon/en/c-museum/product/nfd243.html) · [Canon FD Lens Guide, sheet SG2-A30](https://www.galimbertipaolo.it/CanonFD/FDLensGuide1.pdf) · [Canon AE-1 Program instructions, film-plane indicator](https://dl.photo-manuals.com/311.pdf) · [Ken Rockwell, handling of the 35–70mm f/4](https://www.kenrockwell.com/canon/fd/35-70mm-f4.htm)
 
 ## Clear Aperture at Telephoto
 
 The patent locates the iris between R10 and R11. Its midpoint placement and the opening calculated for f/4 are estimates. Figure 1 supplies the other clear-radius estimates, with allowance for axial rays at R7/R8. Figure 1 draws L1/L2 and L6/L7 touching, so the clear radii at R2 and R12/R13 stop just short of where those spherical surfaces meet.
 
-At telephoto, the axial f/4 marginal ray would reach radii of 8.73 and 8.74 mm at R12 and R13. Those two spheres meet at 8.605 mm. Their 8.51 mm clear radii leave 0.021 mm of air at the edge and would clip a full f/4 beam to about f/4.09. The model still passes a chief ray to the corner of a 36 × 24 mm frame at every zoom position. The production cutaway gives no dimension for this edge.
+At telephoto, the axial f/4 marginal ray would reach radii of 8.73 and 8.74 mm at R12 and R13. Those two spheres meet at 8.605 mm. Their 8.51 mm clear radii leave 0.021 mm of air at the edge and admit an axial beam equivalent to about f/4.09. The chief ray reaches the corner of a 36 × 24 mm frame at every zoom position. At wide angle the rims clip part of the corner beam, giving about 55% illumination relative to the axis. The production cutaway gives no dimension for these edges.
 
 ## Sources
 
-- Embodiment 1 prescription, glass classes, group motion and design conditions. [US 4,299,452, Keiji Ikemori](https://patents.justia.com/patent/4299452)
-- Release date, optical construction, aperture and close-focus specifications. [Canon Camera Museum — New FD35-70mm f/4](https://global.canon/en/c-museum/product/nfd243.html)
-- FD-system lens specifications and diagonal coverage. [Canon FD Lens Guide](https://www.galimbertipaolo.it/CanonFD/FDLensGuide1.pdf) · [Canon 35mm SLR Quick Reference Guide](https://www.pacificrimcamera.com/rl/00614/00614.pdf)
+- Embodiment 1 prescription, glass classes, group motion and design conditions. [US 4,299,452, Keiji Ikemori](https://patents.justia.com/patent/4299452) · [Printed patent and figures](https://patentimages.storage.googleapis.com/3b/a5/25/7498a9ee6ea7cf/US4299452.pdf)
+- Release dates, optical construction, aperture and close-focus specifications. Canon Camera Museum entries for the [manual-focus f/4](https://global.canon/en/c-museum/product/nfd243.html), [f/4 AF](https://global.canon/en/c-museum/product/nfd244.html) and [f/3.5–4.5](https://global.canon/en/c-museum/product/nfd242.html).
+- Coating, aperture markings, AF version, zoom mechanism and diagonal coverage. [Canon FD Lens Guide, sheet SG2-A30](https://www.galimbertipaolo.it/CanonFD/FDLensGuide1.pdf) · [Canon FD Lenses catalog](https://www.pacificrimcamera.com/rl/03873/03873.pdf) · [Canon 35mm SLR Quick Reference Guide](https://www.pacificrimcamera.com/rl/00614/00614.pdf)
+- Film-plane distance scale and close focusing across the zoom. [Canon AE-1 Program instructions](https://dl.photo-manuals.com/311.pdf) · [Ken Rockwell, Canon FD 35–70mm f/4](https://www.kenrockwell.com/canon/fd/35-70mm-f4.htm)
 - Production optical layout and barrel section. [New FD 35–70mm f/4 cutaway, reproduced by MIR](https://mir.com.my/rb/photography/companies/canon/fdresources/fdlenses/fdzooms/3570mmf4optic.jpg)
