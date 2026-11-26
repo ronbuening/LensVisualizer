@@ -2,7 +2,7 @@
 import type { AnnotationData } from "../../types/optics.js";
 import type { TeleconverterGeometry } from "../../types/teleconverter.js";
 import type { CanonicalLens, CanonicalTeleconverter, IngestedPrescription } from "./canonical.js";
-import { TELECONVERTER_LABEL_PREFIX as PREFIX } from "./teleconverterCompatibility.js";
+import { rearPlateSurfaceLabels, TELECONVERTER_LABEL_PREFIX as PREFIX } from "./teleconverterCompatibility.js";
 
 /**
  * Append a converter before first-order metadata is rescaled by the public composer.
@@ -64,7 +64,17 @@ export function composeTeleconverter(
       gap.values = shift(gap.values);
     }
   }
-  if (geometry.platesAhead > 0) lens.rearPlates![geometry.platesAhead - 1].gapAfterMm = geometry.plateJunctionGapMm!;
+  if (geometry.platesAhead > 0) {
+    const index = geometry.platesAhead - 1;
+    const plate = lens.rearPlates![index];
+    const gap = lens.gaps.find((entry) => entry.surface === rearPlateSurfaceLabels(index)[1]);
+    const junction = geometry.plateJunctionGapMm!;
+    if (gap) {
+      gap.values = gap.values.map((row) => row.map((value) => junction + (value - plate.gapAfterMm)));
+      if (gap.label !== undefined) gap.label = "D(TC)";
+    }
+    plate.gapAfterMm = junction;
+  }
   lens.surfaces.push(
     ...tc.surfaces.map((surface, index) => ({
       ...surface,
