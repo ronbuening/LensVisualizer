@@ -24,7 +24,7 @@ const TELECONVERTER_DATA = {
   catalog: {
     lensMounts: ["nikon-f"],
     imageFormat: "135-full-frame",
-    specs: ["5 ELEMENTS / 5 GROUPS", "1.4× REAR CONVERTER", "ALL SPHERICAL"],
+    specs: ["5 ELEMENTS / 5 GROUPS", "ALL SPHERICAL", "1.4× CONVERTER"],
     elementCount: 5,
     groupCount: 5,
   },
@@ -84,7 +84,7 @@ const TELECONVERTER_DATA = {
       indexReferenceNote: "The patent gives n and ν without a wavelength. The helium d line is assumed.",
       focalLengthMm: 92.73,
       glass: "Unmatched (nd 1.59507 / νd 35.6)",
-      role: "Positive entrance element of the forward group.",
+      role: "Adds convergence before L2. Its two faces have similar curvature.",
     },
     {
       id: 2,
@@ -97,7 +97,7 @@ const TELECONVERTER_DATA = {
       indexReferenceNote: "The patent gives n and ν without a wavelength. The helium d line is assumed.",
       focalLengthMm: -34.11,
       glass: "Unmatched (nd 1.79668 / νd 45.4)",
-      role: "Strongest negative element in the converter, between the two positive elements of the forward group.",
+      role: "Provides the strongest negative power in the converter and gives the forward group its weak net divergence.",
     },
     {
       id: 3,
@@ -110,7 +110,7 @@ const TELECONVERTER_DATA = {
       indexReferenceNote: "The patent gives n and ν without a wavelength. The helium d line is assumed.",
       focalLengthMm: 61.43,
       glass: "Unmatched (nd 1.59507 / νd 35.6)",
-      role: "Positive rear element of the forward group, with most of its curvature on the front face.",
+      role: "Offsets part of L2’s divergence, bending the rays mainly at its front face.",
     },
     {
       id: 4,
@@ -136,7 +136,7 @@ const TELECONVERTER_DATA = {
       indexReferenceNote: "The patent gives n and ν without a wavelength. The helium d line is assumed.",
       focalLengthMm: 82.53,
       glass: "BK1 (Sumita)",
-      role: "Positive exit element, separated from the preceding negative element by 0.200 mm of air.",
+      role: "Partly offsets L4’s negative power. Most of its refraction occurs at the front face.",
     },
   ],
   surfaces: [
