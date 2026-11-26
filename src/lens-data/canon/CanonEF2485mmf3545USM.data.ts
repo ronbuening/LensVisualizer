@@ -92,7 +92,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: -89886.92,
       glass: "Unmatched (nd 1.51640 / νd 52.2)",
-      role: "Bonded layer carrying the aspherical front face of L4.",
+      role: "Replica aspherical resin layer forming the front face of L4; it reduces wide-angle barrel distortion.",
       cemented: "C2",
     },
     {
@@ -105,7 +105,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: -18.72,
       glass: "S-LAH65 (Ohara)",
-      role: "Glass substrate of the hybrid asphere and front negative meniscus of G2.",
+      role: "Glass base of the replica aspherical element; front negative meniscus of the focusing group G2.",
       cemented: "C2",
     },
     {
@@ -144,7 +144,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 32.68,
       glass: "S-TIH53 (Ohara)",
-      role: "Positive rear meniscus partly offsets the negative power of G2.",
+      role: "Positive rear meniscus of G2, partly offsetting the group's negative power.",
     },
     {
       id: 9,
@@ -156,7 +156,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: -49.26,
       glass: "S-TIH53 (Ohara)",
-      role: "Negative flint immediately behind the main diaphragm.",
+      role: "Negative flint of the G3 cemented pair, just behind the main diaphragm.",
       cemented: "C4",
     },
     {
@@ -308,7 +308,8 @@ const LENS_DATA = {
 
   focus: {
     closeFocusM: 1e15,
-    description: "Infinity focus only. Claim 3 assigns focusing to G2. The patent gives no finite-distance spacings.",
+    description:
+      "Infinity focus only. Claim 3 assigns focusing to G2, but the patent prints no finite-distance spacings, so Canon's 0.5 m closest distance is not reached.",
   },
 
   gaps: {
