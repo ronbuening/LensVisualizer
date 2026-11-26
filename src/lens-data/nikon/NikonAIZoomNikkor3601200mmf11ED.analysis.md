@@ -37,7 +37,7 @@ The three variable air spaces are:
 | $d_{21}$ ($f_3$ to $f_4$) | 143.138 mm | 3.744 mm | -139.394 mm |
 | **Sum** | **219.249 mm** | **219.250 mm** | **+0.001 mm** |
 
-The near-constant sum confirms an invariant mechanical optical length. The computed back focal distance is 235.20 mm at the 360 mm position and 235.36 mm at the long end. The 0.16 mm residual is consistent with rounded patent tabulation, so the data file keeps a fixed image plane rather than adding an artificial zooming back-focus variable.
+The near-constant sum confirms an invariant mechanical optical length. The computed back focal distance is 235.20 mm at the 360 mm position and 235.36 mm at the long end. At both printed settings the axial ray leaves $f_3$ within about $10^{-6}$ rad of parallel, so the variator is afocal and the 0.16 mm residual is consistent with rounded patent tabulation. The data file therefore keeps one fixed image plane, 235.2811 mm behind surface 32, halfway between the two endpoint values. The printed settings focus 0.080 mm in front of it at 360 mm and 0.080 mm behind it at 1200 mm.
 
 The Petzval sum was recomputed surface-by-surface using $\Phi/(n n')$, not by a thin-element approximation. The relay group contributes a positive Petzval sum of +0.001623 mm^-1. The complete system Petzval sum is -0.000715 mm^-1, giving a Petzval radius of roughly -1400 mm. That is consistent with the patent's stated goal: a telephoto relay with positive Petzval contribution offsets the negative Petzval tendency of a compact ultra-telephoto variator.
 
@@ -180,7 +180,13 @@ The 589/612 glass is not BaLF4. In Schott comparison data, N-BALF4 is approximat
 
 ### Zoom mechanism
 
-The data file models the three patent-published zoom spacings only: $d_7$, $d_{15}$, and $d_{21}$. Groups $f_1$ and $f_4$ remain fixed; groups $f_2$ and $f_3$ move rearward from short to long focal length. The aperture stop is not specified in the patent table, so the data file places an inferred stop in the $d_{21}$ air space immediately behind surface 21. The stop placement preserves the total $d_{21}$ values at both zoom endpoints.
+The patent prints the three variable spacings $d_7$, $d_{15}$ and $d_{21}$ at the two infinity settings only, and the data file keeps both rows exactly. Groups $f_1$ and $f_4$ remain fixed; groups $f_2$ and $f_3$ move rearward from short to long focal length. Interpolating linearly between the two printed rows would put the paraxial image up to 252 mm behind the film plane in mid-range, because the compensator follows a curved path.
+
+The file therefore adds 83 calculated stations between the printed settings. At each one $d_7$ sets the variator position and the three gaps keep the printed total, blended from 219.249 to 219.250 mm along the variator travel. $d_{15}$ is then solved so that the paraxial image falls on the fixed film plane 235.2811 mm behind surface 32. The stations are spaced to equalize the error of linear interpolation between them. They lie 5.50 mm of variator travel apart at the short end and 0.94 mm apart at the long end, where $f_3$ slows toward the turnaround that the patent places just beyond the 1200 mm setting. After rounding to 0.0001 mm, each calculated station focuses within 0.14 µm of the film plane. Between calculated stations the image stays within 19.92 µm of it; with one station fewer, the best spacing reaches 20.32 µm. The two end segments run from the printed settings' 80 µm residuals to zero and depart from that straight run by at most 19.85 µm. The calculated stations are interpolation points, not patent data, and are marked unpublished.
+
+Across the range $f_2$ travels 200.000 mm and $f_3$ 139.395 mm. In the calculated stations $f_3$ moves rearward throughout, so the compensator path has no reversal inside the zoom range, as the patent claims.
+
+Neither the table nor Figures 1 and 2 locate the diaphragm. The data file keeps the earlier inference: STO sits 0.5 mm behind surface 21 and moves with $f_3$, and the STO gap carries the rest of $d_{21}$. Because the variator output is collimated, one iris radius anywhere in $d_{21}$ gives f/11 at every zoom position. With the stop riding on $f_3$ the engine traces f/11.000–11.004 at the 85 stations; with the stop fixed 3.244 mm ahead of surface 22 it traces f/11.000–11.005. The two placements differ in vignetting only. A fixed stop would let the compensator rims clip the corner bundle of the 36 × 24 mm frame toward the short end, whereas the stop riding on $f_3$ leaves those rims clear. The front collector vignettes the corner about equally in both cases. Without a source for the diaphragm, the file keeps the placement that fits the authored rims.
 
 ### Focus
 
@@ -226,6 +232,8 @@ All first-order quantities were recomputed from the corrected prescription using
 | EFL at 1200 mm setting | 1188.412 mm | 1200 mm nominal | -0.966% |
 | BFD at 360 mm setting | 235.201 mm | not stated | — |
 | BFD at 1200 mm setting | 235.361 mm | not stated | — |
+| Fixed film plane behind surface 32 | 235.2811 mm | not stated | — |
+| Defocus between calculated stations | ≤ 0.0199 mm | not stated | — |
 | $f_1$ | +420.984 mm | +420.955 mm | +0.007% |
 | $f_2$ | -86.958 mm | -86.956 mm | +0.002% |
 | $f_3$ | +190.541 mm | +190.565 mm | -0.013% |
@@ -235,7 +243,7 @@ All first-order quantities were recomputed from the corrected prescription using
 
 The 1188.4 mm computed long-end EFL is retained as the design value in the data file, while the marketed and patent nominal focal-length field remains 1200 mm. The group focal lengths agree with the patent values closely enough to confirm the prescription, including the certificate corrections.
 
-The inferred stop was sized to give an f/11 entrance pupil at both endpoints. Placing the stop 0.5 mm behind surface 21 requires a stop semi-diameter of approximately 24.45 mm. This is an inferred modeling convenience, not a patent-published diaphragm position.
+The inferred stop was sized to give an f/11 entrance pupil at every zoom station. Placing the stop 0.5 mm behind surface 21 requires a stop semi-diameter of approximately 24.45 mm. This is an inferred modeling convenience, not a patent-published diaphragm position.
 
 The optical section is Figure 2 on PDF page 3; Figure 1 is a group-motion schematic. A fresh review of every air-facing and cemented face found no further resolved concave end land to add. Semi-diameters were estimated because the patent provides no clear-aperture table. The estimates were checked for edge thickness, cross-gap sag intrusion, and renderer rim slope constraints at both zoom endpoints. The front group was capped by the physical 122 mm attachment scale and by edge-thickness limits; full-field paraxial corner bundles therefore vignette in the model, which is preferable to impossible front element geometry.
 

@@ -75,7 +75,7 @@ export interface RearPlateData {
   nC?: number;
   nF?: number;
   ng?: number;
-  /** Physical air gap after this plate in mm; for the last plate, the distance to the image plane. */
+  /** Physical air gap after this plate in mm. A scheduled final gap uses its first thickness here. */
   gapAfterMm: number;
   /** Published clear semi-diameter; omitted plates get a non-clipping generated value. */
   sd?: number;
