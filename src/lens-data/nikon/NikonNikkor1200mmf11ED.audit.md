@@ -28,7 +28,7 @@ The computed focal length is 0.025% below 1200 mm. The image plane stays at the 
 
 ## Values Not Printed in the Patent
 
-- **Clear radii.** Nikon's production drawing, scaled by its 709.0 mm vertex span (580 px), gives 56.8 mm from axis to rim on surfaces 1–6 and about 24.4 mm on surfaces 7–9. Figure 1 in the patent, scaled by the front-group vertex span because the long air space is drawn broken, suggests about 56.0 and 18.7 mm. The production drawing shows the larger rear opening. [Dimensioned section](https://www.mir.com.my/rb/photography/companies/nikon/nikkoresources/preAI70/1200mmf11EDpreAIopt.gif)
+- **Clear radii.** Nikon's production drawing, scaled by its 709.0 mm vertex span (580 px), gives 56.8 mm from axis to rim on surfaces 1–6 and about 24.4 mm on surfaces 7–9. Figure 1 in the patent draws the long air space broken, so it is scaled by the front group's 41.0 mm vertex span (6.10 px/mm at 600 dpi); the 9.0 mm span of the rear doublet gives 6.33 px/mm. On that scale the figure draws the three front elements about 58 mm from the axis and the rear doublet about 20 mm. The front value agrees with Nikon's drawing within the reading's precision, and the dimensioned section's larger rear opening is kept. Neither drawing shows a land or bevel: each front element ends in a plain edge, and the cemented pair shares one square edge. [Dimensioned section](https://www.mir.com.my/rb/photography/companies/nikon/nikkoresources/preAI70/1200mmf11EDpreAIopt.gif)
 - **Diaphragm.** The head contains a manual diaphragm because an iris in the focusing unit vignetted the corners. The estimated position divides the 659 mm air space equally. At this position a 31.93 mm paraxial stop radius gives an entrance-pupil diameter of 109.06 mm at f/11. Nikon's account establishes why the iris belongs in the head, but gives no distance from a glass vertex. The off-axis Seidel coefficients use a chief-ray convention that does not independently establish that distance. [Nikon Tale 50](https://imaging.nikon.com/imaging/information/story/0050/)
 - **Glass names.** Hoya LAF2 agrees with the printed values for L2. Hikari E-BAF8 matches the L3 index and differs by +0.04 in νd. Ohara S-BSL7 at L4a differs by +0.00001 in nd and −0.06 in νd. L1 (1.50032 / 81.9) and L4b (1.66854 / 39.2) have no matching catalog glass. L1's low dispersion and Nikon's statement that the lens uses ED glass support the inferred ED position. The patent gives no partial-dispersion value for it.
 - **Field.** The model's field is limited by the rims, at a 2.41° half-field. The 21.63 mm corner of the 35 mm frame lies at 1.03°.
@@ -65,6 +65,11 @@ MIR's transcription gives the ED head a 4°10′ angle of view, about twice the 
 - **Public text.** The subtitle, specifications, header, element roles and focus description are in plain form.
 
 At infinity the finished model gives 1199.70 mm EFL, f/11.000, a 240.06 mm paraxial back focus with the image plane at the printed 240.2 mm, a 949.2 mm first-vertex-to-film length, a 31.93 mm iris radius and a 2.41° rim-limited half-field.
+
+2026-11-25 rim review:
+
+- The rims were compared again with Fig. 1 and Nikon's dimensioned section; none changed, and no land was added because neither drawing shows one.
+- A closer reading of Fig. 1, scaled on its front-group and rear-doublet vertex spans, places the front rims at about 58 mm and the rear rims at about 20 mm, in place of the 56.0 and 18.7 mm quoted above. With those figure rims the illumination near 1° would be about 89%; with the kept 56.8 and 24.4 mm it stays at about 91%. The half-field stays at 2.41° and the aperture at f/11.000.
 
 ## Remaining Questions
 
