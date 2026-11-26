@@ -34,7 +34,15 @@ The full-aperture combination covers the frame without a converter rim limiting 
 
 ## Values Not Printed in the Patent
 
-- **Rims.** Nikon's 88.5 mm first-to-last vertex dimension sets the scale for its TC-300 section. The heights from the optical axis to the glass edges give 13.3 mm for surfaces 1–6 and 19.8 mm for surfaces 7–10. The patent drawing gives about 13.3 and 18.7 mm. With the same master and iris, the production-section rims pass 96.0% of the corner pupil and give 100.7% geometric illumination relative to the axis. The patent drawing's rear radius would give 87.1%. These are calculated quantities. [Nikon's dimensioned section](https://www.mir.com.my/rb/photography/companies/nikon/nikkoresources/teleconverter/tc300.gif)
+**Rims.** In Figure 2 the first and last converter vertices are about 577 pixels apart on the 300 dpi sheet. Their 88.54 mm separation gives 6.5 pixels/mm. On surface 8, a sag of about 19 pixels at a height of 110 pixels gives about 6.3 pixels/mm radially from the printed radius of −55.266 mm. The estimates below use the vertex scale and both edges of the glass. Nikon's section has its own 88.5 mm vertex dimension. Both drawings show square edges on all five singlets. [Nikon's dimensioned section](https://www.mir.com.my/rb/photography/companies/nikon/nikkoresources/teleconverter/tc300.gif)
+
+| Converter surfaces | Figure 2 radius (mm) | Nikon radius (mm) | Modeled radius (mm) |
+| ------------------ | -------------------: | ----------------: | ------------------: |
+| 1–6 (L1–L3)        |            13.2–13.4 |              13.3 |                13.3 |
+| 7–10 (L4–L5)       |            18.7–18.8 |              19.8 |                19.8 |
+
+At f/9 on the patent master, the 19.8 mm rear pair passes 96.0% of the corner pupil and gives 100.7% illumination relative to the axis. At 18.7 mm the same pair passes 82.8% of the pupil and gives 87.1% relative illumination.
+
 - **Iris.** The master's iris is placed 1.0 mm behind its seventh surface. Its calculated wide-open radius is 29.26 mm and stays fixed when the converter is attached. The master's Figure 2 clear radii fall short of the nominal axial marginal ray at S1 and S3 by 0.03 and 0.16 mm, within the roughly 0.3 mm precision of the drawing. The converter passes the axial and corner chief rays at every surface. A converging axial f/2.8 cone at the same virtual object distance also clears the converter, with the smallest margin about 0.94 mm at the first surface.
 - **Image distances.** The master alone has 70.053 mm of paraxial back focus. Subtracting the printed junction places its image 68.511 mm behind the first converter vertex, and tracing through the converter gives the 63.112 mm final gap. `masterImageDistanceMm` and the last gap hold these values to 0.00001 mm. The converter moves the image back by 83.14 mm.
 - **Focus.** All element spacings are fixed, and the patent gives no finite-focus distances. The host supplies focus and iris. At finite focus the host's travel applies, and the 83.14 mm extension adds to distances measured from the image plane: the 300 mm f/4.5 ED's 4.0 m minimum becomes 4.08 m, the AI 600 mm f/5.6 IF-ED's 5.5 m becomes 5.58 m, and the 360–1200 mm zoom's 6.0 m becomes 6.08 m.
@@ -61,9 +69,12 @@ Nikon's chart lists as usable with the TC-300 and TC-301 the Micro-Nikkor 200 mm
 
 On the patent master the finished converter gives 600.01 mm at f/9.00, a 2.0000× multiplier, 63.112 mm back focus and 315.694 mm from the first master surface to the film. The converter alone has −236.423 mm focal length, and the master iris radius stays 29.26 mm.
 
+- 2026-11-25 rim review:
+  - The comparison with Fig. 2 and Nikon's drawing supports retaining all ten rims.
+
 ## Remaining Questions
 
-- The published sections leave the precise clear apertures, the master iris position and the production glass identities uncertain.
+- Neither drawing dimensions the clear apertures. The master iris position and the production glass identities also remain uncertain.
 - Nikon's drawing gives 237.7 mm for the converter's focal-length magnitude against 236.42 mm for Example 2. Whether the production radii depart slightly from the example is undocumented.
 - Nikon's chart marks the 300 mm f/4.5 ED, whose design is the patent's master, and the 360–1200 mm f/11 ED unusable with the TC-300 and TC-301, without a reason for either lens. Both pass the axial beam and reach the frame corner at infinity. Mechanical interference with the 23.5 mm front tube at the patent's 1.54 mm vertex gap, coupling or image quality could explain it; none is documented.
 - Mechanical clearance and coupling of the separate-mount 600 mm f/5.6 ED with the TC-300 depend on its focusing unit and are undocumented.
