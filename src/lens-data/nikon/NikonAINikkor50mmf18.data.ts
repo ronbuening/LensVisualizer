@@ -6,8 +6,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * printed length by 0.516 takes the 100 mm prescription to this scale.
  * The table gives spherical radii, axial spacings and d-line glass data.
  * Figure 1 places the iris about 57% of the way from r6 to r7. Its clear
- * radius follows from f/1.8. The glass rims follow the figure, with r4 and
- * r5 limited by their air gap and r6 rounded up to clear the axial beam.
+ * radius follows from f/1.8. The glass rims follow the figure, with r5 held
+ * inside L2's rim, where the two faces would meet, and r6 rounded up to clear
+ * the axial beam. Flat lands carry r6 and r7 out to their element edges, as
+ * Figure 1 and Nikon's section draw them.
  * The film lies at the paraxial back focus. The patent gives only infinity.
  */
 const LENS_DATA = {
@@ -114,11 +116,11 @@ const LENS_DATA = {
     { label: "1", R: 40.999812, d: 4.60014, sd: 18, medium: 1 },
     { label: "2", R: 197.899932, d: 0.100104, sd: 18 },
     { label: "3", R: 21.400068, d: 4.700244, sd: 14, medium: 2 },
-    { label: "4", R: 32.599848, d: 1.000008, sd: 12.2 },
+    { label: "4", R: 32.599848, d: 1.000008, sd: 14 },
     { label: "5", R: 50.999892, d: 1.100112, sd: 12.2, medium: 3 },
-    { label: "6", R: 16.19982, d: 7.467119, sd: 10.5 },
+    { label: "6", R: 16.19982, d: 7.467119, sd: 10.5, rimExtensionSd: 12.2 },
     { label: "STO", R: "flat", d: 5.633089 },
-    { label: "7", R: -16.500132, d: 1.299804, sd: 10.4, medium: 4 },
+    { label: "7", R: -16.500132, d: 1.299804, sd: 10.4, rimExtensionSd: 12.4, medium: 4 },
     { label: "8", R: -99.999768, d: 5.39994, sd: 12.4, medium: 5 },
     { label: "9", R: -20.64, d: 0.100104, sd: 12.4 },
     { label: "10", R: 204.29988, d: 3.449976, sd: 13.5, medium: 6 },
