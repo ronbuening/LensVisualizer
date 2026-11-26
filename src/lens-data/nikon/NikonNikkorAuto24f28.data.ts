@@ -145,7 +145,7 @@ const LENS_DATA = {
       nd: 1.74443,
       vd: 49.4,
       indexReference: "d",
-      glass: "Unmatched (nd 1.74443 / νd 49.4 inferred)",
+      glass: "M-NBF1 (spectral proxy; patent nd 1.74443 / νd 49.4 inferred; supplier and melt unspecified)",
       focalLengthMm: 43.53,
       role: "Bends the beam toward the image, chiefly at its curved rear surface.",
     },

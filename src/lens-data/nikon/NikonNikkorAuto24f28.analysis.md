@@ -54,7 +54,7 @@ nd = 1.71736, νd = 29.51. Schott SF1. f = −28.31 mm. L6 diverges the beam jus
 
 ### L9 — Positive meniscus
 
-nd = 1.74443, νd = 49.4. Glass unidentified. f = +43.53 mm. Its shallow front surface faces L8 across a 0.05 mm air gap. The rear surface supplies most of the final element’s positive power.
+nd = 1.74443, νd = 49.4. Hoya M-NBF1 supplies the dispersion curve; the production glass is unidentified. f = +43.53 mm. Its shallow front surface faces L8 across a 0.05 mm air gap. The rear surface supplies most of the final element’s positive power.
 
 ## Glass Identification and Dispersion
 
@@ -64,7 +64,7 @@ Example 1 prints nine refractive indices without naming the wavelength or giving
 | ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | L1, L2, L5, L6, L7 | Hoya BACD15, Ohara S-BSM10 and Schott N-BK7, SF1 and SF6 have the corresponding d-line indices at the printed precision (four or five decimals). Their catalog rows supply the Abbe numbers. |
 | L3, L8 and L4      | Shimizu’s US 3,622,227 pairs 1.62041 with 60.3 and 1.62004 with 36.3. Schott N-SK16 and Hoya E-F2 supply closely matching dispersion curves.                                                 |
-| L9                 | Nippon Kogaku’s US 4,139,265 pairs 1.74443 with 49.4. The supplier and catalog curve remain unidentified.                                                                                    |
+| L9                 | Nippon Kogaku’s US 4,139,265 pairs 1.74443 with 49.4. Hoya M-NBF1 (1.74330, 49.33) lies within the site’s spectral-proxy tolerance and lends its dispersion curve to the printed index. The supplier remains unidentified. |
 
 ## Focus Mechanism
 

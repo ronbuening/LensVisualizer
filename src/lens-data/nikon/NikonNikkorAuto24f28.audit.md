@@ -35,7 +35,7 @@ The iris limits the axial beam at f/2.8 and the glass edges clear one another th
 
 ## Values Not Printed in the Patent
 
-**Glass.** The Japanese table gives indices without a spectral line, Abbe numbers or glass names. The indices are treated as helium d-line values. Five Abbe numbers come from catalog entries with the same index at the printed precision (four or five decimal places). Four come from matching indices in the two US prescriptions below. The differences are catalog minus assumed values. The glass names identify dispersion curves, and the production melts remain unknown. [Shimizu, US 3,622,227](https://patents.google.com/patent/US3622227A/en) · [Matsui, US 4,139,265](https://patents.google.com/patent/US4139265A/en)
+**Glass.** The Japanese table gives indices without a spectral line, Abbe numbers or glass names. The indices are treated as helium d-line values. Five Abbe numbers come from catalog entries with the same index at the printed precision (four or five decimal places). Four come from matching indices in the two US prescriptions below. The differences are catalog minus assumed values. The glass names identify dispersion curves, and the production melts remain unknown. L9 keeps its printed index and borrows only the wavelength dependence of Hoya M-NBF1, which lies within the site’s spectral-proxy tolerance. [Shimizu, US 3,622,227](https://patents.google.com/patent/US3622227A/en) · [Matsui, US 4,139,265](https://patents.google.com/patent/US4139265A/en)
 
 | Element | Printed index | Inferred νd | Evidence for νd     | Catalog curve | Δnd |   Δνd |
 | ------- | ------------: | ----------: | ------------------- | ------------- | --: | ----: |
@@ -47,7 +47,7 @@ The iris limits the axial beam at f/2.8 and the glass edges clear one another th
 | L6      |       1.71736 |       29.51 | Equal catalog index | Schott SF1    |   0 |     0 |
 | L7      |       1.80518 |       25.43 | Equal catalog index | Schott SF6    |   0 |     0 |
 | L8      |       1.62041 |        60.3 | US 3,622,227        | Schott N-SK16 |   0 | +0.02 |
-| L9      |       1.74443 |        49.4 | US 4,139,265        | Unmatched     |   — |     — |
+| L9      |       1.74443 |        49.4 | US 4,139,265        | Hoya M-NBF1, spectral proxy | −0.00113 | −0.07 |
 
 **Clear radii and diaphragm.** The distance between the outermost vertices in Nikon’s 1967 section gives a scale of 13.87 pixels/mm. At surfaces 2, 4 and 6, the clear radius ends where the spherical face meets its bevel. At surface 2 a flat step square to the axis carries the edge from the 15.5 mm clear radius to 16.7 mm before the bevel begins; it does not affect the traced beams. The 7.25 mm rear rim of L6 leaves about 0.13 mm of axial clearance to L7 at close focus. The iris lies about 0.48 mm behind surface 9 and 2.02008 mm ahead of surface 10. This division preserves the printed air space. Its calculated wide-open radius is 6.2664 mm. [Nikon, Tale 14, Figure 1](https://imaging.nikon.com/imaging/information/story/0014/img/img2.jpg)
 
@@ -94,6 +94,13 @@ At infinity the lens gives 23.999 mm effective focal length, f/2.80, 37.835 mm p
 
 - Surface 2 gains a flat step from its 15.5 mm clear radius to 16.7 mm. Nikon’s section draws the step from about 15.6 to 16.7 mm above the axis and 16.8 mm below it. Patent Figure 1 draws it from about 14.6 to 16.4 mm on average. The step lies outside every traced beam, so corner illumination stays 59.9% at infinity. The near state at 0.114× keeps the same clearances.
 - Every clear radius stays as drawn by Nikon. Both drawings show L4–L5, L6, L7–L8 and L9 with square edges, and the model draws them that way. Patent Figure 1 draws L2 square and a short step at the rear of L3 reaching about 10 mm. Nikon bevels both elements, and the model follows Nikon’s production drawing.
+
+2026-11-26 diagram review:
+
+- L9 changes from Unmatched (printed nd 1.74443, νd 49.4 inferred) to Hoya M-NBF1 as a spectral proxy. M-NBF1 (1.74330, 49.33) lies within the site’s spectral-proxy tolerance, at Δnd −0.00113 and Δνd −0.07. The model keeps the printed index and borrows only the curve’s wavelength dependence, so all nine elements now trace catalog dispersion curves. The patent’s Figures 2–4 plot spherical aberration, astigmatism and distortion only, so no printed color curve can test the choice. The modeled longitudinal color spread stays at 168 µm.
+- No clear radius changed. The page was compared with patent Figure 1 and Nikon’s 1967 section. Scaled at 13.87 pixels/mm between the outer vertices, Nikon’s arcs for surfaces 1 and 6 give radii of about 56 and 10.5 mm against the printed 58.16 and 10.55 mm, and every modeled rim lies within 0.15 mm of its drawn edge. Patent Figure 1 is a freehand sketch: at 12.70 pixels/mm along its slightly tilted axis line, its vertices fall up to 0.6 mm from the printed spacings, and its arcs for surfaces 1 and 2 are drawn 10–13 % too steep. Its outer edges read about 20.5, 15.7, 12.5, 7.9, 7.9, 9.7 and 10.7 mm for L1, L2, L3, L4–L5, L6, L7–L8 and L9. All lie within 8 % of the model, with the same order of heights between neighbors. The exception is the end of L3’s rear bevel, about 9.5 mm against Nikon’s 8.4 mm. That reading sits at the steepest edge slope surface 6 allows, so Nikon’s figure stands.
+- The 16.7 mm step at surface 2 is the only land, and no face lies below its earlier clear radius. Removing the step changes no traced beam: the worst loss is 0.0 points at every field, and corner illumination stays 59.9 % at infinity. Both drawings show the step, so it stays.
+- Six focus settings between infinity and the near limit move both assemblies steadily toward the subject. The L6–L7 gap closes from 2.14 to 1.93, 1.71, 1.50, 1.28 and 1.07 mm, while the last surface moves from 37.82 to 38.31, 38.85, 39.44, 40.12 and 40.93 mm from the film. The near setting reads 30 cm, matching the 298.49 mm calculated at the printed 0.114×.
 
 ## Remaining Questions
 
