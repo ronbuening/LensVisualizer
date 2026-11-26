@@ -37,11 +37,12 @@ The surfaces have positive edge thickness and stay clear of each other. The full
 
 ## Values Not Printed in the Patent
 
-**Clear radii.** Fig. 3 gives a scale of about 7.03 pixels/mm at 400 dpi when its first-to-last vertex span is set to 281.018 mm. The optical edges give the following semi-diameters. At R22–R24, 16.4 mm is the central reading. The 16.8 mm radius is within the width of the drawn line and passes the axial ray, which reaches 16.70 mm at R22.
+**Clear radii.** The patent prints no clear apertures. Fig. 3 draws Example II at an intermediate setting near 325 mm, with D6, D13 and D19 at about 76.6, 26.3 and 22.5 mm. Its 281.018 mm first-to-last vertex span sets the scale, and the 103.5 mm span of the fixed relay agrees within 0.4%. Each reading below is the mean of the element's upper and lower drawn edges, taken at the centre of the line. At the front group the drawing sits about 1 mm above the axis, so the upper edge alone reads about 40.1 mm. The clear radii stand within 4% of the readings, inside the precision of the drawing. At R22–R24 the 16.8 mm radius also passes the f/8 axial ray, which reaches 16.70 mm at R22.
 
-| Surfaces          | R1–R6 | R7–R9 | R10–R13 | R14–R19 | R20–R21 | R22–R24 | R25–R29 |
-| ----------------- | ----: | ----: | ------: | ------: | ------: | ------: | ------: |
-| Clear radius (mm) |  40.0 |  18.9 |    16.6 |    18.0 |    17.7 |    16.8 |    14.5 |
+| Surfaces                        | R1–R6 | R7–R9 |     R10–R13 |     R14–R19 | R20–R21 | R22–R24 |     R25–R29 |
+| ------------------------------- | ----: | ----: | ----------: | ----------: | ------: | ------: | ----------: |
+| Clear radius (mm)               |  40.0 |  18.9 |        16.6 |        18.0 |    17.7 |    16.8 |        14.5 |
+| Fig. 3, mean of both edges (mm) |  38.8 |  18.3 | 16.1 / 16.0 | 17.6 / 17.7 |    17.8 |    16.7 | 14.2 / 14.5 |
 
 **Iris and image plane.** Fig. 3 gives the long relay gap D24 without locating the diaphragm. The iris is placed 35.75 mm from either face, 228.568 mm behind R1. The paraxial stop radius for f/8 is 12.785 mm wide and 12.782 mm tele. The fixed film spacing of 140.2743 mm is the rounded mean of the two endpoint back focal distances; Nikon's drawing gives 140 mm.
 
@@ -84,9 +85,13 @@ L2/L14 (1.48606 / 81.5), L4/L18 (1.59507 / 35.6) and L17 (1.76684 / 46.6) remain
 
 At infinity the finished model gives 180.105 / 594.280 mm focal length, f/8 throughout, 140.294 / 140.254 mm back focal distance, a 421.292 mm track to the film plane, a 12.785 / 12.782 mm iris radius and 6.82° / 2.06° corner half-field.
 
+2026-11-25 rim review:
+
+- The rims were compared again with Fig. 3 and the maker's drawing; none changed.
+
 ## Remaining Questions
 
-- Nikon's drawing shows slightly larger relay radii than Fig. 3, about 18.4 and 18.0 mm ahead of the iris space and 15.5 mm behind it. The production clear diameters, exact diaphragm position and film spacing are unknown.
+- Nikon's drawing shows slightly larger relay radii than Fig. 3, about 18.4 and 18.0 mm ahead of the iris space and 15.5 mm behind it. It also draws the two variator singlets as tall as the variator doublet, about 18.5 mm, where Fig. 3 draws them at about 16 mm; the model follows Fig. 3. The production clear diameters, exact diaphragm position and film spacing are unknown.
 - The patent leaves the intermediate zoom cam, the moving group or groups for close focus, and their travel to 2.5 m unspecified.
 - Nikon's unshaded drawing cannot establish which elements carry ED glass. Cavina places them at L2 and L14, matching the two 1.48606 / 81.5 elements. The production glass types and individual partial dispersions of the five unmatched elements remain unknown.
 - Vink's version-specific listing gives the early lens seven blades and the AI-S nine. Cavina gives nine in his account of the design, and de Stoutz counts nine on AI-S lens no. 174882. Nikon's AI-S manual describes the diaphragm as fully automatic and gives no count. [Vink](https://johnmeister.com/tech/NIKON/www.photosynthesis.co.nz/nikon/lenses.html) · [Cavina](https://www.marcocavina.com/articoli_fotografici/Nikon_180-600_e_360-1200mm_zoom/00_pag.htm) · [De Stoutz](https://www.destoutz.ch/lens_180-600mm_f8_174882.html) · [Nikon AI-S manual text](https://portablemedia.manualsonline.com/manuals/mfg/nikon/ed180600mm.html?p=12)
