@@ -41,7 +41,7 @@ At 300 dpi, the R1–R11 vertices in Figure 1 (PDF p. 2) span 686 pixels over 37
 | R3, R4   |               8.7 |                — | The two cemented elements share a level outer edge.                |
 | R5       |               8.0 |                — | The shallow rear face ends at a small bevel.                        |
 | R6, R9   |              8.45 |                — | The outside faces of the two middle rear elements reach one height. |
-| R7       |              7.02 |              7.7 | The flat ends where the edge bevels toward the R6 shoulder.         |
+| R7       |              7.02 |              8.0 | The flat ends where the edge bevels toward the R6 shoulder.         |
 | R8       |              7.04 |             8.45 | The flat reaches the same shoulder height as R9.                    |
 | R10, R11 |               9.6 |                — | Both faces of the final element end at a square edge.               |
 
@@ -73,7 +73,7 @@ At infinity the model gives 35.007 mm effective focal length, f/2.80, 38.619 mm 
 
 - 2026-11-25 rim review:
   - R2 gained a flat from 10.8 to 11.0 mm radius. Both sides of the front meniscus in Figure 1 show a short upright edge where the bevel ends.
-  - R7 gained a flat from 7.02 to 7.7 mm radius, where the bevel turns toward the 8.45 mm shoulder. R8 gained a flat from 7.04 to 8.45 mm radius, level with R9. The MIR cutaway also shows the two rear elements at about the same height. The R7–R8 lands occupy 91.23% of the axial gap, so its limit increased from 0.91 to 0.92.
+  - R7 gained a flat from 7.02 to 8.0 mm radius, where the bevel meets the face (about 8.15 mm above the axis and 7.8 mm below in Figure 1) before turning toward the 8.45 mm shoulder. R8 gained a flat from 7.04 to 8.45 mm radius, level with R9. The MIR cutaway also shows the two rear elements at about the same height. The R7–R8 lands occupy 91.23% of the axial gap, so its limit increased from 0.91 to 0.92.
   - At infinity and f/2.8, corner pupil transmission was 56.3% before and after. Relative corner illumination was 38.4% in both cases. The axial beam and the chief ray to the 21.65 mm film corner clear every glass rim.
 
 ## Remaining Questions

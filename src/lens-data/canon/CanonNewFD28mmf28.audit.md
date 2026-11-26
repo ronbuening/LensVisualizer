@@ -23,27 +23,27 @@ Table 2 gives an independent check on the radius signs. The model reproduces the
 | First vertex to printed image plane |             74.822 mm |                                                   74.822 mm |
 | Full field                          |                   76° | 76.7° between opposite corner chief rays on 36 × 24 mm film |
 
-The image plane stays at the printed back focus, 0.013 mm behind the paraxial focus of the rounded prescription. Table 1 gives no finite focus state and no image height. The chief ray at 38.36° reaches the 21.63 mm corner of the 36 × 24 mm frame and passes every surface. The rear rims cut the lower part of the corner beam, and relative illumination at the corner is 32.4% of the axial value.
+The image plane stays at the printed back focus, 0.013 mm behind the paraxial focus of the rounded prescription. Table 1 gives no finite focus state and no image height. The chief ray at 38.36° reaches the 21.63 mm corner of the 36 × 24 mm frame and passes every surface. The rear rims cut the lower part of the corner beam, and relative illumination at the corner is 21.0% of the axial value.
 
 ## Values Not Printed in the Patent
 
 - **Stop.** Column 1 places the diaphragm between the third and fourth lenses but gives no position or diameter. The cutaway suggests a position 20.72 mm from the first vertex, dividing the 5.5608 mm air space into 4.1468 and 1.4140 mm. The paraxial f/2.8 aperture gives a 6.977 mm iris radius. A real axial ray entering at 4.826 mm meets the iris edge, equivalent to f/2.90 by focal length over diameter. Pupil aberration accounts for the difference from the nominal 5.003 mm entrance-pupil radius.
-- **Clear rims.** On the 2,043-pixel-wide page, the first and last lens vertices in Figure 1 are 1,274 pixels apart. Their 39.1776 mm separation gives 32.52 pixels/mm along the axis. On R1 the mean sag of the upper and lower arcs at a height of 300 pixels is 2.45 mm. With the printed radius scaled to 22.162 mm, that sag gives a height of 10.13 mm, or 29.6 pixels/mm radially. R2 gives 29.5 pixels/mm at a height of 280 pixels. The figures below use the radial scale and the upper and lower ends of each clear arc. The flat land on R2 reaches the same outer radius as R1.
+- **Clear rims.** The 39.1776 mm vertex span sets the scale of Figure 1 at 32.52 pixels/mm. Each reading is the mean distance from the axis to the upper and lower ends of the refracting arc. On R2 the clear radius is 9.84 mm and a flat outer land continues to 12.22 mm. Ten rims follow the figure; the four that differ are listed below.
 - **Field.** The patent prints 2ω = 76° but no image height. The model's field follows the 36 × 24 mm frame, whose corner the chief ray reaches at 38.36°.
 - **Focus.** Table 1 gives the infinity setting only. `focus.closeFocusM` is 10¹⁵ m, which stands for infinity. Moving the whole lens 3.54 mm forward would focus an object 0.3 m from the image plane at a paraxial 0.126×, consistent with Canon's 0.3 m and 0.13×. Measured from the front vertex, 0.3 m would give 0.094×.
 - **Glass.** Every printed pair matches an Ohara catalog row at the helium d line: S-BSM14 for L1 and L2, S-TIM35 for L3, S-LAH66 for L4 and L7, S-TIH6 for L5 and S-LAL8 for L6. Indices agree within 0.000006 and Abbe numbers within 0.06. At the sodium D wavelength the same glasses read 0.00009 to 0.00027 lower, and no catalog row matches any of the pairs at the sodium D or e line. The text's sodium D label therefore does not fit the printed values; the table's lowercase νd heading agrees with the d line. The catalog rows supply dispersion; the production glasses and their supplier are unknown.
 
 | Element (front / rear surface) | Figure 1 clear radii (mm) | Model clear radii (mm) |
 | ------------------------------ | ------------------------: | ---------------------: |
-| L1 (R1 / R2)                   |               13.4 / 10.8 |            13.4 / 10.8 |
-| L2 (R3 / R4)                   |               10.5 / 10.5 |            10.5 / 10.5 |
-| L3 (R5 / R6)                   |                 8.0 / 8.0 |              8.0 / 8.0 |
-| L4 (R7 / R8)                   |                 8.0 / 8.0 |              8.0 / 8.0 |
-| L5 (R9 / R10)                  |                 7.0 / 7.0 |              6.8 / 6.8 |
-| L6 (R11 / R12)                 |                 7.8 / 7.8 |              7.8 / 7.8 |
-| L7 (R13 / R14)                 |                 9.1 / 9.1 |              9.1 / 9.1 |
+| L1 (R1 / R2)                   |              12.22 / 9.84 |           12.22 / 9.84 |
+| L2 (R3 / R4)                   |               9.61 / 9.61 |            9.61 / 9.61 |
+| L3 (R5 / R6)                   |               7.23 / 7.23 |            7.23 / 7.23 |
+| L4 (R7 / R8)                   |               7.27 / 7.27 |            7.50 / 7.50 |
+| L5 (R9 / R10)                  |               6.38 / 6.33 |            6.51 / 6.51 |
+| L6 (R11 / R12)                 |               7.07 / 7.07 |            7.07 / 7.07 |
+| L7 (R13 / R14)                 |               8.30 / 8.30 |            8.30 / 8.30 |
 
-The outlines of R10 and R11 nearly touch at the edge of L5. At a radius of 7.0 mm the tabulated curves would cross by 0.026 mm. At 6.8 mm they retain 0.057 mm of air. Every element clears the nominal f/2.8 axial ray and the corner chief ray. The MIR cutaway agrees on the seven singlets and on the flat land behind L1. It shows taller rims on L2 and L5 than Figure 1, which supplies the estimates here.
+At R7–R10 the axial ray from the nominal entrance-pupil edge reaches 7.4975, 7.4304, 6.5049 and 6.3711 mm. R7 and R9 are those ray heights rounded up to the next 0.01 mm. R8 and R10 take the same values, so L4 and L5 end square as Figure 1 draws them. The rims clear that ray and the corner chief ray. The elements have positive edge thickness and adjoining surfaces stay clear of each other.
 
 ## Product Identification
 
@@ -56,8 +56,8 @@ Canon's 75° angle of view against the patent's 76°, the shared f/2.8 and the s
 ## Corrections, 2026-11-25
 
 - The seven index/Abbe pairs were first stored as sodium D values, as the patent's text names them. They are now helium d-line values with catalog dispersion, because every pair matches a catalog row at the d line within the printed precision and none matches any catalog row at the sodium D or e line (table below).
-- The field was first fixed at 76°, a 38.0° half-field, with the off-axis beam drawn at 3.0°. Using the 36 × 24 mm frame placed the corner chief ray at 38.36°, 0.36° beyond the former limit. The drawn off-axis beam then lay at 22.5°.
-- The first estimated rims (12.5, 10.5, 11.5, 11.5, 7.2, 7.2, 7.4, 7.4, 7.7, 7.4, 6.5, 7.0, 8.0 and 7.8 mm for R1–R14) were replaced by measurements from Figure 1 using the axial scale in both directions. R7–R10 were set 0.05 to 0.23 mm outside those readings for the f/2.8 axial beam. R2 then had a 9.84 mm clear radius with a flat land to the 12.22 mm element edge.
+- The field was first fixed at 76°, a 38.0° half-field, with the off-axis beam drawn at 3.0°. It now follows the 36 × 24 mm frame: the corner chief ray lies at 38.36°, 0.36° beyond the former limit, and the drawn off-axis beam at 22.5°, 60% of the field.
+- The first estimated rims (12.5, 10.5, 11.5, 11.5, 7.2, 7.2, 7.4, 7.4, 7.7, 7.4, 6.5, 7.0, 8.0 and 7.8 mm for R1–R14) were replaced by the Figure 1 readings above. R7–R10 stand 0.05 to 0.23 mm outside the figure so that the full f/2.8 axial beam passes. R2 keeps a 9.84 mm clear radius with a flat land to the 12.22 mm element edge.
 - The aperture stays at the printed f/2.8, the iris at its estimated 20.72 mm position and the image plane at the printed back focus. The model keeps the infinity setting only, as printed.
 - The patent number is written US 4,176,914, the assignee Canon Inc. and the name CANON NEW FD 28mm f/2.8. The elements are named L1–L7 with their forms, optical roles and focal lengths. The catalog records Canon's FD mount, 35 mm full frame, 28 mm, f/2.8, 0.3 m, seven elements in seven groups, five blades and the full-stop scale f/2.8, 4, 5.6, 8, 11, 16 and 22, from Canon's museum entry and instructions. The design focal length is recorded as 28.01 mm.
 - The subtitle, specification chips and focus description were replaced by plain descriptions of the patent example and the product.
@@ -72,19 +72,17 @@ The Ohara labels below give each element's dispersion and keep the printed nd an
 | L5       | S-TIH6      | +0.000001 | +0.03 |
 | L6       | S-LAL8      | −0.000005 | −0.03 |
 
-At infinity the model gives 28.014 mm EFL, f/2.800, 35.631 mm paraxial back focus with the image plane 35.644 mm behind the last surface, and a 6.977 mm iris radius.
+At infinity the finished model gives 28.014 mm EFL, f/2.800, 35.631 mm paraxial back focus with the image plane 35.644 mm behind the last surface, a 6.977 mm iris radius, and a 38.36° corner half-field with 21.0% relative illumination.
 
-- 2026-11-25 rim review:
-  - The R1 and R2 arcs show that Figure 1 has a shorter scale radially than along the axis. The front edge of L1 and the outer end of its rear land both measure 13.4 mm, previously 12.22 mm. The curved part of R2 ends at 10.8 mm, previously 9.84 mm.
-  - Both rims of L2 measure 10.5 mm, previously 9.61 mm. L3 and L4 have virtually equal heights and square edges in Figure 1. Their four rims measure 8.0 mm, previously 7.23 and 7.23 mm on L3 and 7.50 and 7.44 mm on L4.
-  - L5 has a square edge. R9 and R10 went from 6.51 and 6.38 mm to 6.8 mm. That leaves 0.057 mm of air between R10 and R11. Their combined sag takes up just over 96% of the 1.425 mm vertex gap, so its allowed fraction rose from 0.90 to 0.97.
-  - The two square-edged rear menisci step up in height as drawn. Both rims of L6 went from 7.07 to 7.8 mm and both rims of L7 from 8.30 to 9.1 mm.
-  - At infinity, relative illumination at the 38.36° frame corner rose from 21.0% to 32.4%. The transmitted fraction of the pupil rose from 37.8% to 58.4%, with no loss at any measured field. The calculated half-field rose from 37.56° to 40.16°, giving a drawn off-axis beam at 24.1°. The full axial beam clears the rims at f/2.8.
+2026-11-25 rim review:
+
+- Figure 1 was compared again at its vertex scale (39.1 mm from the first to the last vertex, within 0.1 % of the table). Its drawn arcs are circles at 0.8–1.0 times the printed radii, so they are schematic and do not give a separate radial scale; element heights are read on the vertex scale.
+- R8 rises from 7.44 to 7.50 mm and R10 from 6.38 to 6.51 mm, so L4 and L5 end square at one height, as Figure 1 draws them. R10 stays 0.17 mm clear of R11. Corner illumination is unchanged.
 
 ## Remaining Questions
 
-- The factory clearance between L5 and L6 at the edge of the glass is undocumented.
-- The patent gives no near-focus spacings or exact diaphragm position or diameter. Canon's tables imply that the whole optical unit moves, but the travel is not published.
+- Factory dimensions for the clear rims and the diaphragm, which would settle the four rims that depart from Figure 1 and the exact iris position, are undocumented.
+- The patent gives no near-focus spacings or diaphragm diameter. Canon's tables imply that the whole optical unit moves, but the travel is not published.
 - The original source of the retail cutaway is unidentified.
 - The production glass types and supplier are unknown.
 - MIR's statement that the earlier and New FD 28 mm lenses share their optics conflicts with Canon's dimensions and with the cutaway comparison. Canon publishes no optical section for either version.
