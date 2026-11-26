@@ -3,6 +3,7 @@ import { ASPHERIC_COEFFICIENT_SCHEMA, expandAsphericCoefficients } from "../../.
 import { imageFormatMetadata } from "../../../utils/catalog/lensTaxonomy.js";
 import { FLAT_R_THRESHOLD, conicFiniteRadiusLimit, conicPolySag, sag } from "../../geometry/surfaceProfile.js";
 import type { UntrustedLensData } from "./context.js";
+import { rearPlateSurfaceLabels } from "../rearPlates.js";
 
 const IMAGE_SURFACE_FIELDS = new Set(["R", "asphere", "cylindrical", "curvedAlong", "sd", "source", "section"]);
 const ASPHERIC_KEYS = new Set<string>(ASPHERIC_COEFFICIENT_SCHEMA.map((descriptor) => descriptor.key));
@@ -146,7 +147,8 @@ function validateImageSurfaceClearance(
     if (!finite(lastPlate.gapAfterMm)) return;
     faceSag = () => 0;
     faceSd = finite(lastPlate.sd) ? lastPlate.sd : extent;
-    gaps = [lastPlate.gapAfterMm];
+    const range = data.var?.[rearPlateSurfaceLabels(plates.length - 1)[1]];
+    gaps = [lastPlate.gapAfterMm, ...(Array.isArray(range) ? range.flat() : [])].filter(finite);
     faceLabel = `rear plate ${plates.length}`;
   } else {
     const last = data.surfaces[data.surfaces.length - 1];
