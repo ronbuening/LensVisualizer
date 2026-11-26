@@ -1,21 +1,17 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
- * Sigma’s JP H10-039215 A, Example 2 (Tables 3 and 4, Fig. 2). All lengths
- * are in millimetres at the printed scale. The table gives five variable gaps
- * at three infinity settings, the d-line glass data, iris position and the
- * asphere on the 0.10 mm resin layer of L5-1. Glass names are catalog equivalents.
- * Figure 2 supplies the clear radii, with the front six surfaces limited to
- * 37 mm by the 77 mm filter and surfaces 24–25 limited by their air gap.
- * The iris radius follows the design f-number at each zoom setting.
- *
- * Back focus is inferred. The rear face of L2 stays 185.8182 mm from the image
- * through the last calculated setting. Between the three printed settings,
- * d9, d13, d18, d19 and the f-number interpolate in the same proportion.
- * The image gap follows from the fixed L2 position. The d6 spacing is
- * calculated to bring parallel rays to focus on that plane.
- * At the printed telephoto setting, d6 = 90.02 mm gives a paraxial image
- * 0.755 mm farther behind L2. The final interval preserves that discrepancy.
+ * Sigma’s JP H10-039215 A, Example 2 (Tables 3 and 4, Fig. 2), in millimetres
+ * at the printed scale. The table gives five variable gaps at three infinity
+ * settings, the d-line glass data, the iris position and the asphere on the
+ * 0.10 mm resin layer of L5-1. Glass names are catalogue equivalents. Clear
+ * radii follow Figure 2, except surfaces 1–6 (37 mm, inside the 77 mm filter
+ * thread) and 24–25 (limited by their air gap). The iris radius follows the
+ * design f-number at each setting. No back focus is printed: the rear face of
+ * L2 stays 185.818 mm from the image through the last calculated setting,
+ * d9, d13, d18, d19 and the f-number interpolate between printed rows, and d6
+ * brings parallel rays to focus. The printed telephoto d6 of 90.02 mm puts
+ * focus 0.755 mm farther back; the final interval keeps that discrepancy.
  * The patent gives no finite-focus spacings.
  */
 const LENS_DATA = {
@@ -26,7 +22,7 @@ const LENS_DATA = {
   visible: true,
   subtitle: "JP H10-039215 A, Example 2 — Sigma / Uemura",
   catalog: {
-    lensMounts: ["sigma-sa", "canon-ef", "sony-a"],
+    lensMounts: ["sigma-sa", "canon-ef", "nikon-f", "pentax-k", "sony-a"],
     imageFormat: "135-full-frame",
     elementCount: 13,
     groupCount: 11,
@@ -46,7 +42,7 @@ const LENS_DATA = {
       "1 ASPHERICAL ELEMENT",
       "3 SLD ELEMENTS",
       "DESIGN f = 138.86–389.65 mm",
-      "DESIGN F/4.63–5.78",
+      "REAR FOCUS",
     ],
   },
   source: {
@@ -74,7 +70,7 @@ const LENS_DATA = {
       nd: 1.834,
       vd: 37.3,
       indexReference: "d",
-      role: "Negative front meniscus ahead of the two positive SLD elements of L1.",
+      role: "High-index negative front meniscus that offsets the colour of the two positive SLD elements behind it.",
       focalLengthMm: -257.16,
       glass: "NBFD10 (HOYA equivalent)",
     },
@@ -86,7 +82,7 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.6,
       indexReference: "d",
-      role: "First positive SLD element in the front group, separated from L1-1 by a 0.10 mm air gap.",
+      role: "Stronger of the two positive SLD elements that carry the front group’s power and its secondary-colour correction.",
       focalLengthMm: 188.44,
       glass: "FCD1 (HOYA equivalent)",
       apd: "inferred",
@@ -100,7 +96,7 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.6,
       indexReference: "d",
-      role: "Second positive SLD element in L1. The air gap behind it opens toward telephoto.",
+      role: "Weaker positive SLD element completing the front group. The zoom gap behind it widens toward telephoto.",
       focalLengthMm: 280.88,
       glass: "FCD1 (HOYA equivalent)",
       apd: "inferred",
@@ -114,7 +110,7 @@ const LENS_DATA = {
       nd: 1.8061,
       vd: 33.3,
       indexReference: "d",
-      role: "Negative member of the stationary second group, cemented to L2-2.",
+      role: "Supplies nearly all the negative power of the stationary L2 doublet, cemented to L2-2.",
       focalLengthMm: -37.87,
       glass: "NBFD15 (HOYA equivalent)",
       cemented: "C1",
@@ -140,7 +136,7 @@ const LENS_DATA = {
       nd: 1.65844,
       vd: 50.9,
       indexReference: "d",
-      role: "Leading negative meniscus of L3, air-spaced from the stronger positive L3-2.",
+      role: "Weak negative meniscus that leads L3 and trims the power of the positive L3-2.",
       focalLengthMm: -280.29,
       glass: "BACED5 (HOYA equivalent)",
     },
@@ -164,7 +160,7 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.6,
       indexReference: "d",
-      role: "Positive SLD member of the L4 doublet, directly ahead of the high-index negative member.",
+      role: "Converging SLD member of the L4 doublet, paired with a high-index negative element for colour correction.",
       focalLengthMm: 75.01,
       glass: "FCD1 (HOYA equivalent)",
       apd: "inferred",
@@ -179,7 +175,7 @@ const LENS_DATA = {
       nd: 1.834,
       vd: 37.3,
       indexReference: "d",
-      role: "Cemented negative partner of L4-1 in the front part of L4.",
+      role: "High-index negative partner of L4-1. The cemented pair is only weakly positive and works mainly on colour.",
       focalLengthMm: -81.68,
       glass: "NBFD10 (HOYA equivalent)",
       cemented: "C2",
@@ -192,7 +188,7 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.4,
       indexReference: "d",
-      role: "Positive rear element of L4, immediately ahead of the variable gap to the iris.",
+      role: "Supplies most of L4’s converging power, just ahead of the variable gap to the iris.",
       focalLengthMm: 112.08,
       glass: "FC5 (HOYA equivalent)",
     },
@@ -217,7 +213,7 @@ const LENS_DATA = {
       nd: 1.7725,
       vd: 49.6,
       indexReference: "d",
-      role: "Glass substrate of the hybrid negative lens at the front of the rear focusing group.",
+      role: "Glass substrate of Sigma’s aspherical element, the hybrid negative lens that leads the rear focusing group.",
       focalLengthMm: -51.03,
       glass: "TAF1 (HOYA equivalent)",
       cemented: "C3",
@@ -230,7 +226,7 @@ const LENS_DATA = {
       nd: 1.71736,
       vd: 29.5,
       indexReference: "d",
-      role: "Positive member between the two negative menisci of the rear focusing group.",
+      role: "Dispersive positive element between the two negative menisci of the rear focusing group, offsetting part of their power and colour.",
       focalLengthMm: 63.99,
       glass: "S-TIH1 (OHARA equivalent)",
     },
