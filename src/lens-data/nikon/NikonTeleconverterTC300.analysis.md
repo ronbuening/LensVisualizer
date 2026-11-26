@@ -31,7 +31,7 @@ nd = 1.59507, νd = 35.6. Glass unmatched. Focal length +101.91 mm. L1 increases
 
 ### L2 — Biconcave negative
 
-nd = 1.74443, νd = 49.4. Glass unmatched. Focal length −33.44 mm. The rear surface has the steeper curvature. L2 gives the front group its net negative power despite the positive elements on either side.
+nd = 1.74443, νd = 49.4. Hoya M-NBF1 supplies the dispersion curve. Focal length −33.44 mm. The rear surface has the steeper curvature. L2 gives the front group its net negative power despite the positive elements on either side.
 
 ### L3 — Positive meniscus
 
@@ -47,9 +47,11 @@ nd = 1.80454, νd = 39.5. Hoya NBFD3 supplies the dispersion curve. Focal length
 
 ## Glass Identification and Selection
 
-The patent prints an index and an Abbe number for each glass without naming a reference wavelength or supplier. A separate optical patent, US 4,348,085, explicitly gives the L1/L3 and L2 pairs at the helium d line. L4 and L5 are also close to catalog d-line values. Together these observations support using the d line here. The front three elements still lack a close catalog match for both index and dispersion. [US 4,348,085, d-line glass tables](https://patents.google.com/patent/US4348085A/en)
+The patent prints an index and an Abbe number for each glass without naming a reference wavelength or supplier. A separate optical patent, US 4,348,085, explicitly gives the L1/L3 and L2 pairs at the helium d line. L4 and L5 are also close to catalog d-line values. Together these observations support using the d line here. [US 4,348,085, d-line glass tables](https://patents.google.com/patent/US4348085A/en)
 
-Schott K10 has nd 1.50137 and νd 56.41, against 1.50137 and 56.5 for L4. Hoya lists NBFD3 under code 805-396, within 0.0005 in index and 0.1 in Abbe number of L5. Their catalog curves approximate the dispersion of L4 and L5. The glass suppliers, melt data and partial dispersion of the production TC-300 remain unknown. [Schott K10](https://us.shop.schott.com/advanced-optics/en/Optical-Glass/K10/c/glass-K10) · [Hoya optical glass index](https://www.hoyaoptics.eu/glass-cross-reference-index)
+Schott K10 has nd 1.50137 and νd 56.41, against 1.50137 and 56.5 for L4. Hoya NBFD3, code 805-396, has nd 1.80450 and νd 39.64, against 1.80454 and 39.5 for L5. Their catalog curves supply the dispersion of L4 and L5.
+
+The front three glasses recur throughout the patent’s examples, so they are real melts, but none matches a catalog glass at the printed precision. L2’s 1.74443/49.4 lies within the site’s spectral-proxy tolerance of Hoya M-NBF1 (1.74330/49.33). L2 keeps its printed index and takes M-NBF1’s wavelength dependence, which reproduces νd 49.40 and gives the lower blue partial dispersion typical of a lanthanum flint. The nearest glass to the L1/L3 pair, Hoya FF5 (1.59270/35.45), differs by 0.0024 in index, outside that tolerance, so L1 and L3 keep the printed index and Abbe number alone. The patent prints no chromatic aberration curves for the combinations, only spherical aberration, astigmatism and distortion. The glass suppliers, melt data and partial dispersion of the production TC-300 remain unknown. [Schott K10](https://us.shop.schott.com/advanced-optics/en/Optical-Glass/K10/c/glass-K10) · [Hoya optical glass index](https://www.hoyaoptics.eu/glass-cross-reference-index)
 
 ## Focus Mechanism
 

@@ -4,7 +4,8 @@ import type { TeleconverterDataV2Input } from "../../types/lensDataV2.js";
  * Nikon TC-300, US 4,154,508, Example 2 (Figure 2 and claim 4). The patent gives ten
  * spherical radii, nine internal intervals in millimetres and five glass index/Abbe pairs.
  * All lengths retain the patent scale. The spectral reference is inferred to be helium d.
- * The glass labels identify catalog curves with matching indices and dispersion.
+ * L4 and L5 take catalog rows that match their printed pairs; L2 borrows Hoya
+ * M-NBF1's dispersion with its printed index; L1 and L3 keep their printed pair alone.
  *
  * The 300 mm master's paraxial back focus of 70.053 mm and the printed 1.5423 mm
  * junction place its image 68.511 mm behind the converter's first vertex. With the
@@ -66,7 +67,7 @@ const TELECONVERTER_DATA = {
       vd: 49.4,
       indexReference: "d",
       focalLengthMm: -33.44,
-      glass: "Unmatched (nd 1.74443 / νd 49.4)",
+      glass: "M-NBF1 (spectral proxy; patent nd 1.74443 / νd 49.4; supplier and melt unspecified)",
       role: "Supplies the negative power of the front group.",
       indexReferenceNote: "The patent gives no wavelength. The helium d line is inferred from the glass data.",
     },
@@ -92,7 +93,7 @@ const TELECONVERTER_DATA = {
       vd: 56.5,
       indexReference: "d",
       focalLengthMm: 94.42,
-      glass: "K10",
+      glass: "K10 (Schott)",
       role: "Supplies the positive power of the rear group after the long air space.",
       indexReferenceNote: "The patent gives no wavelength. The helium d line is inferred from the glass data.",
     },
@@ -105,7 +106,7 @@ const TELECONVERTER_DATA = {
       vd: 39.5,
       indexReference: "d",
       focalLengthMm: -140.3,
-      glass: "NBFD3",
+      glass: "NBFD3 (Hoya)",
       role: "Reduces the convergence introduced by L4 before the beam reaches the film.",
       indexReferenceNote: "The patent gives no wavelength. The helium d line is inferred from the glass data.",
     },
