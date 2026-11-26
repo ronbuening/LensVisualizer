@@ -1,16 +1,18 @@
-# NIKON NIKKOR-N AUTO 24mm f/2.8 — audit
+# NIKON NIKKOR-N AUTO 24mm f/2.8 — Audit Log
 
 ## Source
 
-JP S45-39875 B, Example 1 (実施例 1), pages 2–3 and Figure 1. The title page names Zenji Wakimoto as inventor and Nippon Kogaku K.K. as applicant. The filing date for Japanese application S42-60854 is September 23, 1967. The patent was published on December 15, 1970. Its lengths are multiplied by 0.24 to convert the prescription at f = 100 to the marketed 24 mm focal length. [Japanese publication](https://www.j-platpat.inpit.go.jp/c1801/PU/JP-S45-039875/12/ja) · [British family member](https://patents.google.com/patent/GB1238668A/en)
+Zenji Wakimoto, *Wide-angle lens with a close-range correction gap in the converging lens group* (translated title), JP S45-39875 B, Nippon Kogaku K.K. Japanese application S42-60854 was filed on September 23, 1967, the priority date cited in the British publication. The Japanese patent was published on December 15, 1970. Example 1 (実施例 1) is on pages 2–3. Page 7 gives the lens section and aberration curves in Figures 1–4. [British family member, GB 1,238,668](https://patents.google.com/patent/GB1238668A/en)
 
-## Transcription
+Nikon’s sales sheet gives the production specifications and a dimensioned section. Nikon’s 1967 optical drawing shows the shape of each glass face, the diaphragm and the floating gap. [Nikon/Nikkormat Sales Manual, L-18](https://www.pacificrimcamera.com/rl/00766/00766.pdf) · [Nikon, Tale 14 and Figure 1](https://imaging.nikon.com/imaging/information/story/0014/index.html)
 
-The 16 signed radii, 15 center thicknesses and air spaces, and nine refractive indices agree with the printed table. Surfaces 8 and 13 are the cemented interfaces of L4/L5 and L7/L8. All refracting surfaces are spherical. There is no cover plate. Figure 2 gives f/2.8, and the text gives an 84° full field.
+## Transcription Check
 
-At infinity the patent prints a back focus of 157.6 and an L6–L7 air space of 8.917. At magnification 0.114× it gives 4.46 for that same air space. Only the infinity image distance is tabulated. After scaling, the internal gap closes from 2.14008 mm to 1.0704 mm.
+All 16 signed radii, 15 center thicknesses and air spaces, and nine refractive indices agree with the Japanese page images. All surfaces are spherical. Surfaces 8 and 13 are the cemented interfaces of L4/L5 and L7/L8. There is no cover plate. The text gives an 84° full field and Figure 2 gives f/2.8.
 
-## First-Order Values
+The table uses f = 100. Multiplying its lengths by 0.24 gives the 24 mm scale. At infinity the printed back focus of 157.6 becomes 37.824 mm, and the L6–L7 gap of 8.917 becomes 2.14008 mm. At 0.114× the text gives 4.46 for the gap, or 1.0704 mm. Only the infinity back focus is printed.
+
+## First-Order Check
 
 | Quantity                                         | Patent, scaled unless indicated | Model                                                         |
 | ------------------------------------------------ | ------------------------------- | ------------------------------------------------------------- |
@@ -27,13 +29,13 @@ At infinity the patent prints a back focus of 157.6 and an L6–L7 air space of 
 | Near focal length and distance to film           | Unstated                        | 24.5499 mm focal length, 40.92554 mm from rear vertex to film |
 | Near subject distance                            | Unstated                        | 204.34 mm to first vertex, 298.49 mm to film                  |
 
-The infinity film plane lies 0.01091 mm in front of paraxial focus. At the printed close magnification, using the first-vertex object distance rounded to 0.01 mm places paraxial focus 0.000049 mm behind the film. If the infinity offset is instead carried through to the near position, the effective image gap is 40.93645 mm and the conjugate becomes 297.66 mm at 0.1144×. The close distance above uses the film plane derived directly from the printed magnification.
+The film lies 0.01091 mm ahead of infinity paraxial focus. At the near position, rounding the object distance to 204.34 mm from the first vertex puts paraxial focus 0.000049 mm behind the film. The 298.49 mm subject-to-film distance follows directly from the printed magnification. Carrying the infinity focus offset into the near position would give 40.93645 mm from the rear vertex to the image and 297.66 mm from the subject to the image at 0.1144×.
 
-At full aperture, the iris limits the axial beam. The glass edges clear one another throughout focus travel. The chief ray reaches the nominal 35 mm format corner at 42.5° at infinity and 40.9° in the close layout. At both printed positions the corner chief ray clears every rim, although a meridional ray through the lower edge of the full pupil could not be traced there. At infinity about 60% of the pupil area transmits at the corner. This is geometric vignetting, before transmission and illumination losses.
+The iris limits the axial beam at f/2.8 and the glass edges clear one another throughout focus travel. The corner chief ray clears all rims at both printed positions, reaching the 35 mm frame corner at 42.5° at infinity and 40.9° in the close layout. A meridional ray through the lower edge of the full pupil could not be traced at the corner in either position. At infinity, 59.9% of the pupil area transmits at the corner before glass transmission and illumination losses.
 
 ## Values Not Printed in the Patent
 
-**Glass.** The source prints indices without a spectral line, Abbe numbers, or glass names. The indices are treated as helium d-line values. Five Abbe numbers come from catalog rows whose indices equal the printed values at the printed precision (four or five decimals). Four come from the same indices in other patent prescriptions. The differences below are catalog minus assumed values, and the supplier names identify the curves used for tracing. The production melts remain unknown. [Shimizu, US 3,622,227](https://patents.google.com/patent/US3622227A/en) · [Matsui, US 4,139,265](https://patents.google.com/patent/US4139265A/en)
+**Glass.** The Japanese table gives indices without a spectral line, Abbe numbers or glass names. The indices are treated as helium d-line values. Five Abbe numbers come from catalog entries with the same index at the printed precision (four or five decimal places). Four come from matching indices in the two US prescriptions below. The differences are catalog minus assumed values. The glass names identify dispersion curves, and the production melts remain unknown. [Shimizu, US 3,622,227](https://patents.google.com/patent/US3622227A/en) · [Matsui, US 4,139,265](https://patents.google.com/patent/US4139265A/en)
 
 | Element | Printed index | Inferred νd | Evidence for νd     | Catalog curve | Δnd |   Δνd |
 | ------- | ------------: | ----------: | ------------------- | ------------- | --: | ----: |
@@ -47,13 +49,14 @@ At full aperture, the iris limits the axial beam. The glass edges clear one anot
 | L8      |       1.62041 |        60.3 | US 3,622,227        | Schott N-SK16 |   0 | +0.02 |
 | L9      |       1.74443 |        49.4 | US 4,139,265        | Unmatched     |   — |     — |
 
-**Clear radii and diaphragm.** Nikon’s 1967 section, scaled at 13.87 pixels/mm between the outermost vertices, gives the clear semi-diameters below. At surfaces 2, 4 and 6 the optical radius ends where the spherical face meets the bevel. The smaller rear opening of L6 leaves about 0.13 mm of axial clearance to L7 at its 7.25 mm rim at close focus. The diaphragm is 0.48 mm behind surface 9 and 2.02008 mm ahead of surface 10, preserving the printed total space. Its 6.2664 mm wide-open radius follows from f/2.8. [Nikon, Tale 14, Figure 1](https://imaging.nikon.com/imaging/information/story/0014/img/img2.jpg)
+**Clear radii and diaphragm.** The distance between the outermost vertices in Nikon’s 1967 section gives a scale of 13.87 pixels/mm. At surfaces 2, 4 and 6, the clear radius ends where the spherical face meets its bevel. The 7.25 mm rear rim of L6 leaves about 0.13 mm of axial clearance to L7 at close focus. The iris lies about 0.48 mm behind surface 9 and 2.02008 mm ahead of surface 10. This division preserves the printed air space. Its calculated wide-open radius is 6.2664 mm. [Nikon, Tale 14, Figure 1](https://imaging.nikon.com/imaging/information/story/0014/img/img2.jpg)
 
-| Surface           |     1 |     2 |     3 |     4 |     5 |    6 | 7–11 | 12–14 | 15–16 |
-| ----------------- | ----: | ----: | ----: | ----: | ----: | ---: | ---: | ----: | ----: |
-| Clear radius (mm) | 20.95 | 15.50 | 15.70 | 14.40 | 12.00 | 8.40 | 7.25 |  9.95 | 11.45 |
+| Clear radius (mm)           |     1 |     2 |     3 |     4 |     5 |    6 | 7–11 | 12–13 |   14 | 15–16 |
+| --------------------------- | ----: | ----: | ----: | ----: | ----: | ---: | ---: | ----: | ---: | ----: |
+| Nikon Figure 1, as modeled  | 20.95 | 15.50 | 15.70 | 14.40 | 12.00 | 8.40 | 7.25 |  9.95 | 9.95 | 11.45 |
+| Patent Figure 1, approx.    |  21.1 |  15.3 |  15.8 |  15.8 |  13.0 |  9.6 |  8.1 |   9.9 |  9.8 |  10.9 |
 
-**Intermediate focus.** Linear interpolation of both moving spacings between the two printed positions would put paraxial focus 0.2525 mm in front of the film at mid-travel. The internal gap varies linearly with inverse subject-to-film distance. At three intermediate positions, the last surface to film distance is calculated to bring that subject plane into focus. The paraxial residual stays within 0.0176 mm between the positions below. Positive residuals put paraxial focus behind the film.
+**Intermediate focus.** Changing both moving gaps linearly between the printed positions would bring paraxial focus 0.2525 mm ahead of the film at mid-travel. The internal gap varies linearly with inverse subject-to-film distance. At three intermediate distances, the last surface is positioned to bring the subject into focus on the film. The largest absolute departure from the film between these positions is 0.0176 mm. Positive residuals put paraxial focus behind the film.
 
 | Subject-to-film distance | L6–L7 gap (mm) | Last surface to film (mm) | Paraxial residual (mm) |
 | ------------------------ | -------------: | ------------------------: | ---------------------: |
@@ -65,16 +68,29 @@ At full aperture, the iris limits the axial beam. The glass edges clear one anot
 
 ## Product Identification
 
-Example 1 closely matches the 1967 Nikkor-N Auto. Both sections have nine elements in seven groups, the same two cemented interfaces, a stop between L5 and L6 and a floating air space immediately behind L6. The first and fourth elements measure about 3.97 and 4.94 mm thick in Nikon’s section, against 3.90 and 5.00 mm in the patent. The fifth measures 0.68 mm against 0.70 mm. Shimizu’s separate US 3,622,227 gives 2.70, 4.00 and 3.00 mm respectively. Aligning the first and last vertices gives an RMS difference of 0.60 pixels for the Japanese example and 22.98 pixels for the US example across 14 axial landmarks. Each of the two nearly touching surface pairs is read as a single landmark. Examples 2 and 3 of the Japanese patent have different element counts and fields. [Nikon’s section and design credits](https://imaging.nikon.com/imaging/information/story/0014/index.html)
+Example 1 closely matches the 1967 Nikkor-N Auto. Both sections have nine elements in seven groups, the same two cemented interfaces, a stop between L5 and L6 and a floating gap behind L6. Aligning the outermost vertices gives an RMS difference over 14 axial landmarks of 0.60 pixels for the Japanese example and 22.98 pixels for Shimizu’s US Example I. Each of the two nearly touching surface pairs counts as one landmark. The thickness of L5 immediately ahead of the stop distinguishes the prescriptions particularly clearly. Examples 2 and 3 of the Japanese patent have eight elements at 62° and seven at 74°, respectively. Nikon credits Yoshiyuki Shimizu with the basic optical design and Wakimoto with close-range correction. [Nikon, Tale 14](https://imaging.nikon.com/imaging/information/story/0014/index.html) · [Shimizu’s Example I](https://patents.google.com/patent/US3622227A/en)
 
-Nikon’s F-mount sales literature gives 24 mm, f/2.8–16, 84° and a 0.3 m minimum distance. Its dimensioned section gives 54.3 mm between the first and last vertices and 37.8 mm from the rear vertex to film. [Nikon/Nikkormat sales sheet L-18](https://www.pacificrimcamera.com/rl/00766/00766.pdf) · [Nikon F lens instructions](https://www.marcocavina.com/brochure_foto/nikon_f-instructions_03_1969_en.pdf)
+| Center thickness (mm)          |   L1 |   L3 |   L4 |   L5 |   L7 |   L8 |
+| ------------------------------ | ---: | ---: | ---: | ---: | ---: | ---: |
+| Nikon’s 1967 drawing           | 3.97 | 3.89 | 4.94 | 0.68 | 1.51 | 4.87 |
+| JP S45-39875 B, Example 1      | 3.90 | 3.80 | 5.00 | 0.70 | 1.50 | 4.90 |
+| US 3,622,227, Example I        | 2.70 | 2.70 | 4.00 | 3.00 | 1.00 | 5.40 |
 
-## Corrections
+Nikon specifies 24 mm, f/2.8–16, an 84° angle on 35 mm film and 0.3 m minimum focus for the F-mount lens. The dimensioned production section gives 54.3 mm between the first and last vertices and 37.8 mm from the rear vertex to film. The patent’s scaled dimensions round to both. The calculated 298.49 mm from subject to film at 0.114× agrees with the production distance marking. JAPB lists 1:9.1 (0.110×) for the original lens. [Nikon sales sheet L-18](https://www.pacificrimcamera.com/rl/00766/00766.pdf) · [Nikon F instructions](https://www.marcocavina.com/brochure_foto/nikon_f-instructions_03_1969_en.pdf) · [JAPB, Nikkor-N specifications](https://japb.net/gear/gear-review-index/ds_nikkor-f-24f28/)
 
-### 2026-11-25
+## Corrections, 2026-11-25
 
-Wakimoto’s Japanese Example 1 supplies the prescription for the 1967 lens. Shimizu’s US filing documents a different design. The Japanese table supports the 0.114× floating spacing directly. With the film fixed, the rear assembly advances 3.102 mm and the internal gap contracts 1.070 mm, giving 2.032 mm of front-assembly advance. The original Nikkor-N aperture ring ends at f/16. The printed radii, spacings, indices and infinity back focus require no numerical correction.
+- The source for this lens changed from US 3,622,227 Example I to JP S45-39875 B Example 1. Wakimoto’s example fits Nikon’s glass thicknesses and gives the 0.114× floating gap missing from Shimizu’s separate filing. The scale is ×0.24 because Wakimoto gives f = 100. The printed radii, spacings, indices and infinity back focus require no numerical correction.
+- The iris moved from the midpoint of the L5–L6 space to 0.48 mm behind surface 9, as drawn. Its radius gives the full f/2.8 aperture. Extending the former 42° tracing limit to the 42.5° frame corner covers the full 35 mm diagonal.
+- The clear radii follow Nikon’s production drawing. Its beveled front elements and smaller central openings account for the largest differences from patent Figure 1. Surface 4 measures 14.4 mm against about 15.8 mm in the patent sketch, surface 6 measures 8.4 mm against 9.6 mm, and surfaces 7–11 measure 7.25 mm against 8.1 mm. The smaller opening at surface 11 clears surface 12 through the full focus travel. The last element measures 11.45 mm against about 10.9 mm in the patent sketch. [Nikon’s 1967 section](https://imaging.nikon.com/imaging/information/story/0014/img/img2.jpg)
+- The printed infinity and 0.114× gaps determine the near movement. With the film fixed, the rear three elements advance 3.102 mm toward the subject. The gap contracts 1.070 mm, so the front six advance 2.032 mm. Three calculated intermediate image distances reduce the defocus between the endpoints.
+- The glass curves permit an estimate of color correction. For the eight elements with a catalog curve, Δnd is zero at the printed precision. Δνd is +0.02 for L3 and L8 and zero for the other six. L9 uses the inferred 49.4 from Matsui’s prescription and has no identified catalog curve.
+- The product specifications describe the original F-mount Nikkor-N Auto. Its six-blade diaphragm stops at f/2.8, 4, 5.6, 8, 11 and 16. This corrects the previous f/22 endpoint. [Nikon sales sheet L-18](https://www.pacificrimcamera.com/rl/00766/00766.pdf) · [1967 lens No. 242932](https://destoutz.ch/lens_24mm_f2.8_242932.html) · [JAPB, aperture scale](https://japb.net/gear/gear-review-index/ds_nikkor-f-24f28/)
+
+At infinity the lens gives 23.999 mm effective focal length, f/2.80, 37.835 mm paraxial back focus and a 6.266 mm iris radius. The printed film plane is 37.824 mm behind the last vertex.
 
 ## Remaining Questions
 
-The factory glass specifications, particularly the identity and partial dispersion of L9, are unknown. Neither the patent nor the sales drawing dimensions the clear apertures or the iris coordinate. The drawings establish their positions to drawing precision. The focus cam between infinity and 0.114× is undocumented.
+- The factory glass specifications remain unknown, particularly the identity and partial dispersion of L9.
+- The clear apertures and axial position of the iris are known to drawing precision. Neither the patent nor the sales section dimensions them. Nikon gives no blade curvature or separate image-circle diameter for this version.
+- The production focus cam between infinity and 0.114× remains undocumented.

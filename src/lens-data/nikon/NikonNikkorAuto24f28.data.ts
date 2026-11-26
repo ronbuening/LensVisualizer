@@ -1,21 +1,14 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
- * JP S45-39875 B, Example 1 (Zenji Wakimoto, Nippon Kogaku). Lengths in the
- * f = 100 prescription are multiplied by 0.24 for the 24 mm Nikkor-N Auto.
- * The prescription gives the radii, thicknesses, indices, infinity back focus
- * and L6–L7 air gap at infinity and 0.114×. The near object and image
- * distances follow from the latter magnification. Between these positions the
- * air gap varies linearly with inverse subject distance, and three calculated
- * image distances keep the paraxial image on the film.
- *
- * The clear radii are measured from Nikon's Tale 14, Fig. 1. The drawing places
- * the iris about 0.48 mm behind surface 9. Its radius follows from f/2.8.
- * The Japanese table names no spectral line and gives no Abbe numbers. Its
- * indices are treated as d-line values. Abbe numbers for L3, L4 and L8 come
- * from the same indices in US 3,622,227, and L9 from US 4,139,265. The other
- * five use optical glass catalog rows with matching indices. All nine
- * dispersions are inferred, and the production glass suppliers are unknown.
+ * JP S45-39875 B, Example 1 (Zenji Wakimoto, Nippon Kogaku), scaled by 0.24 from f = 100 to 24 mm.
+ * The table gives the radii, axial spacings, indices, infinity back focus and L6–L7 gap at infinity and 0.114×.
+ * The near object and image distances follow from that magnification. The gap varies linearly with inverse
+ * subject-to-film distance between those positions. Three calculated image distances keep the subject in focus.
+ * Nikon’s Tale 14, Fig. 1 gives the clear radii and places the iris about 0.48 mm behind surface 9.
+ * The wide-open iris radius follows from f/2.8. The Japanese table omits the index wavelength and Abbe numbers.
+ * The indices are treated as d-line values. Matching indices in US 3,622,227 supply Abbe numbers for L3, L4 and L8,
+ * and US 4,139,265 supplies L9’s. Five glass catalog entries supply the others. The production glasses are unknown.
  */
 const LENS_DATA = {
   schema: 2,
@@ -129,7 +122,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "SF6 (Schott, inferred)",
       focalLengthMm: -27.83,
-      role: "Forms the rear boundary of the variable air gap and the negative member of the rear doublet.",
+      role: "Diverges the beam entering the rear doublet from the floating air gap.",
     },
     {
       id: 8,
@@ -181,7 +174,7 @@ const LENS_DATA = {
     keyframes: [0, 0.3, 0.56, 0.8, 1],
     published: [4],
     description:
-      "The gap between L6 and L7 narrows from 2.14008 mm at infinity to 1.0704 mm at 0.114×. The front six elements move 2.03 mm toward the subject and the rear three move 3.10 mm. Three intermediate image distances are calculated.",
+      "The patent gives the L6–L7 gap at infinity and 0.114×. Scaled to 24 mm, it narrows from 2.14 to 1.07 mm. The front six elements advance 2.03 mm toward the subject and the rear three advance 3.10 mm. Three intermediate image distances are calculated for focus on the film.",
     conjugates: [
       {
         zoomStation: 0,
@@ -207,6 +200,8 @@ const LENS_DATA = {
   aperture: {
     nominalFNumber: 2.8,
     fStops: [2.8, 4, 5.6, 8, 11, 16],
+    maxFNumber: 16,
+    blades: 6,
   },
   groups: [
     { text: "Front group (L1–L6)", fromSurface: "1", toSurface: "11" },
