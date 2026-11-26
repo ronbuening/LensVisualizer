@@ -8,7 +8,7 @@ Nikon identifies the TC-1 and TC-200 as the same optical design. Its catalog giv
 
 ## Transcription Check
 
-The Example 11 and claim 21 page images agree on all twelve signed spherical radii, eleven internal spacings and seven index/Abbe pairs. Both print +37.545 mm for the first radius. This is the one radius corrected below. Surfaces 5–7 form the L3/L4 doublet and surfaces 8–10 form the L5/L6 doublet. The 0.1 mm air gap after surface 10 separates L6 from L7. The first and last vertices are 38.74 mm apart. [Patent, Example 11 and claim 21](https://patents.google.com/patent/US4154508A/en)
+The Example 11 and claim 21 page images agree on all twelve signed spherical radii, eleven internal spacings and seven index/Abbe pairs. Both print +37.545 mm for the first radius. This is the one radius corrected below. The table brackets surfaces 1–7 as the diverging group f1 and surfaces 8–12 as the converging group f2. Surfaces 5–7 form the L3/L4 doublet and surfaces 8–10 form the L5/L6 doublet. The 0.1 mm air gap after surface 10 separates L6 from L7. The first and last vertices are 38.74 mm apart. [Patent, Example 11 and claim 21](https://patents.google.com/patent/US4154508A/en)
 
 The patent specifies n and ν without naming the reference wavelength. The model assumes the helium d line and retains the printed glass values throughout. L6 and L7 have catalog dispersion equivalents. Schott N-LAF21 also fits L7. L1–L5 have no close catalog equivalent at the stated precision.
 
@@ -25,7 +25,7 @@ The patent's 51.6 mm f/2 master gives 51.600 mm focal length and 37.458 mm back 
 | Back focus from last vertex (mm) | Unspecified | 48.805 | 41.728 | 42.125 |
 | Converter focal length (mm) | −76.492 (col. 4) | −70.207 | −76.492 | −76.492 |
 | Converter Petzval sum (mm⁻¹) | −0.00211 | −0.002782 | −0.002118 | −0.002118 |
-| Forward-group equivalent index | 2.369 | 2.343 | 2.369 | 2.369 |
+| Diverging-group equivalent index | 2.369 | 2.343 | 2.369 | 2.369 |
 
 At 44 mm extension the paraxial image lies within 0.0001 mm of the modeled image plane. All surface edges clear each other and the f/2 axial beam clears the rims. At 11.88° the chief ray reaches the 21.63 mm corner of a 36 × 24 mm frame, where relative illumination is 53.6% of the axial value. At the patent's 12.2° half-field the chief ray reaches 22.23 mm. The patent gives no numerical image height, total track, back focus or finite-focus position.
 
@@ -57,12 +57,12 @@ Nikon lists some faster taking lenses, including the AI 50 mm f/1.2 used within 
 
 ## Corrections, 2026-11-25
 
-- Surface 1 uses +35.545 mm in place of the +37.545 mm printed in both tables. This radius recovers Example 11's forward-group equivalent index and brings its Petzval sum close to the printed value. It also reproduces the following design values printed under Embodiment 1 in column 4. The TC-200 drawing independently gives a focal-length magnitude of 76.5 mm and a distance of 147.6 mm between focal points. This distance calculates to 147.63 mm with the corrected radius and 135.05 mm with the printed radius. [Patent, cols. 4–6 and 9, claim 21](https://patents.google.com/patent/US4154508A/en) · [Dimensioned TC-200 section](https://www.mir.com.my/rb/photography/companies/nikon/nikkoresources/teleconverter/TC200.gif)
+- Surface 1 uses +35.545 mm in place of the +37.545 mm printed in both tables. This radius recovers Example 11's diverging-group equivalent index and brings its Petzval sum close to the printed value. It also reproduces the following design values printed under Embodiment 1 in column 4. The TC-200 drawing independently gives a focal-length magnitude of 76.5 mm and a distance of 147.6 mm between focal points. This distance calculates to 147.63 mm with the corrected radius and 135.05 mm with the printed radius. [Patent, cols. 4–6 and 9, claim 21](https://patents.google.com/patent/US4154508A/en) · [Dimensioned TC-200 section](https://www.mir.com.my/rb/photography/companies/nikon/nikkoresources/teleconverter/TC200.gif)
 
   | Quantity (mm) | Patent, col. 4 | Example 11, printed R1 | Example 11, corrected R1 |
   | --- | ---: | ---: | ---: |
-  | Front-group focal length | −50.48869 | −47.302 | −50.489 |
-  | Rear-group focal length | +208.1101 | +208.108 | +208.108 |
+  | Diverging-group focal length | −50.48869 | −47.302 | −50.489 |
+  | Converging-group focal length | +208.1101 | +208.108 | +208.108 |
   | Separation of group principal planes | 20.25835 | 20.592 | 20.257 |
   | Converter focal length | −76.492 | −70.207 | −76.492 |
 
@@ -78,7 +78,17 @@ At the patent spacing the corrected pair gives 103.29 mm at f/4.003 and 2.00172�
 - Surfaces 1, 3–4 and 5–7 increased from 9.75 to 10.8 mm to follow the common front edge in Figure 11. The outer radius of the flat land on surface 2 also increased from 9.75 to 10.8 mm. Its 8.8 mm clear radius keeps the air gap open. Nikon's section shows this land and a smaller front outline.
 - With the 51.6 mm f/2 patent master at Nikon's 44 mm extension, corner illumination was 53.6% before and after. All six compatible catalog lenses passed the axial beam at infinity. Mounted corner coverage was 100% before and after on each lens, including all three focal lengths of the AF-S 80–200 mm. Its wide, middle and long settings retained corner illumination of 52.7%, 50.4% and 32.6%, respectively.
 
+2026-11-26 diagram review:
+
+- The converter drawn behind the AI 135 mm f/2.8 and the AF-S 80–200 mm was compared with Figure 11 and Nikon's section. On drawing sheet 4 at 11.85 pixels/mm, the outer ink of the front outline lies 129.5–134.5 pixels from the axis (about 10.9 mm at the line centre) and that of the rear outline 194.5–198.5 pixels (about 16.4 mm). The 10.8 mm front rims and the 15.9–16.3 mm rear rims lie within 3% of these readings, so every rim stays. Figure 11 draws the rear doublet and L7 at one height, and Nikon's section draws L7 slightly taller; the 0.35 mm step stays inside the reading error.
+- The group brackets change from "Forward group" and "Rearward group" to "Diverging group" and "Converging group", the patent's names for its f1 and f2 brackets. The roles of L1 and L6 name the groups the same way. The cemented brackets keep C1 and C2, because the mounted diagrams name air spaces D(TC), D5, D9 and so on.
+- L1 changes from `Unmatched (nd 1.79668 / νd 45.4)` to `J-LASF017 (spectral proxy; patent nd 1.79668 / νd 45.4; supplier and melt unspecified)`. Hikari J-LASF017 is 1.79500/45.31, so catalog minus patent gives Δnd −0.00168 and Δνd −0.09. Anchored to the printed index, its curve gives νd 45.405. The patent prints no colour curves: Figure 23 gives spherical aberration, astigmatism and distortion for Example 11 without wavelength labels. On the patent master the paraxial F − C focus difference moves only from −21.2 to −21.4 µm, and the g focus moves from 269 to 244 µm behind d.
+- L3 stays unmatched. The rows within the site's spectral-proxy tolerance (Hoya TAF1 and M-TAF1, Ohara S-LAH66 and S-LAH66N, Hikari J-LASF016, Schott N-LAF34) have νd 49.46–49.63 against the printed 49.4. Each would move the patent combination's F − C focus difference from −21 µm to between −28 and −40 µm. L2, L4 and L5 have no row within that tolerance; the nearest are Hoya FF5 (Δnd −0.00237) and Hoya NBFD2 (Δνd +0.34). All four uncatalogued pairs recur in other examples of the patent.
+- Lands and cuts: no face lies below its rim as it stood before 2026-11-25. The flat land on surface 2, from the 8.8 mm curve to 10.8 mm, costs no light on any of the six compatible lenses or at any AF-S 80–200 mm setting (worst loss 0.0 points). Figure 11 and Nikon's section both draw L1 square to the common front edge, so the land stays.
+- The converter has no moving parts. On the AI 135 mm, focus still moves the whole lens forward, the junction space grows from 22.65 to 40.68 mm and the close end reads 1.34 m, the lens's 1.3 m plus the 44 mm extension; the converter and image plane stay fixed. On the AF-S 80–200 mm every group moves as it does without the converter, and each setting scales the focal length by 2.0069 (163.66, 270.93 and 393.36 mm).
+- The element types, focal lengths, glass entries and roles shown for all seven elements agree with the prescription. Neither the patent nor Nikon marks an aspherical surface or a special-dispersion glass, and the model tags none.
+
 ## Remaining Questions
 
 - The 44 mm extension constrains the cell position at infinity. The exact glass positions relative to the mounts and Nikon's production clear radii remain undocumented.
-- The patent leaves the master iris position and the glass reference wavelength unspecified. The production glass types, suppliers and melts remain unknown.
+- The patent leaves the master iris position and the glass reference wavelength unspecified. The production glass types, suppliers and melts remain unknown. L2–L5 have no current catalog equivalent, although each of their index/Abbe pairs recurs across the patent's examples.

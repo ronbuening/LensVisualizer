@@ -17,7 +17,7 @@ The front cemented pair helps distinguish examples of the same 2× design. Examp
 
 ## Optical Architecture
 
-The TC-200 sits in the converging beam behind the taking lens. Its negative power pushes the image farther back and approximately doubles its size. The five air-separated components form two functional groups. The forward group (L1–L4) diverges, with a focal length of −50.49 mm. Across a 14.29 mm air space, the rearward group (L5–L7) converges, with a focal length of +208.11 mm. Together they give −76.49 mm. Nakamura uses the high-index negative glasses and the strong, low-index positive element in the rear group to control the converter's contribution to field curvature. [US 4,154,508, description of the diverging and converging groups](https://patents.google.com/patent/US4154508A/en)
+The TC-200 sits in the converging beam behind the taking lens. Its negative power pushes the image farther back and approximately doubles its size. The five air-separated components form the patent's two groups. The diverging group (L1–L4) has a focal length of −50.49 mm. Across a 14.29 mm air space, the converging group (L5–L7) has a focal length of +208.11 mm. Together they give −76.49 mm. Nakamura uses the high-index negative glasses and the strong, low-index positive element in the converging group to control the converter's contribution to field curvature. [US 4,154,508, description of the diverging and converging groups](https://patents.google.com/patent/US4154508A/en)
 
 ## Element-by-Element Analysis
 
@@ -25,7 +25,7 @@ Focal lengths below are for each element in air. A cemented pair has a single re
 
 ### L1 — negative entrance meniscus
 
-nd = 1.79668, νd = 45.4, unmatched glass, f = −45.28 mm. Its shallow convex entrance and more strongly curved exit start the divergence of the forward group.
+nd = 1.79668, νd = 45.4, Hikari J-LASF017 spectral proxy, f = −45.28 mm. Its shallow convex entrance and more strongly curved exit begin the negative power of the diverging group.
 
 ### L2 — biconvex positive singlet
 
@@ -45,7 +45,7 @@ nd = 1.78797, νd = 47.5, Hoya TAF4 equivalent, f = −55.13 mm. Equal and oppos
 
 ## Glass Identification and Selection
 
-Example 11 prints a refractive index and an Abbe number for each element and leaves the reference wavelength unspecified. The glass comparison assumes the helium d line. Five elements have no sufficiently close catalog match. Hoya E-C3 agrees with L6 to the printed index and 0.04 in Abbe number. Hoya TAF4 agrees with L7 to 0.00003 in index and 0.01 in Abbe number. These catalog glasses supply dispersion curves. The suppliers and melts used by Nikon remain unknown.
+Example 11 prints a refractive index and an Abbe number for each element and leaves the reference wavelength unspecified. The glass comparison assumes the helium d line. Hoya E-C3 agrees with L6 to the printed index and 0.04 in Abbe number. Hoya TAF4 agrees with L7 to 0.00003 in index and 0.01 in Abbe number. No catalog glass matches L1 at the printed precision. Hikari J-LASF017 (1.79500/45.31) lies within the site's spectral-proxy tolerance, so L1 keeps its printed index and borrows that glass's dispersion curve, which reproduces the printed Abbe number within 0.01. These three catalog glasses supply dispersion curves. L2–L5 have no close catalog match and use the printed index and Abbe number alone. Each of the four uncatalogued pairs recurs in the patent's other examples. The suppliers and melts used by Nikon remain unknown.
 
 ## Focus Mechanism
 
@@ -61,11 +61,11 @@ The AF-I 300 mm f/2.8D, AF-I 400 mm f/2.8D and AF-S 80–200 mm f/2.8D require m
 
 ## Group Powers and Field Curvature
 
-Nakamura defines an equivalent index for each group from its paraxial power and Petzval sum. The limits are 1.5 to 2.9 for the diverging group and 0.6 to 1.3 for the converging group. The corrected prescription gives 2.3692 and 0.7698, respectively, close to the printed 2.369 and 0.7701. The rear group's positive Petzval contribution largely offsets the front group's negative contribution. [US 4,154,508, equations (5)–(9) and Embodiment 11](https://patents.google.com/patent/US4154508A/en)
+Nakamura defines an equivalent index for each group from its paraxial power and Petzval sum. The limits are 1.5 to 2.9 for the diverging group and 0.6 to 1.3 for the converging group. The corrected prescription gives 2.3692 and 0.7698, respectively, close to the printed 2.369 and 0.7701. The converging group's positive Petzval contribution largely offsets the diverging group's negative contribution. [US 4,154,508, equations (5)–(9) and Embodiment 11](https://patents.google.com/patent/US4154508A/en)
 
 ## First Radius and Mount Spacing
 
-Example 11 and claim 21 print +37.545 mm for the first converter radius. At the printed 0.6917 mm separation from the master, that radius gives 113.02 mm at f/4.38. With +35.545 mm, the pair gives 103.29 mm at f/4.003, 2.0017× and 41.73 mm back focus. The patent specifies 103.2 mm at f/4 and 2×. Column 4, under Embodiment 1, gives a front-group focal length of −50.489 mm, a principal-plane separation of 20.258 mm and a converter focal length of −76.492 mm. Corrected Example 11 gives −50.489, 20.257 and −76.492 mm. The printed radius gives −47.30, 20.59 and −70.21 mm. The corrected Petzval sum is −0.002118 mm⁻¹ against the Example 11 value of −0.00211 mm⁻¹. The TC-200 drawing independently marks a focal-length magnitude of 76.5 mm and 147.6 mm between focal points, against 147.63 mm calculated. [Patent, cols. 4–6 and 9, claim 21](https://patents.google.com/patent/US4154508A/en) · [Dimensioned TC-200 drawing](https://www.mir.com.my/rb/photography/companies/nikon/nikkoresources/teleconverter/TC200.gif)
+Example 11 and claim 21 print +37.545 mm for the first converter radius. At the printed 0.6917 mm separation from the master, that radius gives 113.02 mm at f/4.38. With +35.545 mm, the pair gives 103.29 mm at f/4.003, 2.0017× and 41.73 mm back focus. The patent specifies 103.2 mm at f/4 and 2×. Column 4, under Embodiment 1, gives a diverging-group focal length of −50.489 mm, a principal-plane separation of 20.258 mm and a converter focal length of −76.492 mm. Corrected Example 11 gives −50.489, 20.257 and −76.492 mm. The printed radius gives −47.30, 20.59 and −70.21 mm. The corrected Petzval sum is −0.002118 mm⁻¹ against the Example 11 value of −0.00211 mm⁻¹. The TC-200 drawing independently marks a focal-length magnitude of 76.5 mm and 147.6 mm between focal points, against 147.63 mm calculated. [Patent, cols. 4–6 and 9, claim 21](https://patents.google.com/patent/US4154508A/en) · [Dimensioned TC-200 drawing](https://www.mir.com.my/rb/photography/companies/nikon/nikkoresources/teleconverter/TC200.gif)
 
 Nikon specifies 44 mm between mounts. At that extension, the calculated original image plane lies 36.865 mm behind the first converter vertex and the new image lies 42.125 mm behind the last. With the patent master the result is 103.56 mm at f/4.014 and 2.0069×. Figure 11 shows a common 10.8 mm rim radius on the four front elements. On surface 2 the clear curve ends at 8.8 mm, leaving a flat land out to the rim. Nikon's section shows a rear doublet about 16 mm in radius and a slightly taller 16.3 mm rear singlet. The 15.9 mm clear radius on surfaces 9 and 10 leaves glass at the edge of L6. Placing the master iris halfway across its 9.4 mm central air space gives a calculated f/2 radius of 9.08 mm. The axial beam clears the glass and calculated relative illumination at the 35 mm frame corner is 53.6%. [Nikon catalog, mount-to-mount length](https://device.report/m/e6e67eaa9bf9b326e2a5cd5070757e862fb41e48d7bc53a4be5be7c751ace45b) · [Nikon's optical section](https://imaging.nikon.com/imaging/information/story/0073/img/pic_01.jpg)
 

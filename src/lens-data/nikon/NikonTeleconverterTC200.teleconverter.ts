@@ -11,8 +11,8 @@ import type { TeleconverterDataV2Input } from "../../types/lensDataV2.js";
  * and new image planes lie 36.8649 and 42.1249 mm behind the first and last vertices.
  * The host supplies focus and iris. The front rim measures about 10.8 mm in Figure 11. The S2
  * curve ends at 8.8 mm in a flat land. Nikon's section supplies the rear rims,
- * with S9 and S10 inside their intersection. Two catalog equivalents
- * supply dispersion. The model assumes a helium d reference for the printed glass data.
+ * with S9 and S10 inside their intersection. Two catalog equivalents and one
+ * spectral proxy supply dispersion. The model assumes a helium d reference for the printed glass data.
  */
 
 const TELECONVERTER_DATA = {
@@ -85,8 +85,8 @@ const TELECONVERTER_DATA = {
       indexReference: "d",
       indexReferenceNote: "The patent gives no reference wavelength. The model assumes the helium d line.",
       focalLengthMm: -45.28,
-      role: "Begins the divergence of the forward group with its more strongly curved face toward L2.",
-      glass: "Unmatched (nd 1.79668 / νd 45.4)",
+      role: "Begins the diverging group's negative power with its more strongly curved face toward L2.",
+      glass: "J-LASF017 (spectral proxy; patent nd 1.79668 / νd 45.4; supplier and melt unspecified)",
     },
     {
       id: 2,
@@ -153,7 +153,7 @@ const TELECONVERTER_DATA = {
       indexReference: "d",
       indexReferenceNote: "The patent gives no reference wavelength. The model assumes the helium d line.",
       focalLengthMm: 29.37,
-      role: "Thick, low-index positive member that supplies the converging power of the rearward group.",
+      role: "Thick, low-index positive member that gives the converging group its power.",
       glass: "E-C3 (Hoya equivalent)",
       cemented: "C2",
     },
@@ -188,8 +188,8 @@ const TELECONVERTER_DATA = {
   ],
 
   groups: [
-    { text: "Forward group", fromSurface: "1", toSurface: "7" },
-    { text: "Rearward group", fromSurface: "8", toSurface: "12" },
+    { text: "Diverging group", fromSurface: "1", toSurface: "7" },
+    { text: "Converging group", fromSurface: "8", toSurface: "12" },
   ],
   doublets: [
     { text: "C1", fromSurface: "5", toSurface: "7" },
