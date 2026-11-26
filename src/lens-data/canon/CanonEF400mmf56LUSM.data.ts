@@ -6,8 +6,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * EF 400mm f/5.6 L USM. Canon filed this converter design in 2017.
  * Pages 6–7 give the spherical radii, axial spacings, d-line glass data and
  * effective diameters at infinity in the original millimetre prescription.
- * Each non-stop clear radius is half the printed diameter. At f/5.80 the
- * paraxial iris radius is 15.50 mm. The printed iris diameter is 31.30 mm.
+ * Each non-stop clear radius is half the printed diameter. Fig. 1(A) draws
+ * L2, L3, L4, L5 and the rear doublet square-cut at the larger face's
+ * radius, so surfaces 5, 7, 9, 11 and 16 carry flat lands out to that
+ * height; the lands add no aperture. At f/5.80 the paraxial iris radius
+ * is 15.50 mm. The printed iris diameter is 31.30 mm.
  * The image plane is at the printed 167.00 mm back focus. Ohara glasses
  * match the printed indices and Abbe numbers. The Super UD and UD positions
  * follow Canon's production drawing.
@@ -139,18 +142,18 @@ const LENS_DATA = {
     { label: "2", R: 122.745, d: 10.5, sd: 33.795, medium: 1 },
     { label: "3", R: -239.839, d: 0.5, sd: 33.475 },
     { label: "4", R: 107.673, d: 7.3, sd: 31.84, medium: 2 },
-    { label: "5", R: 1168.744, d: 1.95, sd: 31.14 },
+    { label: "5", R: 1168.744, d: 1.95, sd: 31.14, rimExtensionSd: 31.84 },
     { label: "6", R: -350.082, d: 3.7, sd: 31.085, medium: 3 },
-    { label: "7", R: 164.436, d: 53.38, sd: 29.96 },
+    { label: "7", R: 164.436, d: 53.38, sd: 29.96, rimExtensionSd: 31.085 },
     { label: "8", R: 65.795, d: 6.9, sd: 23.865, medium: 4 },
-    { label: "9", R: 426.118, d: 0.25, sd: 23.25 },
+    { label: "9", R: 426.118, d: 0.25, sd: 23.25, rimExtensionSd: 23.865 },
     { label: "10", R: 67.46, d: 3.5, sd: 22.31, medium: 5 },
-    { label: "11", R: 43.928, d: 29.62, sd: 20.805 },
+    { label: "11", R: 43.928, d: 29.62, sd: 20.805, rimExtensionSd: 22.31 },
     { label: "12", R: "flat", d: 5.2, sd: 16.555 },
     { label: "STO", R: "flat", d: 2.5 },
     { label: "14", R: 290.57, d: 3.5, sd: 15.145, medium: 6 },
     { label: "15", R: -377.01, d: 2, sd: 14.81, medium: 7 },
-    { label: "16", R: 76.046, d: 167, sd: 14.34 },
+    { label: "16", R: 76.046, d: 167, sd: 14.34, rimExtensionSd: 15.145 },
   ],
 
   groups: [{ text: "MA", fromSurface: "1", toSurface: "16" }],

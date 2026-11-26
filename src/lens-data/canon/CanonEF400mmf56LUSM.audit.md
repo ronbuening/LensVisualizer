@@ -36,6 +36,16 @@ Paragraph 0034 defines total length from first to last lens surface. The table's
 
 The calculated iris radius is 15.501 mm for a 391.91 mm focal length at f/5.80, allowing for the entrance-pupil magnification. An exact axial ray at the corresponding entrance-pupil radius of 33.785 mm reaches 15.648 mm at the iris, within 0.002 mm of half the printed 31.30 mm diameter. Treating that half-diameter as the paraxial iris radius would give f/5.745.
 
+The patent prints no edge outlines. Fig. 1(A) draws L2, L3, L4, L5 and the rear doublet square-cut at the larger face's printed diameter. The smaller face of each keeps its printed clear radius and carries a flat land out to that height. The lands block no ray that the clear radii pass.
+
+| Surface | Element | Clear radius (mm) | Land to (mm) |
+| ------- | ------- | ----------------: | -----------: |
+| 5       | L2      |            31.140 |       31.840 |
+| 7       | L3      |            29.960 |       31.085 |
+| 9       | L4      |            23.250 |       23.865 |
+| 11      | L5      |            20.805 |       22.310 |
+| 16      | L7      |            14.340 |       15.145 |
+
 The 43.28 mm image circle is twice the printed 21.64 mm image height, just below the nominal 43.3 mm full-frame diagonal. The individual element focal lengths are calculated for thick lenses in air. The seven Ohara equivalents supply dispersion curves. The Super UD and UD identifications at L2 and L4 follow the production drawing and the patent's glass data. [Patent, ¶0035](https://patents.google.com/patent/JP2019070689A/en) · [Canon Camera Museum, block diagram](https://global.canon/en/c-museum/product/ef317.html) · [Ohara optical glass catalog](https://www.ohara-inc.co.jp/en/product/catalog/)
 
 `focus.closeFocusM` is 10¹⁵ m, which stands for infinity. The patent supplies only this focus position. It gives no finite-focus spacings from which to calculate group travel or magnification at 3.5 m. Canon specifies 3.5 m for the production lens, measured between subject and image plane. [Canon 400 mm lens comparison](https://en.canon-me.com/store/ae/canon-400mm-lenses/)
@@ -65,6 +75,12 @@ Canon gives the bare production lens a diagonal field of 6°10′. Its ring-type
 | L7      | S-LAL14          |   −0.0000031 | +0.032 |
 
 At infinity the model gives 391.911 mm effective focal length, f/5.80, 167.021 mm paraxial back focus, a 15.501 mm iris radius and a 3.16° half-field.
+
+2026-11-25 rim review:
+
+- The clear radii stay at half the printed effective diameters. At 600 dpi, Fig. 1(A) measures 0.188 mm per pixel along the axis from the first to the last lens vertex, and surface 8 falls within 0.1 mm of its table position. Radially, the rims of L1, L4 and the rear doublet fit their printed radii on one scale within 1.5%, after allowing for the line width.
+- Surfaces 5, 7, 9, 11 and 16 gain flat lands to 31.84, 31.085, 23.865, 22.31 and 15.145 mm. The figure draws each of these elements with one straight edge across the full edge thickness, at about 31.8 mm for L2, 30.8 mm for L3, 24.0 mm for L4, 22.0 mm for L5 and 15.1 mm for the rear doublet. Canon's construction drawing shows the same square edges on these five elements and a pointed edge on L1, which keeps its 33.795 and 33.475 mm radii without a land.
+- Corner illumination is unchanged at 72.9% of the pupil area at 3.1°, and every field point matches the previous rims. The half-field stays 3.16° and the aperture f/5.80.
 
 ## Remaining Questions
 
