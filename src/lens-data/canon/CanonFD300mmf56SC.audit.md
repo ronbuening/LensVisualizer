@@ -1,33 +1,33 @@
-# CANON FD 300mm f/5.6 S.C. — audit
+# CANON FD 300mm f/5.6 S.C. — Audit Log
 
 ## Source
 
-Michiyoshi Suwa's _Short, high-performance telephoto lens_ for Canon Inc., filed 1 October 1968 and published 13 March 1972. Example 3 on page 5 gives the infinity prescription. Figure 5 shows the lens section, Figure 10 the aberrations, and page 7 the third-order coefficients. [Japan Patent Office, JP S47-8749 B](https://www.j-platpat.inpit.go.jp/c1801/PU/JP-S47-008749/12/en)
+Japan Patent Office, JP S47-8749 B, _Short, high-performance telephoto lens_ (全長の短い高写力望遠レンズ), Michiyoshi Suwa, Canon Inc. Application Shō 43-71246 was filed on 1 October 1968 and published on 13 March 1972. Page 5 gives Example 3 at infinity and its first-order summary. Figure 5 shows the section, Figure 10 the aberrations, and page 7 the third-order coefficients.
 
-## Transcription
+Canon's lens catalog shows the S.C. cutaway and gives its glass description and telephoto ratio. The FD system brochure lists the lens for 36 × 24 mm film, the FD instructions define the distance scale, and the Camera Museum gives the specifications for the March 1973 S.C. [Canon lens catalog, p. 32](https://www.360icon.com/PDF/CanonLenses.pdf) · [Canon system brochure](https://www.pacificrimcamera.com/rl/00354/00354.pdf) · [Canon FD instructions](https://www.pacificrimcamera.com/rl/03486/03486.pdf) · [Canon Camera Museum, 1973 S.C.](https://global.canon/en/c-museum/product/fd179.html)
 
-All eleven signed radii, ten axial spacings, six refractive indices and six Abbe numbers agree with the printed table. The uniform ×3 length scale takes the nominal focal length from 100 to 300 mm. L3 and L4 meet at surface 6 with no intervening air space. All surfaces are spherical. The index and Abbe columns have no spectral subscript. The named glasses and their catalog indices support the d-line interpretation.
+## Transcription Check
 
-The printed glass designations in order are FK5, FK5, LaSFo1, FK1, LaK8 and F16. For L3, L5 and L6 the respective Hoya equivalents are NBFD11, LAC8 and FF5. Their catalog indices agree to all five printed decimal places. Catalog minus printed Abbe number is −0.07, +0.04 and +0.05 respectively. FK5 at 1.48749 / 70.0 and FK1 at 1.47069 / 67.2 have no close enough catalog curves.
+All eleven signed radii, ten axial spacings, six indices and six Abbe numbers agree with the page 5 table. Multiplying every printed length by three takes the nominal focal length from 100 to 300 mm. All eleven faces are spherical. L3 and L4 share surface 6 with no intervening air. The glass designations in order are FK5, FK5, LaSFo1, FK1, LaK8 and F16. The columns are headed N and V without subscripts. The indices of the named glasses support the helium d-line interpretation.
 
-## First-Order Values
+## First-Order Check
 
 | Quantity at infinity                 |                Patent at 300 mm scale | From the prescription |
 | ------------------------------------ | ------------------------------------: | --------------------: |
 | Effective focal length               |                                300 mm |            300.468 mm |
-| Relative aperture                    |                                 f/5.6 |               f/5.600 |
+| Relative aperture                    |                                 f/5.6 |                f/5.60 |
 | Front group focal length             |                           +204.654 mm |           +204.840 mm |
 | Rear group focal length              |                           −296.028 mm |           −296.031 mm |
 | Separation of group principal planes |                            110.574 mm |            110.625 mm |
 | First vertex to image                |                            215.952 mm |            216.238 mm |
-| Last vertex to image                 | 73.152 mm, inferred from total length |  73.4384 mm, paraxial |
+| Last vertex to image                 | 73.152 mm, inferred from total length |   73.438 mm, paraxial |
 | Image height at 4.1° half-field      |                    Height unspecified |             21.614 mm |
 
-The focal length exceeds the nominal value by 0.156%. The rear group reproduces its printed power closely. Most of the difference lies in the front group. The paraxial image plane at the recorded spacing has less than 0.00002 mm of residual defocus.
+The focal length exceeds the nominal value by 0.16%. The rear group agrees to 0.003 mm, and most of the difference lies in the front group. The final air space is 73.4384 mm, within 0.00002 mm of paraxial infinity focus. Subtracting the 142.800 mm glass-vertex span from the printed total length gives an image plane 0.286 mm closer to the lens.
 
 ## Values Not Printed in the Patent
 
-**Clear semi-diameters.** The 142.800 mm span from the first vertex to the last sets the scale of Figure 5. The values below follow the ends of the drawn glass profiles on both sides of the axis.
+The 142.800 mm axial span covers 1,515 pixels between the first and last vertices in Figure 5. At that scale the ends of the glass profiles above and below the axis give these clear radii.
 
 | Surfaces | Optical component      | Clear radius |
 | -------- | ---------------------- | -----------: |
@@ -37,26 +37,37 @@ The focal length exceeds the nominal value by 0.156%. The rear group reproduces 
 | 8–9      | L5                     |     12.00 mm |
 | 10–11    | L6                     |     13.95 mm |
 
-The front opening clears the 26.83 mm axial marginal ray at f/5.6. The remaining surfaces also pass the axial beam, with positive edge thicknesses and clear air gaps. The corner chief ray clears all rims at 21.65 mm image height, half the nominal 43.3 mm format diagonal. The estimated geometric transmission there is 52.6%.
+The front opening just clears the 26.83 mm axial marginal ray at f/5.6. All surfaces pass the axial beam, with positive edge thicknesses and clear air gaps. The patent prints an 8.2° full field without an image height. The chief ray clears all rims at the 21.65 mm corner of the nominal 43.3 mm format diagonal. With these radii the rims transmit 52.6% of the geometric pupil area there.
 
-**Diaphragm.** Figure 5 places the stop 38.6314 mm behind surface 7 and 48.8096 mm ahead of surface 8, preserving the printed 87.441 mm gap. Its position is 77.04 mm from the front vertex. The 13.12 mm stop radius follows from the f/5.6 entrance pupil. The third-order coefficients imply an alternative split of 33.450 / 53.991 mm, or 71.86 mm from the front vertex. That position gives about 53.2% geometric transmission at the corner. The illustrated position is used.
+Figure 5 places the diaphragm 44.2% of the way across the 87.441 mm air gap. The distances to surfaces 7 and 8 are 38.631 and 48.810 mm respectively, putting the iris 77.04 mm behind the first vertex. The calculated iris radius is 13.122 mm at f/5.6. The third-order coefficients imply a different split, 33.450 and 53.991 mm, putting the iris at 71.86 mm and giving 53.2% geometric corner transmission. The model follows the drawing.
 
-**Image plane and focus.** The patent omits the final air space and tabulates no finite conjugate. The image is at the paraxial infinity focus of the printed surfaces. Canon's 4 m and 0.09× describe the production lens at closest focus. [Canon Camera Museum](https://global.canon/en/c-museum/product/fd179.html)
+The patent gives no finite focus positions or final air space. The image lies at paraxial infinity focus. `focus.closeFocusM` is 10¹⁵ m, which stands for infinity. The 4 m minimum from the film plane and 0.09× maximum magnification apply to the production S.C. [Canon FD instructions, “Distance Scale”](https://www.pacificrimcamera.com/rl/03486/03486.pdf) · [Canon Camera Museum, 1973 S.C.](https://global.canon/en/c-museum/product/fd179.html)
 
 ## Product Identification
 
-The association with the March 1973 S.C. is probable. Canon specifies six elements in five groups, ordinary optical glass and a 0.72 telephoto ratio. Example 3 has the same count and uses ordinary glass, and the table gives a ratio of 0.7198. Canon's catalog cutaway shows the separated rear lenses, but its front detail is too coarse to confirm the cemented surface. [Canon lens catalog, p. 32](https://www.pacificrimcamera.com/rl/00253/00253.pdf) · [Canon Camera Museum](https://global.canon/en/c-museum/product/fd179.html)
+Example 3 probably corresponds to the March 1973 FD 300mm f/5.6 S.C. It has six elements in five groups, names ordinary glasses throughout, and gives a telephoto ratio of 0.7198 against Canon's 0.72. Canon's 8°15′ diagonal field is close to the printed 8.2°. The cutaway shows two air-spaced rear singlets, as in Figure 5, but the cement line in the front assembly is indistinct. Example 5 has the same element and group counts with a cemented rear pair. Example 1 covers 12.4°, Example 2 uses two fluorite elements, and Example 4 has six separate groups. [Canon lens catalog, p. 32](https://www.360icon.com/PDF/CanonLenses.pdf) · [Canon FD system brochure](https://www.pacificrimcamera.com/rl/00354/00354.pdf) · [Canon Camera Museum, 1973 S.C.](https://global.canon/en/c-museum/product/fd179.html)
 
-Example 1 has a wider field, Example 2 uses fluorite and Example 4 has six separate groups. Example 5 shares the production count but cements the rear pair. The 1971 FD model has the same barrel dimensions and minimum focus as the S.C. The March 1977 S.S.C. has a longer, lighter barrel and a 3 m minimum focus. [Canon Camera Museum, 1971 FD](https://global.canon/en/c-museum/product/fd178.html) · [1977 S.S.C.](https://global.canon/en/c-museum/product/fd180.html)
+The March 1971 FD lens shares the S.C.'s 70 × 173 mm barrel dimensions and 4 m minimum focus. The March 1977 S.S.C. has rear focusing, a longer, lighter barrel and a 3 m minimum. The June 1979 New FD also focuses to 3 m and closes to f/32. The 4 m, f/22 specifications here belong to the S.C. [1971 FD](https://global.canon/en/c-museum/product/fd178.html) · [1973 S.C.](https://global.canon/en/c-museum/product/fd179.html) · [1977 S.S.C.](https://global.canon/en/c-museum/product/fd180.html) · [1979 New FD](https://global.canon/en/c-museum/product/nfd229.html)
 
-## Corrections
+## Corrections, 2026-11-25
 
-### 2026-11-25
+- One ×3 scale preserves all printed radii and separations. The optical data give 300.47 mm at infinity. The patent and the production lens both specify nominal 300 mm.
+- The model retains the full printed f/5.6 aperture. Removing the fixed 4.1° half-field limit lets the corner chief ray reach 21.65 mm. At exactly 4.1° it reaches 21.614 mm.
+- The estimated radii now follow Figure 5. L1 went from 28.5 to 26.9 mm, L3/L4 from 22.5 to 22.0 mm, L5 from 14.5 to 12.0 mm and L6 from 14.5 to 13.95 mm. L2 already matched the drawing at 26.8 mm. The narrower rims reduce geometric corner transmission from 63.2% to 52.6% while passing the full axial beam.
+- The illustrated stop preserves the printed gap between the positive front and negative rear groups. The image plane follows the paraxial focus of the printed surfaces. The shorter plane implied by the total length would give about 51 µm of axial defocus blur at f/5.6. Infinity is the only focus position for which the patent supplies spacings.
+- The lens is identified as the probable 1973 S.C. design for Canon FD and 35 mm film. Canon specifies 300 mm, f/5.6, six elements in five groups, eight diaphragm blades and 4 m minimum focus. The full stops are f/5.6, 8, 11, 16 and 22. [Canon Camera Museum, S.C.](https://global.canon/en/c-museum/product/fd179.html) · [Canon FD system brochure](https://www.pacificrimcamera.com/rl/00354/00354.pdf)
+- The d-line indices and Abbe numbers remain as printed. Three Hoya catalog equivalents supply dispersion curves. Their indices agree to all five printed decimal places. The differences below are catalog minus patent. L1 and L2 retain the printed FK5 values (1.48749 / 70.0, versus 70.4 for catalog FK5), and L4 retains FK1 (1.47069 / 67.2). Their dispersion follows the printed pairs.
 
-The 73.152 mm image distance implied by the printed total length falls 0.286 mm ahead of paraxial infinity focus. The model uses 73.4384 mm behind the last surface, which brings the axial paraxial rays to the image plane. The calculated focal length of 300.47 mm follows directly from the printed prescription. Canon's 300 mm designation and the patent's nominal focal length are both retained.
+| Element | Patent glass | Hoya equivalent |         Δnd |   Δνd |
+| ------- | ------------ | --------------- | ----------: | ----: |
+| L3      | LaSFo1       | NBFD11          | −0.0000031  | −0.07 |
+| L5      | LaK8         | LAC8            | −0.00000018 | +0.04 |
+| L6      | F16          | FF5             | +0.0000029  | +0.05 |
+
+At infinity the model gives 300.468 mm effective focal length, f/5.60, 73.438 mm back focus, a 13.122 mm iris radius and a 4.1° half-field to the 35 mm frame corner.
 
 ## Remaining Questions
 
-- The Petzval terms at surfaces 5 and 6 suggest an L3 index near 1.7857. That value alone would give a normalized focal length near 100.024 and would still leave a discrepancy. The evidence does not identify a single misprint that accounts for the focal length, total length and third-order table together. L3 retains the printed 1.78590.
-- A dimensioned production section could establish the cement line, physical clear apertures, stop plane and focusing motion. The Figure 5 and third-order stop positions differ by about 5.18 mm.
-- The original melts and partial dispersions are unknown. The catalog equivalents describe dispersion within the limits of the printed glass data.
+- The Petzval terms at surfaces 5 and 6 suggest an L3 index near 1.7857. That substitution alone gives a normalized focal length near 100.024. No single misprint explains the focal length, total length and third-order table together, so L3 retains the printed 1.78590.
+- The exact production cement line, clear apertures, stop plane and focusing motion remain undocumented. The stop positions inferred from Figure 5 and the third-order coefficients differ by 5.18 mm. Canon gives the diaphragm blade count but does not describe its blade curvature. [Canon Camera Museum, S.C.](https://global.canon/en/c-museum/product/fd179.html)
+- The original glass melts, supplier and partial dispersions remain unknown. The Hoya curves describe glasses close to the printed pairs.

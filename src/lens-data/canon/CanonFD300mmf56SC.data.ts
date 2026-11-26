@@ -19,7 +19,7 @@ const LENS_DATA = {
   catalog: {
     lensMounts: ["canon-fd"],
     imageFormat: "135-full-frame",
-    specs: ["6 ELEMENTS / 5 GROUPS", "ALL SPHERICAL", "DESIGN f = 300.47 mm"],
+    specs: ["6 ELEMENTS / 5 GROUPS", "ALL SPHERICAL", "TELEPHOTO RATIO 0.72"],
     elementCount: 6,
     groupCount: 5,
     focalLengthMm: {
@@ -80,7 +80,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "NBFD11 (Hoya catalog equivalent)",
       focalLengthMm: -49.92,
-      role: "Strong negative member of the cemented doublet at the back of the front group.",
+      role: "Reduces the convergence from L1 and L2 at the cemented interface with L4.",
       cemented: "C1",
     },
     {
@@ -106,7 +106,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "LAC8 (Hoya catalog equivalent)",
       focalLengthMm: -57.72,
-      role: "Diverges the converging beam behind the diaphragm and supplies the rear group's negative power.",
+      role: "Reduces convergence behind the diaphragm and gives the rear group its negative power.",
     },
     {
       id: 6,
