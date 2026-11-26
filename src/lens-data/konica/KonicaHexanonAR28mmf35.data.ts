@@ -28,13 +28,13 @@ const LENS_DATA = {
   catalog: {
     lensMounts: ["konica-ar"],
     imageFormat: "135-full-frame",
-    imageCircleMm: 42.2856,
+    imageCircleMm: 42.29,
     elementCount: 5,
     groupCount: 5,
     focalLengthMm: { marketing: 28, design: 28.01 },
     fNumber: { marketing: 3.5, design: 3.5 },
     closeFocusM: { marketing: 0.3 },
-    specs: ["5 ELEMENTS / 5 GROUPS", "ALL SPHERICAL", "DESIGN f = 28.01 mm", "75° FIELD"],
+    specs: ["5 ELEMENTS / 5 GROUPS", "ALL SPHERICAL", "75° FIELD"],
   },
 
   elements: [
@@ -116,10 +116,9 @@ const LENS_DATA = {
 
   aperture: {
     nominalFNumber: 3.5,
-    fStops: [3.5, 4, 5.6, 8, 11, 16, 22],
+    fStops: [3.5, 5.6, 8, 11, 16, 22],
     maxFNumber: 22,
     blades: 6,
-    bladeRoundedness: 0,
   },
   focus: {
     closeFocusM: 0.3,
