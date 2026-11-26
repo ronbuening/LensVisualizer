@@ -6,9 +6,9 @@ import type { TeleconverterDataV2Input } from "../../types/lensDataV2.js";
  * All lengths retain the patent scale. The spectral reference is inferred to be helium d.
  * The glass labels identify catalog curves with matching indices and dispersion.
  *
- * The 300 mm master's paraxial back focus of 70.05349 mm and the printed 1.5423 mm
- * junction place its image 68.51119 mm behind the converter's first vertex. With the
- * converter fitted, the paraxial image lies 63.11192 mm behind its last vertex.
+ * The 300 mm master's paraxial back focus of 70.053 mm and the printed 1.5423 mm
+ * junction place its image 68.511 mm behind the converter's first vertex. With the
+ * converter fitted, the paraxial image lies 63.112 mm behind its last vertex.
  * Nikon's TC-300 section gives clear-radius estimates of 13.3 mm across the front three
  * singlets and 19.8 mm across the rear two. The host supplies the iris and focus movement.
  * The converter clears an axial f/2.8 cone at the fast end of Nikon's AI coupling range.
@@ -26,7 +26,7 @@ const TELECONVERTER_DATA = {
     imageFormat: "135-full-frame",
     elementCount: 5,
     groupCount: 5,
-    specs: ["5 ELEMENTS / 5 GROUPS", "2× CONVERTER", "ALL SPHERICAL"],
+    specs: ["5 ELEMENTS / 5 GROUPS", "ALL SPHERICAL", "2× CONVERTER"],
   },
   source: {
     patentNumber: "US 4,154,508",
@@ -54,7 +54,7 @@ const TELECONVERTER_DATA = {
       indexReference: "d",
       focalLengthMm: 101.91,
       glass: "Unmatched (nd 1.59507 / νd 35.6)",
-      role: "Positive entrance element of the diverging front group.",
+      role: "Adds convergence to the incoming beam ahead of the strongly negative L2.",
       indexReferenceNote: "The patent gives no wavelength. The helium d line is inferred from the glass data.",
     },
     {
@@ -80,7 +80,7 @@ const TELECONVERTER_DATA = {
       indexReference: "d",
       focalLengthMm: 112.42,
       glass: "Unmatched (nd 1.59507 / νd 35.6)",
-      role: "Positive meniscus at the rear of the front group, convex toward the host lens.",
+      role: "Offsets part of L2's divergence at the rear of the front group; convex toward the host lens.",
       indexReferenceNote: "The patent gives no wavelength. The helium d line is inferred from the glass data.",
     },
     {
