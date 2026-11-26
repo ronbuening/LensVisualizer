@@ -28,13 +28,13 @@ const LENS_DATA = {
     sdSource: "figure-measured",
   },
   catalog: {
-    lensMounts: ["pentax-k"],
+    lensMounts: ["pentax-k", "m42"],
     imageFormat: "135-full-frame",
     elementCount: 11,
     groupCount: 10,
     focalLengthMm: { marketing: [85, 210], design: [85, 205.19] },
     fNumber: { marketing: 4.5, design: 4.5 },
-    specs: ["11 ELEMENTS / 10 GROUPS", "DESIGN f = 85–205 mm", "ALL SPHERICAL"],
+    specs: ["11 ELEMENTS / 10 GROUPS", "DESIGN f = 85–205 mm", "ALL SPHERICAL", "ONE-TOUCH ZOOM"],
     closeFocusM: { marketing: 3.5 },
   },
   elements: [
@@ -72,7 +72,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 144.41,
       glass: "N-SK10 (Schott catalog equivalent)",
-      role: "Rear positive crown of G1, immediately ahead of the variable gap to G2.",
+      role: "Completes the converging front group and sends the beam toward the moving negative group.",
     },
     {
       id: 4,
@@ -158,7 +158,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: -37.52,
       glass: "SF2 (Schott catalog equivalent)",
-      role: "Negative middle element of the rear triplet, immediately behind the diaphragm.",
+      role: "Spreads the beam behind the diaphragm before L11 brings it to focus.",
     },
     {
       id: 11,
@@ -319,7 +319,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 3.5,
     description:
-      "Infinity focus only. Asahi specifies 3.5 m for the production lens. The patent gives the motion of G2 and L7 during zooming and supplies no spacings for a finite subject distance.",
+      "The model stays focused at infinity as G2 and L7 move during zooming. The K-mount lens focuses to 3.5 m, or 1.9 m with Asahi’s close-up attachment. The patent gives no finite-focus spacings.",
   },
   layout: { yScFill: 0.65 },
   doublets: [{ text: "C1", fromSurface: "9", toSurface: "11" }],
