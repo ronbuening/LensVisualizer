@@ -19,7 +19,7 @@ const LENS_DATA = {
   visible: true,
   maker: "Pentax",
   name: "PENTAX SUPER-TAKUMAR 24mm f/3.5",
-  subtitle: "US 3,545,845, sole example — Asahi / Takahashi",
+  subtitle: "US 3,545,845, sole example — Asahi Kogaku / Takahashi",
   source: {
     patentNumber: "US 3,545,845",
     patentYear: 1970,
@@ -42,7 +42,7 @@ const LENS_DATA = {
     focalLengthMm: { marketing: 24, design: 23.66 },
     fNumber: { marketing: 3.5, design: 3.5 },
     closeFocusM: { marketing: 0.25 },
-    specs: ["9 ELEMENTS / 8 GROUPS", "ALL SPHERICAL", "DESIGN f = 23.66 mm", "RETROFOCUS"],
+    specs: ["9 ELEMENTS / 8 GROUPS", "ALL SPHERICAL", "84° FIELD"],
   },
   elements: [
     {
@@ -176,7 +176,7 @@ const LENS_DATA = {
     { label: "16", R: "flat", d: 2.28, sd: 6.9, medium: 9 },
     { label: "17", R: -25.536, sd: 6.9 },
   ],
-  aperture: { nominalFNumber: 3.5, fStops: [3.5, 4, 5.6, 8, 11, 16], blades: 5 },
+  aperture: { nominalFNumber: 3.5, fStops: [3.5, 4, 5.6, 8, 11, 16], maxFNumber: 16, blades: 5 },
   focus: {
     closeFocusM: 0.25,
     description:
