@@ -26,6 +26,7 @@ const SOURCES = {
   fujifilmOverview: "https://global.fujifilm.com/en/about/corporate/overview",
   fujinonMerger: "https://av.watch.impress.co.jp/docs/news/357173.html",
   fujinonRename: "https://www.itmedia.co.jp/news/article/0407/01/1040701077/",
+  goerzHistory: "https://collection.sciencemuseumgroup.org.uk/people/cp1132/c-p-goerz",
   hoyaHistory: "https://www.hoya.com/en/company/history/",
   hoyaPentaxMerger: "https://www.hoya.com/en/news/20111001/",
   iscoHistory: "https://de.wikipedia.org/wiki/ISCO_G%C3%B6ttingen",
@@ -735,6 +736,14 @@ export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporat
     ],
   },
   "Optische Anstalt C. P. Goerz Aktiengesellschaft": {
+    successorOf: [
+      {
+        organization: "C. P. Goerz",
+        effectiveDate: "1890",
+        sourceUrl: SOURCES.goerzHistory,
+        note: "The museum record dates the firm from Carl Paul Goerz's 1886 founding and records its renaming as Optische Anstalt C P Goerz in 1890; patents of the 1890s can still print the older name.",
+      },
+    ],
     acquiredBy: [
       {
         organization: "Zeiss Ikon AG",
