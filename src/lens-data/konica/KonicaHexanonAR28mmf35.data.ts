@@ -4,7 +4,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * US 4,170,403, Example 3. A scale factor of 28 converts the f = 1 table to
  * millimetres, including the stop position and the printed infinity back focus.
  * Figure 5 supplies the clear radii. Surfaces 6 and 7 end at 5.0 mm to keep
- * their spherical faces apart. The stop radius follows from f/3.5.
+ * their spherical faces apart. Flat lands carry the rear of L1 to its 13.3 mm
+ * edge and L3 and L4 to their shared 6.05 mm edge, as Figure 5 draws them.
+ * The stop radius follows from f/3.5.
  * Only infinity is tabulated. The 0.30 m setting assumes the five elements
  * move together and preserves the infinity offset from paraxial focus.
  */
@@ -102,13 +104,13 @@ const LENS_DATA = {
 
   surfaces: [
     { label: "1", R: 30.2652, d: 1.4644, sd: 13.3, medium: 1 },
-    { label: "2", R: 12.2808, d: 13.6808, sd: 10.45 },
+    { label: "2", R: 12.2808, d: 13.6808, sd: 10.45, rimExtensionSd: 13.3 },
     { label: "3", R: 22.6128, d: 5.8632, sd: 7.6, medium: 2 },
     { label: "4", R: -40.642, d: 2.436, sd: 7.6 },
     { label: "STO", R: "flat", d: 2.254 },
-    { label: "5", R: -15.3048, d: 1.9544, sd: 5.25, medium: 3 },
-    { label: "6", R: 42.0252, d: 0.5852, sd: 5.0 },
-    { label: "7", R: -55.2944, d: 1.9544, sd: 5.0, medium: 4 },
+    { label: "5", R: -15.3048, d: 1.9544, sd: 5.25, rimExtensionSd: 6.05, medium: 3 },
+    { label: "6", R: 42.0252, d: 0.5852, sd: 5.0, rimExtensionSd: 6.05 },
+    { label: "7", R: -55.2944, d: 1.9544, sd: 5.0, rimExtensionSd: 6.05, medium: 4 },
     { label: "8", R: -16.4332, d: 0.098, sd: 6.05 },
     { label: "9", R: -64.3104, d: 1.9544, sd: 7.2, medium: 5 },
     { label: "10", R: -17.3684, sd: 7.2 },

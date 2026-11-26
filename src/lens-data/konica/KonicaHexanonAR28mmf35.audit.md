@@ -27,15 +27,15 @@ The printed 34.748 mm rear gap places the film 0.0172 mm ahead of paraxial focus
 
 ## Values Not Printed in the Patent
 
-In Figure 5 the first and last vertices span about 770 pixels for 32.2448 mm of axial length. The clear radii below follow the curved faces to their edges. The rear optical face of L1 ends at the flange step and the front of L3 at the chamfer.
+In Figure 5 the first and last vertices span about 770 pixels for 32.2448 mm of axial length. At that scale the drawn rims of surfaces 1 and 2 also sit at the sags their radii give. The clear radii below follow the curved faces to their edges. The rear optical face of L1 ends at the flange step and the front of L3 at the chamfer. Flat lands outside the clear apertures carry surfaces 2, 5, 6 and 7 out to the drawn edges in the last column.
 
-| Lens | Surfaces | Front clear radius | Rear clear radius |
-| ---- | -------- | -----------------: | ----------------: |
-| L1   | 1, 2     |           13.30 mm |          10.45 mm |
-| L2   | 3, 4     |            7.60 mm |           7.60 mm |
-| L3   | 5, 6     |            5.25 mm |           5.00 mm |
-| L4   | 7, 8     |            5.00 mm |           6.05 mm |
-| L5   | 9, 10    |            7.20 mm |           7.20 mm |
+| Lens | Surfaces | Front clear radius | Rear clear radius | Drawn edge |
+| ---- | -------- | -----------------: | ----------------: | ---------: |
+| L1   | 1, 2     |           13.30 mm |          10.45 mm |   13.30 mm |
+| L2   | 3, 4     |            7.60 mm |           7.60 mm |    7.60 mm |
+| L3   | 5, 6     |            5.25 mm |           5.00 mm |    6.05 mm |
+| L4   | 7, 8     |            5.00 mm |           6.05 mm |    6.05 mm |
+| L5   | 9, 10    |            7.20 mm |           7.20 mm |    7.20 mm |
 
 Figure 5 draws the adjacent edges of surfaces 6 and 7 about 6 mm from the axis. The printed radii and axial separation put their intersection at 5.29 mm. The f/3.5 axial marginal ray reaches 4.86 mm on surface 6 and 4.88 mm on surface 7, leaving clearance at both 5.00 mm rims. The f/3.5 entrance pupil gives a paraxial iris radius of 4.8504 mm.
 
@@ -65,6 +65,12 @@ The 1965 preset f/22 Hexanon had seven elements in six groups. The later automat
 | L5   | S-BSM15          |   −0.000008 | −0.034 |
 
 At infinity the model gives 28.007 mm effective focal length, f/3.50, 34.765 mm paraxial back focus and a 4.8504 mm stop radius. The chief ray reaches the plotted image height at 37.7°.
+
+2026-11-25 rim review:
+
+- Surface 2 gains a flat land from its 10.45 mm clear radius to a 13.3 mm edge. Figure 5 ends the rear face of L1 at a step square to the axis, level with the front rim. The dealer drawing shows the same step as a bevel. The figure governs.
+- Surfaces 5, 6 and 7 gain flat lands to 6.05 mm, the height of the rear rim of L4. Figure 5 draws L3 and L4 with one outer edge about 6.0 mm from the axis, reached through a chamfer at the front of L3. The dealer drawing reproduces the vertex spacing of Example 3 to within 0.2 mm and shows the same shared edge at about 6.2 mm. The clear radii stay at 5.25, 5.00 and 5.00 mm.
+- No clear radius changed, and the lands lie outside every traced beam. Corner transmission wide open stays 65.7% at infinity and 70.5% at 0.30 m. The f-number and traced field are unchanged.
 
 ## Remaining Questions
 
