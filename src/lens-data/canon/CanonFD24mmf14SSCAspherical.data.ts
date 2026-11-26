@@ -7,7 +7,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * The iris lies 3.42 mm into the 10.681 mm air space behind surface 11 by measurement of Fig. 1.
  * The f/1.4 aperture determines the iris radius. Clear radii follow the drawn optical edges except
  * at surface 2, where 18.9 mm preserves clearance to surface 3; the flat land Fig. 1 draws beyond
- * that face runs out to 20.8 mm. The patent gives no floating spacings.
+ * that face runs out to 20.8 mm. The patent gives only infinity spacings and does not
+ * discuss focusing.
  */
 const LENS_DATA = {
   schema: 2,
@@ -80,7 +81,7 @@ const LENS_DATA = {
       cemented: "C1",
       focalLengthMm: 77.33,
       role: "Forms the positive, more dispersive member of the first cemented pair.",
-      glass: "S-TIH6 (OHARA catalog equivalent)",
+      glass: "PBH6 (OHARA catalog equivalent)",
     },
     {
       id: 4,
@@ -130,12 +131,12 @@ const LENS_DATA = {
       cemented: "C2",
       focalLengthMm: -16.91,
       role: "Forms the strong negative member of the cemented pair behind the iris.",
-      glass: "S-TIH6 (OHARA catalog equivalent)",
+      glass: "PBH6 (OHARA catalog equivalent)",
     },
     {
       id: 8,
       name: "E8",
-      label: "Element 8 (Aspherical)",
+      label: "Element 8",
       type: "Biconvex Positive (1× Asph)",
       nd: 1.7725,
       vd: 49.6,
@@ -306,7 +307,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 1e15,
     description:
-      "Infinity focus only. Canon used floating elements for close focusing. The patent gives only the infinity spacings.",
+      "Infinity focus only. The patent gives only infinity spacings and does not discuss focusing. Canon credits a floating mechanism with high definition from the closest distance to infinity.",
   },
   aperture: {
     nominalFNumber: 1.4,

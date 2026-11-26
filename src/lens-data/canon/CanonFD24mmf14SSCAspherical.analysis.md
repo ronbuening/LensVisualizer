@@ -36,7 +36,7 @@ nd = 1.58913, νd = 61.1, Ohara S-BAL35, f = +140.81 mm. This weak positive sing
 
 ### E3 and E4 — Cemented menisci
 
-E3 has nd = 1.80518, νd = 25.4, Ohara S-TIH6, f = +77.33 mm. E4 has nd = 1.58913, νd = 61.1, Ohara S-BAL35, f = −35.43 mm. They meet at surface 6. E4's steep rear face makes the pair divergent overall (−71.14 mm) at the end of group I.
+E3 has nd = 1.80518, νd = 25.4, Ohara PBH6, f = +77.33 mm. E4 has nd = 1.58913, νd = 61.1, Ohara S-BAL35, f = −35.43 mm. They meet at surface 6. E4's steep rear face makes the pair divergent overall (−71.14 mm) at the end of group I.
 
 ### E5 and E6 — Air-spaced singlets ahead of the iris
 
@@ -44,7 +44,7 @@ E5 has nd = 1.71300, νd = 54.0, Hoya LAC8, f = +24.34 mm. This biconvex lens su
 
 ### E7 and E8 — Cemented pair behind the iris
 
-E7 has nd = 1.80518, νd = 25.4, Ohara S-TIH6, f = −16.91 mm. Its deeply concave front face looks toward the iris. E8 has nd = 1.77250, νd = 49.6, Hoya TAF1, f = +32.89 mm. This biconvex element shares surface 13 with E7 and carries the asphere on its exposed rear face, 14A. The pair has a focal length of −40.96 mm.
+E7 has nd = 1.80518, νd = 25.4, Ohara PBH6, f = −16.91 mm. Its deeply concave front face looks toward the iris. E8 has nd = 1.77250, νd = 49.6, Hoya TAF1, f = +32.89 mm. This biconvex element shares surface 13 with E7 and carries the asphere on its exposed rear face, 14A. The pair has a focal length of −40.96 mm.
 
 ### E9 and E10 — Positive rear menisci
 
@@ -52,11 +52,13 @@ Both elements have nd = 1.77250 and νd = 49.6, equivalent to Hoya TAF1. E9 (f =
 
 ## Glass Identification
 
-The ten elements use five distinct index and Abbe-number pairs. The patent labels them N and V. All five pairs match catalog glasses at the helium d line. E6 has the largest Abbe-number difference, 41.1 in the patent and 41.0 for Sumita LF2. The positive member of the front doublet and the negative member of the rear doublet have the same dense-flint constants. Neither the patent nor Canon identifies a glass supplier or designates an ED element.
+The ten elements use five distinct index and Abbe-number pairs. The patent labels them N and V. All five pairs match catalog glasses at the helium d line. E6 has the largest Abbe-number difference, 41.1 in the patent and 41.0 for Sumita LF2. The positive member of the front doublet and the negative member of the rear doublet have the same dense-flint constants. Ohara PBH6 represents them because it is the lead-bearing glass with those constants; the later lead-free titanium flint of the same index and Abbe number disperses more strongly in the violet. Neither the patent nor Canon identifies a glass supplier or designates an ED element.
+
+Fig. 2A plots spherical aberration at f/1.4 in the d and g lines. The calculated d-line curve follows it to within about 0.01 mm out to half the aperture radius. Nearer the rim the calculated curve turns back sooner, ending 0.02 mm behind paraxial focus where the printed curve ends 0.03 mm in front of it. Near the axis the printed g-line focus lies 0.03 mm behind the d-line focus. With the catalog equivalents the calculated g-line focus lies 0.08 mm behind it. The dense flint of E3 and E7 and the lanthanum glasses of E5 and E8–E10 account for most of the difference. Their catalog partial dispersions depart from the normal line in directions that all move the g-line focus away from the lens.
 
 ## Focus Mechanism
 
-The production lens uses floating elements and reaches 0.117× at 0.30 m, measured from the film plane to the subject. Canon's section shows no movement arrows. All four patent examples give only infinity spacings, so the model focuses at infinity and the travel of the floating elements remains unknown. [Canon S.S.C. specifications and diagram](https://global.canon/en/c-museum/product/fd132.html) · [Canon AE-1 instructions, film plane indicator](https://www.canonclassics.com/pdf/Canon-AE1-Instructions-part2-en.pdf) · [US 3,992,085](https://patents.google.com/patent/US3992085A/en)
+Canon credits the production lens's floating mechanism with high definition from the closest distance to infinity. The lens reaches 0.117× at 0.30 m, measured from the film plane to the subject. Canon's section shows no movement arrows. All four patent examples give only infinity spacings, and the patent text does not discuss focusing. The model therefore focuses at infinity, and the travel of the floating elements remains unknown. [Canon S.S.C. specifications and diagram](https://global.canon/en/c-museum/product/fd132.html) · [Canon AE-1 instructions, film plane indicator](https://www.canonclassics.com/pdf/Canon-AE1-Instructions-part2-en.pdf) · [US 3,992,085](https://patents.google.com/patent/US3992085A/en)
 
 ## Aspherical Surface and Clear Apertures
 
@@ -69,4 +71,4 @@ The prescription gives a 10.681 mm air space between groups II and III. Fig. 1 p
 - Optical prescription, aspherical sag, group powers, and comparison of the four examples. [US 3,992,085](https://patents.google.com/patent/US3992085A/en)
 - S.S.C. construction, specifications, coating and floating focus. [Canon Camera Museum, S.S.C.](https://global.canon/en/c-museum/product/fd132.html) · [Canon FD lens instructions](https://cameramanuals.org/lenses/canon_fd_lenses-lang.pdf) · [Canon FD sales guide](https://www.pacificrimcamera.com/rl/00015/00015.pdf)
 - Film-plane distance scale, 24 × 36 mm format, barrel markings and successor date. [Canon AE-1 instructions](https://www.canonclassics.com/pdf/Canon-AE1-Instructions-part2-en.pdf) · [Marco Cavina, Canon FD lenses](https://www.marcocavina.com/articoli_fotografici/articolo_canon_fd_l.pdf) · [Canon Camera Museum, New FD](https://global.canon/en/c-museum/product/nfd199.html)
-- Optical constants of the five catalog equivalents. [Ohara S-BAL35](https://refractiveindex.info/?shelf=specs&book=OHARA-optical&page=S-BAL35) · [Ohara S-TIH6](https://refractiveindex.info/?shelf=specs&book=OHARA-optical&page=S-TIH6) · [Hoya LAC8](https://refractiveindex.info/?shelf=specs&book=HOYA-optical&page=LAC8) · [Hoya TAF1](https://refractiveindex.info/?shelf=specs&book=HOYA-optical&page=TAF1) · [Sumita glass table, LF2](https://web.stanford.edu/class/ee347/SumitaAll.PDF)
+- Optical constants of the five catalog equivalents. [Ohara S-BAL35](https://refractiveindex.info/?shelf=specs&book=OHARA-optical&page=S-BAL35) · [Ohara PBH6](https://refractiveindex.info/?shelf=specs&book=OHARA-optical&page=PBH6) · [Hoya LAC8](https://refractiveindex.info/?shelf=specs&book=HOYA-optical&page=LAC8) · [Hoya TAF1](https://refractiveindex.info/?shelf=specs&book=HOYA-optical&page=TAF1) · [Sumita glass table, LF2](https://web.stanford.edu/class/ee347/SumitaAll.PDF)
