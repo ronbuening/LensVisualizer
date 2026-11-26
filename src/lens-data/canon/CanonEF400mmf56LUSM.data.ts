@@ -108,7 +108,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: -221.18,
       glass: "S-BSM14 (OHARA)",
-      role: "Reduces the convergence from L4 just ahead of the diaphragm.",
+      role: "Reduces the convergence from L4 ahead of the diaphragm.",
     },
     {
       id: 6,
