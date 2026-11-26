@@ -21,8 +21,11 @@ const PRODUCTION_MATCH_BY_KEY: Readonly<Partial<Record<string, boolean>>> = {
   "fujifilm-gf-23mm-f4": true, // Fujifilm's 15 elements in 12 groups are the model's 14 in 11 plus a flat rear plate.
   "fujifilm-gf-45-100mm-f4-patent-example-1": true, // The 17th modeled element is a bonded resin layer; Fujifilm counts 16.
   "industar-itmo2013-v2": true, // The 1970 GOI catalogue prints the Industar-50 with this 18.86 mm length and 43.53 mm back focus.
+  "kmz-zenitar-50mm-f12-s": true, // KMZ's own patent has the booklet's eight elements in seven groups; a small public drawing shows other rear shapes.
   "kodak-ektar-52f15": true,
+  "laowa-200mm-f2-af-ff": true, // Counts and special-glass positions follow Laowa's diagram; one thin element is drawn facing the other way.
   "leica-super-vario-elmar-sl-16-35mm-f35-45-asph": true, // Leica's manual describes a two-lens cemented focusing element, as modeled.
+  "meike-50mm-f095": true, // The USPTO registers MEIKE to the patentee and the counts agree; Optical Bench files the patent under 7Artisans.
   "meyer-optik-gorlitz-double-plasmat-135mm-f45": true, // No construction difference is documented; Optical Bench lists the same patent example.
   "meyer-optik-gorlitz-kino-plasmat-100-f2": true,
   "minolta-250mm-f56-rf": true, // Minolta's section shows the same optics plus a rear filter; the patent figure is labeled f/4.5.
@@ -44,6 +47,7 @@ const PRODUCTION_MATCH_BY_KEY: Readonly<Partial<Record<string, boolean>>> = {
   "pentax-645-fa-35mm-f35-al-if": true, // A Pentax patent index names this patent for the smc FA645 35mm; eight groups against Ricoh's seven.
   "pentax-dfa645-25mm-f4-al-if-sdm-aw": true, // With the patent's filter plate the example has eight air-separated units, as Ricoh lists.
   "pentax-hd-d-fa-star-70-200mm-f28-ed-dc-aw": true, // The outline coincides with Ricoh's drawing; only the published group count differs, 15 against 16.
+  "pentax-optio-s-58-174-f26-48": true, // Optical Bench lists this patent example; it is f/2.7–5.3 against the marketed f/2.6–4.8.
   "rodenstock-apo-sironar-w-150f56-a1-reconstruction": false, // Archived 8-element model of a 7-element lens.
   "ross-doublet-1864-von-rohr-1899": true, // Von Rohr identifies the form put on the market in 1864.
   "russar-22-70f8": true, // Roossinov names the Russar-22 as the lens patented; the 122° f/8 example fits.
@@ -55,6 +59,8 @@ const PRODUCTION_MATCH_BY_KEY: Readonly<Partial<Record<string, boolean>>> = {
   "sony-fe-8-14mm-f35-fisheye-g": false, // The example is 7.55–12.59 mm f/2.9 versus 8–14 mm f/3.5.
   "sony-vario-sonnar-88-733f28-rx10": true, // Optical Bench lists this patent example; it covers 9.2–64.7 mm against the marketed 8.8–73.3 mm.
   "steinheil-periskop-1865-von-rohr-1899": true, // Von Rohr identifies the 1865 marketed form.
+  "vivitar-24mm-f2": true, // Optical Bench lists this patent example; eight elements in eight groups as listed, and no maker section was found.
+  "vivitar-28mm-f2": true, // Optical Bench lists this patent example; eight elements in eight groups as listed, and no maker section was found.
   "voigtlander-apo-lanthar-180-f4": true, // The 178 mm example has Cosina's counts and glass positions; the drawing fits only in part.
   "voigtlander-cine-tele-anastigmat-100mm-f45": true, // No construction difference is documented; Optical Bench lists the same patent example.
   "voigtlander-macro-apo-lanthar-125-f25": false, // 10 elements versus 11 in the retail lens.
