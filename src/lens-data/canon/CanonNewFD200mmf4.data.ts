@@ -80,7 +80,7 @@ const LENS_DATA = {
       vd: 38,
       indexReference: "d",
       focalLengthMm: -95.22,
-      glass: "BASF8 (SUMITA)",
+      glass: "BAFD8 (HOYA)",
       role: "Balances the chromatic power of the two positive crowns in member I.",
     },
     {

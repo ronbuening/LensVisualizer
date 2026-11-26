@@ -30,7 +30,7 @@ nd = 1.48749, νd = 70.10. Ohara S-FSL5 equivalent. f = +85.16 mm. This is the s
 
 ### L2 — Biconcave Negative
 
-nd = 1.72342, νd = 38.00. Sumita BASF8 equivalent. f = −95.22 mm. This more dispersive negative element sits between the crowns. Its power opposes their longitudinal chromatic aberration.
+nd = 1.72342, νd = 38.00. Hoya BAFD8 equivalent. f = −95.22 mm. This more dispersive negative element sits between the crowns. Its power opposes their longitudinal chromatic aberration.
 
 ### L3 — Positive Meniscus
 
@@ -53,7 +53,7 @@ nd = 1.75520, νd = 27.50. Ohara S-TIH4 equivalent. f = +936.58 mm. The front an
 
 The two positive front crowns share the highest Abbe number in the lens. The negative element between them has stronger dispersion. In the cemented focusing pair, the positive glass is more dispersive than its negative partner. The patent gives the refractive indices and Abbe numbers for all seven elements, but leaves their trade names and suppliers unspecified.
 
-Column 3 calls the reference wavelength the “spectral d line of sodium.” Lowercase d conventionally denotes helium. All five distinct refractive indices agree with helium d-line catalog values to the printed precision, so the model interprets the indices as helium d. The catalog glasses estimate dispersion at other wavelengths. The production melts remain unidentified.
+Column 3 calls the reference wavelength the “spectral d line of sodium.” Lowercase d conventionally denotes helium. All five distinct refractive indices agree with helium d-line catalog values to the printed precision, so the model interprets the indices as helium d. The catalog glasses estimate dispersion at other wavelengths. Figures 2 and 3 plot the d and g lines at infinity and 9.13f. Relative to the d-line focus, the model's g-line focus lies within about 0.02 mm of both plots across the aperture. The production melts remain unidentified.
 
 ## Focus Mechanism
 
