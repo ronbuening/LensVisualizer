@@ -4,6 +4,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * US 4,257,678, Example 1 (Fig. 1 and col. 4). All lengths in the f = 1 table
  * are multiplied by 35 mm, including the printed back focus of 1.1033. The table
  * gives the radii, axial separations and d-line glass constants at infinity.
+ * Its rear groups face as drawn in Fig. 1, although col. 1 reverses their orientation.
  * The diaphragm position is estimated at 24.50 mm behind R1, within the printed D5
  * space. Its clear radius follows from f/2.8. Nine clear radii are read from Fig. 1.
  * The beveled edges at R7 and R8 are too close to measure separately, so their clear
@@ -42,7 +43,7 @@ const LENS_DATA = {
     closeFocusM: {
       marketing: 0.35,
     },
-    specs: ["6 ELEMENTS / 5 GROUPS", "ALL SPHERICAL", "DESIGN f = 35.01 mm", "RETROFOCUS"],
+    specs: ["6 ELEMENTS / 5 GROUPS", "ALL SPHERICAL", "RETROFOCUS"],
   },
   elements: [
     {
@@ -67,7 +68,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 14.76,
       glass: "S-LAH53 (OHARA equivalent)",
-      role: "High-index front member of the positive doublet ahead of the diaphragm.",
+      role: "Converges the beam at the front of the doublet. Its cemented rear face adds positive power.",
       cemented: "C1",
     },
     {
@@ -143,7 +144,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 1e15,
     description:
-      "Infinity focus only. The patent gives one set of spacings. The production lens uses helicoid focusing to 0.35 m.",
+      "The patent gives spacings at infinity only. The production lens uses a helicoid to focus to 0.35 m from the film plane.",
   },
   groups: [
     { text: "G1", fromSurface: "1", toSurface: "2" },
