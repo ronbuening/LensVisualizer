@@ -70,7 +70,9 @@ Between the two printed positions, nine doublet positions are calculated at equa
 
 ## Aperture and Field
 
-Figure 1 places the iris about 46.4 mm behind the first vertex, near member II. Its calculated paraxial radius at f/4 is 15.86 mm. The clear radii of the glass follow the upper and lower optical edges in that figure. At infinity the chief ray reaches the 21.65 mm format corner at a half-field of 6.056°. Some oblique marginal rays meet the rims, giving a calculated corner illumination of 72.1% relative to the center. At the patent's 6.15° half-field the chief ray reaches 22.00 mm. The patent supplies no measured illumination or image height.
+Figure 1 places the iris about 46.4 mm behind the first vertex, near member II. Its calculated paraxial radius at f/4 is 15.86 mm. The three square front rims step down from 26.2 to 24.9 to 24.0 mm in radius. On L4 the front arc reaches 19.0 mm and the rear arc meets a sloping bevel at 16.8 mm. Both elements of the cemented doublet share a 12.7 mm rim. The fixed rear meniscus has a 16.4 mm rim.
+
+At infinity the chief ray reaches the 21.65 mm format corner at a half-field of 6.056°. Some oblique marginal rays meet the rims, giving a calculated corner illumination of 72.1% relative to the center. At the printed object distance of 1.826 m from the film, corner illumination is 70.9%. At the patent's 6.15° half-field at infinity the chief ray reaches 22.00 mm. The patent supplies no measured illumination or image height.
 
 ## Patent Design Conditions
 

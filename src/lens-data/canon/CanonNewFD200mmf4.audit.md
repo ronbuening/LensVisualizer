@@ -26,21 +26,21 @@ At infinity the I–II, II–III and III–IV gaps are 12.34, 26.40 and 31.02 mm
 | Near object-to-film distance       | 1,826 mm, interpreting 9.13f from the film | 1,827.37 mm at the fixed film plane |
 | Near lateral magnification         |                                Unspecified |             −0.1225× at 1,827.37 mm |
 
-At infinity the chief ray reaches a height of 22.00 mm at the patent’s 6.15° half-field. It reaches the 21.65 mm format corner at 6.056°, with 72.1% calculated illumination relative to the center. At the printed finite distance of 1,826 mm the corner is at 5.917°. At both positions the axial marginal ray reaches the open iris edge and clears every glass rim. All elements have positive edge thickness and clear the neighboring glass.
+At infinity the chief ray reaches a height of 22.00 mm at the patent’s 6.15° half-field. It reaches the 21.65 mm format corner at 6.056°, with 72.1% calculated illumination relative to the center. At the printed object-to-film distance of 1,826 mm, the corner lies 5.917° off axis as seen from the first vertex. Its relative illumination is 70.9%. At both positions the axial marginal ray reaches the open iris edge and clears every glass rim. All elements have positive edge thickness and clear the neighboring glass.
 
 ## Values Not Printed in the Patent
 
-**Clear radii.** The first and last glass vertices in Figure 1 are 102.84 mm apart at the 200 mm scale. The upper and lower ends of the refracting arcs give the radii below to about ±0.2 mm. On L4 the bevel extends beyond the end of the rear refracting arc.
+**Clear radii.** In Figure 1 the first and last glass vertices span about 932 pixels at 300 dpi, or 102.84 mm at the 200 mm scale. This gives 9.07 pixels/mm along the axis. The upper and lower halves of R7, whose radius of curvature is 32.14 mm, give the same radial scale to two decimal places. The ends of the refracting arcs can be read to about ±0.2 mm.
 
-| Surfaces | Clear radius |
-| -------- | -----------: |
-| R1–R2    |      26.2 mm |
-| R3–R4    |      24.9 mm |
-| R5–R6    |      24.0 mm |
-| R7       |      19.0 mm |
-| R8       |      16.8 mm |
-| R9–R11   |      12.7 mm |
-| R12–R13  |      16.4 mm |
+| Surfaces | Clear radius | Edge in Figure 1                          |
+| -------- | -----------: | ----------------------------------------- |
+| R1–R2    |      26.2 mm | Square rim on the largest front element   |
+| R3–R4    |      24.9 mm | Square rim, one step below L1             |
+| R5–R6    |      24.0 mm | Smallest of the three square front rims   |
+| R7       |      19.0 mm | Outer edge of the fixed negative meniscus |
+| R8       |      16.8 mm | Rear arc ends at the sloping bevel        |
+| R9–R11   |      12.7 mm | One square rim across the cemented pair  |
+| R12–R13  |      16.4 mm | Square rim, larger than the doublet       |
 
 **Iris and film.** Figure 1 places the iris 46.41 mm behind R1, or 7.05 mm behind R8. The retail cutaway suggests about 59.4 mm behind R1. The patent figure agrees with the text in column 3, which places the diaphragm close to member II. A 15.857 mm iris radius gives a 50.22 mm entrance pupil diameter at f/4. The film lies at the paraxial infinity focus. [Figure 1 and column 3](https://patents.google.com/patent/US4240703A/en) · [MIR retail cutaway](https://www.mir.com.my/rb/photography/companies/canon/fdresources/fdlenses/200mm.htm)
 
@@ -72,8 +72,11 @@ Example I is a strong match for the New FD 200mm f/4 introduced in June 1979. Th
 
 At infinity the model gives 200.89 mm EFL, f/4.00, 61.156 mm back focus and a 15.857 mm iris radius. The full-frame corner is at 6.056° half-field.
 
+- 2026-11-25 rim review:
+  - The rims were compared again with Fig. 1 and the maker's drawing; none changed.
+
 ## Remaining Questions
 
 - The printed prescription gives an infinity focal length 0.45% longer than its heading. The source of this difference, the near-focus discrepancy and the disagreements in the powers of members II and IV remain unresolved.
 - The intended spectral-line wording and the identities of the production glass suppliers and melts remain unknown.
-- The drawings leave the physical iris position and clear rims uncertain. The production cam profile and the additional travel to 1.5 m are undocumented. Canon specifies eight blades without giving their curvature, and the patent gives no separate image-circle diameter.
+- The patent and retail cutaway place the iris at different distances from the front vertex. The production iris position, cam profile and additional travel to 1.5 m are undocumented. Canon specifies eight blades without giving their curvature, and the patent gives no separate image-circle diameter.
