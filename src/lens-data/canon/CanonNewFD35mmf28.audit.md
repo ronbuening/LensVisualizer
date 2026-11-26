@@ -23,7 +23,7 @@ Column 1 describes the stronger convex faces of the last two groups as facing th
 | First vertex to specified image plane |               75.8765 mm |                  75.8765 mm |
 | Half-field                            |                      32° | 32.3° to the 21.65 mm corner |
 
-The printed back focus places the film 3.44 µm ahead of paraxial focus. The diaphragm limits the axial beam at f/2.8. The diameter of the real axial marginal-ray bundle gives f/2.88. The full-frame corner chief ray clears every face. At the corner, the inferred apertures pass about 56% of the pupil and give about 39% relative illumination.
+The printed back focus places the film 3.44 µm ahead of paraxial focus. The diaphragm limits the axial beam at f/2.8. The diameter of the real axial marginal-ray bundle gives f/2.88. The full-frame corner chief ray clears every face. At the corner, the inferred apertures pass about 56% of the pupil and give about 38% relative illumination.
 
 Using the nominal 35 mm focal length, the table gives −1.76431 for f₁/f, 0.26298 for the front meniscus curvature ratio and 1.73103 for the mean positive-element index. All round to the patent values. The normalized power at R4 is 0.41287, within 0.00008 of the printed 0.4128.
 
@@ -76,8 +76,18 @@ At infinity the model gives 35.007 mm effective focal length, f/2.80, 38.619 mm 
   - R7 gained a flat from 7.02 to 8.0 mm radius, where the bevel meets the face (about 8.15 mm above the axis and 7.8 mm below in Figure 1) before turning toward the 8.45 mm shoulder. R8 gained a flat from 7.04 to 8.45 mm radius, level with R9. The MIR cutaway also shows the two rear elements at about the same height. The R7–R8 lands occupy 91.23% of the axial gap, so its limit increased from 0.91 to 0.92.
   - At infinity and f/2.8, corner pupil transmission was 56.3% before and after. Relative corner illumination was 38.4% in both cases. The axial beam and the chief ray to the 21.65 mm film corner clear every glass rim.
 
+- 2026-11-26 diagram review:
+  - The page was compared with Figure 1 at 18.42 pixels/mm, set by the R1–R11 vertex span and confirmed on the R6 arc to its 8.48 mm shoulder, and with the MIR cutaway. No rim changed. Readings above and below the axis: R1 12.91 and 12.87 mm; the R2 face ends at 10.47 and 10.43 mm and its upright edge reaches 11.12 and 10.93 mm; the doublet edge 8.74 and 8.56 mm; the R5 face 7.91 and 7.89 mm; the shoulder of the two middle rear elements 8.48 and 8.37 mm; the foot of the R7 bevel 8.08 and 7.7 mm; the final element 9.73 and 9.57 mm. Each agrees with the stored value within the reading error. The figure draws R2 flatter than its printed radius, so the end of the R2 face sits about 1.2 mm further back on the page than in the drawing.
+  - The doublet and L4 have flat edges in Figure 1 with short chamfers at R5 and R7. The page joins each front rim to its rear rim with a straight edge. The chamfers are sloped rather than upright, so they take no land.
+  - Lands and cuts: no face is smaller than before the 2026-11-25 rim changes. The R2, R7 and R8 lands cost no light at any field. Corner transmission is 56.3% and relative illumination 38.4% at 32.3°. The 0.92 gap limit is the smallest that admits the facing R7–R8 lands; 0.91 rejects them by 0.001 mm.
+  - Labels and tags: each element type matches the signs of its radii, and the six focal lengths agree with the paraxial values. G1–G5 follow the patent's five groups, C1 covers the single cemented surface, and the diaphragm sits between R5 and R6. Neither the patent nor Canon names an aspherical or special-dispersion element, so no tag applies.
+  - Glass: all six labels are exact catalog rows, and the colour view traces every element on catalog dispersion curves. Figure 2A puts the paraxial g-line focus 0.060 mm ahead of the d line. The model gives 0.041 mm. Swapping any one glass for another exact row gives 0.033 to 0.048 mm, so the labels stand.
+  - Focus: Canon's New FD specification table lists double-helicoid focusing for this lens without the Canon Floating system that it gives the 35mm f/2. The infinity-only model stands. [Canon New FD lens instructions, pp. 28–29](https://flynngraphics.ca/wp-content/uploads/2016/07/FD-Lens-Instructions-for-Web.pdf)
+  - Text: the bevel radius on R7 in the analysis changed from 7.7 to 8.0 mm to match the land. The corner illumination changed from about 39% to about 38%, the 38.4% shown in the Vignetting tab.
+
 ## Remaining Questions
 
 - The cutaway's original publisher and the factory glass types and suppliers are unknown.
 - Figure 1 places the diaphragm about 0.9 mm behind R5, or about 24.1 mm from R1. The exact position, physical opening and blade curvature are undocumented. The drawing resolves the outer shoulders at R7 and R8, but the exact endpoints of the two spherical faces remain uncertain.
-- The production group travel at close focus and the measured corner illumination remain unknown.
+- Canon lists double-helicoid focusing without the floating system but prints no extension at 0.35 m. The measured corner illumination is unknown.
+- Canon's museum gives 165 g, while the New FD specification table gives 200 g for this lens. [Canon Camera Museum](https://global.canon/en/c-museum/product/nfd205.html) · [Canon New FD lens instructions, p. 29](https://flynngraphics.ca/wp-content/uploads/2016/07/FD-Lens-Instructions-for-Web.pdf)

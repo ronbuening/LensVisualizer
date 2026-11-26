@@ -68,15 +68,15 @@ Condition (5) requires the mean index of the positive elements to exceed both 1.
 
 ## Focus Mechanism
 
-The production lens uses a manual helicoid. At its closest setting the subject is 0.35 m from the film plane and magnification reaches 0.13×. The patent gives only the infinity spacings. The travel of the individual groups at closer distances is undocumented, so the model represents infinity only. [MIR, New FD 35mm f/2.8](https://www.mir.com.my/rb/photography/companies/canon/fdresources/fdlenses/35mm.htm) · [Canon Camera Museum](https://global.canon/en/c-museum/product/nfd205.html) · [Canon AE-1 instructions, pp. 54–55](https://flynngraphics.ca/wp-content/uploads/2016/03/AE-1-Manual.pdf)
+The production lens uses a manual helicoid. At its closest setting the subject is 0.35 m from the film plane and magnification reaches 0.13×. Canon's New FD specification table lists double-helicoid focusing for this lens, and it marks the 35mm f/2, but not the f/2.8, with the Canon Floating system. The patent gives only the infinity spacings, and neither source prints the extension at 0.35 m, so the model represents infinity only. [MIR, New FD 35mm f/2.8](https://www.mir.com.my/rb/photography/companies/canon/fdresources/fdlenses/35mm.htm) · [Canon Camera Museum](https://global.canon/en/c-museum/product/nfd205.html) · [Canon New FD lens instructions, pp. 28–29](https://flynngraphics.ca/wp-content/uploads/2016/07/FD-Lens-Instructions-for-Web.pdf) · [Canon AE-1 instructions, pp. 54–55](https://flynngraphics.ca/wp-content/uploads/2016/03/AE-1-Manual.pdf)
 
 ## Clear Apertures and Field Coverage
 
 Figure 1 shows a short flat land behind the front meniscus. Its modeled radius is 11.0 mm, just outside the 10.8 mm clear aperture at R2. The drawing places the edge of the cemented pair at 8.7 mm radius, with a small bevel down to 8.0 mm at R5. The final element has a square edge at 9.6 mm.
 
-The closely spaced faces at R7 and R8 need clear radii of at least 6.99 and 7.01 mm over the central ±3° at f/2.8. Their estimated clear radii of 7.02 and 7.04 mm leave 0.071 mm of air at the common clear edge. Beyond it, the flat on R7 reaches the start of a bevel at about 7.7 mm radius. The opposing flat on R8 reaches the 8.45 mm shoulder shared with R9. The narrowest air space between the flats is 0.069 mm.
+The closely spaced faces at R7 and R8 need clear radii of at least 6.99 and 7.01 mm over the central ±3° at f/2.8. Their estimated clear radii of 7.02 and 7.04 mm leave 0.071 mm of air at the common clear edge. Beyond it, the flat on R7 reaches the start of a bevel at about 8.0 mm radius. The opposing flat on R8 reaches the 8.45 mm shoulder shared with R9. The narrowest air space between the flats is 0.069 mm.
 
-At f/2.8 the chief ray reaches the 21.65 mm full-frame corner at a field angle of 32.3°. There the clear apertures transmit about 56% of the modeled pupil, giving about 39% relative illumination. These estimates depend on the inferred rim and stop dimensions. The patent gives neither an image height nor a measured corner illumination.
+At f/2.8 the chief ray reaches the 21.65 mm full-frame corner at a field angle of 32.3°. There the clear apertures transmit about 56% of the modeled pupil, giving about 38% relative illumination. These estimates depend on the inferred rim and stop dimensions. The patent gives neither an image height nor a measured corner illumination.
 
 ## Sources and References
 
