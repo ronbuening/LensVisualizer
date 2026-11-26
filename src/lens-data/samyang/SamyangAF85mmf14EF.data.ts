@@ -7,9 +7,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Near-state axial ray floors retain S3/S4 at 26.3/25.6 mm, S5/S6 at 24.1/21.0 mm
  * and square L42 at 20.2 mm. Figure-drawn rear-face lands on S4/S6/S10 extend to
  * 26.3/24.1/18.0 mm; they do not enlarge the optical caps. The hybrid layer keeps L82's rims.
- * The camera-side 2.5 mm filter stays drawn because its trailing gap D4 varies from
- * 0.507836 to 0.687847 mm with focus; the rear-plate format supports only a fixed trailing gap.
- * No physical gaps are redistributed.
+ * The camera-side 2.5 mm filter is traced through rearPlates. D4 after its rear
+ * face (RP1b) varies from 0.507836 to 0.687847 mm with focus.
  * Actual Image follows D4; D5 after Image stays metadata and is not propagated.
  */
 const LENS_DATA = {
@@ -153,18 +152,6 @@ const LENS_DATA = {
       "glass": "E-FD2 (HOYA)",
       "role": "Negative L92 member of the last rear cemented doublet.",
       "cemented": "C2"
-    },
-    {
-      "id": 11,
-      "name": "Published rear filter",
-      "diagramLabel": "OD",
-      "type": "Plane-Parallel Plate",
-      "nd": 1.5168,
-      "vd": 64.2,
-      "indexReference": "d",
-      "label": "Published rear filter",
-      "glass": "BSC7 (HOYA)",
-      "role": "Camera-side filter with a focus-dependent gap to the image plane; a plane-parallel plate has no finite isolated focal length."
     }
   ],
   "surfaces": [
@@ -291,19 +278,8 @@ const LENS_DATA = {
     {
       "label": "18",
       "R": -300.832,
+      "d": 37.3,
       "sd": 18
-    },
-    {
-      "label": "19",
-      "R": "flat",
-      "d": 2.5,
-      "sd": 24,
-      "medium": 11
-    },
-    {
-      "label": "20",
-      "R": "flat",
-      "sd": 24
     }
   ],
   "doublets": [
@@ -334,16 +310,7 @@ const LENS_DATA = {
         ]
       ]
     },
-    "18": {
-      "label": "D3",
-      "values": [
-        [
-          37.3,
-          37.3
-        ]
-      ]
-    },
-    "20": {
+    "RP1b": {
       "label": "D4",
       "values": [
         [
@@ -360,6 +327,19 @@ const LENS_DATA = {
       16
     ]
   },
+  "rearPlates": [
+    {
+      "label": "OD",
+      "thicknessMm": 2.5,
+      "nd": 1.5168,
+      "vd": 64.2,
+      "indexReference": "d",
+      "glass": "BSC7 (HOYA)",
+      "gapAfterMm": 0.507836,
+      "sd": 24,
+      "source": "KR 10-2213072 B1, Example 2, surfaces 19–20"
+    }
+  ],
   "layout": {
     "yScFill": 0.7
   },
@@ -373,7 +353,7 @@ const LENS_DATA = {
     "published": [
       1
     ],
-    "description": "PUBLISHED two focus states, ordered infinity to near. G22 (L52) moves 4.928652 mm toward the image for close focus; G12 and G32 stay fixed. The printed near object distance is 813.676935 mm before the first surface, or 0.926326 m from object to image; the maker states a 0.9 m minimum. The camera-side filter stays drawn because the gap after it changes with focus. The image plane follows D4; D5 is printed after Image and is not included in the image distance."
+    "description": "The patent gives infinity and near focus positions. G22 (L52) moves 4.928652 mm toward the image for close focus. At the near position the object is 0.926326 m from the image plane. Samyang specifies a 0.9 m minimum focus distance."
   },
   "projection": {
     "kind": "rectilinear",

@@ -295,6 +295,7 @@ export interface LensDataV2Input {
   /** Present on a zoom alone. */
   zoom?: ZoomV2Input;
   focus: FocusV2Input;
+  /** Also accepts the final rear plate's generated rear-face label (`RP<n>b`). */
   gaps?: Record<string, GapV2Input>;
   aperture: ApertureV2Input;
   aberrationControl?: AberrationControlV2Input;
