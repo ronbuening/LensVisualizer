@@ -110,7 +110,7 @@ const LENS_DATA = {
       vd: 39.2,
       indexReference: "d",
       focalLengthMm: 446.75,
-      glass: "Unmatched (nd 1.66854 / νd 39.2)",
+      glass: "S-BAH32 (spectral proxy; patent nd 1.66854 / νd 39.2; supplier and melt unspecified)",
       role: "Pairs a more dispersive positive glass with the negative member of the rear doublet.",
       cemented: "C1",
     },
