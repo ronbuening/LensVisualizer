@@ -1984,6 +1984,16 @@ export const OHARA_GLASS_ENTRIES: readonly GlassEntry[] = [
     source: "OHARA all-products Zemax catalog 2026-07-01 (OHARA_260701.AGF), vendor-published discontinued-glass data.",
   },
   {
+    name: "BAM21",
+    vendor: "Ohara",
+    polynomial: [2.579457, -0.0094225577, 0.021195926, 0.0008094349, -0.000024922189, 0.0000039861235],
+    nd: 1.626059,
+    vd: 39.215631,
+    code6: "626392",
+    source:
+      "OHARA all-products Zemax catalog 2026-07-01 (OHARA_260701.AGF); discontinued BAM21, vendor formula-1 polynomial.",
+  },
+  {
     name: "BPM4",
     vendor: "Ohara",
     polynomial: [2.5489492, -0.012922911, 0.018433588, 0.00067483064, -0.000028837579, 0.000003057603],

@@ -71,7 +71,7 @@ The first element of G3 starts to converge the beam 1.78 mm ahead of the iris, m
 
 ### L32 — Biconvex positive
 
-nd = 1.62606, νd = 39.2. H-BaF8 (CDGM equivalent). f = +30.49 mm.
+nd = 1.62606, νd = 39.2. BAM21 (OHARA equivalent). f = +30.49 mm.
 
 L32 is the stronger of the two biconvex elements flanking the stop. Its 6.90 mm center thickness contrasts with the 2.20 mm thickness of L31.
 
@@ -112,7 +112,7 @@ The patent gives refractive indices and Abbe numbers without naming a spectral l
 | Ohara S-LAH66      | L22      | Second high-index negative focus element                     |
 | Ohara S-TIH53W     | L23, L33 | High-dispersion glass used with opposite powers in G2 and G3 |
 | Ohara S-BAL42      | L31      | Biconvex crown ahead of the iris                             |
-| CDGM H-BaF8        | L32      | Closest equivalent, with catalog nd 1.62604 and νd 39.07     |
+| Ohara BAM21        | L32      | Discontinued barium flint, catalog nd 1.62606 and νd 39.22   |
 | Ohara S-LAH60V     | L35      | Negative rear-group element                                  |
 | Ohara S-BSL7       | L36, L37 | Low-dispersion rear crowns                                   |
 

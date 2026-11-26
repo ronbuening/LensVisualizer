@@ -122,7 +122,7 @@ const LENS_DATA = {
       nd: 1.62606,
       vd: 39.2,
       indexReference: "d",
-      glass: "H-BaF8 (CDGM catalog equivalent)",
+      glass: "BAM21 (OHARA catalog equivalent)",
       focalLengthMm: 30.49,
       role: "Thick biconvex element behind the iris that supplies much of the rear group's positive power.",
     },

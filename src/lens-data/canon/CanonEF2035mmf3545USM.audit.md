@@ -60,7 +60,7 @@ The example's 20.60–34.09 mm range is marketed as 20–35 mm, and its f/3.5–
 - The model stays focused at infinity, since the patent prints no close-focus spacings. Canon's 0.34 m minimum focus is recorded as the marketed value.
 - Identity and product data: the inventor, Tsunefumi Tanaka, was added and the example is named Numerical Example 1. The catalog records 20–35 mm, f/3.5, a 0.34 m minimum focus, 12 elements in 11 groups and a five-blade iris. The aperture scale runs f/3.5, 4, 4.5, 5.6, 8, 11, 16, 22 and 27, using the open apertures at the three printed settings and Canon's f/22–27 minimum; it formerly began at the estimated f/3.456. The elements are named by group, L11 to L37, and L33–L34 are marked as cemented pair C1. The subtitle and specification line follow the patent and its product. [Canon Camera Museum](https://global.canon/en/c-museum/product/ef316.html)
 
-Catalog glass equivalents were added for dispersion, retaining the printed nd and νd. The differences below are catalog minus patent. The CDGM H-BaF8 row for L32 is the only one that differs by more than 0.00001 in nd or 0.1 in νd.
+Catalog glass equivalents were added for dispersion, retaining the printed nd and νd. The differences below are catalog minus patent.
 
 | Elements | Catalog equivalent |          Δnd |   Δνd |
 | -------- | ------------------ | -----------: | ----: |
@@ -70,7 +70,7 @@ Catalog glass equivalents were added for dispersion, retaining the printed nd an
 | L22      | Ohara S-LAH66      |   −0.0000011 |  0.00 |
 | L23, L33 | Ohara S-TIH53W     |  −0.00000032 | −0.02 |
 | L31      | Ohara S-BAL42      |   −0.0000041 | −0.03 |
-| L32      | CDGM H-BaF8        |    −0.000020 | −0.13 |
+| L32      | Ohara BAM21        |    −0.000001 | +0.02 |
 | L35      | Ohara S-LAH60V     |  −0.00000052 | +0.01 |
 | L36, L37 | Ohara S-BSL7       | −0.000000075 | −0.06 |
 
@@ -94,6 +94,7 @@ At infinity the finished model gives 20.612, 24.010 and 34.095 mm EFL at f/3.50,
 - Movement: G1 and the film stay fixed. G2 moves 1.99 mm toward the film at 24 mm, reaches 2.22 mm near 26.3 mm and returns to its wide position at 34.09 mm, the reciprocating motion of §0020 and the arrow in Figure 1. G3 and the iris advance 15.31 mm toward the subject without reversing. The 13 settings run from 20.6 mm to 34.09 mm with no jump.
 - Labels and tags: the captions G1–G3 stand for the patent's L1–L3 (its first to third groups). The letter G keeps them apart from the element names. Element types agree with the signs of the radii, every element shows its focal length, the iris sits at surface 13 between L31 and L32, and bracket C1 spans surfaces 16–18. Neither the patent nor Canon marks an aspherical or special-dispersion element, so no tag is set and the specification line reads all spherical. §0018 calls the second group positive and the third negative; the claims, §0020 and the prescription make them negative and positive, and the page follows those.
 - Glass and colour: all twelve labels are catalog rows within 0.00002 in nd and 0.13 in νd, and the colour view traces catalog dispersion for every element. At the wide end Figure 4 places the paraxial g-line focus about 0.05 mm nearer the lens than d. The catalog curves give 0.046 mm, where the printed Abbe numbers alone would give 0.083 mm.
+- L32 glass: CDGM H-BaF8 → Ohara BAM21. The printed 1.62606/39.2 matches BAM21 within 0.000001 in nd and 0.02 in νd, against 0.13 in νd for H-BaF8, and BAM21 is an Ohara glass of the period, as are the other eleven rows.
 
 ## Remaining Questions
 
