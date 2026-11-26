@@ -22,7 +22,7 @@ The front two negative menisci spread the beam. The positive lenses farther back
 
 Table 1 uses a focal length of 100. Multiplying every length by 0.28 gives the 28 mm production scale. The distance between the first and last vertices is 39.1776 mm. The printed back focus places the film 35.644 mm behind the last surface, 0.0132 mm beyond the paraxial focus of the rounded prescription.
 
-The patent places the diaphragm between L3 and L4 but prints neither its position nor its diameter, and it gives no clear apertures. The iris plane, 20.72 mm behind the front vertex, is estimated from the MIR cutaway, and its 6.977 mm radius is calculated from the nominal f/2.8. The rims are read from Figure 1. At the four surfaces of L4 and L5 they are widened by 0.05 to 0.23 mm so that the full f/2.8 axial beam passes. The chief ray reaches the corner of the 36 × 24 mm frame, where calculated relative illumination is about 21% of its on-axis value.
+The patent places the diaphragm between L3 and L4 but gives no diaphragm dimensions or clear apertures. The MIR cutaway places the iris about 20.72 mm behind the front vertex. Its 6.977 mm radius follows from the nominal f/2.8. In Figure 1 the curved back of L1 ends at a radius of about 10.8 mm, with a flat land extending to the 13.4 mm rim. L3 and L4 have square rims of about 8 mm radius on either side of the iris. Behind them, the 6.8 mm rim of the biconcave L5 leaves about 0.06 mm of air against L6. All seven elements clear the axial f/2.8 beam. The chief ray reaches the corner of the 36 × 24 mm frame, where calculated relative illumination is about 32% of its on-axis value.
 
 ## Element-by-Element Analysis
 

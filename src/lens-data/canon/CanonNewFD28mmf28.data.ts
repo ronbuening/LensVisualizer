@@ -9,9 +9,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * d-line value, so they are entered as d-line data.
  * The patent places the iris between L3 and L4. Its estimated axial position
  * divides that air space into 4.1468 and 1.414 mm. The iris radius follows
- * from f/2.8. Figure 1 supplies the clear rims and the flat land on the back
- * of L1. At surfaces 7–10 the nominal axial marginal ray sets the minimum
- * clear radii. Table 1 gives only the infinity setting.
+ * from f/2.8. The vertex span and the R1 arc set the axial and radial scales
+ * of Figure 1. R2 has a flat land from 10.8 to 13.4 mm. The 6.8 mm rim of
+ * L5 leaves 0.057 mm of air between R10 and R11. Table 1 gives only infinity.
  */
 const LENS_DATA = {
   schema: 2,
@@ -136,41 +136,41 @@ const LENS_DATA = {
       label: "1",
       R: 22.16228,
       d: 1.6212,
-      sd: 12.22,
+      sd: 13.4,
       medium: 1,
     },
     {
       label: "2",
       R: 12.48604,
       d: 3.9788,
-      sd: 9.84,
-      rimExtensionSd: 12.22,
+      sd: 10.8,
+      rimExtensionSd: 13.4,
     },
     {
       label: "3",
       R: 23.82548,
       d: 1.2768,
-      sd: 9.61,
+      sd: 10.5,
       medium: 2,
     },
     {
       label: "4",
       R: 15.37256,
       d: 7.7112,
-      sd: 9.61,
+      sd: 10.5,
     },
     {
       label: "5",
       R: 51.5284,
       d: 1.9852,
-      sd: 7.23,
+      sd: 8,
       medium: 3,
     },
     {
       label: "6",
       R: -2187.836,
       d: 4.1468,
-      sd: 7.23,
+      sd: 8,
     },
     {
       label: "STO",
@@ -181,53 +181,53 @@ const LENS_DATA = {
       label: "7",
       R: 33.8212,
       d: 3.458,
-      sd: 7.5,
+      sd: 8,
       medium: 4,
     },
     {
       label: "8",
       R: -30.086,
       d: 3.1724,
-      sd: 7.44,
+      sd: 8,
     },
     {
       label: "9",
       R: -24.1066,
       d: 4.4212,
-      sd: 6.51,
+      sd: 6.8,
       medium: 5,
     },
     {
       label: "10",
       R: 31.8836,
       d: 1.4252,
-      sd: 6.38,
+      sd: 6.8,
     },
     {
       label: "11",
       R: -36.7332,
       d: 2.0916,
-      sd: 7.07,
+      sd: 7.8,
       medium: 6,
     },
     {
       label: "12",
       R: -18.42792,
       d: 0.196,
-      sd: 7.07,
+      sd: 7.8,
     },
     {
       label: "13",
       R: -134.2432,
       d: 2.2792,
-      sd: 8.3,
+      sd: 9.1,
       medium: 7,
     },
     {
       label: "14",
       R: -26.97828,
       d: 35.644,
-      sd: 8.3,
+      sd: 9.1,
     },
   ],
   aperture: {
@@ -243,6 +243,9 @@ const LENS_DATA = {
   },
   layout: {
     yScFill: 0.65,
+  },
+  checks: {
+    gapSagFrac: 0.97,
   },
 } satisfies LensDataV2Input;
 
