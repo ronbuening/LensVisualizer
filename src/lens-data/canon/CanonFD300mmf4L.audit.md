@@ -64,8 +64,12 @@ The May 1980 New FD L cutaway shows a flat protector ahead of the six powered si
 
 At infinity the model gives 300.111 mm effective focal length, f/4.00, 116.576 mm paraxial back focus, a 16.77 mm iris radius and a 4.1° frame-corner half-field.
 
+2026-11-25 rim review:
+
+- The rims were compared again with Fig. 4 and the maker's drawing; none changed.
+
 ## Remaining Questions
 
-- The 1978 lens's clear apertures, physical iris diameter and blade curvature are undocumented. The patent gives rim proportions, and the available colour cutaway shows the later New FD L.
+- The 1978 lens's clear apertures, physical iris diameter and blade curvature are undocumented. The patent gives rim proportions, and the available colour cutaway shows the later New FD L. Scaled by its first-to-last lens span, that small cutaway draws the three front lenses about 1–4 mm larger in radius than Figure 4 and the rear pair about 1 mm larger. The rims follow Figure 4.
 - Production glass suppliers and melt data are unknown. Neither the front protector nor the rear filter has a published thickness or glass type in these sources, leaving the factory glass-to-film path uncertain.
 - Column 3 describes the rear pair moving toward the object for close focus. With the Example 4 surfaces and a 3 m object-to-film distance, paraxial focus requires about 25 mm of travel toward the image. Figure 12 gives no spacing or displacement to settle the direction or travel.
