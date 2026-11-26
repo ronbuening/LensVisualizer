@@ -30,7 +30,16 @@ The distance from the first master vertex to the specified film plane is 266.693
 
 ## Values Not Printed in the Patent
 
-- **Clear radii.** On the 300 dpi Figure 3 scan, the first and last converter vertices span 224 pixels for 30.883 mm. The drawn glass edges give radii of 15.2, 15.0, 15.7, 16.0 and 16.8 mm for L1–L5. Both faces of each singlet use the same radius. The stroke width corresponds to about ±0.4 mm. Nikon’s separate section gives about 15 mm at the entrance and 16.4 mm at the exit. [Figure 3](https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/4206971) · [Nikon optical section](https://www.mir.com.my/rb/photography/companies/nikon/nikkoresources/teleconverter/TC14.gif)
+At 300 dpi the first and last converter vertices in Figure 3 span about 225 pixels for 30.883 mm, or 7.28 pixels/mm. The curvature of surface 5, whose printed radius is 36.8 mm, gives an independent radial scale of 7.26 pixels/mm. The figure readings below use half the distance between the upper and lower glass edges. The width of the ink strokes limits them to about ±0.4 mm. Each singlet has a square-cut edge. Nikon’s section shows L1–L3 at nearly one height and L4–L5 at another. Figure 3 shows a small step up from L2 to L3 and again from L4 to L5. [Figure 3](https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/4206971) · [Nikon optical section](https://www.mir.com.my/rb/photography/companies/nikon/nikkoresources/teleconverter/TC14.gif)
+
+| Singlet | Surfaces | Figure 3 radius (mm) | Modeled clear radius (mm) |
+|---|---|---:|---:|
+| L1 | 1–2 | 15.1 | 15.2 |
+| L2 | 3–4 | 15.0 | 15.0 |
+| L3 | 5–6 | 15.8 | 15.7 |
+| L4 | 7–8 | 15.9 | 16.0 |
+| L5 | 9–10 | 16.9 | 16.8 |
+
 - **Master spacing and image plane.** The printed d₀ of −48.968 mm places the bare master’s image 48.968 mm behind the first converter vertex. The master’s 63.5967 mm paraxial back focus therefore leaves a 14.6287 mm gap between the lenses. The printed distance of 71.001 mm from the first converter vertex to the film, less the 30.883 mm track through the converter, gives 40.118 mm of air behind surface 10.
 - **Iris and focus.** The iris is unmarked in Figure 3. The model places it 12 mm behind master surface 16 in a 22 mm air space, with a calculated f/2 radius of 19.2104 mm. All converter spacings are fixed. Its patent gives only the infinity setting. Example 2 of the master patent supplies the near setting, with its negative middle group 17 mm farther toward the film. The combination then focuses at 2.35 m from the image plane with −0.147× magnification. Nikon gives 2.5 m for the production host and specifies that its closest distance is retained with the TC-14. [Master lens patent](https://patents.google.com/patent/US4176913A/en) · [Nikon TC-14 specifications](https://www.pacificrimcamera.com/rl/00594/00594.pdf#page=107) · [Nikon 200 mm specifications](https://www.base2photo.com/pdf/Nikkor_Lenses_Sales_Brochure_1984/Nikon_Nikkor_Lenses_Sales_Brochure_1984.pdf)
 - **Glass.** The patent prints n and ν without naming the glass or wavelength. The model assumes helium d. L1 and L3 share 1.59507 / 35.6, and L2 and L4 share 1.79668 / 45.4. Neither pair matches a catalog glass at the printed precision. Sumita lists 1.51009 / 63.4 for BK1, the pair printed for L5. [Sumita glass table, BK1](https://web.stanford.edu/class/ee347/SumitaAll.PDF)
@@ -61,8 +70,11 @@ The 135 mm f/2.8 falls outside the dealer sheet’s range. The 360–1200 mm zoo
 
 At infinity the 200 mm master and converter give 280.0071 mm at f/2.8001, 1.40003× magnification, 40.1186 mm paraxial back focus and a 19.2104 mm host iris radius.
 
+- 2026-11-25 rim review:
+  - The rims were compared again with Fig. 3 and the maker's drawing; none changed.
+
 ## Remaining Questions
 
-- Production clear apertures, internal baffles and the precise location of the master’s iris remain undocumented. Corner illumination at f/2.8 is 59.6% with the modeled host rims and 52.6% with host rims measured from Figure 3. Nikon’s drawing does not distinguish between those estimates.
+- Nikon gives no dimensions for the production clear apertures or internal baffles, and the patent leaves the master’s iris position unspecified. With the same five converter rims, corner illumination at infinity and f/2.8 is 59.6% with the catalog master’s rims and 52.6% with master rims measured from Figure 3.
 - The patent leaves the reference wavelength unspecified. The suppliers and melts of all five production elements remain unknown.
 - MIR and Nikon give different figures for extension. The first-vertex distance accounts numerically for MIR’s 24.5 mm, but its measurement endpoints remain undocumented. [MIR specifications](https://www.mir.com.my/rb/photography/companies/nikon/nikkoresources/teleconverter/index3.htm) · [Nikon dealer catalog](https://www.pacificrimcamera.com/rl/00594/00594.pdf#page=107)
