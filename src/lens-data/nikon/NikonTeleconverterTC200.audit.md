@@ -33,12 +33,12 @@ At 44 mm extension the paraxial image lies within 0.0001 mm of the modeled image
 
 **Cell position.** At the printed 0.6917 mm gap the original image lies 36.766 mm behind the first converter vertex. Nikon specifies a 44 mm distance between mounts and a 52.5 mm overall length. At infinity, the 44 mm extension places the original image 36.8649 mm behind the first vertex and the new image 42.1249 mm behind the last. The extension equals the 38.74 mm vertex span plus the rear gap less the distance to the original image. [Nikon catalog, TC-200 dimensions](https://device.report/m/e6e67eaa9bf9b326e2a5cd5070757e862fb41e48d7bc53a4be5be7c751ace45b)
 
-**Clear radii.** Scaling Nikon's TC-1 section to the 38.74 mm vertex span gives the following estimates for the shared optics. Figure 11 of the patent draws the outer envelopes at about 10.95 mm in front and 16.5 mm behind. At those heights surfaces 2 and 3 would cross, and L6 would have negative edge thickness. [Nikon optical section](https://imaging.nikon.com/imaging/information/story/0073/img/pic_01.jpg) · [Dimensioned TC-200 section](https://www.mir.com.my/rb/photography/companies/nikon/nikkoresources/teleconverter/TC200.gif) · [Patent, Fig. 11](https://patents.google.com/patent/US4154508A/en)
+**Clear radii.** On drawing sheet 4, the 38.74 mm between the first and last converter vertices spans about 459 pixels at 300 dpi, or 11.85 pixels/mm. The curvature of surface 6 gives about 11.9 pixels/mm radially, and the corrected first surface gives about 12.0. The front rims lie about 129 pixels from the axis on either side. Figure 11 thus gives about 10.8 mm where Nikon's section gives 9.75 mm. The rear outlines lie about 16.4 mm from the axis on the vertex scale, but the drawn arcs vary in curvature. Nikon's section resolves the thin edge of L6 and the slightly taller rear singlet. [Nikon optical section](https://imaging.nikon.com/imaging/information/story/0073/img/pic_01.jpg) · [Dimensioned TC-200 section](https://www.mir.com.my/rb/photography/companies/nikon/nikkoresources/teleconverter/TC200.gif) · [Patent, Fig. 11](https://patents.google.com/patent/US4154508A/en)
 
 | Converter surfaces | Clear radius | Basis |
 | --- | ---: | --- |
-| 1 and 3–7 | 9.75 mm | Forward group outline in Nikon's section. |
-| 2 | 8.8 mm | The curve ends inside its 9.28 mm intersection with surface 3. A flat land extends to the 9.75 mm rim. |
+| 1 and 3–7 | 10.8 mm | Both edges in Figure 11 put the front singlets and the cemented pair at one height. |
+| 2 | 8.8 mm | The curve ends inside its 9.28 mm intersection with surface 3. A flat land extends to the 10.8 mm rim. |
 | 8 | 15.95 mm | Rear doublet outline in Nikon's section. |
 | 9–10 | 15.9 mm | L6 retains positive edge thickness inside the 16.03 mm intersection of its faces. |
 | 11–12 | 16.3 mm | Rear singlet outline in Nikon's section. |
@@ -73,7 +73,12 @@ Nikon lists some faster taking lenses, including the AI 50 mm f/1.2 used within 
 
 At the patent spacing the corrected pair gives 103.29 mm at f/4.003 and 2.00172×, with 41.728 mm back focus. At Nikon's 44 mm extension it gives 103.56 mm at f/4.014 and 2.00691×, with 42.125 mm back focus and a 9.08 mm master iris radius.
 
+2026-11-25 rim review:
+
+- Surfaces 1, 3–4 and 5–7 increased from 9.75 to 10.8 mm to follow the common front edge in Figure 11. The outer radius of the flat land on surface 2 also increased from 9.75 to 10.8 mm. Its 8.8 mm clear radius keeps the air gap open. Nikon's section shows this land and a smaller front outline.
+- With the 51.6 mm f/2 patent master at Nikon's 44 mm extension, corner illumination was 53.6% before and after. All six compatible catalog lenses passed the axial beam at infinity. Mounted corner coverage was 100% before and after on each lens, including all three focal lengths of the AF-S 80–200 mm. Its wide, middle and long settings retained corner illumination of 52.7%, 50.4% and 32.6%, respectively.
+
 ## Remaining Questions
 
-- The 44 mm mount extension constrains the cell position through the infinity-focus calculation. The exact glass positions relative to the mounts and the factory clear radii remain undocumented.
+- The 44 mm extension constrains the cell position at infinity. The exact glass positions relative to the mounts and Nikon's production clear radii remain undocumented.
 - The patent leaves the master iris position and the glass reference wavelength unspecified. The production glass types, suppliers and melts remain unknown.
