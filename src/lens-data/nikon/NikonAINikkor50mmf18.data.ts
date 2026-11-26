@@ -129,11 +129,10 @@ const LENS_DATA = {
     fStops: [1.8, 2.8, 4, 5.6, 8, 11, 16, 22],
     maxFNumber: 22,
     blades: 7,
-    bladeRoundedness: 0,
   },
   focus: {
     closeFocusM: 1e15,
-    description: "Infinity focus only. The patent gives one set of spacings. The manual-focus lens reaches 0.45 m.",
+    description: "Infinity focus only. The patent gives one set of spacings. The production lens focuses manually by helicoid to 0.45 m.",
   },
   groups: [
     { text: "L2–L3", fromSurface: "3", toSurface: "6" },
