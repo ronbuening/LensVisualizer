@@ -2,8 +2,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * US 4,240,703, Example I (Kikuo Momiyama, Canon). All lengths in the f = 1
- * prescription are scaled by 200 for the marketed 200 mm lens. Figure 1 gives
- * the clear rims and the iris position, 46.41 mm behind the first vertex.
+ * prescription are scaled by 200 for the marketed 200 mm lens. The clear rims
+ * and the iris position, 46.41 mm behind the first vertex, are estimated from Figure 1.
  * The stop radius follows from f/4 and the film lies at paraxial infinity focus.
  * The two printed focus positions fix the ends of the cemented doublet's travel.
  * Nine intermediate positions are solved for focus at the fixed film plane,
@@ -56,7 +56,7 @@ const LENS_DATA = {
     closeFocusM: {
       marketing: 1.5,
     },
-    specs: ["7 ELEMENTS / 6 GROUPS", "ALL SPHERICAL", "DESIGN f = 200.89 mm", "REAR FOCUS"],
+    specs: ["7 ELEMENTS / 6 GROUPS", "ALL SPHERICAL", "REAR FOCUS"],
   },
   elements: [
     {
@@ -257,7 +257,7 @@ const LENS_DATA = {
     keyframes: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
     published: [10],
     description:
-      "Member III moves 18.68 mm toward the film between infinity and the 1.826 m position in the patent. Nine calculated positions describe the intervening travel. The other members and the iris stay fixed.",
+      "The cemented doublet moves 18.68 mm toward the film from infinity to the patent’s 1.826 m position. Nine calculated positions follow its travel. The other members and the iris stay fixed. The production lens focuses to 1.5 m.",
     conjugates: [
       {
         zoomStation: 0,

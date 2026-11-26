@@ -1,34 +1,36 @@
-# CANON NEW FD 200mm f/4 — audit
+# CANON NEW FD 200mm f/4 — Audit Log
 
 ## Source
 
-Kikuo Momiyama, _Telephoto Lens_, US 4,240,703, assigned to Canon Kabushiki Kaisha (Canon Inc.). Japanese priority June 28, 1977. Filed June 23, 1978 and granted December 23, 1980. Example I appears in Figure 1 and columns 3–4. Column 5 lists the member focal lengths and the three inter-member air spaces. All lengths in the normalized prescription are multiplied by 200 to express them in millimeters for the marketed lens. [Patent](https://patents.google.com/patent/US4240703A/en)
+Kikuo Momiyama, _Telephoto Lens_, US 4,240,703, assigned to Canon Kabushiki Kaisha (Canon Inc.). The US application was filed June 23, 1978, with Japanese priority of June 28, 1977. The patent was granted December 23, 1980. Figure 1 shows Example I (PDF p. 2). Columns 3–4 give the prescription and focus spacings (p. 8), and column 5 gives the member focal lengths and three inter-member gaps (p. 9). [US 4,240,703](https://patents.google.com/patent/US4240703A/en)
 
-## Transcription
+Canon lists the New FD 200mm f/4 with seven elements in six groups, eight blades, a minimum aperture of f/32 and 0.15× magnification at 1.5 m. Its lens sheet gives the 12° field and rear-group focusing. The FD instructions define focusing distance from the film plane. [Canon Camera Museum](https://global.canon/en/c-museum/product/nfd224.html) · [Canon New FD lens specifications](https://www.pacificrimcamera.com/rl/01152/01152.pdf) · [Canon FD instructions, pp. 18–19](https://www.pacificrimcamera.com/rl/03486/03486.pdf)
 
-The 13 radii with their signs, ten fixed separations, seven index and Abbe-number pairs, and both rows of variable separations agree with Example I. R10 is the cemented interface between L5 and L6. Its radius is −26,173.24 mm. The patent gives a finite radius even for this nearly plane surface. All surfaces are spherical. The table ends at R13 and gives no rear plate, image-plane spacing or image height.
+## Transcription Check
 
-The printed air spaces between members I–II, II–III and III–IV are 12.34, 26.40 and 31.02 mm at infinity. The last two become 45.08 and 12.34 mm at 9.13f. Their constant 57.42 mm sum keeps members II and IV fixed as member III translates rearward.
+All 13 signed radii, ten fixed axial intervals, seven index and Abbe-number pairs, and both rows of variable gaps agree with the printed page. Every surface is spherical. R10, the cemented interface between L5 and L6, has a finite radius of −26,173.24 mm at the 200 mm scale. The prescription ends at R13. It gives no rear plate, spacing to the film or image height.
 
-## First-Order Values
+At infinity the I–II, II–III and III–IV gaps are 12.34, 26.40 and 31.02 mm. At 9.13f the last two become 45.08 and 12.34 mm. They sum to 57.42 mm at both positions. Member III moves 18.68 mm toward the film while members I, II and IV stay fixed.
 
-| Quantity                           |           Patent at 200 mm scale |           Calculated from Example I |
-| ---------------------------------- | -------------------------------: | ----------------------------------: |
-| Effective focal length at infinity |                        200.00 mm |               200.8938 mm (+0.447%) |
-| Effective focal length at 9.13f    |                        168.78 mm |               169.4432 mm (+0.393%) |
-| Relative aperture at infinity      |                              f/4 |                              f/4.00 |
-| Back focal distance at infinity    |                      Unspecified |                           61.156 mm |
-| First vertex to film               |                      Unspecified |                          163.996 mm |
-| Member II focal length             |                       −286.90 mm |                          −288.83 mm |
-| Member IV focal length             |                       +687.52 mm |                          +936.58 mm |
-| Near object-to-film distance       | 1,826 mm, interpreted from 9.13f | 1,827.37 mm at the fixed film plane |
-| Near lateral magnification         |                      Unspecified |    −0.1225× at the focused distance |
+## First-Order Check
 
-The patent gives a 6.15° half-field. At infinity the chief ray reaches 22.00 mm at that angle. The 21.65 mm format corner is fully reached at 6.056° with 72.1% calculated relative illumination. At the stated 1,826 mm object distance, the finite-object chief ray reaches the same corner at 5.917°. At both endpoints the axial marginal ray reaches the edge of the f/4 iris and clears the glass. The surfaces retain positive edge thickness and clear their neighbors.
+| Quantity                           |                     Patent at 200 mm scale |           Calculated from Example I |
+| ---------------------------------- | -----------------------------------------: | ----------------------------------: |
+| Effective focal length at infinity |                                  200.00 mm |                  200.89 mm (+0.45%) |
+| Effective focal length at 9.13f    |                                  168.78 mm |                  169.44 mm (+0.39%) |
+| Relative aperture at infinity      |                                        f/4 |                              f/4.00 |
+| Back focal distance at infinity    |                                Unspecified |                           61.156 mm |
+| First vertex to film               |                                Unspecified |                          163.996 mm |
+| Member II focal length             |                                 −286.90 mm |                          −288.83 mm |
+| Member IV focal length             |                                 +687.52 mm |                          +936.58 mm |
+| Near object-to-film distance       | 1,826 mm, interpreting 9.13f from the film | 1,827.37 mm at the fixed film plane |
+| Near lateral magnification         |                                Unspecified |             −0.1225× at 1,827.37 mm |
+
+At infinity the chief ray reaches a height of 22.00 mm at the patent’s 6.15° half-field. It reaches the 21.65 mm format corner at 6.056°, with 72.1% calculated illumination relative to the center. At the printed finite distance of 1,826 mm the corner is at 5.917°. At both positions the axial marginal ray reaches the open iris edge and clears every glass rim. All elements have positive edge thickness and clear the neighboring glass.
 
 ## Values Not Printed in the Patent
 
-**Clear semi-diameters.** The distance between the first and last glass vertices in Figure 1 corresponds to 102.84 mm. On that scale the upper and lower refracting arcs give the following radii, with about 0.2 mm reading uncertainty. The bevel on L4 is excluded.
+**Clear radii.** The first and last glass vertices in Figure 1 are 102.84 mm apart at the 200 mm scale. The upper and lower ends of the refracting arcs give the radii below to about ±0.2 mm. On L4 the bevel extends beyond the end of the rear refracting arc.
 
 | Surfaces | Clear radius |
 | -------- | -----------: |
@@ -40,24 +42,38 @@ The patent gives a 6.15° half-field. At infinity the chief ray reaches 22.00 mm
 | R9–R11   |      12.7 mm |
 | R12–R13  |      16.4 mm |
 
-**Diaphragm and film.** Figure 1 places the iris about 46.41 mm behind R1, or 7.05 mm behind R8. The retail cutaway suggests a position farther back, about 59.4 mm behind R1. The model follows Figure 1, consistent with column 3 placing the diaphragm near member II. Its 15.857 mm paraxial radius gives a 50.22 mm entrance pupil at f/4. The film is fixed at the paraxial infinity focus.
+**Iris and film.** Figure 1 places the iris 46.41 mm behind R1, or 7.05 mm behind R8. The retail cutaway suggests about 59.4 mm behind R1. The patent figure agrees with the text in column 3, which places the diaphragm close to member II. A 15.857 mm iris radius gives a 50.22 mm entrance pupil diameter at f/4. The film lies at the paraxial infinity focus. [Figure 1 and column 3](https://patents.google.com/patent/US4240703A/en) · [MIR retail cutaway](https://www.mir.com.my/rb/photography/companies/canon/fdresources/fdlenses/200mm.htm)
 
-**Intermediate focus positions.** With doublet travel linear between the printed spacings, the paraxial image falls 1.452 mm in front of the film at the midpoint in reciprocal object-to-film distance. Nine intermediate doublet positions are calculated at equal steps in reciprocal distance between infinity and the 1,827.37 mm focused endpoint. At each step D8 is solved with D11 = 57.42 mm − D8. Rounding the calculated gaps to 0.0001 mm leaves less than 0.00006 mm of defocus at each of those positions. Between them the largest sampled defocus is 0.0188 mm. Interpreting 9.13f as an object-to-film distance puts the paraxial image 0.0206 mm behind the film. Measuring the same distance from the first vertex puts it 2.184 mm in front. The much smaller residual supports the object-to-film interpretation.
+**Near distance and intermediate focus.** At 1,826 mm from the film, the printed gaps put the paraxial image 0.0206 mm behind the film. Measuring from the first vertex instead puts it 2.184 mm in front. The smaller residual supports the film-plane reference. At the fixed film plane the printed gaps focus at an object-to-film distance of 1,827.37 mm.
 
-**Glass dispersion.** The catalog equivalents are Ohara S-FSL5 for L1/L3, Sumita BASF8 for L2, Ohara S-BAL35 for L4, Ohara S-TIH4 for L5/L7 and Hikari J-BASF6 for L6. The largest index difference is 0.000001 and the largest Abbe-number difference is 0.1363. The catalog curves estimate spectral dispersion. The patent identifies no supplier or anomalous-dispersion glass.
+Linear doublet travel would put the image 1.452 mm in front of the film halfway through the reciprocal-distance range. Nine intermediate positions divide that range equally between infinity and 1,827.37 mm. Each uses the D8 that brings the image to the film, with D11 = 57.42 mm − D8. With gaps rounded to 0.0001 mm, the image lies within 0.00006 mm of the film at all nine positions. The largest calculated departure between them is 0.0188 mm.
+
+**Dispersion.** The patent gives five distinct index and Abbe-number pairs among the seven elements. The catalog curves below supply the dispersion away from the reference wavelength. The patent identifies no glass supplier or anomalous-dispersion element.
 
 ## Product Identification
 
-Canon's June 1979 New FD 200mm f/4 has seven elements in six groups, rear-group focusing, an eight-blade iris closing to f/32 and a 12° field. It reaches 0.15× at 1.5 m. The retail section matches Figure 1 in its three front singlets, negative meniscus, cemented focusing pair and fixed positive rear meniscus. Example II has air between the focusing elements, while Example III adds a cemented pair in member IV. These differences strongly favor Example I. Canon's commercial specifications establish the product details. The cutaway and focus illustration support the layout without establishing production glass types or exact dimensions. [Canon Camera Museum](https://global.canon/en/c-museum/product/nfd224.html) · [Canon FD Lenses](https://www.pacificrimcamera.com/rl/03873/03873.pdf) · [Retail cutaway](https://mir.com.my/rb/photography/companies/canon/fdresources/fdlenses/200mmf4optic.jpg) · [Cavina focus diagram](https://i0.wp.com/www.nocsensei.com/wp-content/uploads/2026/02/M_Cavina_Canon_FD_200_19.jpg?fit=1183%2C610&ssl=1)
+Example I is a strong match for the New FD 200mm f/4 introduced in June 1979. The retail section and Figure 1 share the air-spaced front triplet, forward-convex negative meniscus, moving cemented doublet and fixed positive rear meniscus. Example II puts air between the focusing elements. Example III has a second cemented pair in member IV. Cavina illustrates the doublet motion and credits the New FD design to Momiyama. The drawings establish the arrangement but supply no exact production radii or glass identities. [Canon Camera Museum](https://global.canon/en/c-museum/product/nfd224.html) · [Canon FD Lenses](https://www.pacificrimcamera.com/rl/03873/03873.pdf) · [MIR retail cutaway](https://www.mir.com.my/rb/photography/companies/canon/fdresources/fdlenses/200mm.htm) · [Cavina’s design history](https://www.nocsensei.com/camera/tecnica/marco-cavina/marcocavina/storia-dei-canon-fd-200mm-14-prima-parte/)
 
-## Corrections
+## Corrections, 2026-11-25
 
-### 2026-11-25
+- The normalized prescription uses a scale of ×200 for the marketed focal length. Both focal-length headings and the three inter-member gaps can then be compared directly with the model. All three gaps agree. The two system focal lengths run long, and the calculated focal length of member IV exceeds the printed value by 36.2%. Example II also runs 0.45% long at infinity, and its member II focal length differs by 18% from the listed −1.567 in normalized units. No single change reconciles the system and member powers or is supported by the aberration figures. The radii, spacings and indices follow the printed table.
+- The 3° half-field limit covered only 49% of the frame-corner radius. With the iris at the Figure 1 position and all 13 clear radii taken from the refracting arcs, the printed f/4 aperture passes the full axial beam and the 35 mm frame corner is within the field. The two faces of L4 have different clear radii because the rear curve ends at the bevel.
+- The two printed focus positions define the doublet’s travel. Nine calculated positions keep the paraxial image at the fixed film plane between them. The model ends at 9.13f because the patent gives no spacings for Canon’s shorter 1.5 m minimum.
+- The product specifications apply to the rear-focusing New FD lens for 35 mm Canon FD cameras. The catalog records 200 mm, f/4 and 1.5 m. Its eight-blade diaphragm has full stops at f/4, 5.6, 8, 11, 16, 22 and 32. [Canon Camera Museum](https://global.canon/en/c-museum/product/nfd224.html) · [Canon New FD lens specifications](https://www.pacificrimcamera.com/rl/01152/01152.pdf)
+- Column 3 describes d as a sodium line. Each of the five printed indices agrees to the last printed decimal with a helium d-line catalog value. The model therefore uses helium d and retains the printed indices and Abbe numbers. The differences for the dispersion equivalents below are catalog minus patent.
 
-- Example I gives system focal lengths longer than the two printed headings. The rear member gives +936.58 mm against the printed +687.52 mm, a 36.2% difference. The three inter-member gaps agree with the condition table. Example II's table gives the same +0.45% focal length, and its member II value misses the listed −1.567 by 18%. Neither the member powers nor the aberration figures identify a unique erroneous entry, so the radii, thicknesses, indices and focus spacings follow the printed prescription.
-- Column 3 calls d a sodium line. All five distinct index values agree at the printed precision with helium d-line catalog values. The model uses helium d and retains the published indices.
-- The last printed position is 9.13f. The model stops there. Canon's 1.5 m specification describes the additional travel available on the production lens.
+| Elements | Catalog equivalent |          Δnd |     Δνd |
+| -------- | ------------------ | -----------: | ------: |
+| L1, L3   | Ohara S-FSL5       | −0.000000065 | +0.1363 |
+| L2       | Sumita BASF8       |  +0.00000169 | −0.0263 |
+| L4       | Ohara S-BAL35      | −0.000000090 | +0.0350 |
+| L5, L7   | Ohara S-TIH4       |  −0.00000125 | +0.0121 |
+| L6       | Hikari J-BASF6     | +0.000000016 | −0.0261 |
+
+At infinity the model gives 200.89 mm EFL, f/4.00, 61.156 mm back focus and a 15.857 mm iris radius. The full-frame corner is at 6.056° half-field.
 
 ## Remaining Questions
 
-The cause of the focal-length discrepancies and the intended spectral-line wording remain unresolved. A dimensioned production section or a lens measurement would be needed to establish the physical iris position, clear rims and focus travel from 1.826 m to 1.5 m. The historical glass suppliers and melts are also unknown.
+- The printed prescription gives an infinity focal length 0.45% longer than its heading. The source of this difference, the near-focus discrepancy and the disagreements in the powers of members II and IV remain unresolved.
+- The intended spectral-line wording and the identities of the production glass suppliers and melts remain unknown.
+- The drawings leave the physical iris position and clear rims uncertain. The production cam profile and the additional travel to 1.5 m are undocumented. Canon specifies eight blades without giving their curvature, and the patent gives no separate image-circle diameter.
