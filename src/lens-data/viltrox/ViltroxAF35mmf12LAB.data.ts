@@ -3,7 +3,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * CN 115826211 A/B, Example 2, Tables 4–6; construction matches the LAB optical family.
  * Scale s=1: source radii and distances are already millimetres; no units conversion.
  * GL retains 15.575 mm before / 2.500 mm glass / 0.500 mm after in rearPlates.
- * The pre-GL gap is fixed at both printed focus endpoints. No intermediate focus cam is published.
+ * The pre-GL gap is fixed. Three intermediate focus keyframes linearly interpolate the printed gaps.
  * Rims are inferred from Figure 2-1, checked at both printed focus states; the iris is derived from f/1.2.
  * S2/S3/S10/S24 retain drawn lands; caps and body rims are distinct, with no lands at cemented interfaces.
  * Back focus and the 0.341084 m object-to-image near conjugate are calculated, not printed.
@@ -456,6 +456,9 @@ const LENS_DATA = {
       "values": [
         [
           2.332,
+          3.86975,
+          5.4075,
+          6.94525,
           8.483
         ]
       ]
@@ -465,6 +468,9 @@ const LENS_DATA = {
       "values": [
         [
           14.868,
+          13.33025,
+          11.7925,
+          10.25475,
           8.717
         ]
       ]
@@ -474,6 +480,9 @@ const LENS_DATA = {
       "values": [
         [
           7.857,
+          6.5905,
+          5.324,
+          4.0575,
           2.791
         ]
       ]
@@ -483,6 +492,9 @@ const LENS_DATA = {
       "values": [
         [
           1.901,
+          3.1675,
+          4.434,
+          5.7005,
           6.967
         ]
       ]
@@ -523,13 +535,15 @@ const LENS_DATA = {
     "closeFocusM": 0.341084,
     "keyframes": [
       0,
+      0.25,
+      0.5,
+      0.75,
       1
     ],
-    "step": 1,
     "published": [
-      1
+      4
     ],
-    "description": "PUBLISHED infinity and near focus states. Two floating groups move: G2 shifts 6.151 mm toward the image and G4 shifts 5.066 mm toward the object. The printed near gaps focus an object 0.205016 m before the first lens vertex, or 0.341084 m from the image plane. The patent labels this state 0.206 m without specifying its measurement origin; a first-vertex reference is plausible but unproved. The maker specifies a 0.34 m minimum focus distance. Only the two printed endpoints are modeled; no intermediate focus cam is published."
+    "description": "Two floating groups focus the lens. G2 shifts 6.151 mm toward the image and G4 shifts 5.066 mm toward the object. The patent gives the air gaps at infinity and near focus. The air gaps between those positions are interpolated linearly. The near gaps focus at 0.341084 m from the image plane, consistent with the maker’s 0.34 m specification."
   },
   "projection": {
     "kind": "rectilinear",
@@ -589,7 +603,7 @@ const LENS_DATA = {
       },
       {
         "status": "unresolved",
-        "note": "The patent's 0.206 m near distance has no specified measurement origin. The printed gaps give 205.016 mm before the first vertex and 341.084 mm object-to-image. A first-vertex reference is plausible but unproved. Only the printed endpoints are modeled; neither the finite conjugate nor an intermediate focus cam is published."
+        "note": "The patent's 0.206 m near distance has no specified measurement origin. The printed gaps give 205.016 mm before the first vertex and 341.084 mm object-to-image. A first-vertex reference is plausible but unproved. The intermediate positions linearly interpolate the printed endpoint gaps."
       },
       {
         "status": "unresolved",
