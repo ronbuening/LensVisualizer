@@ -10,8 +10,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * edge is set at 6.3 mm, between Canon’s section (about 6.1–6.26 mm) and the
  * Figure 1 knife edge (about 6.6 mm, beyond where the printed surfaces
  * cross). The rim at surface 5 allows for the width of the oblique beam. The
- * iris radius follows from f/2.8. The infinity image plane and whole-lens
- * extension to Canon’s 1 m minimum focus are paraxial calculations.
+ * flat land on surface 6 extends from the 4.38 mm clear radius to the
+ * 5.04 mm rim drawn in Figure 1. The iris radius follows from f/2.8.
+ * The infinity image plane and whole-lens extension to Canon’s 1 m
+ * minimum focus are paraxial calculations.
  */
 const LENS_DATA = {
   schema: 2,
@@ -191,6 +193,7 @@ const LENS_DATA = {
       R: -5.852,
       d: 0.588,
       sd: 4.38,
+      rimExtensionSd: 5.04,
       medium: 4,
     },
     {

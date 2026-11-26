@@ -32,7 +32,7 @@ nd = 1.7400, νd = 28.2, Hoya FD3 equivalent, f = −38.15 mm. This is the most 
 
 ### L3 — Rear negative singlet
 
-nd = 1.6889, νd = 31.1, Ohara PBM28 equivalent, f = −45.81 mm. Its front face, r₆, faces r₅ across the diaphragm. The two faces have nearly equal radii of opposite sign.
+nd = 1.6889, νd = 31.1, Ohara PBM28 equivalent, f = −45.81 mm. Its front face, r₆, faces r₅ across the diaphragm. The two faces have nearly equal radii of opposite sign. The curve of r₆ ends at a clear radius of 4.38 mm. Figure 1 shows a flat land extending from there to the 5.04 mm outer radius of L3, level with the edge of r₇.
 
 ### L4 — Rear positive doublet
 

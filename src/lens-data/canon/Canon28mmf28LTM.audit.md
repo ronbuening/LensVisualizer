@@ -40,20 +40,20 @@ The image plane lies at the paraxial infinity focus, 19.19 mm behind the last su
 
 ## Values Not Printed in the Patent
 
-The first and last refracting vertices are 16.072 mm apart. Their separation in Figure 1 sets the scale for the two-sided rim readings below, approximately 0.0349 mm per pixel at 300 dpi. Stroke width and bevels limit the readings to about 0.1 mm. The figure places the stop about 42% of the way across the central air space, giving 2.26 mm before the diaphragm and 3.06 mm after it. The entrance pupil for f/2.8 gives a physical iris radius of 3.506 mm.
+The first and last refracting vertices are 16.072 mm apart and span about 461 pixels in Figure 1 at 300 dpi, giving 0.0349 mm per pixel. On r₁, 51 pixels of axial sag correspond to a calculated height of 6.32 mm. The two sides of the arc are 365 pixels apart there, giving a radial scale of 0.0346 mm per pixel. Stroke width and bevels limit the rim readings to about 0.1 mm. The figure places the stop about 42% of the way across the central air space, giving 2.26 mm before the diaphragm and 3.06 mm after it. The entrance pupil for f/2.8 gives a physical iris radius of 3.506 mm.
 
-| Surface | Figure radius (mm) | Clear radius (mm) |
-| ------- | -----------------: | ----------------: |
-| 1       |               7.24 |              7.24 |
-| 2       |               5.97 |              5.72 |
-| 3       |               6.09 |              5.72 |
-| 4       |               5.06 |              5.06 |
-| 5       |               3.68 |              3.73 |
-| 6       |               4.38 |              4.38 |
-| 7       |               5.04 |              5.04 |
-| 8       |               6.61 |              6.30 |
-| 9       |               6.61 |              6.30 |
-| 10      |               7.80 |              7.80 |
+| Surface | Figure curve end (mm) | Clear radius (mm) | Outer radius (mm) |
+| ------- | --------------------: | ----------------: | ----------------: |
+| 1       |                  7.24 |              7.24 |              7.24 |
+| 2       |                  5.97 |              5.72 |              5.72 |
+| 3       |                  6.09 |              5.72 |              5.72 |
+| 4       |                  5.06 |              5.06 |              5.06 |
+| 5       |                  3.68 |              3.73 |              3.73 |
+| 6       |                  4.38 |              4.38 |              5.04 |
+| 7       |                  5.04 |              5.04 |              5.04 |
+| 8       |                  6.61 |              6.30 |              6.30 |
+| 9       |                  6.61 |              6.30 |              6.30 |
+| 10      |                  7.80 |              7.80 |              7.80 |
 
 At the front doublet, surfaces 2 and 3 meet at a radius just above 5.72 mm. At the rear, r₈ and r₉ meet at 6.35 mm, short of the 6.61 mm edge in Figure 1. Canon's section draws the same edge at about 6.1–6.26 mm, scaled from its front rim. The shared rear edge is set at 6.30 mm, between the two drawings, which leaves L4a 0.12 mm thick at its rim. There r₉ reaches a 66.2° surface slope, so the model allows rim slopes up to 67° (`checks.maxRimAngleDeg`). A 6.19 mm edge, the largest within the usual 64.2° limit, would pass about 4 points less of the pupil at the infinity corner and 3–5 points less between 29° and 35°. Extending both members of either pair to the drawn radii makes the printed surfaces cross. Extending r₂, r₃ or r₈ separately to its drawn radius leaves corner illumination at 5.7%. Figure 1 shows a common edge on each doublet.
 
@@ -78,9 +78,12 @@ Canon marketed the six-element, four-group 28mm f/2.8 in June 1957. Its labelled
 
 The finished model gives 28.002 mm EFL, f/2.80, a 3.506 mm iris radius, 19.191 mm back focus at infinity and a 37.76° half-field to the 21.63 mm frame corner.
 
+- 2026-11-25 rim review:
+  - Surface 6 gained a 0.66 mm flat land. Both halves of Figure 1 show the glass continuing beyond the 4.38 mm curve end to the 5.04 mm edge of surface 7. The lower shoulder is square and the upper corner slightly rounded. Canon’s section shows the same shoulder. Surface 5 has a sloping bevel. At f/2.8, relative illumination at the frame corner stayed at 5.7% at infinity and 8.5% at the calculated 1 m position.
+
 ## Remaining Questions
 
-- The factory clear apertures, near-focus travel and measured corner illumination remain unknown. Figure 1 and Canon's section disagree on the height of the rear doublet's shared edge.
+- Factory dimensions for the clear apertures, measured focus travel and measured corner illumination remain unknown.
 - The patent gives no glass names, and Canon does not identify its rare glasses by position.
 - Both patent tables give n₃ = 1.7400, although the description and Claim 1 print the impossible inequality 1.30 > n₃ > 1.64. The intended upper bound remains uncertain.
 - Canon's sources do not state whether the 1 m minimum focus is measured from the film plane or from the lens front.
