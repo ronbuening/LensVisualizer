@@ -20,7 +20,7 @@ Asahi lists 24 mm, f/3.5–16, an 84° diagonal field and a weight of 247 g. The
 
 The back focal distance is 35.50 mm, or 1.501 times the effective focal length. The long clearance for the reflex mirror comes from the retrofocus arrangement. L1–L3 act together as a negative lens of −29.22 mm focal length. L4 is the thickest element at 8.40 mm, yet has the least power. Takahashi explains that its thickness and that of L5 help keep the front diameter small. He also relates the concave front face of L4 to the balance between coma and back focus. [Patent, columns 2–3](https://patents.google.com/patent/US3545845A/en)
 
-The diaphragm lies 0.96 mm behind L5 and 0.24 mm ahead of L6. Its axial position is printed. Its 5.58 mm radius follows from the f/3.5 entrance pupil. The glass rims come from the ends of the optical faces in Fig. 1, scaled against the 52.44 mm distance between the first and last vertices. The last vertex to film distance comes from paraxial focus. The off-axis bundle is partly vignetted at full aperture even though the corner chief ray clears every rim.
+The diaphragm lies 0.96 mm behind L5 and 0.24 mm ahead of L6. Its axial position is printed. Its 5.58 mm radius follows from the f/3.5 entrance pupil. The glass rims come from the ends of the optical faces in Fig. 1, scaled against the 52.44 mm distance between the first and last vertices. L4 and the L6/L7 doublet have square edges, each at a single height. Fig. 1 and the SL manual section both bevel the rear edges of L1 and L3, so flat lands carry those edges out to the front-face heights of 20.11 mm and 11.53 mm. The last vertex to film distance comes from paraxial focus. The off-axis bundle is partly vignetted at full aperture even though the corner chief ray clears every rim.
 
 ## Element-by-Element Analysis
 
@@ -52,7 +52,7 @@ Its thickness separates the front section from L5 with little added power.
 
 ### L5 — biconvex
 
-nd = 1.55690, νd = 48.5, no catalog match, f = +45.56 mm.
+nd = 1.55690, νd = 48.5, Sumita BAF1 equivalent, f = +45.56 mm.
 
 Both surfaces turn the diverging beam toward the axis before it reaches the diaphragm.
 

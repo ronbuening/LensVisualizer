@@ -8,10 +8,13 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * the nominal focal length and more closely match the Seidel sums in Table II.
  *
  * Each clear semi-diameter is measured from the curved or plane face in Fig. 1.
- * The diaphragm sits at the published position 0.96 mm behind face 10. Its
- * radius follows from f/3.5. The infinity image gap is the paraxial back focus.
- * The near gap assumes the whole lens moves toward the object to reach Asahi's
- * 0.25 m minimum. The patent gives only the infinity spacings.
+ * L4 and the L6/L7 doublet are drawn with square edges, so their faces share
+ * one height. Fig. 1 bevels the rear edges of L1 and L3; flat lands carry those
+ * edges out to the front-face height. The diaphragm sits at the published
+ * position 0.96 mm behind face 10. Its radius follows from f/3.5. The infinity
+ * image gap is the paraxial back focus. The near gap assumes the whole lens
+ * moves toward the object to reach Asahi's 0.25 m minimum. The patent gives
+ * only the infinity spacings.
  */
 const LENS_DATA = {
   schema: 2,
@@ -102,7 +105,7 @@ const LENS_DATA = {
       vd: 48.5,
       indexReference: "d",
       focalLengthMm: 45.56,
-      glass: "Unmatched (nd 1.55690 / νd 48.5)",
+      glass: "BAF1 (Sumita equivalent)",
       role: "This biconvex element bends the diverging beam toward the axis immediately ahead of the diaphragm.",
     },
     {
@@ -158,19 +161,19 @@ const LENS_DATA = {
   ],
   surfaces: [
     { label: "1", R: 53.04, d: 2.4, sd: 20.11, medium: 1 },
-    { label: "2", R: 26.304, d: 5.76, sd: 16.66 },
+    { label: "2", R: 26.304, d: 5.76, sd: 16.66, rimExtensionSd: 20.11 },
     { label: "3", R: 54.72, d: 5.64, sd: 15.97, medium: 2 },
     { label: "4", R: 598.944, d: 0.12, sd: 15.97 },
     { label: "5", R: 32.04, d: 1.8, sd: 11.53, medium: 3 },
-    { label: "6", R: 10.464, d: 8.4, sd: 9.12 },
-    { label: "7", R: -26.4, d: 8.4, sd: 7.79, medium: 4 },
+    { label: "6", R: 10.464, d: 8.4, sd: 9.12, rimExtensionSd: 11.53 },
+    { label: "7", R: -26.4, d: 8.4, sd: 7.89, medium: 4 },
     { label: "8", R: -33.144, d: 0.12, sd: 7.89 },
     { label: "9", R: 42.96, d: 4.8, sd: 6.01, medium: 5 },
     { label: "10", R: -59.496, d: 0.96, sd: 6.01 },
     { label: "STO", R: "flat", d: 0.24 },
     { label: "11", R: 16.44, d: 5.28, sd: 6.16, medium: 6 },
-    { label: "12", R: -27.84, d: 1.08, sd: 6.11, medium: 7 },
-    { label: "13", R: 15.144, d: 2.64, sd: 5.91 },
+    { label: "12", R: -27.84, d: 1.08, sd: 6.16, medium: 7 },
+    { label: "13", R: 15.144, d: 2.64, sd: 6.16 },
     { label: "14", R: -29.88, d: 2.4, sd: 6.21, medium: 8 },
     { label: "15", R: -17.616, d: 0.12, sd: 6.21 },
     { label: "16", R: "flat", d: 2.28, sd: 6.9, medium: 9 },

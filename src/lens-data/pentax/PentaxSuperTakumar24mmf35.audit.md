@@ -31,9 +31,11 @@ The 52.44 mm between the first and last vertices sets the scale for Fig. 1. Each
 | Surfaces in order | Clear semi-diameters (mm)    |
 | ----------------- | ---------------------------- |
 | 1–4               | 20.11, 16.66, 15.97, 15.97   |
-| 5–8               | 11.53, 9.12, 7.79, 7.89      |
-| 9–13              | 6.01, 6.01, 6.16, 6.11, 5.91 |
+| 5–8               | 11.53, 9.12, 7.89, 7.89      |
+| 9–13              | 6.01, 6.01, 6.16, 6.16, 6.16 |
 | 14–17             | 6.21, 6.21, 6.90, 6.90       |
+
+Fig. 1 bevels the rear edges of L1 and L3 below their flat tops. Opaque flat lands continue surface 2 from 16.66 mm to 20.11 mm and surface 6 from 9.12 mm to 11.53 mm, the heights of the front faces. The lands lie outside the clear apertures, so they stop no light.
 
 The 5.58 mm stop radius follows from the paraxial entrance pupil at f/3.5. The patent gives only the infinity layout and prints no image gap, finite-focus displacement or magnification. The near gap assumes the internal spacings stay fixed as the whole lens moves toward the subject. An object 250 mm from the film requires 38.7951 mm behind L9, an extension of 3.2983 mm. The film position minus paraxial focus is −0.000045 mm at infinity and +0.000032 mm at 0.25 m. At the near setting, the chief ray from the object through the stop center to the film corner clears each rim by at least 1.28 mm.
 
@@ -62,8 +64,21 @@ The Takumar Field Guide dates the original model 43961 to 1967–1971. Its multi
 
 At infinity the model gives 23.656 mm EFL, f/3.50, 35.497 mm back focus and a 5.58 mm stop radius. The corner half-field is 43.1°.
 
+2026-11-25 rim review:
+
+- The rims were compared again with Fig. 1, scaled at 27.63 px/mm (1449 px at 600 dpi between the first and last vertices, 52.44 mm). The r1, r2 and r6 arcs agree with their radii to within 5%. The SL manual section served as a second check on shape.
+- Surface 2, the rear of L1, gains a flat land from 16.66 mm to 20.11 mm. Fig. 1 draws the flat top of L1 at 20.1–20.3 mm, with a bevel down to the end of the r2 curve at 16.8–16.9 mm. The SL section draws the same bevel.
+- Surface 6, the rear of L3, gains a flat land from 9.12 mm to 11.53 mm. Fig. 1 draws the flat top at 11.7–12.0 mm, with a bevel down to the end of the r6 curve at 9.1–9.2 mm.
+- Surface 7, the front of L4, rises from 7.79 mm to 7.89 mm, matching the rear face. Fig. 1 draws a square top at 7.8–8.2 mm.
+- Surfaces 12 and 13, the cemented face and the rear of L7, rise from 6.11 mm and 5.91 mm to 6.16 mm, matching the front of L6. Fig. 1 draws one straight edge across the pair at 6.15–6.19 mm.
+- The other rims lie within 1–3% of the figure and are unchanged. At f/3.5 and infinity, the wide-open corner transmission is 21.9% at 43.1° before and after; no field loses light. At 0.25 m the corner chief ray still clears every rim.
+
+2026-11-25 glass label:
+
+- L5 is labelled with Sumita's legacy BAF1, whose catalog row is 1.5569 / 48.50, identical to the printed pair.
+
 ## Remaining Questions
 
 - At ×0.24 scale the printed n8 leaves the focal length 1.4% short of 24 mm. If the Table II Petzval terms were truncated to two decimals, they imply n8 of about 1.565–1.580. Ohara S-BAL3 (1.57135 / 52.95) also falls in that interval, preserves ν8 to the stated precision and gives 99.78 on the nominal 100 scale. Neither candidate uniquely explains the data. The intended L8 glass remains unknown.
-- L2, L5 and L8 lack catalog matches at their printed index and Abbe number. The patent names no supplier for any element. The Honeywell cutaway suggests wider front rims than Fig. 1 and about 36.1 mm of back focus for the multicoated lens. The original Super-Takumar’s clear apertures remain undocumented. [Honeywell cutaway](http://whitemetal.com/pentax/smct_24_35/smct_24_35_cutaway.gif)
+- L2 and L8 lack catalog matches at their printed index and Abbe number. The patent names no supplier for any element. The Honeywell cutaway suggests wider front rims than Fig. 1 and about 36.1 mm of back focus for the multicoated lens. The SL manual section draws L4, L5 and L9 about 9–14% taller than Fig. 1; the rims follow the patent. The original Super-Takumar’s clear apertures remain undocumented. [Honeywell cutaway](http://whitemetal.com/pentax/smct_24_35/smct_24_35_cutaway.gif)
 - The original’s mechanical focus travel is unknown. At the marked minimum distance, the calculated 3.30 mm extension gives 0.139× magnification. The production specification is 0.12×. [Pentax Forums specifications](https://www.pentaxforums.com/lensreviews/S-M-C-Super-Takumar-24mm-F3.5.html)
