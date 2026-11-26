@@ -6,8 +6,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * EF 400mm f/5.6 L USM. Canon filed this converter design in 2017.
  * Pages 6–7 give the spherical radii, axial spacings, d-line glass data and
  * effective diameters at infinity in the original millimetre prescription.
- * Each clear radius is half the printed diameter. At the stop, the paraxial
- * f/5.80 aperture gives a 15.50 mm radius. The table gives 15.65 mm.
+ * Each non-stop clear radius is half the printed diameter. At f/5.80 the
+ * paraxial iris radius is 15.50 mm. The printed iris diameter is 31.30 mm.
  * The image plane is at the printed 167.00 mm back focus. Ohara glasses
  * match the printed indices and Abbe numbers. The Super UD and UD positions
  * follow Canon's production drawing.
@@ -25,7 +25,7 @@ const LENS_DATA = {
     lensMounts: ["canon-ef"],
     imageFormat: "135-full-frame",
     imageCircleMm: 43.28,
-    specs: ["7 ELEMENTS / 6 GROUPS", "DESIGN f = 391.91 mm", "DESIGN F/5.8", "1 SUPER UD + 1 UD"],
+    specs: ["7 ELEMENTS / 6 GROUPS", "ALL SPHERICAL", "1 SUPER UD + 1 UD", "DESIGN f = 391.89 mm", "DESIGN F/5.8"],
     elementCount: 7,
     groupCount: 6,
     focalLengthMm: { marketing: 400, design: 391.91 },
@@ -117,7 +117,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 204.28,
       glass: "S-TIH6 (OHARA)",
-      role: "Positive front member of the cemented rear doublet.",
+      role: "Adds positive power in the more dispersive glass of the rear doublet.",
       cemented: "C1",
     },
     {
@@ -159,10 +159,10 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 1e15,
     description:
-      "Canon's 2019 example gives the base lens at infinity. The production lens focuses internally to 3.5 m. The patent gives no finite-focus spacings.",
+      "The patent gives spacings only at infinity. In the production lens, a ring-type ultrasonic motor drives the rear focusing optics down to 3.5 m from the image plane.",
   },
 
-  aperture: { nominalFNumber: 5.8, fStops: [5.8, 8, 11, 16, 22, 32], maxFNumber: 32, blades: 8 },
+  aperture: { nominalFNumber: 5.8, fStops: [5.6, 8, 11, 16, 22, 32], maxFNumber: 32, blades: 8 },
 
   projection: { kind: "rectilinear", fullFieldDeg: 6.32, maxTraceFieldDeg: 3.16 },
 

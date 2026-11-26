@@ -1,18 +1,20 @@
-# CANON EF 400mm f/5.6 L USM — audit
+# CANON EF 400mm f/5.6 L USM — Audit Log
 
 ## Source
 
-Shigenobu Sugita, Canon Inc., JP 2019-070689 A, _Optical system with built-in converter_. Filed October 6, 2017 and published May 9, 2019. Numerical Example 1-A in ¶0035 spans pages 6–7. Figure 1(A) shows the master lens at infinity with both converters withdrawn. Paragraphs 0032–0034 define the d-line (587.6 nm), the effective diameters and the half-field. [Patent publication](https://patents.google.com/patent/JP2019070689A/en)
+Shigenobu Sugita, Canon Inc., JP 2019-070689 A, _Optical system with built-in converter_. Canon filed Japanese application 2017-195536 on October 6, 2017, with no earlier priority claim. It was published on May 9, 2019. Numerical Example 1-A occupies ¶0035 on pages 6–7. Fig. 1(A) shows the master lens at infinity with both converters withdrawn. Paragraphs 0032–0034 define the d-line (587.6 nm), effective diameters and half-field. [Patent publication](https://patents.google.com/patent/JP2019070689A/en)
 
-## Transcription
+Canon's Museum gives the production drawing and diaphragm specifications. Canon Japan records the May 31, 1993 release and lists the detachable EF extenders. _EF Lens Work III_ describes the rear focusing system. Canon specifies the minimum focus distance from the image plane. [Canon Camera Museum](https://global.canon/en/c-museum/product/ef317.html) · [Canon Japan specifications](https://faq.canon.jp/app/answers/detail/a_id/95755) · [Canon, _EF Lens Work III_, pp. 51–52](https://flynngraphics.ca/wp-content/uploads/2018/01/EF_Lens_Work_Book_03.pdf) · [Canon 400 mm lens comparison](https://en.canon-me.com/store/ae/canon-400mm-lenses/)
 
-The 16 rows agree with the printed radii, spacings, seven refractive indices and seven Abbe numbers. Dimensions are in millimetres at the published scale. Surfaces 1 and 12 are air reference planes, surface 13 is the diaphragm, and surface 15 is the cemented interface between L6 and L7. All refracting surfaces are spherical. The final gap is the separately tabulated 167.00 mm back focus.
+## Transcription Check
 
-Every non-stop clear radius is half the tabulated effective diameter. In particular, surface 15 has a 29.62 mm diameter and surface 16 has a 28.68 mm diameter. The widest opening is f/5.80. Surfaces 5 and 6 remain 0.154 mm apart at their common clear radius of 31.085 mm, compared with 1.95 mm on axis. Their sags occupy 92.12% of that central gap, which accounts for the 92.2% allowance.
+All 16 surface rows agree with the page images in signed radius, thickness or air space, d-line index and Abbe number. The seven elements have spherical refracting surfaces. Surfaces 1 and 12 are reference planes in air. Surface 13 is the diaphragm. Surface 15 cements L6 to L7. The dimensions are in millimetres at the printed scale. The final air space is the separately tabulated 167.00 mm back focus.
 
-## First-Order Values
+The non-stop clear radii are half the effective diameters on pages 6–7. Surface 15 has a 29.62 mm diameter and surface 16 a 28.68 mm diameter. At the common clear radius of 31.085 mm, surfaces 5 and 6 have 0.154 mm of air between them. Their sags take up 92.12% of the 1.95 mm axial air gap, within the 92.2% allowance.
 
-All distances are in millimetres. Entrance-pupil and front principal-plane positions are measured from surface 1. Exit-pupil and rear principal-plane positions are measured from surface 16. Positive distances point toward the image.
+## First-Order Check
+
+Distances are in millimetres and increase toward the image. The entrance pupil and front principal plane are measured from surface 1, the exit pupil and rear principal plane from surface 16.
 
 | Quantity                     | Patent, Example 1-A |                   Model at infinity |
 | ---------------------------- | ------------------: | ----------------------------------: |
@@ -28,24 +30,44 @@ All distances are in millimetres. Entrance-pupil and front principal-plane posit
 | Front principal plane        |             −259.19 |                             −259.20 |
 | Rear principal plane         |             −224.88 |                             −224.89 |
 
-The printed image plane lies 0.0214 mm ahead of the paraxial focus from the rounded table. At the printed half-field of 3.16°, the exact chief ray reaches 21.78 mm. The axial marginal ray and full-frame corner chief ray clear all the lens rims. At the corner, about 72.9% of the pupil area transmits geometrically.
+Paragraph 0034 defines total length from first to last lens surface. The table's 299.31 mm includes back focus. The printed spacings give 132.30 mm between surfaces 1 and 16 and 299.30 mm to the image plane. The plane lies 0.0214 mm ahead of paraxial focus. At the printed half-field of 3.16°, the exact chief ray reaches 21.78 mm. Both the axial marginal ray and the full-frame corner chief ray clear every lens rim. Geometric transmission at the corner is about 72.9% of the pupil area. [Patent, ¶¶0034–0035](https://patents.google.com/patent/JP2019070689A/en)
 
 ## Values Not Printed in the Patent
 
-The paraxial stop radius follows from the 391.91 mm focal length, f/5.80 and the pupil magnification. It is 15.501 mm. The real axial marginal ray at the corresponding 33.785 mm entrance-pupil radius reaches a stop radius of 15.648 mm, within 0.002 mm of half the printed 31.30 mm diameter. A paraxial stop radius equal to half the printed diameter would give f/5.745, so the stop follows the printed f/5.80. The other rims are direct table values. The example gives a single infinity position, with no finite-focus gaps to infer. The 43.28 mm image circle is twice the printed 21.64 mm image height. The marketed 400 mm f/5.6 and 3.5 m minimum focus come from Canon's production specification. [Canon Camera Museum](https://global.canon/en/c-museum/product/ef317.html)
+The calculated iris radius is 15.501 mm for a 391.91 mm focal length at f/5.80, allowing for the entrance-pupil magnification. An exact axial ray at the corresponding entrance-pupil radius of 33.785 mm reaches 15.648 mm at the iris, within 0.002 mm of the printed semi-diameter. Treating that semi-diameter as the paraxial iris radius would give f/5.745.
 
-The element focal lengths are thick-lens values in air. The glass names are Ohara catalog equivalents, with absolute differences from the patent of at most 0.000004 in nd and 0.059 in νd. Canon's drawing and the patent's dispersion values support the inferred Super UD and UD assignments at L2 and L4. [Canon construction drawing](https://global.canon/ja/c-museum/wp-content/uploads/2015/05/ef317-lens-construction.gif) · [Ohara catalog](https://www.ohara-inc.co.jp/en/product/catalog/)
+The 43.28 mm image circle is twice the printed 21.64 mm image height, just below the nominal 43.3 mm full-frame diagonal. The individual element focal lengths are calculated for thick lenses in air. The seven Ohara equivalents supply dispersion curves. The Super UD and UD identifications at L2 and L4 follow the production drawing and the patent's glass data. [Patent, ¶0035](https://patents.google.com/patent/JP2019070689A/en) · [Canon Camera Museum, block diagram](https://global.canon/en/c-museum/product/ef317.html) · [Ohara optical glass catalog](https://www.ohara-inc.co.jp/en/product/catalog/)
+
+`focus.closeFocusM` is 10¹⁵ m, which stands for infinity. The patent supplies only this focus position. It gives no finite-focus spacings from which to calculate group travel or magnification at 3.5 m. Canon specifies 3.5 m for the production lens, measured between subject and image plane. [Canon 400 mm lens comparison](https://en.canon-me.com/store/ae/canon-400mm-lenses/)
 
 ## Product Identification
 
-Canon's 2019 publication gives a base example that matches the 1993 EF 400mm f/5.6 L USM in all seven element shapes, the six air-spaced groups, the single cemented rear doublet and the Super UD and UD positions. From L1, the front of L4 lies about 61% of the way to the doublet in Canon's diagram and 62% in the prescription. The later filing concerns converters. The original 1993 design document remains unidentified. Examples 1-B and 1-C insert additional optics, and the 494.84 mm f/4 base lens of Example 2-A has a different layout. [Patent, ¶¶0035–0038 and 0042](https://patents.google.com/patent/JP2019070689A/en) · [Canon Camera Museum](https://global.canon/en/c-museum/product/ef317.html) · [Canon construction drawing](https://global.canon/ja/c-museum/wp-content/uploads/2015/05/ef317-lens-construction.gif)
+Example 1-A is a later publication of the base formula for Canon's 1993 EF 400mm f/5.6 L USM. The 2017 filing concerns built-in converters. The original design patent remains unidentified. The seven element shapes, five singlets and cemented rear doublet match the production drawing. L2 and L4 carry the Super UD and UD colours where the patent gives its highest Abbe numbers. From the front of L1, L4 lies 61% of the way to the rear doublet in the drawing and 62% in the prescription. Examples 1-B and 1-C insert converters. Example 2-A uses a different 494.84 mm f/4 master lens. [Canon Camera Museum, block diagram](https://global.canon/en/c-museum/product/ef317.html) · [Patent, Fig. 1(A), ¶¶0035–0038 and 0042](https://patents.google.com/patent/JP2019070689A/en)
 
-## Corrections
+Canon gives the bare production lens a diagonal field of 6°10′. Its ring-type ultrasonic motor drives the rear focusing optics, with full-time manual focus and a choice of 3.5 m or 8.5 m to infinity. Canon lists the detachable EF 1.4× and 2× extenders. With the Extender 2× on the model, the combination does not cover the full frame corner. [Canon, _EF Lens Work III_, pp. 51–52](https://flynngraphics.ca/wp-content/uploads/2018/01/EF_Lens_Work_Book_03.pdf) · [Canon Japan extender specifications](https://faq.canon.jp/app/answers/detail/a_id/95755)
 
-### 2026-11-25
+## Corrections, 2026-11-25
 
-None; the table is reproduced as printed.
+- The model uses the printed f/5.80 at infinity. The earlier f/5.745 came from fitting the paraxial iris to the printed 31.30 mm diameter. At f/5.80 the exact marginal ray reaches the printed iris edge to within 0.002 mm. The full printed field is ±3.16°.
+- The rear clear radius is 14.34 mm. The former 14.81 mm belongs to the cemented interface at surface 15. Both values come from printed diameters. The 92.2% sag allowance preserves the printed rims and real air clearance between surfaces 5 and 6.
+- The base formula identifies the full-frame Canon EF 400 mm f/5.6 production lens. Its catalog specifications include seven elements in six groups, one Super UD and one UD element, and a 3.5 m minimum focus. C1 marks the one cemented pair. [Canon Camera Museum, block diagram and specifications](https://global.canon/en/c-museum/product/ef317.html) · [Canon EF lens catalogue](https://asia.canon/media/document/2023/08/25/ac24e05e0718479ea233d5c19cb197c6_Canon_EF_Lens_Catalogue_2018.pdf)
+- The production aperture scale extends through f/5.6, 8, 11, 16, 22 and 32 with eight blades. The model's wide-open aperture remains the patent's f/5.80. [Canon Camera Museum](https://global.canon/en/c-museum/product/ef317.html) · [Patent, ¶0035](https://patents.google.com/patent/JP2019070689A/en)
+- Each element has an Ohara equivalent for calculating dispersion. The table gives the differences between the catalog curves and the printed glass pairs, calculated as catalog minus patent. The largest absolute differences are 0.0000042 in nd and 0.059 in νd.
+
+| Element | Ohara equivalent |          Δnd |    Δνd |
+| ------- | ---------------- | -----------: | -----: |
+| L1      | S-FSL5           | −0.000000065 | +0.036 |
+| L2      | S-FPL53          |  +0.00000044 | −0.054 |
+| L3      | S-LAH51          |   −0.0000042 | +0.003 |
+| L4      | S-FPL51          |  −0.00000071 | −0.054 |
+| L5      | S-BSM14          |   +0.0000019 | −0.059 |
+| L6      | S-TIH6           |  +0.00000071 | +0.025 |
+| L7      | S-LAL14          |   −0.0000031 | +0.032 |
+
+At infinity the model gives 391.911 mm effective focal length, f/5.80, 167.021 mm paraxial back focus, a 15.501 mm iris radius and a 3.16° half-field.
 
 ## Remaining Questions
 
-Canon's Museum text calls the UD member fifth. Its drawing colours L4, whose printed Abbe number is 81.6, while L5 has νd = 60.7. The drawing and the glass data support L4. The production glass suppliers and the travel of the inner-focusing optics remain undocumented in these sources. Canon also gives two maximum magnifications at 3.5 m, 0.11× in the Museum and 0.12× in the product specifications. [Canon Camera Museum](https://global.canon/en/c-museum/product/ef317.html) · [Canon Japan specifications](https://faq.canon.jp/app/answers/detail/a_id/95755)
+- The original design patent, production optical designer and glass suppliers remain unidentified. The sources give neither the exact moving surfaces and their travel nor the curvature of the eight diaphragm blades.
+- The Museum text calls the UD element fifth. Its drawing marks L4, whose νd of 81.6 agrees with that placement. L5 has νd = 60.7. [Canon Camera Museum, text and block diagram](https://global.canon/en/c-museum/product/ef317.html) · [Patent, ¶0035](https://patents.google.com/patent/JP2019070689A/en)
+- For maximum magnification at 3.5 m, the Museum gives 0.11× while Canon Japan and _EF Lens Work III_ give 0.12×. [Canon Camera Museum](https://global.canon/en/c-museum/product/ef317.html) · [Canon Japan specifications](https://faq.canon.jp/app/answers/detail/a_id/95755) · [Canon, _EF Lens Work III_, pp. 51–52](https://flynngraphics.ca/wp-content/uploads/2018/01/EF_Lens_Work_Book_03.pdf)
