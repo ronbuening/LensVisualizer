@@ -1,16 +1,15 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
- * JP H08-334694 A, Example 1, Table 1 and Figures 1–4. One patent unit is 20 mm.
- * All lengths use this scale. Each aspheric term of order n is divided by 20^(n−1),
- * with K = κ − 1. The rear face of the bonded resin on L11 is surface 3A.
- * The patent gives three infinity zoom positions, including the separate gaps on either
- * side of flare stop 19. At intermediate positions, D7 follows the change in optical
- * power, D18 is interpolated and D19 is calculated for paraxial focus on the film.
- * The printed film spacings give small focus offsets at the three published positions.
- * The iris radius follows the stated f-number. The flare stop opening is measured
- * from Figure 1. Glass and resin clear radii are read from Nikon's published cross-section
- * (Nikon Tale 75) scaled to the prescription; 2/3A, 4 and 16 are reduced to keep surfaces apart.
+ * JP H08-334694 A, Example 1, Table 1 and Figures 1–4. All lengths use 20 mm per patent unit.
+ * Surface 3A is the rear face of the resin bonded to L11. Its conic is K = κ − 1 and its
+ * aspheric coefficients of order n are divided by 20^(n−1).
+ * Table 1 gives three infinity zoom positions and the gaps on both sides of flare stop 19.
+ * The printed film spacings leave small offsets from paraxial focus. At the 23 intermediate
+ * positions, D7 follows the group powers, D18 is interpolated and D19 puts paraxial focus on the film.
+ * The iris radius follows the stated f-number. The flare stop opening comes from patent Figure 1.
+ * The glass and resin rims follow Nikon's drawing in Tale 75, with smaller clear radii at
+ * 2/3A, 4 and 16 to keep the adjacent surfaces apart.
  */
 const LENS_DATA = {
   schema: 2,
@@ -33,13 +32,7 @@ const LENS_DATA = {
     groupCount: 7,
     focalLengthMm: { marketing: [20, 60], design: [20, 56.43] },
     fNumber: { marketing: 3.5, design: 3.59 },
-    specs: [
-      "9 ELEMENTS / 7 GROUPS",
-      "1 ASPHERICAL ELEMENT",
-      "DESIGN f = 20–56.43 mm",
-      "DESIGN F/3.59–5.67",
-      "MOVING FLARE STOP",
-    ],
+    specs: ["9 ELEMENTS / 7 GROUPS", "1 ASPHERICAL ELEMENT", "DESIGN f = 20–56.54 mm", "MOVING FLARE STOP"],
     closeFocusM: { marketing: 0.35 },
   },
   elements: [
@@ -54,7 +47,7 @@ const LENS_DATA = {
       cemented: "C1",
       focalLengthMm: -25.07,
       glass: "Unmatched (nd 1.796681 / νd 45.37)",
-      role: "Most of the negative power of the front group comes from this glass-backed hybrid lens.",
+      role: "The glass substrate supplies most of the negative power of the front group.",
     },
     {
       id: 2,
@@ -67,7 +60,7 @@ const LENS_DATA = {
       cemented: "C1",
       focalLengthMm: -160.12,
       glass: "Unmatched (nd 1.50625 / νd 55.63)",
-      role: "The resin bonded to L11 forms its aspherical rear surface, 3A.",
+      role: "The bonded resin forms aspherical surface 3A and changes how strongly L11 bends rays near its rim.",
     },
     {
       id: 3,
@@ -128,7 +121,7 @@ const LENS_DATA = {
       cemented: "C2",
       focalLengthMm: 24.81,
       glass: "J-BK7A (Hikari)",
-      role: "The lower-dispersion positive member of the first rear doublet.",
+      role: "Adds converging power with lower dispersion than the negative glass bonded behind it.",
     },
     {
       id: 8,
@@ -154,7 +147,7 @@ const LENS_DATA = {
       cemented: "C3",
       focalLengthMm: -25.09,
       glass: "Unmatched (nd 1.772789 / νd 49.45)",
-      role: "Forms the negative front member of the final doublet.",
+      role: "Acts with L23b as the split negative element between the two positive glasses of the rear doublets.",
     },
     {
       id: 10,
@@ -327,7 +320,7 @@ const LENS_DATA = {
     description:
       "Infinity focus only. The production lens focuses to 0.35 m by moving G1 toward the subject. The patent gives group spacings only at infinity.",
   },
-  aperture: { fStops: [3.5, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22 },
+  aperture: { fStops: [3.5, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22, blades: 7 },
   layout: { yScFill: 0.65 },
   groups: [
     { text: "G1", fromSurface: "1", toSurface: "7" },
