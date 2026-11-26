@@ -36,13 +36,13 @@ The largest focal-length difference is 0.012 mm, at the wide end. The printed ha
 - **Intermediate zoom stations.** D4 + D10 sets the travel of G3 relative to the fixed G1. Between consecutive printed settings that sum changes in equal steps; D4 is solved for infinity focus at the fixed film and D10 takes the remainder. The ten calculated stations hold the film within 0.00005 mm of paraxial focus, and linear motion between all 13 stations stays within 0.0169 mm. The open f-numbers at the intermediate stations step evenly between the printed values.
 - **Focus.** `focus.closeFocusM` is 10¹⁵ m, which stands for infinity. The patent focuses by moving G2 (§0020) and allows G1 to focus instead (§0024), but prints no close-focus spacings. A paraxial calculation that moves G2 alone, with D4 + D10 held, reaches 0.34 m from the image plane after 3.30, 3.16 and 3.31 mm of travel toward the subject, with D4 at 4.992, 7.120 and 4.981 mm. The magnifications are −0.081×, −0.093× and −0.133× at wide, middle and telephoto. These positions are not part of the model.
 
-| Surfaces | Clear radii (mm)                                 |
-| -------- | ------------------------------------------------ |
-| 1–4      | 26.8, 26.8, 20.5, 16.2 (land to 20.5)            |
+| Surfaces | Clear radii (mm)                                  |
+| -------- | ------------------------------------------------- |
+| 1–4      | 26.8, 26.8, 20.5, 16.2 (land to 20.5)             |
 | 5–10     | 14.7, 11.0 (land to 14.7), 12.2, 12.2, 11.2, 11.2 |
-| 11–12    | 6.8, 6.8                                         |
-| 14–18    | 7.0, 7.0, 7.5, 7.5, 7.5                          |
-| 19–24    | 8.4, 8.0, 8.0, 9.1, 9.9, 9.9                     |
+| 11–12    | 6.8, 6.8                                          |
+| 14–18    | 7.0, 7.0, 7.5, 7.5, 7.5                           |
+| 19–24    | 8.4, 8.0, 8.0, 9.1, 9.9, 9.9                      |
 
 ## Product Identification
 
@@ -85,9 +85,19 @@ At infinity the finished model gives 20.612, 24.010 and 34.095 mm EFL at f/3.50,
 - Surfaces 20 and 21: 7.7 → 8.0 mm. Figure 1 draws L35 and L36 to about 8.4 and 9.1 mm and Canon's drawing to about 8.6 and 8.8 mm, both larger than 7.7 mm; the facing curves allow 8.0 mm before they cross. These two faces limit the wide-corner light: opening other rims by 10% leaves it unchanged.
 - Corner light at full aperture rose at every one of the 13 zoom settings and fell nowhere: 18.3% → 23.4% at 20.6 mm, 64.4% → 69.6% at 24.0 mm and 70.4% → 74.7% at 34.1 mm, with gains up to 5.5 points between the printed settings. The open f-numbers and the traced corner angles are unchanged, the axial beam still clears every surface, and the full-frame corner is still reached at every setting.
 
+2026-11-26 diagram review:
+
+- The page was compared with Figure 1 and Canon's drawing at the three printed settings and between them, and no rim changed. On the 200 dpi page image, Figure 1 measures 4.30 px/mm along the axis from 20 vertex positions and 4.33 px/mm across it from the curves of surfaces 1, 4 and 6. Averaged above and below the axis, the drawn rims are 26.6 mm for L11, 20.7 and 16.1 mm for the front and rear faces of L12, 14.6 and 11.2 mm for those of L21, 12.3 mm for L22, 11.2 mm for L23, 6.6 mm for L31, 6.8 mm for L32, 7.3 mm for the cemented pair, 8.1 mm for L35, 8.9 mm for L36 and 9.8 mm for L37. Each is within 4% of the model, and the page keeps the drawn order of heights.
+- Element labels L11–L37 → Element 1–12, as on the other lens pages. The names L11–L37 stay and appear beside the labels; they extend the patent's numbering of its 11th, 12th and 31st–37th lenses.
+- Focus description: "toward the subject for nearer objects" was removed. The patent names the focusing group (§§0020 and 0024) but not its direction, and Canon's page names neither. The calculated travel toward the subject stays under Values Not Printed in the Patent.
+- Lands and cuts: the flat lands on L12 (16.2 to 20.5 mm) and L21 (11.0 to 14.7 mm) are drawn in Figure 1 and cost no light, and no face is below its earlier rim. The worst loss against the earlier rims is 0.0 points at every one of the 13 settings and at eighths of the zoom range.
+- Movement: G1 and the film stay fixed. G2 moves 1.99 mm toward the film at 24 mm, reaches 2.22 mm near 26.3 mm and returns to its wide position at 34.09 mm, the reciprocating motion of §0020 and the arrow in Figure 1. G3 and the iris advance 15.31 mm toward the subject without reversing. The 13 settings run from 20.6 mm to 34.09 mm with no jump.
+- Labels and tags: the captions G1–G3 stand for the patent's L1–L3 (its first to third groups). The letter G keeps them apart from the element names. Element types agree with the signs of the radii, every element shows its focal length, the iris sits at surface 13 between L31 and L32, and bracket C1 spans surfaces 16–18. Neither the patent nor Canon marks an aspherical or special-dispersion element, so no tag is set and the specification line reads all spherical. §0018 calls the second group positive and the third negative; the claims, §0020 and the prescription make them negative and positive, and the page follows those.
+- Glass and colour: all twelve labels are catalog rows within 0.00002 in nd and 0.13 in νd, and the colour view traces catalog dispersion for every element. At the wide end Figure 4 places the paraxial g-line focus about 0.05 mm nearer the lens than d. The catalog curves give 0.046 mm, where the printed Abbe numbers alone would give 0.083 mm.
+
 ## Remaining Questions
 
 - Canon gives no explicit link between this patent example and the production lens, and the production radii, glass suppliers and clear apertures are undocumented.
 - The wide-corner illumination depends on the 8.0 mm rims at surfaces 20 and 21, which are limited by the facing curves rather than drawn. How the production lens separates these two elements, and its clear apertures there, are unknown.
-- Canon places a flare-cutting diaphragm in the first group, but Figure 1 does not draw it and its size is unknown.
-- Canon describes inner focusing without naming the moving group. The patent's examples focus with G2 and allow G1 instead. The production focus travel and the exact zoom motion between the printed settings are undocumented.
+- Canon places a flare-cutting diaphragm in the first group, and the patent's list of reference signs names a flare stop P, but none of Figures 1–3 draws it and its size is unknown.
+- Canon describes inner focusing without naming the moving group or its direction. The patent's examples focus with G2 and allow G1, or G1 and G2 together, instead; the patent gives no direction of travel. The production focus travel and the exact zoom motion between the printed settings are undocumented.

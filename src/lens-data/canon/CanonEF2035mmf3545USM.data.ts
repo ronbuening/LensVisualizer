@@ -45,7 +45,7 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L11",
-      label: "L11",
+      label: "Element 1",
       type: "Positive Meniscus",
       nd: 1.62299,
       vd: 58.2,
@@ -57,7 +57,7 @@ const LENS_DATA = {
     {
       id: 2,
       name: "L12",
-      label: "L12",
+      label: "Element 2",
       type: "Negative Meniscus",
       nd: 1.7859,
       vd: 44.2,
@@ -69,7 +69,7 @@ const LENS_DATA = {
     {
       id: 3,
       name: "L21",
-      label: "L21",
+      label: "Element 3",
       type: "Negative Meniscus",
       nd: 1.8061,
       vd: 41,
@@ -81,7 +81,7 @@ const LENS_DATA = {
     {
       id: 4,
       name: "L22",
-      label: "L22",
+      label: "Element 4",
       type: "Negative Meniscus",
       nd: 1.7725,
       vd: 49.6,
@@ -93,7 +93,7 @@ const LENS_DATA = {
     {
       id: 5,
       name: "L23",
-      label: "L23",
+      label: "Element 5",
       type: "Positive Meniscus",
       nd: 1.84666,
       vd: 23.8,
@@ -105,7 +105,7 @@ const LENS_DATA = {
     {
       id: 6,
       name: "L31",
-      label: "L31",
+      label: "Element 6",
       type: "Biconvex Positive",
       nd: 1.58313,
       vd: 59.4,
@@ -117,7 +117,7 @@ const LENS_DATA = {
     {
       id: 7,
       name: "L32",
-      label: "L32",
+      label: "Element 7",
       type: "Biconvex Positive",
       nd: 1.62606,
       vd: 39.2,
@@ -129,7 +129,7 @@ const LENS_DATA = {
     {
       id: 8,
       name: "L33",
-      label: "L33",
+      label: "Element 8",
       type: "Negative Meniscus",
       nd: 1.84666,
       vd: 23.8,
@@ -142,7 +142,7 @@ const LENS_DATA = {
     {
       id: 9,
       name: "L34",
-      label: "L34",
+      label: "Element 9",
       type: "Positive Meniscus",
       nd: 1.7859,
       vd: 44.2,
@@ -155,7 +155,7 @@ const LENS_DATA = {
     {
       id: 10,
       name: "L35",
-      label: "L35",
+      label: "Element 10",
       type: "Negative Meniscus",
       nd: 1.834,
       vd: 37.2,
@@ -167,7 +167,7 @@ const LENS_DATA = {
     {
       id: 11,
       name: "L36",
-      label: "L36",
+      label: "Element 11",
       type: "Positive Meniscus",
       nd: 1.51633,
       vd: 64.2,
@@ -179,7 +179,7 @@ const LENS_DATA = {
     {
       id: 12,
       name: "L37",
-      label: "L37",
+      label: "Element 12",
       type: "Positive Meniscus",
       nd: 1.51633,
       vd: 64.2,
@@ -236,7 +236,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 1e15,
     description:
-      "Infinity focus only. The patent focuses by moving the second group, toward the subject for nearer objects, and prints zoom spacings at infinity only. Canon's inner focusing reaches 0.34 m, which is not modeled.",
+      "Infinity focus only. The patent focuses by moving the second group and prints zoom spacings at infinity only. Canon's inner focusing reaches 0.34 m, which is not modeled.",
   },
   gaps: {
     "4": {
