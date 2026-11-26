@@ -103,7 +103,7 @@ const LENS_DATA = {
       vd: 25.4,
       indexReference: "d",
       focalLengthMm: -16.47,
-      glass: "S-TIH6 (OHARA)",
+      glass: "PBH6 (OHARA)",
       role: "Opposes the convergence from L4. Its highly dispersive glass contributes to the balance of axial color.",
     },
     {
