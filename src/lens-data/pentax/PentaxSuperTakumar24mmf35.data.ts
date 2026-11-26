@@ -5,7 +5,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * axial spacings and d-line glass constants for nominal f = 100. Multiplying
  * all lengths by 0.24 gives the 24 mm scale. With the printed L8 index of
  * 1.58487, the focal length is 23.66 mm. An index of 1.56883 would reproduce
- * the nominal focal length and more closely match the Seidel sums in Table II.
+ * the nominal focal length and more closely match the Seidel sums in Table II
+ * and the aberration curves of Fig. 2.
  *
  * Each clear semi-diameter is measured from the curved or plane face in Fig. 1.
  * L4 and the L6/L7 doublet are drawn with square edges, so their faces share
