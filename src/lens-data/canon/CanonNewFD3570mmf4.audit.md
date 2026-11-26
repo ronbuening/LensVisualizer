@@ -37,8 +37,8 @@ In Figure 1 (PDF p. 2, at 270 dpi), R1 to R16 spans 885 pixels, including 191 pi
 | ----------------- | ------------------------- | --------------------------- |
 | R1–R4             | 19.3 / 16.5 / 17.8 / 15.7 | 19.3 / 15.94 / 17.8 / 15.7  |
 | R5–R8             | 15.7 / 15.7 / 11.0 / 11.0 | 15.7 / 15.7 / 11.08 / 11.08 |
-| R9–R12            | 11.1 / 11.1 / 10.1 / 10.1 | 11.1 / 11.1 / 10.1 / 10.1   |
-| R13–R16           | 9.2 / 8.7 / 8.9 / 8.9     | 8.51 / 8.7 / 8.9 / 8.9      |
+| R9–R12            | 11.1 / 11.1 / 10.1 / 10.1 | 11.1 / 11.1 / 10.1 / 8.52 (land to 10.1) |
+| R13–R16           | 9.2 / 8.7 / 8.9 / 8.9     | 8.51 (land to 10.1) / 8.7 / 8.9 / 8.9 |
 
 The patent gives no separate R16-to-film distance. At the three printed positions the modeled rear air space minus paraxial back focus is −0.000029, +0.000040 and +0.000024 mm. At twelve intermediate focal lengths, calculated intergroup gaps set the power and the rear air space holds the film at infinity focus. The residual at each listed position is under 0.00005 mm. Linear changes in the two air spaces between positions give a maximum departure of 0.01927 mm. The patent describes front-group focusing but gives no finite-focus spacing. `focus.closeFocusM` is 10¹⁵ m, which stands for infinity.
 
@@ -71,9 +71,13 @@ At the three printed positions the finished model gives 35.999, 53.998 and 68.50
   - **R8, 11.05 → 11.08 mm.** The upper and lower edges of L4 in Figure 1 run straight across from R7 to R8. At 11.08 mm both faces clear the telephoto axial ray and follow that square rim.
   - **R12, 8.51 → 10.1 mm.** Both faces of L6 reach the same edge in Figure 1. Canon's cutaway also shows the full-height rear face. The bevel belongs to L7. R13 ends at 8.51 mm, with 0.021 mm of air to R12 at its edge. R13 still limits the telephoto axial beam to about f/4.09.
   - Relative corner illumination before and after was 55.2% at 36 mm, 70.2% at 54 mm and 70.4% at 68.508 mm. Neither change cost measurable light at any field across the fifteen zoom positions.
+- 2026-11-26 diagram review:
+  - **R12, 10.1 → 8.52 mm, with a flat land to 10.1 mm; R13, 8.51 mm, with a new flat land to 10.1 mm.** At 300 dpi Figure 1 measures 18.27 pixels/mm along the axis (the fixed spacings) and 18.7 pixels/mm radially (the R4 arc). It draws the outer edges of L6 and L7 at 9.86 and 9.88 mm, so L7 is as tall as L6, and Canon's cutaway shows the two touching at the same height. The model drew L7 only to 8.7 mm. Because the printed R12 and R13 spheres cross at 8.605 mm, the front of L7 can reach the drawn edge only if the clear part of R12 stops short of it. At 8.53 mm R12 would leave less than 2% of the axial gap open. The lands sit 0.020 mm apart, and the rim of L7 now slopes from 10.1 mm at the front to the 8.7 mm edge of R14, where the figure's bevel ends at 8.5 mm. R13 still sets the telephoto axial limit of about f/4.09.
+  - Lands and cuts: no face ends below its rim from before 2026-11-25, and neither land costs light. The worst loss is 0.0 points at every field, at all fifteen zoom positions and at each eighth of the zoom range. The R12 land is needed for spacing and the R13 land follows the drawn edge.
+  - The other fourteen rims agree with Figure 1 within 3%. Group II advances 22.00 mm toward the subject in proportion to focal length. Group I moves 9.10 mm toward the film, turns at the 58.64 mm position and returns 1.08 mm, as the patent describes. The film plane stays fixed.
 
 ## Remaining Questions
 
-- The drawings establish the square edges of L4 and L6. The production bevel dimensions, iris position and opening through the zoom remain unknown. How the production lens accommodates the outer telephoto rays at R13 remains uncertain.
+- The drawings establish the square edges of L4 and L6. The production bevel dimensions, iris position and opening through the zoom remain unknown. How the production lens joins L6 and L7, whose printed surfaces cross at 8.605 mm inside the telephoto f/4 beam, remains uncertain.
 - The source of the 0.113 mm wide-end length difference is unresolved. The patent gives no production image-circle diameter or finite-focus group positions.
 - The production glass supplier, melts and diaphragm blade curvature are undocumented.

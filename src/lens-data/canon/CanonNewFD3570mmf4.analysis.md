@@ -95,9 +95,9 @@ The manual-focus lens focuses to 0.5 m, measured from the film plane, and Canon 
 
 ## Clear Aperture at Telephoto
 
-The patent locates the iris between R10 and R11. Its midpoint placement and the opening calculated for f/4 are estimates. Figure 1 shows square rims on L4 and L6. Both faces of L4 have an 11.08 mm clear radius, enough for the telephoto axial ray. Both faces of L6 reach 10.1 mm. The figure draws L1 against L2 and L6 against the bevel of L7. R2 ends at 15.94 mm and R13 at 8.51 mm to keep those air gaps open.
+The patent locates the iris between R10 and R11. Its midpoint placement and the opening calculated for f/4 are estimates. Figure 1 shows square rims on L4 and L6. Both faces of L4 have an 11.08 mm clear radius, enough for the telephoto axial ray. The figure draws L1 against L2, and L6 and L7 meeting at a common outer edge. Canon's cutaway shows L6 and L7 touching at the same height. R2 ends at 15.94 mm to keep the air gap behind L1 open.
 
-At telephoto, the axial f/4 marginal ray would reach radii of 8.73 and 8.74 mm at R12 and R13. The two spheres would intersect at 8.605 mm. At the clear edge of R13, 0.021 mm of air separates the faces. R13 admits an axial beam equivalent to about f/4.09 at telephoto. The full f/4 axial beam clears the glass at the other fourteen zoom positions. The chief ray reaches the corner of a 36 × 24 mm frame throughout the zoom. At wide angle the rims clip part of the corner beam, giving about 55% illumination relative to the axis. The production cutaway gives no dimension for these edges.
+At telephoto, the axial f/4 marginal ray would reach radii of 8.73 and 8.74 mm at R12 and R13. The two printed spheres intersect at 8.605 mm. The clear radii of R12 and R13 therefore end at 8.52 and 8.51 mm, with 0.020 mm of air between them. Flat lands carry the rear of L6 and the front of L7 out to the 10.1 mm edge of L6. R13 admits an axial beam equivalent to about f/4.09 at telephoto. The full f/4 axial beam clears the glass at the other fourteen zoom positions. The chief ray reaches the corner of a 36 × 24 mm frame throughout the zoom. At wide angle the rims clip part of the corner beam, giving about 55% illumination relative to the axis. The production cutaway gives no dimension for these edges.
 
 ## Sources
 
