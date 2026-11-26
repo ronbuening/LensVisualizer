@@ -49,7 +49,7 @@ $n_d = 1.6230$, νd = 58.2, S-BSM15 equivalent, $f = +37.59$ mm. The last menisc
 
 ## Glass Identification and Selection
 
-L3 has the lowest Abbe number of the five. Its negative power balances some of the chromatic power of the positive lenses. Claim 1 constrains the mean index of L4 and L5 to between 1.69 and 1.72. Example 3 gives 1.71455, allowing the designer to distribute positive power across the two rear menisci while retaining their object-facing concavities. All five catalog equivalents agree with the printed index within 0.00003 and with the Abbe number within 0.04. Their dispersion curves can describe the model even though the supplier and melts of the production glass are unknown. [Ohara optical glass catalogs](https://oharacorp.com/glass-catalog/)
+L3 has the lowest Abbe number of the five. Its negative power balances some of the chromatic power of the positive lenses. Claim 1 constrains the mean index of L4 and L5 to between 1.69 and 1.72. Example 3 gives 1.71455, allowing the designer to distribute positive power across the two rear menisci while retaining their object-facing concavities. All five catalog equivalents agree with the printed index within 0.00003 and with the Abbe number within 0.04. Their dispersion curves can describe the model even though the supplier and melts of the production glass are unknown. Figure 6 also carries an unlabelled dashed spherical-aberration curve that starts about 0.06 mm short of the d-line focus on the axis and ends about 0.22 mm beyond it at f/3.5. The g-line focus calculated with these dispersion curves follows it within about 0.02 mm. [Ohara optical glass catalogs](https://oharacorp.com/glass-catalog/)
 
 ## Focus Mechanism
 

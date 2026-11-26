@@ -72,7 +72,15 @@ At infinity the model gives 28.007 mm effective focal length, f/3.50, 34.765 mm 
 - Surfaces 5, 6 and 7 gain flat lands to 6.05 mm, the height of the rear rim of L4. Figure 5 draws L3 and L4 with one outer edge about 6.0 mm from the axis, reached through a chamfer at the front of L3. The dealer drawing reproduces the vertex spacing of Example 3 to within 0.2 mm and shows the same shared edge at about 6.2 mm. The clear radii stay at 5.25, 5.00 and 5.00 mm.
 - No clear radius changed, and the lands lie outside every traced beam. Corner transmission wide open stays 65.7% at infinity and 70.5% at 0.30 m. The f-number and traced field are unchanged.
 
+2026-11-26 diagram review:
+
+- The page was compared with Figure 5 and the dealer drawing, and nothing changed. Rendered at 600 dpi, Figure 5 spans 1528 pixels from surface 1 to surface 10 for 32.2448 mm, and the drawn sags of surfaces 1, 2 and 5 give the same scale across the axis. Averaged over both halves, the figure gives 13.35 mm for the L1 edge, 10.41 mm where the rear face of L1 meets its step, 7.59 mm for L2, 5.29 mm where the front face of L3 meets its chamfer, 6.06 mm for the shared L3–L4 edge and 7.27 mm for L5, each within 1% of the model.
+- The flat lands on surfaces 2, 5, 6 and 7 cost no light at any field, at infinity or at 0.30 m, and Figure 5 draws all four edges. They stay.
+- Names L1–L5, element types, focal lengths, the captions G1–G5 for the patent's first to fifth groups and the stop 2.436 mm behind surface 4 agree with the patent. Neither the patent nor the dealer drawing marks an aspherical or special-dispersion element, and none is tagged. Focusing toward 0.30 m moves all five elements and the stop together toward the subject; the distance reads 1.20 m, 0.60 m and 0.40 m on the way and the rear gap grows smoothly from 34.75 mm to 38.22 mm.
+- Figure 6 plots a second, dashed spherical-aberration curve that starts 0.058 mm short of the d-line focus on the axis and ends about 0.22 mm beyond it at f/3.5. With the present Ohara dispersion curves the g-line focus is −0.053 mm on the axis, −0.104 mm at half aperture, −0.092 mm at 0.7 of the aperture and +0.239 mm at full aperture, following the dashed curve within about 0.02 mm. The d-line curve agrees within 0.03 mm. Ohara LAH53 and Hoya BACD5 and BACD15, which also fit the printed values, would move the g-line focus by 0.001 mm, so the labels stay.
+
 ## Remaining Questions
 
 - The production working diameters at the L3–L4 gap and the original glass suppliers and melts are undocumented.
+- Figure 6 does not label its two spherical-aberration curves. The dashed curve is taken as the g line only because the calculated g-line focus follows it; the patent text does not say.
 - Neither the patent nor the dealer sheet gives a close-focus section, mechanical extension or closest magnification. The model gives about 1:8.1 at 0.30 m. Buttler lists 1:8.6 for the production lens. [Five-element specimen](https://japb.net/gear/gear-review-index/ds_konica-ar-28f35-5/)
