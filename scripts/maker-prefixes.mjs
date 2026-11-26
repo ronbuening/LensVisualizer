@@ -1,5 +1,6 @@
 export const MAKER_PREFIXES = [
   { prefix: "7ARTISANS", display: "7Artisans", slug: "7artisans" },
+  { prefix: "AEG", display: "AEG", slug: "aeg" },
   { prefix: "AGFA", display: "Agfa", slug: "agfa" },
   { prefix: "APPLE", display: "Apple", slug: "apple" },
   { prefix: "EMIL BUSCH", display: "Busch", slug: "busch" },
