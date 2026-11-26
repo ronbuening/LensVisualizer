@@ -71,7 +71,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 56.35,
       glass: "S-LAH53 (OHARA catalog equivalent)",
-      role: "Helps correct chromatic distortion and coma. Its rear face borders the floating air space.",
+      role: "Helps correct chromatic distortion and chromatic coma. Its rear face borders the floating air space.",
     },
     {
       id: 4,
