@@ -77,7 +77,7 @@ The model shows infinity, the only position with published spacings. Figure 5B s
 
 ## Aperture and Field
 
-The table locates the diaphragm 23.40 mm behind surface 10. The patent prints neither its opening nor the image distance; both are calculated. The paraxial iris radius is 16.92 mm at f/2.8, and the infinity image lies 69.852 mm behind surface 17. The clear radii are measured from the glass edges in Figure 2. Six surfaces in the front unit need openings up to 0.86 mm larger than their drawing measurements to pass the full axial marginal ray.
+The table locates the diaphragm 23.40 mm behind surface 10. The patent prints neither its opening nor the image distance; both are calculated. The paraxial iris radius is 16.92 mm at f/2.8, and the infinity image lies 69.852 mm behind surface 17. The clear radii are measured from the glass edges in Figure 2. Six surfaces in the front unit need openings up to 0.86 mm larger than their drawing measurements to pass the full axial marginal ray, and each of the five front elements keeps the square edge the figure draws, at the larger of its two face radii. Figure 2 ends the concave rear faces of L3, L5 and L7 short of the element edge, with a flat land out to the rim. The model draws these lands at 27.6, 21.5 and 15.6 mm from the axis, just outside the f/2.8 beams; they block no traced ray.
 
 The printed 12.6° diagonal field reaches the full 36 × 24 mm frame. Canon gives 12° for the 200 mm product. At 6.3° the front and rear rims vignette the beam, with 53.3% of the pupil area transmitting in the geometric calculation. Canon does not give a measured illumination value in its product description.
 

@@ -6,7 +6,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * spacings, glass indices and Abbe numbers, and places the stop at surface 11. The d and g
  * lines in the aberration plots support reading the glass pairs at the d line.
  * Figure 2 supplies the clear radii. At surfaces 1, 2, 3, 5, 7 and 9 the f/2.8 axial
- * marginal ray requires a slightly larger opening. The 16.92 mm iris radius follows from
+ * marginal ray requires a slightly larger opening; the five front elements keep the square
+ * edges Figure 2 draws, at the larger of their two face radii. Figure 2 ends the concave rear
+ * faces of elements 3, 5 and 7 short of the edge with a flat land; the lands at surfaces 6,
+ * 10 and 14 are placed just outside the f/2.8 beams. The 16.92 mm iris radius follows from
  * the paraxial pupil at f/2.8. The 69.852 mm back focus is calculated from the table.
  * Figure 5B shows aberrations at −0.15×. The patent gives no spacings for that position.
  */
@@ -176,7 +179,7 @@ const LENS_DATA = {
       label: "2",
       R: -325.61,
       d: 0.5,
-      sd: 34.55,
+      sd: 34.86,
     },
     {
       label: "3",
@@ -189,7 +192,7 @@ const LENS_DATA = {
       label: "4",
       R: 346.98,
       d: 2.99,
-      sd: 31.4,
+      sd: 31.63,
     },
     {
       label: "5",
@@ -202,7 +205,8 @@ const LENS_DATA = {
       label: "6",
       R: 71.9,
       d: 1.58,
-      sd: 29.3,
+      sd: 30.1,
+      rimCutDepthMm: 5.52,
     },
     {
       label: "7",
@@ -215,7 +219,7 @@ const LENS_DATA = {
       label: "8",
       R: 216.03,
       d: 0.23,
-      sd: 26.5,
+      sd: 26.94,
     },
     {
       label: "9",
@@ -228,7 +232,8 @@ const LENS_DATA = {
       label: "10",
       R: 30.03,
       d: 23.4,
-      sd: 23.5,
+      sd: 23.62,
+      rimCutDepthMm: 9.08,
     },
     {
       label: "STO",
@@ -253,6 +258,7 @@ const LENS_DATA = {
       label: "14",
       R: 48.81,
       sd: 16.8,
+      rimCutDepthMm: 2.55,
       d: 29,
     },
     {

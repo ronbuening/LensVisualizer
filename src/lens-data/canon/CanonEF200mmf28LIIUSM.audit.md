@@ -31,17 +31,19 @@ The film plane coincides with paraxial infinity focus to 0.0001 mm. The iris set
 
 ## Values Not Printed in the Patent
 
-Figure 2 spans 464 pixels between the first and last vertices, a distance of 109.06 mm in the table. The resulting scale of 4.255 pixels/mm gives the clear semi-diameters below. At six surfaces the f/2.8 axial marginal ray falls outside the drawn glass. Those radii are the ray heights rounded upward to 0.01 mm.
+Figure 2 spans 464 pixels between the first and last vertices, a distance of 109.06 mm in the table. The resulting scale of 4.255 pixels/mm gives the clear semi-diameters below. At six surfaces the f/2.8 axial marginal ray falls outside the drawn glass. Those radii are the ray heights rounded upward to 0.01 mm. Figure 2 draws the five front elements with square edges, so each rear face takes the radius of its front face.
 
-| Surface | Figure 2 radius (mm) | Model radius (mm), in surface order |
-| --- | ---: | --- |
-| 1–2 | 34.0 | 34.86, 34.55 |
-| 3–4 | 31.4 | 31.63, 31.4 |
-| 5–6 | 29.3 | 30.10, 29.3 |
-| 7–8 | 26.5 | 26.94, 26.5 |
-| 9–10 | 23.5 | 23.62, 23.5 |
-| 12–14 | 16.8 | 16.8 throughout |
-| 15–17 | 15.9 | 15.9 throughout |
+Figure 2 ends the concave rear faces of elements 3, 5 and 7 short of the element edge, with a short stroke square to the axis. At the figure's scale the cap ends lie at 0.88–0.90, 0.89–0.92 and 0.79–0.85 of the edge radius. Each model land is a flat cut at a fixed depth behind its vertex. Its inner radius is moved out from the figure's reading to clear the traced f/2.8 beams and the nominal-pupil ray described below.
+
+| Surface | Figure 2 radius (mm) | Model radius (mm), in surface order | Rear-face land |
+| --- | ---: | --- | --- |
+| 1–2 | 34.0 | 34.86 throughout | None |
+| 3–4 | 31.4 | 31.63 throughout | None |
+| 5–6 | 29.3 | 30.10 throughout | Surface 6, 5.52 mm deep, from 27.63 mm |
+| 7–8 | 26.5 | 26.94 throughout | None |
+| 9–10 | 23.5 | 23.62 throughout | Surface 10, 9.08 mm deep, from 21.52 mm |
+| 12–14 | 16.8 | 16.8 throughout | Surface 14, 2.55 mm deep, from 15.57 mm |
+| 15–17 | 15.9 | 15.9 throughout | None |
 
 The stop position is printed. Its radius of 16.92 mm follows from the paraxial pupil magnification at f/2.8. The real axial ray that just reaches this iris enters at a height of 34.00 mm, giving f/2.87 from its entrance beam diameter. A ray entering at the nominal pupil radius of 34.851 mm reaches the stop at 17.36 mm; Figure 2 draws the stop opening at about 17.4 mm. The glass rims clear this ray as well.
 
@@ -92,6 +94,16 @@ The patent's design focal length of 195.2 mm accounts for the difference from th
 - The subtitle and specification chips give the patent, example, assignee and inventor, the construction, the 195.2 mm design focal length, the all-spherical design, the two UD elements and rear focusing.
 
 At infinity the finished model gives 195.166 mm EFL, f/2.80, 69.852 mm of back focus from surface 17, a 16.92 mm iris radius, 178.912 mm from the first vertex to the image and a 6.3° half-field.
+
+2026-11-25 rim review:
+
+- Figure 2 was measured again at the full 200 dpi resolution of the published drawing. The first-to-last vertex span gives 4.255 pixels/mm. The front face of element 1 checks the scale radially: its drawn sag of 28 pixels at the drawn edge implies a 34.3 mm radius, against 34.0–34.2 mm read from the edge. The drawn stop also falls within a pixel of its table position.
+- Surfaces 2, 4, 6, 8 and 10 rose from 34.55, 31.40, 29.30, 26.50 and 23.50 mm to 34.86, 31.63, 30.10, 26.94 and 23.62 mm. Figure 2 draws all five front elements with square edges, and these values match each element's front face. No traced ray reaches the old rear rims, so the change moves no light.
+- Surface 6 gained a land 5.52 mm behind its vertex, ending the concave cap at 27.63 mm. Figure 2 ends this face at 0.88–0.90 of the edge radius. The traced f/2.8 beams reach 27.37 mm and the nominal-pupil ray 27.54 mm, so the land sits just outside both, at 0.92 of the 30.10 mm edge.
+- Surface 10 gained a land 9.08 mm behind its vertex, ending the cap at 21.52 mm, against a figure reading of 0.89–0.92 of the edge. The traced beams reach 21.23 mm and the nominal-pupil ray 21.45 mm. Canon's section also draws this land.
+- Surface 14 gained a land 2.55 mm behind its vertex, ending the cap at 15.57 mm. Figure 2 ends this face nearer 0.82 of the 16.8 mm edge, about 13.8 mm, but the traced beams reach 15.50 mm there, so the land is moved out to clear them.
+- The step order of the elements, the cemented edges of C1 and C2, and the remaining radii already agree with Figure 2 and did not change.
+- The geometric pupil transmission at infinity is unchanged at every field angle: 98.6% at 1.0°, 88.1% at 3.1°, 66.0% at 5.2° and 53.3% at the 6.3° corner, before and after. The f/2.80 aperture and 6.3° half-field are also unchanged.
 
 ## Remaining Questions
 
