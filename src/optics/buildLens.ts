@@ -7,6 +7,7 @@ export { withImageSurfaceSection } from "./prescription/imageSurfaceSection.js";
 export type { CanonicalLens, IngestedPrescription } from "./prescription/canonical.js";
 export { canonicalLensFromRuntime, compiledLensFromRuntime } from "./prescription/identity.js";
 export { ingestLens, ingestTeleconverter, lensDataVersion } from "./prescription/ingestV2.js";
+export { rearPlateSurfaceLabels } from "./prescription/rearPlates.js";
 export { buildLens as default } from "./prescription/buildRuntimeLens.js";
 
 export { prepareRuntimeState } from "./state/runtimeAdapters.js";
