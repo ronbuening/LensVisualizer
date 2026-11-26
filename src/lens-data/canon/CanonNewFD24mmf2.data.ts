@@ -1,15 +1,15 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
- * US 4,188,092, Example 1, gives the infinity prescription for an 84° f/2
- * retrofocus lens. The radii and axial spacings in its f = 1 table are
- * multiplied by 24 to give millimetres. The glass values refer to the d line.
- * The printed Seidel coefficients place the diaphragm 0.488 mm behind R11
- * within D11. Its radius follows from the paraxial f-number, and the image
- * plane is at the calculated paraxial back focus. The clear radii follow
- * Fig. 1 except where adjacent surfaces approach contact at R4 and R16 or
- * the flange at R8 leaves the clear opening uncertain. Only the infinity
- * width of the floating air space D6 is given.
+ * Kikuo Momiyama, US 4,188,092, Example 1, Figure 1 and columns 5–6. The table gives
+ * the radii and spacings at f = 1. All lengths use a scale of ×24 for the 24 mm design.
+ * The eleven glass indices and Abbe numbers refer to the helium d line.
+ * The printed third-order coefficients place the iris 0.488 mm behind R11 in the
+ * 1.9584 mm air space D11. Its radius follows from the stated f/2 aperture, and the
+ * image plane is the paraxial infinity focus. The clear radii follow Figure 1, except
+ * R4 and R16, held clear of the next surface, and R8, where the drawn flange is not an edge.
+ * The patent describes the floating air space at D6 but gives its width only at infinity.
+ * Its condition table prints 1.8923f for Groups I and II; the prescription gives 2.4205f.
  */
 const LENS_DATA = {
   schema: 2,
@@ -33,7 +33,7 @@ const LENS_DATA = {
     focalLengthMm: { marketing: 24, design: 23.99 },
     fNumber: { marketing: 2, design: 2 },
     closeFocusM: { marketing: 0.3 },
-    specs: ["11 ELEMENTS / 9 GROUPS", "ALL SPHERICAL", "DESIGN f = 23.99 mm", "84° FIELD"],
+    specs: ["11 ELEMENTS / 9 GROUPS", "ALL SPHERICAL", "FLOATING ELEMENTS"],
   },
   elements: [
     {
@@ -70,7 +70,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 96.56,
       glass: "S-TIM8 (OHARA)",
-      role: "The second positive meniscus helps correct chromatic coma and distortion in the front group.",
+      role: "Helps correct chromatic distortion and chromatic coma in the front group. Its rear face borders the floating air space.",
     },
     {
       id: 4,
@@ -82,7 +82,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: -28.05,
       glass: "S-BAL35 (OHARA)",
-      role: "The strongest negative lens in Group I follows the floating air space.",
+      role: "Supplies the strongest divergence in Group I, on the image side of the floating air space.",
     },
     {
       id: 5,
@@ -120,7 +120,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 25.97,
       glass: "S-LAH65 (OHARA)",
-      role: "The first lens behind the stop has a nearly flat front and a strongly curved rear face.",
+      role: "Supplies the strongest positive power behind the iris. Its steep rear face bounds the air lens in front of the rear doublet.",
     },
     {
       id: 8,
@@ -132,7 +132,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 78.5,
       glass: "S-LAL14 (OHARA)",
-      role: "The positive member of the rear doublet faces the curved air space behind L7.",
+      role: "Positive member of the rear doublet. Its concave front face closes the air lens behind L7.",
       cemented: "C2",
     },
     {
@@ -205,7 +205,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 1e15,
     description:
-      "Infinity focus only. At close range the lens moves toward the subject and the air space between L3 and L4 widens. The patent gives its width only at infinity.",
+      "Infinity focus only. For closer subjects the whole lens moves forward and the air space between L3 and L4 widens. The patent gives only the infinity spacing.",
   },
   projection: { kind: "rectilinear", fullFieldDeg: 84, maxTraceFieldDeg: 42 },
   groups: [
