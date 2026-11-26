@@ -53,7 +53,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "S-LAH66 (Ohara equivalent)",
       focalLengthMm: 76.09,
-      role: "The first of two positive menisci that share the converging power ahead of the stop.",
+      role: "Front positive meniscus. It shares the converging power ahead of the stop with L2; their balance sets back focus against barrel distortion.",
     },
     {
       id: 2,
@@ -65,7 +65,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "S-LAH55 (Ohara equivalent)",
       focalLengthMm: 72.32,
-      role: "The stronger of the two front positive menisci. Its rear surface faces the narrow air gap before L3.",
+      role: "Second positive meniscus, slightly stronger than L1. The curvature of its rear face helps hold down sagittal flare.",
     },
     {
       id: 3,
@@ -77,7 +77,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "S-TIM22 (Ohara equivalent)",
       focalLengthMm: -37.66,
-      role: "Negative meniscus with its steep concave surface facing the stop.",
+      role: "Negative meniscus. Its steep concave rear face, one of the two facing the stop, carries much of the correction of spherical aberration, astigmatism and Petzval sum.",
     },
     {
       id: 4,
@@ -89,7 +89,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "S-TIH6 (Ohara equivalent)",
       focalLengthMm: -21.68,
-      role: "Negative, more dispersive member of the rear doublet. Its front surface forms the rear wall of the stop cavity.",
+      role: "Negative, more dispersive member of the rear doublet. Its steep concave front face, opposite L3 across the stop, shares that correction.",
       cemented: "C1",
     },
     {
@@ -102,7 +102,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "S-LAM54 (Ohara equivalent)",
       focalLengthMm: 40.74,
-      role: "Positive member of the rear doublet, cemented to L4 at their nearly flat interface.",
+      role: "Positive member of the rear doublet, cemented to L4 at a nearly flat interface. It offsets part of L4's negative power and is the first of three high-index positive elements behind the stop.",
       cemented: "C1",
     },
     {
@@ -115,7 +115,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "S-LAH58 (Ohara equivalent)",
       focalLengthMm: 51.83,
-      role: "High-index rear meniscus with its stronger, convex surface facing the image.",
+      role: "High-index positive meniscus, convex to the image. It is the stronger of the two positive singlets behind the doublet.",
     },
     {
       id: 7,
@@ -151,7 +151,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 1e15,
     description:
-      "The patent gives spacings only at infinity. The production lens focuses to 0.45 m by moving the optical assembly as a unit.",
+      "The patent gives spacings only at infinity, and the model stays focused there. The production lens focuses to 0.45 m by moving the whole optical assembly forward.",
   },
 
   aperture: {
