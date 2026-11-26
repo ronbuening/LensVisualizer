@@ -26,7 +26,7 @@ The condition values agree with the prescription: |fI| = 0.8471f, f1 = 7.516f an
 | Front vertex to image         | Unspecified               | 90.0438 mm                             |
 | Petzval sum (f = 1)           | 0.1026                    | 0.1028                                 |
 
-The image plane is the paraxial infinity focus, to within 0.0001 mm. At 42° the chief ray lands 21.22 mm from the axis, 1.77% inside the distortion-free height. That is 98% of the 21.633 mm corner of the 36 × 24 mm frame, which is reached at 42.49° with 0.40 mm of chief-ray clearance at the tightest surface, R4. All surfaces keep positive edge clearance, and the f/2 axial bundle clears every rim. Geometric pupil transmission is 78% at 30° and 27.3% at 42°.
+The image plane is the paraxial infinity focus, to within 0.0001 mm. At 42° the chief ray lands 21.22 mm from the axis, 1.77% inside the distortion-free height. That is 98% of the 21.633 mm corner of the 36 × 24 mm frame, which is reached at 42.49° with 0.40 mm of chief-ray clearance at the tightest surface, R4. All surfaces keep positive edge clearance, and the f/2 axial bundle clears every rim. Geometric pupil transmission is 76% at 30° and 27.3% at 42°.
 
 ## Values Not Printed in the Patent
 
@@ -37,11 +37,13 @@ The image plane is the paraxial infinity focus, to within 0.0001 mm. At 42° the
 | Surfaces | Clear radii (mm)              |
 | -------- | ----------------------------- |
 | R1–R5    | 22.2, 22.2, 16.6, 11.35, 12.3 |
-| R6–R10   | 12.3, 9.9, 9.7, 10.5, 10.5    |
+| R6–R10   | 12.3, 9.9, 8.7, 10.6, 10.6    |
 | R11–R15  | 10.6, 11.3, 11.3, 10.5, 10.5  |
 | R16–R20  | 9.1, 10.6, 10.6, 12.2, 12.2   |
 
-Three rims depart from the drawing. At R4 the figure brings the glass nearly into contact with R5 at about 11.6 mm; the 11.35 mm radius keeps the combined sag within 90% of the axial gap and leaves air between the surfaces. At R16 the figure suggests 10.5 mm, but the printed curvatures of R16 and R17 meet at a radius of 9.602 mm; the 9.1 mm radius leaves about a tenth of the axial gap at the edge. At R8 the figure draws the concave arc to about 7 mm and then a flange. Treating the flange as the opaque edge would lower geometric transmission at 30° from 78% to 50% and at 42° from 27.3% to 19.8%, so the 9.7 mm radius follows the element's outer edge instead.
+Three clear radii depart from the drawing. At R4 the figure brings the glass nearly into contact with R5 at about 11.6 mm; the 11.35 mm radius keeps the combined sag within 90% of the axial gap and leaves air between the surfaces. At R16 the figure suggests 10.5 mm, but the printed curvatures of R16 and R17 meet at a radius of 9.602 mm; the 9.1 mm radius leaves about a tenth of the axial gap at the edge. At R8 the figure ends the concave arc at about 8.3 mm. That radius would lower geometric transmission by up to 7.9 points, at 30°; the 8.7 mm radius costs at most 2.6 points, at 27°, and nothing at 42°.
+
+Three flat lands, square to the axis and opaque, complete the drawn element edges outside these clear radii. L2's rear land runs from 11.35 mm to its 16.6 mm flange, L4's from 8.7 mm to its 9.9 mm edge, and L9's from 9.1 mm to 10.3 mm. L9's land ends 0.03 mm from R17, within 98% of that air gap; the figure draws the two elements meeting there. The lands carry no light and change no ray.
 
 **Real axial pupil.** At the 9.098 mm iris the axial marginal ray enters at 5.454 mm and reaches R16 at 8.550 mm, inside its clear radius. Pupil spherical aberration gives a focal-length-to-entrance-diameter ratio of 2.20. A 5.998 mm entrance radius, corresponding to a real f/2 bundle, would require a 10.347 mm iris and 9.626 mm at R16, beyond the 9.602 mm at which R16 and R17 meet.
 
@@ -78,9 +80,18 @@ Examples 1 and 3 are both 24 mm f/2 designs with 11 elements in nine groups and 
 
 At infinity the finished model gives 23.9926 mm effective focal length, f/2.00, 36.0534 mm of back focus and a 9.098 mm iris radius. The chief ray reaches the 21.63 mm corner at 42.49°.
 
+2026-11-25 rim review:
+
+- Figure 1 (PDF p. 2) was read again at 600 dpi along its slightly tilted axis. The R1-to-R20 vertex span measures about 2,026 pixels for 53.99 mm, or 37.5 pixels/mm, and the R4-to-R13 span gives the same scale. Across the axis, R8's drawn sag at 8.0 mm height reads about 2.7 mm and R4's at 10.1 mm about 4.5 mm, against 2.74 and 4.52 mm from their printed radii. The maker's cutaway was compared at matched scale for shape only.
+- R4 keeps its 11.35 mm clear radius and gains a flat land to 16.6 mm. Figure 1 draws L2 with a square flange: its front face ends at about 16.5 mm and a vertical rear edge rises from the end of the R4 arc to the flange top.
+- R8 changed from 9.7 mm to 8.7 mm, with a flat land to 9.9 mm. Figure 1 ends the R8 arc at about 8.3 mm and draws a vertical rear edge up to L4's 9.9 mm top. A clear radius of 8.3 mm would cost up to 7.9 points of transmission. 8.7 mm is the smallest radius, in 0.1 mm steps, that loses no more than 3 points at any field; it loses 2.6 points at 27°.
+- R9 and R10 changed from 10.5 mm to 10.6 mm. Figure 1 draws the C1 doublet with one flat top at about 10.6 mm, the radius R11 already had.
+- R16 keeps its 9.1 mm clear radius and gains a flat land to 10.3 mm, so that the C2 doublet's top runs nearly level toward its rear corner, as Figure 1 and the cutaway draw it. The land comes within 0.03 mm of R17, so the lens's cross-gap allowance is 98%; 10.3 mm is the largest land that allowance admits.
+- At infinity and full aperture, geometric pupil transmission stays 27.3% at 42° and goes from 78.0% to 75.8% at 30°; the largest loss is 2.6 points at 27°. The 42° field, the 42.49° frame corner and the f/2 aperture are unchanged.
+
 ## Remaining Questions
 
 - The condition table prints 1.8923f for the magnitude of the combined focal length of Groups I and II, where R1–R11 give −2.4205f. The same calculation reproduces the printed values of Examples 2–4, so the Example 1 entry appears to be a misprint. The prescription still satisfies the stated 1.5f to 6f interval.
-- The production iris diameter and the clear edges at R4, R8 and R16 are undocumented. The drawn flange at R8 and the meeting of R16 and R17 leave the wide-open illumination uncertain.
+- The production iris diameter and the clear edges at R4, R8 and R16 are undocumented. R8's clear radius lies 0.4 mm beyond the drawn end of its arc, and R16 is limited by its meeting with R17, so the wide-open illumination remains an estimate.
 - Canon gives 0.11× at 0.3 m. The patent gives neither a finite conjugate nor a second value of D6 from which to determine the floating travel.
 - The factory radii, spacings and glass suppliers and melts, and the original print source of the cutaway, are unknown.

@@ -7,7 +7,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * The printed third-order coefficients place the iris 0.488 mm behind R11 in the
  * 1.9584 mm air space D11. Its radius follows from the stated f/2 aperture, and the
  * image plane is the paraxial infinity focus. The clear radii follow Figure 1, except
- * R4 and R16, held clear of the next surface, and R8, where the drawn flange is not an edge.
+ * R4 and R16, held clear of the next surface, and R8, whose clear radius is kept above
+ * the drawn 8.3 mm to limit the mid-field light loss. Flat lands at R4, R8 and R16 carry
+ * the drawn element edges to 16.6, 9.9 and 10.3 mm. The R16 land ends 0.03 mm from R17.
  * The patent describes the floating air space at D6 but gives its width only at infinity.
  * Its condition table prints 1.8923f for Groups I and II; the prescription gives 2.4205f.
  */
@@ -177,20 +179,20 @@ const LENS_DATA = {
     { label: "1", R: 82.0272, d: 3.2304, sd: 22.2, medium: 1 },
     { label: "2", R: 354.3024, d: 0.1968, sd: 22.2 },
     { label: "3", R: 30.4584, d: 1.4688, sd: 16.6, medium: 2 },
-    { label: "4", R: 13.5408, d: 4.5408, sd: 11.35 },
+    { label: "4", R: 13.5408, d: 4.5408, sd: 11.35, rimExtensionSd: 16.6 },
     { label: "5", R: 31.4376, d: 2.3496, sd: 12.3, medium: 3 },
     { label: "6", R: 67.4232, d: 2.2512, sd: 12.3 },
     { label: "7", R: 62.7312, d: 0.9792, sd: 9.9, medium: 4 },
-    { label: "8", R: 13.0056, d: 4.1856, sd: 9.7 },
-    { label: "9", R: 45.3024, d: 3.1344, sd: 10.5, medium: 5 },
-    { label: "10", R: -70.932, d: 12.4872, sd: 10.5, medium: 6 },
+    { label: "8", R: 13.0056, d: 4.1856, sd: 8.7, rimExtensionSd: 9.9 },
+    { label: "9", R: 45.3024, d: 3.1344, sd: 10.6, medium: 5 },
+    { label: "10", R: -70.932, d: 12.4872, sd: 10.6, medium: 6 },
     { label: "11", R: -166.02, d: 0.488, sd: 10.6 },
     { label: "STO", R: "flat", d: 1.4704 },
     { label: "12", R: 461.2224, d: 4.1136, sd: 11.3, medium: 7 },
     { label: "13", R: -21.7872, d: 2.9088, sd: 11.3 },
     { label: "14", R: -27.5544, d: 2.0568, sd: 10.5, medium: 8 },
     { label: "15", R: -18.8856, d: 0.9792, sd: 10.5, medium: 9 },
-    { label: "16", R: 50.304, d: 1.3224, sd: 9.1 },
+    { label: "16", R: 50.304, d: 1.3224, sd: 9.1, rimExtensionSd: 10.3 },
     { label: "17", R: -116.184, d: 3.036, sd: 10.6, medium: 10 },
     { label: "18", R: -22.5144, d: 0.1464, sd: 10.6 },
     { label: "19", R: 284.4432, d: 2.6448, sd: 12.2, medium: 11 },
@@ -217,6 +219,7 @@ const LENS_DATA = {
     { text: "C1", fromSurface: "9", toSurface: "11" },
     { text: "C2", fromSurface: "14", toSurface: "16" },
   ],
+  checks: { gapSagFrac: 0.98 },
   layout: { yScFill: 0.65 },
 } satisfies LensDataV2Input;
 
