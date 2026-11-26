@@ -10,9 +10,11 @@
 **Published:** July 24, 1973\
 **Example details:** Embodiment 1, columns 3–4 and Figures 1–10
 
-Embodiment 1 is a strong match for the FD 17mm f/4 S.S.C. It combines a 104° field, an f/4 aperture and eleven elements in nine groups. Canon lists the same 11/9 construction for the FD 17mm f/4 introduced in March 1971 and the S.S.C. version introduced in March 1973. Both have a 0.25 m minimum focus, 0.10× maximum magnification and a 72 mm filter thread. The patent priority predates both lenses. Its only other example has nine elements in eight groups, an 84° field and an f/2.8 aperture, corresponding to the FD 24mm f/2.8.
+Embodiment 1 is a strong match for the FD 17mm f/4 S.S.C. Both have a 104° field, an f/4 aperture and eleven elements in nine groups. The patent’s only other example has an 84° field, an f/2.8 aperture and nine elements in eight groups, matching the FD 24mm f/2.8. [US patent, Embodiments 1 and 2](https://patents.google.com/patent/US3748021A/en) · [Canon FD lens instructions](https://cameramanuals.org/lenses/canon_fd_lenses-lang.pdf)
 
-Canon’s period cutaway shows two large front menisci, a thick positive element ahead of the diaphragm and a compact rear assembly. Figure 1 resolves the cemented interfaces at R14 and R17 and locates the floating space between E4 and E5. The cutaway is too coarse to establish the cemented curvatures or the relative motion of the elements. All surfaces in the patent are spherical, and neither source designates an ED element. [Canon catalog, p. 16](https://www.pacificrimcamera.com/rl/00253/00253.pdf#page=16)
+The production specifications are for the 450 g S.S.C. lens introduced in March 1973 with Canon’s Super Spectra multilayer coating. The 490 g FD 17mm f/4 from March 1971 shares its 11/9 construction, 75 × 56 mm barrel, 72 mm filter thread and 0.25 m minimum focus at 0.10×. Those similarities and the patent’s 1970 priority suggest the design also applies to the 1971 lens. Canon lists the December 1979 New FD separately at 360 g and 76.5 × 56 mm, also with eleven elements in nine groups. [1971 FD](https://global.canon/en/c-museum/product/fd129.html) · [1973 FD S.S.C.](https://global.canon/en/c-museum/product/fd130.html) · [1979 New FD](https://global.canon/en/c-museum/product/nfd197.html) · [Canon FD lens instructions](https://cameramanuals.org/lenses/canon_fd_lenses-lang.pdf)
+
+Canon’s S.S.C. cutaway and Figure 1 show two large front menisci, a thick positive element ahead of the diaphragm and a compact rear assembly. The patent resolves the cemented interfaces at R14 and R17 and locates the floating space between E4 and E5. The cutaway alone cannot establish the cemented curvatures or element travel. All patent surfaces are spherical. Neither source identifies an ED element. [Canon lens catalog, p. 16](https://www.360icon.com/PDF/CanonLenses.pdf) · [US patent, Fig. 1](https://patents.google.com/patent/US3748021A/en)
 
 ## Optical Architecture
 
@@ -85,7 +87,7 @@ The German publication of the same application identifies the d line explicitly.
 
 ## Focus Mechanism
 
-The entire lens advances for close focus. At the same time D8 narrows by 0.5525 mm, so the elements behind that gap advance farther than the four in front of it. Figures 5–7 show the field curvature and astigmatism that result when D8 stays at its infinity spacing. Figures 8–10 show the better correction at the same object distance when D8 narrows.
+Canon describes a floating mechanism that corrects field curvature at close distances in the S.S.C. lens. In Embodiment 1 the entire lens advances, and D8 narrows by 0.5525 mm. The elements behind D8 therefore advance farther than the four in front. Figures 5–7 show the field curvature and astigmatism with D8 held at its infinity spacing. Figures 8–10 show the improved correction when D8 narrows. [Canon lens catalog, p. 16](https://www.360icon.com/PDF/CanonLenses.pdf) · [US patent, Figs. 5–10](https://patents.google.com/patent/US3748021A/en)
 
 | Quantity               |   Infinity | Patent near setting |
 | ---------------------- | ---------: | ------------------: |
@@ -94,11 +96,11 @@ The entire lens advances for close focus. At the same time D8 narrows by 0.5525 
 | Rear vertex to film    | 35.2138 mm |          36.5724 mm |
 | Effective focal length |  17.000 mm |           17.010 mm |
 
-The patent prints both D8 spacings and the near object distance of 17.24 focal lengths. It gives only the infinity back focus. The near rear spacing comes from the paraxial conjugate and yields a magnification of −0.0799×. The model ends at the printed distance. Canon’s production lens focuses closer, to 0.25 m at 0.10×. [Canon Camera Museum, FD 17mm f/4 S.S.C.](https://global.canon/en/c-museum/product/fd130.html)
+The patent prints both D8 spacings, the infinity back focus and one finite object distance, 17.24 focal lengths from the film plane. At that distance the calculated rear spacing gives −0.0799× magnification. The model varies both spacings linearly between the two positions and ends at 0.29308 m. The production S.S.C. lens reaches 0.25 m from the film plane at 0.10×. [Canon Camera Museum, FD 17mm f/4 S.S.C.](https://global.canon/en/c-museum/product/fd130.html) · [Canon F-1 instructions, distance scale](https://www.cameramanuals.org/canon_pdf/canon_f-1-original.pdf)
 
 ## Aperture and Image Field
 
-Canon specifies a six-blade diaphragm and a minimum aperture of f/22. The patent shows the iris in D12 without giving its axial coordinate or its diameter. Placing it at the midpoint of that space gives a physical radius of 3.878 mm at f/4. The 20 glass clear radii come from the patent drawing. [Canon Camera Museum specifications](https://global.canon/en/c-museum/product/fd130.html)
+The S.S.C. diaphragm has six blades. Its full stops are f/4, 5.6, 8, 11, 16 and 22. The patent shows the iris in D12. Placing it at the estimated midpoint gives a calculated radius of 3.878 mm at f/4. The 20 glass clear radii are estimates from the drawn edges. [Canon S.S.C. specifications](https://global.canon/en/c-museum/product/fd130.html) · [Canon lens catalog, p. 16](https://www.360icon.com/PDF/CanonLenses.pdf)
 
 Figures 3–4 put the 52° half-field at an image height of 1.235 focal lengths, or 20.995 mm. The chief ray reaches that height at 51.85° in the model. It also reaches the 21.633 mm corner of a 36 × 24 mm frame at 52.63°. The outer pupil is partly vignetted there, even though the chief ray clears the glass.
 
@@ -106,5 +108,7 @@ Figures 3–4 put the 52° half-field at an image height of 1.235 focal lengths,
 
 - Primary prescription, focus table and aberration plots. [US 3,748,021, Embodiment 1](https://patents.google.com/patent/US3748021A/en)
 - Reference wavelength for the glass table. [DE 2,117,367 A1, Example 1](https://patents.google.com/patent/DE2117367A1/en)
-- Production specifications for both FD versions. [1971 FD 17mm f/4](https://global.canon/en/c-museum/product/fd129.html) and [1973 FD 17mm f/4 S.S.C.](https://global.canon/en/c-museum/product/fd130.html)
-- Period cross-section of the mounted lens. [Canon lens catalog, p. 16](https://www.pacificrimcamera.com/rl/00253/00253.pdf#page=16)
+- Canon Camera Museum production specifications. [1971 FD 17mm f/4](https://global.canon/en/c-museum/product/fd129.html) · [1973 FD 17mm f/4 S.S.C.](https://global.canon/en/c-museum/product/fd130.html) · [1979 New FD 17mm f/4](https://global.canon/en/c-museum/product/nfd197.html)
+- S.S.C. cutaway, aperture ring and floating-focus description. [Canon lens catalog, p. 16](https://www.360icon.com/PDF/CanonLenses.pdf)
+- FD construction, diagonal fields and coating designations. [Canon FD lens instructions](https://cameramanuals.org/lenses/canon_fd_lenses-lang.pdf)
+- Canon FD mount, 24 × 36 mm frame, full stops and distance-scale reference. [Canon F-1 instructions](https://www.cameramanuals.org/canon_pdf/canon_f-1-original.pdf)

@@ -46,7 +46,7 @@ const LENS_DATA = {
     focalLengthMm: { marketing: 17, design: 17 },
     fNumber: { marketing: 4, design: 4 },
     closeFocusM: { marketing: 0.25 },
-    specs: ["11 ELEMENTS / 9 GROUPS", "ALL SPHERICAL", "FLOATING FOCUS"],
+    specs: ["11 ELEMENTS / 9 GROUPS", "ALL SPHERICAL", "FLOATING ELEMENTS"],
     imageCircleMm: 41.99,
   },
   elements: [
@@ -83,7 +83,7 @@ const LENS_DATA = {
       vd: 31,
       indexReference: "d",
       glass: "PBM28 (Ohara)",
-      role: "Begins the positive pair between the front menisci and the floating air space.",
+      role: "Reduces the divergence of the beam leaving the two front menisci.",
       focalLengthMm: 93.03,
     },
     {
@@ -95,7 +95,7 @@ const LENS_DATA = {
       vd: 33.8,
       indexReference: "d",
       glass: "PBM22 (Ohara)",
-      role: "Its nearly flat rear face forms the front boundary of the floating air space.",
+      role: "Bends the axial rays nearly parallel before they cross the floating air space.",
       focalLengthMm: 74.75,
     },
     {
@@ -131,7 +131,7 @@ const LENS_DATA = {
       vd: 60.7,
       indexReference: "d",
       glass: "J-SK11 (Hikari)",
-      role: "Negative member of the first doublet behind the iris.",
+      role: "Provides the negative power of the first doublet behind the iris.",
       cemented: "C1",
       focalLengthMm: -20.21,
     },
@@ -144,7 +144,7 @@ const LENS_DATA = {
       vd: 29.2,
       indexReference: "d",
       glass: "S-TIH18 (Ohara)",
-      role: "Positive partner of E7 at their cemented surface R14.",
+      role: "Offsets part of E7’s negative power in the first cemented doublet.",
       cemented: "C1",
       focalLengthMm: 41.92,
     },
@@ -215,7 +215,7 @@ const LENS_DATA = {
     closeFocusM: 0.29308,
     published: [1],
     description:
-      "The whole lens advances toward the subject. The air space between E4 and E5 narrows by 0.5525 mm at the patent’s 0.29308 m setting.",
+      "The whole lens advances toward the subject. The patent gives a 0.5525 mm reduction in the E4–E5 air space at 0.29308 m from the film plane. The production lens focuses to 0.25 m.",
     conjugates: [
       {
         zoomStation: 0,
