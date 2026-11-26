@@ -72,7 +72,7 @@ const LENS_DATA = {
       nd: 1.6968,
       vd: 55.2,
       indexReference: "d",
-      glass: "Unmatched (nd 1.69680 / νd 55.2)",
+      glass: "N-LAK14 (spectral proxy; patent nd 1.69680 / νd 55.2; supplier and melt unspecified)",
       role: "Adds negative power ahead of the two positive front singlets.",
       focalLengthMm: -52.87,
     },

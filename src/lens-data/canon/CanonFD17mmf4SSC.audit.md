@@ -74,8 +74,16 @@ At infinity the model gives 17.000 mm effective focal length, f/4.00, 35.2136 mm
 
 - E6 is labelled Hoya C10, a discontinued glass whose catalog row is 1.50137 / 56.30 (Δnd 0, Δνd +0.10 against the printed 1.50137 / 56.2).
 
+2026-11-26 diagram review:
+
+- E2: `Unmatched (nd 1.69680 / νd 55.2)` → `N-LAK14 (spectral proxy; patent nd 1.69680 / νd 55.2; supplier and melt unspecified)`. The Schott row is 1.69680 / 55.41 (Δnd 0, Δνd +0.21), inside the site's spectral-proxy tolerance of 0.002 in index and 0.25 in Abbe number. Hoya LAC14, at νd 55.46, lies just outside it. The patent prints no colour curves for comparison. E10 stays unmatched: Ohara FSL5 and S-FSL5, at νd 70.21 and 70.24, are the nearest rows.
+- The drawn section was compared with the front-page Figure 1 at 300 dpi. The drawn axis tilts 0.43° across the figure, so heights were read from the local axis. The vertex spacing and the drawn R1 arc give 23.0 to 23.4 px per mm, so heights were converted at 23.29. Mean drawn heights, against the clear radii kept: E1 20.7 against 20.91 mm, E2 17.4 against 17.78, E3 14.5 against 14.56, E4 10.5 against 10.75, E5 7.1 against 7.23, E6 5.1 against 5.08, C1 6.2 against 6.25, C2 7.6 against 7.23 and E11 9.6 against 9.28. The figure draws C2 and E11 taller below the axis than above it (7.9 and 7.3 mm for C2). No clear radius changed.
+- E8 stays sloped from 6.25 mm at R14 to 5.18 mm at R15. Figure 1 carries C1's flat edge across E8 to a bevel at R15, but a flat land on R15 would cross E9's front face, which curves 0.45 mm forward by 6.25 mm.
+- The four lands block no ray. Against the rims before the 2026-11-25 changes, light at the edge of the patent field is unchanged at infinity, mid-focus and the near setting (18.0%, 19.9% and 21.7%). The worst loss is 0.0 points. Figure 1 draws the steps on E1 and E2 square to the axis, a partly bevelled step on E5 and a bevel on E7's front edge.
+- Focus runs from infinity to 0.29 m, the printed 293.08 mm. The front four elements advance 0.81 mm and E5–E11 advance 1.36 mm, so D8 closes from 0.98 to 0.43 mm. Midway the distance reads 0.59 m, with D8 0.70 mm and the back focus 35.89 mm. Element types, roles, focal lengths, brackets, group captions and the stop between E6 and E7 agree with the patent.
+
 ## Remaining Questions
 
-- Figure 1 places the iris mark closer to R12 than the assumed midpoint. Its exact axial position, the mechanical clear apertures and the production rim heights require a dimensioned section.
-- The production glass suppliers and melts are unknown. E2 and E10 have no catalog equivalents within 0.0001 in index and 0.15 in Abbe number.
+- Figure 1 places the iris mark about 0.3 of the way from R12 to R13, about 0.64 mm behind R12, rather than at the assumed midpoint. Its exact axial position, the mechanical clear apertures and the production rim heights require a dimensioned section.
+- The production glass suppliers and melts are unknown. E10 has no catalog row within the site's spectral-proxy tolerance. E2 borrows the dispersion of Schott N-LAK14 as a spectral proxy.
 - The patent gives two focus settings. The actual spacing between those settings and the travel from 0.29308 m to the production minimum of 0.25 m remain undocumented. Canon specifies the diaphragm blade count but gives no blade curvature.

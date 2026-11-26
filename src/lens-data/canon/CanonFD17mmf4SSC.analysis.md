@@ -32,7 +32,7 @@ nd = 1.64000, νd = 60.2. Hoya LACL60 equivalent. f = −70.48 mm. The large con
 
 ### E2 — Negative meniscus
 
-nd = 1.69680, νd = 55.2. Glass unmatched. f = −52.87 mm. The second meniscus continues the divergence before the two positive singlets.
+nd = 1.69680, νd = 55.2. Schott N-LAK14 spectral proxy (catalog νd 55.41). f = −52.87 mm. The second meniscus continues the divergence before the two positive singlets.
 
 ### E3 — Biconvex positive
 
@@ -70,20 +70,20 @@ nd = 1.77250, νd = 49.5. Ohara LAH66 equivalent. f = +33.37 mm. The final singl
 
 ## Glass Identification and Selection
 
-The German publication of the same application identifies the d line explicitly. The following catalog entries agree with the patent within 0.0001 in index and 0.15 in Abbe number. The original suppliers and melts remain unknown. [German publication, Example 1](https://patents.google.com/patent/DE2117367A1/en)
+The German publication of the same application identifies the d line explicitly. Except for E2, the catalog entries below agree with the patent within 0.0001 in index and 0.15 in Abbe number. E2 lies 0.21 in Abbe number from Schott N-LAK14, inside the site's spectral-proxy tolerance. The model keeps its printed index and Abbe number and borrows only that row's change of index with wavelength. No catalog row comes within that tolerance of E10, whose nearest rows are Ohara FSL5 and S-FSL5 at νd 70.21 and 70.24. The original suppliers and melts remain unknown. [German publication, Example 1](https://patents.google.com/patent/DE2117367A1/en)
 
-| Elements | Printed nd / νd | Catalog equivalent |
-| -------- | --------------- | ------------------ |
-| E1       | 1.64000 / 60.2  | Hoya LACL60        |
-| E2       | 1.69680 / 55.2  | Unmatched          |
-| E3       | 1.68893 / 31.0  | Ohara PBM28        |
-| E4       | 1.64769 / 33.8  | Ohara PBM22        |
-| E5, E11  | 1.77250 / 49.5  | Ohara LAH66        |
-| E6       | 1.50137 / 56.2  | Hoya C10           |
-| E7       | 1.56384 / 60.7  | Hikari J-SK11      |
-| E8       | 1.72151 / 29.2  | Ohara S-TIH18      |
-| E9       | 1.92286 / 20.9  | Ohara PBH21        |
-| E10      | 1.48749 / 69.8  | Unmatched          |
+| Elements | Printed nd / νd | Catalog equivalent             |
+| -------- | --------------- | ------------------------------ |
+| E1       | 1.64000 / 60.2  | Hoya LACL60                    |
+| E2       | 1.69680 / 55.2  | Schott N-LAK14, spectral proxy |
+| E3       | 1.68893 / 31.0  | Ohara PBM28                    |
+| E4       | 1.64769 / 33.8  | Ohara PBM22                    |
+| E5, E11  | 1.77250 / 49.5  | Ohara LAH66                    |
+| E6       | 1.50137 / 56.2  | Hoya C10                       |
+| E7       | 1.56384 / 60.7  | Hikari J-SK11                  |
+| E8       | 1.72151 / 29.2  | Ohara S-TIH18                  |
+| E9       | 1.92286 / 20.9  | Ohara PBH21                    |
+| E10      | 1.48749 / 69.8  | Unmatched                      |
 
 ## Focus Mechanism
 
