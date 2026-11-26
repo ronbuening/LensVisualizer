@@ -6,7 +6,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * The ten glass indices and Abbe numbers refer to the helium d line.
  * Figure 3 places the iris 0.70 mm behind the plane R11 in the 2.1616 mm air space.
  * Its radius follows from the stated f/2 aperture. The clear radii follow Figure 3,
- * with R4 limited by its steep curvature and R15 enlarged by 0.2 mm to pass the axial beam.
+ * with R4 limited by its steep curvature. Flat lands carry R4 and R8 out to the drawn
+ * edges of E2 and E4. Figure 3 draws R15 overlapping E9, so R15 stops at 9.1 mm,
+ * the largest radius that keeps the usual clearance to E9.
  * The image plane is the paraxial infinity focus. The patent describes the floating
  * air space at D6 but gives its width only at infinity.
  */
@@ -162,11 +164,11 @@ const LENS_DATA = {
     { label: "1", R: 47.95, d: 4.2252, sd: 20.6, medium: 1 },
     { label: "2", R: 203.4452, d: 0.196, sd: 20.6 },
     { label: "3", R: 41.7004, d: 1.4728, sd: 16.6, medium: 2 },
-    { label: "4", R: 12.586, d: 5.4236, sd: 11.3 },
+    { label: "4", R: 12.586, d: 5.4236, sd: 11.3, rimExtensionSd: 13.2 },
     { label: "5", R: 23.114, d: 2.3576, sd: 11.2, medium: 3 },
     { label: "6", R: 44.9176, d: 1.9068, sd: 11.2 },
     { label: "7", R: 117.67, d: 0.9828, sd: 9.7, medium: 4 },
-    { label: "8", R: 14.462, d: 3.0352, sd: 8.3 },
+    { label: "8", R: 14.462, d: 3.0352, sd: 8.3, rimExtensionSd: 9.7 },
     { label: "9", R: 53.6788, d: 3.2424, sd: 10.4, medium: 5 },
     { label: "10", R: -52.276, d: 9.9064, sd: 10.4, medium: 6 },
     { label: "11", R: "flat", d: 0.7, sd: 10.4 },
@@ -174,7 +176,7 @@ const LENS_DATA = {
     { label: "12", R: 75.5972, d: 4.8132, sd: 11.1, medium: 7 },
     { label: "13", R: -21.5712, d: 1.7248, sd: 11.1 },
     { label: "14", R: -26.1604, d: 0.9828, sd: 10.4, medium: 8 },
-    { label: "15", R: 42.8764, d: 2.1448, sd: 8.7 },
+    { label: "15", R: 42.8764, d: 2.1448, sd: 9.1 },
     { label: "16", R: -44.8168, d: 2.2596, sd: 10.3, medium: 9 },
     { label: "17", R: -22.6856, d: 0.1484, sd: 10.3 },
     { label: "18", R: 230.4036, d: 3.3404, sd: 11.9, medium: 10 },
