@@ -24,7 +24,7 @@ The focal length exceeds Canon's nominal 300 mm by 0.11 mm. The printed film pla
 
 ## Values Not Printed in the Patent
 
-**Clear radii.** Figure 4 is scaled by the 126.09 mm between the first and last powered vertices. Taking half the full height of each element reduces the effect of the scan's slight tilt. Both faces of each lens use the same radius. Where the drawn rim would cut the axial f/4 beam, the marginal ray sets the minimum.
+**Clear radii.** Figure 4 is scaled by the 126.09 mm between the first and last powered vertices. Taking half the full height of each element reduces the effect of the scan's slight tilt. Both faces of each lens reach the same outer radius. Figure 4 ends L4's rear face in a flat land, so that face's clear radius is 18.6 mm, set by the axial f/4 beam, and the land continues to 20.4 mm. Where the drawn rim would cut the axial f/4 beam, the marginal ray sets the minimum.
 
 | Element | Figure 4 half-height (mm) | Adopted clear radius (mm) |
 | ------- | ------------------------: | ------------------------: |
@@ -68,8 +68,18 @@ At infinity the model gives 300.111 mm effective focal length, f/4.00, 116.576 m
 
 - The rims were compared again with Fig. 4 and the maker's drawing; none changed.
 
+2026-11-26 diagram review:
+
+- L4's rear face (surface 8) changed from a 20.4 mm clear radius to 18.6 mm, with a flat land from 18.6 to 20.4 mm. At 6.12 px/mm in Figure 4 (vertex spacings agree within 1 %, and six fitted arc radii average 0.998 of the printed radii with the same scale across the axis), the R8 curve meets a vertical stroke at about 16.3 mm and the stroke runs to the 19.3–19.6 mm edge. The axial f/4 beam needs 18.55 mm at that face, so the curve stops at 18.6 mm. The face now ends about 2 mm farther from the diaphragm, nearer the drawn land.
+- Lands and cuts: the new land is the lens's only one. Against the rims before the 2026-11-25 rim review, no field loses light (worst loss 0.0 points; 74.0 % at the 4.1° corner), and the 9.74° chief-ray field and f/4.00 are unchanged.
+- The other faces were measured again on the same scale (stroke centre to outer edge): L1 37.2–37.6, L2 36.0–36.4, L3 35.9–36.2, L4 front 19.3–19.6, L5 16.0–16.3 and L6 16.3–16.5 mm. All lie within 0.4 mm of the adopted radii except L4's front, which stays at 20.4 mm for the 20.33 mm f/4 beam. The drawn order of heights is kept.
+- The UD tags on L1 and L3 agree with Canon's count of two UD elements in the New FD L, the New FD L cutaway and Cavina's diagram; their notes now name those sources. Canon's pages mention no fluorite. Element numbers, types, the diaphragm position, group captions and the six exact catalog glasses were checked against the patent and need no change, and every element carries catalog dispersion.
+- Colour against Figure 11A, read from the plot's own tilted baseline at the 300 mm scale: d agrees (+0.014 mm marginal spherical aberration against about +0.02 mm), as do paraxial g (+0.09 mm behind d against +0.11 mm) and marginal C (+0.12 against +0.13 mm). Paraxial C sits at +0.11 mm against about +0.04 mm, and marginal g at +0.18 against about +0.13 mm. No other exact catalog row moves C by more than 0.02 mm. Distortion at 4.2° is +1.47 % against about +1.6 % in Figure 11C.
+- The focus description now says that the patent moves L5 and L6 together and that Canon calls this rear focusing.
+
 ## Remaining Questions
 
 - The 1978 lens's clear apertures, physical iris diameter and blade curvature are undocumented. The patent gives rim proportions, and the available colour cutaway shows the later New FD L. Scaled by its first-to-last lens span, that small cutaway draws the three front lenses about 1–4 mm larger in radius than Figure 4 and the rear pair about 1 mm larger. The rims follow Figure 4.
 - Production glass suppliers and melt data are unknown. Neither the front protector nor the rear filter has a published thickness or glass type in these sources, leaving the factory glass-to-film path uncertain.
-- Column 3 describes the rear pair moving toward the object for close focus. With the Example 4 surfaces and a 3 m object-to-film distance, paraxial focus requires about 25 mm of travel toward the image. Figure 12 gives no spacing or displacement to settle the direction or travel.
+- Column 3 describes the rear pair moving toward the object for close focus. With the Example 4 surfaces only travel toward the image refocuses: about 25 mm, paraxially, for a 3 m object-to-film distance, while moving the pair toward the object increases the defocus. Figure 12 gives no spacing, so the production travel is unknown.
+- The model's paraxial C-line focus lies about 0.07 mm farther behind d than the curve labelled c in Figure 11A, and its marginal g-line focus about 0.05 mm farther than the curve labelled g. The patent prints no partial dispersions, and no exact catalog row for the six glasses closes the C difference.

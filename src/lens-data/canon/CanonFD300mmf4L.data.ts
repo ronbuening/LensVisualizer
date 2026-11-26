@@ -9,7 +9,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * filter is dimensioned in the patent, so both are omitted.
  *
  * The clear radii follow Figure 4, enlarged where the axial f/4 marginal ray
- * requires more clearance. The diaphragm radius is calculated from f/4.
+ * requires more clearance. Figure 4 ends L4's rear face short of the edge in
+ * a flat land; that face stops at the f/4 beam (18.6 mm) and the land runs to
+ * the 20.4 mm edge. The diaphragm radius is calculated from f/4.
  * Figure 12 shows aberrations at 10f without giving the focusing-group travel.
  */
 const LENS_DATA = {
@@ -48,7 +50,8 @@ const LENS_DATA = {
       focalLengthMm: 153.66,
       glass: "K-PFK80 (SUMITA)",
       apd: "inferred",
-      apdNote: "The FD L glass diagram identifies the first positive lens as ultra-low dispersion.",
+      apdNote:
+        "Canon counts two UD elements in the New FD L. Its cutaway and Cavina's diagram of the 1978 lens both mark this lens.",
       role: "Supplies most of the front group's positive power. Its ultra-low dispersion limits axial colour.",
     },
     {
@@ -74,7 +77,8 @@ const LENS_DATA = {
       focalLengthMm: 205.68,
       glass: "K-PFK80 (SUMITA)",
       apd: "inferred",
-      apdNote: "The FD L glass diagram identifies the third lens as the second ultra-low-dispersion positive.",
+      apdNote:
+        "The second of Canon's two UD elements, marked in the New FD L cutaway and in Cavina's diagram of the 1978 lens.",
       role: "Shares the front group's converging power with L1 and uses the same ultra-low-dispersion glass.",
     },
     {
@@ -122,7 +126,7 @@ const LENS_DATA = {
     { label: "5", R: 122.25, d: 10.05, sd: 36.1, medium: 3 },
     { label: "6", R: -606.93, d: 63.03, sd: 36.1 },
     { label: "7", R: 29.07, d: 4.47, sd: 20.4, medium: 4 },
-    { label: "8", R: 26.16, d: 15.06, sd: 20.4 },
+    { label: "8", R: 26.16, d: 15.06, sd: 18.6, rimExtensionSd: 20.4 },
     { label: "STO", R: "flat", d: 2.19 },
     { label: "9", R: 75.93, d: 3.66, sd: 16.3, medium: 5 },
     { label: "10", R: -557.91, d: 2.04, sd: 16.3 },
@@ -133,7 +137,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 1e15,
     description:
-      "Infinity focus only. L5 and L6 move together in the patent's design. The patent tabulates their position only at infinity.",
+      "Infinity focus only. The patent focuses by moving L5 and L6 together, which Canon calls rear focusing, but tabulates their position only at infinity.",
   },
   groups: [
     { text: "Front group", fromSurface: "1", toSurface: "6" },
