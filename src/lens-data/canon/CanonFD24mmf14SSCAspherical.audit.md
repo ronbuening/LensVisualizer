@@ -54,17 +54,17 @@ Canon's section matches Fig. 1 in the shapes of all ten elements, the eight air-
 - Group labels I–III follow Fig. 1. The labels C1 and C2 mark the two cemented pairs, and 14A marks the aspherical face that Canon's section also shows. The glass equivalents below supply dispersion for the ten elements while preserving the patent’s index and Abbe-number pairs.
 - The production specifications are those of the 1975 Canon FD lens for 24 × 36 mm film. Canon lists 24 mm, f/1.4, ten elements in eight groups, eight blades and 0.30 m close focus. The aperture ring carries f/1.4, 2, 2.8, 4, 5.6, 8, 11 and 16. The model retains the single infinity prescription because the patent gives no floating-group spacings. [Canon S.S.C. specifications](https://global.canon/en/c-museum/product/fd132.html) · [Canon AE-1 instructions](https://www.canonclassics.com/pdf/Canon-AE1-Instructions-part2-en.pdf) · [Marco Cavina’s photographs of the original lens](https://www.marcocavina.com/articoli_fotografici/articolo_canon_fd_l.pdf)
 
-The differences are tabulated catalog values minus the patent values at the helium d line. The patent gives no glass names. [Ohara S-BAL35](https://refractiveindex.info/?shelf=specs&book=OHARA-optical&page=S-BAL35) · [Ohara S-TIH6](https://refractiveindex.info/?shelf=specs&book=OHARA-optical&page=S-TIH6) · [Hoya LAC8](https://refractiveindex.info/?shelf=specs&book=HOYA-optical&page=LAC8) · [Hoya TAF1](https://refractiveindex.info/?shelf=specs&book=HOYA-optical&page=TAF1) · [Sumita glass table](https://web.stanford.edu/class/ee347/SumitaAll.PDF)
+The differences are tabulated catalog values minus the patent values at the helium d line. The patent gives no glass names. [Ohara S-BAL35](https://refractiveindex.info/?shelf=specs&book=OHARA-optical&page=S-BAL35) · [Ohara PBH6](https://refractiveindex.info/?shelf=specs&book=OHARA-optical&page=PBH6) · [Hoya LAC8](https://refractiveindex.info/?shelf=specs&book=HOYA-optical&page=LAC8) · [Hoya TAF1](https://refractiveindex.info/?shelf=specs&book=HOYA-optical&page=TAF1) · [Ohara PBL22](https://refractiveindex.info/?shelf=specs&book=OHARA-optical&page=PBL22)
 
 | Elements | Catalog equivalent | Δnd | Δνd |
 | --- | --- | ---: | ---: |
 | E1, E2, E4 | Ohara S-BAL35 | 0.00000 | +0.035 |
-| E3, E7 | Ohara S-TIH6 | +0.000001 | +0.025 |
+| E3, E7 | Ohara PBH6 | −0.000003 | +0.035 |
 | E5 | Hoya LAC8 | 0.00000 | −0.060 |
-| E6 | Sumita LF2 | 0.00000 | −0.100 |
+| E6 | Ohara PBL22 | −0.000004 | −0.021 |
 | E8, E9, E10 | Hoya TAF1 | 0.00000 | +0.030 |
 
-The dispersion curves used in the model give slightly different Abbe numbers for LF2 (40.97 versus 41.0 in the table) and TAF1 (49.62 versus 49.63). At infinity the model gives 24.499 mm effective focal length, f/1.40 and 36.498 mm paraxial back focus. The full-frame corner falls at 42.05°.
+The dispersion curves used in the model give a slightly different Abbe number for TAF1 (49.62 versus 49.63). At infinity the model gives 24.499 mm effective focal length, f/1.40 and 36.498 mm paraxial back focus. The full-frame corner falls at 42.05°.
 
 2026-11-25 rim review:
 
@@ -82,6 +82,7 @@ The dispersion curves used in the model give slightly different Abbe numbers for
 - Focus description: "Canon used floating elements for close focusing. The patent gives only the infinity spacings." → the patent gives only infinity spacings and does not discuss focusing, and Canon credits a floating mechanism with high definition from the closest distance to infinity. The patent text never mentions focusing or floating elements. Canon's museum page names the floating mechanism.
 - Checked and unchanged: element types against the signs of R, all ten focal lengths against the calculated values, group captions I–III and cemented brackets C1 (surfaces 5–7) and C2 (12–14A) against Fig. 1, and the iris between E6 and E7. No element carries a special-dispersion tag, since neither the patent nor Canon designates one. The page shows no focus or zoom movement.
 - Fig. 2A d line against the model: −0.012/−0.008 mm at 10% of the aperture radius, −0.032/−0.030 at 20%, −0.088/−0.089 at 40%, −0.117/−0.107 at 50%, −0.125/−0.110 at 60%, −0.079/−0.086 at 80%, −0.042/−0.081 at 90% and −0.034/+0.025 mm at full aperture (printed/model).
+- E6 glass: Sumita LF2 → Ohara PBL22. The printed 1.58921/41.1 matches PBL22 within 0.000004 in nd and 0.021 in νd, against 0.13 in νd for LF2, and Ohara supplied the other Canon rows of the period.
 
 ## Remaining Questions
 

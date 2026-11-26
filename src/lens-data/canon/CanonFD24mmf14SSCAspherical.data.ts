@@ -118,7 +118,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: -46.01,
       role: "Partly offsets the power of element 5 immediately ahead of the iris.",
-      glass: "LF2 (Sumita catalog equivalent)",
+      glass: "PBL22 (OHARA catalog equivalent)",
     },
     {
       id: 7,
