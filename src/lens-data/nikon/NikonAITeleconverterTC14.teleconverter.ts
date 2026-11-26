@@ -6,7 +6,8 @@ import type { TeleconverterDataV2Input } from "../../types/lensDataV2.js";
  * nine internal spacings, indices and Abbe numbers are as printed, with lengths in millimetres.
  * The clear radii are measured from Figure 3 to about ±0.4 mm. The patent leaves
  * the reference wavelength unspecified. The glass values are treated as helium d-line
- * data, with Sumita BK1 providing a dispersion curve for the last element.
+ * data. Sumita BK1 matches the last element. Hikari J-LASF017 lends its dispersion curve
+ * to L2 and L4 within the site's spectral-proxy tolerance, keeping the printed index.
  *
  * The host image lies 48.968 mm behind the first vertex (printed d₀ = −48.968 mm).
  * Subtracting the 30.883 mm optical track from the printed 71.001 mm to the final
@@ -96,7 +97,7 @@ const TELECONVERTER_DATA = {
       indexReference: "d",
       indexReferenceNote: "The patent gives n and ν without a wavelength. The helium d line is assumed.",
       focalLengthMm: -34.11,
-      glass: "Unmatched (nd 1.79668 / νd 45.4)",
+      glass: "J-LASF017 (spectral proxy; patent nd 1.79668 / νd 45.4; supplier and melt unspecified)",
       role: "Provides the strongest negative power in the converter and gives the forward group its weak net divergence.",
     },
     {
@@ -122,7 +123,7 @@ const TELECONVERTER_DATA = {
       indexReference: "d",
       indexReferenceNote: "The patent gives n and ν without a wavelength. The helium d line is assumed.",
       focalLengthMm: -51.49,
-      glass: "Unmatched (nd 1.79668 / νd 45.4)",
+      glass: "J-LASF017 (spectral proxy; patent nd 1.79668 / νd 45.4; supplier and melt unspecified)",
       role: "Negative element that gives the rearward group its divergent power.",
     },
     {

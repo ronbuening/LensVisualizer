@@ -36,7 +36,7 @@ L1 begins the weakly divergent forward group. Its two faces have similar curvatu
 
 ### L2 — Biconcave negative
 
-nd = 1.79668, νd = 45.4. Glass unmatched. f = −34.11 mm.
+nd = 1.79668, νd = 45.4. No catalog glass matches exactly. Hikari J-LASF017 supplies the dispersion curve. f = −34.11 mm.
 
 L2 is the strongest element in the converter. Its steeper face points toward the image. Its negative power outweighs the combined effect of L1 and L3.
 
@@ -48,7 +48,7 @@ L3 bends the beam mainly at its front face. Its rear radius is −5196.816 mm, g
 
 ### L4 — Biconcave negative
 
-nd = 1.79668, νd = 45.4. Glass unmatched. f = −51.49 mm.
+nd = 1.79668, νd = 45.4. The same glass as L2, with the J-LASF017 dispersion curve. f = −51.49 mm.
 
 L4 gives the rearward pair its negative power. Its more strongly curved rear face borders the 0.200 mm air space ahead of L5.
 
@@ -60,7 +60,7 @@ The thickest singlet (9 mm) closes the rearward group. Its stronger front curvat
 
 ## Glass Identification and Selection
 
-The two negative elements share the highest index. The patent uses this index distribution to limit field curvature and assigns the forward group most of the longitudinal color correction and the rearward group most of the lateral color correction. Only L5 has a matching catalog glass. Sumita BK1 supplies its dispersion curve. The suppliers and melts of the five production elements remain unknown. [Patent, columns 4–6](https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/4206971) · [Sumita glass table, BK1](https://web.stanford.edu/class/ee347/SumitaAll.PDF)
+The two negative elements share the highest index. The patent uses this index distribution to limit field curvature and assigns the forward group most of the longitudinal color correction and the rearward group most of the lateral color correction. Only L5 has a matching catalog glass. Sumita BK1 supplies its dispersion curve. The L2 and L4 glass lies within the site's spectral-proxy tolerance of Hikari J-LASF017 (nd 1.79500, νd 45.31). The model keeps the printed index and borrows that glass's dispersion curve. No catalog glass lies within that tolerance of the L1 and L3 pair. The nearest, Hoya FF5 at 1.59270 / 35.45, is 0.0024 lower in index, so those two elements use the printed index and Abbe number alone. Both pairs recur in Embodiment 2, and the 1.59507 / 35.6 pair also appears in the master lens table. The suppliers and melts of the five production elements remain unknown. [Patent, columns 4–6](https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/4206971) · [Sumita glass table, BK1](https://web.stanford.edu/class/ee347/SumitaAll.PDF)
 
 ## Focus Mechanism and Aperture
 
