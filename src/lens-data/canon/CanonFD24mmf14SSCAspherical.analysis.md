@@ -10,13 +10,15 @@
 **Published:** November 16, 1976\
 **Example details:** Example 1, Fig. 1 and the tables in columns 5–6. Claim 8 repeats the prescription.
 
-Canon introduced the FD 24mm f/1.4 S.S.C. Aspherical in March 1975. Its construction diagram strongly identifies Example 1 with this lens. Both show ten elements in eight air-spaced groups, a stepped front meniscus, a cemented pair on each side of the iris, and a biconvex singlet followed by a biconcave singlet just ahead of it. Canon places the polished asphere on the rear of the eighth element, precisely where Fig. 1 marks surface 14. The relative element diameters also agree to about 2% of the front-element diameter. [Canon specifications](https://global.canon/en/c-museum/product/fd132.html) · [Canon construction diagram](https://global.canon/ja/c-museum/wp-content/uploads/2015/05/fd132-lens-construction.gif)
+Canon introduced the FD 24mm f/1.4 S.S.C. Aspherical in March 1975. Its construction diagram strongly supports identification with Example 1. Both show ten elements in eight air-spaced groups, a stepped front meniscus, a cemented pair on each side of the iris, and a biconvex singlet followed by a biconcave singlet just ahead of it. Canon places the polished asphere on the rear of the eighth element, where the patent marks surface 14. The element diameters agree to within about 2% of the front-element diameter. [Canon specifications and construction diagram](https://global.canon/en/c-museum/product/fd132.html) · [US 3,992,085, Fig. 1 and Example 1](https://patents.justia.com/patent/3992085)
+
+The 1975 FD lens has a silver breech-lock ring, Super Spectra coating and a 72 mm filter thread. Its eight-blade automatic diaphragm is marked in full stops from f/1.4 to f/16. Canon introduced the New FD 24mm f/1.4L successor in December 1979. [Canon FD sales guide](https://www.pacificrimcamera.com/rl/00015/00015.pdf) · [Canon S.S.C. specifications](https://global.canon/en/c-museum/product/fd132.html) · [Marco Cavina’s photographs of the barrel and aperture ring](https://www.marcocavina.com/articoli_fotografici/articolo_canon_fd_l.pdf) · [Canon New FD release date](https://global.canon/en/c-museum/product/nfd199.html)
 
 Example 2 reverses the two singlets ahead of the iris. Example 3 moves the front cemented pair into group II. Example 4 opens to f/1.2. These differences distinguish Example 1 among the four prescriptions. [US 3,992,085](https://patents.justia.com/patent/3992085)
 
 ## Optical Architecture
 
-Momiyama divides the eight air-spaced groups into three powered sections. Group I diverges the beam. Groups II and III converge it, with the iris between them. Their calculated focal lengths are −43.614, +44.701 and +33.576 mm, respectively. This distribution gives the reflex mirror 36.50 mm of back focus with a focal length of only 24.50 mm. The prescription uses the patent's dimensions in millimetres. Canon marketed the lens as 24 mm, and both sources specify f/1.4.
+Momiyama divides the eight air-spaced groups into three powered sections. Group I diverges the beam. Groups II and III converge it, with the iris between them. Their calculated focal lengths are −43.614, +44.701 and +33.576 mm, respectively. This retrofocus arrangement gives the reflex mirror 36.50 mm of back focus. The prescription uses the patent's millimetres at its stated 24.5 mm focal length. Canon marketed the lens as 24 mm. Both specify f/1.4 and an 84° diagonal field. [US 3,992,085, Example 1](https://patents.justia.com/patent/3992085) · [Canon FD sales guide](https://www.pacificrimcamera.com/rl/00015/00015.pdf)
 
 The first and last glass vertices are 69.618 mm apart. The patent places the film 36.500 mm beyond the last vertex, 1.7 µm behind paraxial focus. At the specified 42° half-field the chief ray reaches an image height of 21.61 mm. At 42.05° it reaches 21.65 mm, the corner height used for the 35 mm format. At f/1.4 the visible fraction of the pupil falls from 100% on axis to about 23% at the corner.
 
@@ -54,7 +56,7 @@ The ten elements use five distinct index and Abbe-number pairs. The patent label
 
 ## Focus Mechanism
 
-Canon specifies a floating mechanism, 0.30 m minimum focus and 0.117× maximum magnification. Its diagram identifies the elements but gives no movement arrows. None of the four patent examples specifies a moving group, finite conjugate or change in spacing. The model therefore represents infinity focus only. [Canon specifications and diagram](https://global.canon/en/c-museum/product/fd132.html)
+The production lens uses floating elements and reaches 0.117× at 0.30 m, measured from the film plane to the subject. Canon's section shows no movement arrows. All four patent examples give only infinity spacings, so the model focuses at infinity and the travel of the floating elements remains unknown. [Canon S.S.C. specifications and diagram](https://global.canon/en/c-museum/product/fd132.html) · [Canon AE-1 instructions, film plane indicator](https://www.canonclassics.com/pdf/Canon-AE1-Instructions-part2-en.pdf) · [US 3,992,085](https://patents.justia.com/patent/3992085)
 
 ## Aspherical Surface and Clear Apertures
 
@@ -65,5 +67,6 @@ The prescription gives a 10.681 mm air space between groups II and III. Fig. 1 p
 ## Sources
 
 - Optical prescription, aspherical sag, group powers, and comparison of the four examples. [US 3,992,085](https://patents.justia.com/patent/3992085)
-- Production specifications, floating focus and placement of the polished asphere. [Canon Camera Museum](https://global.canon/en/c-museum/product/fd132.html) · [Canon optical section](https://global.canon/ja/c-museum/wp-content/uploads/2015/05/fd132-lens-construction.gif)
-- Glass equivalents and dispersion data. [Ohara optical glass catalog](https://oharacorp.com/glass-catalog/) · [Hoya optical glass data](https://www.hoya-opticalworld.com/english/datadownload/index.html) · [Sumita optical glass catalogs](https://www.sumita-opt.co.jp/en/download/)
+- S.S.C. construction, specifications, coating and floating focus. [Canon Camera Museum, S.S.C.](https://global.canon/en/c-museum/product/fd132.html) · [Canon FD sales guide](https://www.pacificrimcamera.com/rl/00015/00015.pdf)
+- Film-plane distance scale, 24 × 36 mm format, barrel markings and successor date. [Canon AE-1 instructions](https://www.canonclassics.com/pdf/Canon-AE1-Instructions-part2-en.pdf) · [Marco Cavina, Canon FD lenses](https://www.marcocavina.com/articoli_fotografici/articolo_canon_fd_l.pdf) · [Canon Camera Museum, New FD](https://global.canon/en/c-museum/product/nfd199.html)
+- Optical constants of the five catalog equivalents. [Ohara S-BAL35](https://refractiveindex.info/?shelf=specs&book=OHARA-optical&page=S-BAL35) · [Ohara S-TIH6](https://refractiveindex.info/?shelf=specs&book=OHARA-optical&page=S-TIH6) · [Hoya optical glass catalog, LAC8 and TAF1](https://www.scribd.com/document/896708123/HOYA-Optical-Glass-Catalog) · [Sumita glass table, LF2](https://web.stanford.edu/class/ee347/SumitaAll.PDF)

@@ -1,32 +1,36 @@
-# CANON FD 24mm f/1.4 S.S.C. ASPHERICAL — audit
+# CANON FD 24mm f/1.4 S.S.C. ASPHERICAL — Audit Log
 
 ## Source
 
-Kikuo Momiyama, US 3,992,085, assigned to Canon Inc., issued November 16, 1976. Example 1 is in columns 5–6, with the optical section in Fig. 1, aberrations in Fig. 2 and the prescription repeated in claim 8. Dimensions are in millimetres at the stated 24.5 mm focal length. [Patent text](https://patents.justia.com/patent/3992085)
+Kikuo Momiyama, *Large Aperture Wide Angle Lens System Employing an Aspherical Surface*, US 3,992,085, assigned to Canon Kabushiki Kaisha (Canon Inc.). The Japanese priority application 47-66359 dates to July 4, 1972. The US application of February 21, 1975 continued the June 13, 1973 application. The patent issued November 16, 1976. Fig. 1 shows the optical section and Fig. 2 the aberrations. Example 1 appears on PDF page 8, columns 5–6. Claim 8 repeats the prescription. [Patent text and claims](https://patents.justia.com/patent/3992085)
 
-## Transcription
+Canon's museum entry gives the construction diagram, launch date, iris specifications and close-focus performance of the S.S.C. lens. The FD sales guide lists its 84° field, Super Spectra coating and automatic diaphragm. [Canon Camera Museum](https://global.canon/en/c-museum/product/fd132.html) · [Canon FD sales guide](https://www.pacificrimcamera.com/rl/00015/00015.pdf)
 
-The 18 radii (with their signs), axial spacings, ten index and Abbe-number pairs and 36.500 mm back focus agree with Example 1. Elements 3/4 share surface 6 and elements 7/8 share surface 13. The patent adds fourth-, sixth-, eighth- and tenth-order terms to a spherical base at surface 14, the rear face of element 8. The conic constant is zero. At the table's 14.700 mm height, the coefficients give a sag magnitude of 2.21322 mm against the printed 2.21315 mm.
+## Transcription Check
 
-## First-Order Values
+All 18 signed radii, glass thicknesses, air spaces, ten refractive-index and Abbe-number pairs and the 36.500 mm back focus agree with the printed page. E3 and E4 share surface 6. E7 and E8 share surface 13. The dimensions are in millimetres at the stated 24.5 mm focal length.
+
+Surface 14 is the rear face of E8. The patent adds fourth-, sixth-, eighth- and tenth-order terms to a spherical base, giving a conic constant of zero. Its sag column gives magnitudes. At the last tabulated height of 14.700 mm, the printed coefficients give 2.21322 mm against the table’s 2.21315 mm.
+
+## First-Order Check
 
 | Quantity at infinity | Patent | Model |
 | --- | ---: | ---: |
-| Effective focal length | 24.5 mm | 24.4990 mm |
-| Relative aperture | f/1.4 | f/1.400 |
-| Back focus | 36.500 mm | 36.4983 mm paraxial |
+| Effective focal length | 24.5 mm | 24.499 mm |
+| Relative aperture | f/1.4 | f/1.40 |
+| Back focus from surface 18 | 36.500 mm | 36.498 mm paraxial |
 | Group I focal length | −43.614 mm | −43.614 mm |
 | Group II focal length | +44.702 mm | +44.701 mm |
 | Group III focal length | +33.572 mm | +33.576 mm |
 | Diagonal half-field | 42° | 42.05° at 21.65 mm image height |
 
-The prescription spans 69.618 mm between the first and last vertices and 106.118 mm from the first vertex to the printed image plane. The image plane lies 1.7 µm behind paraxial focus. At exactly 42° the chief ray reaches 21.609 mm.
+The first and last glass vertices are 69.618 mm apart. The printed film plane lies 106.118 mm behind the first vertex and 1.7 µm behind paraxial focus. At exactly 42° the chief ray reaches 21.609 mm.
 
 ## Values Not Printed in the Patent
 
-Fig. 1 places the iris 3.42 mm behind surface 11 and 7.261 mm ahead of surface 12. The printed spacing is their sum, 10.681 mm. The calculated f/1.4 iris radius is 11.20 mm.
+The table gives a 10.681 mm air space between surfaces 11 and 12. Fig. 1 places the iris 3.42 mm behind surface 11, leaving 7.261 mm to surface 12. The calculated iris radius for f/1.4 is 11.20 mm.
 
-The 69.618 mm vertex span sets the scale of the drawing. The following clear radii come from the ends of the optical curves, excluding bevels and the stepped outer rim of element 1. The second surface uses 18.9 mm to keep its sag into the following air space below 90% of that gap. The drawn curve reaches about 19.2–19.3 mm.
+The 69.618 mm vertex span sets the scale of Fig. 1. The clear radii follow the ends of the drawn optical curves, inside the bevels and the step on E1. Surface 2 uses 18.9 mm, compared with 19.2–19.3 mm in the drawing, to keep its sag into the next air space below 90% of the gap.
 
 | Surfaces in order | Clear radii (mm) |
 | --- | --- |
@@ -34,9 +38,23 @@ The 69.618 mm vertex span sets the scale of the drawing. The following clear rad
 | 8–11 | 13.7, 13.7, 12.8, 11.8 |
 | 12–18 | 11.6, 14.1, 14.3, 15.5, 15.4, 17.8, 17.7 |
 
-The glass edges retain positive thickness, and adjacent elements clear each other. The iris limits the axial beam at full aperture. The corner chief ray passes surface 2 at 18.38 mm and clears every subsequent rim. Geometric pupil transmission is 23.2% at the corner.
+The glass edges retain positive thickness and adjacent elements clear each other. The iris limits the axial beam at f/1.4. The corner chief ray crosses surface 2 at 18.38 mm and clears every rim. Geometric pupil transmission at the corner is 23.2%. The patent specifies the field angle without tabulating an image-circle diameter.
 
-The patent gives refractive indices and Abbe numbers without glass names. The following differences are catalog minus patent at the helium d line.
+The four examples give only infinity spacings. `focus.closeFocusM` is 10¹⁵ m, which stands for infinity. There are no calculated intermediate positions. The production lens reaches 0.117× at 0.30 m from the film plane using floating elements. [Canon S.S.C. specifications](https://global.canon/en/c-museum/product/fd132.html) · [Canon AE-1 instructions, film plane indicator](https://www.canonclassics.com/pdf/Canon-AE1-Instructions-part2-en.pdf)
+
+## Product Identification
+
+Canon's section matches Fig. 1 in the shapes of all ten elements, the eight air-spaced groups, both cemented interfaces and the rear asphere on E8. Both drawings show the step on E1 and the bevels on E4 and E7. Relative diameters agree to within about 2% of the front-element diameter. Example 2 reverses the two singlets ahead of the iris, Example 3 places a cemented pair in group II, and Example 4 opens to f/1.2. This strongly supports Example 1 for the FD 24mm f/1.4 S.S.C. Aspherical introduced in March 1975. The New FD 24mm f/1.4L followed in December 1979. [Canon S.S.C. specifications and diagram](https://global.canon/en/c-museum/product/fd132.html) · [Patent, Examples 1–4](https://patents.justia.com/patent/3992085) · [Canon New FD release date](https://global.canon/en/c-museum/product/nfd199.html)
+
+## Corrections, 2026-11-25
+
+- The earlier description restricted use to f/8, and the field ended at ±5°. The iris passes the full f/1.4 axial beam and the rims clear the chief ray across the patent’s ±42° field. The prescription keeps the printed 24.5 mm scale and 36.500 mm image distance. The small difference in the last sag entry gives no basis for altering the four printed coefficients.
+- The iris moved from the assumed midpoint of the 10.681 mm gap to the position in Fig. 1. At the midpoint, the corner chief ray would cross surface 2 at 19.29 mm and miss its 18.9 mm rim.
+- The clear radii now follow Fig. 1. The front rim grew from 24.0 to 25.7 mm and surface 3 from 18.8 to 21.0 mm to pass the corner ray. The 18.9 mm rim at surface 2 preserves clearance to surface 3.
+- Group labels I–III follow Fig. 1. The two cemented interfaces and the aspherical face 14A distinguish the element shapes in Canon's section. The glass equivalents below supply dispersion for the ten elements while preserving the patent’s index and Abbe-number pairs.
+- The production specifications are those of the 1975 Canon FD lens for 24 × 36 mm film. Canon lists 24 mm, f/1.4, ten elements in eight groups, eight blades and 0.30 m close focus. The aperture ring carries f/1.4, 2, 2.8, 4, 5.6, 8, 11 and 16. The model retains the single infinity prescription because the patent gives no floating-group spacings. [Canon S.S.C. specifications](https://global.canon/en/c-museum/product/fd132.html) · [Canon AE-1 instructions](https://www.canonclassics.com/pdf/Canon-AE1-Instructions-part2-en.pdf) · [Marco Cavina’s photographs of the original lens](https://www.marcocavina.com/articoli_fotografici/articolo_canon_fd_l.pdf)
+
+The differences are tabulated catalog values minus the patent values at the helium d line. The patent gives no glass names. [Ohara S-BAL35](https://refractiveindex.info/?shelf=specs&book=OHARA-optical&page=S-BAL35) · [Ohara S-TIH6](https://refractiveindex.info/?shelf=specs&book=OHARA-optical&page=S-TIH6) · [Hoya optical glass catalog](https://www.scribd.com/document/896708123/HOYA-Optical-Glass-Catalog) · [Sumita glass table](https://web.stanford.edu/class/ee347/SumitaAll.PDF)
 
 | Elements | Catalog equivalent | Δnd | Δνd |
 | --- | --- | ---: | ---: |
@@ -46,16 +64,9 @@ The patent gives refractive indices and Abbe numbers without glass names. The fo
 | E6 | Sumita LF2 | 0.00000 | −0.100 |
 | E8, E9, E10 | Hoya TAF1 | 0.00000 | +0.030 |
 
-## Product Identification
-
-Canon's diagram agrees with Fig. 1 in all ten element shapes, eight air-spaced groups, both cemented interfaces and the rear asphere on E8. The stepped E1 and bevels on E4 and E7 are visible in both. Example 2 reverses the two middle singlets, Example 3 places a cemented pair in the middle group, and Example 4 is f/1.2. The agreement strongly supports Example 1 for the FD 24mm f/1.4 S.S.C. Aspherical introduced in March 1975. [Canon specifications](https://global.canon/en/c-museum/product/fd132.html) · [Canon construction diagram](https://global.canon/ja/c-museum/wp-content/uploads/2015/05/fd132-lens-construction.gif)
-
-## Corrections
-
-### 2026-11-25
-
-The printed prescription and its 36.500 mm image distance are reproduced at the design focal length of 24.5 mm. Canon's 24 mm designation is nominal. The iris position and the 18.9 mm clear radius at surface 2 use the drawing and clearance evidence above. Canon specifies 0.30 m minimum focus and 0.117× maximum magnification. The patent supplies spacings only at infinity. [Canon production specifications](https://global.canon/en/c-museum/product/fd132.html)
+The dispersion curves used in the model give slightly different Abbe numbers for LF2 (40.97 versus 41.0 in the table) and TAF1 (49.62 versus 49.63). At infinity the model gives 24.499 mm effective focal length, f/1.40 and 36.498 mm paraxial back focus. The full-frame corner falls at 42.05°.
 
 ## Remaining Questions
 
-The production clear diameters, exact iris position and glass suppliers are undocumented. The patent and Canon's optical section do not identify which elements move during close focusing or how far they travel.
+- The production clear diameters, exact iris position, blade curvature and glass suppliers remain undocumented.
+- Canon's section does not identify the elements that move during close focusing or their travel. The patent gives no finite-focus prescription.

@@ -38,7 +38,7 @@ const LENS_DATA = {
       marketing: 1.4,
       design: 1.4,
     },
-    specs: ["10 ELEMENTS / 8 GROUPS", "1 ASPHERICAL ELEMENT", "DESIGN f = 24.5 mm", "84° DIAGONAL FIELD"],
+    specs: ["10 ELEMENTS / 8 GROUPS", "1 ASPHERICAL ELEMENT", "FLOATING ELEMENTS"],
     closeFocusM: {
       marketing: 0.3,
     },
