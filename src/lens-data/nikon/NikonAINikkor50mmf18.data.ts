@@ -95,7 +95,7 @@ const LENS_DATA = {
       vd: 49.4,
       indexReference: "d",
       focalLengthMm: 33.95,
-      glass: "Unmatched (nd 1.74443 / νd 49.4)",
+      glass: "S-LAM60 (spectral proxy; patent nd 1.74443 / νd 49.4; supplier and melt unspecified)",
       role: "Less dispersive positive member of the rear doublet, cemented to L4.",
       cemented: "C1",
     },
@@ -134,7 +134,7 @@ const LENS_DATA = {
   },
   focus: {
     closeFocusM: 1e15,
-    description: "Infinity focus only. The patent gives one set of spacings. The production lens focuses manually by helicoid to 0.45 m.",
+    description: "Infinity focus only. The patent gives one set of spacings. Nikon's distance scale runs to 0.45 m.",
   },
   groups: [
     { text: "L2–L3", fromSurface: "3", toSurface: "6" },
