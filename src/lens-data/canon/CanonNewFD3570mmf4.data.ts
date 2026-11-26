@@ -8,8 +8,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * The patent gives no finite-focus spacings. The iris lies halfway between R10
  * and R11 in the model, with its radius calculated for f/4. Clear radii follow
  * Figure 1 except at R7/R8, which clear the axial ray, and at two drawn contacts.
- * R2 (15.94 mm) and R12/R13 (8.51 mm) leave at least 2% of the axial air gaps
- * open at the rim. At telephoto R12 and R13 meet inside the nominal f/4 beam.
+ * R2 (15.94 mm) and R13 (8.51 mm) leave at least 2% of their axial air gaps
+ * open at the rim. R12 reaches the 10.1 mm edge of L6. Extending R13 to pass
+ * the telephoto f/4 marginal ray would make its surface cross R12.
  */
 const LENS_DATA = {
   schema: 2,
@@ -141,12 +142,12 @@ const LENS_DATA = {
     { label: "5", R: 32.729292, d: 3.3696, sd: 15.7, medium: 3 },
     { label: "6", R: 66.615264, sd: 15.7 },
     { label: "7", R: 38.612016, d: 2.9412, sd: 11.08, medium: 4 },
-    { label: "8", R: -394.497, d: 0.1512, sd: 11.05 },
+    { label: "8", R: -394.497, d: 0.1512, sd: 11.08 },
     { label: "9", R: 23.771088, d: 3.0636, sd: 11.1, medium: 5 },
     { label: "10", R: 65.121012, d: 1.2006, sd: 11.1 },
     { label: "STO", R: "flat", d: 1.2006 },
     { label: "11", R: 29.939796, d: 4.5396, sd: 10.1, medium: 6 },
-    { label: "12", R: 50.202792, d: 0.9648, sd: 8.51 },
+    { label: "12", R: 50.202792, d: 0.9648, sd: 10.1 },
     { label: "13", R: -166.97502, d: 1.8432, sd: 8.51, medium: 7 },
     { label: "14", R: 18.105192, d: 4.7736, sd: 8.7 },
     { label: "15", R: 78.91164, d: 3.1788, sd: 8.9, medium: 8 },

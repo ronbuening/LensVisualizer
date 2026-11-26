@@ -31,13 +31,13 @@ The chief ray reaches the 21.63 mm corner of a 36 × 24 mm frame at all fifteen 
 
 The patent places the diaphragm in the 2.4012 mm space between R10 and R11. The model puts it halfway across, 1.2006 mm from each vertex. At f/4 the paraxial entrance pupil gives iris radii of 7.088, 8.549 and 9.726 mm. Neither the iris opening nor its exact axial position is dimensioned.
 
-The fixed axial spans in Figure 1 total 42.210 mm and give the drawing scale independently of zoom position. The clear radii below follow the ends of the refracting curves, excluding bevels and label lines. At R12/R13 the ink merges.
+In Figure 1 (PDF p. 2, at 270 dpi), R1 to R16 spans 885 pixels, including 191 pixels of variable space between the groups. The remaining 694 pixels correspond to 42.210 mm of fixed spacings, or 16.44 pixels/mm. The drawing therefore shows an 11.6 mm intergroup gap. At 220 pixels above and below the axis, R4 has a mean sag of 2.24 mm. Its 39.275 mm radius puts those points 13.1 mm off axis, giving about 16.8 pixels/mm radially. The estimates below follow the ends of the refracting curves. The bevels on L1, L2 and L7 are oblique. At R12/R13 the ink merges just inside the bevel on L7.
 
 | Surfaces in order | Figure 1 radii (mm)       | Model radii (mm)            |
 | ----------------- | ------------------------- | --------------------------- |
 | R1–R4             | 19.3 / 16.5 / 17.8 / 15.7 | 19.3 / 15.94 / 17.8 / 15.7  |
-| R5–R8             | 15.7 / 15.7 / 11.0 / 11.0 | 15.7 / 15.7 / 11.08 / 11.05 |
-| R9–R12            | 11.1 / 11.1 / 10.1 / 10.1 | 11.1 / 11.1 / 10.1 / 8.51   |
+| R5–R8             | 15.7 / 15.7 / 11.0 / 11.0 | 15.7 / 15.7 / 11.08 / 11.08 |
+| R9–R12            | 11.1 / 11.1 / 10.1 / 10.1 | 11.1 / 11.1 / 10.1 / 10.1   |
 | R13–R16           | 9.2 / 8.7 / 8.9 / 8.9     | 8.51 / 8.7 / 8.9 / 8.9      |
 
 The patent gives no separate R16-to-film distance. At the three printed positions the modeled rear air space minus paraxial back focus is −0.000029, +0.000040 and +0.000024 mm. At twelve intermediate focal lengths, calculated intergroup gaps set the power and the rear air space holds the film at infinity focus. The residual at each listed position is under 0.00005 mm. Linear changes in the two air spaces between positions give a maximum departure of 0.01927 mm. The patent describes front-group focusing but gives no finite-focus spacing. `focus.closeFocusM` is 10¹⁵ m, which stands for infinity.
@@ -51,8 +51,8 @@ Canon marks the lens 35–70 mm and gives a 63°–34° diagonal field, against 
 ## Corrections, 2026-11-25
 
 - The field extends beyond the former ±5° limit to the full 35 mm frame. The nominal aperture is the printed f/4 throughout the zoom. The Figure 1 rims replace the narrower estimates so that the model shows both the corner chief ray and the partial clipping of the corner beam.
-- Figure 1 draws L1 against L2 and L6 against L7 at their edges. The combined surface sag may occupy 98% of the axial air gap (`checks.gapSagFrac` = 0.98) to follow those near-contacts while keeping an air space at both rims. R2 ends at 15.94 mm, leaving 0.158 mm of air at R2/R3. R12 and R13 end at 8.51 mm, leaving 0.021 mm of the printed 0.9648 mm axial gap at the edge.
-- The telephoto f/4 axial marginal ray would reach 8.731 mm at R12 and 8.742 mm at R13. The printed spheres intersect at 8.605 mm, so following that ray would require a 0.031 mm step backwards. The 8.51 mm rims preserve the printed curves and pass an axial beam equivalent to f/4.09. At R7/R8 the telephoto marginal heights are 11.073/11.046 mm. Clear radii of 11.08/11.05 mm pass that ray and lie within about one pixel of the drawn edges.
+- Figure 1 draws L1 against L2 and L6 against L7 at their edges. The combined surface sag may occupy 98% of the axial air gap (`checks.gapSagFrac` = 0.98) to follow those near-contacts while keeping an air space at both rims. R2 ends at 15.94 mm, leaving 0.158 mm of air at R2/R3. R12 and R13 initially both ended at 8.51 mm, leaving 0.021 mm of the printed 0.9648 mm axial gap at that height.
+- The telephoto f/4 axial marginal ray would reach 8.731 mm at R12 and 8.742 mm at R13. The printed spheres intersect at 8.605 mm, so following that ray would require a 0.031 mm step backwards. The initial 8.51 mm rims passed an axial beam equivalent to f/4.09. At R7/R8 the telephoto marginal heights are 11.073/11.046 mm. The initial clear radii of 11.08/11.05 mm passed that ray.
 - The scale of 0.36 mm per unit puts the normalized table at the size of the production zoom. The three printed zoom spacings and twelve calculated ones describe the travel of both groups. Paraxial infinity focus sets the film position. At wide angle this gives an overall length 0.113 mm shorter than the printed 116.640 mm. The printed prescription is retained.
 - The production cutaway and aperture identify the catalog entry as the manual-focus New FD 35–70mm f/4. Canon's specifications supply the FD mount, 35 mm format, marked focal lengths and aperture, 8/8 construction, six blades and 0.5 m minimum distance. The barrel shows the full stops f/4, 5.6, 8, 11, 16 and 22. [Canon FD Lens Guide, sheet SG2-A30](https://www.galimbertipaolo.it/CanonFD/FDLensGuide1.pdf) · [Canon Camera Museum](https://global.canon/en/c-museum/product/nfd243.html) · [Canon 35mm SLR Quick Reference Guide](https://www.pacificrimcamera.com/rl/00614/00614.pdf)
 - Five Ohara catalog glasses supply dispersion curves for the eight elements. The printed indices and Abbe numbers are retained. The differences below are catalog minus patent.
@@ -67,8 +67,13 @@ Canon marks the lens 35–70 mm and gives a 63°–34° diagonal field, against 
 
 At the three printed positions the finished model gives 35.999, 53.998 and 68.500 mm effective focal length at nominal f/4, with 43.829, 56.011 and 65.827 mm back focus.
 
+- 2026-11-25 rim review:
+  - **R8, 11.05 → 11.08 mm.** The upper and lower edges of L4 in Figure 1 run straight across from R7 to R8. At 11.08 mm both faces clear the telephoto axial ray and follow that square rim.
+  - **R12, 8.51 → 10.1 mm.** Both faces of L6 reach the same edge in Figure 1. Canon's cutaway also shows the full-height rear face. The bevel belongs to L7. R13 ends at 8.51 mm, with 0.021 mm of air to R12 at its edge. R13 still limits the telephoto axial beam to about f/4.09.
+  - Relative corner illumination before and after was 55.2% at 36 mm, 70.2% at 54 mm and 70.4% at 68.508 mm. Neither change cost measurable light at any field across the fifteen zoom positions.
+
 ## Remaining Questions
 
-- The drawings do not dimension the production bevels, clear radii or iris position and opening through the zoom. How the production lens accommodates the outer telephoto rays at R12/R13 remains uncertain.
+- The drawings establish the square edges of L4 and L6. The production bevel dimensions, iris position and opening through the zoom remain unknown. How the production lens accommodates the outer telephoto rays at R13 remains uncertain.
 - The source of the 0.113 mm wide-end length difference is unresolved. The patent gives no production image-circle diameter or finite-focus group positions.
 - The production glass supplier, melts and diaphragm blade curvature are undocumented.
