@@ -20,7 +20,7 @@ const LENS_DATA = {
   maker: "Sigma",
   name: "SIGMA APO 135-400mm f/4.5-5.6 ASPHERICAL RF",
   visible: true,
-  subtitle: "JP H10-039215 A, Example 2 — Sigma / Uemura",
+  subtitle: "JP H10-039215 A, Example 2 — Sigma / Kamimura",
   catalog: {
     lensMounts: ["sigma-sa", "canon-ef", "nikon-f", "pentax-k", "sony-a"],
     imageFormat: "135-full-frame",
@@ -52,7 +52,7 @@ const LENS_DATA = {
       id: "2",
     },
     patentYear: 1998,
-    authors: ["Yutaka Uemura"],
+    authors: ["Yutaka Kamimura"],
     assignees: ["Sigma Corporation"],
     errata: [
       {

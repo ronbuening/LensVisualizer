@@ -34,7 +34,7 @@ Paragraph 0034 defines total length from first to last lens surface. The table's
 
 ## Values Not Printed in the Patent
 
-The calculated iris radius is 15.501 mm for a 391.91 mm focal length at f/5.80, allowing for the entrance-pupil magnification. An exact axial ray at the corresponding entrance-pupil radius of 33.785 mm reaches 15.648 mm at the iris, within 0.002 mm of the printed semi-diameter. Treating that semi-diameter as the paraxial iris radius would give f/5.745.
+The calculated iris radius is 15.501 mm for a 391.91 mm focal length at f/5.80, allowing for the entrance-pupil magnification. An exact axial ray at the corresponding entrance-pupil radius of 33.785 mm reaches 15.648 mm at the iris, within 0.002 mm of half the printed 31.30 mm diameter. Treating that half-diameter as the paraxial iris radius would give f/5.745.
 
 The 43.28 mm image circle is twice the printed 21.64 mm image height, just below the nominal 43.3 mm full-frame diagonal. The individual element focal lengths are calculated for thick lenses in air. The seven Ohara equivalents supply dispersion curves. The Super UD and UD identifications at L2 and L4 follow the production drawing and the patent's glass data. [Patent, ¶0035](https://patents.google.com/patent/JP2019070689A/en) · [Canon Camera Museum, block diagram](https://global.canon/en/c-museum/product/ef317.html) · [Ohara optical glass catalog](https://www.ohara-inc.co.jp/en/product/catalog/)
 
@@ -48,8 +48,8 @@ Canon gives the bare production lens a diagonal field of 6°10′. Its ring-type
 
 ## Corrections, 2026-11-25
 
-- The model uses the printed f/5.80 at infinity. The earlier f/5.745 came from fitting the paraxial iris to the printed 31.30 mm diameter. At f/5.80 the exact marginal ray reaches the printed iris edge to within 0.002 mm. The full printed field is ±3.16°.
-- The rear clear radius is 14.34 mm. The former 14.81 mm belongs to the cemented interface at surface 15. Both values come from printed diameters. The 92.2% sag allowance preserves the printed rims and real air clearance between surfaces 5 and 6.
+- The model uses the printed f/5.80 at infinity. The prescription as first received used f/5.745, from fitting the paraxial iris to the printed 31.30 mm diameter. At f/5.80 the exact marginal ray reaches the printed iris edge to within 0.002 mm. The full printed field is ±3.16°.
+- The rear clear radius is 14.34 mm, half the printed 28.68 mm diameter. The 14.81 mm first received for it is the radius of the cemented interface at surface 15. Both values come from printed diameters. The 92.2% sag allowance preserves the printed rims and real air clearance between surfaces 5 and 6.
 - The base formula identifies the full-frame Canon EF 400 mm f/5.6 production lens. Its catalog specifications include seven elements in six groups, one Super UD and one UD element, and a 3.5 m minimum focus. C1 marks the one cemented pair. [Canon Camera Museum, block diagram and specifications](https://global.canon/en/c-museum/product/ef317.html) · [Canon EF lens catalogue](https://asia.canon/media/document/2023/08/25/ac24e05e0718479ea233d5c19cb197c6_Canon_EF_Lens_Catalogue_2018.pdf)
 - The production aperture scale extends through f/5.6, 8, 11, 16, 22 and 32 with eight blades. The model's wide-open aperture remains the patent's f/5.80. [Canon Camera Museum](https://global.canon/en/c-museum/product/ef317.html) · [Patent, ¶0035](https://patents.google.com/patent/JP2019070689A/en)
 - Each element has an Ohara equivalent for calculating dispersion. The table gives the differences between the catalog curves and the printed glass pairs, calculated as catalog minus patent. The largest absolute differences are 0.0000042 in nd and 0.059 in νd.

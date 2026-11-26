@@ -3,7 +3,7 @@
 ## Patent Reference and Design Identification
 
 **Patent:** JP H10-039215 A, _Rear-focus telephoto zoom lens_\
-**Inventors:** Yutaka Uemura (上村 豊)\
+**Inventors:** Yutaka Kamimura (上村 豊)\
 **Assignee:** Sigma Corporation\
 **Filed:** 19 July 1996, application JP H08-207594\
 **Published:** 13 February 1998\
@@ -67,7 +67,7 @@ The three positive SLD elements have the highest Abbe number in Example 2. In L1
 
 ## Focus and Zoom Motion
 
-For a closer subject, the negative L5 group moves toward the film (claim 1), which Sigma describes as rear focusing. Figures 11, 13 and 15 show aberrations at 1:40, without the corresponding spacings. The model therefore shows infinity focus only. Sigma lists a minimum focus of 2.0–2.2 m across the zoom, measured from the film plane, and a maximum magnification of 1:5.3, far closer than the patent’s 1:40 plots. The production diaphragm has nine blades and a minimum aperture of f/32 at the wide end. [Sigma catalogue, specifications](https://w5.fuji.com.tw/pdf/SIGMA-lens-English.pdf#page=12)
+For a closer subject, the negative L5 group moves toward the film (claim 1), which Sigma describes as rear focusing. Figures 11, 13 and 15 show aberrations at 1:40, without the corresponding spacings. The model therefore shows infinity focus only. Sigma lists a minimum focus of 2.0–2.2 m across the zoom, measured from the film plane, and a maximum magnification of 1:5.3, far closer than the patent’s 1:40 plots. The production diaphragm has nine blades and a minimum aperture of f/32. [Sigma catalogue, specifications](https://w5.fuji.com.tw/pdf/SIGMA-lens-English.pdf#page=12)
 
 Table 3 gives five spacings at each of three infinity settings. Figure 2 shows L1, L3, L4 and L5 moving toward the object while L2 stays still. At wide and middle, the rear face of L2 lies 185.826 and 185.810 mm from paraxial focus. The model holds that face 185.818 mm from the film through the calculated 386.86 mm setting. Its 30 intermediate settings are calculated: d9, d13, d18, d19 and the f-number are interpolated, and d6 is solved to focus parallel rays. They estimate travel between the printed settings.
 
