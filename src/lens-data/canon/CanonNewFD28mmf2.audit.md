@@ -25,7 +25,7 @@ The third-order coefficients printed for Example 2 cover all 19 surfaces. With t
 | Back focal distance           | Unspecified               | 36.0639 mm from R19            |
 | Full-frame corner             | Image height unspecified  | 21.65 mm at 38.16°             |
 
-The infinity image plane lies within 0.00005 mm of paraxial focus. The narrowest axial clearance is 0.53 mm at R15. At the format corner the chief ray clears every rim by at least 1.08 mm, with the smallest margin at R4. At full aperture, geometric pupil transmission is 100% on axis, 85.6% at 20.5° and 41% at the corner.
+The infinity image plane lies within 0.00005 mm of paraxial focus. The narrowest axial clearance is 0.51 mm at R15. At the format corner the chief ray clears every rim by at least 1.14 mm, with the smallest margin at R4. At full aperture, geometric pupil transmission is 100% on axis, 85.3% at 20.5° and 41.5% at the corner.
 
 ## Values Not Printed in the Patent
 
@@ -39,7 +39,7 @@ The 50.3244 mm from the first vertex to the last sets the scale for the clear ra
 | R12–R15  | 11.1, 11.1, 10.4, 9.1  |
 | R16–R19  | 10.3, 10.3, 11.9, 11.9 |
 
-Figure 3 draws the diaphragm within D11, and the model places the iris on that stroke, 0.70 mm behind R11. The printed third-order coefficients put the stop nearer R11: they fit best at 0.0175f, or 0.49 mm. At 0.70 mm their coma column departs by up to 0.067, at R13. The iris radius of 8.9684 mm follows from the paraxial f/2 entrance pupil. An exact axial marginal ray reaching this iris enters the lens at a height of 6.443 mm, equivalent to f/2.17 by entrance diameter. A ray entering at the paraxial pupil radius of 6.999 mm would require a 9.99 mm iris radius and a 9.49 mm clear radius at R15, close to where E8 and E9 meet.
+Figure 3 draws the diaphragm stroke within D11, about 0.65–0.70 mm behind R11. The printed third-order coefficients fit best with the stop 0.0175f behind R11, and the model places the iris there, 0.491 mm behind R11 and 1.6706 mm before R12. At the figure's 0.70 mm the coma column would depart by up to 0.067, at R13. The iris radius of 8.9466 mm follows from the paraxial f/2 entrance pupil. An exact axial marginal ray reaching this iris enters the lens at a height of 6.452 mm, equivalent to f/2.17 by entrance diameter. A ray entering at the paraxial pupil radius of 6.999 mm would require a 9.94 mm iris radius and a 9.50 mm clear radius at R15, close to where E8 and E9 meet.
 
 The model uses the paraxial infinity image distance. `focus.closeFocusM` is 10¹⁵ m, which stands for infinity. Claim 5 identifies the floating gap D6, and column 5 describes its motion. The only dimensions given are for infinity. [US 4,188,092](https://patents.google.com/patent/US4188092A/en)
 
@@ -50,7 +50,7 @@ The June 1979 New FD 28mm f/2 has ten elements in nine groups. The section repro
 ## Corrections, 2026-11-25
 
 - The factor of 28 converts all radii and spacings from the patent’s f = 1 table to the 28 mm example. The rounded values give a focal length 0.003 mm short of nominal. The radii, spacings and glasses stand as printed.
-- The open iris follows the patent’s f/2 aperture. Its position now follows the diaphragm stroke in Figure 3, 0.70 mm behind R11 and 1.4616 mm before R12. The earlier midpoint estimate split D11 into two gaps of 1.0808 mm. Both arrangements preserve the printed 2.1616 mm spacing.
+- The open iris follows the patent’s f/2 aperture. Its position then followed the diaphragm stroke in Figure 3, 0.70 mm behind R11 and 1.4616 mm before R12, until the 2026-11-26 change below. The earlier midpoint estimate split D11 into two gaps of 1.0808 mm. Every arrangement preserves the printed 2.1616 mm spacing.
 - Clear radii from Figure 3 replace the earlier estimates. The former 17 mm front radius clipped the chief ray at the patent’s 37.5° half-field. At the drawn 20.6 mm front radius, the finished rims admit the corner chief ray at 38.16° as well. R4 uses 11.3 mm of the drawn 11.6 mm to keep the steep rim within 90% of its 12.586 mm radius of curvature.
 - Only the infinity spacing is known. D6 is 1.9068 mm there and widens as the lens moves toward a nearer subject. The missing close-focus spacing leaves the intermediate positions undetermined.
 - The production specifications identify the 28 mm f/2 as a Canon FD lens for 24 × 36 mm film, with ten elements in nine groups and an eight-blade iris. The full stops are f/2, 2.8, 4, 5.6, 8, 11, 16 and 22. Floating correction extends to 0.30 m from the film plane, where Canon gives 0.13×. The three optical groups and the E5/E6 cemented pair are marked as in Figure 3. [Canon Camera Museum](https://global.canon/en/c-museum/product/nfd202.html) · [Canon FD Lenses](https://www.pacificrimcamera.com/rl/03873/03873.pdf) · [Canon AE-1 instructions](https://www.canonclassics.com/pdf/Canon-AE1-Instructions-part2-en.pdf)
@@ -66,7 +66,7 @@ The June 1979 New FD 28mm f/2 has ten elements in nine groups. The section repro
 | E7       | S-LAH66          | −0.00000114 | −0.002 |
 | E9, E10  | S-LAL14          | −0.00000312 | +0.032 |
 
-At infinity the finished prescription gives 27.9972 mm effective focal length, f/2.000, 36.0639 mm of back focus and an 8.9684 mm iris radius. The chief ray reaches the 21.65 mm corner at 38.16°.
+At infinity the finished prescription gives 27.9972 mm effective focal length, f/2.000, 36.0639 mm of back focus and an 8.9466 mm iris radius. The chief ray reaches the 21.65 mm corner at 38.16°.
 
 2026-11-25 rim review:
 
@@ -80,15 +80,14 @@ At infinity the finished prescription gives 27.9972 mm effective focal length, f
 
 - The page was compared with Figure 3 (PDF p. 4), read at the scan's 300 dpi, and with the MIR cutaway. Fifteen vertex crossings from R1 to R19 give 18.66 pixels/mm, none more than 2.8 pixels from the fit, and the drawn arcs of ten surfaces agree with that scale across the axis to about 2%. Averaged over the upper and lower halves, the figure draws E1 to 20.6 mm, E2 to 16.7 mm with its rear step at 13.3 mm and the R4 arc ending at 11.3 mm, E3 to 11.2 mm, E4 to 9.5 mm with the R8 arc ending at 8.0 mm, the cemented pair to 10.3 mm, E7 to 11.1 mm, E8 to 10.3 mm, E9 to 10.2 mm and E10 to 11.8 mm. Every rim of the model lies within 4% of these readings, R8 being the farthest, so none changed.
 - The section joins rim edges with straight lines. E2's short flat top before its rear bevel therefore appears as one slope, and E8's top slopes from 10.4 mm down to R15, where Figure 3 draws it flat into E9. R15 stays at 9.1 mm, the largest radius within the usual clearance to E9.
-- The R4 and R8 lands stay. They follow the steps drawn on E2 and E4 and cost no light at any field. Against the rims in use before 2026-11-25, no field loses light, and R15's larger radius gains up to 4.2 points.
+- The R4 and R8 lands stay. They follow the steps drawn on E2 and E4 and cost no light at any field. Against the rims in use before 2026-11-25, with the final iris, no field loses light, and R15's larger radius gains up to 4.2 points.
 - E3's role now reads "chromatic distortion and chromatic coma", the two aberrations column 4 assigns to the third positive meniscus, in place of "chromatic distortion and coma".
-- Columns 7–8 print Example 2's third-order coefficients, which the earlier entries did not use. They confirm the prescription and put the stop 0.49 mm behind R11, close to the 0.488 mm that Example 1's coefficients give for the 24 mm lens. The iris stays on the Figure 3 stroke at 0.70 mm. Moved to 0.49 mm, its f/2 radius would be 8.947 mm and no field would change by more than 0.6 points.
-- All ten elements keep their exact Ohara equivalents, so every element carries a full dispersion curve. Figure 4A draws the paraxial g-line focus 0.0023f, about 66 µm, ahead of the d line, and the model puts it 65 µm ahead. Figure 4C reads about −1.9% distortion at 37.5°, against −1.7% in the model.
+- The iris moved from the Figure 3 stroke to the position that reproduces the third-order coefficients printed for Example 2 in columns 7–8, which the earlier entries did not use. R11 to the iris changed from 0.70 mm to 0.491 mm and the iris to R12 from 1.4616 mm to 1.6706 mm, keeping the printed 2.1616 mm. The 24 mm lens takes its iris from Example 1's coefficients in the same way. The f/2 iris radius changed from 8.9684 mm to 8.9466 mm, the real axial entrance radius from 6.443 mm to 6.452 mm, and the corner chief-ray margin at R4 from 1.08 mm to 1.14 mm. No field changed by more than 0.6 points of transmission, and the aperture stays f/2.000.- All ten elements keep their exact Ohara equivalents, so every element carries a full dispersion curve. Figure 4A draws the paraxial g-line focus 0.0023f, about 66 µm, ahead of the d line, and the model puts it 65 µm ahead. Figure 4C reads about −1.9% distortion at 37.5°, against −1.7% in the model.
 - The model stays at infinity. Column 5 describes the whole lens drawn forward with the R6–R7 space expanding, claim 5 names that space, and the focus note says the same. Element types agree with the signs of the radii, each element's focal length agrees with the prescription, and Groups I–III and the C1 bracket span R1–R8, R9–R11 and R12–R19 as in Figure 3. No element carries a special-dispersion tag; neither the patent nor Canon names one.
 
 ## Remaining Questions
 
 - The factory radii, spacings, clear apertures, iris diameter, blade curvature and glass identities remain undocumented.
 - Figure 3 draws E8 and E9 overlapping at their edges. How the production mount separates them is unknown.
-- Figure 3 draws the diaphragm 0.70 mm behind R11, while the printed coefficients put the stop 0.49 mm behind it. Which position the production lens uses is unknown.
+- The printed coefficients put the stop 0.49 mm behind R11, while Figure 3 draws the diaphragm about 0.2 mm farther back. Which position the production lens uses is unknown.
 - Canon gives 0.13× at 0.30 m. The patent gives neither a finite conjugate nor a second value of D6 from which to determine the floating lens travel. [Canon Camera Museum](https://global.canon/en/c-museum/product/nfd202.html) · [Patent, claim 5 and Example 2](https://patents.google.com/patent/US4188092A/en)

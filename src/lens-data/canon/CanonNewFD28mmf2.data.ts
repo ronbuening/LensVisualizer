@@ -4,8 +4,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Kikuo Momiyama, US 4,188,092, Example 2, Figure 3 and column 6. The table gives
  * the radii and spacings at f = 1. All lengths use a scale of ×28 for the 28 mm design.
  * The ten glass indices and Abbe numbers refer to the helium d line.
- * Figure 3 places the iris 0.70 mm behind the plane R11 in the 2.1616 mm air space.
- * Its radius follows from the stated f/2 aperture. The clear radii follow Figure 3,
+ * The printed third-order coefficients place the iris 0.491 mm behind the plane R11
+ * in the 2.1616 mm air space D11. Its radius follows from the stated f/2 aperture.
+ * The clear radii follow Figure 3,
  * with R4 limited by its steep curvature. Flat lands carry R4 and R8 out to the drawn
  * edges of E2 and E4. Figure 3 draws R15 overlapping E9, so R15 stops at 9.1 mm,
  * the largest radius that keeps the usual clearance to E9.
@@ -171,8 +172,8 @@ const LENS_DATA = {
     { label: "8", R: 14.462, d: 3.0352, sd: 8.3, rimExtensionSd: 9.7 },
     { label: "9", R: 53.6788, d: 3.2424, sd: 10.4, medium: 5 },
     { label: "10", R: -52.276, d: 9.9064, sd: 10.4, medium: 6 },
-    { label: "11", R: "flat", d: 0.7, sd: 10.4 },
-    { label: "STO", R: "flat", d: 1.4616 },
+    { label: "11", R: "flat", d: 0.491, sd: 10.4 },
+    { label: "STO", R: "flat", d: 1.6706 },
     { label: "12", R: 75.5972, d: 4.8132, sd: 11.1, medium: 7 },
     { label: "13", R: -21.5712, d: 1.7248, sd: 11.1 },
     { label: "14", R: -26.1604, d: 0.9828, sd: 10.4, medium: 8 },
