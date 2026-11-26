@@ -28,7 +28,7 @@ The printed infinity back focus places the film 0.0002 mm behind paraxial focus.
 
 ## Values Not Printed in the Patent
 
-- **Clear radii.** Scaling the drawing by the distance between the first and last vertices gives the following heights of the curved optical faces, in millimetres from R1 to R20. R1–R5 measure 20.9080, 16.2184, 17.7816, 12.7989 and 14.5575. R6–R10 measure 14.5575, 10.7471, 10.7471, 7.2299 and 5.2759. R11–R15 measure 5.0805, 5.0805, 5.0805, 6.2529 and 5.1782. R16–R20 measure 7.2299, 7.2299, 7.0833, 9.2816 and 9.2816. The fourth decimal place preserves the scale conversion. The drawing is less precise.
+- **Clear radii.** Scaling the drawing by the distance between the first and last vertices gives the following heights of the curved optical faces, in millimetres from R1 to R20. R1–R5 measure 20.9080, 16.2184, 17.7816, 12.7989 and 14.5575. R6–R10 measure 14.5575, 10.7471, 10.7471, 7.2299 and 5.2759. R11–R15 measure 5.0805, 5.0805, 5.0805, 6.2529 and 5.1782. R16–R20 measure 7.2299, 7.2299, 7.0833, 9.2816 and 9.2816. The fourth decimal place preserves the scale conversion. The drawing is less precise. Flat lands continue R2 to 20.908 mm, R4 to 17.7816 mm, R10 to 7.2299 mm and R13 to 6.2529 mm, where the drawing carries those faces out to the element edge. They do not enlarge the clear radii.
 - **Iris.** Figure 1 puts the diaphragm between R12 and R13. The estimated midpoint divides the 2.1488 mm space into two 1.0744 mm intervals. A 3.878 mm iris radius gives the 4.250 mm entrance pupil diameter required at f/4.
 - **Focus travel.** The printed near object distance and D8 determine the rear spacing by paraxial focus. From infinity, the rear vertex advances 1.3586 mm toward the subject and the front vertex advances 0.8061 mm. The model varies D8 and the rear spacing linearly between the printed settings.
 - **Field clearance.** The axial marginal ray clears the glass at both settings. At the 21.633 mm frame corner the chief ray passes closest to R4 at infinity, with 0.257 mm to spare, and to R10 at the near setting, with 0.375 mm to spare. At infinity the estimated geometric pupil transmission is 18.0% at the patent image height and 13.3% at the frame corner.
@@ -60,8 +60,22 @@ The numerical model takes its scale from the marketed 17 mm focal length. Canon�
 
 At infinity the model gives 17.000 mm effective focal length, f/4.00, 35.2136 mm paraxial back focus and a 3.878 mm iris radius. The chief ray reaches the patent image height at 51.85°.
 
+2026-11-25 rim review:
+
+- The drawing scale is 23.29 px per mm at 300 dpi, from the 1391.5 px span between the first and last vertices (59.75 mm). A circle fitted to the drawn R1 has a radius of 818 px against 816 px expected.
+- R2: a flat land from the 16.22 mm clear radius to 20.91 mm. Figure 1 ends the concave rear face of E1 at 378 px from the axis and continues it square to the axis up to the flat edge at 490 px.
+- R4: a flat land from 12.80 mm to 17.78 mm. E2's rear face ends at 298 px, below its edge at 413 px.
+- R10: a flat land from 5.28 mm to 7.23 mm. E5's rear face ends at 122 px, below its edge at 168 px.
+- R13: a flat land from 5.08 mm to 6.25 mm. Figure 1 bevels E7's front edge from 116 px to 146 px and then runs a flat edge to the cemented surface. The step and flat edge follow that outline more closely than a slope along the whole edge.
+- Every clear radius stays within about 3% of the figure except R15. The figure gives R15 5.50 mm against the 5.18 mm kept, but at 5.50 mm its edge would come within 0.02 mm of R16.
+- Corner illumination is unchanged: 18.0% at 51.9° at infinity and 21.7% at 51.2° at the near setting. The lands block no ray inside any clear radius.
+
+2026-11-25 glass label:
+
+- E6 is labelled Hoya C10, a discontinued glass whose catalog row is 1.50137 / 56.30 (Δnd 0, Δνd +0.10 against the printed 1.50137 / 56.2).
+
 ## Remaining Questions
 
 - Figure 1 places the iris mark closer to R12 than the assumed midpoint. Its exact axial position, the mechanical clear apertures and the production rim heights require a dimensioned section.
-- The production glass suppliers and melts are unknown. E2, E6 and E10 have no catalog equivalents within 0.0001 in index and 0.15 in Abbe number.
+- The production glass suppliers and melts are unknown. E2 and E10 have no catalog equivalents within 0.0001 in index and 0.15 in Abbe number.
 - The patent gives two focus settings. The actual spacing between those settings and the travel from 0.29308 m to the production minimum of 0.25 m remain undocumented. Canon specifies the diaphragm blade count but gives no blade curvature.

@@ -6,8 +6,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * 20 radii, axial spacings, 11 glass index and Abbe-number pairs, and f/4.
  * R12 requires a minus sign to reproduce the stated focal length and back
  * focus, the real image in Figures 2–4 and the biconvex E6 in Figure 1.
- * The clear radii are measured from the patent drawing. The iris lies in
- * D12. Its position is estimated at mid-gap and its radius follows from f/4.
+ * The clear radii are measured from the patent drawing. Flat lands carry
+ * R2, R4, R10 and R13 out to the element edges the drawing shows; they do
+ * not enlarge any clear aperture. The iris lies in D12. Its position is
+ * estimated at mid-gap and its radius follows from f/4.
  * The patent tabulates D8 at infinity and at an image-to-object distance of
  * 17.24 focal lengths. The infinity image spacing follows its back focus.
  * The near spacing is calculated from the finite conjugate.
@@ -118,7 +120,7 @@ const LENS_DATA = {
       nd: 1.50137,
       vd: 56.2,
       indexReference: "d",
-      glass: "Unmatched (nd 1.50137 / νd 56.2)",
+      glass: "C10 (Hoya)",
       role: "Strong positive singlet at the front of the convergent rear group, immediately ahead of the iris.",
       focalLengthMm: 19,
     },
@@ -189,19 +191,19 @@ const LENS_DATA = {
   ],
   surfaces: [
     { label: "1", R: 35.054, d: 1.9533, sd: 20.908, medium: 1 },
-    { label: "2", R: 19.2967, d: 6.1999, sd: 16.2184 },
+    { label: "2", R: 19.2967, d: 6.1999, sd: 16.2184, rimExtensionSd: 20.908 },
     { label: "3", R: 35.9142, d: 1.9533, sd: 17.7816, medium: 2 },
-    { label: "4", R: 17.7786, d: 6.749, sd: 12.7989 },
+    { label: "4", R: 17.7786, d: 6.749, sd: 12.7989, rimExtensionSd: 17.7816 },
     { label: "5", R: 277.389, d: 5.0609, sd: 14.5575, medium: 3 },
     { label: "6", R: -82.7288, d: 0.0969, sd: 14.5575 },
     { label: "7", R: 51.4828, d: 4.6019, sd: 10.7471, medium: 4 },
     { label: "8", R: -784.652, sd: 10.7471 },
     { label: "9", R: 19.584, d: 0.9775, sd: 7.2299, medium: 5 },
-    { label: "10", R: 8.35533, d: 2.6707, sd: 5.2759 },
+    { label: "10", R: 8.35533, d: 2.6707, sd: 5.2759, rimExtensionSd: 7.2299 },
     { label: "11", R: 29.869, d: 9.2276, sd: 5.0805, medium: 6 },
     { label: "12", R: -12.546, d: 1.0744, sd: 5.0805 },
     { label: "STO", R: "flat", d: 1.0744 },
-    { label: "13", R: -33.4356, d: 4.8688, sd: 5.0805, medium: 7 },
+    { label: "13", R: -33.4356, d: 4.8688, sd: 5.0805, rimExtensionSd: 6.2529, medium: 7 },
     { label: "14", R: 18.2002, d: 3.3813, sd: 6.2529, medium: 8 },
     { label: "15", R: 42.1396, d: 0.7293, sd: 5.1782 },
     { label: "16", R: -43.2803, d: 0.9775, sd: 7.2299, medium: 9 },

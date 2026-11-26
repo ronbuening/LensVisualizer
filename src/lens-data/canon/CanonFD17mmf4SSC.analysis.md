@@ -48,7 +48,7 @@ nd = 1.77250, νd = 49.5. Ohara LAH66 equivalent. f = −19.61 mm. This is the s
 
 ### E6 — Biconvex positive
 
-nd = 1.50137, νd = 56.2. Glass unmatched. f = +19.00 mm. The thick central singlet supplies the strongest positive power. The diaphragm sits in the air space immediately behind it.
+nd = 1.50137, νd = 56.2. Hoya C10 (catalog νd 56.30). f = +19.00 mm. The thick central singlet supplies the strongest positive power. The diaphragm sits in the air space immediately behind it.
 
 ### E7 and E8 — First cemented doublet
 
@@ -79,7 +79,7 @@ The German publication of the same application identifies the d line explicitly.
 | E3       | 1.68893 / 31.0  | Ohara PBM28        |
 | E4       | 1.64769 / 33.8  | Ohara PBM22        |
 | E5, E11  | 1.77250 / 49.5  | Ohara LAH66        |
-| E6       | 1.50137 / 56.2  | Unmatched          |
+| E6       | 1.50137 / 56.2  | Hoya C10           |
 | E7       | 1.56384 / 60.7  | Hikari J-SK11      |
 | E8       | 1.72151 / 29.2  | Ohara S-TIH18      |
 | E9       | 1.92286 / 20.9  | Ohara PBH21        |
@@ -100,7 +100,7 @@ The patent prints both D8 spacings, the infinity back focus and one finite objec
 
 ## Aperture and Image Field
 
-The S.S.C. diaphragm has six blades. Its full stops are f/4, 5.6, 8, 11, 16 and 22. The patent shows the iris in D12. Placing it at the estimated midpoint gives a calculated radius of 3.878 mm at f/4. The 20 glass clear radii are estimates from the drawn edges. [Canon S.S.C. specifications](https://global.canon/en/c-museum/product/fd130.html) · [Canon lens catalog, p. 16](https://www.360icon.com/PDF/CanonLenses.pdf)
+The S.S.C. diaphragm has six blades. Its full stops are f/4, 5.6, 8, 11, 16 and 22. The patent shows the iris in D12. Placing it at the estimated midpoint gives a calculated radius of 3.878 mm at f/4. The 20 glass clear radii are estimates from the drawn edges. The drawing ends the curved rear faces of E1, E2 and E5 short of their element edges with a step square to the axis, and bevels the front edge of E7. Flat lands carry those four faces out to the drawn edges without enlarging any clear aperture. [Canon S.S.C. specifications](https://global.canon/en/c-museum/product/fd130.html) · [Canon lens catalog, p. 16](https://www.360icon.com/PDF/CanonLenses.pdf)
 
 Figures 3–4 put the 52° half-field at an image height of 1.235 focal lengths, or 20.995 mm. The chief ray reaches that height at 51.85° in the model. It also reaches the 21.633 mm corner of a 36 × 24 mm frame at 52.63°. The outer pupil is partly vignetted there, even though the chief ray clears the glass.
 
