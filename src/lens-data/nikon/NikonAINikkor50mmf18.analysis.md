@@ -47,7 +47,7 @@ nd = 1.74000, νd = 28.2. Hoya FD3 catalog equivalent. f = −26.88 mm. L4 place
 
 ### L5 — Positive Meniscus
 
-nd = 1.74443, νd = 49.4. Ohara S-LAM60 spectral proxy. f = +33.95 mm. The two cemented glasses have similar indices and quite different dispersions. L5's convex rear face supplies most of its positive power. Together L4 and L5 form a weak negative doublet, f = −383.74 mm.
+nd = 1.74443, νd = 49.4. Hoya M-NBF1 spectral proxy. f = +33.95 mm. The two cemented glasses have similar indices and quite different dispersions. L5's convex rear face supplies most of its positive power. Together L4 and L5 form a weak negative doublet, f = −383.74 mm.
 
 ### L6 — Biconvex Positive
 
@@ -55,7 +55,7 @@ nd = 1.79631, νd = 40.8. Glass unmatched. f = +50.47 mm. The final singlet sits
 
 ## Glass Identification and Selection
 
-Example 1 gives d-line indices and Abbe numbers. L1 and L6 share one glass pair, and L3 and L4 share another. Conditions (7) and (8) allow Matsui to use the more dispersive glass in the two negative elements and lower dispersion in all four positive elements. Hoya TAF4 and FD3 match the printed pairs of L2, L3 and L4 at the printed precision and supply their dispersion curves. L5's pair, which recurs in Examples 2 and 3, matches no catalog glass at the printed precision. It lies 0.0012 in index and 0.06 in Abbe number from Ohara S-LAM60, inside the site's spectral-proxy tolerance, so the model keeps the printed index and borrows that glass's dispersion. The patent gives no trade names or suppliers. The L1/L6 pair has no catalog glass within that tolerance; the nearest, Hoya NBFD2, differs by 0.34 in Abbe number.
+Example 1 gives d-line indices and Abbe numbers. L1 and L6 share one glass pair, and L3 and L4 share another. Conditions (7) and (8) allow Matsui to use the more dispersive glass in the two negative elements and lower dispersion in all four positive elements. Hoya TAF4 and FD3 match the printed pairs of L2, L3 and L4 at the printed precision and supply their dispersion curves. L5's pair, which recurs in Examples 2 and 3, matches no catalog glass at the printed precision. It lies 0.0011 in index and 0.07 in Abbe number from Hoya M-NBF1, inside the site's spectral-proxy tolerance, so the model keeps the printed index and borrows that glass's dispersion. The patent gives no trade names or suppliers. The L1/L6 pair has no catalog glass within that tolerance; the nearest, Hoya NBFD2, differs by 0.34 in Abbe number.
 
 ## Focus Mechanism
 

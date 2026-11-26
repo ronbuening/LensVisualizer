@@ -95,7 +95,7 @@ const LENS_DATA = {
       vd: 49.4,
       indexReference: "d",
       focalLengthMm: 33.95,
-      glass: "S-LAM60 (spectral proxy; patent nd 1.74443 / νd 49.4; supplier and melt unspecified)",
+      glass: "M-NBF1 (spectral proxy; patent nd 1.74443 / νd 49.4; supplier and melt unspecified)",
       role: "Less dispersive positive member of the rear doublet, cemented to L4.",
       cemented: "C1",
     },
