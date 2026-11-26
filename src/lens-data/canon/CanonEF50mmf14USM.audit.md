@@ -42,17 +42,16 @@ The clear radii are read from Figure 2. The 44.672 mm between the first and last
 | Surfaces | Semi-diameter (mm) | Basis                                                           |
 | -------- | -----------------: | --------------------------------------------------------------- |
 | 1–2      |               19.2 | Drawn L1 edge; Canon's drawing gives about 19.0                 |
-| 3        |               16.2 | Drawn L2 edge                                                   |
-| 4        |              15.03 | L2 and L3 would meet at about 15.2 mm; edge clearance kept      |
-| 5        |               15.0 | As surface 4                                                    |
-| 6        |               12.9 | Optical edge of R6 inside the L3 flange                         |
+| 3–4      |               16.2 | Drawn square-cut L2 edge; the rim overhangs L3                  |
+| 5        |               15.0 | Drawn L3 front edge; R4 and R5 would meet at about 15.2 mm      |
+| 6        |               12.9 | Drawn end of the R6 curve; vertical land out to 15.0 mm         |
 | Iris     |             12.354 | Calculated from f/1.4 and the paraxial entrance pupil           |
-| 7        |               12.6 | Drawn land about 12.3 mm; 12.6 leaves margin for the axial beam |
+| 7        |               12.6 | Drawn 12.3–12.8 mm, clears axial beam; land out to 15.6 mm      |
 | 8–9      |               15.6 | Drawn doublet edge                                              |
 | 10–11    |               16.2 | Drawn L6 edge                                                   |
 | 12–13    |               15.6 | Drawn L7 edge                                                   |
 
-R4 and R5 keep positive edge clearance with the combined sag allowed up to 0.96 times the axial gap. Reducing both to 14.85 mm would make R4 limit the aperture to f/1.416.
+Over their shared 15.0 mm band R4 and R5 keep about 0.05 mm of axial clearance at the edge, with the combined sag allowed up to 0.96 times the axial gap. Outside that band L2's rear face passes over L3's edge, as Figure 2 draws it. Reducing R4 and R5 to 14.85 mm would make R4 limit the aperture to f/1.416.
 
 D6 totals 15.122 mm. The iris plane is placed 8.959 mm behind R6 and 6.163 mm ahead of R7. Figure 2 suggests about 8.45 mm behind R6, and Canon's section about 8.75 mm. At f/1.4 the entrance pupil radius is 17.857 mm, and its paraxial image at the stop has a radius of 12.354 mm. An exact axial ray launched at that entrance height crosses the stop at 12.220 mm.
 
@@ -86,8 +85,18 @@ Canon specifies eight diaphragm blades, f/22 minimum aperture, a 58 mm filter, 0
 
 The radii, spacings, glass pairs, 8.959/6.163 mm stop division and 37.575 mm back focal distance are unchanged. At infinity the finished model gives 50.000 mm EFL, f/1.400, 37.575 mm back focal distance, a 12.354 mm iris radius and a 23.82° corner half-field.
 
+2026-11-25 rim review:
+
+- The element outlines were compared again with Figure 2, whose scale was confirmed at 12.86 pixels/mm along the axis and 12.9–13.1 pixels/mm on the R3, R6 and R9 arcs, and with Canon's drawing.
+- R4: 15.03 → 16.2 mm. Figure 2 draws L2 square-cut, with both faces reaching its 16.1–16.2 mm edge and the rear corner overhanging L3's 15.0 mm edge. R5 stays at 15.0 mm, where the two faces nearly meet, and the allowed combined sag stays at 0.96 of the gap.
+- R6: a vertical land from the 12.9 mm end of the curve out to 15.0 mm, where Figure 2 draws L3's rear face meeting the flat edge of the element.
+- R7: a vertical land from the 12.6 mm end of the curve out to 15.6 mm, the drawn step at the front of L4 up to the doublet edge. The land lies 1.06 mm behind the stop plane.
+- The lands do not change the traced aperture, and the wider R4 is not a limiting surface. Geometric pupil transmission is unchanged at every field: 100% on axis, 38.5% at 20.9° and 24.3% at the 23.82° corner, before and after.
+- Canon's drawing shows L3's flange taller than L2 and the lands on L3 and L4 bevelled. Figure 2 draws L3 below L2 with square lands, and the model follows Figure 2.
+
 ## Remaining Questions
 
 - Factory dimensions would settle the iris position, the edge clearance between L2 and L3 and the optical edge at R7.
+- Canon's drawing and Figure 2 differ on the height of L3's flange and on the shape of the L3 and L4 lands; the production mounting may differ from the patent drawing.
 - The published glass constants do not identify the production supplier or melt, or which two elements Canon calls high-refraction.
 - The patent gives no close-focus prescription. Unit focus of the model at 0.45 m gives 0.142×, against Canon's 0.15× and the 0.145× implied by its 164 × 249 mm field. Whether the production lens differs or Canon's figures are rounded is undocumented.

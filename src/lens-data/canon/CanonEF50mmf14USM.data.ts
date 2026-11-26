@@ -6,8 +6,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * gives the seven glass index and Abbe-number pairs. Its f/1.14 heading is a
  * misprint. The text and Figure 6 specify f/1.4, which sets the stop radius.
  * The division of D6 at the stop is estimated from the drawings. Clear radii follow
- * Figure 2, with clearance adjustments at R4, R5 and R7. The final air gap is the
- * calculated d-line paraxial back focal distance at infinity.
+ * Figure 2: L2 is square-cut at 16.2 mm, and the figure's vertical lands carry L3's
+ * rear face out to 15 mm and L4's front face out to 15.6 mm. R5 ends at 15 mm, where it
+ * nearly meets R4. R7's curved face ends at 12.6 mm, within the figure's reading and
+ * clear of the f/1.4 axial beam. The final air gap is the calculated d-line paraxial
+ * back focal distance at infinity.
  */
 const LENS_DATA = {
   schema: 2,
@@ -135,11 +138,11 @@ const LENS_DATA = {
     { label: "1", R: 50.9595, d: 5.3175, sd: 19.2, medium: 1 },
     { label: "2", R: 365.759, d: 1.015, sd: 19.2 },
     { label: "3", R: 25.521, d: 4.9595, sd: 16.2, medium: 2 },
-    { label: "4", R: 40.302, d: 1.1165, sd: 15.03 },
+    { label: "4", R: 40.302, d: 1.1165, sd: 16.2 },
     { label: "5", R: 62.3045, d: 1.7985, sd: 15, medium: 3 },
-    { label: "6", R: 17.3305, d: 8.958561828818294, sd: 12.9 },
+    { label: "6", R: 17.3305, d: 8.958561828818294, sd: 12.9, rimExtensionSd: 15 },
     { label: "STO", R: "flat", d: 6.163438171181706 },
-    { label: "7", R: -18.1055, d: 1.8755, sd: 12.6, medium: 4 },
+    { label: "7", R: -18.1055, d: 1.8755, sd: 12.6, rimExtensionSd: 15.6, medium: 4 },
     { label: "8", R: 508.7735, d: 6.1295, sd: 15.6, medium: 5 },
     { label: "9", R: -32.657, d: 0.1545, sd: 15.6 },
     { label: "10", R: -80.548, d: 4.138, sd: 16.2, medium: 6 },
