@@ -90,7 +90,7 @@ const LENS_DATA = {
       nd: 1.6987,
       vd: 30.1,
       indexReference: "d",
-      glass: "Unmatched (nd 1.6987 / νd 30.1)",
+      glass: "S-TIM35 (spectral proxy; patent nd 1.6987 / νd 30.1; supplier and melt unspecified)",
       focalLengthMm: -26.17,
       role: "Dispersive negative member of the doublet, with a strongly concave rear face toward the stop.",
       cemented: "D1",
@@ -239,7 +239,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 1,
     description:
-      "All four groups move toward the subject together. The calculated extension from infinity to Canon’s 1 m minimum is 1.316 mm. The patent gives only the infinity prescription.",
+      "Calculated unit focus: all four groups move 1.316 mm toward the subject together between infinity and Canon’s 1 m minimum, taken from subject to film. The patent gives only the infinity prescription, and Canon describes a non-revolving lens head without saying how the optics move.",
   },
   gaps: {
     "11": {

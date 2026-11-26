@@ -30,7 +30,7 @@ nd = 1.6584, νd = 50.8. Schott N-SSK5 equivalent. f = +44.13 mm. The convex fac
 ### L2 and L3 — front cemented doublet
 
 - **L2, positive meniscus.** nd = 1.6584, νd = 50.8. Schott N-SSK5 equivalent. f = +47.76 mm. L2 has the same printed glass pair as L1. Its rear face forms the convex cemented surface that Mukai uses to reduce lateral color.
-- **L3, negative meniscus.** nd = 1.6987, νd = 30.1. Glass unmatched. f = −26.17 mm. L3 is the most dispersive element in the lens. Its strongly concave rear face borders the aperture space and gives the doublet its net negative power.
+- **L3, negative meniscus.** nd = 1.6987, νd = 30.1. Ohara S-TIM35 as a spectral proxy. f = −26.17 mm. L3 is the most dispersive element in the lens. Its strongly concave rear face borders the aperture space and gives the doublet its net negative power.
 
 ### L4, L5 and L6 — rear cemented triplet
 
@@ -44,7 +44,7 @@ nd = 1.6935, νd = 53.5. CDGM H-LaK6A equivalent. f = +43.00 mm. Its weakly curv
 
 ## Glass Identification
 
-The patent prints d-line refractive indices and Abbe numbers for all seven elements. Six elements have modern catalog equivalents at those coordinates. The closest candidates for L3 differ in refractive index by about 0.00025. Its dispersion is estimated from the printed pair. The original glass suppliers and melts are unknown. A collector’s section hatches L6 and L7 but gives no key to the hatching. [Patent, columns 1–3](https://patents.google.com/patent/US2854890A/en) · [Collector’s section](https://canonrangefinder-org.pages.dev/images/35mm_f1-8.jpg)
+The patent prints d-line refractive indices and Abbe numbers for all seven elements. Six elements have modern catalog equivalents at those coordinates. The closest candidates for L3, such as Ohara S-TIM35 at 1.69895 / 30.13, differ in refractive index by about 0.00025, beyond the printed precision. L3 keeps its printed index and Abbe number and borrows only the change of index with wavelength from S-TIM35, within the site’s spectral-proxy tolerance. The original glass suppliers and melts are unknown. A collector’s section hatches L6 and L7 but gives no key to the hatching. [Patent, columns 1–3](https://patents.google.com/patent/US2854890A/en) · [Collector’s section](https://canonrangefinder-org.pages.dev/images/35mm_f1-8.jpg)
 
 ## Focus Mechanism
 
@@ -54,7 +54,7 @@ Canon describes a non-collapsible, non-revolving lens head with distance scales 
 
 Canon lists f/22 as the minimum aperture; neither Canon source gives the number of iris blades. The iris position is estimated from Canon’s drawing and the clearance behind L3. Its calculated radius is 6.78 mm at f/1.8. The clear radii follow the optical edges in the drawings, with extra clearance at L4 for the on-axis marginal ray. As in both drawings, L3’s concave rear face stops short of the doublet’s 8.8 mm edge: the curved face ends 7.08 mm from the axis, just outside the f/1.8 beam, and a flat land 10.70 mm behind the front vertex completes the element. L4’s two surfaces meet at a radius of about 6.9 mm. The narrow opening passes the axial beam, but clips part of the oblique pupil. The corner chief ray still reaches the film. Calculated corner illumination at infinity is about 10% of the axial value at f/1.8, 24% at f/2.8 and 57% at f/8. The precise values depend on the inferred clear apertures.
 
-At the patent’s 30° half-field, calculated distortion is −1.45%. Figure 4 shows about −1.6%. At f/1.8 the d-line marginal focus is about 0.0078 focal lengths ahead of the paraxial focus, close to the separation in Figure 2. [Patent aberration figures](https://patents.google.com/patent/US2854890A/en)
+At the patent’s 30° half-field, calculated distortion is −1.45%. Figure 4 shows about −1.6%. At f/1.8 the d-line marginal focus is about 0.0078 focal lengths ahead of the paraxial focus. Figure 2 draws about 0.006 there, and the two agree at 0.85 of the aperture, where both give about 0.0047. [Patent aberration figures](https://patents.google.com/patent/US2854890A/en)
 
 ## Sources
 
