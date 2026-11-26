@@ -36,7 +36,7 @@ Paragraph 0034 defines total length from first to last lens surface. The table's
 
 The calculated iris radius is 15.501 mm for a 391.91 mm focal length at f/5.80, allowing for the entrance-pupil magnification. An exact axial ray at the corresponding entrance-pupil radius of 33.785 mm reaches 15.648 mm at the iris, within 0.002 mm of half the printed 31.30 mm diameter. Treating that half-diameter as the paraxial iris radius would give f/5.745.
 
-The patent prints no edge outlines. Fig. 1(A) draws L2, L3, L4, L5 and the rear doublet square-cut at the larger face's printed diameter. The smaller face of each keeps its printed clear radius and carries a flat land out to that height. The lands block no ray that the clear radii admit.
+The patent gives no dimensions for the outer edges. Fig. 1(A) draws L2, L3, L4, L5 and the rear doublet square-cut at the larger face's printed diameter. The smaller face of each keeps its printed clear radius and carries a flat land out to that height. The lands block no ray that the clear radii admit.
 
 | Surface | Element | Clear radius (mm) | Land to (mm) |
 | ------- | ------- | ----------------: | -----------: |
@@ -87,6 +87,7 @@ At infinity the model gives 391.911 mm effective focal length, f/5.80, 167.021 m
 - The page was compared with Fig. 1(A), the same master lens in Fig. 1(B), and Canon's construction drawing. With the height scale set by L1's printed 33.795 mm radius (0.735 mm per pixel at the scan's 150 dpi; 0.756 mm per pixel along the axis), the figure's square edges read 32.0 mm for L2, 31.0–31.2 mm for L3, 23.9 mm for L4, 22.4 mm for L5 and 15.4 mm for the rear doublet, all within 2% of the model. No rim changed.
 - The lands at surfaces 5, 7, 9, 11 and 16 stay. Each costs 0.0 points at every field out to 3.1°, and both drawings show these five elements square-cut. Worst loss against the earlier rims: 0.0 points; corner light stays 72.9%.
 - L5's role changed from "just ahead of the diaphragm" to "ahead of the diaphragm". Its rear face lies 34.82 mm ahead of the diaphragm, which sits 2.50 mm in front of the doublet.
+- "The patent prints no edge outlines" → "The patent gives no dimensions for the outer edges": Fig. 1(A) does draw the outlines; the table dimensions are effective optical diameters.
 - Labels, types, focal lengths, the C1 and MA brackets, the diaphragm at surface 13 and the Super UD and UD tags on L2 and L4 agree with the patent and Canon's drawing. The seven Ohara rows match the printed glass to 0.0000042 in nd and 0.06 in νd, and every element carries a catalog dispersion curve. The model has no focus movement: the patent prints infinity spacings only, and Canon lists a ring-type USM with a rear focusing system.
 - Fig. 2(A) prints d and g spherical aberration. The d curve agrees: −0.059 mm at the full pupil in the model against about −0.055 mm printed. The model's g curve has the printed shape but lies about 0.03 mm nearer the d focus at every zone: +0.048 mm paraxial and +0.11 mm at the full pupil, against about +0.08 and +0.15 mm. Its g lateral colour at 3.16° is −7 µm against about −3.5 µm printed. Hoya FCD1 on L4 moves g a further 0.004 mm the wrong way, so the Ohara rows stay.
 
