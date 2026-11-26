@@ -2,6 +2,7 @@
 import type { UntrustedLensData } from "./context.js";
 import { firstInfinityThickness } from "../compileControls.js";
 import { parseSourceMagnification } from "../sourceMagnification.js";
+import { rearPlateSurfaceLabels } from "../rearPlates.js";
 
 export function isStationIndexList(value: unknown, min: number, max: number): value is number[] {
   return (
@@ -251,10 +252,14 @@ export function validateControls(
   errors: string[],
 ): void {
   const nz = isZoom ? data.zoomPositions.length : 0;
-  /* ── var keys reference real surface labels ── */
+  const lastPlate = Array.isArray(data.rearPlates) ? data.rearPlates.at(-1) : undefined;
+  const plateGapLabel = lastPlate ? rearPlateSurfaceLabels(data.rearPlates.length - 1)[1] : undefined;
+  const isGapLabel = (label: string) =>
+    surfaceLabels.has(label) || (plateGapLabel !== undefined && label === plateGapLabel);
+  /* Variable gaps follow authored surfaces or the final rear plate. */
   if (data.var && typeof data.var === "object") {
     for (const [label, range] of Object.entries(data.var)) {
-      if (!surfaceLabels.has(label)) errors.push(`var key "${label}" does not match any surface label`);
+      if (!isGapLabel(label)) errors.push(`var key "${label}" does not match any surface label`);
       if (isZoom) {
         if (!Array.isArray(range) || range.length !== nz)
           errors.push(`var["${label}"]: expected ${nz} focus-thickness vectors (one per zoom position)`);
@@ -289,26 +294,25 @@ export function validateControls(
           }
         }
       }
-      /* Surface d should match the var infinity value at the first zoom position */
-      if (surfaceLabels.has(label)) {
-        const surfD = data.surfaces[labelToIdx[label]].d;
-        const varInf = firstInfinityThickness(range, isZoom);
-        if (typeof surfD === "number" && typeof varInf === "number" && Math.abs(surfD - varInf) > 1e-6)
-          errors.push(`var["${label}"]: surface d=${surfD} does not match var infinity value ${varInf}`);
-      }
+      /* The infinity value at the first zoom position anchors the physical gap. */
+      const surfD = data.surfaces[labelToIdx[label]]?.d;
+      const varInf = firstInfinityThickness(range, isZoom);
+      if (typeof surfD === "number" && typeof varInf === "number" && Math.abs(surfD - varInf) > 1e-6)
+        errors.push(`var["${label}"]: surface d=${surfD} does not match var infinity value ${varInf}`);
+      if (label === plateGapLabel && typeof varInf === "number" && lastPlate.gapAfterMm !== varInf)
+        errors.push(`var["${label}"]: rear plate gapAfterMm must equal the first thickness ${varInf}`);
     }
   }
 
   /* ── Source provenance of the authored stations ── */
   if (data.publishedStations !== undefined) validatePublishedStations(data, focusPositionCount, errors);
 
-  /* ── varLabels reference real surface labels ── */
+  /* Variable gap labels use the same references as the thickness schedules. */
   if (Array.isArray(data.varLabels)) {
     for (const entry of data.varLabels) {
       if (!Array.isArray(entry) || entry.length < 2)
         errors.push(`varLabels entry is not a [label, text] pair: ${JSON.stringify(entry)}`);
-      else if (!surfaceLabels.has(entry[0]))
-        errors.push(`varLabels label "${entry[0]}" does not match any surface label`);
+      else if (!isGapLabel(entry[0])) errors.push(`varLabels label "${entry[0]}" does not match any surface label`);
     }
   }
 
