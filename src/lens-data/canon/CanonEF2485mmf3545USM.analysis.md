@@ -28,7 +28,7 @@ The lens has five groups, which the patent labels L1–L5; here they are called 
 
 Canon specifies 24–85 mm and f/3.5–4.5 for the production lens. The example is 3.5% longer than 24 mm at the wide end and 3.5% shorter than 85 mm at the long end, and its f/4.68 at 82.06 mm is slightly slower than the marked f/4.5. The example prints a diagonal field of 82.1°–29.5°; Imaging Resource lists 84°–28.5° for the product. Canon's six-bladed diaphragm closes to f/22 at wide and f/32 at tele. Figures 5–7 give the patent apertures, and the main diaphragm radius is calculated from them at each zoom position. The separate opening of 6.6 mm radius read from Figure 1 clips the axial beam around 50 mm. A chief ray still reaches the 35 mm frame corner at every zoom position. At wide, barrel distortion puts the corner at a 42.9° half-field, compared with the 41.1° half-field marked on Figure 5. [Canon Camera Museum](https://global.canon/en/c-museum/product/ef337.html) · [Imaging Resource specifications](https://imaging-resource.com/lenses/canon/ef-24-85mm-f3.5-4.5-usm/specifications) · [Patent, Figures 1 and 5–7](https://patents.google.com/patent/JPH09304697A/en)
 
-The patent tabulates five air spaces at three infinity positions. It gives neither the final air space nor the continuous zoom motion. The back focal distance at each printed position follows from the prescription. At twelve intermediate positions, the spacing from G2 to SP is calculated for infinity focus on the fixed image plane. The other gaps and the maximum aperture vary linearly between adjacent printed positions. The largest paraxial focus error between the resulting positions is 0.0175 mm. The patent prints no clear radii: they are scaled from Figure 1, and six are held slightly inside the drawing where neighbouring surfaces would otherwise meet.
+The patent tabulates five air spaces at three infinity positions. It gives neither the final air space nor the continuous zoom motion. The back focal distance at each printed position follows from the prescription. At twelve intermediate positions, the spacing from G2 to SP is calculated for infinity focus on the fixed image plane. The other gaps and the maximum aperture vary linearly between adjacent printed positions. The largest paraxial focus error between the resulting positions is 0.0175 mm. The patent prints no clear radii: they are scaled from Figure 1, and five are held slightly inside the drawing where neighbouring surfaces would otherwise meet. Flat lands carry four of these out to the drawn edges of L4, L5, L14 and L15.
 
 ## Element-by-Element Analysis
 
@@ -54,7 +54,7 @@ The aspherical layer has nd = 1.51640, νd = 52.2 and f = −89,886.92 mm in air
 
 ### L7 — positive meniscus
 
-nd = 1.84665, νd = 23.9, S-TIH53, f = +32.68 mm. L7 partly offsets the preceding negative components and bends the beam toward the diaphragm.
+nd = 1.84665, νd = 23.9, PBH53, f = +32.68 mm. L7 partly offsets the preceding negative components and bends the beam toward the diaphragm.
 
 ### L8 and L9 — positive cemented doublet
 
@@ -83,15 +83,16 @@ nd = 1.75699, νd = 47.8, S-LAM54, f = +36.55 mm. L14 shares the convergence of 
 
 ### L15 — negative meniscus
 
-nd = 1.84665, νd = 23.9, S-TIH53, f = −29.52 mm. The rear flint partially offsets the two positive members of G5. The patent describes this positive-positive-negative sequence as balancing aberrations through the zoom (¶0032).
+nd = 1.84665, νd = 23.9, PBH53, f = −29.52 mm. The rear flint partially offsets the two positive members of G5. The patent describes this positive-positive-negative sequence as balancing aberrations through the zoom (¶0032).
 
 ## Glass Identification
 
-The patent gives an index and an Abbe number for each of the sixteen refracting media. Nine Ohara glasses match the fifteen glass elements within 0.000011 in nd and 0.122 in νd. The greatest Abbe-number difference occurs for L7 and L15, whose printed νd is 23.9. These matches supply dispersion curves. The original glass suppliers and resin formulation remain unknown. [Ohara optical glass catalog](https://www.ohara-inc.co.jp/en/product/catalog/)
+The patent gives an index and an Abbe number for each of the sixteen refracting media. Ten Ohara glasses match the fifteen glass elements within 0.000011 in nd and 0.074 in νd; the greatest Abbe-number difference is for L12. The dense flint is printed two ways, nd = 1.84666 with νd = 23.8 for L1, L8 and L11 and nd = 1.84665 with νd = 23.9 for L7 and L15, and S-TIH53 (νd 23.78) and PBH53 (νd 23.89) round to the two printed Abbe numbers. These matches supply dispersion curves. With them the calculated paraxial g-line focus lies 0.046 mm behind the d-line focus at 24.84 mm, 0.019 mm in front of it at 50.00 mm and 0.032 mm behind it at 82.06 mm; Figures 5–7 plot about 0.04 mm behind, nearly zero and 0.04 mm behind. The original glass suppliers and resin formulation remain unknown. [Ohara optical glass catalog](https://www.ohara-inc.co.jp/en/product/catalog/)
 
 | Optical use                               | Ohara equivalents        | Elements                      |
 | ----------------------------------------- | ------------------------ | ----------------------------- |
-| High-dispersion menisci                   | S-TIH53                  | L1, L7, L8, L11, L15          |
+| High-dispersion menisci, νd 23.8          | S-TIH53                  | L1, L8, L11                   |
+| High-dispersion menisci, νd 23.9          | PBH53                    | L7, L15                       |
 | Positive front-group crown                | S-LAL14                  | L2, L3                        |
 | Negative group with hybrid asphere        | S-LAH65, S-TIH6, S-LAH58 | L4 glass, L5, L6 respectively |
 | Lower-dispersion positives in G3 and G5   | S-FSL5                   | L9, L13                       |

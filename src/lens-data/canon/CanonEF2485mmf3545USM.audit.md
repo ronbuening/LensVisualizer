@@ -49,7 +49,7 @@ The patent prints no clear radii. They are scaled from Figure 1(A) at 11.69 px/m
 | 9        | 9.25, land to 10.0 | Held to 9.25 by that air space; a flat land reaches the drawn L5/L6 edge                                                       |
 | 10–11    |               10.0 | Drawn L5/L6 edge                                                                                                               |
 | 12–13    |                8.9 | Drawn L7 edge (8.85), below the L5/L6 edge as in Canon's drawing                                                               |
-| 15–17    |                8.0 | Drawn C4 edge (8.04)                                                                                                           |
+| 15–17    |                8.0 | Drawn L8/L9 doublet edge (8.04)                                                                                                |
 | 18–19    |                8.2 | Drawn L10 edge (8.17)                                                                                                          |
 | 21–22    |                8.2 | Drawn L11 edge (8.2), resting inside the concave front face of L12 (¶0025 marginal contact)                                    |
 | 23–24    |                8.8 | Drawn L12 edge (8.7); surface 23 clears surface 22 with L11 at 8.2                                                             |
@@ -122,8 +122,20 @@ At infinity the finished model gives 24.850 / 50.053 / 82.191 mm EFL, f/3.58 / 4
 - Surfaces 28 and 29: flat lands from 11.0 to 12.6 mm, so L14 and L15 reach the drawn 12.6 mm edge while their faces stay apart.
 - Corner illumination is 30.5% at 24.84 mm, 47.3% at 50 mm and 42.9% at 82.06 mm both before and after, with no change at any field of the fifteen zoom positions. The f-numbers, the traced field and the image circle are unchanged.
 
+2026-11-26 diagram review:
+
+- The page was compared with both ends of Figure 1 and with Canon's drawing. New readings from the figure at its scanned 200 dpi, 3.88 px/mm from the 74.15 mm first-to-last vertex span (the arc of surface 8 gives the same scale across the axis within 1%), are 27.9 mm for L1/L2, 23.9 for L3, 13.4 for L4, 9.8 for L5/L6, 8.8 for L7, 8.1 for L8/L9, L10 and L11, 8.8 for L12, 11.3 for L13 and 12.6 for L14/L15. Every stored radius lies within 2% of these, and the drawn step order and square edges match, so no radius changed.
+- Lands and cuts: the lands on surfaces 8, 9, 28 and 29 and the narrower rims of L7 and L11 cost no light against the radii held before 2026-11-25, at every field of the fifteen zoom positions and at eight fractions between the ends (worst loss 0.0 points). L11 cannot return to 8.8 mm without surfaces 22 and 23 overlapping. All stay.
+- Inspector labels: L1–L15 → Element 1–15, with the resin entry as Element 4 resin layer and its glass as Element 4 glass substrate. The short names L1–L15 stay.
+- Bonded-pair brackets: C1, C2, C3, C4 → C1, H1, C2, C3. The resin layer and the L4 glass form one hybrid aspherical element, which Canon counts as a single element, so its bracket reads H1 and the three glass doublets read C1–C3.
+- L7 and L15: S-TIH53 (Ohara) → PBH53 (Ohara). The patent prints the dense flint as 1.84666/23.8 for L1, L8 and L11 and as 1.84665/23.9 for L7 and L15. PBH53, 1.84666/23.89, matches the second entry (Δnd +0.000008, Δνd −0.01), where S-TIH53 differed by −0.12. The calculated paraxial g-line focus now lies +0.046, −0.019 and +0.032 mm from the d-line focus at 24.84, 50.00 and 82.06 mm (+0.057, −0.017 and +0.021 mm before). Figures 5–7 plot about +0.043, −0.006 and +0.040 mm, read from the bottom of the spherical-aberration curves at 6.2 µm per pixel.
+- The analysis now counts five radii held inside the drawing, not six; surface 23 has stood at the drawn 8.8 mm since 2026-11-25.
+- Movement matches the spacing table and ¶0013 at all fifteen positions. From 24.84 to 82.06 mm, G1 advances 25.72 mm toward the object, G3 with SP and G5 advance 8.45 mm, MP advances 2.32 mm, G2 retreats 2.98 mm toward the image and G4 stays within 0.04 mm. Every group moves in one direction throughout, and the zoom stations run from wide to tele.
+- Confirmed unchanged: element shapes against the signs of the radii, roles and focal lengths; the A label on surface 6A alone; the main diaphragm 0.20 mm ahead of G3; no special-dispersion tags, since Canon marks none; and the infinity-only focus wording against claim 3 and ¶0029. Every glass element resolves to a catalog row, and the resin layer keeps its printed nd and νd for colour.
+
 ## Remaining Questions
 
 - The production glass types, resin formulation, finished clear diameters and exact diaphragm openings are undocumented. The middle-aperture difference depends on the 6.6 mm moving-stop radius read from the drawing.
 - Canon's drawing does not single out one numerical example or show the zoom and focus cam paths. The twelve calculated zoom positions describe one motion consistent with the printed spacings, and the G2 travel to 0.5 m is not printed.
 - Whether the silver and black finishes differ in anything beyond colour is undocumented.
+- At 50 mm the calculated paraxial g-line focus lies 0.019 mm in front of the d-line focus, where Figure 6 plots about 0.006 mm; the source of the difference, close to the reading limit of the scan, is not identified.
