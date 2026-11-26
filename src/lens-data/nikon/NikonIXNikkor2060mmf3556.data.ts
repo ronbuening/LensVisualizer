@@ -8,8 +8,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * The printed film spacings leave small offsets from paraxial focus. At the 23 intermediate
  * positions, D7 follows the group powers, D18 is interpolated and D19 puts paraxial focus on the film.
  * The iris radius follows the stated f-number. The flare stop opening comes from patent Figure 1.
- * The glass and resin rims follow Nikon's drawing in Tale 75, with smaller clear radii at
- * 2/3A, 4 and 16 to keep the adjacent surfaces apart.
+ * Figure 1 and Nikon's Tale 75 show square edges at 4/5 and 16–18 and a flat land behind 15.
+ * The resin clears to 13 mm. The 3A/4 air gap narrows to 0.17 mm there.
  */
 const LENS_DATA = {
   schema: 2,
@@ -173,7 +173,7 @@ const LENS_DATA = {
       d: 8.55,
       asphere: { K: -0.8657, A4: 1.989125e-5, A6: 8.596875e-8, A8: -2.988046875e-10, A10: 3.26875e-13 },
     },
-    { label: "4", R: -164.978, sd: 12.5, d: 1.458, medium: 3 },
+    { label: "4", R: -164.978, sd: 13.1469, d: 1.458, medium: 3 },
     { label: "5", R: 57.798, sd: 13.1469, d: 0.098 },
     { label: "6", R: 28.674, sd: 12.8891, d: 3.984, medium: 4 },
     { label: "7", R: 563.524, sd: 12.8891 },
@@ -184,8 +184,8 @@ const LENS_DATA = {
     { label: "12", R: 99.742, sd: 8.9579, d: 0.098 },
     { label: "13", R: 16.304, sd: 8.249, d: 4.178, medium: 7 },
     { label: "14", R: -54.748, sd: 8.249, d: 2.234, medium: 8 },
-    { label: "15", R: 12.25, sd: 8.249, d: 1.554 },
-    { label: "16", R: 37.298, sd: 6.7, d: 1.166, medium: 9 },
+    { label: "15", R: 12.25, sd: 6.9, rimExtensionSd: 8.249, d: 1.554 },
+    { label: "16", R: 37.298, sd: 6.7668, d: 1.166, medium: 9 },
     { label: "17", R: 12.582, sd: 6.7668, d: 4.614, medium: 10 },
     { label: "18", R: -30.362, sd: 6.7668 },
     { label: "19", R: "flat", sd: 7.35 },
@@ -321,6 +321,7 @@ const LENS_DATA = {
       "Infinity focus only. The production lens focuses to 0.35 m by moving G1 toward the subject. The patent gives group spacings only at infinity.",
   },
   aperture: { fStops: [3.5, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22, blades: 7 },
+  checks: { gapSagFrac: 0.98 },
   layout: { yScFill: 0.65 },
   groups: [
     { text: "G1", fromSurface: "1", toSurface: "7" },

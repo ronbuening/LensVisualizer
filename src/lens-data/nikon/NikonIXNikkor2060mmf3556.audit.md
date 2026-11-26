@@ -34,23 +34,22 @@ The three values in each cell are for wide, middle and telephoto at infinity. Th
 | First vertex to film (mm)                | 99.0534 / 93.5224 / 103.9850, summed    | 99.0534 / 93.5224 / 103.9850                  |
 | Field half-angle                         | 40.98° / 26.08° / 16.31° in Figures 2–4 | 42.11° / 26.97° / 16.92° at the APS corner    |
 
-The plotted angles give a calculated image height of about 16.60 mm. Table 1 specifies no image-circle diameter or image height smaller than the 17.255 mm corner radius of the 30.2 × 16.7 mm APS frame. The axial bundle and corner chief ray clear the rims at all 26 positions. The lower marginal ray at the corner does not pass at the four widest positions, from 20 to 23.34 mm. Calculated corner illumination is about 40.5%, 60.8% and 63.9% of the axial illumination at the three printed positions. [Patent, Figures 2–4](https://patents.google.com/patent/JPH08334694A/en) · [Nikon on the IX240 frame](https://imaging.nikon.com/imaging/information/story/0075/)
+The plotted angles give a calculated image height of about 16.60 mm. Table 1 specifies no image-circle diameter or image height smaller than the 17.255 mm corner radius of the 30.2 × 16.7 mm APS frame. The axial bundle and corner chief ray clear the rims at all 26 positions. The lower marginal ray at the corner could not be traced at the four widest positions, from 20 to 23.34 mm. Calculated corner illumination is about 43.5%, 60.8% and 63.9% of the axial illumination at the three printed positions. [Patent, Figures 2–4](https://patents.google.com/patent/JPH08334694A/en) · [Nikon on the IX240 frame](https://imaging.nikon.com/imaging/information/story/0075/)
 
 ## Values Not Printed in the Patent
 
-Neither drawing dimensions the rims. In Nikon’s cross-section, the radial heights at surfaces 1, 5, 6–7, 9–12, 13–15 and 17–18 are approximately 264, 204, 200, 139, 128 and 105 pixels, respectively. The axial prescription gives a scale of 15.5 pixels/mm. In the 300 dpi patent drawing the first and last glass vertices span 267 pixels and 67.281 mm, giving 3.97 pixels/mm. The patent line widths leave about 0.2–0.4 mm of uncertainty in the radial readings. [Nikon’s cross-section](https://imaging.nikon.com/imaging/information/story/0075/) · [Patent, Figure 1](https://patents.google.com/patent/JPH08334694A/en)
+Neither drawing dimensions the rims. In Nikon’s cross-section, the radial heights at surfaces 1, 5, 6–7, 9–12, 13–15 and 17–18 are approximately 264, 204, 200, 139, 128 and 105 pixels, respectively. The axial prescription gives a scale of 15.5 pixels/mm. In the 300 dpi patent drawing the first and last glass vertices span 267 pixels and 67.281 mm, giving 3.97 pixels/mm. About 40 pixels above and below the axis, surface 2 has about 15.5 pixels of sag. Its 14.668 mm radius gives a radial scale of about 4.0 pixels/mm. The patent line widths leave about 0.2–0.4 mm of uncertainty in the radial readings. [Nikon’s cross-section](https://imaging.nikon.com/imaging/information/story/0075/) · [Patent, Figure 1](https://patents.google.com/patent/JPH08334694A/en)
 
 | Surface | Clear radius (mm) | Basis                                                                       |
 | ------- | ----------------: | --------------------------------------------------------------------------- |
 | 1       |           17.0136 | Front rim in Nikon’s drawing. Patent estimate 17.75 mm.                     |
 | 2, 3A   |           13.0000 | Resin clearance. Patent estimates 13.75 and 13.35 mm.                       |
-| 4       |           12.5000 | Clearance at the air gap behind 3A. Patent estimate 13.35 mm.               |
-| 5       |           13.1469 | Rear rim of L12 in Nikon’s drawing. Patent estimate 13.35 mm.               |
+| 4, 5    |           13.1469 | Square L12 rim in both drawings. Patent estimate 13.35 mm.                  |
 | 6, 7    |           12.8891 | L13 in Nikon’s drawing. Patent estimate 13.35 mm.                           |
 | 9–12    |            8.9579 | First two lenses of G2 in Nikon’s drawing. Patent estimate 9.1 mm.          |
-| 13–15   |            8.2490 | First rear doublet in Nikon’s drawing. Patent estimates 8.7, 8.15, 8.15 mm. |
-| 16      |            6.7000 | Clearance behind surface 15. Patent estimate 7.0 mm.                        |
-| 17, 18  |            6.7668 | Last doublet in Nikon’s drawing. Patent estimate 7.0 mm.                    |
+| 13, 14  |            8.2490 | L23 outer edge in Nikon’s drawing. Patent outline about 8.2–8.7 mm.         |
+| 15      |            6.9000 | The curve ends at about 6.9 mm. A flat land extends to the 8.249 mm rim.    |
+| 16–18   |            6.7668 | Square L24 rim in both drawings. Patent estimate 7.0 mm.                    |
 | 19      |            7.3500 | Flare stop in patent Figure 1, about 58–59 pixels across the opening.       |
 
 The iris radii calculated from the printed f-numbers and paraxial entrance pupils are 7.003, 7.309 and 7.832 mm. The separate flare-stop radius measures about 6.5 mm in Nikon’s drawing. Its physical opening in production is unknown.
@@ -67,7 +66,7 @@ Sato designed the black 20–60 mm f/3.5–5.6 released for the Pronea 600i in S
 
 - The original f/8, ±3° view covered only the central field. The full model reaches the APS corner at the apertures in Figures 2–4. Figure 3 gives f/4.45 at 34 mm, replacing the estimated f/4.63.
 - The rear air space is split at surface 19. D18 and D19 locate the moving flare stop and preserve the printed film plane. Its 7.35 mm opening radius allows it to intercept off-axis light independently of the iris.
-- The glass rims follow the production drawing with the clearances in the table above. At the 13.35 mm radius read from the patent, the resin thickness would be −0.203 mm. The 13 mm resin radius and the 12.5 mm opening at surface 4 keep the resin faces and the next lens apart. The 6.7 mm opening at surface 16 preserves the air clearance behind surface 15.
+- The first rim estimates followed the production drawing, with openings of 12.5 mm at surface 4 and 6.7 mm at surface 16 to preserve air clearance. At the 13.35 mm radius read from the patent, the resin thickness would be −0.203 mm. The 13 mm resin radius leaves a positive edge thickness.
 - The 20 mm scale preserves the printed 2.827× range and gives a nominal 56.54 mm at telephoto. The three printed infinity positions keep their exact gaps, including the small focal-length and film-plane discrepancies. The former 62 intermediate estimates are replaced by 23 calculated positions that keep the film close to paraxial focus. The patent supplies no near-focus spacings from which to calculate G1 travel.
 - The model identifies the Pronea IX-mount lens for APS film, with nine lenses in seven groups, one hybrid asphere and seven blades. The catalog gives Nikon’s 20–60 mm, f/3.5–5.6 and 0.35 m specifications. The aperture scale uses f/3.5, 4, 5.6, 8, 11, 16 and 22, from the published wide-end maximum to the stated minimum. [Pronea S specifications](https://www.submin.com/aps/manuals/nikon/pdf/pronea_s.pdf) · [Nikon’s design account](https://imaging.nikon.com/imaging/information/story/0075/) · [IX lens specifications](https://johnmeister.com/tech/NIKON/www.photosynthesis.co.nz/nikon/lenses.html)
 - Six Hikari and Ohara catalog entries supply dispersion curves for seven material positions. The table gives catalog index and Abbe number minus the printed pair. The largest absolute differences are 0.000001 in nd and 0.132 in νd. The L11 substrate, its resin and L24a retain their published values alone.
@@ -83,9 +82,16 @@ Sato designed the black 20–60 mm f/3.5–5.6 released for the Pronea 600i in S
 
 At the three printed positions the model gives 19.995, 33.958 and 56.429 mm EFL at f/3.59, f/4.45 and f/5.67. Paraxial back focus from the last glass is 31.761, 44.845 and 65.903 mm.
 
+- 2026-11-25 rim review:
+  - Surface 4 went from 12.5 to 13.1469 mm to meet surface 5 at the square edge shown in both drawings. The air gap behind 3A is 0.174 mm at the 13 mm resin rim. The surfaces use 97.97% of their 8.55 mm axial gap, so the allowance rose from 90% to 98%.
+  - The curved part of surface 15 went from 8.249 to 6.9 mm. In Figure 1 it ends about 27–28 pixels from the axis, level with the rim of the last doublet. A flat land continues to the 8.249 mm outer edge of L23. Nikon shows the same step.
+  - Surface 16 went from 6.7 to 6.7668 mm to meet surfaces 17 and 18 at the square edge in both drawings. Surfaces 15 and 16 remain 0.13 mm apart at that radius.
+  - APS corner illumination went from 40.5% to 43.5% at 20 mm. It held at 60.8% at 34 mm and 63.9% at 56.54 mm. No field lost pupil transmission at any of the 26 infinity positions.
+
 ## Remaining Questions
 
 - The reason for the small difference between the printed and calculated telephoto focal lengths and for the film-plane offsets at the three printed positions is unknown.
 - The two drawings give different flare-stop openings. The production clear diameters, including that of the flare stop, and the corner illumination remain unmeasured.
+- Both drawings show a flat shoulder behind the front hybrid. Its square outline remains approximate. Extending the resin alone would leave a gap between it and the glass substrate beyond their 13 mm bonded rim.
 - Production zoom-cam travel, near-focus spacings and maximum reproduction ratio remain undocumented in the cited sources.
 - The original glass melts, suppliers, resin formulation and blade curvature remain unconfirmed.

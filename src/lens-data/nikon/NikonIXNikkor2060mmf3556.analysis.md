@@ -91,7 +91,7 @@ The higher-order terms change the profile away from the axis while preserving th
 
 ## Field Coverage
 
-The chief ray reaches the 17.255 mm APS film corner at half-fields of 42.11°, 26.97° and 16.92°. The patent’s plotted half-fields of 40.98°, 26.08° and 16.31° correspond to about 16.60 mm image height. The printed f-numbers give calculated wide-open iris radii of 7.003, 7.309 and 7.832 mm. The glass rims follow Nikon’s drawing, with smaller openings where adjacent surfaces would meet. The 7.35 mm flare-stop radius comes from patent Figure 1. These apertures pass the axial beam and vignette the oblique bundle, giving calculated corner illumination of about 40%, 61% and 64% relative to the center. [Patent, Figures 1–4](https://patents.google.com/patent/JPH08334694A/en) · [Nikon’s cross-section](https://imaging.nikon.com/imaging/information/story/0075/)
+The chief ray reaches the 17.255 mm APS film corner at half-fields of 42.11°, 26.97° and 16.92°. The patent’s plotted half-fields of 40.98°, 26.08° and 16.31° correspond to about 16.60 mm image height. The printed f-numbers give calculated wide-open iris radii of 7.003, 7.309 and 7.832 mm. L12 has a square edge at a radius of 13.15 mm. At the back of L23, surface 15 has a 6.9 mm clear radius and a flat land out to 8.25 mm. The three faces of L24 share a 6.77 mm rim. The 7.35 mm flare-stop radius comes from patent Figure 1. The axial beam clears at all 26 zoom positions. Calculated corner illumination is about 43%, 61% and 64% of the axial illumination at the three printed settings. [Patent, Figures 1–4](https://patents.google.com/patent/JPH08334694A/en) · [Nikon’s cross-section](https://imaging.nikon.com/imaging/information/story/0075/)
 
 ## Sources and References
 
