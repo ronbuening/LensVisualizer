@@ -48,7 +48,7 @@ const LENS_DATA = {
       vd: 33.1,
       indexReference: "d",
       focalLengthMm: -133.33,
-      glass: "S-TIM39 (OHARA catalog equivalent)",
+      glass: "PBM39 (OHARA catalog equivalent)",
       role: "Negative front element of G1. Its dispersion balances the two positive crowns behind it.",
     },
     {

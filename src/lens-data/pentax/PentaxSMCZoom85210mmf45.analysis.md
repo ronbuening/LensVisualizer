@@ -35,7 +35,7 @@ The focal lengths below describe each element in air. Glass names give catalog e
 
 ### L1 — Biconcave Negative
 
-nd = 1.66680, νd = 33.1. Ohara S-TIM39 equivalent. f = −133.33 mm.
+nd = 1.66680, νd = 33.1. Ohara PBM39 equivalent. f = −133.33 mm.
 
 The shallow front face has a radius of −3,000 mm. Most of L1’s diverging action lies at the rear face. Its flint glass balances the two lower-dispersion positive elements behind it.
 
