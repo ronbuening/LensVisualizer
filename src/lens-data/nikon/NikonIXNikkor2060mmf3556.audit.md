@@ -40,17 +40,17 @@ The plotted angles give a calculated image height of about 16.60 mm. Table 1 spe
 
 Neither drawing dimensions the rims. In Nikon’s cross-section, the radial heights at surfaces 1, 5, 6–7, 9–12, 13–15 and 17–18 are approximately 264, 204, 200, 139, 128 and 105 pixels, respectively. The axial prescription gives a scale of 15.5 pixels/mm. In the 300 dpi patent drawing the first and last glass vertices span 267 pixels and 67.281 mm, giving 3.97 pixels/mm. About 40 pixels above and below the axis, surface 2 has about 15.5 pixels of sag. Its 14.668 mm radius gives a radial scale of about 4.0 pixels/mm. The patent line widths leave about 0.2–0.4 mm of uncertainty in the radial readings. [Nikon’s cross-section](https://imaging.nikon.com/imaging/information/story/0075/) · [Patent, Figure 1](https://patents.google.com/patent/JPH08334694A/en)
 
-| Surface | Clear radius (mm) | Basis                                                                       |
-| ------- | ----------------: | --------------------------------------------------------------------------- |
-| 1       |           17.0136 | Front rim in Nikon’s drawing. Patent estimate 17.75 mm.                     |
-| 2, 3A   |           13.0000 | Resin clearance. Patent estimates 13.75 and 13.35 mm.                       |
-| 4, 5    |           13.1469 | Square L12 rim in both drawings. Patent estimate 13.35 mm.                  |
-| 6, 7    |           12.8891 | L13 in Nikon’s drawing. Patent estimate 13.35 mm.                           |
-| 9–12    |            8.9579 | First two lenses of G2 in Nikon’s drawing. Patent estimate 9.1 mm.          |
-| 13, 14  |            8.2490 | L23 outer edge in Nikon’s drawing. Patent outline about 8.2–8.7 mm.         |
-| 15      |            6.9000 | The curve ends at about 6.9 mm. A flat land extends to the 8.249 mm rim.    |
-| 16–18   |            6.7668 | Square L24 rim in both drawings. Patent estimate 7.0 mm.                    |
-| 19      |            7.3500 | Flare stop in patent Figure 1, about 58–59 pixels across the opening.       |
+| Surface | Clear radius (mm) | Basis                                                                    |
+| ------- | ----------------: | ------------------------------------------------------------------------ |
+| 1       |           17.0136 | Front rim in Nikon’s drawing. Patent estimate 17.75 mm.                  |
+| 2, 3A   |           13.0000 | Resin clearance. Patent estimates 13.75 and 13.35 mm.                    |
+| 4, 5    |           13.1469 | Square L12 rim in both drawings. Patent estimate 13.35 mm.               |
+| 6, 7    |           12.8891 | L13 in Nikon’s drawing. Patent estimate 13.35 mm.                        |
+| 9–12    |            8.9579 | First two lenses of G2 in Nikon’s drawing. Patent estimate 9.1 mm.       |
+| 13, 14  |            8.2490 | L23 outer edge in Nikon’s drawing. Patent outline about 8.2–8.7 mm.      |
+| 15      |            6.9000 | The curve ends at about 6.9 mm. A flat land extends to the 8.249 mm rim. |
+| 16–18   |            6.7668 | Square L24 rim in both drawings. Patent estimate 7.0 mm.                 |
+| 19      |            7.3500 | Flare stop in patent Figure 1, about 58–59 pixels across the opening.    |
 
 The iris radii calculated from the printed f-numbers and paraxial entrance pupils are 7.003, 7.309 and 7.832 mm. The separate flare-stop radius measures about 6.5 mm in Nikon’s drawing. Its physical opening in production is unknown.
 
@@ -91,7 +91,7 @@ At the three printed positions the model gives 19.995, 33.958 and 56.429 mm EFL 
   - The drawn lens at 20, 34 and 56.54 mm was compared with the three panels of Figure 1 and with Nikon’s drawing. At the 3.97 pixels/mm scale of the 300 dpi figure, the line centres give radii of 17.8 mm for L11, 13.35 mm for L12 and L13, 9.1 mm for L21 and L22, 8.6 mm for the front of L23, 8.1 mm for its rear edge and 7.0 mm for L24. The flare-stop opening measures 7.4 mm and the iris mark 6.9 mm. Every rim lies within 5% of these readings, so none changed.
   - Where the curve of surface 15 meets its land, three lines join in Figure 1. That junction reads about 6.3–6.5 mm, against 6.9 mm in the model. The reading is too uncertain to move the rim.
   - The curved part of surface 15 remains the only face below its earlier rim. Its land to 8.249 mm costs no light at any of the 26 positions or at the eighths of the zoom range. The worst loss is 0.0 points, so the land stays.
-  - The L11 substrate changed from Unmatched (nd 1.796681 / νd 45.37) to a Hikari J-LASF017 spectral proxy, with Δnd −0.00168 and Δνd −0.06. Example 3 prints the same pair for its L12, so it is a real glass. Figures 3 and 4 plot d and g spherical aberration. At 34 mm the marginal g focus lies 0.300 mm beyond the d focus, against 0.312 mm before and about 0.3 mm in Figure 3. At 56.54 mm the separation is −0.136 mm, against −0.105 mm before and about −0.14 mm in Figure 4. The paraxial g focus there moved from +0.040 to +0.010 mm relative to d, while Figure 4 starts both curves together. At 20 mm the change is 0.004 mm.
+  - The L11 substrate changed from Unmatched (nd 1.796681 / νd 45.37) to a Hikari J-LASF017 spectral proxy, with Δnd −0.00168 and Δνd −0.06. Example 3 prints the same pair for its L12, but this does not identify a supplier or melt. Figures 3 and 4 plot d and g spherical aberration. At 34 mm the marginal g focus lies 0.300 mm beyond the d focus, against 0.312 mm before and about 0.3 mm in Figure 3. At 56.54 mm the separation is −0.136 mm, against −0.105 mm before and about −0.14 mm in Figure 4. The paraxial g focus there moved from +0.040 to +0.010 mm relative to d, while Figure 4 starts both curves together. At 20 mm the change is 0.004 mm.
   - L24a stays unmatched. Its pair recurs in Example 2. Ohara S-LAH66 and Hoya TAF1 differ by −0.00029 in nd and by +0.15 and +0.18 in νd. They would move the telephoto paraxial g focus by −0.053 and −0.063 mm and widen the marginal g–d separation to −0.20 and −0.21 mm, away from Figure 4. No catalog material lies within the site’s spectral-proxy tolerance of the resin. The nearest is Hoya C10, 0.0049 lower in nd.
   - Element numbers, names, types, roles and focal lengths agree with ¶0047–0050 and the signs of R. So do the aspherical mark on 3A alone, the iris 0.486 mm ahead of L21, the C1–C3 cemented brackets and the G1 and G2 captions. Neither the patent nor Nikon marks a special-dispersion glass, and no element carries one.
   - Zoom runs from 20 mm at the left to 56.54 mm at the right. Across all 26 positions, D7 falls from 31.545 to 2.2964 mm, while D18 rises from 0 to 11.9856 mm and D19 from 31.7724 to 53.967 mm, each without reversal. G2 and the iris move steadily toward the subject, with the last glass vertex moving from 31.77 to 65.95 mm in front of the film. The flare stop follows more slowly. G1 moves toward the film until its first vertex reaches 93.28 mm from the film near 31 mm, where G2 works at unit magnification (|fI| = 31.1 mm). It then moves out to 103.985 mm at telephoto, as the arrows of Figure 1 show. Nikon’s account confirms the focus description: G1 moves toward the subject to reach 0.35 m.

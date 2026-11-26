@@ -55,23 +55,23 @@ The unmatched negative meniscus has nd = 1.772789, νd = 49.45 and f = −25.09 
 
 ## Glass Identification and Selection
 
-Table 1 gives helium d-line indices and Abbe numbers for all ten materials, including the resin. The Hikari and Ohara labels supply dispersion curves for eight of those pairs. The same Ohara curve applies to both L21 and L22. The patent leaves the suppliers, resin chemistry and glass melts unspecified. The model therefore keeps the printed index and dispersion even when the material has a catalog counterpart.
+Table 1 gives helium d-line indices and Abbe numbers for all ten materials, including the resin. The Hikari and Ohara labels supply dispersion curves for eight of those pairs. The same Ohara curve applies to both L21 and L22. The patent leaves the suppliers, resin chemistry and glass melts unspecified. The prescription retains the printed index and Abbe number; where a catalog counterpart is named, tracing keeps the printed d-line index and borrows the catalog curve’s wavelength dependence.
 
-The L11 substrate pair recurs as L12 in Example 3, so it describes a real glass, but no catalog row matches it exactly. Hikari J-LASF017 lies 0.0017 lower in index and 0.06 lower in Abbe number, inside the site’s spectral-proxy tolerance. It lends only its wavelength dependence. With it, the g-line focus of the model stays as close to Figures 3 and 4 as before or closer. L24a’s pair recurs in Example 2 and also has no exact catalog match. The nearest lanthanum crowns, near nd 1.7725 and νd 49.6, would move the telephoto g-line focus 0.05–0.06 mm away from Figure 4, so L24a keeps its printed pair alone. The resin is likewise unmatched. [Patent, Tables 1–3 and Figures 3–4](https://patents.google.com/patent/JPH08334694A/en) [Patent, ¶¶0050–0052](https://patents.google.com/patent/JPH08334694A/en)
+The L11 substrate pair recurs as L12 in Example 3, but no catalog row matches it exactly and the repeated pair does not identify its supplier or melt. Hikari J-LASF017 lies 0.0017 lower in index and 0.06 lower in Abbe number, inside the site’s spectral-proxy tolerance. It lends only its wavelength dependence. With it, the marginal g–d focus separation is +0.300 mm at 34 mm and −0.136 mm at 56.54 mm, close to Figures 3 and 4. L24a’s pair recurs in Example 2 and also has no exact catalog match. The tested lanthanum crowns Ohara S-LAH66 and Hoya TAF1, near nd 1.7725 and νd 49.6, would move the telephoto g-line focus 0.05–0.06 mm away from Figure 4, so L24a keeps its printed pair alone. The resin is likewise unmatched. [Patent, Tables 1–3 and Figures 3–4](https://patents.google.com/patent/JPH08334694A/en) [Patent, ¶¶0050–0052](https://patents.google.com/patent/JPH08334694A/en)
 
 The differences below are catalog minus patent. The first doublet combines a lower-index, less dispersive positive glass with a higher-index, more dispersive negative glass. The final doublet uses the opposite order.
 
-| Component               | Catalog counterpart |       Δnd |    Δνd |
-| ----------------------- | ------------------- | --------: | -----: |
-| L11 substrate           | Hikari J-LASF017    | −0.001681 | −0.060 |
-| L11 resin               | Unmatched           |         — |      — |
-| L12                     | Hikari J-LAF3       | +0.000001 | −0.060 |
-| L13                     | Hikari J-LAFH3      |         0 | +0.132 |
-| L21 and L22             | Ohara S-PHM53       |         0 | +0.024 |
-| L23a                    | Hikari J-BK7A       |         0 | +0.040 |
-| L23b                    | Hikari J-LASF010    |         0 | +0.010 |
-| L24a                    | Unmatched           |         — |      — |
-| L24b                    | Ohara S-NSL3        | −0.000001 | +0.002 |
+| Component     | Catalog counterpart |       Δnd |    Δνd |
+| ------------- | ------------------- | --------: | -----: |
+| L11 substrate | Hikari J-LASF017    | −0.001681 | −0.060 |
+| L11 resin     | Unmatched           |         — |      — |
+| L12           | Hikari J-LAF3       | +0.000001 | −0.060 |
+| L13           | Hikari J-LAFH3      |         0 | +0.132 |
+| L21 and L22   | Ohara S-PHM53       |         0 | +0.024 |
+| L23a          | Hikari J-BK7A       |         0 | +0.040 |
+| L23b          | Hikari J-LASF010    |         0 | +0.010 |
+| L24a          | Unmatched           |         — |      — |
+| L24b          | Ohara S-NSL3        | −0.000001 | +0.002 |
 
 ## Focus Mechanism
 
