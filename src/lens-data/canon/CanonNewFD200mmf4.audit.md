@@ -74,9 +74,14 @@ At infinity the model gives 200.89 mm EFL, f/4.00, 61.156 mm back focus and a 15
 
 - 2026-11-25 rim review:
   - The rims were compared again with Fig. 1 and the maker's drawing; none changed.
+- 2026-11-26 diagram review:
+  - The drawn section was compared with Fig. 1 at 9.07 pixels/mm and with the retail cutaway, and nothing changed. Fig. 1 gives clear radii of 26.2–26.3 mm for L1, 24.8–24.9 mm for L2, 24.0 mm for L3, 19.0–19.1 mm for the front of L4, 16.4–16.6 mm for its rear, 12.6–12.7 mm for the doublet and 16.2–16.5 mm for L7. Each is within 0.4 mm of the model, and the drawn order of heights and the square rims of L2, the doublet and L7 match.
+  - The lens has no lands or cut rims. Every rim keeps the value first read from Fig. 1, so no focus position loses light.
+  - The doublet moves steadily toward the film through all eleven positions while members I, II and IV and the iris stay fixed. The focus readout gives 9.14, 3.65, 2.28 and 1.83 m at the 0.2, 0.5 and 0.8 focus positions and at the close end. The last value agrees with the printed 1.826 m to within 1.4 mm.
+  - Figures 2 and 3 plot only the d and g lines. Relative to d, the catalog curves place the g-line focus about 0.05 mm nearer the lens than Figure 2 at infinity and about 0.04 mm nearer than Figure 3 at 9.13f, almost uniformly across the aperture. At the 6.15° field the model gives +1.6% distortion, and Figure 2 reads about +1.4%. Element types, roles, member brackets, the cemented bracket and the iris position agree with the patent, and no element carries a special-dispersion tag.
 
 ## Remaining Questions
 
-- The printed prescription gives an infinity focal length 0.45% longer than its heading. The source of this difference, the near-focus discrepancy and the disagreements in the powers of members II and IV remain unresolved.
-- The intended spectral-line wording and the identities of the production glass suppliers and melts remain unknown.
+- The printed prescription gives an infinity focal length 0.45% longer than its heading. The source of this difference, the near-focus discrepancy and the disagreements in the powers of members II and IV remain unresolved. The printed table also departs from the d-line curve of Figure 2. At 0.68 of the f/4 aperture the figure reads about −0.14 mm and the table gives −0.10 mm. At full aperture the figure returns to about +0.02 mm, while the table gives +0.18 mm.
+- The intended spectral-line wording and the identities of the production glass suppliers and melts remain unknown. With the modern catalog curves, the g-line focus lies about 0.05 mm nearer the lens, relative to d, than Figures 2 and 3 show.
 - The patent and retail cutaway place the iris at different distances from the front vertex. The production iris position, cam profile and additional travel to 1.5 m are undocumented. Canon specifies eight blades without giving their curvature, and the patent gives no separate image-circle diameter.
