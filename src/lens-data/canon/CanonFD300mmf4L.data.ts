@@ -34,7 +34,7 @@ const LENS_DATA = {
     focalLengthMm: { marketing: 300, design: 300.11 },
     fNumber: { marketing: 4, design: 4 },
     closeFocusM: { marketing: 3 },
-    specs: ["7 ELEMENTS / 7 GROUPS", "2 UD ELEMENTS", "DESIGN f = 300.11 mm", "REAR FOCUS"],
+    specs: ["7 ELEMENTS / 7 GROUPS", "2 UD ELEMENTS", "ALL SPHERICAL", "REAR FOCUS"],
   },
   elements: [
     {
@@ -49,7 +49,7 @@ const LENS_DATA = {
       glass: "K-PFK80 (SUMITA)",
       apd: "inferred",
       apdNote: "The FD L glass diagram identifies the first positive lens as ultra-low dispersion.",
-      role: "Provides the strongest positive power in the front group with low chromatic dispersion.",
+      role: "Supplies most of the front group's positive power. Its ultra-low dispersion limits axial colour.",
     },
     {
       id: 2,
@@ -75,7 +75,7 @@ const LENS_DATA = {
       glass: "K-PFK80 (SUMITA)",
       apd: "inferred",
       apdNote: "The FD L glass diagram identifies the third lens as the second ultra-low-dispersion positive.",
-      role: "Shares the front group's converging power with L1 and directs the beam toward the rear group.",
+      role: "Shares the front group's converging power with L1 and uses the same ultra-low-dispersion glass.",
     },
     {
       id: 4,
@@ -99,7 +99,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 113,
       glass: "S-FTM16 (OHARA)",
-      role: "Positive member of the rear focusing pair, air-spaced from L6.",
+      role: "Partly offsets L6's negative power as the two lenses move together for focusing.",
     },
     {
       id: 6,
