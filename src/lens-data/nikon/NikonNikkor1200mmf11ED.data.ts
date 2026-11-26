@@ -3,7 +3,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /**
  * Yoshiyuki Shimizu's sole example in JP S51-43920 A gives the radii and spacings
  * in millimetres, the d-line glass data and a 240.2 mm back focus at infinity.
- * Nikon's dimensioned section gives the scale for the front and rear clear radii.
+ * The front and rear clear radii are measured from Nikon's dimensioned section of
+ * the lens, scaled by its 709.0 mm vertex span. They cover the 35 mm frame corner
+ * but not the outer part of the patent's 5° field.
  * The lens head carries its own iris. Its position halfway across the 659 mm air
  * space is an estimate, and its radius follows from the printed f/11 aperture.
  */
@@ -39,7 +41,7 @@ const LENS_DATA = {
       design: 11,
     },
     closeFocusM: { marketing: 50 },
-    specs: ["5 ELEMENTS / 4 GROUPS", "ALL SPHERICAL", "1 ED ELEMENT", "DESIGN f = 1199.70 mm"],
+    specs: ["5 ELEMENTS / 4 GROUPS", "ALL SPHERICAL", "1 ED ELEMENT"],
   },
   elements: [
     {
@@ -55,8 +57,8 @@ const LENS_DATA = {
       glass: "Unmatched (nd 1.50032 / νd 81.9)",
       apd: "inferred",
       apdNote:
-        "The front element's Abbe number of 81.9 identifies it as the likely ED glass in Nikon's 1200mm ED head.",
-      role: "Collects light at the front of the objective with the lowest dispersion of the five glasses.",
+        "Nikon states that the lens uses ED glass; this element's Abbe number of 81.9 is the only ED-class value in the prescription.",
+      role: "Positive front element and likely ED glass, with the lowest dispersion of the five glasses.",
     },
     {
       id: 2,
@@ -182,7 +184,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 1e15,
     description:
-      "The focusing mount moves the whole lens head. The patent gives the spacings at infinity only. Nikon lists a 50 m minimum focus with the AU-1 mount.",
+      "The lens head screws into a Nikon focusing unit, which moves it as a whole. The patent gives the spacings at infinity only, so the model stays at infinity. Nikon's closest distance is 50 m from the film, at a 1:38.8 reproduction ratio.",
   },
   aperture: {
     nominalFNumber: 11,
