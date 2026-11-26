@@ -4,7 +4,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * US 3,506,337, sole example, Table 1. Yasuo Takahashi for Asahi Kogaku Kogyo Co., Ltd.
  * The 21 spherical radii, axial spacings and eleven d-line glass pairs are at the printed millimetre scale.
  * The patent gives 85–205 mm at f/4.5. The probable production lens is marked 85–210 mm.
- * Clear glass radii come from the lower rims in Figures 1(a–c). The Seidel coefficients in Tables 2 and 3
+ * Clear glass radii come from the lower rims in Figures 1(a–c). The figures bevel the rear edge of L10: its
+ * rear face is clear to 12.0 mm, with a flat land out to the 13.4 mm edge. The Seidel coefficients in Tables 2 and 3
  * place the diaphragm 8 mm behind surface 17 and 7 mm ahead of surface 18. Its radius follows from f/4.5.
  * The two end positions use the limits in Table 1. At both ends d13 returns to 0.10 mm. The 22 intermediate
  * positions are calculated for infinity focus with d6 + d11 + d13 = 70.600 mm and the image fixed 111.740 mm
@@ -193,7 +194,7 @@ const LENS_DATA = {
     { label: "17", R: -152.064, d: 8, sd: 17.2 },
     { label: "STO", R: "flat", d: 7 },
     { label: "18", R: -45.2, d: 2.5, sd: 13.4, medium: 10 },
-    { label: "19", R: 53.698, d: 18.5, sd: 13.4 },
+    { label: "19", R: 53.698, d: 18.5, sd: 12.0, rimExtensionSd: 13.4 },
     { label: "20", R: 1000, d: 5, sd: 16.9, medium: 11 },
     { label: "21", R: -46.238, d: 111.74, sd: 16.9 },
   ],

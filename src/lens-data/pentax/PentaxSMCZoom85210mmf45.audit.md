@@ -28,11 +28,11 @@ Glass edges retain positive thickness and adjacent components clear one another.
 
 ## Values Not Printed in the Patent
 
-The 143.10 mm span between the first and last vertices sets the scale of Figures 1(a–c). The lower outlines show the optical edges clear of the number labels and their leader lines. All 21 surface rims follow those outlines.
+The 143.10 mm span between the first and last vertices sets the scale of Figures 1(a–c). The rear arc of L11 in Figure 1(a) fits a radius of about 48 mm against the printed 46.24 mm, which confirms the scale across the axis. The lower outlines show the optical edges clear of the number labels and their leader lines. All 21 surface rims follow those outlines. The figures bevel the rear edge of L10, so its rear face is clear to 12.0 mm and a flat land continues to the 13.4 mm edge.
 
-| Surfaces | 1–6 | 7–8 | 9–11 | 12–13 | 14–15 | 16–17 | 18–19 | 20–21 |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| Clear radius (mm) | 25.0 | 16.3 | 16.4 | 16.9 | 17.4 | 17.2 | 13.4 | 16.9 |
+| Surfaces | 1–6 | 7–8 | 9–11 | 12–13 | 14–15 | 16–17 | 18 | 19 | 20–21 |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| Clear radius (mm) | 25.0 | 16.3 | 16.4 | 16.9 | 17.4 | 17.2 | 13.4 | 12.0, land to 13.4 | 16.9 |
 
 The text places the diaphragm between L9 and L10. In that 15.00 mm air space, a stop 8.00 mm behind R17 and 7.00 mm ahead of R18 reproduces the coma coefficients to about 0.001. The calculated paraxial pupil at f/4.5 gives an iris radius of about 13.10 mm.
 
@@ -71,8 +71,13 @@ The K version and the 1971–75 M42 S-M-C Takumar share their optical design. As
 
 At infinity the finished model gives 85.000 and 205.194 mm effective focal length, f/4.50, and 111.739 and 111.741 mm paraxial back focus. The wide-end iris radius is 13.10 mm. The 35 mm frame corner lies at 14.8° and 5.9° at the two ends.
 
+2026-11-25 rim review:
+
+- L10 rear face, surface 19: clear radius 13.4 → 12.0 mm, with a flat land out to the unchanged 13.4 mm edge. All three panels of Figure 1 end the concave rear face short of the edge and join it to the rim with a short slanted stroke. Measured at 8.21 px per mm, the face ends at 0.86–0.89 of the edge radius, about 11.7 mm. The clear radius sits 0.3 mm outside that reading. This is the smallest value at which no field at any of the 24 zoom positions loses more than 3 points of illumination. Corner illumination at infinity falls from 55.3 to 54.4 % at 85 mm and from 52.4 to 51.4 % at 205 mm. The largest loss is 2.5 points at 9.3° at 111.3 mm. The f/4.5 axial beam reaches 11.46 mm on this face and passes at every zoom position.
+- The other twenty rims were compared again with Figures 1(a–c) and none changed. Each lies within about 3 % of the drawn edge. The square-cut elements keep one radius on both faces, L5 and L6 share one edge, and L7 stays smaller than L8 as drawn.
+
 ## Remaining Questions
 
 - The factory radii, spacings, glass suppliers and intermediate cam positions remain undocumented. The catalog drawing cannot resolve the difference between the 205 mm design and the 210 mm barrel marking.
-- The clear radii are figure measurements. The precise iris position comes from the Seidel coefficients. The production rim dimensions, iris offset and blade curvature remain unknown.
+- The clear radii are figure measurements, and the drawn bevel on L10 is represented by a flat land. The precise iris position comes from the Seidel coefficients. The production rim dimensions, iris offset and blade curvature remain unknown.
 - The patent supplies no finite-focus spacings or reproduction ratio. The cited K-mount specifications give no maximum magnification or internal group travel at 3.5 m.

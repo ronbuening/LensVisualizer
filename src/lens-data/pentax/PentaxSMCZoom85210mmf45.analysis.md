@@ -86,7 +86,7 @@ L9 supplies positive power ahead of the diaphragm. Conditions (4) and (5) relate
 
 nd = 1.64769, νd = 33.9. Schott SF2 equivalent. f = −37.52 mm.
 
-L10 is the strongest diverging element in the lens. It stands behind the diaphragm, with an 18.50 mm air space to L11.
+L10 is the strongest diverging element in the lens. It stands behind the diaphragm, with an 18.50 mm air space to L11. Figure 1 draws a bevel where its concave rear face meets the edge, so the rear face is clear to 12.0 mm and a flat land carries the glass out to the 13.4 mm edge.
 
 ### L11 — Biconvex Positive
 
@@ -112,7 +112,7 @@ Table 1 gives the range of three air spaces. The first-to-last vertex distance s
 
 The endpoint prescriptions give paraxial back focal distances of 111.739 and 111.741 mm. The image plane is fixed 111.740 mm behind L11. At 22 intermediate positions, the gaps are calculated for focal length and infinity focus with the same total spacing. Near 139 mm, exact focus would require d13 to open to about 7.436 mm. Holding it to 7.41 mm places the paraxial focus up to 0.026 mm behind the image. Elsewhere, while d13 is below the limit, the error stays below 0.020 mm between positions.
 
-The patent places the stop between L9 and L10. Its Seidel coefficients locate it about 8 mm behind surface 17 in the 15 mm air space. The f/4.5 aperture gives a paraxial stop radius of approximately 13.10 mm. Clear glass radii come from the lower outlines in Figures 1(a–c). Neither the stop radius nor the glass diameters are tabulated.
+The patent places the stop between L9 and L10. Its Seidel coefficients locate it about 8 mm behind surface 17 in the 15 mm air space. The f/4.5 aperture gives a paraxial stop radius of approximately 13.10 mm. Clear glass radii come from the lower outlines in Figures 1(a–c), including the bevelled rear edge of L10. Neither the stop radius nor the glass diameters are tabulated.
 
 The production lens has one ring that turns to focus and slides to zoom. Its minimum distance is 3.5 m, measured from the film plane under Asahi’s K-system convention. With the supplied close-up lens, a separate white scale reads down to 1.9 m. Table 1 gives only infinity spacings, so the model has no finite-focus position or magnification to compare with the production lens. [Asahi zoom catalog](https://hirokun.jp/pentax_lens_accessory_catalog_1976-77.pdf) · [SMC Pentax manual, p. 26](https://cameramanuals.org/lenses/pentax_smc_lenses.pdf) · [Pentax Forums K-mount record](https://www.pentaxforums.com/lensreviews/SMC-Pentax-K-85-210mm-F4.5-Zoom-Lens.html) · [Asahi’s distance convention](https://c758710.r10.cf2.rackcdn.com/files/support/manual/179_1314744933-128077857_manual.pdf)
 
