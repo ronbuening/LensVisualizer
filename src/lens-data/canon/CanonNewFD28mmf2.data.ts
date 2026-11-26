@@ -32,7 +32,7 @@ const LENS_DATA = {
     focalLengthMm: { marketing: 28, design: 28 },
     fNumber: { marketing: 2, design: 2 },
     closeFocusM: { marketing: 0.3 },
-    specs: ["10 ELEMENTS / 9 GROUPS", "ALL SPHERICAL", "75° FIELD"],
+    specs: ["10 ELEMENTS / 9 GROUPS", "ALL SPHERICAL", "FLOATING ELEMENTS"],
   },
   elements: [
     {
