@@ -110,7 +110,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "S-BAL42 (OHARA catalog equivalent)",
       focalLengthMm: 67.15,
-      role: "Thin positive element immediately ahead of the aperture stop.",
+      role: "Weak biconvex element that begins converging the beam just ahead of the iris.",
     },
     {
       id: 7,
@@ -122,7 +122,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "H-BaF8 (CDGM catalog equivalent)",
       focalLengthMm: 30.49,
-      role: "Strong positive element immediately behind the aperture stop.",
+      role: "Thick biconvex element behind the iris that supplies much of the rear group's positive power.",
     },
     {
       id: 8,
@@ -160,7 +160,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "S-LAH60V (OHARA catalog equivalent)",
       focalLengthMm: -44.01,
-      role: "Negative meniscus between the doublet and the last two positive elements.",
+      role: "Diverging meniscus that spreads the beam ahead of the two rear positive elements.",
     },
     {
       id: 11,
@@ -234,7 +234,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 1e15,
     description:
-      "Infinity focus only. The second group moves toward the subject for close focus. The patent gives zoom spacings at infinity and no close-focus spacings.",
+      "Infinity focus only. The patent focuses by moving the second group, toward the subject for nearer objects, and prints zoom spacings at infinity only. Canon's inner focusing reaches 0.34 m, which is not modeled.",
   },
   gaps: {
     "4": {
