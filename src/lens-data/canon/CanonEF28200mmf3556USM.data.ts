@@ -50,7 +50,7 @@ const LENS_DATA = {
     patentNumber: "JP 2001-350095 A",
     example: { label: "Numerical Example 1", id: "1" },
     patentYear: 2001,
-    authors: ["Makoto Mitsusaka"],
+    authors: ["Makoto Misaka"],
     assignees: ["Canon Inc."],
     errata: [
       {

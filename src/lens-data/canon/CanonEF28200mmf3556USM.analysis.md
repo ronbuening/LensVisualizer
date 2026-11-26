@@ -5,7 +5,7 @@
 **Patent:** JP 2001-350095 A  
 **Filed:** June 5, 2000  
 **Published:** December 21, 2001  
-**Inventor:** Makoto Mitsusaka  
+**Inventor:** Makoto Misaka  
 **Applicant:** Canon Inc.  
 **Title:** Zoom lens and optical device using the same
 
