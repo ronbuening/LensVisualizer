@@ -4,12 +4,10 @@ import { IMAGE_FORMAT_BY_ID, isImageFormatId } from "../../utils/catalog/lensTax
 import { FLAT_RADIUS } from "./canonical.js";
 import type { CanonicalLens, CanonicalSurface, CanonicalElement, IngestedPrescription } from "./canonical.js";
 import { canonicalConstructionData, elementDisplayData } from "./constructionData.js";
+import { rearPlateSurfaceLabels } from "./teleconverterCompatibility.js";
 
 export const REAR_PLATE_LABEL_PATTERN = /^RP\d+[ab]$/;
-export function rearPlateSurfaceLabels(index: number): [string, string] {
-  return [`RP${index + 1}a`, `RP${index + 1}b`];
-}
-export { rearPlateAirEquivalentMm } from "./teleconverterCompatibility.js";
+export { rearPlateAirEquivalentMm, rearPlateSurfaceLabels } from "./teleconverterCompatibility.js";
 
 export interface ExpandedCanonicalLens extends CanonicalLens {
   surfaces: (CanonicalSurface & { clips?: false; synthetic?: "rearPlate" })[];

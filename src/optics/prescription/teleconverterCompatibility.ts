@@ -21,6 +21,10 @@ import type {
 /** Prefix of every composed converter surface label; reserved in authored lens data. */
 export const TELECONVERTER_LABEL_PREFIX = "TC";
 
+export function rearPlateSurfaceLabels(index: number): [string, string] {
+  return [`RP${index + 1}a`, `RP${index + 1}b`];
+}
+
 /** Smallest air gap accepted at the junction and behind the converter; below this the glass is in contact. */
 export const MIN_TELECONVERTER_GAP_MM = 0.1;
 
@@ -185,7 +189,10 @@ export function teleconverterGeometry(
   let minJunctionGapMm: number;
   if (split.ahead > 0) {
     plateJunctionGapMm = split.lastAheadRearFaceToImage - tc.masterImageDistanceMm;
-    minJunctionGapMm = plateJunctionGapMm;
+    const plateGap = hostPlates[split.ahead - 1].gapAfterMm;
+    const gaps = [plateGap];
+    collectThicknesses(host.var?.[rearPlateSurfaceLabels(split.ahead - 1)[1]], gaps);
+    minJunctionGapMm = plateJunctionGapMm + (Math.min(...gaps) - plateGap);
   } else {
     lastGapShiftMm = rearPlateAirEquivalentMm(hostPlates) - tc.masterImageDistanceMm;
     minJunctionGapMm = lastGaps.length > 0 ? Math.min(...lastGaps) + lastGapShiftMm : -Infinity;

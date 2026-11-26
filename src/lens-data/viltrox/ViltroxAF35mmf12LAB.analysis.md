@@ -125,7 +125,7 @@ The repeated low-dispersion positive elements and more dispersive negative partn
 
 ## Focus Mechanism
 
-The design uses two moving internal focus groups. G2 moves imageward while G4 moves objectward; G1, G3, G5 and the image plane remain fixed (¶0020). Only the two printed endpoints are enabled. An intermediate focus cam or source-certified finite conjugate has not been established.
+The design uses two moving internal focus groups. G2 moves imageward while G4 moves objectward. G1, G3, G5 and the image plane remain fixed (¶0020). Three intermediate keyframes at 25%, 50% and 75% of the endpoint travel provide focus-distance readings at those spacings. The focus slider interpolates between keyframes in 0.4% increments. Patent positions mode offers the two printed endpoints.
 
 | Variable gap | Location | Infinity | Published near row |
 | --- | --- | ---: | ---: |

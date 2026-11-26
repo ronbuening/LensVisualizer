@@ -24,7 +24,7 @@ The design has nine glass elements in seven air-spaced groups, excluding the thi
 
 All twenty source optical, stop and filter rows are retained without rescaling or index fitting. The calculated EFL is 84.548650747 mm at f/1.479, rather than the marketed f/1.4. Table 6 gives 84.499585 mm, whereas Table 10 gives 84.548355 mm and the prose gives 84.54 mm. These source differences remain unresolved.
 
-The camera-side filter is a physical 2.5 mm plate. The image plane follows D4 after the plate. The printed D5 row follows Image and is retained only as source metadata; it is not propagated as an incoming image spacing. Its purpose remains unresolved.
+The camera-side filter is a physical 2.5 mm plate. Ray tracing includes it, and the diagram omits it. The image plane follows D4 after the plate. The printed D5 row follows Image and is retained as source metadata. Its purpose remains unresolved.
 
 ## Element-by-Element Analysis
 
@@ -117,7 +117,7 @@ The near object distance D0 is 813.676935 mm before the first vertex. Adding the
 
 The source's near f/1.584 and 11.939° half-field remain source claims. The modeled physical iris retains its semi-diameter of 15.090708516 mm, derived from infinity f/1.479; the fixed-iris near working f-number is 1.483. No iris adjustment was used to force the printed near f-number.
 
-The filter remains drawn because its trailing gap D4 changes with focus. A separate rear-plate representation allows only a fixed trailing gap; moving D4's 0.180011 mm change into D3 would relocate the near-state filter. Both physical gaps are preserved. The source's D5 values, −0.005027/−0.133249 mm after Image, remain non-propagated metadata.
+The filter is modeled as a rear plate with a fixed 37.3 mm gap before it and a focus-dependent D4 gap to the image plane. The two D4 values reproduce the published image positions.
 
 ## Aspherical Surfaces
 

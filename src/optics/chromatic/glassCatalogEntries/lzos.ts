@@ -40,6 +40,15 @@ export const LZOS_GLASS_ENTRIES: readonly GlassEntry[] = [
       "LZOS clear optical glass catalogue, STK3 (СТК3) index table via refractiveindex.info (specs/lzos/optical/CTK3.yml); formula-3 least-squares fit over 365–1014 nm, max abs index error 5.8e-6.",
   },
   {
+    name: "TF10",
+    vendor: "LZOS",
+    polynomial: [3.122892458, -0.01058471195, 0.04127594933, 0.003289861418, -0.0002362510637, 0.00002789128317],
+    nd: 1.806274,
+    vd: 25.37,
+    source:
+      "LZOS clear optical glass catalogue, TF10 (ТФ10) index table via refractiveindex.info (specs/lzos/optical/TF10.yml); formula-3 least-squares fit over 365–1014 nm, max abs index error 9.4e-6.",
+  },
+  {
     name: "TF5",
     vendor: "LZOS",
     polynomial: [2.959751698, -0.009119101566, 0.0382087966, 0.00156471631, -0.00001278540046, 0.00001071093486],
