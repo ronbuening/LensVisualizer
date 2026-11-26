@@ -818,4 +818,14 @@ export const SUMITA_GLASS_ENTRIES: readonly GlassEntry[] = [
     source:
       "SUMITA official all-glass Zemax catalog header2026/08/21; accessed2026-10-31. Legacy LAKN4 literal formula1 row; no source supplier, melt, chemistry or process identity implied. https://www.sumita-opt.co.jp/en/download/",
   },
+  {
+    name: "BAF1",
+    vendor: "Sumita",
+    nd: 1.5569,
+    vd: 48.5,
+    polynomial: [2.380719, -0.008862855, 0.01413266, 0.0007781352, -6.104011e-5, 4.165232e-6],
+    code6: "557485",
+    source:
+      "SUMITA official all-glass Zemax catalog 2025-11-07 including discontinued glasses; legacy BAF1 formula-1 row. https://www.sumita-opt.co.jp/en/download/ (accessed 2026-11-25).",
+  },
 ];
