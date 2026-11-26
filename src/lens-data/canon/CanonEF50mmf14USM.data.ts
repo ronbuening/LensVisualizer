@@ -90,7 +90,7 @@ const LENS_DATA = {
       nd: 1.80518,
       vd: 25.4,
       indexReference: "d",
-      glass: "S-TIH6 (Ohara equivalent)",
+      glass: "PBH6 (Ohara equivalent)",
       focalLengthMm: -21.68,
       role: "Negative, more dispersive member of the rear doublet. Its steep concave front face, opposite L3 across the stop, shares that correction.",
       cemented: "C1",
@@ -154,7 +154,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 1e15,
     description:
-      "The patent gives spacings only at infinity, and the model stays focused there. The production lens focuses to 0.45 m by moving the whole optical assembly forward.",
+      "The patent gives spacings only at infinity, and the model stays focused there. Canon specifies a 0.45 m minimum focusing distance and 0.15× maximum magnification.",
   },
 
   aperture: {

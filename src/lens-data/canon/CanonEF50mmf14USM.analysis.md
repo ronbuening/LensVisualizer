@@ -43,7 +43,7 @@ Its steep rear face forms the first of the two concave surfaces facing the stop.
 
 ### L4 and L5 — Cemented doublet
 
-- **L4, biconcave negative.** $n_d = 1.80518$, $\nu_d = 25.4$. S-TIH6 equivalent, $f = -21.68$ mm.
+- **L4, biconcave negative.** $n_d = 1.80518$, $\nu_d = 25.4$. PBH6 equivalent, $f = -21.68$ mm.
 - **L5, biconvex positive.** $n_d = 1.75700$, $\nu_d = 47.8$. S-LAM54 equivalent, $f = +40.74$ mm.
 
 The concave front of L4 faces L3 across the stop. At the common surface R8, the radius is +508.77 mm, which accounts for the almost straight line through the doublet in Canon's section. Positive L5 offsets part of L4's stronger negative power. The cemented pair has a focal length of −59.83 mm in air.
@@ -65,6 +65,8 @@ The radii are nearly equal in magnitude, +124.391 and −124.393 mm. L7 adds the
 Kato calls for an average index above 1.79 in the three positive elements behind the stop. Their mean is 1.815 in Example 2. Paragraphs 0016–0017 explain the reason for the lower bound. At lower indices the same positive power would require steeper surfaces, increasing spherical aberration and the Petzval sum.
 
 Across the cemented pair, the Abbe number rises from 25.4 in the negative element to 47.8 in its positive partner. Canon credits two high-refraction elements in the product with reducing flare at full aperture and removing astigmatism, without specifying their positions. The prescription is entirely spherical, and neither source identifies an ED element. All seven Ohara equivalents reproduce the printed glass constants at their stated precision. The original suppliers and melts are unknown.
+
+Figure 6 plots the spherical aberration in the d and g lines. At full aperture the model's d-line marginal focus falls 0.035 mm behind the d-line paraxial focus, as plotted. Its g-line marginal focus falls 0.249 mm behind the same point, against about 0.243 mm in the plot. For L4 the lead flint PBH6 reproduces that g-line curve. The titanium flint S-TIH6 has the same index and Abbe number, but it would place the g-line marginal focus 0.271 mm behind.
 
 ## Focus Mechanism
 

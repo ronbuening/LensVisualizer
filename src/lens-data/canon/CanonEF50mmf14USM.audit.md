@@ -94,9 +94,19 @@ The radii, spacings, glass pairs, 8.959/6.163 mm stop division and 37.575 mm bac
 - The lands do not change the traced aperture, and the wider R4 is not a limiting surface. Geometric pupil transmission is unchanged at every field: 100% on axis, 38.5% at 20.9° and 24.3% at the 23.82° corner, before and after.
 - Canon's drawing shows L3's flange taller than L2 and the lands on L3 and L4 bevelled. Figure 2 draws L3 below L2 with square lands, and the model follows Figure 2.
 
+2026-11-26 diagram review:
+
+- The drawn section was compared with Figure 2 at the 200 dpi resolution of the published page, where R1 to R13 spans 192 pixels for 44.672 mm (4.30 pixels/mm), and with Canon's drawing. Every rim agrees with the figure within 0.3 mm: L1 19.2 mm, the square-cut L2 16.2 mm, L3 15.1 mm with the R6 curve ending at 12.85 mm, the doublet 15.6 mm with the R7 curve ending at about 12.4 mm, L6 16.2 mm and L7 15.6 mm. No rim changed.
+- Lands and cuts: no face lies below its earlier rim, and the R6 and R7 lands cost no transmitted light at any field (worst loss 0.0 points). Figure 2 draws both as vertical flats, so they stay. The allowed combined sag stays at 0.96 of the gap, because at 0.95 R4 and R5 would overlap at 15.0 mm.
+- Figure 2 draws the stop line 8.6–8.7 mm behind R6 at the vertex scale. The 8.96 mm division stays.
+- L4 glass: S-TIH6 (Ohara equivalent) → PBH6 (Ohara equivalent), Δnd −0.000003 and Δνd +0.035 against the printed pair. At full aperture Figure 6 plots the g-line marginal focus about 0.243 mm behind the d-line paraxial focus, and its d-line curve agrees with the model there at 0.035 mm. The titanium flint S-TIH6 put the model's g line 0.271 mm behind, 0.007–0.028 mm beyond the plotted curve at every zone. Ohara's earlier lead flint PBH6, since discontinued, gives 0.249 mm and stays within 0.009 mm of the curve at every zone. The lead flint PBM22 in place of S-TIM22 in L3 would move the g line about 0.007 mm forward and leave the middle zones up to 0.016 mm short of the curve, so L3 keeps S-TIM22.
+- Focus description: "The production lens focuses to 0.45 m by moving the whole optical assembly forward" → "Canon specifies a 0.45 m minimum focusing distance and 0.15× maximum magnification." The patent says nothing about focusing, and Canon's product record and instructions do not name the method.
+- Element names L1–L7, types against the signs of R, roles against ¶0013–0020, the front and rear group captions on either side of the diaphragm, the C1 bracket over R7–R9 and the stop between L3 and L4 agree with the patent. The prescription is spherical, and neither the patent nor Canon marks an anomalous-dispersion element, so no element is tagged. All seven elements carry catalog dispersion in the colour view. The focus control stays at infinity with no group movement.
+
 ## Remaining Questions
 
 - Factory dimensions would settle the iris position, the edge clearance between L2 and L3 and the optical edge at R7.
 - Canon's drawing and Figure 2 differ on the height of L3's flange and on the shape of the L3 and L4 lands; the production mounting may differ from the patent drawing.
 - The published glass constants do not identify the production supplier or melt, or which two elements Canon calls high-refraction.
+- Canon's product record and instructions do not name the focusing method. Unit focusing rests on DPReview's specifications and Wikipedia's account of the extending front.
 - The patent gives no close-focus prescription. Unit focus of the model at 0.45 m gives 0.142×, against Canon's 0.15× and the 0.145× implied by its 164 × 249 mm field. Whether the production lens differs or Canon's figures are rounded is undocumented.
