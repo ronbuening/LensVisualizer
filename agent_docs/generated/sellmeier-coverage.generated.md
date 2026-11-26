@@ -1725,7 +1725,7 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 6A | L4 resin | abbe | `Unmatched (nd 1.51640 / νd 52.2)` | Explicit unmatched/proprietary annotation |
+| 6A | Element 4 resin layer | abbe | `Unmatched (nd 1.51640 / νd 52.2)` | Explicit unmatched/proprietary annotation |
 
 ### [MINOLTA AF 28-135mm f/4-4.5](../../src/lens-data/minolta/MinoltaAF28135mmf445.data.ts) - 93.8% trusted (15/16); 93.8% Sellmeier (15/16) - US 4,844,600 A
 
@@ -1935,7 +1935,7 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 20A | Hybrid resin on L5-1 | abbe | `Unmatched (nd 1.52071 / νd 51.7)` | Explicit unmatched/proprietary annotation |
+| 20A | Element 11 (resin layer) | abbe | `Unmatched (nd 1.52071 / νd 51.7)` | Explicit unmatched/proprietary annotation |
 
 ### [SONY ZEISS VARIO-SONNAR T* 8.8-73.3mm f/2.8 (Sony Cyber-shot DSC-RX10 / DSC-RX10 II)](../../src/lens-data/sony/ZeissVarioSonnarT88733mmf28SonyDSCRX10M12.data.ts) - 92.9% trusted (13/14); 92.9% Sellmeier (13/14) - US 2014/0354857 A1
 

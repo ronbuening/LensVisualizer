@@ -14,15 +14,15 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 - **1230** lenses scanned
 - **13580** glass elements examined
-- **2697** elements have multiple coordinate-compatible candidates
-- **494** lens files are affected
+- **2698** elements have multiple coordinate-compatible candidates
+- **495** lens files are affected
 - **276** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
 - **118** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
 
 | Selection criterion | Elements |
 |---|---:|
 | Smallest reference-index residual | 1571 |
-| Evidence-source priority | 830 |
+| Evidence-source priority | 831 |
 | Vendor context | 282 |
 | Stable canonical-name order | 12 |
 | Smallest Abbe residual | 2 |
@@ -34,6 +34,7 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 
 | Annotation | Stored n / ν (line) | Selected and reason | Runners-up in resolver order | Elements | Example |
 |---|---:|---|---|---:|---|
+| `BASF1 / BAM21 class (legacy barium flint, 626/391)` | 1.62606 / 39.10 (d) | BAM21 — direct name evidence outranks six-digit code evidence. | H-BaF8 (CDGM, code, preferred code row) | 1 | [AGFA COLOR-TELINEAR 90mm f/4](../../src/lens-data/agfa/AgfaColorTelinear90mmf4.data.ts) L2 |
 | `S-BAH11 (Ohara) / BaF11 cross-reference class (patent 667/484)` | 1.66670 / 48.40 (d) | S-BAH11 — Annotation vendor context matches Ohara. | BAF11 (Sumita, name, vendor ✗) | 2 | [AGFA SOLAGON 50mm f/2](../../src/lens-data/agfa/AgfaSolagon50mmf2.data.ts) L2 |
 | `F7 (HOYA catalog equivalent; production supplier unspecified; patent 625356)` | 1.62540 / 35.60 (d) | F7 — direct name evidence outranks six-digit code evidence. | H-F6 (CDGM, code, vendor ✗, preferred code row) | 2 | [AGFA SOLAGON 50mm f/2](../../src/lens-data/agfa/AgfaSolagon50mmf2.data.ts) L3 |
 | `678553 lanthanum-crown class (supplier/material unconfirmed)` | 1.67800 / 55.30 (d) | S-LAL12Q — smallest d-line \|Δn\| (1.0e-4 vs 1.0e-4) | S-LAL12 (Ohara, code, preferred code row) | 1 | [APPLE WIDE 4.36mm f/1.6 (Apple iPhone 12)](../../src/lens-data/apple/AppleiPhone12MainWideCameraLens.data.ts) L1 |
