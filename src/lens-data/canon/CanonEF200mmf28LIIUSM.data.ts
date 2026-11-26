@@ -291,7 +291,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 1e15,
     description:
-      "Infinity focus only. To focus closer, the doublet behind the stop moves toward the image. The patent plots aberrations at −0.15× and gives lens spacings only at infinity.",
+      "Infinity focus only. To focus closer, G2, the cemented doublet just behind the stop, moves toward the image. The patent plots aberrations at −0.15× and gives lens spacings only at infinity.",
   },
   projection: {
     kind: "rectilinear",

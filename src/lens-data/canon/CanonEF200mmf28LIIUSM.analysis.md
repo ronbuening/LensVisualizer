@@ -42,7 +42,7 @@ nd = 1.49700, νd = 81.6, Hoya FCD1 equivalent, f = +127.70 mm. L4 supplies the 
 
 ### L5 — Negative Meniscus
 
-nd = 1.58267, νd = 46.4, Ohara S-BAM3 equivalent, f = −241.31 mm. A 0.23 mm axial air space separates L4 and L5. The negative meniscus keeps the axial beam high as it enters the focusing unit, giving that unit more leverage over the focus shift (¶0015).
+nd = 1.58267, νd = 46.4, Ohara S-BAM3 equivalent, f = −241.31 mm. A 0.23 mm axial air space separates L4 and L5. The patent places this negative meniscus toward the front so that the axial beam enters the focusing unit high, which corrects the change in aberrations during focusing more effectively (¶0015).
 
 ### L6 and L7 — Focusing doublet C1
 
