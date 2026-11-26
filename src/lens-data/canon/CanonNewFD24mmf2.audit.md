@@ -89,6 +89,16 @@ At infinity the finished model gives 23.9926 mm effective focal length, f/2.00, 
 - R16 keeps its 9.1 mm clear radius and gains a flat land to 10.3 mm, so that the C2 doublet's top runs nearly level toward its rear corner, as Figure 1 and the cutaway draw it. The land comes within 0.03 mm of R17, so the lens's cross-gap allowance is 98%; 10.3 mm is the largest land that allowance admits.
 - At infinity and full aperture, geometric pupil transmission stays 27.3% at 42° and goes from 78.0% to 75.8% at 30°; the largest loss is 2.6 points at 27°. The 42° field, the 42.49° frame corner and the f/2 aperture are unchanged.
 
+2026-11-26 diagram review:
+
+- The rendered section was compared with Figure 1 at matched scale and with the maker's cutaway. Nothing changed.
+- Figure 1 was measured again at 600 dpi along its tilted axis. Eighteen vertex crossings fit 37.55 pixels/mm with no residual above 0.18 mm, and the R8 and R13 arcs follow their printed radii on both sides of the axis, so the radial scale equals the axial one. Averaged above and below the axis, the drawn edges are 22.2 mm at L1, 16.4 mm at L2's flange, 12.3 mm at L3, 10.0 mm at L4, 10.6 mm at C1, 11.3 mm at L7, 10.5 mm at C2 and L10, and 12.3 mm at L11. Every stored rim lies within 1.2% of these readings.
+- Below the axis Figure 1 carries R8's concave arc to about 8.4 mm. Above it the arc ends near 7.3 mm, and a chamfer leads to the flat rear edge at about 8.9 mm. The cutaway draws a similar chamfer. Both readings lie below the 8.7 mm clear radius, which stays at the smallest value that loses no more than 3 points of light.
+- Lands and cuts: the lands at R4 and R16 cost no light. The R8 cut, from 9.7 to 8.7 mm with its land to 9.9 mm, loses 2.6 points at 27°, the largest loss at any field. All three stay. The R16 land still needs the 98% gap allowance; at 97% it would overlap R17.
+- Element numbers, shapes, roles and focal lengths in the element details, the Group I–III captions, the C1 (R9–R11) and C2 (R14–R16) brackets and the diaphragm between R11 and R12 agree with Figure 1 and the patent text. No surface is aspheric and no element carries a special-dispersion tag, as the patent and Canon's specifications indicate.
+- The focus description matches column 5 and claim 5: the whole lens is drawn forward and the R6–R7 space widens. The section shows no focus or zoom movement, as the patent prints only the infinity spacing.
+- All eleven glass labels are exact catalog rows, within 0.0000032 in nd and 0.04 in νd, and the colour view draws every element from catalog dispersion curves. The paraxial g-line focus lies 0.062 mm in front of the d-line focus, against about 0.061 mm read from Figure 2A. The d-line spherical aberration has the shape and size of the printed curve.
+
 ## Remaining Questions
 
 - The condition table prints 1.8923f for the magnitude of the combined focal length of Groups I and II, where R1–R11 give −2.4205f. The same calculation reproduces the printed values of Examples 2–4, so the Example 1 entry appears to be a misprint. The prescription still satisfies the stated 1.5f to 6f interval.
