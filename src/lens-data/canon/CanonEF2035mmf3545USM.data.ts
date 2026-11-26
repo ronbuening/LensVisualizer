@@ -5,8 +5,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * The patent gives the spherical radii, separations, glass indices and Abbe numbers.
  * Its three zoom positions specify D4 and D10. Figures 4–6 give the open f-numbers,
  * from which the stop radius is calculated at the printed position, surface 13.
- * Clear radii follow Figure 1, with the facing rims at surfaces 20–21 limited by
- * the narrow air gap. Glass names identify catalog equivalents.
+ * Clear radii follow Figure 1. L12 and L21 end their concave rear faces at 16.2
+ * and 11.0 mm with flat lands out to the drawn edges, and the facing rims at
+ * surfaces 20–21 stop at 8.0 mm, where the 1.65 mm air gap closes to 0.06 mm.
+ * Glass names identify catalog equivalents.
  * G1 and the film plane are fixed. The film is 111.3941 mm behind the first vertex,
  * the mean paraxial image distance of the three printed settings. At ten intermediate
  * positions D4 + D10 sets the position of G3, and D4 is solved for infinity focus.
@@ -191,10 +193,10 @@ const LENS_DATA = {
     { label: "1", R: 80.59, d: 4.1, sd: 26.8, medium: 1 },
     { label: "2", R: 202.04, d: 0.1, sd: 26.8 },
     { label: "3", R: 48.14, d: 1.7, sd: 20.5, medium: 2 },
-    { label: "4", R: 21.61, sd: 16.2 },
+    { label: "4", R: 21.61, sd: 16.2, rimExtensionSd: 20.5 },
     { label: "5", R: 39.85, d: 1.4, sd: 14.7, medium: 3 },
-    { label: "6", R: 16.65, d: 4.65, sd: 11 },
-    { label: "7", R: 141.29, d: 1.3, sd: 12, medium: 4 },
+    { label: "6", R: 16.65, d: 4.65, sd: 11, rimExtensionSd: 14.7 },
+    { label: "7", R: 141.29, d: 1.3, sd: 12.2, medium: 4 },
     { label: "8", R: 32.48, d: 2.8, sd: 12.2 },
     { label: "9", R: 25.81, d: 3, sd: 11.2, medium: 5 },
     { label: "10", R: 70.11, sd: 11.2 },
@@ -207,8 +209,8 @@ const LENS_DATA = {
     { label: "17", R: -417.04, d: 3.8, sd: 7.5, medium: 9 },
     { label: "18", R: -20.5, d: 0.2, sd: 7.5 },
     { label: "19", R: 82.47, d: 1.2, sd: 8.4, medium: 10 },
-    { label: "20", R: 25.23, d: 1.65, sd: 7.7 },
-    { label: "21", R: -111.96, d: 2.5, sd: 7.7, medium: 11 },
+    { label: "20", R: 25.23, d: 1.65, sd: 8 },
+    { label: "21", R: -111.96, d: 2.5, sd: 8, medium: 11 },
     { label: "22", R: -25.61, d: 0.2, sd: 9.1 },
     { label: "23", R: -343.4, d: 2.15, sd: 9.9, medium: 12 },
     { label: "24", R: -47.31, sd: 9.9 },
@@ -298,6 +300,7 @@ const LENS_DATA = {
     blades: 5,
   },
   layout: { yScFill: 0.5 },
+  checks: { gapSagFrac: 0.97 },
   groups: [
     { text: "G1", fromSurface: "1", toSurface: "4" },
     { text: "G2", fromSurface: "5", toSurface: "10" },

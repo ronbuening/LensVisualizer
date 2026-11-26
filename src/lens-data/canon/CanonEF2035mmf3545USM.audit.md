@@ -26,23 +26,23 @@ The two variable gaps follow surfaces 4 and 10. D4 is 8.29, 10.28 and 8.29 mm, a
 | Film distance minus paraxial back focus (mm) | Not printed              | +0.004 / +0.000 / −0.004                    |
 | Group focal lengths, G1 / G2 / G3 (mm)       | −70.35 / −45.17 / +30.10 | −70.34 / −45.19 / +30.11                    |
 
-The largest focal-length difference is 0.012 mm, at the wide end. The printed half-fields are paraxial: each gives an image height of about 21.6 mm through f·tan ω. The refracted chief ray reaches the 21.65 mm frame corner at every one of the 13 zoom settings, at 47.76° on the wide end. At the corner, about 18%, 64% and 70% of the open-aperture pupil passes at the three printed settings; these figures depend on the estimated rims. The axial beam at full aperture clears every refracting surface throughout the zoom. The film plane is fixed 111.394 mm behind surface 1.
+The largest focal-length difference is 0.012 mm, at the wide end. The printed half-fields are paraxial: each gives an image height of about 21.6 mm through f·tan ω. The refracted chief ray reaches the 21.65 mm frame corner at every one of the 13 zoom settings, at 47.76° on the wide end. At the corner, about 23%, 70% and 75% of the open-aperture pupil passes at the three printed settings; these figures depend on the estimated rims. The axial beam at full aperture clears every refracting surface throughout the zoom. The film plane is fixed 111.394 mm behind surface 1.
 
 ## Values Not Printed in the Patent
 
-- **Clear radii.** Figure 1 spans 73.64 mm from the first to the last vertex at the wide setting, or 4.307 px/mm on the page image. At that scale the front element has a clear radius of 26.8 mm. The stepped second element measures 20.5 mm at its front face and 16.2 mm at its rear. The drawing reads 10–12 mm at the rear rim of L21; 11.0 mm keeps that face clear of surface 7, which it would meet above about 11.6 mm. The facing rims at surfaces 20 and 21 are 7.7 mm each. Figure 1 draws L35 and L36 with edges of about 8.4 and 9.1 mm, but the two facing curves would cross inside the 1.65 mm air space before those heights.
+- **Clear radii.** Figure 1 spans 73.64 mm from the first to the last vertex at the wide setting, or 4.307 px/mm on the page image. At that scale the front element has a clear radius of 26.8 mm. The stepped second element measures 20.5 mm at its front face and 16.2 mm at its rear, where a flat land drawn square to the axis carries the rim out to 20.5 mm. The drawing reads 10–12 mm at the rear rim of L21; 11.0 mm keeps that face clear of surface 7, which it would meet above about 11.6 mm, and a flat land carries L21 out to its drawn 14.7 mm edge. L22 is drawn square-cut at about 12.3 mm, so both of its faces use 12.2 mm. The facing rims at surfaces 20 and 21 are 8.0 mm each. Figure 1 draws L35 and L36 with edges of about 8.4 and 9.1 mm, and Canon's drawing about 8.6 and 8.8 mm, but the two facing curves would cross inside the 1.65 mm air space at about 8.1 mm; at 8.0 mm they are 0.06 mm apart. The model's overlap limit for neighbouring faces is set to 0.97 of the axial gap to allow this.
 - **Aperture stop.** The iris position is printed. Its radius is calculated from the open f-number and the paraxial entrance pupil at each zoom setting: 6.48, 6.05 and 6.23 mm at wide, middle and telephoto. The opening drawn in Figure 1 is about 6.5 mm in radius at the wide setting.
 - **Film position.** The three printed zoom settings put the paraxial image 111.3903, 111.3938 and 111.3982 mm from surface 1. Their mean fixes the film 111.3941 mm from surface 1. The rear air space changes with the axial position of G3.
 - **Intermediate zoom stations.** D4 + D10 sets the travel of G3 relative to the fixed G1. Between consecutive printed settings that sum changes in equal steps; D4 is solved for infinity focus at the fixed film and D10 takes the remainder. The ten calculated stations hold the film within 0.00005 mm of paraxial focus, and linear motion between all 13 stations stays within 0.0169 mm. The open f-numbers at the intermediate stations step evenly between the printed values.
 - **Focus.** `focus.closeFocusM` is 10¹⁵ m, which stands for infinity. The patent focuses by moving G2 (§0020) and allows G1 to focus instead (§0024), but prints no close-focus spacings. A paraxial calculation that moves G2 alone, with D4 + D10 held, reaches 0.34 m from the image plane after 3.30, 3.16 and 3.31 mm of travel toward the subject, with D4 at 4.992, 7.120 and 4.981 mm. The magnifications are −0.081×, −0.093× and −0.133× at wide, middle and telephoto. These positions are not part of the model.
 
-| Surfaces | Clear radii (mm)                   |
-| -------- | ---------------------------------- |
-| 1–4      | 26.8, 26.8, 20.5, 16.2             |
-| 5–10     | 14.7, 11.0, 12.0, 12.2, 11.2, 11.2 |
-| 11–12    | 6.8, 6.8                           |
-| 14–18    | 7.0, 7.0, 7.5, 7.5, 7.5            |
-| 19–24    | 8.4, 7.7, 7.7, 9.1, 9.9, 9.9       |
+| Surfaces | Clear radii (mm)                                 |
+| -------- | ------------------------------------------------ |
+| 1–4      | 26.8, 26.8, 20.5, 16.2 (land to 20.5)            |
+| 5–10     | 14.7, 11.0 (land to 14.7), 12.2, 12.2, 11.2, 11.2 |
+| 11–12    | 6.8, 6.8                                         |
+| 14–18    | 7.0, 7.0, 7.5, 7.5, 7.5                          |
+| 19–24    | 8.4, 8.0, 8.0, 9.1, 9.9, 9.9                     |
 
 ## Product Identification
 
@@ -76,9 +76,18 @@ Catalog glass equivalents were added for dispersion, retaining the printed nd an
 
 At infinity the finished model gives 20.612, 24.010 and 34.095 mm EFL at f/3.50, f/4.00 and f/4.50, with 37.750, 42.064 and 53.068 mm of paraxial back focus from surface 24, iris radii of 6.48, 6.05 and 6.23 mm, and the full-frame corner at 47.8°, 42.8° and 32.7° half-field.
 
+2026-11-25 rim review:
+
+- The rims were compared again with Figure 1 at 12.9 px/mm (600 dpi; 73.64 mm from the first to the last vertex at the wide setting, checked radially against the curve of the front element) and with Canon's drawing. Where the two differ, Figure 1 governs.
+- Surface 4: a flat land from 16.2 to 20.5 mm was added. Figure 1 draws L12 with a flat top at 20.5 mm and a vertical step down to its rear face at about 16 mm on both sides of the axis; Canon's drawing bevels this corner. The clear radius is unchanged.
+- Surface 6: a flat land from 11.0 to 14.7 mm was added. Figure 1 draws L21 with a flat top at 14.6 mm and a vertical right edge down to the end of its rear face at about 11 mm. The clear radius is unchanged.
+- Surface 7: 12.0 → 12.2 mm, so L22 is square-cut as drawn; Figure 1 shows a flat top at about 12.3 mm joining both faces.
+- Surfaces 20 and 21: 7.7 → 8.0 mm. Figure 1 draws L35 and L36 to about 8.4 and 9.1 mm and Canon's drawing to about 8.6 and 8.8 mm, both larger than 7.7 mm; the facing curves allow 8.0 mm before they cross. These two faces limit the wide-corner light: opening other rims by 10% leaves it unchanged.
+- Corner light at full aperture rose at every one of the 13 zoom settings and fell nowhere: 18.3% → 23.4% at 20.6 mm, 64.4% → 69.6% at 24.0 mm and 70.4% → 74.7% at 34.1 mm, with gains up to 5.5 points between the printed settings. The open f-numbers and the traced corner angles are unchanged, the axial beam still clears every surface, and the full-frame corner is still reached at every setting.
+
 ## Remaining Questions
 
 - Canon gives no explicit link between this patent example and the production lens, and the production radii, glass suppliers and clear apertures are undocumented.
-- The wide-corner illumination depends on the 7.7 mm rims at surfaces 20 and 21, which are limited by the facing curves rather than drawn. The production clear apertures there are unknown.
+- The wide-corner illumination depends on the 8.0 mm rims at surfaces 20 and 21, which are limited by the facing curves rather than drawn. How the production lens separates these two elements, and its clear apertures there, are unknown.
 - Canon places a flare-cutting diaphragm in the first group, but Figure 1 does not draw it and its size is unknown.
 - Canon describes inner focusing without naming the moving group. The patent's examples focus with G2 and allow G1 instead. The production focus travel and the exact zoom motion between the printed settings are undocumented.

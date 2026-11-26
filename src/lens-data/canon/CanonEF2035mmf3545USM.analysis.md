@@ -43,13 +43,13 @@ The broad front element bends oblique bundles before they reach the stronger neg
 
 nd = 1.78590, νd = 44.2. S-LAH51 (Ohara equivalent). f = −51.34 mm.
 
-The steep image-side curve gives G1 its negative power. The stepped rim visible in both drawings accommodates a larger clear radius on its front face than on its rear face.
+The steep image-side curve gives G1 its negative power. Figure 1 draws a flat-topped rim with a step: the front face is clear to 20.5 mm, while the deep rear face ends at 16.2 mm and a flat land runs out to the edge. Canon’s drawing bevels that corner instead.
 
 ### L21 — Negative meniscus
 
 nd = 1.80610, νd = 41.0. LAH53 (Ohara equivalent). f = −36.46 mm.
 
-L21 provides the larger share of negative power in the moving focus group. Its strongly curved rear surface faces the air gap ahead of L22.
+L21 provides the larger share of negative power in the moving focus group. Its strongly curved rear surface faces the air gap ahead of L22. That face ends at 11.0 mm, short of the nearly flat front of L22, and a flat land carries the element out to the 14.7 mm edge drawn in Figure 1.
 
 ### L22 — Negative meniscus
 
@@ -86,7 +86,7 @@ The more dispersive negative member and the less dispersive positive member shar
 
 nd = 1.83400, νd = 37.2. S-LAH60V (Ohara equivalent). f = −44.01 mm.
 
-L35 diverges the beam before the final two positive elements. Its rear face and the front face of L36 approach one another toward the rim across a 1.65 mm axial air space.
+L35 diverges the beam before the final two positive elements. Its rear face and the front face of L36 approach one another toward the rim across a 1.65 mm axial air space, and at their 8.0 mm clear radii only 0.06 mm separates them. Both drawings show the two elements meeting there. These two faces set how much light reaches the corner of the frame at the wide end.
 
 ### L36 — Positive meniscus
 
