@@ -20,7 +20,7 @@ Example 2 reverses the two singlets ahead of the iris. Example 3 moves the front
 
 Momiyama divides the eight air-spaced groups into three powered sections. Group I diverges the beam. Groups II and III converge it, with the iris between them. Their calculated focal lengths are −43.614, +44.701 and +33.576 mm, respectively. This retrofocus arrangement gives the reflex mirror 36.50 mm of back focus. The prescription uses the patent's millimetres at its stated 24.5 mm focal length. Canon marketed the lens as 24 mm. Both specify f/1.4 and an 84° diagonal field. [US 3,992,085, Example 1](https://patents.google.com/patent/US3992085A/en) · [Canon FD lens instructions](https://cameramanuals.org/lenses/canon_fd_lenses-lang.pdf)
 
-The first and last glass vertices are 69.618 mm apart. The patent places the film 36.500 mm beyond the last vertex, 1.7 µm behind paraxial focus. At the specified 42° half-field the chief ray reaches an image height of 21.61 mm. At 42.05° it reaches 21.65 mm, the corner height used for the 35 mm format. At f/1.4 the visible fraction of the pupil falls from 100% on axis to about 23% at the corner.
+The first and last glass vertices are 69.618 mm apart. The patent places the film 36.500 mm beyond the last vertex, 1.7 µm behind paraxial focus. At the specified 42° half-field the chief ray reaches an image height of 21.61 mm. At 42.05° it reaches 21.65 mm, the corner height used for the 35 mm format. At f/1.4 the visible fraction of the pupil falls from 100% on axis to about 24% at the corner.
 
 ## Element-by-Element Analysis
 
@@ -62,7 +62,7 @@ The production lens uses floating elements and reaches 0.117× at 0.30 m, measur
 
 Surface 14A has a spherical base with vertex radius −33.487 mm and conic constant $K=0$. To the base sag the patent adds even powers of radial height in millimetres, with coefficients $A_4=2.0647\times10^{-5}$, $A_6=3.6845\times10^{-8}$, $A_8=-8.0225\times10^{-11}$ and $A_{10}=5.2622\times10^{-14}$. At the outermost tabulated height of 14.700 mm the calculated sag magnitude is 2.21322 mm. The table gives 2.21315 mm. Canon attributes correction of spherical aberration and astigmatism at full aperture to this ground and polished face. [Canon Camera Museum](https://global.canon/en/c-museum/product/fd132.html)
 
-The prescription gives a 10.681 mm air space between groups II and III. Fig. 1 places the iris 3.42 mm behind surface 11, leaving 7.261 mm ahead of surface 12. Its calculated wide-open radius is 11.20 mm. The clear radii follow the ends of the drawn curves. Surface 2 uses 18.9 mm to preserve clearance to surface 3, compared with about 19.2–19.3 mm in the drawing.
+The prescription gives a 10.681 mm air space between groups II and III. Fig. 1 places the iris 3.42 mm behind surface 11, leaving 7.261 mm ahead of surface 12. Its calculated wide-open radius is 11.20 mm. The clear radii follow the ends of the drawn curves, and E9 and E10 end square at one height on both faces, as drawn. Surface 2 uses 18.9 mm to preserve clearance to surface 3, compared with about 19.2 mm in the drawing. Beyond it a flat land, square to the axis, runs out to 20.8 mm before the bevel to the front rim, as both Fig. 1 and Canon's section draw it.
 
 ## Sources
 

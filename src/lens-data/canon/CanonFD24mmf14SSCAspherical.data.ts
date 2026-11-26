@@ -6,7 +6,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Surface 14A is the rear of element 8. The patent gives its spherical base and four even-power terms.
  * The iris lies 3.42 mm into the 10.681 mm air space behind surface 11 by measurement of Fig. 1.
  * The f/1.4 aperture determines the iris radius. Clear radii follow the drawn optical edges except
- * at surface 2, where 18.9 mm preserves clearance to surface 3. The patent gives no floating spacings.
+ * at surface 2, where 18.9 mm preserves clearance to surface 3; the flat land Fig. 1 draws beyond
+ * that face runs out to 20.8 mm. The patent gives no floating spacings.
  */
 const LENS_DATA = {
   schema: 2,
@@ -182,6 +183,7 @@ const LENS_DATA = {
       R: 22.569,
       d: 11,
       sd: 18.9,
+      rimExtensionSd: 20.8,
     },
     {
       label: "3",
@@ -285,7 +287,7 @@ const LENS_DATA = {
       label: "16",
       R: -25.53,
       d: 0.15,
-      sd: 15.4,
+      sd: 15.5,
     },
     {
       label: "17",
@@ -298,7 +300,7 @@ const LENS_DATA = {
       label: "18",
       R: -27.816,
       d: 36.5,
-      sd: 17.7,
+      sd: 17.8,
     },
   ],
   focus: {

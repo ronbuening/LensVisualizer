@@ -30,15 +30,15 @@ The first and last glass vertices are 69.618 mm apart. The printed film plane li
 
 The table gives a 10.681 mm air space between surfaces 11 and 12. Fig. 1 places the iris 3.42 mm behind surface 11, leaving 7.261 mm to surface 12. The calculated iris radius for f/1.4 is 11.20 mm.
 
-The 69.618 mm vertex span sets the scale of Fig. 1. The clear radii follow the ends of the drawn optical curves, inside the bevels and the step on E1. Surface 2 uses 18.9 mm, compared with 19.2–19.3 mm in the drawing, to keep its sag into the next air space below 90% of the gap.
+The 69.618 mm vertex span sets the scale of Fig. 1, and the drawn radius of surface 1 agrees with it. The clear radii follow the ends of the drawn optical curves, inside the bevels on E4, E6 and E7. E2, E5, E9 and E10 end square at one height on both faces, as drawn. Surface 2 uses 18.9 mm, compared with about 19.2 mm in the drawing, to keep its sag into the next air space below 90% of the gap. A flat land square to the axis continues from that edge to 20.8 mm, where Fig. 1 and Canon's section both show the step on E1 before the bevel to the front rim.
 
 | Surfaces in order | Clear radii (mm) |
 | --- | --- |
-| 1–7 | 25.7, 18.9, 21.0, 21.0, 16.1, 16.1, 12.3 |
+| 1–7 | 25.7, 18.9 (land to 20.8), 21.0, 21.0, 16.1, 16.1, 12.3 |
 | 8–11 | 13.7, 13.7, 12.8, 11.8 |
-| 12–18 | 11.6, 14.1, 14.3, 15.5, 15.4, 17.8, 17.7 |
+| 12–18 | 11.6, 14.1, 14.3, 15.5, 15.5, 17.8, 17.8 |
 
-The glass edges retain positive thickness and adjacent elements clear each other. The iris limits the axial beam at f/1.4. The corner chief ray crosses surface 2 at 18.38 mm and clears every rim. Geometric pupil transmission at the corner is 23.2%. The patent specifies the field angle without tabulating an image-circle diameter.
+The glass edges retain positive thickness and adjacent elements clear each other. The iris limits the axial beam at f/1.4. The corner chief ray crosses surface 2 at 18.38 mm and clears every rim. Geometric pupil transmission at the corner is 23.9%. The patent specifies the field angle without tabulating an image-circle diameter.
 
 The four examples give only infinity spacings. `focus.closeFocusM` is 10¹⁵ m, which stands for infinity. There are no calculated intermediate positions. The production lens reaches 0.117× at 0.30 m from the film plane using floating elements. [Canon S.S.C. specifications](https://global.canon/en/c-museum/product/fd132.html) · [Canon AE-1 instructions, film plane indicator](https://www.canonclassics.com/pdf/Canon-AE1-Instructions-part2-en.pdf)
 
@@ -65,6 +65,13 @@ The differences are tabulated catalog values minus the patent values at the heli
 | E8, E9, E10 | Hoya TAF1 | 0.00000 | +0.030 |
 
 The dispersion curves used in the model give slightly different Abbe numbers for LF2 (40.97 versus 41.0 in the table) and TAF1 (49.62 versus 49.63). At infinity the model gives 24.499 mm effective focal length, f/1.40 and 36.498 mm paraxial back focus. The full-frame corner falls at 42.05°.
+
+2026-11-25 rim review:
+
+- Surface 2 gains a flat land from its 18.9 mm edge to 20.8 mm. Fig. 1 draws a short stroke square to the axis between the concave face and the bevel, from about 19.2 to 20.8 mm on both sides of the axis, and Canon's section shows the same step. The land adds no clear aperture.
+- Surface 16 rises from 15.4 to 15.5 mm and surface 18 from 17.7 to 17.8 mm, so E9 and E10 end square at one height as Fig. 1 draws them.
+- The other rims agree with Fig. 1 within about 3% on both sides of the axis, once the slight slope of the drawn axis across the sheet is allowed for, and stay as they were.
+- Geometric pupil transmission at f/1.4 and infinity is 23.9% at the 42.05° corner, against 23.2% before. No field angle loses light. The effective focal length, f/1.4 aperture and full-frame field are unchanged.
 
 ## Remaining Questions
 
