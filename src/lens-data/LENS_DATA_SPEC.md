@@ -1097,8 +1097,9 @@ focus: {
 
 ### Gaps (`gaps`)
 
-Each air gap that changes with focus or zoom is one entry, keyed by the label of the surface it follows. That surface
-leaves `d` out; the gap's first thickness (first station, infinity focus) supplies it.
+Each air gap that changes with focus or zoom is one entry, keyed by the label of the surface it follows. An authored
+surface leaves `d` out, and the gap's first thickness (first station, infinity focus) supplies it. See
+[Rear Plates](#rear-plates) for the gap after a generated plate.
 
 ```ts
 gaps: {
@@ -1116,7 +1117,7 @@ gaps: {
 
 - `values` is always `[zoomStation][focusKeyframe]`: one row per zoom station (one row on a prime), each row one
   thickness per `focus.keyframes` entry (two with the default keyframes).
-- Every thickness is finite and non-negative. Keys name existing surfaces.
+- Every thickness is finite and non-negative.
 - `label` is the gap's display label.
 - A gap that changes only with zoom repeats its thickness at every keyframe; document in the header which gaps move
   with zoom only and which with focus too.
@@ -1639,17 +1640,17 @@ rearPlates: [
 | `thicknessMm` | `number` | ✓ | Physical plate thickness (> 0). |
 | `nd` | `number` | ✓ | Plate index (> 1) at the `indexReference` line. |
 | `vd` | `number` | ✓ | Abbe number, so the plate never traces as dispersion-free. |
-| `gapAfterMm` | `number` | ✓ | Physical air after the plate (≥ 0); for the last plate, the distance to the image plane. |
+| `gapAfterMm` | `number` | ✓ | Physical air after the plate (≥ 0). The last plate gives the distance to the image plane at the first zoom station and infinity focus. |
 | `glass` | `string` | | Catalog glass label, resolved like an element's `glass`. Leave it out when no catalog glass matches; the plate then uses the Abbe-number estimate. |
 | `indexReference`, `nC`, `nF`, `ng`, `dPgF` | | | As on an element. `indexReference` defaults to `"d"`. |
 | `label` | `string` | | Source designation (`"CG"`, `"FL"`, `"GB"`, `"LPF"`). |
 | `sd` | `number` | | Published clear semi-diameter. Left out, the generated rim never clips rays. |
 | `source` | `string` | | Source citation (publication, example, surface numbers). |
 
-- The last surface's `d` (or its gap) is the **physical gap to the first plate**, not a back focus. Focus and zoom
-  variation stays on that gap; plate thicknesses and trailing gaps are fixed camera-side distances. If a source prints
-  a trailing gap that varies by rounding (0.100 / 0.101), keep one `gapAfterMm` and carry the difference in the
-  variable gap, noting it in the header.
+- The last lens surface's `d` (or its scheduled gap) is the physical gap to the first plate. If the gap from the final
+  plate to the image varies with focus or zoom, put its schedule in `gaps` under that plate's rear-face label
+  (`RP1b` for a single plate). Set the plate's `gapAfterMm` to the first thickness in the schedule. This preserves
+  the physical spacing on both sides of the plate.
 - `buildLens()` appends two flat surfaces per plate (reserved labels `RP<n>a` / `RP<n>b`) and one generated element.
   Tracing, pupils, field limits, aberration and chromatic analyses and the image-plane position all include the plate;
   the diagram, element numbering, inspector, Abbe diagram and element counts do not show it.
