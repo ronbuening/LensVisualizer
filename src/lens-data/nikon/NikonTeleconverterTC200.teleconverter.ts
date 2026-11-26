@@ -1,25 +1,17 @@
 import type { TeleconverterDataV2Input } from "../../types/lensDataV2.js";
 
 /**
- * Nikon's TC-200 uses the optics of Soichi Nakamura's TC-1. US 4,154,508,
- * Example 11 and Figure 11 give the seven spherical elements at 1:1 scale in mm.
- * The example and claim 21 print +37.545 mm for the first radius. With the
- * correction to +35.545 mm, the patent's master at its printed spacing gives
- * 103.29 mm, f/4.003 and 2.0017×, against 103.2 mm, f/4 and 2×. The converter
- * Petzval sum is −0.002118 per mm (printed −0.00211), and its focal length
- * is −76.49 mm (76.5 mm in magnitude on the dimensioned TC-200 drawing). Column 3
- * of the patent prints the design values f1 = −50.48869, e = 20.25835 and
- * fR = −76.492 mm; the corrected radius reproduces them (−50.4887, 20.257,
- * −76.4917), the printed one does not (−47.30, 20.59, −70.21).
- *
- * Nikon specifies 44 mm between mounts. Placing the corrected optics for infinity
- * focus at that extension puts the host's original image plane 36.8649 mm behind
- * the first vertex and the new image 42.1249 mm behind the last vertex. The host
- * supplies the iris and focusing. Clear radii are estimates from Nikon's TC-1
- * section. Surface 2 has an outer land. Its clear radius and those of surfaces
- * 9 and 10 end inside the intersections of the corresponding spherical profiles.
- * The patent prints indices and Abbe numbers without naming a spectral line.
- * The helium d line is assumed. The two named glasses supply comparable dispersion.
+ * Nikon's TC-200 shares Soichi Nakamura's TC-1 optics. US 4,154,508, Example 11
+ * and Figure 11 give the seven spherical elements at 1:1 scale in millimetres.
+ * Example 11 and claim 21 print R1 = +37.545 mm. Using +35.545 mm gives 103.29 mm,
+ * f/4.003 and 2.0017× at the printed spacing, against 103.2 mm, f/4 and 2×.
+ * The corrected group powers and spacing agree with the design values in column 4.
+ * The converter gives −76.49 mm (drawing magnitude 76.5 mm) and a Petzval sum
+ * of −0.002118 mm⁻¹ (printed −0.00211). At Nikon's 44 mm extension, the original
+ * and new image planes lie 36.8649 and 42.1249 mm behind the first and last vertices.
+ * The host supplies focus and iris. Rims follow Nikon's section, with a land on S2
+ * and curves shortened on S2, S9 and S10 for clearance. Two catalog equivalents
+ * supply dispersion. The model assumes a helium d reference for the printed glass data.
  */
 
 const TELECONVERTER_DATA = {
@@ -35,7 +27,7 @@ const TELECONVERTER_DATA = {
     imageFormat: "135-full-frame",
     elementCount: 7,
     groupCount: 5,
-    specs: ["7 ELEMENTS / 5 GROUPS", "2× REAR CONVERTER", "ALL SPHERICAL"],
+    specs: ["7 ELEMENTS / 5 GROUPS", "ALL SPHERICAL", "2× CONVERTER"],
   },
 
   source: {
@@ -91,7 +83,7 @@ const TELECONVERTER_DATA = {
       indexReference: "d",
       indexReferenceNote: "The patent gives no reference wavelength. The model assumes the helium d line.",
       focalLengthMm: -45.28,
-      role: "Negative entrance meniscus with its more strongly curved face toward L2.",
+      role: "Begins the divergence of the forward group with its more strongly curved face toward L2.",
       glass: "Unmatched (nd 1.79668 / νd 45.4)",
     },
     {
@@ -104,7 +96,7 @@ const TELECONVERTER_DATA = {
       indexReference: "d",
       indexReferenceNote: "The patent gives no reference wavelength. The model assumes the helium d line.",
       focalLengthMm: 25.29,
-      role: "Positive singlet between the two negative components of the forward group.",
+      role: "Adds converging power between the entrance meniscus and the negative front doublet.",
       glass: "Unmatched (nd 1.59507 / νd 35.6)",
     },
     {
@@ -117,7 +109,7 @@ const TELECONVERTER_DATA = {
       indexReference: "d",
       indexReferenceNote: "The patent gives no reference wavelength. The model assumes the helium d line.",
       focalLengthMm: -20.18,
-      role: "Negative member of the forward cemented doublet.",
+      role: "Supplies most of the diverging power of the forward doublet.",
       glass: "Unmatched (nd 1.77279 / νd 49.4)",
       cemented: "C1",
     },
@@ -131,7 +123,7 @@ const TELECONVERTER_DATA = {
       indexReference: "d",
       indexReferenceNote: "The patent gives no reference wavelength. The model assumes the helium d line.",
       focalLengthMm: 96.19,
-      role: "Weak positive meniscus cemented to the back of L3.",
+      role: "Partly offsets L3's negative power at the back of the forward doublet.",
       glass: "Unmatched (nd 1.59507 / νd 35.6)",
       cemented: "C1",
     },
@@ -145,7 +137,7 @@ const TELECONVERTER_DATA = {
       indexReference: "d",
       indexReferenceNote: "The patent gives no reference wavelength. The model assumes the helium d line.",
       focalLengthMm: -76.02,
-      role: "Thin negative meniscus cemented to the front of L6.",
+      role: "Reduces the positive power of L6 at the front of the rear doublet.",
       glass: "Unmatched (nd 1.79631 / νd 40.8)",
       cemented: "C2",
     },
@@ -173,7 +165,7 @@ const TELECONVERTER_DATA = {
       indexReference: "d",
       indexReferenceNote: "The patent gives no reference wavelength. The model assumes the helium d line.",
       focalLengthMm: -55.13,
-      role: "Symmetric negative singlet just behind the rear doublet.",
+      role: "Partly offsets the rear doublet's convergence with two equally curved concave faces.",
       glass: "TAF4 (Hoya equivalent)",
     },
   ],
