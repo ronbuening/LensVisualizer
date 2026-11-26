@@ -5,8 +5,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * at the printed scale. The table gives five variable gaps at three infinity
  * settings, the d-line glass data, the iris position and the asphere on the
  * 0.10 mm resin layer of L5-1. Glass names are catalogue equivalents. Clear
- * radii follow Figure 2, except surfaces 1–6 (37 mm, inside the 77 mm filter
- * thread) and 24–25 (limited by their air gap). The iris radius follows the
+ * radii follow Figure 2 and Sigma’s to-scale section, with L1-1 at 37 mm inside
+ * the 77 mm filter thread and L1-2, L1-3 and the rear face of L1-1 at 35.6 mm;
+ * a flat land carries L1-1’s rear edge out to 37 mm. Surfaces 24–25 end at
+ * 11.7 mm, limited by their air gap, with flat lands out to 12.45 mm so L5-2
+ * and L5-3 end square as Figure 2 draws them. The iris radius follows the
  * design f-number at each setting. No back focus is printed: the rear face of
  * L2 stays 185.818 mm from the image through the last calculated setting,
  * d9, d13, d18, d19 and the f-number interpolate between printed rows, and d6
@@ -255,32 +258,33 @@ const LENS_DATA = {
       label: "2",
       R: 131.9,
       d: 0.1,
-      sd: 37,
+      sd: 35.6,
+      rimExtensionSd: 37,
     },
     {
       label: "3",
       R: 131.9,
       d: 10.04,
-      sd: 37,
+      sd: 35.6,
       medium: 2,
     },
     {
       label: "4",
       R: -314.85,
       d: 0.2,
-      sd: 37,
+      sd: 35.6,
     },
     {
       label: "5",
       R: 122.8,
       d: 7.45,
-      sd: 37,
+      sd: 35.6,
       medium: 3,
     },
     {
       label: "6",
       R: 1000,
-      sd: 37,
+      sd: 35.6,
     },
     {
       label: "7",
@@ -401,12 +405,14 @@ const LENS_DATA = {
       R: 103.41,
       d: 5.35,
       sd: 11.7,
+      rimExtensionSd: 12.45,
     },
     {
       label: "25",
       R: -18.78,
       d: 1.35,
       sd: 11.7,
+      rimExtensionSd: 12.45,
       medium: 14,
     },
     {

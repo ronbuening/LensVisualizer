@@ -34,20 +34,22 @@ The patent’s sag formula places its conic factor A inside the square root as A
 
 The wide and middle focal lengths agree with the printed values to 0.003%. At telephoto the printed spacings give 389.647 mm, 0.26% longer than the printed 388.64 mm; this is the d6 erratum below. The ratios in ¶0026 give a separate check on the group powers. With the printed 388.64 mm telephoto focal length, the four calculated ratios are 0.1938, 0.1552, 1.7696 and 0.5160, against 0.1938, 0.1555, 1.7697 and 0.5160 in the patent; with the calculated 389.647 mm the last becomes 0.5146. All satisfy the claimed ranges.
 
-The surfaces keep positive edge thickness and stay clear of each other at every setting. Each setting passes the full axial beam, and the chief ray reaches the 21.63 mm frame corner. Partial shading of the off-axis pupil leaves about 71%, 82% and 60% geometric transmission at that corner at wide, middle and telephoto.
+The surfaces keep positive edge thickness and stay clear of each other at every setting. Each setting passes the full axial beam, and the chief ray reaches the 21.63 mm frame corner. Partial shading of the off-axis pupil leaves about 71%, 82% and 58% geometric transmission at that corner at wide, middle and telephoto.
 
 ## Values Not Printed in the Patent
 
-**Clear radii.** In Figure 2 the first and last vertices span 170.10 mm at the wide setting, which sets the drawing’s scale. The clear radii follow the drawn rims, with two exceptions.
+**Clear radii.** In Figure 2 the first and last vertices span 170.10 mm at the wide setting, which sets the drawing’s scale; the drawn sag of surface 1 at its rim confirms the same scale across the axis. Sigma’s catalogue section is drawn to the same proportions: its 26 vertices match Example 2 at the wide setting at 2.66 px per mm. The clear radii follow Figure 2, with the front group held inside the filter thread and surfaces 24–25 limited by their air gap.
 
-| Surfaces      | Clear radius | Basis                                                                                                                                                                                |
-| ------------- | -----------: | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| 1–6           |      37.0 mm | Sigma specifies a 77 mm filter thread. Figure 2 draws 42.7 mm on surface 1, about 40.6 mm on the curved part of surface 2 and 39.1 mm on surfaces 3–6; 37 mm fits inside the thread. |
-| 7–18          |      19.9 mm | Common height of the drawn rims                                                                                                                                                      |
-| 20A–23 and 26 |     12.45 mm | Height of the drawn rear-group outlines                                                                                                                                              |
-| 24–25         |      11.7 mm | The 5.35 mm axial gap closes at about 12.3 mm ray height; the smaller radius keeps clearance between the curved faces.                                                               |
+| Surfaces      | Clear radius | Basis                                                                                                                                                                                                                                                            |
+| ------------- | -----------: | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1             |      37.0 mm | Sigma specifies a 77 mm filter thread, and Sigma’s section draws L1-1 at about 37.5 mm. Figure 2 draws 42.7 mm.                                                                                                                                                  |
+| 2             |      35.6 mm | The curved rear face of L1-1 ends at the height of L1-2, and a flat land continues to 37.0 mm, as Figure 2 draws it.                                                                                                                                            |
+| 3–6           |      35.6 mm | Both drawings show L1-2 and L1-3 smaller than L1-1: Figure 2 at 0.92 of its height, Sigma’s section at about 36 mm. The proportional 33.9 mm would cost up to 7 points of corner light; 35.6 mm is the smallest radius that costs no more than 3 points anywhere. |
+| 7–18          |      19.9 mm | Common height of the drawn rims                                                                                                                                                                                                                                  |
+| 20A–23 and 26 |     12.45 mm | Height of the drawn rear-group outlines                                                                                                                                                                                                                          |
+| 24–25         |      11.7 mm | The 5.35 mm axial gap closes at about 12.3 mm ray height; the smaller radius keeps clearance between the curved faces. Flat lands continue both faces to 12.45 mm, so L5-2 and L5-3 end square as Figure 2 draws them.                                           |
 
-With the drawn front rims instead of 37 mm, the telephoto corner transmission would be 66.1% instead of 59.8%. The smaller front radius limits no axial ray at any setting.
+With the drawn front rims (42.7 and 39.1 mm), the telephoto corner transmission would be 66.1% instead of 57.6%. The smaller front radii limit no axial ray at any setting.
 
 **Iris.** The iris position follows d18 and d19. The short stop mark in Figure 2 is schematic. The paraxial entrance pupil required by each printed f-number gives iris radii of 12.012, 11.944 and 11.949 mm at the wide, middle and telephoto settings. The 30 calculated settings take an f-number interpolated between the printed rows.
 
@@ -95,10 +97,17 @@ Sigma released the APO 135-400mm F4.5-5.6 DG on 27 November 2005 in Canon, Sigma
 
 The finished model gives 138.864 / 252.666 / 389.647 mm at f/4.63 / 5.51 / 5.78, paraxial back focus of 50.236 / 82.720 / 106.013 mm, iris radii of 12.012 / 11.944 / 11.949 mm and a 21.63 mm frame-corner image height at the wide, middle and telephoto settings.
 
+2026-11-25 rim review:
+
+- Surfaces 2–6: 37.0 → 35.6 mm, with a flat land on surface 2 out to 37.0 mm. Figure 2 draws L1-2 and L1-3 at 0.92 of L1-1’s height, and ends the rear face of L1-1 at L1-2’s height with a short square edge out to L1-1’s rim. Sigma’s section shows L1-1 at about 37.5 mm and L1-2 and L1-3 at about 36 mm. The largest loss of corner light at any field of the 33 settings is 2.7 points, at 2.4° and 342 mm.
+- Surfaces 24 and 25: flat lands from 11.7 to 12.45 mm, so L5-2 and L5-3 end square at the height of L5-1, as Figure 2 draws them. The clear radii are unchanged and the lands cost no light.
+- Surfaces 1, 7–18, 20A–23 and 26 agree with Figure 2 and are unchanged. Sigma’s section draws L2–L4 at 18–20 mm and L5-2 and L5-3 at about 11 mm; Figure 2, at 19.9 and 12.45 mm, governs.
+- Corner transmission before → after: 70.9% → 70.9% at 138.86 mm, 82.0% → 82.0% at 252.67 mm and 59.8% → 57.6% at 388.64 mm. The full axial beam passes at every setting, and the chief ray reaches the 21.63 mm frame corner at all 33 settings.
+
 ## Remaining Questions
 
 - Table 3 may transpose the digits of the telephoto d6. Substituting 90.20 mm gives a focal length of 388.641 mm and places paraxial focus 185.895 mm behind L2, closer to the wide and middle distances. It also moves the telephoto marginal spherical aberration from −0.183 to −0.153 mm, against about −0.14 mm read from Figure 14. No single change fits every check exactly, so the printed 90.02 mm is kept.
-- The production clear diameters inside the 77 mm filter thread, the iris diameters, the zoom cam, the f-numbers between the marked ends and the rear-group positions for close focus are unpublished.
+- The production clear diameters (Sigma’s section gives proportions, not dimensions), the iris diameters, the zoom cam, the f-numbers between the marked ends and the rear-group positions for close focus are unpublished.
 - The original glass suppliers and the resin formulation are unknown.
 - The gazette prints the inventor’s name in kanji only. 上村 can be read Uemura or Kamimura; Google Patents gives Kamimura, the reading used here and in Sigma's other patents by the same inventor.
 - No readable maker source dates the introduction of the ASPHERICAL RF; Sigma’s catalogue lists it in September 2004. Whether the 2005 DG version keeps the same prescription is undocumented.
