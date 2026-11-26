@@ -57,6 +57,8 @@ The patent names all six glasses and prints N and V without a spectral subscript
 
 The FK5 catalog glass has an Abbe number of 70.4, compared with 70.0 for both front singlets in the patent. A corresponding catalog curve for the printed FK1 values is also unavailable. Dispersion for L1, L2 and L4 therefore follows the printed index and Abbe number. The patent supplies no partial dispersions.
 
+Figure 10 plots on-axis spherical aberration in the C, d, F and g lines at f/5.6. At the 300 mm scale the model's paraxial C focus lies about 0.01 mm from the plotted curve, while its F and g foci lie about 0.08 and 0.09 mm farther from the lens. Ohara S-FSL5 (νd 70.24), close to the printed FK5 values, would widen the F difference to about 0.13 mm.
+
 ## Focus Mechanism
 
 The patent gives one prescription at infinity, without finite spacings or close-focus magnification. All six elements stay at their infinity positions in the model. The production S.C. focuses to 4 m from the film plane and reaches 0.09×. Canon provided extra focusing travel to compensate for temperature changes down to −30 °C. Its cutaway leaves the motion of the individual groups uncertain. [Canon Camera Museum, 1973 S.C.](https://global.canon/en/c-museum/product/fd179.html) · [Canon FD instructions, “Distance Scale”](https://www.pacificrimcamera.com/rl/03486/03486.pdf) · [Canon lens catalog, p. 32](https://www.pacificrimcamera.com/rl/00253/00253.pdf)
