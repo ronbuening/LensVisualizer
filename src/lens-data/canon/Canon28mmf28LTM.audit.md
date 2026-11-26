@@ -14,16 +14,16 @@ The Claim 2 table differs from the body table in two places. It prints d₂ = 0.
 
 The body values satisfy Ito's stated conditions: n₂ − n₁ = 0.0804, ν₂ − ν₁ = 18.1, ν₃ = 28.2, n₄ = 1.6889, ν₄ = 31.1, n₅ − n₆ = 0.0910 and ν₅ − ν₆ = 14.3. The radii r₂ = 0.2465f, r₅ = 0.2021f, |r₆| = 0.2090f and |r₉| = 0.2460f also fall inside their printed bounds. The one exception is the condition printed as 1.30 > n₃ > 1.64 in the description and Claim 1, which no index can meet. Both tables give n₃ = 1.7400.
 
-Four catalog equivalents match the printed glass coordinates within the printed precision. The differences below are catalog value minus patent value. The production suppliers are unidentified.
+Four catalog equivalents match the printed glass coordinates within the printed precision. L4a takes Ohara S-LAL11 as a spectral proxy, within the site's spectral-proxy tolerance; the model keeps its printed index. The differences below are catalog value minus patent value. The production suppliers are unidentified.
 
-| Element | Catalog equivalent       |       Δnd |   Δνd |
-| ------- | ------------------------ | --------: | ----: |
-| L1a     | Sumita F4                | −0.000010 |  0.00 |
-| L1b     | Unmatched, 1.6970 / 54.7 |         — |     — |
-| L2      | Hoya FD3                 | −0.000001 | +0.05 |
-| L3      | Ohara PBM28              | +0.000030 | −0.02 |
-| L4a     | Unmatched, 1.6583 / 57.1 |         — |     — |
-| L4b     | Ohara S-TIL26            | +0.000022 | +0.02 |
+| Element | Catalog equivalent            |       Δnd |   Δνd |
+| ------- | ----------------------------- | --------: | ----: |
+| L1a     | Sumita F4                     | −0.000010 |  0.00 |
+| L1b     | Unmatched, 1.6970 / 54.7      |         — |     — |
+| L2      | Hoya FD3                      | −0.000001 | +0.05 |
+| L3      | Ohara PBM28                   | +0.000030 | −0.02 |
+| L4a     | Ohara S-LAL11, spectral proxy | −0.000004 | +0.23 |
+| L4b     | Ohara S-TIL26                 | +0.000022 | +0.02 |
 
 ## First-Order Check
 
@@ -80,11 +80,17 @@ The finished model gives 28.002 mm EFL, f/2.80, a 3.506 mm iris radius, 19.191 m
 
 - 2026-11-25 rim review:
   - Surface 6 gained a 0.66 mm flat land. Both halves of Figure 1 show the glass continuing beyond the 4.38 mm curve end to the 5.04 mm edge of surface 7. The lower shoulder is square and the upper corner slightly rounded. Canon’s section shows the same shoulder. Surface 5 has a sloping bevel. At f/2.8, relative illumination at the frame corner stayed at 5.7% at infinity and 8.5% at the calculated 1 m position.
+- 2026-11-26 diagram review:
+  - The page was compared with Figure 1 and with Canon’s section, and no rim changed. Figure 1 measures 0.0348 mm per pixel at 300 dpi along the axis (461 pixels for the 16.072 mm vertex span) and 0.0348–0.0349 mm per pixel across it (fits to the r₁ arc). Averaged over both halves, the drawn edges are 7.20 mm for L1 (model 7.24), 5.03 mm for L2 (5.06), 5.02 mm for L3 (5.04) and 7.75 mm for L4 (7.80). The curve ends are 3.69–3.76 mm on r₅ (3.73) and 4.30 mm on r₆ (4.38). Every rim agrees within 0.1 mm.
+  - Figure 1 draws L1a and L4b with a flat edge and a bevel that runs beyond the cemented edge, which it places near 6.0 mm in front and 6.6 mm at the rear. The printed faces meet at 5.72 and 6.35 mm, and a cemented face cannot carry a land, so the page joins each outer rim to its cemented edge with a straight slope.
+  - No rim is smaller than it was before the 2026-11-25 changes. The surface 6 land costs no light at infinity, at half travel or at 1 m (worst loss 0.0 points at every field), and Figure 1 draws it, so it stays.
+  - L4a changed from unmatched to Ohara S-LAL11 as a spectral proxy (Δnd −0.000004, Δνd +0.23). Sumita K-LaK11 (νd 57.29) rounds to the same 57.3 with the same partial dispersion; Ohara also supplies the rows for L3 and L4b. The calculated paraxial C-line focus moves 0.2 µm, the F-line focus 1.8 µm and the g-line focus 4.3 µm; Figure 2 is plotted for the d line only, so no printed colour curve can be compared. L1b stays unmatched; the nearest lanthanum crowns, Schott N-LAK14 and Hoya LAC14 at 1.6968, lie 0.71 and 0.76 above its printed Abbe number.
+  - Names, types, roles, the four group captions, both cemented brackets, the stop, element focal lengths and the glass lines in the element details agree with the patent. Focus runs from infinity at the left to 1.00 m at the right, with intermediate readings of 5.00, 2.00 and 1.25 m. The whole lens moves steadily toward the subject by 0.8295 mm. The 1 m state focuses 999.98 mm from object to film at −0.0296×.
 
 ## Remaining Questions
 
 - Factory dimensions for the clear apertures, measured focus travel and measured corner illumination remain unknown.
-- The patent gives no glass names, and Canon does not identify its rare glasses by position.
+- The patent gives no glass names, and Canon does not identify its rare glasses by position. No catalog glass lies within the site’s spectral-proxy tolerance of L1b’s 1.6970 / 54.7.
 - Both patent tables give n₃ = 1.7400, although the description and Claim 1 print the impossible inequality 1.30 > n₃ > 1.64. The intended upper bound remains uncertain.
 - Canon's sources do not state whether the 1 m minimum focus is measured from the film plane or from the lens front.
 - A collector history gives April 1956 for the lens's introduction, against Canon's June 1957. [Canon Rangefinder history](https://canonrangefinder-org.pages.dev/Canon_28mm.htm) · [Canon Camera Museum](https://global.canon/en/c-museum/product/s36.html)

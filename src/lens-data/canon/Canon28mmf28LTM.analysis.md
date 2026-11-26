@@ -36,14 +36,14 @@ nd = 1.6889, νd = 31.1, Ohara PBM28 equivalent, f = −45.81 mm. Its front face
 
 ### L4 — Rear positive doublet
 
-- **L4a, positive meniscus.** nd = 1.6583, νd = 57.1, glass unmatched, f = +12.31 mm. Its weakly curved entrance face lies 0.028 mm behind L3 on axis. Its much steeper rear face forms the cemented interface.
+- **L4a, positive meniscus.** nd = 1.6583, νd = 57.1, Ohara S-LAL11 spectral proxy, f = +12.31 mm. Its weakly curved entrance face lies 0.028 mm behind L3 on axis. Its much steeper rear face forms the cemented interface.
 - **L4b, negative meniscus.** nd = 1.5673, νd = 42.8, Ohara S-TIL26 equivalent, f = −35.13 mm. This more dispersive member completes the doublet. Its exit face has the largest clear radius in the lens.
 
 ## Glass Identification
 
 The body table gives six refractive indices and Abbe numbers, and Claim 1 identifies the helium d line. The index difference across the front doublet is 0.0804 and its Abbe-number difference is 18.1. The corresponding differences across the rear doublet are 0.0910 and 14.3. Both pairs fall within Ito’s stated bounds. The separate condition on the front singlet, printed as 1.30 > n₃ > 1.64, is internally inconsistent. Both tables give that glass an index of 1.7400. [US 2,779,239, columns 1–4](https://patents.google.com/patent/US2779239A/en)
 
-The four named catalog glasses supply dispersion curves consistent with the printed coordinates. The maker’s guide mentions rare glass without identifying a supplier or assigning a special glass to a particular element. The production melts and the partial dispersions of L1b and L4a remain unknown. [Canon lens guide, p. 15](https://www.pacificrimcamera.com/rl/00331/00331.pdf#page=15)
+Four named catalog glasses match the printed coordinates within the printed precision and supply their dispersion curves. L4a keeps its printed index and borrows the wavelength dependence of Ohara S-LAL11, a lanthanum crown of the same index whose Abbe number of 57.33 lies within the site’s spectral-proxy tolerance of the printed 57.1. No catalog glass comes that close to L1b, whose nearest lanthanum crowns, such as Schott N-LAK14 at 1.6968 / 55.4, differ by more than 0.7 in Abbe number; its dispersion follows the printed pair. The maker’s guide mentions rare glass without identifying a supplier or assigning a special glass to a particular element. The production melts remain unknown, so the partial dispersions of L1b and L4a are not established. [Canon lens guide, p. 15](https://www.pacificrimcamera.com/rl/00331/00331.pdf#page=15)
 
 ## Focus Mechanism
 

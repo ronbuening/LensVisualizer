@@ -129,7 +129,7 @@ const LENS_DATA = {
       vd: 57.1,
       indexReference: "d",
       diagramLabel: "L4a",
-      glass: "Unmatched (nd 1.6583 / νd 57.1)",
+      glass: "S-LAL11 (spectral proxy; patent nd 1.6583 / νd 57.1; supplier and melt unspecified)",
       focalLengthMm: 12.31,
       role: "Positive member of the rear doublet and the strongest positive element in the lens.",
       cemented: "C2",
