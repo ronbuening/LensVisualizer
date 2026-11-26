@@ -66,8 +66,12 @@ The March 1971 FD lens shares the S.C.'s 70 × 173 mm barrel dimensions and 4 m 
 
 At infinity the model gives 300.468 mm effective focal length, f/5.60, 73.438 mm back focus, a 13.122 mm iris radius and a 4.1° half-field to the 35 mm frame corner.
 
+2026-11-25 rim review:
+
+- The rims were compared again with Figure 5 and the maker's drawing; none changed.
+
 ## Remaining Questions
 
 - The Petzval terms at surfaces 5 and 6 suggest an L3 index near 1.7857. That substitution alone gives a normalized focal length near 100.024. No single misprint explains the focal length, total length and third-order table together, so L3 retains the printed 1.78590.
-- The exact production cement line, clear apertures, stop plane and focusing motion remain undocumented. The stop positions inferred from Figure 5 and the third-order coefficients differ by 5.18 mm. Canon gives the diaphragm blade count but does not describe its blade curvature. [Canon Camera Museum, S.C.](https://global.canon/en/c-museum/product/fd179.html)
+- The exact production cement line, clear apertures, stop plane and focusing motion remain undocumented. The stop positions inferred from Figure 5 and the third-order coefficients differ by 5.18 mm. Canon's catalog cutaway draws L5 about 2 mm taller than Figure 5, but its coarse outlines include the mounted glass edge, so the clear radii follow the patent figure. Canon gives the diaphragm blade count but does not describe its blade curvature. [Canon Camera Museum, S.C.](https://global.canon/en/c-museum/product/fd179.html)
 - The original glass melts, supplier and partial dispersions remain unknown. The Hoya curves describe glasses close to the printed pairs.
