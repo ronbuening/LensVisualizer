@@ -14,14 +14,14 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 - **1230** lenses scanned
 - **13570** glass elements examined
-- **2697** elements have multiple coordinate-compatible candidates
+- **2698** elements have multiple coordinate-compatible candidates
 - **494** lens files are affected
 - **276** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
 - **118** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
 
 | Selection criterion | Elements |
 |---|---:|
-| Smallest reference-index residual | 1571 |
+| Smallest reference-index residual | 1572 |
 | Evidence-source priority | 830 |
 | Vendor context | 282 |
 | Stable canonical-name order | 12 |
@@ -1952,6 +1952,7 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `FK5 class (SUMITA legacy / HIKARI J-FK5)` | 1.48749 / 70.00 (d) | J-FK5 — smallest d-line \|Δn\| (8.2e-9 vs 3.0e-7) | FK5 (Sumita, name, vendor ✓) | 3 | [VIVITAR SERIES 1 70-210mm f/3.5 VMC MACRO FOCUSING AUTO ZOOM](../../src/lens-data/vivitar/VivitarSeries170210mmf35.data.ts) L9 |
 | `SF6 (SUMITA legacy catalog; HIKARI J-SF6 equivalent)` | 1.80518 / 25.50 (d) | J-SF6 — Annotation vendor context matches Hikari. | SF6 (Schott, name, vendor ✗) | 1 | [VIVITAR SERIES 1 70-210mm f/3.5 VMC MACRO FOCUSING AUTO ZOOM](../../src/lens-data/vivitar/VivitarSeries170210mmf35.data.ts) L10 |
 | `LAFN2 (SUMITA legacy; OHARA S-LAM59 equivalent)` | 1.69700 / 48.50 (d) | LAFN2 — smallest d-line \|Δn\| (4.4e-8 vs 2.2e-6) | S-LAM59 (Ohara, name, vendor ✓) | 1 | [VIVITAR SERIES 1 70-210mm f/3.5 VMC MACRO FOCUSING AUTO ZOOM](../../src/lens-data/vivitar/VivitarSeries170210mmf35.data.ts) L14 |
+| `LF2 (SUMITA legacy catalog; OHARA PBL22 equivalent)` | 1.58921 / 41.00 (d) | LF2 — smallest d-line \|Δn\| (4.8e-7 vs 3.6e-6) | PBL22 (Ohara, name, vendor ✓) | 1 | [VIVITAR SERIES 1 70-210mm f/3.5 VMC MACRO FOCUSING AUTO ZOOM](../../src/lens-data/vivitar/VivitarSeries170210mmf35.data.ts) L15 |
 | `H-K9LGT (CDGM) equivalent — 517642` | 1.51680 / 64.20 (d) | H-K9LGT — direct name evidence outranks six-digit code evidence. | H-K9L (CDGM, code, vendor ✓, alternate code row)<br>N-BK7 (Schott, code, vendor ✗, preferred code row) | 1 | [VOIGTLÄNDER APO-LANTHAR 28mm f/2 Aspherical VM](../../src/lens-data/voigtlander/VoigtlanderAPOLanthar28mmf2Aspherical.data.ts) L9 |
 | `TAFD55 (HOYA) equivalent — 001291` | 2.00100 / 29.13 (d) | TAFD55 — direct name evidence outranks six-digit code evidence. | S-LAH99 (Ohara, code, vendor ✗, preferred code row)<br>J-LASFH16 (Hikari, code, vendor ✗, alternate code row) | 1 | [VOIGTLÄNDER APO-LANTHAR 28mm f/2 Aspherical VM](../../src/lens-data/voigtlander/VoigtlanderAPOLanthar28mmf2Aspherical.data.ts) L11 |
 | `S-NBH8 (OHARA) equivalent — 720347` | 1.72047 / 34.71 (d) | S-NBH8 — direct name evidence outranks six-digit code evidence. | N-KZFS8 (Schott, code, vendor ✗, preferred code row) | 2 | [VOIGTLÄNDER APO-LANTHAR 28mm f/2 Aspherical VM](../../src/lens-data/voigtlander/VoigtlanderAPOLanthar28mmf2Aspherical.data.ts) L13f |
