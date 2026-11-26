@@ -43,6 +43,7 @@ const TELECONVERTER_DATA = {
   minHostFNumber: 2,
   universal: false,
   incompatibleLensKeys: [
+    "nikon-zoom-nikkor-ed-180-600mm-f8",
     "nikkor-afs-120-300f28e",
     "nikkor-afs-200-500f56e",
     "nikon-af-i-nikkor-600mm-f4d-if-ed",

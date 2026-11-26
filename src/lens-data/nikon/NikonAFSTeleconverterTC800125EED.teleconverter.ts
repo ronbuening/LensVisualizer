@@ -63,6 +63,7 @@ const TELECONVERTER_DATA = {
   // Dedicated to the AF-S 800mm f/5.6E. These TC-20E III hosts also pass the speed guard,
   // but Nikon does not list them for the dedicated TC800 converter.
   incompatibleLensKeys: [
+    "nikon-zoom-nikkor-ed-180-600mm-f8",
     "nikon-af-s-nikkor-500mm-f56e-pf-ed-vr",
     "nikon-af-s-nikkor-180-400mm-f4e-tc14-fl-ed-vr-tc-in",
     "nikon-ai-zoom-nikkor-360-1200mm-f11-ed",

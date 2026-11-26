@@ -54,6 +54,7 @@ const TELECONVERTER_DATA = {
   // Conservative release qualification policy, not a physical incompatibility claim.
   // Only the documented representative host has full design-plane MTF evidence.
   incompatibleLensKeys: [
+    "nikon-zoom-nikkor-ed-180-600mm-f8",
     "nikkor-afs-120-300f28e",
     "nikkor-afs-200-500f56e",
     "nikon-af-i-nikkor-400mm-f28d-if-ed",

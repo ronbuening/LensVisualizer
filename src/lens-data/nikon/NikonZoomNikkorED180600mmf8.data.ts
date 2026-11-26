@@ -44,6 +44,7 @@ const LENS_DATA = {
     specs: ["18 ELEMENTS / 11 GROUPS", "ALL SPHERICAL", "2 ED ELEMENTS", "DESIGN f = 180.11–594.28 mm"],
     imageFormat: "135-full-frame",
     closeFocusM: { marketing: 2.5 },
+    acceptsTeleconverters: true,
   },
   elements: [
     {
