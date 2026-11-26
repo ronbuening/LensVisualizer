@@ -4,7 +4,7 @@
 
 Kikuo Momiyama and Hideo Yokota, _Wide Angle Photographic Lens_, US 4,257,678, assigned to Canon Inc. (Canon Kabushiki Kaisha). Japanese priority September 14, 1977, US filing September 11, 1978, and grant March 24, 1981. Figure 1 shows Example 1 in section. Column 4 (PDF p. 7) gives the prescription at f = 1, and Figures 2A–2D give its aberrations. [US 4,257,678](https://patents.google.com/patent/US4257678A/en)
 
-Canon's museum gives the June 1979 introduction date and production specifications. Sheet SG2-A13 identifies the New FD lens as C21-5241-201 and gives its diagonal angle of view. MIR reproduces a barrel cutaway and identifies the focusing mechanism. [Canon Camera Museum](https://global.canon/en/c-museum/product/nfd205.html) · [Canon FD Lens Guide, SG2-A13](https://www.galimbertipaolo.it/CanonFD/FDLensGuide1.pdf) · [MIR, New FD 35mm f/2.8](https://www.mir.com.my/rb/photography/companies/canon/fdresources/fdlenses/35mm.htm)
+Canon's museum gives the June 1979 introduction date and production specifications. Sheet SG2-A13 of Canon's FD lens guide gives the diagonal angle of view. MIR repeats the 63° field, reproduces a barrel cutaway and identifies the focusing mechanism. [Canon Camera Museum](https://global.canon/en/c-museum/product/nfd205.html) · [Canon FD Lens Guide, SG2-A13](https://www.galimbertipaolo.it/CanonFD/FDLensGuide1.pdf) · [MIR, New FD 35mm f/2.8](https://www.mir.com.my/rb/photography/companies/canon/fdresources/fdlenses/35mm.htm)
 
 ## Transcription Check
 

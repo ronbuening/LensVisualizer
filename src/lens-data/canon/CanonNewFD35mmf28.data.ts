@@ -4,7 +4,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * US 4,257,678, Example 1 (Fig. 1 and col. 4). All lengths in the f = 1 table
  * are multiplied by 35 mm, including the printed back focus of 1.1033. The table
  * gives the radii, axial separations and d-line glass constants at infinity.
- * Its rear groups face as drawn in Fig. 1, although col. 1 reverses their orientation.
+ * The stronger faces of the last two groups face the image, as in Fig. 1; col. 1 reverses them.
  * The diaphragm position is estimated at 24.50 mm behind R1, within the printed D5
  * space. Its clear radius follows from f/2.8. Nine clear radii are read from Fig. 1.
  * The beveled edges at R7 and R8 are too close to measure separately, so their clear

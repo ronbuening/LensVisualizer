@@ -87,7 +87,7 @@ The German publication of the same application identifies the d line explicitly.
 
 ## Focus Mechanism
 
-Canon describes a floating mechanism that corrects field curvature at close distances in the S.S.C. lens. In Embodiment 1 the entire lens advances, and D8 narrows by 0.5525 mm. The elements behind D8 therefore advance farther than the four in front. Figures 5–7 show the field curvature and astigmatism with D8 held at its infinity spacing. Figures 8–10 show the improved correction when D8 narrows. [Canon lens catalog, p. 16](https://www.360icon.com/PDF/CanonLenses.pdf) · [US patent, Figs. 5–10](https://patents.google.com/patent/US3748021A/en)
+The S.S.C. lens uses Canon’s floating system to correct the field curvature of close-distance focusing. In Embodiment 1 the entire lens advances, and D8 narrows by 0.5525 mm. The elements behind D8 therefore advance farther than the four in front. Figures 5–7 show the field curvature and astigmatism with D8 held at its infinity spacing. Figures 8–10 show the improved correction when D8 narrows. [MIR, FD 17mm f/4 S.S.C.](https://www.mir.com.my/rb/photography/companies/canon/fdresources/fdlenses/earlyfdlenses/1720mmfd.htm) · [US patent, Figs. 5–10](https://patents.google.com/patent/US3748021A/en)
 
 | Quantity               |   Infinity | Patent near setting |
 | ---------------------- | ---------: | ------------------: |
@@ -110,5 +110,6 @@ Figures 3–4 put the 52° half-field at an image height of 1.235 focal lengths,
 - Reference wavelength for the glass table. [DE 2,117,367 A1, Example 1](https://patents.google.com/patent/DE2117367A1/en)
 - Canon Camera Museum production specifications. [1971 FD 17mm f/4](https://global.canon/en/c-museum/product/fd129.html) · [1973 FD 17mm f/4 S.S.C.](https://global.canon/en/c-museum/product/fd130.html) · [1979 New FD 17mm f/4](https://global.canon/en/c-museum/product/nfd197.html)
 - S.S.C. cutaway, aperture ring and floating-focus description. [Canon lens catalog, p. 16](https://www.360icon.com/PDF/CanonLenses.pdf)
+- Floating system of the S.S.C. lens. [MIR, FD 17mm f/4 S.S.C.](https://www.mir.com.my/rb/photography/companies/canon/fdresources/fdlenses/earlyfdlenses/1720mmfd.htm)
 - FD construction, diagonal fields and coating designations. [Canon FD lens instructions](https://cameramanuals.org/lenses/canon_fd_lenses-lang.pdf)
 - Canon FD mount, 24 × 36 mm frame, full stops and distance-scale reference. [Canon F-1 instructions](https://www.cameramanuals.org/canon_pdf/canon_f-1-original.pdf)
