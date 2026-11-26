@@ -6,9 +6,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * gives the radii, axial separations and d-line glass constants at infinity.
  * The stronger faces of the last two groups face the image, as in Fig. 1; col. 1 reverses them.
  * The diaphragm position is estimated at 24.50 mm behind R1, within the printed D5
- * space. Its clear radius follows from f/2.8. Nine clear radii are read from Fig. 1.
- * The beveled edges at R7 and R8 are too close to measure separately, so their clear
- * radii are estimated from the air clearance between the two spherical faces.
+ * space. Its clear radius follows from f/2.8. Nine clear radii are estimated from Fig. 1.
+ * The clear radii at R7 and R8 follow the air clearance between their spherical faces.
+ * Fig. 1 shows a short land at R2, a bevel at R7 and a shoulder at R8. The 0.92 gap
+ * limit admits the facing lands at R7/R8, with 0.069 mm of air between them.
  */
 const LENS_DATA = {
   schema: 2,
@@ -123,14 +124,14 @@ const LENS_DATA = {
   ],
   surfaces: [
     { label: "1", R: 21.196, d: 1.7745, sd: 12.9, medium: 1 },
-    { label: "2", R: 12.369, d: 15.099, sd: 10.8 },
+    { label: "2", R: 12.369, d: 15.099, sd: 10.8, rimExtensionSd: 11.0 },
     { label: "3", R: 34.5695, d: 4.1335, sd: 8.7, medium: 2 },
     { label: "4", R: -17.1815, d: 2.17, sd: 8.7, medium: 3 },
     { label: "5", R: 142.737, d: 1.323, sd: 8 },
     { label: "STO", R: "flat", d: 5.1765 },
     { label: "6", R: -18.935, d: 1.498, sd: 8.45, medium: 4 },
-    { label: "7", R: 77.784, d: 0.7875, sd: 7.02 },
-    { label: "8", R: -61.999, d: 2.786, sd: 7.04, medium: 5 },
+    { label: "7", R: 77.784, d: 0.7875, sd: 7.02, rimExtensionSd: 7.7 },
+    { label: "8", R: -61.999, d: 2.786, sd: 7.04, rimExtensionSd: 8.45, medium: 5 },
     { label: "9", R: -16.688, d: 0.147, sd: 8.45 },
     { label: "10", R: 225.5715, d: 2.366, sd: 9.6, medium: 6 },
     { label: "11", R: -41.0725, d: 38.6155, sd: 9.6 },
@@ -155,7 +156,7 @@ const LENS_DATA = {
   ],
   doublets: [{ text: "C1", fromSurface: "3", toSurface: "5" }],
   checks: {
-    gapSagFrac: 0.91,
+    gapSagFrac: 0.92,
   },
   layout: {
     yScFill: 0.65,

@@ -30,9 +30,22 @@ Using the nominal 35 mm focal length, the table gives −1.76431 for f₁/f, 0.2
 ## Values Not Printed in the Patent
 
 - **Diaphragm.** The estimated position, 24.50 mm behind R1, divides D5 into 1.3230 mm before the iris and 5.1765 mm after it. The paraxial f/2.8 entrance pupil has a radius of 6.251 mm, which gives a physical iris radius of 7.030 mm at that position.
-- **Clear radii.** From R1 to R11 the radii are 12.90, 10.80, 8.70, 8.70, 8.00, 8.45, 7.02, 7.04, 8.45, 9.60 and 9.60 mm. Nine come from the curved faces in Figure 1. The 37.261 mm first-to-last vertex span sets the scale. The two limbs of each face can be read to about 0.1–0.2 mm.
-- **R7 and R8.** The vertices are 0.7875 mm apart and the drawing places both shoulders near 8.45 mm radius. The spheres meet at 7.3605 mm and would overlap by 0.2514 mm at the shoulders. Clear radii of 7.02 and 7.04 mm pass the axial beam and leave 0.0714 mm of air at their common clear edge.
 - **Focus and field.** `focus.closeFocusM` is 10¹⁵ m, which stands for infinity. The patent prints the 64° design field but gives no image height. The modeled corner height comes from the 24 × 36 mm film format.
+
+At 300 dpi, the R1–R11 vertices in Figure 1 (PDF p. 2) span 686 pixels over 37.261 mm, or 18.4 pixels/mm. On the R6 arc, a sag of 1.07 mm on the printed 18.935 mm sphere gives a half-chord of 6.28 mm. The drawn half-chord is about 115.5 pixels, also 18.4 pixels/mm. Both sides of each rim agree to about 0.1–0.2 mm where the lines are distinct.
+
+| Face     | Clear radius (mm) | Land radius (mm) | Figure 1 edge                                                      |
+| -------- | ----------------: | ---------------: | ------------------------------------------------------------------ |
+| R1       |              12.9 |                — | Outer edge of the front meniscus.                                  |
+| R2       |              10.8 |             11.0 | Short flat at the end of the sloping bevel.                        |
+| R3, R4   |               8.7 |                — | The two cemented elements share a level outer edge.                |
+| R5       |               8.0 |                — | The shallow rear face ends at a small bevel.                        |
+| R6, R9   |              8.45 |                — | The outside faces of the two middle rear elements reach one height. |
+| R7       |              7.02 |              7.7 | The flat ends where the edge bevels toward the R6 shoulder.         |
+| R8       |              7.04 |             8.45 | The flat reaches the same shoulder height as R9.                    |
+| R10, R11 |               9.6 |                — | Both faces of the final element end at a square edge.               |
+
+At R2 the drawing puts the end of the curved face near 10.5 mm. The 10.8 mm clear radius preserves the 34.17° modeled half-field. At R7 and R8 the lines merge near the ends of the spherical faces. Their 0.7875 mm vertex separation would let the spheres intersect at 7.36 mm radius if continued to the shoulders. The estimated clear radii pass the axial beam with 0.071 mm of air at their common edge and 0.069 mm between the flats.
 
 ## Product Identification
 
@@ -58,8 +71,13 @@ The cutaway shows the same negative front meniscus, cemented doublet, diaphragm,
 
 At infinity the model gives 35.007 mm effective focal length, f/2.80, 38.619 mm paraxial back focus, a 7.030 mm iris radius and a 32.3° half-field to the film corner.
 
+- 2026-11-25 rim review:
+  - R2 gained a flat from 10.8 to 11.0 mm radius. Both sides of the front meniscus in Figure 1 show a short upright edge where the bevel ends.
+  - R7 gained a flat from 7.02 to 7.7 mm radius, where the bevel turns toward the 8.45 mm shoulder. R8 gained a flat from 7.04 to 8.45 mm radius, level with R9. The MIR cutaway also shows the two rear elements at about the same height. The R7–R8 lands occupy 91.23% of the axial gap, so its limit increased from 0.91 to 0.92.
+  - At infinity and f/2.8, corner pupil transmission was 56.3% before and after. Relative corner illumination was 38.4% in both cases. The axial beam and the chief ray to the 21.65 mm film corner clear every glass rim.
+
 ## Remaining Questions
 
 - The cutaway's original publisher and the factory glass types and suppliers are unknown.
-- Figure 1 places the diaphragm about 0.9 mm behind R5, or about 24.1 mm from R1. The exact position, physical opening and blade curvature are undocumented, as are the bevel profiles at R7 and R8.
+- Figure 1 places the diaphragm about 0.9 mm behind R5, or about 24.1 mm from R1. The exact position, physical opening and blade curvature are undocumented. The drawing resolves the outer shoulders at R7 and R8, but the exact endpoints of the two spherical faces remain uncertain.
 - The production group travel at close focus and the measured corner illumination remain unknown.

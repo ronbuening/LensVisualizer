@@ -72,7 +72,9 @@ The production lens uses a manual helicoid. At its closest setting the subject i
 
 ## Clear Apertures and Field Coverage
 
-Nine clear radii come from the curved portions of the faces in Figure 1. The bevels at R7 and R8 obscure their endpoints. At f/2.8 over the central ±3°, the two faces need clear radii of at least 6.99 and 7.01 mm respectively. Radii of 7.02 and 7.04 mm leave 0.071 mm of air at their common clear edge. Extending both curves to the drawn shoulders would make the glasses intersect.
+Figure 1 shows a short flat land behind the front meniscus. Its modeled radius is 11.0 mm, just outside the 10.8 mm clear aperture at R2. The drawing places the edge of the cemented pair at 8.7 mm radius, with a small bevel down to 8.0 mm at R5. The final element has a square edge at 9.6 mm.
+
+The closely spaced faces at R7 and R8 need clear radii of at least 6.99 and 7.01 mm over the central ±3° at f/2.8. Their estimated clear radii of 7.02 and 7.04 mm leave 0.071 mm of air at the common clear edge. Beyond it, the flat on R7 reaches the start of a bevel at about 7.7 mm radius. The opposing flat on R8 reaches the 8.45 mm shoulder shared with R9. The narrowest air space between the flats is 0.069 mm.
 
 At f/2.8 the chief ray reaches the 21.65 mm full-frame corner at a field angle of 32.3°. There the clear apertures transmit about 56% of the modeled pupil, giving about 39% relative illumination. These estimates depend on the inferred rim and stop dimensions. The patent gives neither an image height nor a measured corner illumination.
 
