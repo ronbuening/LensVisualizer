@@ -49,12 +49,13 @@ The iris limits the axial beam at f/2.8 and the glass edges clear one another th
 | L8      |       1.62041 |        60.3 | US 3,622,227        | Schott N-SK16 |   0 | +0.02 |
 | L9      |       1.74443 |        49.4 | US 4,139,265        | Unmatched     |   — |     — |
 
-**Clear radii and diaphragm.** The distance between the outermost vertices in Nikon’s 1967 section gives a scale of 13.87 pixels/mm. At surfaces 2, 4 and 6, the clear radius ends where the spherical face meets its bevel. The 7.25 mm rear rim of L6 leaves about 0.13 mm of axial clearance to L7 at close focus. The iris lies about 0.48 mm behind surface 9 and 2.02008 mm ahead of surface 10. This division preserves the printed air space. Its calculated wide-open radius is 6.2664 mm. [Nikon, Tale 14, Figure 1](https://imaging.nikon.com/imaging/information/story/0014/img/img2.jpg)
+**Clear radii and diaphragm.** The distance between the outermost vertices in Nikon’s 1967 section gives a scale of 13.87 pixels/mm. At surfaces 2, 4 and 6, the clear radius ends where the spherical face meets its bevel. At surface 2 a flat step square to the axis carries the edge from the 15.5 mm clear radius to 16.7 mm before the bevel begins; it does not affect the traced beams. The 7.25 mm rear rim of L6 leaves about 0.13 mm of axial clearance to L7 at close focus. The iris lies about 0.48 mm behind surface 9 and 2.02008 mm ahead of surface 10. This division preserves the printed air space. Its calculated wide-open radius is 6.2664 mm. [Nikon, Tale 14, Figure 1](https://imaging.nikon.com/imaging/information/story/0014/img/img2.jpg)
 
 | Clear radius (mm)           |     1 |     2 |     3 |     4 |     5 |    6 | 7–11 | 12–13 |   14 | 15–16 |
 | --------------------------- | ----: | ----: | ----: | ----: | ----: | ---: | ---: | ----: | ---: | ----: |
 | Nikon Figure 1, as modeled  | 20.95 | 15.50 | 15.70 | 14.40 | 12.00 | 8.40 | 7.25 |  9.95 | 9.95 | 11.45 |
 | Patent Figure 1, approx.    |  21.1 |  15.3 |  15.8 |  15.8 |  13.0 |  9.6 |  8.1 |   9.9 |  9.8 |  10.9 |
+| Edge step at surface 2      |     — | 16.70 |     — |     — |     — |    — |    — |     — |    — |     — |
 
 **Intermediate focus.** Changing both moving gaps linearly between the printed positions would bring paraxial focus 0.2525 mm ahead of the film at mid-travel. The internal gap varies linearly with inverse subject-to-film distance. At three intermediate distances, the last surface is positioned to bring the subject into focus on the film. The largest absolute departure from the film between these positions is 0.0176 mm. Positive residuals put paraxial focus behind the film.
 
@@ -88,6 +89,11 @@ Nikon specifies 24 mm, f/2.8–16, an 84° angle on 35 mm film and 0.3 m minimum
 - The product specifications describe the original F-mount Nikkor-N Auto. Its six-blade diaphragm stops at f/2.8, 4, 5.6, 8, 11 and 16. This corrects the previous f/22 endpoint. [Nikon sales sheet L-18](https://www.pacificrimcamera.com/rl/00766/00766.pdf) · [1967 lens No. 242932](https://destoutz.ch/lens_24mm_f2.8_242932.html) · [JAPB, aperture scale](https://japb.net/gear/gear-review-index/ds_nikkor-f-24f28/)
 
 At infinity the lens gives 23.999 mm effective focal length, f/2.80, 37.835 mm paraxial back focus and a 6.266 mm iris radius. The printed film plane is 37.824 mm behind the last vertex.
+
+2026-11-25 rim review:
+
+- Surface 2 gains a flat step from its 15.5 mm clear radius to 16.7 mm. Nikon’s section draws the step from about 15.6 to 16.7 mm above the axis and 16.8 mm below it. Patent Figure 1 draws it from about 14.6 to 16.4 mm on average. The step lies outside every traced beam, so corner illumination stays 59.9% at infinity. The near state at 0.114× keeps the same clearances.
+- Every clear radius stays as drawn by Nikon. Both drawings show L4–L5, L6, L7–L8 and L9 with square edges, and the model draws them that way. Patent Figure 1 draws L2 square and a short step at the rear of L3 reaching about 10 mm. Nikon bevels both elements, and the model follows Nikon’s production drawing.
 
 ## Remaining Questions
 

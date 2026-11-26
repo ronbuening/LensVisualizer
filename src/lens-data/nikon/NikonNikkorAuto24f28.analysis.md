@@ -28,7 +28,7 @@ The focal lengths below are for individual elements in air. Example 1 gives the 
 
 ### L1 — Negative meniscus
 
-nd = 1.62299, νd = 58.12. Hoya BACD15. f = −57.05 mm. The wide front meniscus accepts the oblique beam. Its rear face is more strongly curved than its front face and starts the divergence of the front section.
+nd = 1.62299, νd = 58.12. Hoya BACD15. f = −57.05 mm. The wide front meniscus accepts the oblique beam. Its rear face is more strongly curved than its front face and starts the divergence of the front section. Its 15.5 mm clear rear face ends in a short flat step that reaches 16.7 mm, as Nikon’s section and the patent figure both draw it.
 
 ### L2 — Biconvex positive
 
