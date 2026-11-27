@@ -11,32 +11,31 @@
  * Tracing every configuration at a 256 pupil-grid cap requires MTF_CHART_REPORT=1; a plain run only refreshes the
  * report's freshness status from input hashes. Chart agreement is reported and never asserted.
  *
+ * The configurations are independent, so the trace runs each one whole on a worker thread (`mtfChartWorker.ts`), one
+ * thread per core, and renders the report from their results in the same order as a serial run.
+ *
  * Regenerate: `MTF_CHART_REPORT=1 npm run generate:reports -- mtfChartRegression`
  */
 import type { LensDataV2Input } from "../src/types/lensDataV2.js";
-import { createAnalysisRequest } from "../src/optics/analysis.js";
 import { describe, expect, it } from "vitest";
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { availableParallelism } from "node:os";
 import { cwd, env } from "node:process";
-import { fNumberAtStopdown, wideOpenStopAtZoom } from "../src/optics/optics.js";
-import { buildLens } from "../src/optics/buildLens.js";
-import { prepareRuntimeState } from "../src/optics/optics.js";
-import { computeMtf } from "../src/optics/mtf.js";
-import { computeAnalysisFieldGeometryAtState, entrancePupilAtState } from "../src/optics/fieldGeometry.js";
-import type { MtfMethod, MtfOptions, MtfRequestOptions, MtfResult } from "../src/types/mtf.js";
-import { mtfChartConvention, type MtfChartConvention, type MtfChartMethod } from "./data/mtfChartConventions.js";
+import { Worker } from "node:worker_threads";
+import { mtfChartConvention } from "./data/mtfChartConventions.js";
 import {
   chartDeltas,
   parseChartAnchors,
-  correctedSinceAudit,
-  crossCheckConfiguration,
-  stoppedDownCrossCheck,
   renderCrossCheckPass,
+  CHART_REQUEST_SETTINGS,
   CROSS_CHECK_GRID,
   CROSS_CHECK_FREQUENCIES,
   CROSS_CHECK_PHASE_STEP_WAVES,
+  DIFFRACTION_METHOD,
+  ENGINE_METHOD,
 } from "./mtfChartLib.js";
-import type { Anchor, ChartDeltas, Curves, CrossCheckPass } from "./mtfChartLib.js";
+import type { Anchor, ChartDeltas, Configuration, Sample } from "./mtfChartLib.js";
+import type { ChartTask, ChartTaskResult } from "./mtfChartWorker.js";
 import {
   createMtfChartProvenance,
   hashMtfChartInputs,
@@ -54,31 +53,17 @@ const modules = import.meta.glob<{ default: LensDataV2Input }>("../src/lens-data
 const REPORT_DIR = "agent_docs/generated";
 const REPORT_PATH = `${REPORT_DIR}/mtf-chart-regression.generated.md`;
 const ENABLED = env.MTF_CHART_REPORT === "1";
-/** The inherited 30 s test timeout covers only a few configurations. */
-const TIMEOUT_MS = 30 * 60 * 1000;
+/**
+ * The full trace ran in 532 s on four 2.3 GHz Xeon vCPUs and in 2,189 s serially on one (2026-11-27). Its time
+ * divides by the core count, so two cores need about 18 minutes; 25 minutes leaves 2.8x headroom on four.
+ */
+const TIMEOUT_MS = 25 * 60 * 1000;
 
 /** Constants of the anchor file: its row count and the mean deltas of the values the audit recorded. */
 const ANCHOR_COUNT = 392;
 const RECORDED_MEAN_SIGNED = -0.0631;
 const RECORDED_MEAN_ABSOLUTE = 0.0731;
 
-/** Method of the one-method comparison; pupil, stop and fields are sized per configuration. */
-const DIFFRACTION_METHOD: MtfMethod = "diffraction";
-const FREQUENCIES = [0, 10, 20, 30, 40, 50];
-const CHART_REQUEST_SETTINGS = {
-  method: DIFFRACTION_METHOD,
-  spectrum: "photopic",
-  focus: "best-axial",
-  maxGridSize: 256,
-  frequenciesPerMm: FREQUENCIES,
-} satisfies MtfRequestOptions;
-/** Engine method that stands in for each chart method. Only a geometric chart leaves diffraction out. */
-const ENGINE_METHOD: Record<MtfChartMethod, MtfMethod> = {
-  geometric: "geometric",
-  diffraction: "diffraction",
-  measured: "diffraction",
-  unknown: "diffraction",
-};
 /**
  * The audit recorded its own S and T with the diffraction-corrected product, geometric OTF times the diffraction
  * limit, which the engine no longer has. The last run of this report that still had it reproduced those values as
@@ -99,29 +84,6 @@ const FIELD_BANDS = [
   { label: "0.8-1.0", upTo: Infinity },
 ];
 const fieldBand = (fraction: number) => FIELD_BANDS.find((band) => fraction <= band.upTo);
-
-interface Sample {
-  anchor: Anchor;
-  maker: string;
-  /** Recomputed with diffraction and under the maker's convention; null where the field has no curve. */
-  diffraction: Curves | null;
-  convention: Curves | null;
-}
-
-/** One lens at one zoom position: a single published chart. */
-interface Configuration {
-  key: string;
-  zoomT: number;
-  maker: string;
-  convention: MtfChartConvention;
-  /** True when a source erratum was corrected in the lens file, which the audit predates. */
-  corrected: boolean;
-  /** Result of the diffraction method; focus and aperture do not depend on the method. */
-  result: MtfResult;
-  samples: Sample[];
-  crossChecks: { wideOpen: CrossCheckPass; stoppedDown: CrossCheckPass };
-  settings: { diffraction: MtfOptions; makerConvention: MtfOptions };
-}
 
 /** Delta of one sample under one comparison; null when the comparison has no curve there. */
 type Comparison = (sample: Sample) => ChartDeltas | null;
@@ -144,80 +106,49 @@ const byText = (a: string, b: string) => (a < b ? -1 : a > b ? 1 : 0);
 
 const readAnchors = () => parseChartAnchors(readFileSync(ANCHORS_PATH, "utf8"));
 
-/** Sagittal and tangential values of one field at one frequency; null when the field returned no curve. */
-function curvesAt(result: MtfResult, fieldIndex: number, frequency: number): Curves | null {
-  const field = result.fields[fieldIndex];
-  const index = result.frequenciesPerMm.indexOf(frequency);
-  // An unsupported request returns no fields at all; its samples are then listed as missing, not thrown on.
-  if (!field || index < 0 || (field.status !== "converged" && field.status !== "unconverged")) return null;
-  return { sagittal: field.sagittal[index], tangential: field.tangential[index] };
-}
+/** Worker entry, and the hook it needs to resolve the engine's `.js` specifiers to `.ts` sources under plain Node. */
+const WORKER_URL = new URL("./mtfChartWorker.ts", import.meta.url);
+const SPECIFIER_HOOK_URL = new URL("../scripts/ts-js-specifier-hook-register.mjs", import.meta.url).href;
 
-/** Trace one chart's configuration with diffraction and, when it differs, under the maker's convention. */
-function runConfiguration(lens: LensDataV2Input, zoomT: number, anchors: Anchor[]): Configuration {
-  const L = buildLens(lens);
-  const state = prepareRuntimeState(L, 0, zoomT);
-  // Sized as the audit sized it: the wide-open iris of this zoom position and the entrance pupil it projects.
-  const stop = wideOpenStopAtZoom(zoomT, L);
-  const pupil = entrancePupilAtState(stop, 0, zoomT, L, computeAnalysisFieldGeometryAtState(0, zoomT, L, 0), 0).epSD;
-  const fieldFractions = [...new Set(anchors.map((anchor) => anchor.fieldFraction))].sort((a, b) => a - b);
-  const options = (method: MtfMethod): MtfOptions => ({
-    ...CHART_REQUEST_SETTINGS,
-    method,
-    fieldFractions,
-    pupilSemiDiameterMm: pupil,
-    stopSemiDiameterMm: stop,
-  });
-  const maker = lens.maker ?? "Unknown";
-  const convention = mtfChartConvention(lens.maker);
-  const conventionMethod = ENGINE_METHOD[convention.method];
-  const result = computeMtf(
-    createAnalysisRequest({
-      preparedState: state,
-      dynamicEFL: 0,
-      currentEPSD: options(DIFFRACTION_METHOD).pupilSemiDiameterMm,
-      currentPhysStopSD: options(DIFFRACTION_METHOD).stopSemiDiameterMm,
-    }),
-    options(DIFFRACTION_METHOD),
+/**
+ * Trace every chart on worker threads, one per core. A worker takes the next chart as soon as it posts the last, so
+ * the run lasts about as long as the busiest core's share. A failed worker or an aborted test rejects the whole run
+ * and stops every worker.
+ *
+ * @param tasks - charts in the order their results are returned
+ * @param signal - the test's signal, aborted when it times out
+ * @returns one configuration per chart, in task order
+ */
+async function traceConfigurations(tasks: Omit<ChartTask, "index">[], signal: AbortSignal): Promise<Configuration[]> {
+  const configurations: Configuration[] = [];
+  let next = 0;
+  const workers = Array.from(
+    { length: Math.min(availableParallelism(), tasks.length) },
+    () => new Worker(WORKER_URL, { execArgv: ["--import", SPECIFIER_HOOK_URL] }),
   );
-  const conventionResult =
-    conventionMethod === DIFFRACTION_METHOD
-      ? result
-      : computeMtf(
-          createAnalysisRequest({
-            preparedState: state,
-            dynamicEFL: 0,
-            currentEPSD: options(conventionMethod).pupilSemiDiameterMm,
-            currentPhysStopSD: options(conventionMethod).stopSemiDiameterMm,
+  try {
+    await Promise.all(
+      workers.map(
+        (worker) =>
+          new Promise<void>((resolve, reject) => {
+            const post = () =>
+              next < tasks.length ? worker.postMessage({ ...tasks[next], index: next++ }) : resolve();
+            worker.on("message", ({ index, configuration }: ChartTaskResult) => {
+              configurations[index] = configuration;
+              post();
+            });
+            worker.once("error", reject);
+            // Before every chart is posted back, only a crash ends a worker; later, the terminate below does.
+            worker.once("exit", (code) => reject(new Error(`An MTF chart worker exited with code ${code}.`)));
+            signal.addEventListener("abort", () => reject(signal.reason), { once: true });
+            post();
           }),
-          options(conventionMethod),
-        );
-  return {
-    key: lens.key,
-    zoomT,
-    maker,
-    convention,
-    corrected: correctedSinceAudit(L),
-    result,
-    settings: { diffraction: options(DIFFRACTION_METHOD), makerConvention: options(conventionMethod) },
-    samples: anchors.map((anchor) => {
-      const fieldIndex = fieldFractions.indexOf(anchor.fieldFraction);
-      return {
-        anchor,
-        maker,
-        diffraction: curvesAt(result, fieldIndex, anchor.frequency),
-        convention: curvesAt(conventionResult, fieldIndex, anchor.frequency),
-      };
-    }),
-    crossChecks: {
-      wideOpen: {
-        fNumber: fNumberAtStopdown(0, zoomT, L),
-        focusShiftMm: result.focus?.appliedShiftMm ?? null,
-        check: crossCheckConfiguration(state, options(DIFFRACTION_METHOD), result),
-      },
-      stoppedDown: stoppedDownCrossCheck(L, zoomT, state, options(DIFFRACTION_METHOD)),
-    },
-  };
+      ),
+    );
+  } finally {
+    await Promise.all(workers.map((worker) => worker.terminate()));
+  }
+  return configurations;
 }
 
 /** Mean signed delta, mean absolute delta and share of negative deltas, as table cells. */
@@ -557,7 +488,7 @@ describe("MTF chart regression report", () => {
   });
   it.skipIf(!ENABLED)(
     "emits simulated MTF against the digitized manufacturer charts",
-    async () => {
+    async ({ signal }) => {
       const anchors = readAnchors();
       expect(anchors).toHaveLength(ANCHOR_COUNT);
       const recordedDeltas = anchors.map((anchor) => delta(anchor.recorded, anchor).midpoint);
@@ -567,11 +498,12 @@ describe("MTF chart regression report", () => {
       const loaded = await Promise.all(
         Object.entries(modules).map(async ([path, load]) => ({
           path: path.replace(/^\.\.\//, ""),
+          url: new URL(path, import.meta.url).href,
           lens: (await load()).default,
         })),
       );
-      const lensByKey = new Map(loaded.map(({ lens }) => [lens.key, lens]));
-      expect([...new Set(anchors.map((anchor) => anchor.key))].filter((key) => !lensByKey.has(key))).toEqual([]);
+      const lensUrlByKey = new Map(loaded.map(({ lens, url }) => [lens.key, url]));
+      expect([...new Set(anchors.map((anchor) => anchor.key))].filter((key) => !lensUrlByKey.has(key))).toEqual([]);
       const keys = new Set(anchors.map((anchor) => anchor.key));
       const hashes = hashMtfChartInputs(
         cwd(),
@@ -601,9 +533,14 @@ describe("MTF chart regression report", () => {
         const id = `${anchor.key}|${anchor.zoomT}`;
         charts.set(id, [...(charts.get(id) ?? []), anchor]);
       }
-      const configurations = [...charts.values()]
-        .map((group) => runConfiguration(lensByKey.get(group[0].key)!, group[0].zoomT, group))
-        .sort((a, b) => byText(a.maker, b.maker) || byText(a.key, b.key) || a.zoomT - b.zoomT);
+      const tasks = [...charts.values()].map((group) => ({
+        lensUrl: lensUrlByKey.get(group[0].key)!,
+        zoomT: group[0].zoomT,
+        anchors: group,
+      }));
+      const configurations = (await traceConfigurations(tasks, signal)).sort(
+        (a, b) => byText(a.maker, b.maker) || byText(a.key, b.key) || a.zoomT - b.zoomT,
+      );
       provenance.settings.configurations = configurations.map(({ key, zoomT, settings, result, crossChecks }) =>
         summarizeMtfChartConfiguration(
           {

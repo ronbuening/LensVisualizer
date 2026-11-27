@@ -100,6 +100,12 @@ const runtimeInputs: Record<string, Record<string, { pattern?: string; generated
       reason: "Vite builds src/entry-server.tsx immediately above",
     },
   },
+  "reports/mtfChartWorker.ts": {
+    lensUrl: {
+      pattern: "src/lens-data/**/*.data.ts",
+      reason: "the chart report posts a lens module from its catalog glob",
+    },
+  },
 };
 
 function filesUnder(dir: string): string[] {

@@ -248,6 +248,9 @@ walks expand to current files; generated bundles are checked at their source ent
   `import.meta.glob`, so they run under Vitest through `vitest.reports.config.js`: `npm run generate:reports` (all), or
   `generate:glass-reports`, `generate:mirror-reports`, `generate:mount-svgs`, or `npm run generate:reports -- <name>`.
   An invariant a report depends on belongs in the suite as its own test, not as an `expect` inside the generator.
+  The MTF chart regression traces each chart configuration whole on a worker thread, one per core
+  (`reports/mtfChartWorker.ts`). Its workers run outside Vite, under plain Node with the `.js` → `.ts` specifier hook,
+  so `reports/mtfChartLib.ts` and everything it imports must load the way the benchmark and audit scripts do.
 - **Tooling tests** for manual-only dev tools (the benchmark harness and its drivers, and the audit-script npm entries) are listed in `TOOLING_TESTS` in `vite.config.js` and run with
   `npm run test:tooling`. CI runs ordinary tests, eight pairs of rim projects and tooling in separate jobs; the
   existing required `test` check succeeds only after every group passes. New pushes cancel superseded quality runs.

@@ -382,6 +382,11 @@ describe("MTF chart provenance", () => {
       original: "const STAMP_VERSION = 2;\n",
       changed: "const STAMP_VERSION = 3;\n",
     },
+    {
+      path: "reports/mtfChartWorker.ts",
+      original: "port.postMessage(configuration);\n",
+      changed: "port.postMessage(null);\n",
+    },
   ];
   const sharedSettings = {
     crossCheck: {
@@ -467,7 +472,8 @@ describe("MTF chart provenance", () => {
       .update(
         "reports/mtfChartLib.ts\0const CROSS_CHECK_GRID = 128;\r\n\0" +
           "reports/mtfChartProvenance.ts\0const STAMP_VERSION = 2;\n\0" +
-          "reports/mtfChartRegression.report.ts\0const FREQUENCIES = [10, 30, 50];\n\0",
+          "reports/mtfChartRegression.report.ts\0const FREQUENCIES = [10, 30, 50];\n\0" +
+          "reports/mtfChartWorker.ts\0port.postMessage(configuration);\n\0",
       )
       .digest("hex");
     expect(JSON.parse(output)).toMatchObject({ engineSources: expected, reportSources: expectedReport });

@@ -87,7 +87,8 @@ Kept only while a living doc or a lens `*.audit.md` sidecar links them; see [`re
 Regenerate instead of hand-editing. Reports are deterministic, so `git diff` after regeneration shows only real data
 changes. Judge glass coverage by the share of surfaces with trusted chromatic data, not by absolute missing counts.
 The generators live in `reports/` and never run in `npm test`. `npm run generate:reports` rewrites every report
-except the MTF chart regression, which takes minutes and runs only with `MTF_CHART_REPORT=1`;
+except the MTF chart regression, which runs only with `MTF_CHART_REPORT=1` and traces on one worker thread per core:
+about 9 minutes on four cores, proportionally longer on fewer;
 `npm run generate:glass-reports` rewrites all glass reports, `npm run generate:mirror-reports` the mirror fixtures, and
 `npm run generate:mount-svgs` the mount SVG specification plus per-view SVGs. Individual reports:
 

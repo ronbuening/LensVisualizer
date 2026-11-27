@@ -74,6 +74,7 @@ declare module "node:module" {
 }
 
 declare module "node:os" {
+  export function availableParallelism(): number;
   export function tmpdir(): string;
 }
 
@@ -105,4 +106,21 @@ declare module "node:process" {
 declare module "node:url" {
   export function fileURLToPath(url: string | URL): string;
   export function pathToFileURL(path: string): URL;
+}
+
+declare module "node:worker_threads" {
+  /* A message arrives as whatever the other side posted, so each listener names its own type. */
+  interface MessagePort {
+    on<Message>(event: "message", listener: (message: Message) => void): this;
+    postMessage(message: unknown): void;
+  }
+  export const parentPort: MessagePort | null;
+  export class Worker {
+    constructor(url: string | URL, options?: { execArgv?: string[] });
+    on<Message>(event: "message", listener: (message: Message) => void): this;
+    once(event: "error", listener: (error: Error) => void): this;
+    once(event: "exit", listener: (exitCode: number) => void): this;
+    postMessage(message: unknown): void;
+    terminate(): Promise<number>;
+  }
 }

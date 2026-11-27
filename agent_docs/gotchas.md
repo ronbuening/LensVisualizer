@@ -66,6 +66,10 @@ Non-obvious constraints and failure modes: one trap per bullet, with the full ru
   `generate:mirror-reports` / `generate:mount-svgs` subsets). The six-digit and glass-coverage-opportunities scans skip
   the rewrite when the untracked local `patents/` inventory is empty — regenerate from a checkout with `patents/`
   populated.
+- A Vitest timeout cannot interrupt synchronous work: a synchronous report generator that overruns still writes its
+  file and only then fails with "Test timed out". Treat that as an overrun and re-measure its timeout. The MTF chart
+  regression awaits worker threads instead, so its timeout stops it before it writes
+  (`reports/mtfChartRegression.report.ts`).
 - `.git-blame-ignore-revs` lists the initial Prettier commit. GitHub honors it automatically; locally run
   `git config blame.ignoreRevsFile .git-blame-ignore-revs`.
 - Keep `react`, `react-dom`, `@types/react`, and `@types/react-dom` on the same React 19 line. `react-helmet-async` 3

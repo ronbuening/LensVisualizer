@@ -1,15 +1,27 @@
 /**
  * Helpers of the MTF chart regression report (`mtfChartRegression.report.ts`), kept beside it so `npm test` checks
- * them between regenerations, as `glassScanLib.ts` is for the glass scans.
+ * them between regenerations, as `glassScanLib.ts` is for the glass scans. It also holds the trace of one chart
+ * configuration that the report's worker threads run (`mtfChartWorker.ts`), so it must load under plain Node with
+ * the `.js` → `.ts` specifier hook: no Vite-only imports.
  */
+import type { LensDataV2Input } from "../src/types/lensDataV2.js";
 import type { RuntimeLens } from "../src/types/optics.js";
 import type { PreparedOpticalState } from "../src/optics/types.js";
-import type { MtfOptions, MtfResult } from "../src/types/mtf.js";
+import type { MtfMethod, MtfOptions, MtfRequestOptions, MtfResult } from "../src/types/mtf.js";
 import { createAnalysisRequest } from "../src/optics/analysis.js";
-import { fNumberAtStopdown, stopSemiDiameterForFNumber } from "../src/optics/optics.js";
+import { buildLens } from "../src/optics/buildLens.js";
+import {
+  fNumberAtStopdown,
+  prepareRuntimeState,
+  stopSemiDiameterForFNumber,
+  wideOpenStopAtZoom,
+} from "../src/optics/optics.js";
+import { computeAnalysisFieldGeometryAtState, entrancePupilAtState } from "../src/optics/fieldGeometry.js";
+import { mtfChartConvention, type MtfChartConvention, type MtfChartMethod } from "./data/mtfChartConventions.js";
 import {
   assessMtfSupport,
   combineOtfs,
+  computeMtf,
   computeMtfSteps,
   findMtfFieldFootprint,
   MTF_MAX_UNKNOWN_FLUX,
@@ -419,4 +431,129 @@ export function renderCrossCheckPass(
  */
 export function correctedSinceAudit(L: RuntimeLens): boolean {
   return (L.source.source.errata ?? []).some((erratum) => erratum.status === "corrected");
+}
+
+/** Method of the one-method comparison; pupil, stop and fields are sized per configuration. */
+export const DIFFRACTION_METHOD: MtfMethod = "diffraction";
+const FREQUENCIES = [0, 10, 20, 30, 40, 50];
+export const CHART_REQUEST_SETTINGS = {
+  method: DIFFRACTION_METHOD,
+  spectrum: "photopic",
+  focus: "best-axial",
+  maxGridSize: 256,
+  frequenciesPerMm: FREQUENCIES,
+} satisfies MtfRequestOptions;
+/** Engine method that stands in for each chart method. Only a geometric chart leaves diffraction out. */
+export const ENGINE_METHOD: Record<MtfChartMethod, MtfMethod> = {
+  geometric: "geometric",
+  diffraction: "diffraction",
+  measured: "diffraction",
+  unknown: "diffraction",
+};
+
+export interface Sample {
+  anchor: Anchor;
+  maker: string;
+  /** Recomputed with diffraction and under the maker's convention; null where the field has no curve. */
+  diffraction: Curves | null;
+  convention: Curves | null;
+}
+
+/** One lens at one zoom position: a single published chart. */
+export interface Configuration {
+  key: string;
+  zoomT: number;
+  maker: string;
+  convention: MtfChartConvention;
+  /** True when a source erratum was corrected in the lens file, which the audit predates. */
+  corrected: boolean;
+  /** Result of the diffraction method; focus and aperture do not depend on the method. */
+  result: MtfResult;
+  samples: Sample[];
+  crossChecks: { wideOpen: CrossCheckPass; stoppedDown: CrossCheckPass };
+  settings: { diffraction: MtfOptions; makerConvention: MtfOptions };
+}
+
+/** Sagittal and tangential values of one field at one frequency; null when the field returned no curve. */
+function curvesAt(result: MtfResult, fieldIndex: number, frequency: number): Curves | null {
+  const field = result.fields[fieldIndex];
+  const index = result.frequenciesPerMm.indexOf(frequency);
+  // An unsupported request returns no fields at all; its samples are then listed as missing, not thrown on.
+  if (!field || index < 0 || (field.status !== "converged" && field.status !== "unconverged")) return null;
+  return { sagittal: field.sagittal[index], tangential: field.tangential[index] };
+}
+
+/**
+ * Trace one chart's configuration with diffraction and, when it differs, under the maker's convention, then run
+ * both cross-check passes. Builds its own lens and state, so configurations are independent of each other.
+ *
+ * @param lens - the charted lens as authored
+ * @param zoomT - the chart's zoom position
+ * @param anchors - every anchor of this chart, which all share the lens and zoom position
+ * @returns the configuration as the report renders it
+ */
+export function runChartConfiguration(lens: LensDataV2Input, zoomT: number, anchors: Anchor[]): Configuration {
+  const L = buildLens(lens);
+  const state = prepareRuntimeState(L, 0, zoomT);
+  // Sized as the audit sized it: the wide-open iris of this zoom position and the entrance pupil it projects.
+  const stop = wideOpenStopAtZoom(zoomT, L);
+  const pupil = entrancePupilAtState(stop, 0, zoomT, L, computeAnalysisFieldGeometryAtState(0, zoomT, L, 0), 0).epSD;
+  const fieldFractions = [...new Set(anchors.map((anchor) => anchor.fieldFraction))].sort((a, b) => a - b);
+  const options = (method: MtfMethod): MtfOptions => ({
+    ...CHART_REQUEST_SETTINGS,
+    method,
+    fieldFractions,
+    pupilSemiDiameterMm: pupil,
+    stopSemiDiameterMm: stop,
+  });
+  const maker = lens.maker ?? "Unknown";
+  const convention = mtfChartConvention(lens.maker);
+  const conventionMethod = ENGINE_METHOD[convention.method];
+  const result = computeMtf(
+    createAnalysisRequest({
+      preparedState: state,
+      dynamicEFL: 0,
+      currentEPSD: options(DIFFRACTION_METHOD).pupilSemiDiameterMm,
+      currentPhysStopSD: options(DIFFRACTION_METHOD).stopSemiDiameterMm,
+    }),
+    options(DIFFRACTION_METHOD),
+  );
+  const conventionResult =
+    conventionMethod === DIFFRACTION_METHOD
+      ? result
+      : computeMtf(
+          createAnalysisRequest({
+            preparedState: state,
+            dynamicEFL: 0,
+            currentEPSD: options(conventionMethod).pupilSemiDiameterMm,
+            currentPhysStopSD: options(conventionMethod).stopSemiDiameterMm,
+          }),
+          options(conventionMethod),
+        );
+  return {
+    key: lens.key,
+    zoomT,
+    maker,
+    convention,
+    corrected: correctedSinceAudit(L),
+    result,
+    settings: { diffraction: options(DIFFRACTION_METHOD), makerConvention: options(conventionMethod) },
+    samples: anchors.map((anchor) => {
+      const fieldIndex = fieldFractions.indexOf(anchor.fieldFraction);
+      return {
+        anchor,
+        maker,
+        diffraction: curvesAt(result, fieldIndex, anchor.frequency),
+        convention: curvesAt(conventionResult, fieldIndex, anchor.frequency),
+      };
+    }),
+    crossChecks: {
+      wideOpen: {
+        fNumber: fNumberAtStopdown(0, zoomT, L),
+        focusShiftMm: result.focus?.appliedShiftMm ?? null,
+        check: crossCheckConfiguration(state, options(DIFFRACTION_METHOD), result),
+      },
+      stoppedDown: stoppedDownCrossCheck(L, zoomT, state, options(DIFFRACTION_METHOD)),
+    },
+  };
 }

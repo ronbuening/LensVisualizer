@@ -14,6 +14,7 @@ const REPORT_SOURCE_PATHS = [
   "reports/mtfChartRegression.report.ts",
   "reports/mtfChartLib.ts",
   "reports/mtfChartProvenance.ts",
+  "reports/mtfChartWorker.ts",
 ];
 const STAMP_VERSION = 2;
 
