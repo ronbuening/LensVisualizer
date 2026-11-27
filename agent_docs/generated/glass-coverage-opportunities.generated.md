@@ -4,14 +4,14 @@ Consolidated work queue for the three planned glass-coverage sweeps.
 Rows that cite `patents/` refer to ignored/untracked local PDF files used as source references only.
 Do not add, stage, or commit those patent files.
 
-**Regenerate this file** by running `npm run generate:reports -- glassCoverageOpportunitiesScan`.
-Regenerate the full glass report set with `npm run generate:glass-reports`.
+**Refreshed on `main` after every merge; do not edit or commit this file.** Preview a branch's version with `npm run generate:reports -- glassCoverageOpportunitiesScan`, then `npm run reports:diff`.
+Preview the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **1230** lenses scanned (**1207** visible)
-- **12457 / 13557** non-air surfaces use strict catalog Sellmeier data (91.9%)
-- **12475 / 13557** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 92.0%)
+- **1224** lenses scanned (**1202** visible)
+- **12457 / 13521** non-air surfaces use strict catalog Sellmeier data (92.1%)
+- **12475 / 13521** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 92.3%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
 - **306** code-only missing-Sellmeier elements in Sweep 2: **27** active unreviewed, **173** self-recording explicit dispositions, **0** dispositions missing any review record

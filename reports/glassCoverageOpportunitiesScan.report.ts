@@ -7,17 +7,18 @@ import { isDLineReference } from "../src/optics/glassCatalog.js";
  *   2. high-frequency six-digit code-only rows missing strict catalog Sellmeier data;
  *   3. proprietary glasses where line-index backfill is the likely upgrade path.
  *
- * Runs only via `npm run generate:reports`, never in `npm test`; its job is to emit a planning report.
+ * Runs only via `npm run generate:reports` (a `.reports/` preview) and the post-merge
+ * `npm run refresh:reports` (the committed file), never in `npm test`; its job is to emit a planning report.
  *
- * Regenerate: `npm run generate:reports -- glassCoverageOpportunitiesScan`
+ * Preview: `npm run generate:reports -- glassCoverageOpportunitiesScan`, then `npm run reports:diff`
  *
- * The report embeds match statuses against the untracked local `patents/` PDF
- * inventory and sorts Sweep 1 by them, so the rewrite is skipped when that
- * inventory is empty (fresh worktrees, CI); the checked-in report stays
- * authoritative there.
+ * The report embeds match statuses against the patent inventory (`patentInventory` in
+ * glassScanLib.ts: the committed manifest, else the untracked `patents/` directory) and sorts
+ * Sweep 1 by them, so the rewrite is skipped when no inventory exists.
  */
 import type { LensDataV2Input } from "../src/types/lensDataV2.js";
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
+import { refreshNotice, TRACKED_REPORT_DIR, writeReport } from "./reportOutput.js";
 import { describe, expect, it } from "vitest";
 import type { DispersionQuality } from "../src/optics/chromatic.js";
 import { allEntries, resolveCompatibleGlass, resolveGlass, decodeCode6 } from "../src/optics/glassCatalog.js";
@@ -44,8 +45,8 @@ import type { RefractiveIndexReferenceLine } from "../src/types/optics.js";
 
 const modules = import.meta.glob<{ default: LensDataV2Input }>("../src/lens-data/**/*.data.ts", { eager: true });
 
-const REPORT_DIR = "agent_docs/generated";
-const REVIEWED_SIDECAR = "agent_docs/generated/six-digit-glass-codes-missing-sellmeier-reviewed.md";
+const REPORT_DIR = TRACKED_REPORT_DIR;
+const REVIEWED_SIDECAR = "reports/data/six-digit-glass-codes-missing-sellmeier-reviewed.md";
 const TOP_CODE_COUNT = 25;
 const TOP_NAMED_TOKEN_COUNT = 25;
 const MAX_RELEVANT_PATENTS = 4;
@@ -477,12 +478,13 @@ describe("glass coverage opportunities scan", () => {
       ),
     ).size;
 
-    // Without the untracked local patents/ inventory, a rewrite would replace every
-    // localPatentStatus with environment-dependent "Missing ..." churn and reorder
-    // Sweep 1; keep the checked-in report (generated where patents/ is populated)
-    // untouched instead.
+    // With neither the committed patent manifest nor a local patents/ archive, a rewrite would
+    // replace every localPatentStatus with "Missing ..." churn and reorder Sweep 1; leave the
+    // report untouched instead.
     if (patentFiles.length === 0) {
-      console.warn("glassCoverageOpportunitiesScan: no local patents/*.pdf references found; skipping report rewrite.");
+      console.warn(
+        "glassCoverageOpportunitiesScan: no patent inventory (reports/data/patent-inventory.txt or patents/*.pdf); skipping report rewrite.",
+      );
       expect(totalLenses).toBeGreaterThan(0);
       return;
     }
@@ -494,8 +496,8 @@ describe("glass coverage opportunities scan", () => {
     lines.push("Rows that cite `patents/` refer to ignored/untracked local PDF files used as source references only.");
     lines.push("Do not add, stage, or commit those patent files.");
     lines.push("");
-    lines.push("**Regenerate this file** by running `npm run generate:reports -- glassCoverageOpportunitiesScan`.");
-    lines.push("Regenerate the full glass report set with `npm run generate:glass-reports`.");
+    lines.push(refreshNotice("npm run generate:reports -- glassCoverageOpportunitiesScan"));
+    lines.push("Preview the full glass report set with `npm run generate:glass-reports`.");
     lines.push("");
     lines.push("## Summary");
     lines.push("");
@@ -649,8 +651,7 @@ describe("glass coverage opportunities scan", () => {
     }
     lines.push("");
 
-    mkdirSync(REPORT_DIR, { recursive: true });
-    writeFileSync(`${REPORT_DIR}/glass-coverage-opportunities.generated.md`, lines.join("\n") + "\n");
+    writeReport(`${REPORT_DIR}/glass-coverage-opportunities.generated.md`, lines.join("\n") + "\n");
 
     expect(totalLenses).toBeGreaterThan(0);
   });

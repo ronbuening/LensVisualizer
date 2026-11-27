@@ -61,11 +61,15 @@ Non-obvious constraints and failure modes: one trap per bullet, with the full ru
 - `vite.config.js` sets `base: '/'`; Cloudflare Pages serves production from the domain root.
 - `tsconfig.json` is `strict: true` with `allowJs: false`; `.data.ts` lens files are type-checked through the `"src"`
   include. Test files are `.ts`, and Vitest resolves `.js` import specifiers to `.ts` sources automatically.
-- The report generators in `reports/*.report.ts` rewrite `agent_docs/generated/` and never run in `npm test`; they run
-  through `vitest.reports.config.js` (`npm run generate:reports`, or the `generate:glass-reports` /
-  `generate:mirror-reports` / `generate:mount-svgs` subsets). The six-digit and glass-coverage-opportunities scans skip
-  the rewrite when the untracked local `patents/` inventory is empty — regenerate from a checkout with `patents/`
-  populated.
+- The report generators in `reports/*.report.ts` never run in `npm test` and, outside the post-merge refresh, write
+  only the gitignored `.reports/` preview, which each run clears first; a `git diff` of `agent_docs/generated/` after
+  `npm run generate:reports` therefore shows nothing — use `npm run reports:diff`. The six-digit and
+  glass-coverage-opportunities scans skip their rewrite when the patent inventory is empty
+  (`agent_docs/README.md` § Generated reports and benchmarks).
+- GitHub starts no `push` or `pull_request` workflow, not even a failed run, when the pushed commit's message, or a pull
+  request's head commit message, contains a skip marker (`[skip ci]`, `[ci skip]`, `[no ci]`, `[skip actions]`,
+  `[actions skip]`) anywhere, body included. Only the report refresh bot's commits should carry one; a commit that merely
+  describes the bot must not quote it, or its pull request shows no checks until a later commit lands on top.
 - `.git-blame-ignore-revs` lists the initial Prettier commit. GitHub honors it automatically; locally run
   `git config blame.ignoreRevsFile .git-blame-ignore-revs`.
 - Keep `react`, `react-dom`, `@types/react`, and `@types/react-dom` on the same React 19 line. `react-helmet-async` 3

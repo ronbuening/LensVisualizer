@@ -6,6 +6,9 @@ on:
     branches: [main, engine-next, lens-v2-migration, optics-rewrite/stage-8]
   push:
     branches: [main, engine-next, lens-v2-migration, optics-rewrite/stage-8]
+    # Pushes that change only these (the report bot's commits) need no checks and no deploy; nothing built or
+    # tested reads them. Pull requests keep no path filter.
+    paths-ignore: ["agent_docs/generated/**", "README.md"]
 
 concurrency:
   group: quality-${{ github.event.pull_request.number || github.ref }}
@@ -146,6 +149,43 @@ jobs:
           test "$UNIT_RESULT" = success
           test "$RIM_RESULT" = success
           test "$TOOLING_RESULT" = success
+
+  # Pull requests never commit agent_docs/generated/ or the README lens count: refresh-reports.yml writes them on main
+  # after merge (agent_docs/decisions.md, 2026-11-27). This job refuses committed output, then regenerates every report
+  # into the .reports/ preview and writes what this branch would change to the job summary.
+  reports:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Refuse committed report output
+        env:
+          BASE: ${{ github.base_ref }}
+        run: |
+          # Deletions stay allowed: retiring a generator removes its committed report.
+          committed=$(git diff --name-only --diff-filter=d "origin/$BASE...HEAD" -- agent_docs/generated)
+          count=$(git diff "origin/$BASE...HEAD" -- README.md | grep -cE '^[-+]- `[0-9]+` visible lens pages are currently published' || true)
+          if [ -z "$committed" ] && [ "$count" = 0 ]; then exit 0; fi
+          [ -n "$committed" ] && printf 'Committed report output:\n%s\n' "$committed"
+          [ "$count" != 0 ] && echo "Changed README lens count line."
+          echo "::error::Report output is refreshed on main after merge, never committed in a pull request. Restore it with \`git checkout origin/$BASE -- agent_docs/generated README.md\` (re-apply any README prose edits), \`git rm\` any report this branch added, and commit. Preview with \`npm run generate:reports\` and \`npm run reports:diff\`."
+          exit 1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24.15.0"
+          cache: npm
+      - run: npm ci
+      - run: npm run generate:metadata
+      - run: npm run generate:reports
+      - run: npm run reports:diff -- --markdown >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: report-preview
+          path: .reports/
+          include-hidden-files: true
+          retention-days: 14
 
   audit:
     runs-on: ubuntu-latest

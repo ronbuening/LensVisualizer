@@ -4,13 +4,13 @@ Glass-like tokens from non-explicit-unmatched `glass` annotations that do not re
 through `resolveGlass`. Use this report to prioritize catalog additions, aliases,
 or per-lens patent backfills.
 
-**Regenerate this file** by running `npm run generate:reports -- unresolvedGlassScan`.
+**Refreshed on `main` after every merge; do not edit or commit this file.** Preview a branch's version with `npm run generate:reports -- unresolvedGlassScan`, then `npm run reports:diff`.
 
 ## Summary
 
-- **1230** lenses scanned
-- **13557** non-air surfaces examined
-- **13567** element glass declarations examined
+- **1224** lenses scanned
+- **13521** non-air surfaces examined
+- **13531** element glass declarations examined
 - **220** non-explicit-unmatched annotations did not resolve
 - **116** distinct unresolved glass-like tokens found
 
