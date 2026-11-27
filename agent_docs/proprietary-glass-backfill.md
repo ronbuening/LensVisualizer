@@ -10,7 +10,7 @@ Catalog-coordinate mismatches (an annotation that resolves to a catalog row whos
 values) are a different queue: see [glass-relabel-followup.md](glass-relabel-followup.md), which also lists the
 generated reports and the closed glass families that must not be re-audited. For code-only rows, the active A-E queue
 is [six-digit-glass-codes-missing-sellmeier.generated.md](generated/six-digit-glass-codes-missing-sellmeier.generated.md);
-regenerate every glass report with `npm run generate:glass-reports`.
+preview every glass report with `npm run generate:glass-reports` (`main` refreshes the committed copies after merge).
 
 ## Why catalog buildout cannot fix these
 
