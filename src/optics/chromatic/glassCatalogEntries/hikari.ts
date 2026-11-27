@@ -67,6 +67,25 @@ export const HIKARI_GLASS_ENTRIES: readonly GlassEntry[] = [
       "Hikari J-BAF11 datasheet, vendor nine-term n² power series (λ in µm); PgF evaluated from coefficients. Shared d-code 667483 omitted to preserve S-BAH11 lookup. https://www.hikari-g.co.jp/optical_glass/general_optical_glass/document/BAF/J_BAF11.pdf (accessed 2026-10-16).",
   },
   {
+    name: "J-BALF4",
+    vendor: "Hikari",
+    powerSeries: [
+      [2.45156936, 0],
+      [-0.00835914203, 2],
+      [-0.0000888499407, 4],
+      [0.0153016408, -2],
+      [0.00022451288, -4],
+      [0.00000589498036, -6],
+      [0.000000259209632, -8],
+    ],
+    nd: 1.57957,
+    vd: 53.74,
+    PgF: 0.5519,
+    code6: "580537",
+    source:
+      "Hikari Optical Glass Catalog data file, 2025-06-01 edition, J-BALF4 row (formula 3 power series, d-code 580537).",
+  },
+  {
     name: "J-PSK02",
     vendor: "Hikari",
     powerSeries: [

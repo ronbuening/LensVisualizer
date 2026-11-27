@@ -1,0 +1,265 @@
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * US 2003/0103269 A1, Example 2, gives the spherical prescription in millimetres,
+ * d-line glass values, the stop position, and three focus settings. Clear radii
+ * and the flat lands on surfaces 8, 10 and 12 are estimated from Fig. 2(a).
+ * The sixth element's rim is smaller than drawn to clear the seventh element.
+ * The iris radius follows the printed f/1.83 at infinity. Object distances and
+ * 24 intermediate positions are calculated. The patent gives no focus cam.
+ */
+
+const LENS_DATA = {
+  schema: 2,
+  key: "olympus-zuiko-digital-ed-50mm-f2-macro",
+  maker: "Olympus",
+  name: "OLYMPUS ZUIKO DIGITAL ED 50mm f/2.0 Macro",
+  subtitle: "US 2003/0103269 A1, Example 2 — Olympus / Takato",
+  visible: true,
+
+  catalog: {
+    lensMounts: ["four-thirds"],
+    imageFormat: "four-thirds",
+    specs: ["11 ELEMENTS / 10 GROUPS", "DESIGN f = 51.01 mm", "DESIGN F/1.83", "ALL SPHERICAL", "1 ED ELEMENT"],
+    elementCount: 11,
+    groupCount: 10,
+    focalLengthMm: { marketing: 50, design: 51.01 },
+    fNumber: { marketing: 2, design: 1.83 },
+    closeFocusM: { marketing: 0.24 },
+  },
+
+  source: {
+    patentNumber: "US 2003/0103269 A1",
+    example: { label: "Example 2", id: "2" },
+    patentYear: 2003,
+    authors: ["Hideyasu Takato"],
+    assignees: ["Olympus Optical Co., Ltd."],
+  },
+
+  elements: [
+    {
+      id: 1,
+      name: "L1",
+      label: "Element 1",
+      type: "Negative Meniscus",
+      nd: 1.64769,
+      vd: 33.79,
+      indexReference: "d",
+      focalLengthMm: -115.93,
+      glass: "S-TIM22 (OHARA)",
+      role: "Negative front meniscus extends the back focus.",
+    },
+    {
+      id: 2,
+      name: "L2",
+      label: "Element 2",
+      type: "Positive Meniscus",
+      nd: 1.7725,
+      vd: 49.6,
+      indexReference: "d",
+      focalLengthMm: 70.87,
+      glass: "S-LAH66 (OHARA)",
+      role: "Adds convergence behind the front negative meniscus.",
+    },
+    {
+      id: 3,
+      name: "L3",
+      label: "Element 3",
+      type: "Positive Meniscus",
+      nd: 1.72916,
+      vd: 54.68,
+      indexReference: "d",
+      focalLengthMm: 59.93,
+      glass: "S-LAL18 (OHARA)",
+      role: "Provides further convergence ahead of the iris.",
+    },
+    {
+      id: 4,
+      name: "L4",
+      label: "Element 4",
+      type: "Positive Meniscus",
+      nd: 1.52249,
+      vd: 59.84,
+      indexReference: "d",
+      focalLengthMm: 243.36,
+      glass: "S-NSL5 (OHARA)",
+      role: "Weak positive meniscus ahead of the stop-side negative pair.",
+    },
+    {
+      id: 5,
+      name: "L5",
+      label: "Element 5",
+      type: "Biconcave Negative",
+      nd: 1.59551,
+      vd: 39.24,
+      indexReference: "d",
+      focalLengthMm: -32.08,
+      glass: "S-TIM8 (OHARA)",
+      role: "Supplies negative power on the object side of the iris.",
+    },
+    {
+      id: 6,
+      name: "L6",
+      label: "Element 6",
+      type: "Biconcave Negative",
+      nd: 1.58144,
+      vd: 40.75,
+      indexReference: "d",
+      focalLengthMm: -29.07,
+      glass: "S-TIL25 (OHARA)",
+      role: "Supplies negative power on the image side of the iris.",
+    },
+    {
+      id: 7,
+      name: "L7",
+      label: "Element 7",
+      type: "Positive Meniscus",
+      nd: 1.497,
+      vd: 81.54,
+      indexReference: "d",
+      focalLengthMm: 65.18,
+      glass: "S-FPL51 (OHARA)",
+      role: "ED positive meniscus for chromatic correction behind the iris.",
+      apd: "inferred",
+      apdNote:
+        "Olympus marks this element ED, and its d-line values match Ohara S-FPL51. The patent places an anomalous-dispersion glass behind the stop without naming the element (¶0068).",
+    },
+    {
+      id: 8,
+      name: "L8",
+      label: "Element 8",
+      type: "Biconvex Positive",
+      nd: 1.7725,
+      vd: 49.6,
+      indexReference: "d",
+      focalLengthMm: 37.27,
+      glass: "S-LAH66 (OHARA)",
+      role: "Strong converging element at the rear of the first group.",
+    },
+    {
+      id: 9,
+      name: "L9",
+      label: "Element 9",
+      type: "Biconcave Negative",
+      nd: 1.51742,
+      vd: 52.43,
+      indexReference: "d",
+      focalLengthMm: -70.21,
+      glass: "S-NSL36 (OHARA)",
+      role: "Offsets part of the rear doublet's positive power.",
+    },
+    {
+      id: 10,
+      name: "L10",
+      label: "Element 10",
+      type: "Negative Meniscus",
+      nd: 1.76182,
+      vd: 26.52,
+      indexReference: "d",
+      focalLengthMm: -94.43,
+      glass: "S-TIH14 (OHARA)",
+      role: "Dispersive negative member of the rear cemented doublet.",
+      cemented: "C1",
+    },
+    {
+      id: 11,
+      name: "L11",
+      label: "Element 11",
+      type: "Biconvex Positive",
+      nd: 1.741,
+      vd: 52.64,
+      indexReference: "d",
+      focalLengthMm: 31.84,
+      glass: "S-LAL61 (OHARA)",
+      role: "Converging member of the rear cemented doublet.",
+      cemented: "C1",
+    },
+  ],
+
+  surfaces: [
+    { label: "1", R: -35.941, d: 2.0, sd: 18.2, medium: 1 },
+    { label: "2", R: -70.445, d: 1.4, sd: 18.2 },
+    { label: "3", R: -910.133, d: 3.99, sd: 18.3, medium: 2 },
+    { label: "4", R: -51.742, d: 0.1, sd: 18.3 },
+    { label: "5", R: 43.701, d: 4.34, sd: 16.95, medium: 3 },
+    { label: "6", R: 3929264.108, d: 0.1, sd: 16.95 },
+    { label: "7", R: 24.021, d: 2.8, sd: 14.45, medium: 4 },
+    { label: "8", R: 28.431, d: 5.16, sd: 14.45, rimCutDepthMm: 3.36 },
+    { label: "9", R: -861.896, d: 1.3, sd: 12.25, medium: 5 },
+    { label: "10", R: 19.55, d: 3.31, sd: 12.25, rimCutDepthMm: 3.11 },
+    { label: "STO", R: "flat", d: 5.78 },
+    { label: "12", R: -20.465, d: 1.35, sd: 11.3, medium: 6, rimCutDepthMm: 3.0 },
+    { label: "13", R: 99.536, d: 0.91, sd: 11.3 },
+    { label: "14", R: -257.77, d: 4.5, sd: 12.95, medium: 7 },
+    { label: "15", R: -28.944, d: 0.3, sd: 12.95 },
+    { label: "16", R: 53.287, d: 6.17, sd: 14.65, medium: 8 },
+    { label: "17", R: -59.475, sd: 14.65 },
+    { label: "18", R: -17636653.385, d: 1.38, sd: 13.5, medium: 9 },
+    { label: "19", R: 36.329, d: 1.73, sd: 13.5 },
+    { label: "20", R: 96.18, d: 1.68, sd: 13.35, medium: 10 },
+    { label: "21", R: 40.845, d: 4.86, sd: 13.35, medium: 11 },
+    { label: "22", R: -53.026, sd: 13.35 },
+  ],
+
+  focus: {
+    closeFocusM: 0.22906,
+    keyframes: [
+      0.0, 0.09235, 0.1847, 0.27705, 0.32322, 0.3694, 0.44822, 0.48764, 0.52705, 0.56646, 0.60587, 0.64529, 0.68471, 0.72413, 0.76354, 0.80295, 0.82266, 0.84236, 0.86207, 0.88178, 0.90149, 0.92119, 0.94089, 0.9606, 0.98031, 0.99016, 1,
+    ],
+    description:
+      "PUBLISHED: At closest focus, the front and rear groups move 29.98 mm and 23.69 mm toward the subject, widening the gap. The patent gives three positions from infinity to 0.52×. The other 24 are calculated. The model reaches 0.229 m from the image plane, compared with Olympus's 0.24 m.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 5,
+        objectDistanceMm: 525.75,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.1",
+        source: "Example 2 prints −0.1× and the two air gaps. The distance is calculated at the printed image plane.",
+      },
+      {
+        zoomStation: 0,
+        keyframe: 26,
+        objectDistanceMm: 110.36,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.52",
+        source: "Example 2 prints −0.52× and the two air gaps. The distance is calculated at the printed image plane.",
+      },
+    ],
+  },
+
+  gaps: {
+    17: {
+      label: "D17",
+      values: [
+        [
+          0.5, 0.761321, 1.045503, 1.359531, 1.529696, 1.71, 2.032186, 2.207469, 2.393652, 2.592192, 2.804797, 3.033567,
+          3.281184, 3.550924, 3.847039, 4.175384, 4.354076, 4.543973, 4.74684, 4.964523, 5.199461, 5.454649, 5.734322,
+          6.044248, 6.392246, 6.583915, 6.79,
+        ],
+      ],
+    },
+    22: {
+      label: "BF",
+      values: [
+        [
+          35.06, 36.010259, 37.043647, 38.185568, 38.804348, 39.46, 40.683419, 41.349011, 42.055994, 42.809896,
+          43.61721, 44.485904, 45.426168, 46.450435, 47.574857, 48.821664, 49.500201, 50.221288, 50.991623, 51.818219,
+          52.710335, 53.679348, 54.741333, 55.918197, 57.23963, 57.967443, 58.75,
+        ],
+      ],
+    },
+  },
+
+  aperture: { nominalFNumber: 1.83, fStops: [2, 2.8, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22, blades: 7 },
+
+  groups: [
+    { text: "G1", fromSurface: "1", toSurface: "17" },
+    { text: "G2", fromSurface: "18", toSurface: "22" },
+  ],
+  doublets: [{ text: "C1", fromSurface: "20", toSurface: "22" }],
+  layout: { yScFill: 0.5 },
+  checks: { gapSagFrac: 0.98 },
+} satisfies LensDataV2Input;
+
+export default LENS_DATA;

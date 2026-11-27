@@ -22,6 +22,8 @@ const CLOSE_FOCUS_LABEL_FRACTION = 0.05;
 const CLOSE_FOCUS_EXEMPT: Readonly<Record<string, string>> = {
   "fujifilm-fujinon-xf-8-16mm-f28-r-lm-wr":
     "source-printed 500 mm-from-image-plane state; two-decimal gap rounding at 8 mm moves the paraxial distance ~6 %",
+  "laowa-10mm-f28-zero-d-ff":
+    "source-printed 500 mm-from-first-surface state; the printed image plane sits 0.039 mm inside paraxial focus, which at 10 mm moves the paraxial distance ~24 %",
   "nikon-1-nikkor-vr-10-30mm-f35-56-pd-zoom":
     "source-printed D = 200 mm state; two-decimal gap rounding at 10 mm moves the paraxial distance ~6 %",
   "olympus-zuiko-digital-ed-7-14mm-f4":

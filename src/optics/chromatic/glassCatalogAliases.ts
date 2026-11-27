@@ -59,12 +59,6 @@ export const ALIAS_RECORDS: readonly GlassAliasRecord[] = [
   },
   { alias: "SK16", target: "N-SK16", kind: "legacy-name", note: "Legacy Schott name superseded by N-SK16." },
   {
-    alias: "L-BAL35",
-    target: "S-BAL35",
-    kind: "catalog-variant",
-    note: "Ohara low-softening / PGM variant sharing the S-BAL35 optical constants.",
-  },
-  {
     alias: "L-LAM60",
     target: "S-LAM60",
     kind: "catalog-variant",

@@ -74,6 +74,16 @@ export const OHARA_GLASS_ENTRIES: readonly GlassEntry[] = [
       "OHARA_260701.AGF, L-BSL7 low-softening-temperature row, formula 2; https://oharacorp.com/wp-content/uploads/catalogs/OHARA_260701_CATALOG.zip (accessed 2026-09-15).",
   },
   {
+    name: "L-BAL35",
+    vendor: "Ohara",
+    B: [1.1626263, 0.325661051, 1.35132486],
+    C: [0.0125957437, -0.0032691105, 119.214596],
+    nd: 1.58913,
+    vd: 61.152601,
+    source:
+      "OHARA_260701.AGF, L-BAL35 low-softening-temperature row, formula 2; code 589-612 omitted so bare-code annotations keep their existing row; https://oharacorp.com/wp-content/uploads/catalogs/OHARA_260701_CATALOG.zip (accessed 2026-11-25).",
+  },
+  {
     name: "L-BAL42",
     vendor: "Ohara",
     B: [1.39528097, 0.072551952, 1.66335848],
