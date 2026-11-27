@@ -4,7 +4,7 @@ Glass-like tokens from non-explicit-unmatched `glass` annotations that do not re
 through `resolveGlass`. Use this report to prioritize catalog additions, aliases,
 or per-lens patent backfills.
 
-**Regenerate this file** by running `npm run generate:reports -- unresolvedGlassScan`.
+**Refreshed on `main` after every merge; do not edit or commit this file.** Preview a branch's version with `npm run generate:reports -- unresolvedGlassScan`, then `npm run reports:diff`.
 
 ## Summary
 
