@@ -99,5 +99,6 @@ outward to whole mm. Coordinates are rounded to 3 decimals; layers emit in the f
 5. Add `sourceRefs` (with archived snapshots) and `openQuestions` for any photo-scaled/unknown values.
 6. Register the spec in [`index.ts`](./index.ts).
 7. Run `npm run typecheck` and `npm run test` (the cross-mount suite validates every spec), then
-   `npm run generate:mount-svgs` to refresh `agent_docs/generated/lens-mount-svg-specifications.md` and the
-   per-view SVGs.
+   `npm run generate:mount-svgs` and `npm run reports:diff` to preview
+   `agent_docs/generated/lens-mount-svg-specifications.md` and the per-view SVGs. Do not commit them: `main` refreshes
+   them after merge.

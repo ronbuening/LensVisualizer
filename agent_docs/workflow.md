@@ -33,10 +33,13 @@ npm run test
 npm run test:coverage
 npm run test:tooling               # Benchmark-harness, audit-script and where-used tests excluded from npm test
 npm run test:browser               # Chromium translation DOM-replacement route and interaction coverage
-npm run generate:reports           # Every report generator in reports/ (rewrites agent_docs/generated/)
+npm run generate:reports           # Preview every report generator in reports/ into gitignored .reports/
 npm run generate:glass-reports
 npm run generate:mirror-reports
 npm run generate:mount-svgs
+npm run reports:diff               # The last preview against the committed agent_docs/generated/; -- --full, -- --markdown
+npm run refresh:reports            # Post-merge refresh on main (CI only): rewrite agent_docs/generated/ and the README count
+npm run patents:inventory          # Record local patents/ PDF filenames in reports/data/patent-inventory.txt; -- --prune
 npm run generate:sa-figure-svgs     # Regenerate static spherical-aberration article figures from their components
 npm run generate:holiday-branding   # Recolor the base marks into public/branding/holiday/
 npm run audit:aperture              # traced vs stated f-number per lens and zoom station, and what limits it
@@ -80,7 +83,10 @@ npm run lint          # ESLint passes (run npm run lint:fix to auto-fix)
 npm run test          # All tests pass
 ```
 
-CI enforces the same checks via `.github/workflows/quality.yml` — failing them blocks deploy. Where a job has already
+CI enforces the same checks via `.github/workflows/quality.yml` — failing them blocks deploy. Its `reports` job fails a
+pull request that commits `agent_docs/generated/` or changes the README lens count, and writes the branch's report
+changes to the job summary; `.github/workflows/refresh-reports.yml` commits both on `main` after merge (see
+`agent_docs/README.md` § Generated reports and benchmarks). Where a job has already
 written `src/generated/`, or its suite never reads it, CI adds `--ignore-scripts` to skip the `pre*` metadata hook
 (`agent_docs/architecture/testing.md`); locally, run the plain commands, whose hooks regenerate it on a fresh clone.
 
@@ -104,8 +110,11 @@ GitHub Pages is an active mirror/backup.
   builds keep the full listing. If that error recurs, retry the deployment from the Cloudflare dashboard before
   debugging the build.
 - Base path set to `/` in `vite.config.js` because Cloudflare Pages serves the production site from the domain root
-- Quality checks run on PRs via `.github/workflows/quality.yml` (lint, format, typecheck, test, npm audit, build),
-  for `main` and the configured integration branches; only `main` deploys
+- Quality checks run on PRs via `.github/workflows/quality.yml` (lint, format, typecheck, test, npm audit, build,
+  report preview), for `main` and the configured integration branches; only `main` deploys
+- Report refresh commits from `.github/workflows/refresh-reports.yml` change only `agent_docs/generated/` and
+  `README.md` and say `[skip ci]`; `quality.yml` also ignores pushes limited to those paths, so they rerun no checks
+  and trigger no GitHub Pages deploy
 - Build pipeline: `generate-build-metadata.mjs` (routes + metadata) → `vite build` → `prerender.mjs` (SSR static HTML +
   manifest validation) → `generate-sitemap.mjs` → `generate-rss-feeds.mjs` (writes both static RSS feeds from generated
   metadata)
