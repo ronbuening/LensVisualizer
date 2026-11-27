@@ -15,8 +15,8 @@ Without the variable, only the status line is refreshed by comparing input hashe
 ```text
 {
   "version": 2,
-  "generatedDateUtc": "2026-11-14",
-  "gitCommit": "d7b56acee90ffe0df061a56c1fbb2f0de858960f",
+  "generatedDateUtc": "2026-11-27",
+  "gitCommit": "be9747bf04071011b03cdc579f6ed66711af2c17",
   "uncommittedSrcOrReports": false,
   "settings": {
     "focusT": 0,
@@ -47,8 +47,8 @@ Without the variable, only the status line is refreshed by comparing input hashe
     ]
   },
   "hashes": {
-    "engineSources": "535a324092b35c45e3e552e4f5aadc10a815ce28ce82e668ad26e92b9a371836",
-    "reportSources": "f31c182071cda6048dfe2f87ac024d9a8835757d07d6f593d99260bdf5834711",
+    "engineSources": "e5abf37c0c73fa8cfffe6ec6627bc1e0cbe8033ede790ca34a8bb0c816d6c0f3",
+    "reportSources": "6380bcc0e19f802a30b5c46fc76c93f5ce7ba28aaf4d428478f69d56dcf640ee",
     "anchors": "c5320ed7acf34280f9d353748044b868ac1653a69dbd5b9044d94ddc1d473ac2",
     "conventions": "87c4d5a210113ff86fe8343b5aec4afa3db9906af41b5d679b7507314a55b815",
     "lensFiles": {
@@ -60,7 +60,7 @@ Without the variable, only the status line is refreshed by comparing input hashe
       "src/lens-data/nikon/NikonZ35f18S.data.ts": "f6012bd5552a0d67589f1b8e333d4136a3f82282f677349231e53fc081736260",
       "src/lens-data/nikon/NikonZ85f18S.data.ts": "63669d3d345e08f7189c7329565b4361849d742e48c1290ce730a14704170948",
       "src/lens-data/sigma/Sigma105mmf14DGHSMArt.data.ts": "4f7e41f7ac9191b298a52f6f71741fc64ff8625e91c1dfcf446ef32b7ca64217",
-      "src/lens-data/sigma/Sigma105mmf28DGDNMacroArt.data.ts": "08f09e6a15074f006db18809f82df83082c154a9ce4ef617f59a28c776000edf",
+      "src/lens-data/sigma/Sigma105mmf28DGDNMacroArt.data.ts": "886151557e49711aa1ea89dd1824e7278142fc2794b6493dd332f54307ecaab6",
       "src/lens-data/sigma/Sigma16mmf14DCDN.data.ts": "d552d5c909f1fa0bb0de9c587adba7a8338583bf9e96c96ee13f64dfaafbc4ae",
       "src/lens-data/sigma/Sigma20mmf14DGHSMArt.data.ts": "5067337b16fce581cdf6bead374f0d218056a681296045b176b06a69ad79ac7e",
       "src/lens-data/sigma/Sigma23mmf14DCDNC.data.ts": "28d9ca65b32c703f99dc7f9fb6b66685655fda304326ac676d041e9f963d48e6",
