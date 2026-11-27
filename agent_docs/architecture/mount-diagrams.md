@@ -21,7 +21,7 @@ reference artifact. It implements the Lens Mount SVG Specification Package, sche
 | Pure geometry + renderer | `src/optics/mount/` (no React) |
 | React components | `src/components/mount/` (`MountDiagram`, `MountDiagramPanel`) |
 | Page cross-link sidebars | `src/components/content/LinkListSidebar.tsx` (maker→mounts, mount→makers) |
-| Report generator | `reports/mountSvgSpecificationsReport.report.ts` (`npm run generate:mount-svgs`) |
+| Report generator | `reports/mountSvgSpecificationsReport.report.ts` (`npm run generate:mount-svgs` previews; `main` refreshes after merge) |
 | Generated artifacts (committed) | `agent_docs/generated/lens-mount-svg-specifications.md`, `agent_docs/generated/mounts/*.svg` |
 
 Mount ids are the canonical `LensMountId` values from `src/utils/catalog/lensTaxonomy.ts` (the same
@@ -92,9 +92,10 @@ component, so the committed SVG and the on-page SVG match.
 
 ## Generator + serving
 
-- `npm run generate:mount-svgs` runs the report test, which renders every spec × view and writes the
-  committed `lens-mount-svg-specifications.md` + per-view `.svg` files. Deterministic (no volatile
-  timestamps), so regeneration yields clean diffs. These are documentation artifacts — nothing in the
+- `npm run generate:mount-svgs` runs the report test, which renders every spec × view and writes
+  `lens-mount-svg-specifications.md` + per-view `.svg` files into the `.reports/` preview; the post-merge refresh on
+  `main` writes the committed copies. Deterministic (no volatile timestamps), so `npm run reports:diff` shows only real
+  changes. These are documentation artifacts — nothing in the
   app imports or serves them.
 - The **live** `/mounts/:id` diagrams are not served from any file: the React components render from
   `MOUNT_SPECS` at runtime and `prerender.mjs` bakes the SVG inline into the page HTML.
@@ -107,6 +108,7 @@ component, so the committed SVG and the on-page SVG match.
    for what you can't confirm rather than guessing, and record gaps in `openQuestions`.
 3. Register it in `src/mounts/index.ts`.
 4. `npm run typecheck && npm run test` (the cross-mount suite validates every spec, including the
-   mirror gate), then `npm run generate:mount-svgs` to refresh the committed artifacts.
+   mirror gate), then `npm run generate:mount-svgs` and `npm run reports:diff` to preview the artifacts; `main`
+   commits them after merge.
 
 Edit `src/types/mount.ts` and `src/mounts/lens-mount.schema.json` together when changing the contract.
