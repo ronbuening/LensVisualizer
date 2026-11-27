@@ -56,7 +56,7 @@ Tags: `[policy]` how we work · `[recipe]` steps for one change type · `[archit
 - [queue] [`../EFFICIENCY_IMPROVEMENT_PLAN.md`](../EFFICIENCY_IMPROVEMENT_PLAN.md) — open cleanup and performance items with verification gates
 - [queue] [`../TRACE_MODEL_IMPROVEMENT_PLAN.md`](../TRACE_MODEL_IMPROVEMENT_PLAN.md) — trace-model status, deferred items, suggested next work
 - [queue] [`../MTF_ACCURACY_PLAN.md`](../MTF_ACCURACY_PLAN.md) — MTF audit findings; numerical estimator/convergence workstream; prescription, uncertainty and validation stages; external comparator workflow
-- [queue] [`../GENERATED_REPORTS_PLAN.md`](../GENERATED_REPORTS_PLAN.md) — proposal: refresh `agent_docs/generated/` and the README lens count on `main` after merge instead of in PRs, with PR report previews; measured conflict evidence, rollout stages, open decisions
+- [queue] [`../GENERATED_REPORTS_PLAN.md`](../GENERATED_REPORTS_PLAN.md) — open follow-ups to the post-merge report refresh: patent inventory, first-run checks, open-PR migration, MTF runtime, remaining conflict hotspots
 - [queue] [`sd-audit-queue.md`](sd-audit-queue.md) — semi-diameter floor failures, shape deviations, source blockers, MTF field and image-plane censuses, traced field-coverage shortfalls, prescription errors found in passing, stops still opened to the marketed f-number, stations whose stated axial beam does not pass, the in-progress diagram sweep
 - [queue] [`lens-mount-format-backfill.md`](lens-mount-format-backfill.md) — mount/format metadata coverage and review queue
 - [queue] [`finite-conjugate-backfill.md`](finite-conjugate-backfill.md) — published close-focus states without `focus.conjugates`, by what the source prints and why it could not be declared
@@ -85,12 +85,20 @@ Kept only while a living doc or a lens `*.audit.md` sidecar links them; see [`re
 
 ## Generated reports and benchmarks
 
-Regenerate instead of hand-editing. Reports are deterministic, so `git diff` after regeneration shows only real data
-changes. Judge glass coverage by the share of surfaces with trusted chromatic data, not by absolute missing counts.
-The generators live in `reports/` and never run in `npm test`. `npm run generate:reports` rewrites every report
-except the MTF chart regression, which takes minutes and runs only with `MTF_CHART_REPORT=1`;
-`npm run generate:glass-reports` rewrites all glass reports, `npm run generate:mirror-reports` the mirror fixtures, and
-`npm run generate:mount-svgs` the mount SVG specification plus per-view SVGs. Individual reports:
+Never hand-edit or commit these. `agent_docs/generated/` and the README lens count are written only by
+`.github/workflows/refresh-reports.yml`, which runs `npm run refresh:reports` on `main` after every merge and commits the
+result as the `lensvisualizer-reports` App. The quality workflow's `reports` job refuses them in pull requests and writes
+the branch's report changes to its job summary (`decisions.md`, 2026-11-27). Locally, `npm run generate:reports` and its
+subsets write the same files into the gitignored `.reports/` preview, and `npm run reports:diff` shows how they differ
+from the committed copies (`-- --full` for the whole diff); since `main` is refreshed after every merge, on an
+up-to-date branch that difference is the branch's own effect. Reports are deterministic. Judge glass coverage by the
+share of surfaces with trusted chromatic data, not by absolute missing counts.
+
+The generators live in `reports/` and never run in `npm test`. `npm run generate:reports` previews every report, but
+the MTF chart regression only refreshes its Status line unless `MTF_CHART_REPORT=1` is set: its full run takes over half
+an hour, and on `main` it runs only when the refresh workflow is started by hand with its `mtf` input.
+`npm run generate:glass-reports` previews all glass reports, `npm run generate:mirror-reports` the mirror fixtures, and
+`npm run generate:mount-svgs` the mount SVG specification plus per-view SVGs. Each command below previews one report:
 
 - [generated] [`generated/unresolved-glass.generated.md`](generated/unresolved-glass.generated.md) — `npm run generate:reports -- unresolvedGlassScan`
 - [generated] [`generated/catalog-mismatches.generated.md`](generated/catalog-mismatches.generated.md) — `npm run generate:reports -- catalogMismatchScan`
@@ -100,7 +108,6 @@ except the MTF chart regression, which takes minutes and runs only with `MTF_CHA
 - [generated] [`generated/glass-ambiguities.generated.md`](generated/glass-ambiguities.generated.md) — `npm run generate:reports -- glassAmbiguityScan`; one rollup row per distinct ambiguity, per-candidate residuals come from `explainCompatibleGlassResolution`
 - [generated] [`generated/six-digit-glass-codes.generated.md`](generated/six-digit-glass-codes.generated.md) — `npm run generate:reports -- sixDigitGlassCodeScan`
 - [generated] [`generated/six-digit-glass-codes-missing-sellmeier.generated.md`](generated/six-digit-glass-codes-missing-sellmeier.generated.md) — `npm run generate:reports -- sixDigitGlassCodeScan`
-- [generated] [`generated/six-digit-glass-codes-missing-sellmeier-reviewed.md`](generated/six-digit-glass-codes-missing-sellmeier-reviewed.md) — hand-written review sidecar read by two scans; preserve it when regenerating
 - [generated] [`generated/sellmeier-coverage.generated.md`](generated/sellmeier-coverage.generated.md) — `npm run generate:reports -- sellmeierCoverageScan`
 - [generated] [`generated/glass-coverage-opportunities.generated.md`](generated/glass-coverage-opportunities.generated.md) — `npm run generate:reports -- glassCoverageOpportunitiesScan`
 - [generated] [`generated/mirror-fixtures.generated.md`](generated/mirror-fixtures.generated.md) — `npm run generate:reports -- mirrorFixtureAuthoringReport`
@@ -108,6 +115,8 @@ except the MTF chart regression, which takes minutes and runs only with `MTF_CHA
 - [generated] [`generated/lens-mount-svg-specifications.md`](generated/lens-mount-svg-specifications.md) — `npm run generate:reports -- mountSvgSpecificationsReport`; figure counts and content hashes, with full SVG markup in [`generated/mounts/`](generated/mounts/) and diffable geometry in `src/mounts/`
 - [generated] [`benchmarks/README.md`](benchmarks/README.md) — on-demand `npm run benchmark:optics-rendering`; one JSON per plain run in [`benchmarks/runs/`](benchmarks/runs/), latest report in [`benchmarks/benchmark-report.md`](benchmarks/benchmark-report.md); single-commit heavy and memory records in `benchmarks/sessions/`, which the report does not read
 
-The six-digit and glass-coverage-opportunities scans embed match statuses against the untracked local `patents/` PDF
-inventory and skip their rewrite when it is empty (fresh worktrees, CI); regenerate those three report files only from a
-checkout where `patents/` is populated.
+The six-digit and glass-coverage-opportunities scans match lenses against the patent archive's PDF filenames: the
+committed `reports/data/patent-inventory.txt` once it lists any, else the untracked local `patents/` directory, and they
+skip their rewrite when neither has one. After adding PDFs to `patents/`, run `npm run patents:inventory` and commit the
+manifest so the refresh on `main` sees them. Both scans also read the hand-written review sidecar
+`reports/data/six-digit-glass-codes-missing-sellmeier-reviewed.md`.

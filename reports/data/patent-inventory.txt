@@ -1,0 +1,2 @@
+# PDF filenames in the untracked local patents/ archive, one per line; the PDFs are never committed.
+# The patent-dependent glass reports match lenses against these names. Update: npm run patents:inventory
