@@ -8,11 +8,11 @@
  *
  * Runs only via `npm run generate:reports`, never in `npm test`; its job is to emit an authoring report.
  *
- * Regenerate: `npm run generate:reports -- sellmeierCoverageScan`
+ * Preview: `npm run generate:reports -- sellmeierCoverageScan`
  */
 import type { LensDataV2Input } from "../src/types/lensDataV2.js";
 import { describe, expect, it } from "vitest";
-import { mkdirSync, writeFileSync } from "node:fs";
+import { refreshNotice, TRACKED_REPORT_DIR, writeReport } from "./reportOutput.js";
 import {
   assessCatalogGlassCompatibility,
   GLASS_ND_TOLERANCE,
@@ -26,7 +26,7 @@ import type { ElementData } from "../src/types/optics.js";
 
 const modules = import.meta.glob<{ default: LensDataV2Input }>("../src/lens-data/**/*.data.ts", { eager: true });
 
-const REPORT_DIR = "agent_docs/generated";
+const REPORT_DIR = TRACKED_REPORT_DIR;
 const MAX_MISSING_DETAILS = 8;
 const COVERAGE_BUCKET_SIZE = 5;
 
@@ -296,8 +296,8 @@ describe("Sellmeier coverage scan", () => {
       "Trusted chromatic coverage additionally counts complete measured native-reference line tables, including measured g. Partial C/F tables with estimated g are not complete coverage.",
     );
     lines.push("");
-    lines.push("**Regenerate this file** by running `npm run generate:reports -- sellmeierCoverageScan`.");
-    lines.push("Regenerate the full glass report set with `npm run generate:glass-reports`.");
+    lines.push(refreshNotice("npm run generate:reports -- sellmeierCoverageScan"));
+    lines.push("Preview the full glass report set with `npm run generate:glass-reports`.");
     lines.push("");
     lines.push("## Summary");
     lines.push("");
@@ -428,8 +428,7 @@ describe("Sellmeier coverage scan", () => {
       lines.push("");
     }
 
-    mkdirSync(REPORT_DIR, { recursive: true });
-    writeFileSync(`${REPORT_DIR}/sellmeier-coverage.generated.md`, lines.join("\n") + "\n");
+    writeReport(`${REPORT_DIR}/sellmeier-coverage.generated.md`, lines.join("\n") + "\n");
 
     expect(rows.length).toBeGreaterThan(0);
   });

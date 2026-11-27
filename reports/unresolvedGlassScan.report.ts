@@ -10,12 +10,12 @@
  */
 import type { LensDataV2Input } from "../src/types/lensDataV2.js";
 import { describe, expect, it } from "vitest";
-import { mkdirSync, writeFileSync } from "node:fs";
+import { refreshNotice, TRACKED_REPORT_DIR, writeReport } from "./reportOutput.js";
 import { glassTokens, resolveGlass } from "../src/optics/glassCatalog.js";
 import { activeGlassAnnotation, isExplicitlyUnmatched, walkLensSurfaces } from "./glassScanLib.js";
 
 const modules = import.meta.glob<{ default: LensDataV2Input }>("../src/lens-data/**/*.data.ts", { eager: true });
-const REPORT_DIR = "agent_docs/generated";
+const REPORT_DIR = TRACKED_REPORT_DIR;
 
 interface Occurrence {
   filePath: string;
@@ -84,7 +84,7 @@ describe("unresolved glass scan", () => {
     lines.push("through `resolveGlass`. Use this report to prioritize catalog additions, aliases,");
     lines.push("or per-lens patent backfills.");
     lines.push("");
-    lines.push("**Regenerate this file** by running `npm run generate:reports -- unresolvedGlassScan`.");
+    lines.push(refreshNotice("npm run generate:reports -- unresolvedGlassScan"));
     lines.push("");
     lines.push("## Summary");
     lines.push("");
@@ -125,8 +125,7 @@ describe("unresolved glass scan", () => {
       }
     }
 
-    mkdirSync(REPORT_DIR, { recursive: true });
-    writeFileSync(`${REPORT_DIR}/unresolved-glass.generated.md`, lines.join("\n") + "\n");
+    writeReport(`${REPORT_DIR}/unresolved-glass.generated.md`, lines.join("\n") + "\n");
     expect(totalLenses).toBeGreaterThan(0);
   });
 });

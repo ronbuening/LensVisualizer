@@ -78,4 +78,5 @@ Engine changes also preserve the golden trace values and generated-report byte-d
 - Include screenshots for meaningful interface or rendering changes.
 - Add or update tests for behavior changes.
 - List the verification commands you ran and any known limitations.
-- Confirm that generated metadata and reports were refreshed when the relevant guide requires them.
+- Do not commit `agent_docs/generated/` or the README lens count: `main` refreshes them after merge, and the
+  pull request's report preview (the quality workflow's `reports` job summary) shows what the change does to them.

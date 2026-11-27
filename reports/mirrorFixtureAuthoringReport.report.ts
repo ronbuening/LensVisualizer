@@ -6,11 +6,11 @@
  *
  * Runs only via `npm run generate:reports`, never in `npm test`; its job is to emit an authoring report.
  *
- * Regenerate: `npm run generate:reports -- mirrorFixtureAuthoringReport`
+ * Preview: `npm run generate:reports -- mirrorFixtureAuthoringReport`
  */
 import type { LensDataV2Input } from "../src/types/lensDataV2.js";
 import { describe, expect, it } from "vitest";
-import { mkdirSync, writeFileSync } from "node:fs";
+import { refreshNotice, TRACKED_REPORT_DIR, writeReport } from "./reportOutput.js";
 import { canonicalInput, buildLens } from "../src/optics/buildLens.js";
 import { foldedHitOrderLabelsForDisplay } from "../src/optics/diagramGeometry.js";
 import { doLayoutForRuntimeLens as doLayout } from "../src/optics/optics.js";
@@ -20,7 +20,7 @@ import { LENS_CATALOG, isDebugLensKey } from "../src/utils/catalog/lensCatalog.j
 
 const modules = import.meta.glob<{ default: LensDataV2Input }>("../src/lens-data/**/*.data.ts", { eager: true });
 
-const REPORT_DIR = "agent_docs/generated";
+const REPORT_DIR = TRACKED_REPORT_DIR;
 const REPORT_PATH = `${REPORT_DIR}/mirror-fixtures.generated.md`;
 
 interface FixtureRow {
@@ -144,8 +144,8 @@ function buildReport(rows: FixtureRow[]): string {
     "Hidden/reference fixtures that exercise mirror, folded-path, annular, blocker, and image-plane metadata.",
   );
   lines.push("");
-  lines.push("**Regenerate this file** by running `npm run generate:reports -- mirrorFixtureAuthoringReport`.");
-  lines.push("Regenerate the mirror report set with `npm run generate:mirror-reports`.");
+  lines.push(refreshNotice("npm run generate:reports -- mirrorFixtureAuthoringReport"));
+  lines.push("Preview the mirror report set with `npm run generate:mirror-reports`.");
   lines.push("");
   lines.push("## Summary");
   lines.push("");
@@ -202,8 +202,7 @@ describe("mirror fixture authoring report", () => {
     const rows = fixtureRows();
     const report = buildReport(rows);
 
-    mkdirSync(REPORT_DIR, { recursive: true });
-    writeFileSync(REPORT_PATH, report);
+    writeReport(REPORT_PATH, report);
 
     expect(rows.length).toBeGreaterThan(0);
     expect(rows.some((row) => row.key === "reference-mangin-second-surface-mirror")).toBe(true);

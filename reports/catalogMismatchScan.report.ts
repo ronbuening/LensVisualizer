@@ -26,7 +26,7 @@
 import type { RefractiveIndexReferenceLine } from "../src/types/optics.js";
 import type { LensDataV2Input } from "../src/types/lensDataV2.js";
 import { describe, it, expect } from "vitest";
-import { mkdirSync, writeFileSync } from "node:fs";
+import { refreshNotice, TRACKED_REPORT_DIR, writeReport } from "./reportOutput.js";
 import {
   assessCatalogGlassCompatibility,
   evaluateCatalogAbbeNumber,
@@ -37,7 +37,7 @@ import {
 } from "../src/optics/glassCatalog.js";
 import { extractPatentNumber, walkLensSurfaces } from "./glassScanLib.js";
 
-const REPORT_DIR = "agent_docs/generated";
+const REPORT_DIR = TRACKED_REPORT_DIR;
 
 interface Mismatch {
   lensKey: string;
@@ -155,7 +155,7 @@ describe("catalog-mismatch scan", () => {
     lines.push("or accept the mismatch (some glass annotations in lens-data files are explicitly marked as guesses");
     lines.push('with words like "probable" or "approx").');
     lines.push("");
-    lines.push("**Regenerate this file** by running `npm run generate:reports -- catalogMismatchScan`.");
+    lines.push(refreshNotice("npm run generate:reports -- catalogMismatchScan"));
     lines.push("");
     lines.push(`## Summary`);
     lines.push("");
@@ -224,9 +224,7 @@ describe("catalog-mismatch scan", () => {
     }
 
     // Vitest runs from the project root; this relative path is resolved against cwd.
-    mkdirSync(REPORT_DIR, { recursive: true });
-    const reportPath = `${REPORT_DIR}/catalog-mismatches.generated.md`;
-    writeFileSync(reportPath, `${lines.join("\n").trimEnd()}\n`);
+    writeReport(`${REPORT_DIR}/catalog-mismatches.generated.md`, `${lines.join("\n").trimEnd()}\n`);
 
     // Test always passes — this scan is observational, not a CI gate.
     expect(totalLenses).toBeGreaterThan(0);
