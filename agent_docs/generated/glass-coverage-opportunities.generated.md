@@ -4,16 +4,16 @@ Consolidated work queue for the three planned glass-coverage sweeps.
 Rows that cite `patents/` refer to ignored/untracked local PDF files used as source references only.
 Do not add, stage, or commit those patent files.
 
-**Regenerate this file** by running `npm run generate:reports -- glassCoverageOpportunitiesScan`.
-Regenerate the full glass report set with `npm run generate:glass-reports`.
+**Refreshed on `main` after every merge; do not edit or commit this file.** Preview a branch's version with `npm run generate:reports -- glassCoverageOpportunitiesScan`, then `npm run reports:diff`.
+Preview the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **1226** lenses scanned (**1204** visible)
-- **12472 / 13538** non-air surfaces use strict catalog Sellmeier data (92.1%)
-- **12490 / 13538** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 92.3%)
-- **1** mismatch surfaces in Sweep 1 across **1** lens files
-- **1** Sweep 1 surfaces have a matching untracked local patent PDF
+- **1224** lenses scanned (**1202** visible)
+- **12457 / 13521** non-air surfaces use strict catalog Sellmeier data (92.1%)
+- **12475 / 13521** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 92.3%)
+- **0** mismatch surfaces in Sweep 1 across **0** lens files
+- **0** Sweep 1 surfaces have a matching untracked local patent PDF
 - **306** code-only missing-Sellmeier elements in Sweep 2: **27** active unreviewed, **173** self-recording explicit dispositions, **0** dispositions missing any review record
 - **0** unresolved named-token elements in Sweep 2B, producing **0** token occurrences across **0** distinct tokens
 - **20** Tier A proprietary backfill rows in Sweep 3
@@ -24,7 +24,6 @@ Patent PDFs under `patents/` are untracked local references. A missing local pat
 
 | Lens | Patent | Surface | Ref | Current label | Stored n/ν | Best candidate(s) | localPatentPath | localPatentStatus |
 |---|---|---|---|---|---|---|---|---|
-| [OLYMPUS ZUIKO AUTO-W 21mm f/2](../../src/lens-data/olympus/OlympusZuikoAuto21mmf2.data.ts) | US 4,210,388 | 12 | d | `593348 — LF7-class light flint (no exact public catalog match)` | 1.59340 / 34.80 | S-FTM16 (Δn=-0.0007, Δν=+0.51)<br>FF5 (Δn=-0.0007, Δν=+0.65) | patents/US4210388.pdf | Matched untracked local patent PDF |
 
 ## Near-Complete Visible Lenses - Glass Opportunities
 

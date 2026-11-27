@@ -4,15 +4,15 @@ Glass-like tokens from non-explicit-unmatched `glass` annotations that do not re
 through `resolveGlass`. Use this report to prioritize catalog additions, aliases,
 or per-lens patent backfills.
 
-**Regenerate this file** by running `npm run generate:reports -- unresolvedGlassScan`.
+**Refreshed on `main` after every merge; do not edit or commit this file.** Preview a branch's version with `npm run generate:reports -- unresolvedGlassScan`, then `npm run reports:diff`.
 
 ## Summary
 
-- **1226** lenses scanned
-- **13538** non-air surfaces examined
-- **13548** element glass declarations examined
-- **219** non-explicit-unmatched annotations did not resolve
-- **114** distinct unresolved glass-like tokens found
+- **1224** lenses scanned
+- **13521** non-air surfaces examined
+- **13531** element glass declarations examined
+- **220** non-explicit-unmatched annotations did not resolve
+- **116** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -60,6 +60,7 @@ or per-lens patent backfills.
 | 575391 | 1 | 1 | |
 | 576388 | 1 | 1 | |
 | 585417 | 1 | 1 | |
+| 593348 | 1 | 1 | |
 | 602352 | 1 | 1 | |
 | 603564 | 1 | 1 | |
 | 612313 | 1 | 1 | |
@@ -131,6 +132,7 @@ or per-lens patent backfills.
 | FPL51 | 1 | 1 | |
 | KZF4 | 1 | 1 | |
 | LAFN8 | 1 | 1 | |
+| LF7-CLASS | 1 | 1 | |
 | LF8 | 1 | 1 | |
 
 ## Occurrences
@@ -333,6 +335,10 @@ or per-lens patent backfills.
 ### 585417 — 1 occurrence
 
 - [PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH.](../../src/lens-data/panasonic/PanasonicLeicaDG15mmf17.data.ts) 3A: `585417 — light flint (patent nd=1.58542, nu_d=41.7)`
+
+### 593348 — 1 occurrence
+
+- [OLYMPUS ZUIKO AUTO-W 21mm f/2](../../src/lens-data/olympus/OlympusZuikoAuto21mmf2.data.ts) 12: `593348 — LF7-class light flint (no exact public catalog match)`
 
 ### 602352 — 1 occurrence
 
@@ -617,6 +623,10 @@ or per-lens patent backfills.
 ### LAFN8 — 1 occurrence
 
 - [CARL ZEISS SONNAR SUPERACHROMAT 250mm f/5.6 (Hasselblad V)](../../src/lens-data/carl-zeiss-oberkochen/ZeissSonnarSuperachromat250mmf56.data.ts) 1: `LaFN8 class (Schott, obsolete, 735416; patent "LaFN 8")`
+
+### LF7-CLASS — 1 occurrence
+
+- [OLYMPUS ZUIKO AUTO-W 21mm f/2](../../src/lens-data/olympus/OlympusZuikoAuto21mmf2.data.ts) 12: `593348 — LF7-class light flint (no exact public catalog match)`
 
 ### LF8 — 1 occurrence
 

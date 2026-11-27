@@ -44,8 +44,9 @@ Anything inside ~15% is noise. Leave it and say so in the log.
 
 This is a rendering and ray-clearance audit of `sd` only. It is not a licence to change `R`, `d`, `nd`, glass labels
 or focus mechanics — those need the separate patent-table pass in [lens-patent-audit.md](lens-patent-audit.md). If a
-figure fit exposes a suspect glass label, audit it in the same pass only when the patent table settles it, then run
-`npm run generate:glass-reports` and keep the regenerated reports in the commit only if they changed.
+figure fit exposes a suspect glass label, audit it in the same pass only when the patent table settles it, then preview
+the glass reports with `npm run generate:glass-reports` and `npm run reports:diff`; `main` refreshes the committed
+reports after merge, so do not commit them.
 
 Two rules to hold throughout:
 
