@@ -1965,6 +1965,16 @@ export const OHARA_GLASS_ENTRIES: readonly GlassEntry[] = [
    * rounded six-digit coordinate.
    */
   {
+    name: "BAH32",
+    vendor: "Ohara",
+    B: [1.498643, 0.2175678, 1.559728],
+    C: [0.009643255, 0.04511666, 171.1121],
+    nd: 1.669979,
+    vd: 39.279752,
+    source:
+      "OHARA all-products Zemax catalog 2026-07-01 (OHARA_260701.AGF); vendor Sellmeier coefficients for the discontinued BAH32. It shares a six-digit code with S-BAH32, so code6 is omitted.",
+  },
+  {
     name: "BPH5",
     vendor: "Ohara",
     B: [1.44845677, 0.22044806, 0.99476362],
@@ -2402,6 +2412,16 @@ export const OHARA_GLASS_ENTRIES: readonly GlassEntry[] = [
     code6: "651562",
     source:
       "OHARA all-products Zemax catalog 2026-07-01 (OHARA_260701.AGF); vendor Sellmeier coefficients for S-LAL54Q.",
+  },
+  {
+    name: "S-LAL54",
+    vendor: "Ohara",
+    B: [1.41910189, 0.258416881, 1.07385537],
+    C: [0.00726647428, 0.0263842499, 102.555463],
+    nd: 1.650996,
+    vd: 56.163717,
+    source:
+      "OHARA all-products Zemax catalog 2026-07-01 (OHARA_260701.AGF); vendor Sellmeier coefficients for the discontinued S-LAL54. It shares a six-digit code with S-LAL54Q, so code6 is omitted.",
   },
   /* Historical flint alternative for the native e-line coordinates of the Leica Mini II patent. */
   {

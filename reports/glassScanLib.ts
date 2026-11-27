@@ -31,6 +31,8 @@ import type { ElementData, RefractiveIndexReferenceLine, SurfaceData } from "../
 export const PGF_TOLERANCE = 0.02;
 
 const PATENTS_DIR = "patents";
+/** Committed list of the PDF filenames in the untracked `patents/` archive; written by `npm run patents:inventory`. */
+export const PATENT_INVENTORY_PATH = "reports/data/patent-inventory.txt";
 const MAX_RELEVANT_PATENTS = 4;
 
 /* ── Lens-module walk ─────────────────────────────────────────────────── */
@@ -194,12 +196,36 @@ export interface PatentMatch {
   status: string;
 }
 
-/** Sorted PDF filenames from the untracked local `patents/` directory. */
+/**
+ * Sorted PDF filenames of the owner's untracked `patents/` archive.
+ *
+ * The committed manifest (`npm run patents:inventory`) is authoritative once it lists any PDF, so a CI runner,
+ * which holds no PDFs, produces the same patent-match columns as the machine that does. Only filenames matter: no
+ * scan reads a PDF. While the manifest lists none, the local directory is listed directly, and an empty result
+ * still makes the patent-dependent scans skip their rewrite.
+ *
+ * @returns PDF filenames, sorted with `localeCompare`
+ */
 export function patentInventory(): string[] {
-  if (!existsSync(PATENTS_DIR)) return [];
-  return readdirSync(PATENTS_DIR)
-    .filter((name) => name.toLowerCase().endsWith(".pdf"))
-    .sort((a, b) => a.localeCompare(b));
+  const isPdf = (name: string) => name.toLowerCase().endsWith(".pdf");
+  const listed = existsSync(PATENT_INVENTORY_PATH)
+    ? parsePatentInventory(readFileSync(PATENT_INVENTORY_PATH, "utf8")).filter(isPdf)
+    : [];
+  const names = listed.length > 0 ? listed : existsSync(PATENTS_DIR) ? readdirSync(PATENTS_DIR).filter(isPdf) : [];
+  return names.sort((a, b) => a.localeCompare(b));
+}
+
+/**
+ * Filenames listed in a patent inventory manifest.
+ *
+ * @param text - manifest content: one filename per line; blank lines and `#` comment lines are ignored
+ * @returns the listed filenames in file order
+ */
+export function parsePatentInventory(text: string): string[] {
+  return text
+    .split("\n")
+    .map((line) => line.replace(/\r$/, ""))
+    .filter((line) => line.trim() !== "" && !line.startsWith("#"));
 }
 
 /* Scans call findLocalPatent once per catalog lens against the same inventory

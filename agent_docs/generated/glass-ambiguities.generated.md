@@ -7,23 +7,23 @@ the selected row follows the same ordering used by `resolveCompatibleGlass`.
 Resolver priority is: direct name before alias before six-digit code; matching vendor context;
 smallest reference-index residual; smallest Abbe residual; annotation token order; duplicate-code precedence; canonical name.
 
-**Regenerate this file** by running `npm run generate:reports -- glassAmbiguityScan`.
-Regenerate the full glass report set with `npm run generate:glass-reports`.
+**Refreshed on `main` after every merge; do not edit or commit this file.** Preview a branch's version with `npm run generate:reports -- glassAmbiguityScan`, then `npm run reports:diff`.
+Preview the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **1230** lenses scanned
-- **13573** glass elements examined
-- **2700** elements have multiple coordinate-compatible candidates
+- **1224** lenses scanned
+- **13515** glass elements examined
+- **2697** elements have multiple coordinate-compatible candidates
 - **494** lens files are affected
 - **276** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
 - **118** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
 
 | Selection criterion | Elements |
 |---|---:|
-| Smallest reference-index residual | 1574 |
-| Evidence-source priority | 829 |
-| Vendor context | 283 |
+| Smallest reference-index residual | 1571 |
+| Evidence-source priority | 830 |
+| Vendor context | 282 |
 | Stable canonical-name order | 12 |
 | Smallest Abbe residual | 2 |
 
@@ -816,7 +816,7 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `670472 — barium-flint coordinate class (BAF10 catalog equivalent; supplier/melt unresolved)` | 1.67000 / 47.20 (d) | BAF10 — direct name evidence outranks six-digit code evidence. | H-ZBaF52 (CDGM, code, preferred code row) | 1 | [MINOLTA MD ZOOM 50-135mm f/3.5](../../src/lens-data/minolta/Minolta50135mmf35MDZoom.data.ts) G12 |
 | `517641 crown / BK7-family class` | 1.51680 / 64.10 (d) | N-BK7 — alias evidence outranks six-digit code evidence. | J-BK7A (Hikari, code, preferred code row) | 2 | [MINOLTA MD ZOOM 75-150mm f/4](../../src/lens-data/minolta/Minolta75150mmf40MDZoom.data.ts) L1 |
 | `805255 dense flint / SF6-family class` | 1.80518 / 25.50 (d) | SF6 — direct name evidence outranks six-digit code evidence. | J-SF6 (Hikari, code, alternate code row)<br>H-ZF7LA (CDGM, code, preferred code row)<br>FD60 (Hoya, code, alternate code row) | 2 | [MINOLTA MD ZOOM 75-150mm f/4](../../src/lens-data/minolta/Minolta75150mmf40MDZoom.data.ts) L3 |
-| `589611 crown class (L-BAL35 / N-SK5 / K-SKLD5 coordinate family)` | 1.58913 / 61.10 (d) | N-SK5 — smallest d-line \|Δn\| (1.2e-7 vs 4.4e-7) | L-BAL35 (Ohara, name) | 1 | [MINOLTA MD ZOOM 75-150mm f/4](../../src/lens-data/minolta/Minolta75150mmf40MDZoom.data.ts) L7 |
+| `589611 crown class (L-BAL35 / N-SK5 / K-SKLD5 coordinate family)` | 1.58913 / 61.10 (d) | N-SK5 — direct name evidence outranks alias evidence. | S-BAL35 (Ohara, alias) | 1 | [MINOLTA MD ZOOM 75-150mm f/4](../../src/lens-data/minolta/Minolta75150mmf40MDZoom.data.ts) L7 |
 | `658509 dense crown / N-SSK5 class` | 1.65844 / 50.90 (d) | N-SSK5 — direct name evidence outranks six-digit code evidence. | S-BSM25 (Ohara, code, alternate code row)<br>BACED5 (Hoya, code, alternate code row) | 1 | [MINOLTA MD ZOOM 75-150mm f/4](../../src/lens-data/minolta/Minolta75150mmf40MDZoom.data.ts) L9 |
 | `673322 dense flint / SF5 class` | 1.67270 / 32.20 (d) | SF5 — direct name evidence outranks six-digit code evidence. | H-ZF2 (CDGM, code, alternate code row)<br>E-FD5 (Hoya, code, preferred code row) | 1 | [MINOLTA MD ZOOM 75-150mm f/4](../../src/lens-data/minolta/Minolta75150mmf40MDZoom.data.ts) L11 |
 | `LAC12 (HOYA catalog equivalent; patent 678555; production supplier unspecified)` | 1.67790 / 55.50 (d) | LAC12 — direct name evidence outranks six-digit code evidence. | K-LaK12 (Sumita, code, vendor ✗, alternate code row) | 2 | [MINOLTA SUPER ROKKOR 5cm f/1.8](../../src/lens-data/minolta/MinoltaSuperRokkor5cmf18.data.ts) L1 |
@@ -1033,7 +1033,6 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `648338 — H-ZF1 nonidentical spectral proxy (source 1.64831/33.8; supplier unspecified)` | 1.64831 / 33.80 (d) | H-ZF1 — direct name evidence outranks six-digit code evidence. | E-FD2 (Hoya, code, alternate code row)<br>S-TIM22 (Ohara, code, preferred code row) | 1 | [NIKON NIKKOR AUTO 28mm f/2.8](../../src/lens-data/nikon/NikonNewNikkorAuto28mmf28.data.ts) L1 |
 | `620603 — barium-crown class (S-BSM16 coordinate equivalent; supplier unresolved)` | 1.62041 / 60.30 (d) | S-BSM16 — direct name evidence outranks six-digit code evidence. | J-SK16 (Hikari, code, alternate code row)<br>N-SK16 (Schott, code, preferred code row) | 2 | [NIKON NIKKOR AUTO 28mm f/2.8](../../src/lens-data/nikon/NikonNewNikkorAuto28mmf28.data.ts) L2 |
 | `697555 — J-LAK14 catalog spectral proxy (patent coordinate; production supplier unspecified)` | 1.69680 / 55.52 (d) | J-LAK14 — direct name evidence outranks six-digit code evidence. | LAC14 (Hoya, code, alternate code row)<br>S-LAL14 (Ohara, code, preferred code row) | 1 | [NIKON NIKKOR Z 135mm f/1.8 S Plena](../../src/lens-data/nikon/NikonZ135f18.data.ts) L7 |
-| `S-BAL35 / L-BAL35 (OHARA)` | 1.58887 / 61.10 (d) | L-BAL35 — smallest d-line \|Δn\| (2.6e-4 vs 2.6e-4) | S-BAL35 (Ohara, name, vendor ✓) | 1 | [NIKON NIKKOR Z 14-24mm f/2.8 S](../../src/lens-data/nikon/NikonZ1424f28S.data.ts) L11 |
 | `J-FKH1 (HIKARI catalog equivalent; S-FPL51-class ED fluorophosphate, vendor unspecified)` | 1.49782 / 82.60 (d) | J-FKH1 — Annotation vendor context matches Hikari. | S-FPL51 (Ohara, name, vendor ✗) | 4 | [NIKON NIKKOR Z 14-24mm f/2.8 S](../../src/lens-data/nikon/NikonZ1424f28S.data.ts) L13 |
 | `J-KZFH9 (HIKARI catalog equivalent; patent code 738323, vendor unspecified)` | 1.73800 / 32.30 (d) | J-KZFH9 — direct name evidence outranks six-digit code evidence. | S-NBH53 (Ohara, code, vendor ✗, preferred code row) | 1 | [NIKON NIKKOR Z 14-24mm f/2.8 S](../../src/lens-data/nikon/NikonZ1424f28S.data.ts) L14 |
 | `FCD1 / S-FPL51 class (HOYA/OHARA)` | 1.49700 / 81.61 (d) | FCD1 — smallest d-line \|Δn\| (1.6e-7 vs 7.1e-7) | S-FPL51 (Ohara, name, vendor ✓) | 4 | [NIKON NIKKOR Z 180-600mm f/5.6-6.3 VR](../../src/lens-data/nikon/NikonNikkorZ180600mmf5663VR.data.ts) L2 |
@@ -1429,7 +1428,7 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `923209 - very-high-index dense flint class` | 1.92286 / 20.88 (d) | N-SF66 — smallest d-line \|Δn\| (8.8e-8 vs 4.0e-7) | E-FDS1 (Hoya, code, alternate code row)<br>PBH21 (Ohara, code, alternate code row) | 1 | [SAMYANG AF 14mm f/2.8 FE](../../src/lens-data/samyang/SamyangAF14mmf28FE.data.ts) L61 |
 | `717295 - SF1/FD1-class dense flint` | 1.71736 / 29.50 (d) | SF1 — direct name evidence outranks six-digit code evidence. | S-TIH1 (Ohara, code, alternate code row) | 1 | [SAMYANG AF 14mm f/2.8 FE](../../src/lens-data/samyang/SamyangAF14mmf28FE.data.ts) L81 |
 | `603380 - F5/F1-class flint` | 1.60342 / 38.01 (d) | F5 — direct name evidence outranks six-digit code evidence. | J-F5 (Hikari, code, alternate code row)<br>E-F5 (Hoya, code, alternate code row) | 1 | [SAMYANG AF 14mm f/2.8 FE](../../src/lens-data/samyang/SamyangAF14mmf28FE.data.ts) L91 |
-| `923209 dense flint (E-FDS1 / N-SF66 / H-ZF62 equivalent)` | 1.92286 / 20.88 (d) | H-ZF62 — smallest d-line \|Δn\| (7.9e-8 vs 8.8e-8) | N-SF66 (Schott, name)<br>E-FDS1 (Hoya, name)<br>PBH21 (Ohara, code, alternate code row) | 1 | [SAMYANG AF 18mm f/2.8 FE](../../src/lens-data/samyang/SamyangAF18mmf28.data.ts) L11 |
+| `923209 dense flint (E-FDS1 / N-SF66 / H-ZF62 equivalent)` | 1.92286 / 20.88 (d) | N-SF66 — smallest d-line \|Δn\| (8.8e-8 vs 4.0e-7) | E-FDS1 (Hoya, name)<br>PBH21 (Ohara, code, alternate code row) | 1 | [SAMYANG AF 18mm f/2.8 FE](../../src/lens-data/samyang/SamyangAF18mmf28.data.ts) L11 |
 | `S-FPL51 / FCD1 class (ED fluorophosphate)` | 1.49700 / 81.61 (d) | FCD1 — smallest d-line \|Δn\| (1.6e-7 vs 7.1e-7) | S-FPL51 (Ohara, name) | 3 | [SAMYANG AF 18mm f/2.8 FE](../../src/lens-data/samyang/SamyangAF18mmf28.data.ts) L31 |
 | `001291 high-index lanthanum flint (TAFD55 / S-LAH99 class)` | 2.00100 / 29.13 (d) | S-LAH99 — smallest d-line \|Δn\| (3.6e-10 vs 3.0e-6) | TAFD55 (Hoya, name)<br>J-LASFH16 (Hikari, code, alternate code row) | 1 | [SAMYANG AF 18mm f/2.8 FE](../../src/lens-data/samyang/SamyangAF18mmf28.data.ts) L41 |
 | `H-ZF4A class (CDGM, 728283 dense flint)` | 1.72825 / 28.32 (d) | H-ZF4A — direct name evidence outranks six-digit code evidence. | E-FD10 (Hoya, code, vendor ✗, alternate code row) | 1 | [SAMYANG AF 18mm f/2.8 FE](../../src/lens-data/samyang/SamyangAF18mmf28.data.ts) L91 |
@@ -1466,7 +1465,6 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `S-LAH66 (OHARA) / TAF1 (HOYA) class` | 1.77250 / 49.62 (d) | TAF1 — smallest d-line \|Δn\| (2.9e-8 vs 1.1e-6) | S-LAH66 (Ohara, name, vendor ✓) | 1 | [SAMYANG AF 85mm f/1.4 FE](../../src/lens-data/samyang/SamyangAF85mmf14.data.ts) L4 |
 | `LAC8 (HOYA) / S-LAL8 class` | 1.71300 / 53.94 (d) | LAC8 — Annotation vendor context matches Hoya. | S-LAL8 (Ohara, name, vendor ✗) | 2 | [SAMYANG AF 85mm f/1.4 FE](../../src/lens-data/samyang/SamyangAF85mmf14.data.ts) L5 |
 | `E-FD4 (HOYA) / S-TIH4 class` | 1.75520 / 27.53 (d) | E-FD4 — Annotation vendor context matches Hoya. | S-TIH4 (Ohara, name, vendor ✗) | 2 | [SAMYANG AF 85mm f/1.4 FE](../../src/lens-data/samyang/SamyangAF85mmf14.data.ts) L6 |
-| `E-FDS1 (HOYA) / H-ZF62 class` | 1.92286 / 20.88 (d) | E-FDS1 — Annotation vendor context matches Hoya. | H-ZF62 (CDGM, name, vendor ✗) | 1 | [SAMYANG AF 85mm f/1.4 FE](../../src/lens-data/samyang/SamyangAF85mmf14.data.ts) L9 |
 | `TAFD55 (HOYA) / S-LAH99 class` | 2.00100 / 29.13 (d) | TAFD55 — Annotation vendor context matches Hoya. | S-LAH99 (Ohara, name, vendor ✗) | 3 | [SAMYANG AF 85mm f/1.4 FE](../../src/lens-data/samyang/SamyangAF85mmf14.data.ts) L10 +2 files |
 | `FDS18 (HOYA) / H-ZF88 class` | 1.94595 / 17.98 (d) | FDS18 — Annotation vendor context matches Hoya. | H-ZF88 (CDGM, name, vendor ✗) | 1 | [SAMYANG AF 85mm f/1.4 FE](../../src/lens-data/samyang/SamyangAF85mmf14.data.ts) L11 |
 | `847238 — high-index flint class (vendor unspecified)` | 1.84666 / 23.78 (d) | J-SF03 — smallest d-line \|Δn\| (3.7e-8 vs 5.0e-8) | H-ZF52 (CDGM, code, alternate code row)<br>S-TIH53W (Ohara, code, alternate code row)<br>S-TIH53 (Ohara, code, preferred code row)<br>FDS90 (Hoya, code, alternate code row) | 1 | [SAMYANG XP 35mm f/1.2](../../src/lens-data/samyang/SamyangXP35mmf12.data.ts) L1 |
@@ -1677,7 +1675,6 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `S-BAH28 (OHARA) / BAFD8 (HOYA)` | 1.72342 / 38.00 (d) | BAFD8 — smallest d-line \|Δn\| (2.1e-7 vs 2.8e-6) | S-BAH28 (Ohara, name, vendor ✓) | 1 | [SONY FE 16-35mm f/2.8 GM](../../src/lens-data/sony/SonyFE1635mmF28GM.data.ts) L8 |
 | `S-FSL5 (OHARA) / FC5 (HOYA)` | 1.48749 / 70.40 (d) | FC5 — smallest d-line \|Δn\| (4.9e-7 vs 9.3e-7) | S-FSL5 (Ohara, name, vendor ✓) | 1 | [SONY FE 16-35mm f/2.8 GM](../../src/lens-data/sony/SonyFE1635mmF28GM.data.ts) L9 |
 | `S-FPL51 (OHARA) / FCD1 (HOYA), ED fluorophosphate` | 1.49700 / 81.60 (d) | S-FPL51 — smallest d-line \|Δn\| (2.3e-6 vs 2.8e-6) | FCD1 (Hoya, name, vendor ✓) | 1 | [SONY FE 16-35mm f/2.8 GM](../../src/lens-data/sony/SonyFE1635mmF28GM.data.ts) L13 |
-| `E-FDS1 (HOYA) / H-ZF62 (CDGM)` | 1.92286 / 20.90 (d) | H-ZF62 — smallest d-line \|Δn\| (7.9e-8 vs 4.0e-7) | E-FDS1 (Hoya, name, vendor ✓) | 1 | [SONY FE 16-35mm f/2.8 GM](../../src/lens-data/sony/SonyFE1635mmF28GM.data.ts) L14 |
 | `M-BACD12 (HOYA) / S-BAL42 (OHARA)` | 1.58313 / 59.50 (d) | M-BACD12 — smallest d-line \|Δn\| (1.6e-8 vs 4.1e-6) | S-BAL42 (Ohara, name, vendor ✓) | 2 | [SONY FE 16-35mm f/2.8 GM II](../../src/lens-data/sony/SonyFE1635mmf28GMII.data.ts) L11 |
 | `S-LAH95 (OHARA) / TAFD25 (HOYA)` | 1.90366 / 31.30 (d) | S-LAH95 — smallest d-line \|Δn\| (5.9e-7 vs 2.0e-6) | TAFD25 (Hoya, name, vendor ✓) | 1 | [SONY FE 16-35mm f/2.8 GM II](../../src/lens-data/sony/SonyFE1635mmf28GMII.data.ts) L14 |
 | `S-FPL51 (OHARA) / FCD1 (HOYA), ED fluorophosphate` | 1.49700 / 81.60 (d) | FCD1 — smallest d-line \|Δn\| (1.6e-7 vs 7.1e-7) | S-FPL51 (Ohara, name, vendor ✓) | 1 | [SONY FE 16-35mm f/2.8 GM II](../../src/lens-data/sony/SonyFE1635mmf28GMII.data.ts) L42 |
@@ -1969,7 +1966,7 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `BACD14 / J-SK14 / K-SK14 class (603607; vendor unresolved)` | 1.60311 / 60.69 (d) | J-SK14 — smallest d-line \|Δn\| (1.1e-8 vs 8.2e-7) | BACD14 (Hoya, name)<br>S-BSM14 (Ohara, code, preferred code row) | 1 | [VOIGTLÄNDER APO-ULTRON 90mm f/2 VM](../../src/lens-data/voigtlander/VoigtlanderAPOUltron90mmf2VM.data.ts) L11 |
 | `FCD1 / N-PK52A / H-FK61 class (497816; vendor unresolved)` | 1.49700 / 81.61 (d) | H-FK61 — smallest d-line \|Δn\| (1.1e-8 vs 1.6e-7) | FCD1 (Hoya, name)<br>S-FPL51 (Ohara, code, preferred code row)<br>M-FCD1 (Hoya, code, alternate code row) | 2 | [VOIGTLÄNDER APO-ULTRON 90mm f/2 VM](../../src/lens-data/voigtlander/VoigtlanderAPOUltron90mmf2VM.data.ts) L12 |
 | `M-FD80 / J-SF8 / H-ZF10 class (689312; vendor unresolved)` | 1.68893 / 31.16 (d) | J-SF8 — smallest d-line \|Δn\| (2.4e-8 vs 1.2e-7) | M-FD80 (Hoya, name)<br>E-FD8 (Hoya, code, preferred code row) | 1 | [VOIGTLÄNDER APO-ULTRON 90mm f/2 VM](../../src/lens-data/voigtlander/VoigtlanderAPOUltron90mmf2VM.data.ts) L14 |
-| `N-SF66 / E-FDS1 / H-ZF62 class (923209; vendor unresolved)` | 1.92286 / 20.88 (d) | H-ZF62 — smallest d-line \|Δn\| (7.9e-8 vs 8.8e-8) | N-SF66 (Schott, name)<br>E-FDS1 (Hoya, name)<br>PBH21 (Ohara, code, alternate code row) | 1 | [VOIGTLÄNDER APO-ULTRON 90mm f/2 VM](../../src/lens-data/voigtlander/VoigtlanderAPOUltron90mmf2VM.data.ts) L15 |
+| `N-SF66 / E-FDS1 / H-ZF62 class (923209; vendor unresolved)` | 1.92286 / 20.88 (d) | N-SF66 — smallest d-line \|Δn\| (8.8e-8 vs 4.0e-7) | E-FDS1 (Hoya, name)<br>PBH21 (Ohara, code, alternate code row) | 1 | [VOIGTLÄNDER APO-ULTRON 90mm f/2 VM](../../src/lens-data/voigtlander/VoigtlanderAPOUltron90mmf2VM.data.ts) L15 |
 | `806-407 class (HOYA NBFD13 / M-NBFD130; process unresolved)` | 1.80610 / 40.73 (d) | M-NBFD130 — smallest d-line \|Δn\| (2.4e-7 vs 4.6e-6) | NBFD13 (Hoya, name, vendor ✓) | 1 | [VOIGTLÄNDER COLOR-SKOPAR 28mm f/2.8 Aspherical](../../src/lens-data/voigtlander/VoigtlanderColorSkopar28mmf28.data.ts) L8 |
 | `S-BSL7 / K-BK7 catalog-equivalent borosilicate crown class (production supplier unspecified)` | 1.51633 / 64.06 (d) | S-BSL7 — smallest d-line \|Δn\| (7.5e-8 vs 8.3e-8) | K-BK7 (Sumita, name) | 1 | [VOIGTLÄNDER COLOR-SKOPAR 35mm f/3.5 Aspherical](../../src/lens-data/voigtlander/VoigtlanderColorSkopar35mmf35Aspherical.data.ts) L12 |
 | `E-FD5 (HOYA, patent nd/vd match) / SF5-class dense flint` | 1.67270 / 32.20 (d) | E-FD5 — Annotation vendor context matches Hoya. | SF5 (Schott, name, vendor ✗) | 1 | [VOIGTLÄNDER MACRO APO-LANTHAR 125mm f/2.5 SL (Prototype Design)](../../src/lens-data/voigtlander/VoigtlanderMacroApoLanthar125mmf25.data.ts) L44 |

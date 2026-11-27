@@ -24,7 +24,7 @@
  * Run before `vite build` so the generated file is available to the bundler.
  */
 
-import { readdirSync, readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
+import { readdirSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { join, relative } from "node:path";
 import { pathToFileURL } from "node:url";
 import {
@@ -45,7 +45,6 @@ import { buildAuthorMetadata, buildAssigneeMetadata } from "./author-metadata.mj
 import { assertPatentAssigneeValidity } from "./patent-assignee-validity.mjs";
 
 const ROOT = join(import.meta.dirname, "..");
-const README_FILE = join(ROOT, "README.md");
 const LENS_DATA_DIR = join(ROOT, "src", "lens-data");
 const CONTENT_DIR = join(ROOT, "src", "content");
 const CHANGELOG_DIR = join(CONTENT_DIR, "changelog");
@@ -286,16 +285,9 @@ async function main() {
       `${teleconverters.length - publishedTeleconverters.length} hidden)`,
   );
 
-  // Keep the README public lens count in sync automatically
-  const readme = readFileSync(README_FILE, "utf-8");
-  const updatedReadme = readme.replace(
-    /^(- )`\d+`( visible lens pages are currently published)/m,
-    `$1\`${lensKeys.length}\`$2`,
-  );
-  if (updatedReadme !== readme) {
-    writeFileSync(README_FILE, updatedReadme, "utf-8");
-    console.log(`README.md lens count updated to ${lensKeys.length}.`);
-  }
+  // The README lens count is not written here: this script runs from the test and typecheck hooks, so every
+  // branch rewrote README.md and concurrent lens PRs conflicted on it. scripts/refresh-reports.mjs updates the
+  // count on main after each merge (agent_docs/decisions.md, 2026-11-27).
 
   console.log(
     `Build metadata written to ${OUT_FILE} (${lensKeys.length} lenses, ${articles.length} articles, ${makerSlugs.length} makers, ${authors.length} authors, ${assignees.length} assignees, ${mountIds.length} mounts, ${formatIds.length} formats, ${routes.length} routes)`,

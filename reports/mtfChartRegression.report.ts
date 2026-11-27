@@ -11,12 +11,13 @@
  * Tracing every configuration at a 256 pupil-grid cap requires MTF_CHART_REPORT=1; a plain run only refreshes the
  * report's freshness status from input hashes. Chart agreement is reported and never asserted.
  *
- * Regenerate: `MTF_CHART_REPORT=1 npm run generate:reports -- mtfChartRegression`
+ * Preview: `MTF_CHART_REPORT=1 npm run generate:reports -- mtfChartRegression`
  */
 import type { LensDataV2Input } from "../src/types/lensDataV2.js";
 import { createAnalysisRequest } from "../src/optics/analysis.js";
 import { describe, expect, it } from "vitest";
-import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { readFileSync } from "node:fs";
+import { TRACKED_REPORT_DIR, writeReport } from "./reportOutput.js";
 import { cwd, env } from "node:process";
 import { fNumberAtStopdown, wideOpenStopAtZoom } from "../src/optics/optics.js";
 import { buildLens } from "../src/optics/buildLens.js";
@@ -51,11 +52,12 @@ import type { MtfChartProvenance } from "./mtfChartProvenance.js";
 
 // Lazy imports keep the freshness-only run independent of the catalog's module loading cost.
 const modules = import.meta.glob<{ default: LensDataV2Input }>("../src/lens-data/**/*.data.ts");
-const REPORT_DIR = "agent_docs/generated";
+const REPORT_DIR = TRACKED_REPORT_DIR;
 const REPORT_PATH = `${REPORT_DIR}/mtf-chart-regression.generated.md`;
 const ENABLED = env.MTF_CHART_REPORT === "1";
-/** The inherited 30 s test timeout covers only a few configurations. */
-const TIMEOUT_MS = 30 * 60 * 1000;
+/** The inherited 30 s test timeout covers only a few configurations. The post-merge refresh job, whose runner may
+ * be slower than a workstation, raises it through `MTF_CHART_TIMEOUT_MINUTES` (scripts/refresh-reports.mjs). */
+const TIMEOUT_MS = Number(env.MTF_CHART_TIMEOUT_MINUTES ?? 30) * 60 * 1000;
 
 /** Constants of the anchor file: its row count and the mean deltas of the values the audit recorded. */
 const ANCHOR_COUNT = 392;
@@ -297,7 +299,7 @@ function renderReport(configurations: Configuration[], provenance: MtfChartProve
     `MTF charts: ${samples.length} samples in \`${ANCHORS_PATH}\`, one per charted field position at`,
     `${frequencies.join(" and ")} lp/mm.`,
     "",
-    "**Regenerate this file** by running `MTF_CHART_REPORT=1 npm run generate:reports -- mtfChartRegression`.",
+    "**Refreshed on `main`: the full run when the report refresh workflow is started with its `mtf` input, the Status line after every merge; do not edit or commit this file.** Preview a branch's version with `MTF_CHART_REPORT=1 npm run generate:reports -- mtfChartRegression`, then `npm run reports:diff`.",
     "The provenance stamp records the UTC date, checkout, shared settings, per-configuration settings digests and input hashes.",
     "Without the variable, only the status line is refreshed by comparing input hashes; no lenses are traced.",
     "",
@@ -553,7 +555,7 @@ describe("MTF chart regression report", () => {
     const provenance = parseMtfChartProvenance(existing);
     const hashes = hashMtfChartInputs(cwd(), Object.keys(provenance?.hashes.lensFiles ?? {}));
     const updated = updateMtfChartStatus(existing, mtfChartStatus(provenance, hashes));
-    if (updated !== existing) writeFileSync(REPORT_PATH, updated);
+    writeReport(REPORT_PATH, updated);
   });
   it.skipIf(!ENABLED)(
     "emits simulated MTF against the digitized manufacturer charts",
@@ -623,8 +625,7 @@ describe("MTF chart regression report", () => {
         ),
       );
 
-      mkdirSync(REPORT_DIR, { recursive: true });
-      writeFileSync(REPORT_PATH, renderReport(configurations, provenance));
+      writeReport(REPORT_PATH, renderReport(configurations, provenance));
       // Structural only: every requested field must return curves. How close they sit to a chart is never asserted.
       const withoutCurves = configurations
         .flatMap((configuration) => configuration.samples)
