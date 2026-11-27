@@ -1,0 +1,74 @@
+# CARL ZEISS JENA 100mm f/6.3 (US 2,239,538 Design) — Audit Log
+
+## Source
+
+[US 2,239,538 A, “Photographic Teleobjective”](https://patents.google.com/patent/US2239538A/en), Robert Richter; published 22 April 1941, filed 8 March 1940, with German priority of 30 March 1939. The front page names the assignee as the firm Carl Zeiss, Jena, Germany; the recorded assignee is Carl-Zeiss-Stiftung.
+
+Figure 2 is the second of two numerical examples. Its drawing and table appear on drawing sheet 2 (PDF page 2), with the table repeated on the first specification page (PDF page 3). The [original facsimile](https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/2239538) supplies the prescription and dates.
+
+An [auction record of a 75 cm Zeiss Jena Telikon](https://nmestateauctions.com/Event/LotDetails/26660102/Carl-Zeiss-Jena-75cm-f6-Telikon-Lens-for-RB7530-Aerial-Camera-WWIIEra) documents a related aerial-lens family, without connecting its construction to this patent.
+
+## Transcription Check
+
+All eight radii and signs, including plane surface 7, four glass thicknesses, four nd/ν pairs, two 0.07 mm air gaps and the 14.23 / 16.14 mm stop split agree with the page images. No numerical mismatch was found. The four singlets are air-separated; no cemented interface, aspherical term or variable spacing is printed. The printed f = 100 scale is read in millimetres, without rescaling.
+
+Both occurrences of the table print lowercase nd and the same index, 1.60801, for elements 1 and 3, with different Abbe numbers, 45.0 and 46.2. These distinct dispersions are retained. The helium d reference agrees with the printed 1.72825 index of elements 2 and 4 and the 1.62004 index in Figure 1; these match SF10 and F2 at d, respectively.
+
+## First-Order Check
+
+The patent gives f = 100, aperture ratio 1:6.3 and an image field of about 30°. The calculated EFL is 100.027 mm, 0.027 mm above the printed focal length; paraxial BFD is 41.599 mm. The lens track is 37.79 mm.
+
+The printed 79.37 mm distance runs from the first vertex to the image plane. The last gap is therefore 79.37 − 37.79 = 41.58 mm. This plane lies about 0.02 mm ahead of paraxial focus and remains at the printed distance.
+
+The inferred iris radius is 5.43 mm, giving paraxial f/6.30. Finite-aperture tracing gives an entrance-equivalent f/6.41, about 1.7% slower. An exact f/6.3 entrance aperture would require an iris radius of about 5.53 mm. The drawn opening has a radius of approximately 5.5 mm, about 11 mm across; its diameter is not tabulated.
+
+The surfaces stay clear of each other and the iris sets the full on-axis aperture. No clear radius is undersized for the image circle. The 15.0° chief ray reaches approximately 27.10 mm image height without blockage; its largest surface height is about 7.50 mm against a 9.5 mm clear radius. Off-axis pupil rays remain vignetted. No glass reaches the stop plane. Minimum edge thicknesses are about 0.375 mm at element 1 and 0.481 mm at element 4.
+
+## Values Not Printed in the Patent
+
+The inferred clear semi-diameters are 8.7 mm at surfaces 1–4, 9.3 mm at surfaces 5–6 and 9.5 mm at surfaces 7–8. Figure 2 shows equal rim heights across each front element and a taller rear pair, with the plano-convex element extending slightly beyond the meniscus. The drawing supplies proportions and the printed table supplies axial dimensions. The stop position is printed, 18.71 mm behind the first vertex. Its opening is inferred from nominal f/6.3.
+
+The last gap follows the printed total image distance. The patent states an image field of about 30°. The 54.20 mm image-circle diameter comes from twice the real chief-ray image height at 15.0°, rounded upward. The outer field is vignetted, and the patent gives no film format.
+
+`focus.closeFocusM` is 10¹⁵ m, which stands for infinity. The patent supplies no close-focus distance or mechanism. The modeled aperture range is f/6.3 to f/32; the source gives no minimum iris opening or blade count.
+
+The printed indices and Abbe numbers are retained. Catalog curves approximate dispersion for elements 2–4, while element 1 uses its Abbe number. No partial-dispersion measurements, anomalous-dispersion material, supplier, melt identity or measured broadband performance is documented. Geometric MTF describes the printed image plane; the patent gives no MTF curves for comparison.
+
+## Product Identification
+
+Zeiss Telikon aerial telephotos are a plausible family comparison because of their f/6.3 aperture and roughly 30° field. The cited 75 cm Telikon is engraved 1:6.3 and associated with the Rb 75/30 camera. No source establishes that it uses Figure 2's prescription, and no production lens is identified for this design. The title therefore retains the patent's 100 mm scale.
+
+## Corrections, 2026-11-21
+
+- The lens received the Carl Zeiss Jena maker-and-patent identity and became publicly listed. The title identifies the 100 mm f/6.3 patent design without assigning a production model.
+- The patent number gained publication suffix A. The assignee changed from the named Carl Zeiss firm to Carl-Zeiss-Stiftung; Robert Richter, 1941 and Figure 2 were retained.
+- The subtitle is “US 2,239,538 A, Figure 2 — Zeiss / Richter.” The specifications identify four elements in four groups, spherical surfaces, design f = 100 mm, design f/6.3 and the telephoto arrangement.
+- The full field increased from 20.0° to the patent's 30.0°, with half-field 10.0° → 15.0°. The field-derived image circle increased from 35.27 mm to 54.20 mm, following the real chief-ray height at the printed image plane. Design focal-length metadata changed from 100 to 100.03 mm to agree with the calculated EFL.
+- Generic element types became Biconvex Positive, Biconcave Negative, Negative Meniscus and Plano-Convex Positive, following the radius signs. Labels became Element 1–4; optical roles and in-air focal lengths of +23.18, −35.08, −26.43 and +45.56 mm were added. Brackets span the front positive system, surfaces 1–4, and rear negative system, surfaces 5–8, matching the patent's description.
+- Elements 2 and 4 received the catalog label SF10 (Schott): tabulated catalog-minus-patent Δnd = 0 and Δν = +0.11; the dispersion curve gives Δnd about +2.4 × 10⁻⁷. Element 3 received H-BaF6 (CDGM), with zero tabulated differences; the curve gives Δnd about +4.7 × 10⁻⁶ and Δν about +0.02. These labels identify approximate dispersion curves without establishing historical suppliers or melts. Element 1 remains “Unmatched (nd 1.60801 / ν 45.0)”; H-BaF6 differs from its printed Abbe number by +1.2 and is not assigned.
+
+The radii, thicknesses, air gaps, printed indices and Abbe numbers, helium d reference, stop position and image plane require no correction. At the 15.0° half-field, the first-order values remain EFL 100.027 mm, nominal f/6.30, paraxial BFD 41.599 mm and iris radius 5.43 mm. Lens track is 37.79 mm and first-vertex-to-image distance is 79.37 mm.
+
+2026-11-21 rim review:
+
+- Figure 2 on PDF page 2 was read at 600 dpi. The 37.79 mm first-to-last vertex span measures about 1,230 pixels, giving an overall scale of 32.5 pixels/mm. The two stop-to-glass spans give about 32.1 and 32.7 pixels/mm. Across the axis, surface 1's sag at about 6.2 mm height reads approximately 0.92 mm, agreeing with the printed 21.1 mm radius at this scale. However, element 1's drawn centre thickness is about 2.8 mm against the printed 3.21 mm, and element 3's is about 0.8 mm against 1.0 mm. These departures exceed 10%, so the drawing governs rim proportions and square edges rather than absolute dimensions.
+- At that approximate scale, the front elements' rims read about 8.1 mm, the rear meniscus about 9.3 mm and the last element about 9.5 mm. Thick lines and slight skew limit the readings to about 0.2 mm. Surfaces 1–3 retain 8.7 mm and surfaces 5–8 retain 9.5 mm: their proportions agree within about 7%, and no axial or chief ray is clipped.
+- Surface 4's clear radius decreased from 9.0 to 8.7 mm. Both faces of element 2 now end at one height, matching its square upper and lower edges in Figure 2 and the neighbouring front element. The surface clears the f/6.3 axial marginal ray at 7.48 mm and the 15° chief ray at 5.63 mm. Restoring 9.0 mm would recover no light. No mounting land was added.
+- Wide-open geometric transmission is unchanged before and after: 100.0%, 99.9%, 93.7%, 85.4%, 76.7%, 67.0% and 40.2% at 0°, 2.5°, 5°, 7.5°, 10°, 12.5° and 15°. The worst loss at any of these fields is 0.0 percentage points. The 15.0° half-field and nominal f/6.30 are unchanged, with no glass rim limiting the on-axis aperture. Every chief ray reaches the image circle; no clear radius is undersized and the surfaces remain separated.
+- The model section was compared beside Figure 2 at the same overall scale. Its four separate spherical elements, square edges and larger rear pair agree with the drawing's overall proportions. No manufacturer's construction drawing is available, and no special glass or aspherical element is identified by the patent. The patent gives no focusing motion.
+
+2026-11-24 diagram review:
+
+- In the displayed section, L3 and L4 initially ended at equal heights. In Figure 2 (PDF page 2), the first-to-last vertex span is about 1,230 pixels at 600 dpi, or 32.55 pixels/mm. Surface 1's measured sag of about 0.9 mm at 6.1 mm height agrees with its printed radius of 21.1 mm. L4's outline extends about 0.3 mm farther than L3's radially, averaging their upper and lower rim readings. Surfaces 5 and 6 each decreased from 9.5 to 9.3 mm to reproduce the step while keeping the meniscus square. The front pair remains shorter than the rear pair.
+- The cuts at surfaces 4–6 cost 0.0 percentage points at worst against the original rims. Restoring either cut yields no increase. At 15° the geometric transmission is 40.2%, and the chief ray reaches 27.10 mm without blockage. The 15.0° half-field and nominal f/6.30 are unchanged. The surface, aperture, image-circle and field-coverage checks found no clearance defects.
+- The diagram now shows L1–L4 where it previously showed 1–4, matching the drawing sheet. The inspectors retain Element 1–4, with focal lengths +23.18, −35.08, −26.43 and +45.56 mm. The four element types, roles, two system captions, separate singlets, spherical surfaces and lack of anomalous-dispersion tags agree with the source. The stop marker sits between L2 and L3 at the printed 14.23 / 16.14 mm split.
+- Both systems remain fixed in the model. The focus control shows infinity only, and the focus description now states that the patent gives neither a focusing mechanism nor close-focus data. The prescription has no variable air gaps.
+- The three assigned catalog curves agree with the printed d-line coordinates within the site’s exact-match tolerance. L1 has an Abbe number and uses it for dispersion. Its 1.60801 / 45.0 pair appears in both printings of Figure 2 (PDF pages 2–3) and does not recur in Figure 1. Neither the catalog nor the available vendor tables supply a curve within the site's spectral-proxy tolerance for L1. The patent supplies no named glass, additional line indices, partial dispersion or color curves.
+
+## Remaining Questions
+
+- Element 1's 1.60801 / 45.0 glass remains unmatched and uses Abbe-number dispersion. The patent gives no further identification for this glass. Historical suppliers and melt identities remain unknown.
+- No manufacturing clear radii or physical iris diameter are printed; the drawing-based rim estimates and inferred iris opening remain approximate.
+- One meridional marginal ray at 15° could not be solved. The chief ray clears, but a complete unvignetted corner bundle is not established.
+- No source establishes a production product, mount, film format, marketed focal length or aperture, commercial close-focus distance, focusing mechanism, blade count or shape, or minimum iris opening. These product values remain omitted; f/32 is not a published aperture limit.
+- Partial dispersion and measured broadband or MTF performance are undocumented.

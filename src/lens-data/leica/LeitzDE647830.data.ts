@@ -1,0 +1,286 @@
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * DE 647,830 C (Ernst Leitz GmbH, published 1937), sole Ausführungsbeispiel, F = 100 and f/1.5.
+ * The source names no length unit; the printed dimensions are used at a 100 mm focal-length scale.
+ * All printed signed radii, thicknesses, air spaces, n′ and Abbe numbers are retained.
+ * Seven spherical elements form five groups, with cemented interfaces at R4 and R7.
+ * The patent names no spectral line; helium d is used because the two flints match LF5/LF3
+ * catalog values at d. The five crown elements use BACD16 spectral proxies.
+ * Inferred values are the stop position (12 mm behind R5 and 9.75 mm before R6), all clear
+ * semi-diameters, and the image plane (the computed paraxial back focus). The stop position
+ * keeps both adjacent glass rims clear of its plane. The ±10° field is illustrative;
+ * the patent gives no field angle or close-focus data.
+ * Clear radii follow the page 3 section proportions. The square rims use 31 mm at R3/R4,
+ * 28 mm at R9/R10 and 29.7 mm at R11/R12. All rims clear the f/1.5 axial beam and
+ * the illustrative 10° chief ray. Off-axis vignetting remains.
+ */
+const LENS_DATA = {
+  schema: 2,
+  key: "leitz-100mm-f15-de647830",
+  maker: "Leica",
+  name: "LEITZ 100mm f/1.5 (DE 647,830 Design)",
+  subtitle: "DE 647,830 C, Ausführungsbeispiel — Leitz",
+  visible: true,
+  source: {
+    patentNumber: "DE 647,830 C",
+    patentYear: 1937,
+    example: {
+      label: "Sole example",
+      id: null,
+    },
+    authors: [],
+    assignees: ["Ernst Leitz GmbH"],
+    sdSource: "heuristic",
+  },
+  catalog: {
+    elementCount: 7,
+    groupCount: 5,
+    focalLengthMm: {
+      design: 99.99,
+    },
+    fNumber: {
+      design: 1.5,
+    },
+    specs: ["7 ELEMENTS / 5 GROUPS", "ALL SPHERICAL", "DESIGN f = 100 mm", "DESIGN F/1.5", "SPLIT-REAR GAUSS"],
+  },
+  elements: [
+    {
+      id: 1,
+      name: "L1",
+      label: "Element 1",
+      diagramLabel: "L1",
+      type: "Positive Meniscus",
+      nd: 1.6202,
+      vd: 60.4,
+      indexReference: "d",
+      indexReferenceNote: "The patent prints n′ without a line; helium d is inferred from the LF5/LF3 matches.",
+      glass: "BACD16 (spectral proxy; patent nd 1.6202 / ν 60.4; supplier and melt unspecified)",
+      focalLengthMm: 139.46,
+      role: "Positive front collector, nearly flat on its rear face.",
+    },
+    {
+      id: 2,
+      name: "L2",
+      label: "Element 2",
+      diagramLabel: "L2",
+      type: "Biconvex Positive",
+      nd: 1.6202,
+      vd: 60.4,
+      indexReference: "d",
+      indexReferenceNote: "The patent prints n′ without a line; helium d is inferred from the LF5/LF3 matches.",
+      glass: "BACD16 (spectral proxy; patent nd 1.6202 / ν 60.4; supplier and melt unspecified)",
+      focalLengthMm: 66.51,
+      role: "Positive crown element of the front cemented member.",
+      cemented: "C1",
+    },
+    {
+      id: 3,
+      name: "L3",
+      label: "Element 3",
+      diagramLabel: "L3",
+      type: "Biconcave Negative",
+      nd: 1.5814,
+      vd: 40.8,
+      indexReference: "d",
+      indexReferenceNote: "The patent prints n′ without a line; helium d is inferred from the LF5/LF3 matches.",
+      glass: "LF5 (Schott)",
+      focalLengthMm: -42.01,
+      role: "Negative flint element of the front cemented member, concave toward the stop.",
+      cemented: "C1",
+    },
+    {
+      id: 4,
+      name: "L4",
+      label: "Element 4",
+      diagramLabel: "L4",
+      type: "Biconcave Negative",
+      nd: 1.5822,
+      vd: 42,
+      indexReference: "d",
+      indexReferenceNote: "The patent prints n′ without a line; helium d is inferred from the LF5/LF3 matches.",
+      glass: "LF3 (Sumita)",
+      focalLengthMm: -31.48,
+      role: "Negative flint element of the rear cemented member, concave toward the stop.",
+      cemented: "C2",
+    },
+    {
+      id: 5,
+      name: "L5",
+      label: "Element 5",
+      diagramLabel: "L5",
+      type: "Biconvex Positive",
+      nd: 1.6202,
+      vd: 60.4,
+      indexReference: "d",
+      indexReferenceNote: "The patent prints n′ without a line; helium d is inferred from the LF5/LF3 matches.",
+      glass: "BACD16 (spectral proxy; patent nd 1.6202 / ν 60.4; supplier and melt unspecified)",
+      focalLengthMm: 43.86,
+      role: "Positive crown element behind the rear cemented flint.",
+      cemented: "C2",
+    },
+    {
+      id: 6,
+      name: "L6",
+      label: "Element 6",
+      diagramLabel: "L6",
+      type: "Positive Meniscus",
+      nd: 1.6202,
+      vd: 60.4,
+      indexReference: "d",
+      indexReferenceNote: "The patent prints n′ without a line; helium d is inferred from the LF5/LF3 matches.",
+      glass: "BACD16 (spectral proxy; patent nd 1.6202 / ν 60.4; supplier and melt unspecified)",
+      focalLengthMm: 185.84,
+      role: "First of the two positive elements in the split rear collector.",
+    },
+    {
+      id: 7,
+      name: "L7",
+      label: "Element 7",
+      diagramLabel: "L7",
+      type: "Biconvex Positive",
+      nd: 1.6202,
+      vd: 60.4,
+      indexReference: "d",
+      indexReferenceNote: "The patent prints n′ without a line; helium d is inferred from the LF5/LF3 matches.",
+      glass: "BACD16 (spectral proxy; patent nd 1.6202 / ν 60.4; supplier and melt unspecified)",
+      focalLengthMm: 131.64,
+      role: "Final positive element of the split rear collector.",
+    },
+  ],
+  surfaces: [
+    {
+      label: "1",
+      R: 80.37,
+      d: 12.29,
+      sd: 36,
+      medium: 1,
+    },
+    {
+      label: "2",
+      R: 1068.5,
+      d: 0.378,
+      sd: 36,
+    },
+    {
+      label: "3",
+      R: 45.39,
+      d: 17.02,
+      sd: 31,
+      medium: 2,
+    },
+    {
+      label: "4",
+      R: -387.6,
+      d: 5.673,
+      sd: 31,
+      medium: 3,
+    },
+    {
+      label: "5",
+      R: 26.21,
+      d: 12,
+      sd: 21.4,
+    },
+    {
+      label: "STO",
+      R: "flat",
+      d: 9.75,
+    },
+    {
+      label: "6",
+      R: -33.19,
+      d: 5.673,
+      sd: 21.4,
+      medium: 4,
+    },
+    {
+      label: "7",
+      R: 43.5,
+      d: 18.91,
+      sd: 27,
+      medium: 5,
+    },
+    {
+      label: "8",
+      R: -60.51,
+      d: 0.378,
+      sd: 27,
+    },
+    {
+      label: "9",
+      R: -176.8,
+      d: 9.455,
+      sd: 28,
+      medium: 6,
+    },
+    {
+      label: "10",
+      R: -71.2,
+      d: 0.378,
+      sd: 28,
+    },
+    {
+      label: "11",
+      R: 139.9,
+      d: 9.455,
+      sd: 29.7,
+      medium: 7,
+    },
+    {
+      label: "12",
+      R: -191,
+      d: 53.652699,
+      sd: 29.7,
+    },
+  ],
+  focus: {
+    closeFocusM: 1e15,
+    description: "Infinity focus only; the patent gives no close-focus data.",
+  },
+  aperture: {
+    nominalFNumber: 1.5,
+    fStops: [1.5, 2, 2.8, 4, 5.6, 8, 11, 16, 22],
+    maxFNumber: 22,
+  },
+  projection: {
+    kind: "rectilinear",
+    fullFieldDeg: 20,
+    maxTraceFieldDeg: 10,
+  },
+  groups: [
+    {
+      text: "Front collector",
+      fromSurface: "1",
+      toSurface: "2",
+    },
+    {
+      text: "Front disperser",
+      fromSurface: "3",
+      toSurface: "5",
+    },
+    {
+      text: "Rear disperser",
+      fromSurface: "6",
+      toSurface: "8",
+    },
+    {
+      text: "Rear collector 1",
+      fromSurface: "9",
+      toSurface: "10",
+    },
+    {
+      text: "Rear collector 2",
+      fromSurface: "11",
+      toSurface: "12",
+    },
+  ],
+  doublets: [
+    { text: "C1", fromSurface: "3", toSurface: "5" },
+    { text: "C2", fromSurface: "6", toSurface: "8" },
+  ],
+  layout: {
+    yScFill: 0.5,
+  },
+} satisfies LensDataV2Input;
+export default LENS_DATA;

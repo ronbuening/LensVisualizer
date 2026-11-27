@@ -477,6 +477,7 @@ const GLASS_CATALOG_SOURCE_ORDER = [
   "LF3",
   "LAK6",
   "SF15",
+  "SF12",
   "BASF7",
   "BASF8",
   "LLF8",

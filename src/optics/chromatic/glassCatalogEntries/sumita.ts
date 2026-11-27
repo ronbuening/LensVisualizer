@@ -276,6 +276,16 @@ export const SUMITA_GLASS_ENTRIES: readonly GlassEntry[] = [
     source:
       "SUMITA Zemax all-glass catalog 2025-11-07 including discontinued glasses; vendor formula-3 polynomial for SF15.",
   },
+  /* SF12: spectral proxy for the Leitz US 2,622,478 flint (2026-11-21). */
+  {
+    name: "SF12",
+    vendor: "Sumita",
+    polynomial: [2.636421, -0.008315404, 0.02628242, 0.000840846, -7.455135e-6, 5.438102e-6],
+    nd: 1.64831,
+    vd: 33.8,
+    source:
+      "SUMITA all-glass Zemax catalog (2025-11-07), formula-1 coefficients for SF12; https://www.sumita-opt.co.jp/en/download/",
+  },
   {
     name: "BASF7",
     vendor: "Sumita",
