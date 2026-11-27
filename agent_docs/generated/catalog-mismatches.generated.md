@@ -10,15 +10,15 @@ report exists so the team can decide per-case whether to relabel the glass, upda
 or accept the mismatch (some glass annotations in lens-data files are explicitly marked as guesses
 with words like "probable" or "approx").
 
-**Regenerate this file** by running `npm run generate:reports -- catalogMismatchScan`.
+**Refreshed on `main` after every merge; do not edit or commit this file.** Preview a branch's version with `npm run generate:reports -- catalogMismatchScan`, then `npm run reports:diff`.
 
 ## Summary
 
-- **1231** lenses scanned
-- **13804** glass surfaces examined
-- **13770** surfaces with non-empty `glass` strings
+- **1224** lenses scanned
+- **13772** glass surfaces examined
+- **13738** surfaces with non-empty `glass` strings
 - **280 / 356** native e-line surfaces resolve by explicit name or alias
-- **12681** of those resolved to a catalog entry
+- **12672** of those resolved to a catalog entry
 - **0** mismatches found (0.0% of resolved surfaces)
 - **0** distinct lens files affected
 

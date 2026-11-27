@@ -4,8 +4,8 @@ Consolidated work queue for the three planned glass-coverage sweeps.
 Rows that cite `patents/` refer to ignored/untracked local PDF files used as source references only.
 Do not add, stage, or commit those patent files.
 
-**Regenerate this file** by running `npm run generate:reports -- glassCoverageOpportunitiesScan`.
-Regenerate the full glass report set with `npm run generate:glass-reports`.
+**Refreshed on `main` after every merge; do not edit or commit this file.** Preview a branch's version with `npm run generate:reports -- glassCoverageOpportunitiesScan`, then `npm run reports:diff`.
+Preview the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 

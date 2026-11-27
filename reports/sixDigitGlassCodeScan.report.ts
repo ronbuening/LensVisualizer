@@ -11,16 +11,18 @@ import { isDLineReference } from "../src/optics/glassCatalog.js";
  *   2. the subset that does not have trusted Sellmeier data in the runtime
  *      dispersion cascade.
  *
- * Runs only via `npm run generate:reports`, never in `npm test`; its job is to surface the data.
+ * Runs only via `npm run generate:reports` (a `.reports/` preview) and the post-merge
+ * `npm run refresh:reports` (the committed files), never in `npm test`; its job is to surface the data.
  *
- * Regenerate: `npm run generate:reports -- sixDigitGlassCodeScan`
+ * Preview: `npm run generate:reports -- sixDigitGlassCodeScan`, then `npm run reports:diff`
  *
- * The reports embed match statuses against the untracked local `patents/` PDF
- * inventory, so the rewrite is skipped when that inventory is empty (fresh
- * worktrees, CI); the checked-in reports stay authoritative there.
+ * The reports embed match statuses against the patent inventory (`patentInventory` in
+ * glassScanLib.ts: the committed manifest, else the untracked `patents/` directory), so the
+ * rewrite is skipped when no inventory exists.
  */
 import type { LensDataV2Input } from "../src/types/lensDataV2.js";
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
+import { refreshNotice, TRACKED_REPORT_DIR, writeReport } from "./reportOutput.js";
 import { describe, expect, it } from "vitest";
 import { evaluateSellmeier, resolveCompatibleGlass, resolveGlass } from "../src/optics/glassCatalog.js";
 import { LINE_NM } from "../src/optics/chromatic.js";
@@ -42,8 +44,8 @@ import {
 import type { RefractiveIndexReferenceLine } from "../src/types/optics.js";
 
 const modules = import.meta.glob<{ default: LensDataV2Input }>("../src/lens-data/**/*.data.ts", { eager: true });
-const REPORT_DIR = "agent_docs/generated";
-const REVIEWED_SIDECAR = "agent_docs/generated/six-digit-glass-codes-missing-sellmeier-reviewed.md";
+const REPORT_DIR = TRACKED_REPORT_DIR;
+const REVIEWED_SIDECAR = "reports/data/six-digit-glass-codes-missing-sellmeier-reviewed.md";
 const MAX_RELEVANT_PATENTS = 4;
 
 interface SurfaceRef {
@@ -257,7 +259,7 @@ function representativeRows(rows: readonly CodeOnlyElement[]): string {
 function renderReport(options: {
   title: string;
   description: string[];
-  regenerateCommand: string;
+  previewCommand: string;
   rows: readonly CodeOnlyElement[];
   totalLenses: number;
   totalCodeOnlyElements: number;
@@ -271,8 +273,8 @@ function renderReport(options: {
   lines.push("");
   lines.push(...options.description);
   lines.push("");
-  lines.push(`**Regenerate this file** by running \`${options.regenerateCommand}\`.`);
-  lines.push("Regenerate the full glass report set with `npm run generate:glass-reports`.");
+  lines.push(refreshNotice(options.previewCommand));
+  lines.push("Preview the full glass report set with `npm run generate:glass-reports`.");
   lines.push("");
   lines.push("## Summary");
   lines.push("");
@@ -447,18 +449,17 @@ describe("six-digit glass-code scan", () => {
 
     const noSellmeierRows = rows.filter((row) => !row.hasSellmeier);
 
-    // Without the untracked local patents/ inventory, a rewrite would replace every
-    // localPatentStatus with environment-dependent "Missing ..." churn; keep the
-    // checked-in reports (generated where patents/ is populated) untouched instead.
+    // With neither the committed patent manifest nor a local patents/ archive, a rewrite would
+    // replace every localPatentStatus with "Missing ..." churn; leave the reports untouched instead.
     if (patentFiles.length === 0) {
-      console.warn("sixDigitGlassCodeScan: no local patents/*.pdf references found; skipping report rewrite.");
+      console.warn(
+        "sixDigitGlassCodeScan: no patent inventory (reports/data/patent-inventory.txt or patents/*.pdf); skipping report rewrite.",
+      );
       expect(totalLenses).toBeGreaterThan(0);
       return;
     }
 
-    mkdirSync(REPORT_DIR, { recursive: true });
-
-    writeFileSync(
+    writeReport(
       `${REPORT_DIR}/six-digit-glass-codes.generated.md`,
       renderReport({
         title: "Six-Digit Glass Code Elements",
@@ -467,14 +468,14 @@ describe("six-digit glass-code scan", () => {
           "This is the broad inventory: some rows may already resolve to trusted Sellmeier data by code,",
           "but the lens data still lacks a human-readable glass type.",
         ],
-        regenerateCommand: "npm run generate:reports -- sixDigitGlassCodeScan",
+        previewCommand: "npm run generate:reports -- sixDigitGlassCodeScan",
         rows,
         totalLenses,
         totalCodeOnlyElements: rows.length,
       }),
     );
 
-    writeFileSync(
+    writeReport(
       `${REPORT_DIR}/six-digit-glass-codes-missing-sellmeier.generated.md`,
       renderReport({
         title: "Six-Digit Glass Code Elements Missing Sellmeier Data",
@@ -483,7 +484,7 @@ describe("six-digit glass-code scan", () => {
           "element surface resolves to trusted catalog Sellmeier data through the reference-line safety net.",
           "These are the highest-priority code-only rows for catalog additions, aliases, or explicit `Unmatched` notes.",
         ],
-        regenerateCommand: "npm run generate:reports -- sixDigitGlassCodeScan",
+        previewCommand: "npm run generate:reports -- sixDigitGlassCodeScan",
         rows: noSellmeierRows,
         totalLenses,
         totalCodeOnlyElements: rows.length,

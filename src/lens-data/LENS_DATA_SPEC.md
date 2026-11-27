@@ -1526,7 +1526,8 @@ Mirror and telescope regression fixtures live in `src/lens-data/reference/`, nor
 - `ReferenceAnnularRingBlocker.data.ts`: an annular blocker that clips the ring and passes the center.
 
 Use them as authoring examples and regression anchors, not as public catalog entries. For a compact audit of their
-metadata, run `npm run generate:mirror-reports` and review `agent_docs/generated/mirror-fixtures.generated.md`.
+metadata, read `agent_docs/generated/mirror-fixtures.generated.md`, or preview a branch's version with
+`npm run generate:mirror-reports` and `npm run reports:diff`.
 
 ## Perspective Control
 
@@ -1857,7 +1858,7 @@ Separate from validation, these run over every catalog file in `npm run test`:
 
 A `glass` string that resolves to a catalog entry outside the round-trip window (Δn ±0.003, Δν ±2) is not an error: the
 dispersion engine falls through to the next dispersion tier without reporting it. The catalog-mismatch report lists
-these annotations (`npm run generate:glass-reports`, written to `agent_docs/generated/catalog-mismatches.generated.md`),
+these annotations (`agent_docs/generated/catalog-mismatches.generated.md`, previewed with `npm run generate:glass-reports`),
 with the relabel-candidate scans beside it. Keep the annotation honest: relabel to a matching glass, or use the
 `Unmatched (...)` form ([Glass Identification](#glass-identification)).
 
