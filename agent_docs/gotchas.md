@@ -66,6 +66,10 @@ Non-obvious constraints and failure modes: one trap per bullet, with the full ru
   `npm run generate:reports` therefore shows nothing — use `npm run reports:diff`. The six-digit and
   glass-coverage-opportunities scans skip their rewrite when the patent inventory is empty
   (`agent_docs/README.md` § Generated reports and benchmarks).
+- GitHub starts no `push` or `pull_request` workflow, not even a failed run, when the pushed commit's message, or a pull
+  request's head commit message, contains a skip marker (`[skip ci]`, `[ci skip]`, `[no ci]`, `[skip actions]`,
+  `[actions skip]`) anywhere, body included. Only the report refresh bot's commits should carry one; a commit that merely
+  describes the bot must not quote it, or its pull request shows no checks until a later commit lands on top.
 - `.git-blame-ignore-revs` lists the initial Prettier commit. GitHub honors it automatically; locally run
   `git config blame.ignoreRevsFile .git-blame-ignore-revs`.
 - Keep `react`, `react-dom`, `@types/react`, and `@types/react-dom` on the same React 19 line. `react-helmet-async` 3
