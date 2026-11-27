@@ -9,11 +9,11 @@ import { isDLineReference } from "../src/optics/glassCatalog.js";
  *
  * Runs only via `npm run generate:reports`, never in `npm test`; its job is to surface the data.
  *
- * Regenerate: `npm run generate:reports -- glassRelabelByLensScan`
+ * Preview: `npm run generate:reports -- glassRelabelByLensScan`
  */
 import type { LensDataV2Input } from "../src/types/lensDataV2.js";
 import { describe, expect, it } from "vitest";
-import { mkdirSync, writeFileSync } from "node:fs";
+import { refreshNotice, TRACKED_REPORT_DIR, writeReport } from "./reportOutput.js";
 import {
   allEntries,
   assessCatalogGlassCompatibility,
@@ -30,7 +30,7 @@ import {
 } from "./glassScanLib.js";
 import type { RefractiveIndexReferenceLine } from "../src/types/optics.js";
 
-const REPORT_DIR = "agent_docs/generated";
+const REPORT_DIR = TRACKED_REPORT_DIR;
 
 type Candidate = GlassScanCandidate;
 
@@ -180,8 +180,8 @@ describe("glass relabel by lens scan", () => {
     lines.push("Use this when auditing a patent lens-by-lens: review all rows for a lens together,");
     lines.push("then update the lens data, companion analysis/audit notes, and regenerate the glass reports.");
     lines.push("");
-    lines.push("**Regenerate this file** by running `npm run generate:reports -- glassRelabelByLensScan`.");
-    lines.push("Regenerate the full glass report set with `npm run generate:glass-reports`.");
+    lines.push(refreshNotice("npm run generate:reports -- glassRelabelByLensScan"));
+    lines.push("Preview the full glass report set with `npm run generate:glass-reports`.");
     lines.push("");
     lines.push("## Summary");
     lines.push("");
@@ -220,8 +220,7 @@ describe("glass relabel by lens scan", () => {
       }
     }
 
-    mkdirSync(REPORT_DIR, { recursive: true });
-    writeFileSync(`${REPORT_DIR}/glass-relabel-by-lens.generated.md`, `${lines.join("\n").trimEnd()}\n`);
+    writeReport(`${REPORT_DIR}/glass-relabel-by-lens.generated.md`, `${lines.join("\n").trimEnd()}\n`);
 
     expect(lensKeys.length).toBeGreaterThanOrEqual(0);
   });
