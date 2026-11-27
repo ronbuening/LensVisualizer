@@ -1627,6 +1627,15 @@ export const HOYA_GLASS_ENTRIES: readonly GlassEntry[] = [
       "HOYA Zemax OpticStudio DATA 2026-07-07 (HOYA20260707_include_obsolete.agf), vendor-published obsolete catalog row.",
   },
   {
+    name: "FD20",
+    vendor: "Hoya",
+    polynomial: [2.848043, -0.0070130368, 0.037219067, 0.00029744822, 0.00012767696, 2.0143407e-6],
+    nd: 1.720225,
+    vd: 29.300359,
+    source:
+      "HOYA Zemax OpticStudio DATA 2026-07-07 including obsolete glasses, FD20 NM/CD row; vendor formula-1 polynomial; code 720-293 omitted so bare-code annotations keep their existing row. https://www.hoya-opticalworld.com/common/agf/HOYA20260707_include_obsolete.agf (accessed 2026-11-24).",
+  },
+  {
     name: "FC3",
     vendor: "Hoya",
     polynomial: [2.1275277, -0.012433999, 0.0044860639, 0.001429459, -0.00016434517, 0.0000076448653],
