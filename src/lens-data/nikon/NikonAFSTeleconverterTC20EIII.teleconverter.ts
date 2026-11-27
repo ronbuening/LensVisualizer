@@ -53,6 +53,13 @@ const TELECONVERTER_DATA = {
   magnification: 2,
   masterImageDistanceMm: 48.89010593631456,
   minHostFNumber: 2.8, // Nikon: AF with f/2.8-or-faster AF-S/AF-I lenses; the rims pass axial beams to about F/2.05
+  incompatibleLensKeys: [
+    "nikon-zoom-nikkor-ed-180-600mm-f8",
+    "nikon-nikkor-300mm-f45-ed",
+    "nikon-ai-nikkor-600mm-f56-if-ed",
+    "nikon-ai-zoom-nikkor-360-1200mm-f11-ed",
+    "nikon-ai-nikkor-135f28"
+  ],
 
   elements: [
     {

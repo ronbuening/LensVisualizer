@@ -1,0 +1,161 @@
+import type { TeleconverterDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * US 4,206,971, First Embodiment (Figure 3 and claim 4), matches the five air-spaced
+ * elements in Nikon's drawing of the original 1978 AI TC-14. The ten spherical radii,
+ * nine internal spacings, indices and Abbe numbers are as printed, with lengths in millimetres.
+ * The clear radii are measured from Figure 3 to about ±0.4 mm. The patent leaves
+ * the reference wavelength unspecified. The glass values are treated as helium d-line
+ * data. Sumita BK1 matches the last element. Hikari J-LASF017 lends its dispersion curve
+ * to L2 and L4 within the site's spectral-proxy tolerance, keeping the printed index.
+ *
+ * The host image lies 48.968 mm behind the first vertex (printed d₀ = −48.968 mm).
+ * Subtracting the 30.883 mm optical track from the printed 71.001 mm to the final
+ * image plane gives a 40.118 mm rear gap. All five elements are fixed. The host
+ * supplies focus and the iris, with Nikon specifying aperture coupling from f/2 to f/32.
+ */
+
+const TELECONVERTER_DATA = {
+  schema: 2,
+  key: "nikon-ai-teleconverter-tc-14",
+  maker: "Nikon",
+  name: "NIKON AI TELECONVERTER TC-14",
+  visible: true,
+  subtitle: "US 4,206,971, Embodiment 1 — Nippon Kogaku / Hamanishi & Nakamura",
+  catalog: {
+    lensMounts: ["nikon-f"],
+    imageFormat: "135-full-frame",
+    specs: ["5 ELEMENTS / 5 GROUPS", "ALL SPHERICAL", "1.4× CONVERTER"],
+    elementCount: 5,
+    groupCount: 5,
+  },
+  source: {
+    patentNumber: "US 4,206,971",
+    example: {
+      label: "Embodiment 1",
+      id: "1",
+    },
+    patentYear: 1980,
+    authors: ["Yoshinari Hamanishi", "Soichi Nakamura"],
+    assignees: ["Nippon Kogaku K.K."],
+    sdSource: "figure-measured",
+  },
+  magnification: 1.4,
+  masterImageDistanceMm: 48.968,
+  minHostFNumber: 2,
+  universal: false,
+  incompatibleLensKeys: [
+    "nikkor-afs-120-300f28e",
+    "nikkor-afs-200-500f56e",
+    "nikon-af-i-nikkor-300mm-f2-8d-if-ed",
+    "nikon-af-i-nikkor-400mm-f28d-if-ed",
+    "nikon-af-i-nikkor-600mm-f4d-if-ed",
+    "nikon-af-s-70-200mm-f28g-vr-ii",
+    "nikon-af-s-nikkor-180-400mm-f4e-tc14-fl-ed-vr",
+    "nikon-af-s-nikkor-180-400mm-f4e-tc14-fl-ed-vr-tc-in",
+    "nikon-af-s-nikkor-300mm-f4e-pf-ed-vr",
+    "nikon-af-s-nikkor-400mm-f28e-fl-ed-vr",
+    "nikon-af-s-nikkor-500mm-f4e-fl-ed-vr",
+    "nikon-af-s-nikkor-500mm-f4g-ed-vr",
+    "nikon-af-s-nikkor-500mm-f56e-pf-ed-vr",
+    "nikon-af-s-nikkor-600mm-f4d-if-ed-ii",
+    "nikon-af-s-nikkor-600mm-f4e-fl-ed-vr",
+    "nikon-af-s-nikkor-70-200mm-f4g-ed-vr",
+    "nikon-af-s-nikkor-800f56e-fl-ed-vr",
+    "nikon-afs-105f28-vr-micro",
+    "nikon-afs-70-200-f28e-fl",
+    "nikon-afs-80-400-f45-56g",
+    "nikon-afs-vr-200400f4g-if-ed",
+    "nikon-afs-vr-zoom-nikkor-70-200-f28g-if-ed",
+    "nikon-afs-zoom-nikkor-80-200mm-f28d-if-ed",
+    "nikon-ai-af-s-nikkor-300mm-f28d-if-ed",
+    "nikon-ai-af-s-nikkor-500mm-f4d-if-ed",
+    "nikon-ai-nikkor-135f28",
+    "nikon-ai-zoom-nikkor-360-1200mm-f11-ed",
+  ],
+  elements: [
+    {
+      id: 1,
+      name: "L1",
+      label: "Element 1",
+      type: "Biconvex Positive",
+      nd: 1.59507,
+      vd: 35.6,
+      indexReference: "d",
+      indexReferenceNote: "The patent gives n and ν without a wavelength. The helium d line is assumed.",
+      focalLengthMm: 92.73,
+      glass: "Unmatched (nd 1.59507 / νd 35.6)",
+      role: "Adds convergence before L2. Its two faces have similar curvature.",
+    },
+    {
+      id: 2,
+      name: "L2",
+      label: "Element 2",
+      type: "Biconcave Negative",
+      nd: 1.79668,
+      vd: 45.4,
+      indexReference: "d",
+      indexReferenceNote: "The patent gives n and ν without a wavelength. The helium d line is assumed.",
+      focalLengthMm: -34.11,
+      glass: "J-LASF017 (spectral proxy; patent nd 1.79668 / νd 45.4; supplier and melt unspecified)",
+      role: "Provides the strongest negative power in the converter and gives the forward group its weak net divergence.",
+    },
+    {
+      id: 3,
+      name: "L3",
+      label: "Element 3",
+      type: "Biconvex Positive",
+      nd: 1.59507,
+      vd: 35.6,
+      indexReference: "d",
+      indexReferenceNote: "The patent gives n and ν without a wavelength. The helium d line is assumed.",
+      focalLengthMm: 61.43,
+      glass: "Unmatched (nd 1.59507 / νd 35.6)",
+      role: "Offsets part of L2’s divergence, bending the rays mainly at its front face.",
+    },
+    {
+      id: 4,
+      name: "L4",
+      label: "Element 4",
+      type: "Biconcave Negative",
+      nd: 1.79668,
+      vd: 45.4,
+      indexReference: "d",
+      indexReferenceNote: "The patent gives n and ν without a wavelength. The helium d line is assumed.",
+      focalLengthMm: -51.49,
+      glass: "J-LASF017 (spectral proxy; patent nd 1.79668 / νd 45.4; supplier and melt unspecified)",
+      role: "Negative element that gives the rearward group its divergent power.",
+    },
+    {
+      id: 5,
+      name: "L5",
+      label: "Element 5",
+      type: "Biconvex Positive",
+      nd: 1.51009,
+      vd: 63.4,
+      indexReference: "d",
+      indexReferenceNote: "The patent gives n and ν without a wavelength. The helium d line is assumed.",
+      focalLengthMm: 82.53,
+      glass: "BK1 (Sumita)",
+      role: "Partly offsets L4’s negative power. Most of its refraction occurs at the front face.",
+    },
+  ],
+  surfaces: [
+    { label: "1", R: 121.015, d: 4, sd: 15.2, medium: 1 },
+    { label: "2", R: -100.184, d: 2.008, sd: 15.2 },
+    { label: "3", R: -118.42, d: 1.8, sd: 15.0, medium: 2 },
+    { label: "4", R: 35.5, d: 1.8, sd: 15.0 },
+    { label: "5", R: 36.8, d: 6, sd: 15.7, medium: 3 },
+    { label: "6", R: -5196.816, d: 4.575, sd: 15.7 },
+    { label: "7", R: -99.964, d: 1.5, sd: 16.0, medium: 4 },
+    { label: "8", R: 70.033, d: 0.2, sd: 16.0 },
+    { label: "9", R: 53.938, d: 9, sd: 16.8, medium: 5 },
+    { label: "10", R: -180.939, d: 40.118, sd: 16.8 },
+  ],
+  groups: [
+    { text: "Forward group", fromSurface: "1", toSurface: "6" },
+    { text: "Rearward group", fromSurface: "7", toSurface: "10" },
+  ],
+} satisfies TeleconverterDataV2Input;
+
+export default TELECONVERTER_DATA;

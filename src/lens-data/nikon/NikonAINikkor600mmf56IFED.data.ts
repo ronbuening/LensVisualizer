@@ -67,6 +67,7 @@ const LENS_DATA = {
   catalog: {
     lensMounts: ["nikon-f"],
     imageFormat: "135-full-frame",
+    acceptsTeleconverters: true,
     specs: ["7 ELEMENTS / 6 GROUPS", "600mm f/5.6", "4°10′", "INTERNAL FOCUS", "5.5 m MFD"],
     elementCount: 7,
     groupCount: 6,

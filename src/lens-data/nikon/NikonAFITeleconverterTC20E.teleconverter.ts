@@ -70,6 +70,7 @@ const TELECONVERTER_DATA = {
   // Conservative release qualification policy, not a physical incompatibility claim.
   // Only the documented representative host has full design-plane MTF evidence.
   incompatibleLensKeys: [
+    "nikon-zoom-nikkor-ed-180-600mm-f8",
     "nikkor-afs-120-300f28e",
     "nikkor-afs-200-500f56e",
     "nikon-af-i-nikkor-400mm-f28d-if-ed",
@@ -93,7 +94,11 @@ const TELECONVERTER_DATA = {
     "nikon-afs-vr-zoom-nikkor-70-200-f28g-if-ed",
     "nikon-afs-zoom-nikkor-80-200mm-f28d-if-ed",
     "nikon-ai-af-s-nikkor-300mm-f28d-if-ed",
-    "nikon-ai-af-s-nikkor-500mm-f4d-if-ed"
+    "nikon-ai-af-s-nikkor-500mm-f4d-if-ed",
+    "nikon-nikkor-300mm-f45-ed",
+    "nikon-ai-nikkor-600mm-f56-if-ed",
+    "nikon-ai-zoom-nikkor-360-1200mm-f11-ed",
+    "nikon-ai-nikkor-135f28"
 ],
 
   elements: [

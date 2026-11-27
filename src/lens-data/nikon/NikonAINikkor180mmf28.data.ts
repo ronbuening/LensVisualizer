@@ -21,6 +21,7 @@ const LENS_DATA = {
   catalog: {
     lensMounts: ["nikon-f"],
     imageFormat: "135-full-frame",
+    acceptsTeleconverters: true,
     specs: [
       "5 elements / 5 groups",
       "f = 180.00 mm, scaled from patent f = 100",
