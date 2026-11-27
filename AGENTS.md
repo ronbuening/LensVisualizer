@@ -38,7 +38,7 @@ src/content/          - Auto-registered markdown articles, static content, and c
 src/benchmarks/       - Optics/render benchmark harness
 scripts/              - Metadata, folder-readme, prerender, sitemap, SEO, and lens-data build helpers
 __tests__/            - Vitest unit/component/script tests
-reports/              - Report generators for agent_docs/generated/ (npm run generate:reports; not in npm test)
+reports/              - Report generators (local previews in .reports/; main's post-merge refresh writes agent_docs/generated/)
 agent_docs/           - Focused agent docs; start at agent_docs/README.md
 ```
 
@@ -54,9 +54,10 @@ npm run test                    # Vitest; pretest regenerates src/generated/
 npm run typecheck
 npm run lint                    # npm run lint:fix to auto-fix
 npm run format:check            # npm run format to fix
-npm run generate:reports        # Refresh every agent_docs/generated/ report (not part of npm test)
-npm run generate:glass-reports  # Refresh agent_docs/generated/ glass reports after glass-data changes
-npm run generate:mount-svgs     # Refresh mount SVG specifications after src/mounts/ changes
+npm run generate:reports        # Preview every report into gitignored .reports/ (not part of npm test)
+npm run generate:glass-reports  # Preview the glass reports after glass-data changes
+npm run generate:mount-svgs     # Preview mount SVG specifications after src/mounts/ changes
+npm run reports:diff            # What the last preview changes in the committed agent_docs/generated/ reports
 npm run where-used -- <file>[#<symbol>]  # Importers of a file, or every use of an export through barrels
 ```
 
@@ -112,12 +113,14 @@ Read the smallest relevant doc before changing an area. `agent_docs/README.md` i
 - Keep perspective-control movement in `src/optics/perspective.ts` (implemented in `perspective/lensMovement.ts`) unless explicitly upgrading full moved-optics analysis.
 - Update all four theme variants when changing theme color tokens (`agent_docs/theme_tokens.md`).
 - Lens data and content are auto-discovered; avoid manual catalog/route edits unless changing the pipeline itself.
+- Never commit `agent_docs/generated/` or the README lens count: `.github/workflows/refresh-reports.yml` refreshes them on
+  `main` after merge, and CI refuses them in PRs. Preview with `npm run generate:reports` and `npm run reports:diff`.
 - Do not commit per-lens or per-batch test files; the corpus sweeps already validate every catalog lens. Only a shared
   engine, UI, or data-contract regression justifies a new test, added as the smallest synthetic case to the matching
   subsystem suite (`agent_docs/architecture/testing.md`).
 - `catalog.lensMounts` and `catalog.imageFormat` use canonical ids from `src/utils/catalog/lensTaxonomy.ts`; do not free-type labels.
 - Mount diagrams: author `src/mounts/*.mount.ts` with `satisfies MountSpecInput`, register in `src/mounts/index.ts`, keep
-  `src/types/mount.ts` and `src/mounts/lens-mount.schema.json` in sync, then run `npm run generate:mount-svgs`.
+  `src/types/mount.ts` and `src/mounts/lens-mount.schema.json` in sync, then preview with `npm run generate:mount-svgs`.
 - Documentation follows `agent_docs/documentation-policy.md`: no per-branch records, delete queue rows when done, one
   rule in one place, and keep this file under 200 lines and byte-identical to `AGENTS.md`.
 
@@ -128,7 +131,7 @@ Read the smallest relevant doc before changing an area. `agent_docs/README.md` i
   `src/lens-data/LENS_DATA_SPEC.md` § Literature reconstructions.
 - Teleconverter: `agent_docs/adding_a_teleconverter.md` (`satisfies TeleconverterDataV2Input`;
   hosts declare `catalog.acceptsTeleconverters`).
-- Mount diagram: `src/mounts/MOUNT_SVG_SPEC.md`, then `npm run generate:mount-svgs`.
+- Mount diagram: `src/mounts/MOUNT_SVG_SPEC.md`, then preview with `npm run generate:mount-svgs`.
 - Article: `agent_docs/adding_an_article.md` (`slug` and `title` frontmatter; `series`/`seriesOrder`; `toc: true` for long pieces).
 
 ## Verification

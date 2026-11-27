@@ -4,17 +4,17 @@ Subset of [six-digit-glass-codes.generated.md](six-digit-glass-codes.generated.m
 element surface resolves to trusted catalog Sellmeier data through the reference-line safety net.
 These are the highest-priority code-only rows for catalog additions, aliases, or explicit `Unmatched` notes.
 
-**Regenerate this file** by running `npm run generate:reports -- sixDigitGlassCodeScan`.
-Regenerate the full glass report set with `npm run generate:glass-reports`.
+**Refreshed on `main` after every merge; do not edit or commit this file.** Preview a branch's version with `npm run generate:reports -- sixDigitGlassCodeScan`, then `npm run reports:diff`.
+Preview the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **1231** lenses scanned
-- **1689** total code-only elements found
-- **314** elements in this report
-- **127** distinct lens files affected
+- **1224** lenses scanned
+- **1681** total code-only elements found
+- **306** elements in this report
+- **125** distinct lens files affected
 - **27** active unreviewed elements have no review-record hit or explicit disposition
-- **181** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
+- **173** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
 - **0** dispositions lack any review record
 
 ## Prioritized Unreviewed Queue
@@ -76,7 +76,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 600644 | 2 | 1 | patents/US_4147410_A.pdf | All rows explicitly disposed |
 | 620586 | 2 | 1 | patents/US4303314.pdf | All rows have review records |
 | 621569 | 2 | 1 | patents/GB_135853_A.pdf | All rows explicitly disposed |
-| 623562 | 2 | 1 | patents/US2117252A.pdf | All rows explicitly disposed |
 | 627376 | 2 | 2 | patents/WO2019131993A1.pdf | All rows have review records |
 | 633315 | 2 | 2 | patents/WO2019131993A1.pdf | All rows have review records |
 | 650396 | 2 | 2 | patents/DE3907928C2.pdf<br>patents/DE_3907928_A1.pdf | All rows explicitly disposed |
@@ -118,7 +117,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 498825 | 1 | 1 | patents/US5717527.pdf | All rows explicitly disposed |
 | 507589 | 1 | 1 | patents/JPA 1999231209-000000.pdf | All rows have review records |
 | 510619 | 1 | 1 | patents/DE_1980417_U.pdf | All rows explicitly disposed |
-| 510634 | 1 | 1 | patents/US1643865A.pdf | All rows explicitly disposed |
 | 512598 | 1 | 1 | patents/US3502393.pdf | All rows explicitly disposed |
 | 514530 | 1 | 1 | patents/JP2016021011A.pdf | All rows have review records |
 | 515500 | 1 | 1 | patents/US8169718.pdf | All rows explicitly disposed |
@@ -140,7 +138,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 536412 | 1 | 1 | patents/US8169718.pdf | All rows explicitly disposed |
 | 540509 | 1 | 1 | patents/GB_775944_A.pdf | All rows explicitly disposed |
 | 545486 | 1 | 1 | patents/CN116520542A.pdf | All rows have review records |
-| 549471 | 1 | 1 | patents/US1643865A.pdf | All rows explicitly disposed |
 | 554381 | 1 | 1 | patents/US7359125.pdf | All rows have review records |
 | 554522 | 1 | 1 | patents/US20100208366A1.pdf | No review-record hit |
 | 564463 | 1 | 1 | patents/US20180164556A1.pdf | All rows explicitly disposed |
@@ -157,14 +154,10 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 602352 | 1 | 1 | patents/GB_850117_A.pdf | All rows have review records |
 | 603564 | 1 | 1 | patents/JP2022092388A.pdf | All rows have review records |
 | 604208 | 1 | 1 | patents/US20200012073A1.pdf | All rows explicitly disposed |
-| 605380 | 1 | 1 | patents/US2117252A.pdf | All rows explicitly disposed |
 | 605382 | 1 | 1 | patents/US2279384.pdf | All rows explicitly disposed |
-| 608396 | 1 | 1 | patents/US2117252A.pdf | All rows explicitly disposed |
-| 610533 | 1 | 1 | patents/US2117252A.pdf | All rows explicitly disposed |
 | 611572 | 1 | 1 | patents/US2279384.pdf | All rows explicitly disposed |
 | 612313 | 1 | 1 | patents/US20210026133A1.pdf | All rows have review records |
 | 617308 | 1 | 1 | patents/US5528428.pdf | All rows have review records |
-| 621572 | 1 | 1 | patents/US2117252A.pdf | All rows explicitly disposed |
 | 624584 | 1 | 1 | patents/JP2025052870A.pdf | All rows have review records |
 | 625533 | 1 | 1 | patents/US2721499.pdf | All rows have review records |
 | 626357 | 1 | 1 | patents/CN211955966U.pdf | All rows explicitly disposed |
@@ -397,17 +390,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | L4 (Element 4) | 5 | `Unmatched (739282 — dense-flint class; supplier unconfirmed)` | 1.73940 / 28.20 | No catalog entry | abbe | patents/US2186621.pdf | Explicit disposition in data |
 | L5 (Element 5) | 7 | `Unmatched (523509 — supplier unconfirmed)` | 1.52320 / 50.90 | No catalog entry | abbe | patents/US2186621.pdf | Explicit disposition in data |
 
-### [COOKE 100mm f/2 (US 2,117,252 Design)](../../src/lens-data/cooke/CookeUS2117252.data.ts) - US 2,117,252 A
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
-|---|---|---|---|---|---|---|---|
-| L1 (Element 1) | 1 | `Unmatched (Chance type 610533, nD 1.61 / V 53.3)` | 1.61000 / 53.30 | No catalog entry | abbe | patents/US2117252A.pdf | Explicit disposition in data |
-| L2 (Element 2) | 3 | `Unmatched (Chance type 623562, nD 1.6234 / V 56.2)` | 1.62340 / 56.20 | No catalog entry | abbe | patents/US2117252A.pdf | Explicit disposition in data |
-| L3 (Element 3) | 4 | `Unmatched (Chance type 608396, nD 1.6083 / V 39.6)` | 1.60830 / 39.60 | No catalog entry | abbe | patents/US2117252A.pdf | Explicit disposition in data |
-| L4 (Element 4) | 6 | `Unmatched (Chance type 605380, nD 1.6054 / V 38.0)` | 1.60540 / 38.00 | No catalog entry | abbe | patents/US2117252A.pdf | Explicit disposition in data |
-| L5 (Element 5) | 7 | `Unmatched (Chance type 621572, nD 1.6209 / V 57.2)` | 1.62090 / 57.20 | No catalog entry | abbe | patents/US2117252A.pdf | Explicit disposition in data |
-| L6 (Element 6) | 9 | `Unmatched (Chance type 623562, nD 1.6234 / V 56.2)` | 1.62340 / 56.20 | No catalog entry | abbe | patents/US2117252A.pdf | Explicit disposition in data |
-
 ### [FUJIFILM FUJINON 23mm f/2 (Fujifilm X100)](../../src/lens-data/fujifilm/FujifilmX10023mmf2.data.ts) - US 2012/0069456 A1
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
@@ -466,13 +448,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 |---|---|---|---|---|---|---|---|
 | L14 (Element 4) | 6 | `667311 - dense flint (patent nd=1.66680, vd=31.1; no exact public catalog match)` | 1.66680 / 31.10 | No catalog entry | abbe | patents/US20140247506A1.pdf | Reviewed sidecar hit |
 | L17 (Element 7) | 12A | `803404 - PGM lanthanum heavy flint (patent nd=1.80348, vd=40.4; no exact public catalog match)` | 1.80348 / 40.40 | No catalog entry | abbe | patents/US20140247506A1.pdf | Reviewed sidecar hit |
-
-### [GOERZ 100mm f/9 (US 1,643,865 Design)](../../src/lens-data/goerz/GoerzUS1643865.data.ts) - US 1,643,865 A
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
-|---|---|---|---|---|---|---|---|
-| L1 (Element 1) | 1 | `Unmatched (nD 1.5096 / V 63.4, Sendlinger crown 510/634)` | 1.50960 / 63.40 | No catalog entry | abbe | patents/US1643865A.pdf | Explicit disposition in data |
-| L2 (Element 2) | 2 | `Unmatched (nD 1.5490 / V 47.1, Sendlinger flint 549/471)` | 1.54900 / 47.10 | No catalog entry | abbe | patents/US1643865A.pdf | Explicit disposition in data |
 
 ### [KINOPTIK SUPER-TEGEA 1.9mm f/1.9 FISHEYE](../../src/lens-data/kinoptik/KinoptikSuperTegea19mmf19Fisheye.data.ts) - US 3,037,426
 
