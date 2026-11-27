@@ -12,7 +12,7 @@ Patent: FR 1.066.698, Example 1
 
 - The patent PDF is image-only locally, so the Example 1 table was checked visually on page 1.
 - L1 and L4 retain their existing modern-reference annotations; L3 remains code-labeled to avoid a speculative catalog resolution.
-- Batch verification is recorded in [six-digit-glass-codes-missing-sellmeier-reviewed.md](../../../agent_docs/generated/six-digit-glass-codes-missing-sellmeier-reviewed.md).
+- Batch verification is recorded in [six-digit-glass-codes-missing-sellmeier-reviewed.md](../../../reports/data/six-digit-glass-codes-missing-sellmeier-reviewed.md).
 
 ## 2026-06-25 - Full-folder patent recheck
 
