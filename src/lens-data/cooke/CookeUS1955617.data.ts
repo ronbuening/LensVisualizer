@@ -1,0 +1,236 @@
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * US 1,955,617 A, Figure 1: the printed inch dimensions are multiplied by 25.4
+ * to obtain millimetres, without focal-length adjustment. The patent gives
+ * 1.059 inches (26.90 mm) at f/1.5; the prescription computes to 26.93 mm. The stop is
+ * inferred at the midpoint of the R5–R6 air space, and the image plane is the
+ * computed paraxial back focus of 11.94 mm. Clear radii are estimated from
+ * Figure 1's square rims, checked against axial and illustrative edge rays.
+ * The illustrative ±3.0° field is not specified by the patent.
+ */
+const LENS_DATA = {
+  schema: 2,
+  key: "cooke-27mm-f15-us1955617",
+  maker: "Cooke",
+  name: "COOKE 27mm f/1.5 (US 1,955,617 Design)",
+  subtitle: "US 1,955,617 A, Figure 1 — Kapella / Warmisham",
+  visible: true,
+  source: {
+    patentNumber: "US 1,955,617 A",
+    patentYear: 1934,
+    example: {
+      label: "Figure 1",
+      id: "1",
+    },
+    authors: ["Arthur Warmisham"],
+    assignees: ["Kapella Limited"],
+    sdSource: "heuristic",
+  },
+  catalog: {
+    elementCount: 6,
+    groupCount: 4,
+    focalLengthMm: {
+      design: 26.93,
+    },
+    fNumber: {
+      design: 1.5,
+    },
+    specs: ["6 ELEMENTS / 4 GROUPS", "ALL SPHERICAL", "DESIGN F/1.5", "DESIGN f = 26.90 mm"],
+  },
+  elements: [
+    {
+      id: 1,
+      name: "L1",
+      label: "Element 1",
+      type: "Positive Meniscus",
+      nd: 1.5735,
+      vd: 57.5,
+      indexReference: "D",
+      focalLengthMm: 93.86,
+      glass: "BAK1 (spectral proxy; patent nD 1.5735 / ν 57.5; supplier and melt unspecified)",
+      role: "Positive front collector",
+    },
+    {
+      id: 2,
+      name: "L2",
+      label: "Element 2",
+      type: "Biconvex Positive",
+      nd: 1.5181,
+      vd: 60.3,
+      indexReference: "D",
+      focalLengthMm: 19.25,
+      glass: "BALK3 (spectral proxy; patent nD 1.5181 / ν 60.3; supplier and melt unspecified)",
+      role: "Positive element of the front cemented doublet",
+      cemented: "C1",
+    },
+    {
+      id: 3,
+      name: "L3",
+      label: "Element 3",
+      type: "Biconcave Negative",
+      nd: 1.6521,
+      vd: 33.5,
+      indexReference: "D",
+      focalLengthMm: -21.25,
+      glass: "Unmatched (nD 1.6521 / ν 33.5, Chance 5093)",
+      role: "Negative element of the front cemented doublet",
+      cemented: "C1",
+    },
+    {
+      id: 4,
+      name: "L4",
+      label: "Element 4",
+      type: "Plano-Convex Positive",
+      nd: 1.6437,
+      vd: 48.3,
+      indexReference: "D",
+      focalLengthMm: 28.6,
+      glass: "Unmatched (nD 1.6437 / ν 48.3)",
+      role: "Positive element of the rear diverging doublet",
+      cemented: "C2",
+    },
+    {
+      id: 5,
+      name: "L5",
+      label: "Element 5",
+      type: "Plano-Concave Negative",
+      nd: 1.5635,
+      vd: 42.9,
+      indexReference: "D",
+      focalLengthMm: -17.68,
+      glass: "Unmatched (nD 1.5635 / ν 42.9, Chance 8653)",
+      role: "Negative element of the rear diverging doublet",
+      cemented: "C2",
+    },
+    {
+      id: 6,
+      name: "L6",
+      label: "Element 6",
+      type: "Biconvex Positive",
+      nd: 1.6437,
+      vd: 48.3,
+      indexReference: "D",
+      focalLengthMm: 23.44,
+      glass: "Unmatched (nD 1.6437 / ν 48.3)",
+      role: "Rear positive singlet",
+    },
+  ],
+  surfaces: [
+    {
+      label: "1",
+      R: 22.43074,
+      d: 2.4384,
+      sd: 9.4,
+      medium: 1,
+    },
+    {
+      label: "2",
+      R: 36.9316,
+      d: 0.0508,
+      sd: 9.4,
+    },
+    {
+      label: "3",
+      R: 17.7927,
+      d: 5.842,
+      sd: 9,
+      medium: 2,
+    },
+    {
+      label: "4",
+      R: -20.1422,
+      d: 0.8128,
+      sd: 9,
+      medium: 3,
+    },
+    {
+      label: "5",
+      R: 45.085,
+      d: 1.651,
+      sd: 9,
+    },
+    {
+      label: "STO",
+      R: "flat",
+      d: 1.651,
+    },
+    {
+      label: "6",
+      R: 18.40738,
+      d: 4.572,
+      sd: 7.2,
+      medium: 4,
+    },
+    {
+      label: "7",
+      R: "flat",
+      d: 0.508,
+      sd: 7.2,
+      medium: 5,
+    },
+    {
+      label: "8",
+      R: 9.96188,
+      d: 2.286,
+      sd: 7.2,
+    },
+    {
+      label: "9",
+      R: 19.05,
+      d: 5.08,
+      sd: 7.5,
+      medium: 6,
+    },
+    {
+      label: "10",
+      R: -64.9986,
+      d: 11.936636,
+      sd: 7.5,
+    },
+  ],
+  focus: {
+    closeFocusM: 1e15,
+    description: "Infinity focus only. The patent gives no focusing mechanism or close-focus data.",
+  },
+  aperture: {
+    nominalFNumber: 1.5,
+    fStops: [1.5, 2, 2.8, 4, 5.6, 8, 11, 16],
+    maxFNumber: 16,
+  },
+  projection: {
+    kind: "rectilinear",
+    fullFieldDeg: 6,
+    maxTraceFieldDeg: 3,
+  },
+  groups: [
+    {
+      text: "Front meniscus",
+      fromSurface: "1",
+      toSurface: "2",
+    },
+    {
+      text: "Front converging doublet",
+      fromSurface: "3",
+      toSurface: "5",
+    },
+    {
+      text: "Rear diverging doublet",
+      fromSurface: "6",
+      toSurface: "8",
+    },
+    {
+      text: "Rear singlet",
+      fromSurface: "9",
+      toSurface: "10",
+    },
+  ],
+  doublets: [
+    { text: "C1", fromSurface: "3", toSurface: "5" },
+    { text: "C2", fromSurface: "6", toSurface: "8" },
+  ],
+  layout: {
+    yScFill: 0.5,
+  },
+} satisfies LensDataV2Input;
+export default LENS_DATA;

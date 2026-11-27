@@ -70,6 +70,8 @@ const SOURCES = {
   sonyStructure: "https://www.sony.com/en/SonyInfo/News/Press/202011/20-093E/",
   tokinaHistory: "https://tokinalens.com/reviews/the_history_of_tokina_1950_2020/",
   tamronHistory: "https://www.tamron.com/global/company/tamron_history.html",
+  taylorHobsonHistory: "https://collection.sciencemuseumgroup.org.uk/people/cp104737/taylor-hobson-limited",
+  taylorHobsonIncorporation: "https://www.gracesguide.co.uk/Taylor,_Taylor_and_Hobson",
   viltroxRename: "https://patents.google.com/patent/CN218630458U/zh",
   viltroxRegistration: "https://m.shuidi.cn/company-67c4590220744b2c488f83aa38029142.html",
   vivitarHistory: "https://japb.net/business/company-profiles/vivitar/",
@@ -1020,6 +1022,33 @@ export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporat
         effectiveFrom: "1997-07",
         sourceUrl: SOURCES.tamronHistory,
         note: "Established as Tamron's Foshan manufacturing company; retained as a distinct patent assignee, not an alias of the Japanese company.",
+      },
+    ],
+  },
+  "Taylor, Taylor & Hobson Limited": {
+    acquiredBy: [
+      {
+        organization: "Rank Organisation",
+        effectiveDate: "1946",
+        sourceUrl: SOURCES.taylorHobsonHistory,
+        note: "The museum record dates the sale to Rank to 1946; Grace's Guide places the firm in the J. Arthur Rank Organisation from 1947 and records its 1948 acquisition by Rank's British Optical and Precision Engineers.",
+      },
+    ],
+    subsidiaryOf: [
+      {
+        organization: "Bell & Howell",
+        effectiveFrom: "1930",
+        effectiveTo: "1946",
+        sourceUrl: SOURCES.taylorHobsonHistory,
+        note: "The museum record says Bell & Howell took control of the company in 1930 and that it was sold to Rank in 1946.",
+      },
+    ],
+    corporateFamily: [
+      {
+        family: "Taylor Hobson",
+        effectiveFrom: "1901",
+        sourceUrl: SOURCES.taylorHobsonIncorporation,
+        note: "Incorporated as a limited company in 1901; the Leicester lens business dates from 1886.",
       },
     ],
   },
