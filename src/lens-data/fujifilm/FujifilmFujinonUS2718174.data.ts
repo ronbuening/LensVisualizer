@@ -1,0 +1,300 @@
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * Yoshikazu Doi's Figure 1 in US 2,718,174 A, assigned to Fuji Photo Film Co., Ltd.
+ * Dimensions are multiplied by 100: printed f′T = .9500 becomes 95 mm.
+ * All signed radii, thicknesses, air spaces and d-line index/Abbe pairs are retained,
+ * including the shallow positive R2. The two central groups are cemented triplets.
+ * The inferred stop divides the central 18 mm gap into 14 mm after R6 and 4 mm before R7.
+ * Its radius follows nominal f/1.3; exact axial tracing gives about f/1.34.
+ * Clear rims follow Figure 1's proportions and pass the stated axial beam.
+ * Flat lands extend R6/R7 to 29/23.5 mm outside their 23/21 mm optical caps.
+ * R3–R5 share a 33 mm rim, below L2's knife edge. R10–R12 reach 27 mm.
+ * The patent prints no clear diameters.
+ * The unprinted image distance is the paraxial back focus, 44.02 mm.
+ * The ±10.0° field is illustrative, with no published image format.
+ * Figure 2 has a separate R10 sign conflict between its two tables.
+ */
+const LENS_DATA = {
+  schema: 2,
+  key: "fujifilm-fujinon-95mm-f13-us2718174",
+  maker: "Fujifilm",
+  name: "FUJIFILM FUJINON 95mm f/1.3 (US 2,718,174 Design)",
+  subtitle: "US 2,718,174 A, Figure 1 — Fuji Photo Film / Doi",
+  visible: true,
+  source: {
+    patentNumber: "US 2,718,174 A",
+    patentYear: 1955,
+    example: {
+      label: "Figure 1",
+      id: "1",
+    },
+    authors: ["Yoshikazu Doi"],
+    assignees: ["Fuji Photo Film Co., Ltd."],
+    sdSource: "heuristic",
+  },
+  catalog: {
+    elementCount: 8,
+    groupCount: 4,
+    focalLengthMm: {
+      design: 95.01,
+    },
+    fNumber: {
+      design: 1.3,
+    },
+    specs: ["8 ELEMENTS / 4 GROUPS", "DESIGN f = 95 mm", "DESIGN F/1.3", "ALL SPHERICAL"],
+  },
+  elements: [
+    {
+      id: 1,
+      name: "L1",
+      label: "Element 1",
+      diagramLabel: "L1",
+      type: "Positive Meniscus",
+      role: "Positive front singlet",
+      focalLengthMm: 123.74,
+      nd: 1.6713,
+      vd: 47.0,
+      indexReference: "d",
+      glass: "N-BAF10 (spectral proxy; patent nd 1.6713 / νd 47.0; supplier and melt unspecified)",
+    },
+    {
+      id: 2,
+      name: "L2",
+      label: "Element 2",
+      diagramLabel: "L2",
+      type: "Positive Meniscus",
+      role: "Positive front element of the front cemented triplet",
+      focalLengthMm: 86.42,
+      cemented: "C1",
+      nd: 1.6713,
+      vd: 47.0,
+      indexReference: "d",
+      glass: "N-BAF10 (spectral proxy; patent nd 1.6713 / νd 47.0; supplier and melt unspecified)",
+    },
+    {
+      id: 3,
+      name: "L3",
+      label: "Element 3",
+      diagramLabel: "L3",
+      type: "Biconvex Positive",
+      role: "Positive middle element of the front cemented triplet",
+      focalLengthMm: 156.98,
+      cemented: "C1",
+      nd: 1.5414,
+      vd: 47.1,
+      indexReference: "d",
+      glass: "E-FEL2 (spectral proxy; patent nd 1.5414 / ν 47.1; supplier and melt unspecified)",
+    },
+    {
+      id: 4,
+      name: "L4",
+      label: "Element 4",
+      diagramLabel: "L4",
+      type: "Biconcave Negative",
+      role: "Negative rear element of the front cemented triplet",
+      focalLengthMm: -32.81,
+      cemented: "C1",
+      nd: 1.7572,
+      vd: 27.5,
+      indexReference: "d",
+      glass: "H-ZF6 (spectral proxy; patent nd 1.7572 / ν 27.5; supplier and melt unspecified)",
+    },
+    {
+      id: 5,
+      name: "L5",
+      label: "Element 5",
+      diagramLabel: "L5",
+      type: "Biconcave Negative",
+      role: "Negative front element of the rear cemented triplet",
+      focalLengthMm: -56.17,
+      cemented: "C2",
+      nd: 1.5414,
+      vd: 47.1,
+      indexReference: "d",
+      glass: "E-FEL2 (spectral proxy; patent nd 1.5414 / ν 47.1; supplier and melt unspecified)",
+    },
+    {
+      id: 6,
+      name: "L6",
+      label: "Element 6",
+      diagramLabel: "L6",
+      type: "Biconvex Positive",
+      role: "Positive middle element of the rear cemented triplet",
+      focalLengthMm: 27.63,
+      cemented: "C2",
+      nd: 1.6738,
+      vd: 47.0,
+      indexReference: "d",
+      glass: "Unmatched (nd 1.6738 / νd 47.0)",
+    },
+    {
+      id: 7,
+      name: "L7",
+      label: "Element 7",
+      diagramLabel: "L7",
+      type: "Negative Meniscus",
+      role: "Negative rear element of the rear cemented triplet",
+      focalLengthMm: -54.08,
+      cemented: "C2",
+      nd: 1.648,
+      vd: 47.8,
+      indexReference: "d",
+      glass: "Unmatched (nd 1.6480 / νd 47.8)",
+    },
+    {
+      id: 8,
+      name: "L8",
+      label: "Element 8",
+      diagramLabel: "L8",
+      type: "Biconvex Positive",
+      role: "Positive rear singlet",
+      focalLengthMm: 126.42,
+      nd: 1.6216,
+      vd: 60.2,
+      indexReference: "d",
+      glass: "J-SK16 (spectral proxy; patent nd 1.6216 / ν 60.2; supplier and melt unspecified)",
+    },
+  ],
+  surfaces: [
+    {
+      label: "1",
+      R: 82.01,
+      d: 12,
+      sd: 39,
+      medium: 1,
+    },
+    {
+      label: "2",
+      R: 6083,
+      d: 0.4,
+      sd: 39,
+    },
+    {
+      label: "3",
+      R: 42.44,
+      d: 12.2,
+      sd: 33,
+      medium: 2,
+    },
+    {
+      label: "4",
+      R: 139.83,
+      d: 8.3,
+      sd: 33,
+      medium: 3,
+    },
+    {
+      label: "5",
+      R: -212.19,
+      d: 2.6,
+      sd: 33,
+      medium: 4,
+    },
+    {
+      label: "6",
+      R: 28.29,
+      d: 14,
+      sd: 23,
+      rimExtensionSd: 29,
+    },
+    {
+      label: "STO",
+      R: "flat",
+      d: 4,
+    },
+    {
+      label: "7",
+      R: -65.76,
+      d: 1.8,
+      sd: 21,
+      rimExtensionSd: 23.5,
+      medium: 5,
+    },
+    {
+      label: "8",
+      R: 57.12,
+      d: 19.31,
+      sd: 21,
+      medium: 6,
+    },
+    {
+      label: "9",
+      R: -23.86,
+      d: 1.81,
+      sd: 21,
+      medium: 7,
+    },
+    {
+      label: "10",
+      R: -77,
+      d: 0.4,
+      sd: 27,
+    },
+    {
+      label: "11",
+      R: 124.1,
+      d: 7,
+      sd: 27,
+      medium: 8,
+    },
+    {
+      label: "12",
+      R: -209.6,
+      d: 44.020298,
+      sd: 27,
+    },
+  ],
+  focus: {
+    closeFocusM: 1e15,
+    description: "Fixed spacings at infinity. The patent gives no focusing mechanism or close-focus data.",
+  },
+  aperture: {
+    nominalFNumber: 1.3,
+    fStops: [1.3, 2, 2.8, 4, 5.6, 8, 11, 16, 22],
+    maxFNumber: 22,
+  },
+  projection: {
+    kind: "rectilinear",
+    fullFieldDeg: 20,
+    maxTraceFieldDeg: 10,
+  },
+  groups: [
+    {
+      text: "B1 \u00b7 L1",
+      fromSurface: "1",
+      toSurface: "2",
+    },
+    {
+      text: "B2 \u00b7 L2+L3+L4",
+      fromSurface: "3",
+      toSurface: "6",
+    },
+    {
+      text: "B3 \u00b7 L5+L6+L7",
+      fromSurface: "7",
+      toSurface: "10",
+    },
+    {
+      text: "B4 \u00b7 L8",
+      fromSurface: "11",
+      toSurface: "12",
+    },
+  ],
+  doublets: [
+    {
+      text: "C1 · Cemented triplet",
+      fromSurface: "3",
+      toSurface: "6",
+    },
+    {
+      text: "C2 · Cemented triplet",
+      fromSurface: "7",
+      toSurface: "10",
+    },
+  ],
+  layout: {
+    yScFill: 0.5,
+  },
+} satisfies LensDataV2Input;
+export default LENS_DATA;

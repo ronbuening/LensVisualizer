@@ -1,0 +1,263 @@
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * US 2,600,610 A, Example I, Table I and Figure 1: a seven-element objective
+ * at the patent's stated 100 mm focal length and f/1.44. Radii, thicknesses,
+ * air spaces and d-line glass data follow the table. The diaphragm is drawn
+ * between R6 and R7; its 14.3/0.6 mm gap split and opening are inferred.
+ * Rims are inferred from Figure 1's proportions and checked against the axial
+ * beam; R9 stays within the surface-slope limit. The front singlet and R3-R5
+ * have square rims. The image plane is the computed paraxial back focus, 43.70 mm.
+ * The patent states a 45-degree full field but gives no close-focus data.
+ * Two prose index comparisons disagree with Table I; its values are retained.
+ */
+const LENS_DATA = {
+  schema: 2,
+  key: "bertele-100mm-f144-us2600610",
+  maker: null,
+  name: "BERTELE 100mm f/1.44 (US 2,600,610 Design)",
+  subtitle: "US 2,600,610 A, Example I — Bertele",
+  visible: true,
+  source: {
+    patentNumber: "US 2,600,610 A",
+    patentYear: 1952,
+    example: {
+      label: "Example I",
+      id: "1",
+    },
+    authors: ["Ludwig Bertele"],
+    assignees: [],
+  },
+  catalog: {
+    focalLengthMm: {
+      design: 99.97,
+    },
+    fNumber: {
+      design: 1.44,
+    },
+    elementCount: 7,
+    groupCount: 3,
+    imageCircleMm: 85.27,
+    specs: ["7 ELEMENTS / 3 GROUPS", "ALL SPHERICAL", "DESIGN f = 100 mm", "DESIGN F/1.44"],
+  },
+  elements: [
+    {
+      id: 1,
+      name: "L1",
+      label: "Element 1",
+      diagramLabel: "L1",
+      type: "Positive Meniscus",
+      nd: 1.693,
+      vd: 43,
+      indexReference: "d",
+      focalLengthMm: 127.74,
+      glass: "Unmatched (nd 1.6930 / ν 43.0)",
+      role: "Positive front collector",
+    },
+    {
+      id: 2,
+      name: "L2",
+      label: "Element 2",
+      diagramLabel: "L2",
+      type: "Positive Meniscus",
+      nd: 1.6929,
+      vd: 52.4,
+      indexReference: "d",
+      focalLengthMm: 90.08,
+      glass: "Unmatched (nd 1.6929 / ν 52.4)",
+      role: "Positive front member of the negative middle triplet",
+      cemented: "C1",
+    },
+    {
+      id: 3,
+      name: "L3",
+      label: "Element 3",
+      diagramLabel: "L3",
+      type: "Biconvex Positive",
+      nd: 1.4875,
+      vd: 70,
+      indexReference: "d",
+      focalLengthMm: 147.73,
+      glass: "S-FSL5 (spectral proxy; patent nd 1.4875 / ν 70.0; supplier and melt unspecified)",
+      role: "Low-index positive member of the middle triplet",
+      cemented: "C1",
+    },
+    {
+      id: 4,
+      name: "L4",
+      label: "Element 4",
+      diagramLabel: "L4",
+      type: "Biconcave Negative",
+      nd: 1.7229,
+      vd: 28.5,
+      indexReference: "d",
+      focalLengthMm: -32.29,
+      glass: "Unmatched (nd 1.7229 / ν 28.5)",
+      role: "Strong negative rear member of the middle triplet",
+      cemented: "C1",
+    },
+    {
+      id: 5,
+      name: "L5",
+      label: "Element 5",
+      diagramLabel: "L5",
+      type: "Plano-Concave Negative",
+      nd: 1.5112,
+      vd: 50.9,
+      indexReference: "d",
+      focalLengthMm: -112.42,
+      glass: "KF8 (Sumita)",
+      role: "Negative front member of the positive rear triplet",
+      cemented: "C2",
+    },
+    {
+      id: 6,
+      name: "L6",
+      label: "Element 6",
+      diagramLabel: "L6",
+      type: "Biconvex Positive",
+      nd: 1.6666,
+      vd: 48.4,
+      indexReference: "d",
+      focalLengthMm: 26.8,
+      glass: "BAF11 (spectral proxy; patent nd 1.6666 / ν 48.4; supplier and melt unspecified)",
+      role: "Strong positive core of the rear triplet",
+      cemented: "C2",
+    },
+    {
+      id: 7,
+      name: "L7",
+      label: "Element 7",
+      diagramLabel: "L7",
+      type: "Negative Meniscus",
+      nd: 1.6072,
+      vd: 56.7,
+      indexReference: "d",
+      focalLengthMm: -48.33,
+      glass: "BACD2 (spectral proxy; patent nd 1.6072 / ν 56.7; supplier and melt unspecified)",
+      role: "Negative rear member of the positive rear triplet",
+      cemented: "C2",
+    },
+  ],
+  surfaces: [
+    {
+      label: "1",
+      R: 74.44,
+      d: 9.5,
+      sd: 36,
+      medium: 1,
+    },
+    {
+      label: "2",
+      R: 443.4,
+      d: 0.3,
+      sd: 36,
+    },
+    {
+      label: "3",
+      R: 36.99,
+      d: 11.9,
+      sd: 32,
+      medium: 2,
+    },
+    {
+      label: "4",
+      R: 78.85,
+      d: 7.75,
+      sd: 32,
+      medium: 3,
+    },
+    {
+      label: "5",
+      R: -804.6,
+      d: 1.8,
+      sd: 32,
+      medium: 4,
+    },
+    {
+      label: "6",
+      R: 24.06,
+      d: 14.3,
+      sd: 21.2,
+    },
+    {
+      label: "STO",
+      R: "flat",
+      d: 0.6,
+    },
+    {
+      label: "7",
+      R: "flat",
+      d: 4.8,
+      sd: 21,
+      medium: 5,
+    },
+    {
+      label: "8",
+      R: 57.47,
+      d: 19.5,
+      sd: 21,
+      medium: 6,
+    },
+    {
+      label: "9",
+      R: -22.41,
+      d: 5,
+      sd: 20.16,
+      medium: 7,
+    },
+    {
+      label: "10",
+      R: -102.8,
+      d: 43.697808,
+      sd: 26.5,
+    },
+  ],
+  aperture: {
+    nominalFNumber: 1.44,
+    fStops: [1.44, 2, 2.8, 4, 5.6, 8, 11, 16, 22],
+    maxFNumber: 22,
+  },
+  projection: {
+    kind: "rectilinear",
+    fullFieldDeg: 45,
+    maxTraceFieldDeg: 22.5,
+  },
+  focus: {
+    closeFocusM: 1e15,
+    description: "Infinity focus only; the patent gives no close-focus data.",
+  },
+  groups: [
+    {
+      text: "G1 \u00b7 L1",
+      fromSurface: "1",
+      toSurface: "2",
+    },
+    {
+      text: "G2 \u00b7 L2+L3+L4",
+      fromSurface: "3",
+      toSurface: "6",
+    },
+    {
+      text: "G3 \u00b7 L5+L6+L7",
+      fromSurface: "7",
+      toSurface: "10",
+    },
+  ],
+  doublets: [
+    {
+      text: "C1 · Cemented triplet",
+      fromSurface: "3",
+      toSurface: "6",
+    },
+    {
+      text: "C2 · Cemented triplet",
+      fromSurface: "7",
+      toSurface: "10",
+    },
+  ],
+  layout: {
+    yScFill: 0.5,
+  },
+} satisfies LensDataV2Input;
+export default LENS_DATA;
