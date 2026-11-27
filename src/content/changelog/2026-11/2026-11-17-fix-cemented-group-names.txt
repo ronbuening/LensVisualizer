@@ -1,0 +1,1 @@
+Fixed missing doublet and triplet labels in the element inspector for 12 lenses

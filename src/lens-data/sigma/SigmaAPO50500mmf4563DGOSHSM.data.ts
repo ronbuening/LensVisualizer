@@ -159,6 +159,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "FDS90 (qualified spectral proxy; HOYA coordinate equivalent; supplier unconfirmed)",
       role: "High-dispersion positive meniscus of the L3b cemented doublet; achromatizes the stabilizing sub-group.",
+      cemented: "D1",
     },
     {
       id: 8,
@@ -171,6 +172,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "N-LAF34 (qualified spectral proxy; SCHOTT coordinate equivalent; supplier unconfirmed)",
       role: "Negative member of the L3b cemented doublet; gives the stabilizing sub-group most of its negative power.",
+      cemented: "D1",
     },
     {
       id: 9,
@@ -198,6 +200,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "H-QK3L (qualified spectral proxy; CDGM coordinate equivalent; supplier unconfirmed)",
       role: "Equiconvex crown of the L4 cemented doublet.",
+      cemented: "D2",
     },
     {
       id: 11,
@@ -210,6 +213,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "FDS90 (qualified spectral proxy; HOYA coordinate equivalent; supplier unconfirmed)",
       role: "Dense-flint negative of the L4 cemented doublet; axial-color correction for L4.",
+      cemented: "D2",
     },
     {
       id: 12,
@@ -222,6 +226,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "TAC8 (qualified spectral proxy; HOYA coordinate equivalent; supplier unconfirmed)",
       role: "Strong biconcave negative opening L5 directly behind the stop.",
+      cemented: "D3",
     },
     {
       id: 13,
@@ -234,6 +239,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "FD60 (qualified spectral proxy; HOYA coordinate equivalent; supplier unconfirmed)",
       role: "High-dispersion positive meniscus cemented to E12; L5 stays negative overall.",
+      cemented: "D3",
     },
     {
       id: 14,
@@ -285,6 +291,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "H-QK3L (qualified spectral proxy; CDGM coordinate equivalent; supplier unconfirmed)",
       role: "Biconvex crown of the rear L6 cemented doublet.",
+      cemented: "D4",
     },
     {
       id: 18,
@@ -297,6 +304,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "FDS90 (qualified spectral proxy; HOYA coordinate equivalent; supplier unconfirmed)",
       role: "Dense-flint negative meniscus of the rear L6 doublet; color correction for L6.",
+      cemented: "D4",
     },
     {
       id: 19,
@@ -309,6 +317,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "FD60 (qualified spectral proxy; HOYA coordinate equivalent; supplier unconfirmed)",
       role: "High-dispersion biconvex positive of the front doublet in the focusing group L7.",
+      cemented: "D5",
     },
     {
       id: 20,
@@ -321,6 +330,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "LAC8 (qualified spectral proxy; HOYA coordinate equivalent; supplier unconfirmed)",
       role: "Biconcave negative of the front L7 doublet; main negative power of the focusing group.",
+      cemented: "D5",
     },
     {
       id: 21,
@@ -333,6 +343,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "NBFD10 (qualified spectral proxy; HOYA coordinate equivalent; supplier unconfirmed)",
       role: "Biconcave negative of the rear L7 cemented doublet.",
+      cemented: "D6",
     },
     {
       id: 22,
@@ -345,6 +356,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "E-FL6 (qualified spectral proxy; HOYA coordinate equivalent; supplier unconfirmed)",
       role: "Biconvex rear element, cemented to E21; last element of the lens.",
+      cemented: "D6",
     },
   ],
   surfaces: [

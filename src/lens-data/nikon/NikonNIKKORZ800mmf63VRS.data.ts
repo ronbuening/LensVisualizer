@@ -117,6 +117,7 @@ const LENS_DATA = {
       focalLengthMm: 806.239485,
       glass: "J-BK7A (HIKARI)",
       diagramLabel: "L13",
+      cemented: "PF",
     },
     {
       id: 4,
@@ -128,6 +129,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "Unmatched (PF optical material; nd=1.529500, vd=36.27)",
       diagramLabel: "Epf-A",
+      cemented: "PF",
     },
     {
       id: 5,
@@ -139,6 +141,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "Unmatched (PF optical material; nd=1.549800, vd=50.91)",
       diagramLabel: "Epf-B",
+      cemented: "PF",
     },
     {
       id: 6,

@@ -483,8 +483,9 @@ The editor pane is an optical train read from the object (top) to the image (bot
 on each change; `OpticalTrain` applies every edit as a pure model operation and writes it back with
 `applyElementModel`, so rebuild, autosave and export only ever see a V2 draft. Model refusals (`BuilderEditError`) and
 other action errors appear in a sticky alert at the foot of the pane. A draft the model cannot show (folded paths,
-media, spans, no single air stop, non-contiguous media) lists the reasons in place of the train and opens Advanced
-JSON once.
+media, spans, no single air stop, a curved surface in air, non-contiguous media) lists the reasons in place of the
+train and opens Advanced JSON once. Any other flat surface in air (a flare cutter, fixed stop or source dummy plane)
+is a flare stop item.
 
 - `GroupCard`: one card per air-separated group. An element block holds its name and description, the material chip,
   centre thickness, front/rear R with an ∞ toggle, Ø per surface (2 × semi-diameter, with a link toggle that sets every
@@ -493,9 +494,10 @@ JSON once.
   ("Cemented junction", with Split) and carries group move/delete plus per-element removal. An element's V2 `type`
   follows its computed shape on edits unless the author's type already differed from it.
 - `OpticalTrain` gap rows: "Air gap after L1" between items and "Back focus to image" last, with Cement (between two
-  groups on a fixed gap), + Element and, without a stop, + Stop. A prime's focus-scheduled gap edits every keyframe
+  groups on a fixed gap), + Element, + Flare stop and, without a stop, + Stop. A prime's focus-scheduled gap edits every keyframe
   through `setGapSchedule`; zoom and aberration-ring schedules are read-only with a jump to Advanced JSON. The air
-  stop row shows Ø as auto, because the engine sizes the air stop from the f-number or station schedule.
+  stop row shows Ø as auto, because the engine sizes the air stop from the f-number or station schedule. A flare stop
+  row keeps its authored label and edits its Ø, with move and delete; the surface stays flat.
 - `MaterialPicker`: the chip (glass, nd, νd, vendor when the catalog name resolves) opens a popover beside the pane, or
   under or over the chip on phones, with Search (common-glass row, name matches, nearest to the current nd/νd), a
   `GlassMap` nd–νd scatter of the catalog (vendor filter, click or arrow keys plus Enter; touch taps only move the
@@ -512,6 +514,9 @@ for display and reveals the exact value on focus, so an untouched field never re
 
 The form also edits identity, aperture, close focus and vertical fill. Source (including `errata`, `omissions` and
 `sdSource`), catalog, zoom/focus schedules, rear plates and all other authored fields survive edits and JSON transport.
+Value edits keep the authored surface labels and `elements` order, and a glass run left whole keeps each element's
+authored `cemented` value (an unnamed cement layer stays unnamed); structural edits renumber numeric labels, write
+`elements` in train order and name changed cemented groups (`applyElementModel`).
 Omission surface labels follow insertions, moves and renumbering; deleted surface references are removed,
 and entries with no remaining surfaces are dropped. Splitting a cemented junction carries its omissions to both
 resulting surfaces because both inherit its shape. Explicitly removing an existing asphere also removes that

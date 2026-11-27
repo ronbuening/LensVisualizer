@@ -55,6 +55,19 @@ afterEach(() => {
 });
 
 describe("lens builder optical train", () => {
+  it("resizes, deletes and inserts flare stops", () => {
+    const draft = createTemplate();
+    draft.surfaces[3].d = 1.5;
+    draft.surfaces.splice(4, 0, { label: "FS", R: "flat", d: 1.5, sd: 9 });
+    render(<Harness initial={draft} />);
+    edit("Flare stop FS diameter", "16");
+    expect(latest.surfaces.find((s) => s.label === "FS")).toMatchObject({ sd: 8 });
+    fireEvent.click(screen.getByLabelText("Delete Flare stop FS"));
+    expect(latest.surfaces.some((s) => s.label === "FS")).toBe(false);
+    fireEvent.click(screen.getByLabelText("Insert flare stop after L1"));
+    expect(screen.getAllByRole("group", { name: /^Flare stop / })).toHaveLength(1);
+  });
+
   it("edits a fixed air gap and both ends of the focus-scheduled back focus", () => {
     render(<Harness initial={createTemplate()} />);
     const train = screen.getByRole("region", { name: "Optical train" });

@@ -108,7 +108,8 @@ const LENS_DATA = {
       "focalLengthMm": 34.1734,
       "indexReference": "d",
       "glass": "LAC13 (HOYA coordinate equivalent; supplier unconfirmed)",
-      "role": "Positive front component of the first cemented pair"
+      "role": "Positive front component of the first cemented pair",
+      "cemented": "D1"
     },
     {
       "id": 4,
@@ -120,7 +121,8 @@ const LENS_DATA = {
       "focalLengthMm": -18.0433,
       "indexReference": "d",
       "glass": "E-FD4 (HOYA coordinate equivalent; supplier unconfirmed)",
-      "role": "Negative rear component of the first cemented pair"
+      "role": "Negative rear component of the first cemented pair",
+      "cemented": "D1"
     },
     {
       "id": 5,
@@ -132,7 +134,8 @@ const LENS_DATA = {
       "focalLengthMm": -28.2051,
       "indexReference": "d",
       "glass": "FF5 (HOYA coordinate equivalent; supplier unconfirmed)",
-      "role": "Negative front component of the rear cemented pair"
+      "role": "Negative front component of the rear cemented pair",
+      "cemented": "D2"
     },
     {
       "id": 6,
@@ -144,7 +147,8 @@ const LENS_DATA = {
       "focalLengthMm": 30.2370,
       "indexReference": "d",
       "glass": "S-LAH51 (OHARA coordinate equivalent; supplier unconfirmed)",
-      "role": "Positive rear component of the rear cemented pair"
+      "role": "Positive rear component of the rear cemented pair",
+      "cemented": "D2"
     },
     {
       "id": 7,

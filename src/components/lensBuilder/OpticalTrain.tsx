@@ -1,7 +1,7 @@
 /**
  * OpticalTrain — the builder's element editor, read from the object (top) to the image (bottom).
  *
- * Group cards alternate with air-gap rows; the aperture stop is a compact row of its own. Every edit is a pure
+ * Group cards alternate with air-gap rows; the aperture stop and each flare stop are compact rows of their own. Every edit is a pure
  * element-model operation written back with `applyElementModel`, so the page's rebuild, autosave and export paths see
  * an ordinary V2 draft.
  */
@@ -11,12 +11,16 @@ import {
   applyElementModel,
   cementWithNext,
   insertElement,
+  insertFlareStop,
   insertStop,
   moveItem,
+  removeItem,
   setGap,
   setGapSchedule,
   toElementModel,
   updateElement,
+  updateSurface,
+  type BuilderFlareStop,
   type BuilderGap,
   type BuilderItem,
   type BuilderModel,
@@ -115,7 +119,9 @@ function indexIssues(draft: LensDataV2Input, issues: string[]): IssueIndex {
 }
 
 function itemName(item: BuilderItem): string {
-  return item.kind === "stop" ? "stop" : item.elements[item.elements.length - 1].name;
+  if (item.kind === "stop") return "stop";
+  if (item.kind === "flare") return `flare stop ${item.surface.label}`;
+  return item.elements[item.elements.length - 1].name;
 }
 
 interface GapRowProps {
@@ -136,7 +142,7 @@ function GapRow({ ctx, model, index, zoom, keyframes, stationLabels, onOpenAdvan
   const last = index === model.items.length - 1;
   const after = itemName(item);
   const name = last ? `Back focus after ${after}` : `Air gap after ${after}`;
-  const exitLabel = item.kind === "stop" ? item.surface.label : item.surfaces[item.surfaces.length - 1].label;
+  const exitLabel = item.kind === "group" ? item.surfaces[item.surfaces.length - 1].label : item.surface.label;
   const invalid = ctx.surfaceInvalid(exitLabel, "d");
   const hasStop = model.items.some((entry) => entry.kind === "stop");
   const schedule = gap.schedule;
@@ -307,6 +313,15 @@ function GapRow({ ctx, model, index, zoom, keyframes, stationLabels, onOpenAdvan
             + Stop
           </button>
         )}
+        <button
+          type="button"
+          aria-label={`Insert flare stop after ${after}`}
+          title="Insert a flat flare stop (a fixed aperture that clips the beam) into this air space"
+          style={textButton(t, touch)}
+          onClick={() => edit((m) => insertFlareStop(m, index + 1))}
+        >
+          + Flare stop
+        </button>
       </span>
     </div>
   );
@@ -351,6 +366,92 @@ function StopRow({ ctx, index, count }: { ctx: TrainCtx; index: number; count: n
         onClick={() => edit((m) => moveItem(m, index, 1))}
       >
         ↓
+      </button>
+    </div>
+  );
+}
+
+/** A flare stop: a flat fixed aperture in air whose clear diameter clips the beam. */
+function FlareStopRow({
+  ctx,
+  item,
+  index,
+  count,
+}: {
+  ctx: TrainCtx;
+  item: BuilderFlareStop;
+  index: number;
+  count: number;
+}) {
+  const { t, touch, edit } = ctx;
+  const { label, sd } = item.surface;
+  const name = `Flare stop ${label}`;
+  return (
+    <div
+      role="group"
+      aria-label={name}
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: 8,
+        padding: touch ? "6px 8px" : "4px 8px",
+        border: `1px solid ${t.panelBorder}`,
+        borderLeft: `3px dashed ${t.stop}`,
+        borderRadius: 6,
+        background: t.panelBg,
+      }}
+    >
+      <span style={{ ...builderCaptionStyle(t), color: t.stopLabel, fontWeight: 700, overflow: "visible" }}>
+        Flare stop
+      </span>
+      <span style={{ color: t.muted, fontSize: 10 }} title="Surface label">
+        {label}
+      </span>
+      <span style={{ flex: 1, display: "flex", alignItems: "center", gap: 3, fontSize: 11, color: t.body }}>
+        Ø
+        <span style={{ width: touch ? 84 : 66 }}>
+          <CommitInput
+            label={`${name} diameter`}
+            labelMode="hidden"
+            value={sd === undefined ? "" : sd * 2}
+            theme={t}
+            numeric
+            format={formatMm}
+            invalid={ctx.surfaceInvalid(label, "sd")}
+            title={`Clear diameter Ø in mm (2 × semi-diameter ${sd === undefined ? "unset" : formatMm(sd)})`}
+            onCommit={(s) => edit((m) => updateSurface(m, index, 0, { sd: Number(s) / 2 }))}
+          />
+        </span>
+        <span aria-hidden style={{ color: t.muted, fontSize: 10 }}>
+          mm
+        </span>
+      </span>
+      <button
+        type="button"
+        aria-label={`Move ${name} towards the object`}
+        disabled={index === 0}
+        style={iconButton(t, touch, { disabled: index === 0 })}
+        onClick={() => edit((m) => moveItem(m, index, -1))}
+      >
+        ↑
+      </button>
+      <button
+        type="button"
+        aria-label={`Move ${name} towards the image`}
+        disabled={index === count - 1}
+        style={iconButton(t, touch, { disabled: index === count - 1 })}
+        onClick={() => edit((m) => moveItem(m, index, 1))}
+      >
+        ↓
+      </button>
+      <button
+        type="button"
+        aria-label={`Delete ${name}`}
+        title="Delete this flare stop; its air joins the neighbouring gaps"
+        style={iconButton(t, touch)}
+        onClick={() => edit((m) => removeItem(m, index))}
+      >
+        ✕
       </button>
     </div>
   );
@@ -435,8 +536,10 @@ export default function OpticalTrain({
                 count={model.items.length}
                 selected={selectedElementId != null && item.elements.some((e) => e.id === selectedElementId)}
               />
-            ) : (
+            ) : item.kind === "stop" ? (
               <StopRow ctx={ctx} index={i} count={model.items.length} />
+            ) : (
+              <FlareStopRow ctx={ctx} item={item} index={i} count={model.items.length} />
             )}
             <GapRow
               ctx={ctx}
