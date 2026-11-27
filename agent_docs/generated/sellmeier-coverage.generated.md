@@ -11,18 +11,18 @@ Preview the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **1224** lenses scanned
-- **1202** visible lenses scanned
-- **818** lenses fully covered by trusted chromatic data
-- **811** visible lenses fully covered by trusted chromatic data
-- **810** lenses fully covered by strict Sellmeier data
-- **803** visible lenses fully covered by strict Sellmeier data
+- **1230** lenses scanned
+- **1208** visible lenses scanned
+- **824** lenses fully covered by trusted chromatic data
+- **817** visible lenses fully covered by trusted chromatic data
+- **816** lenses fully covered by strict Sellmeier data
+- **809** visible lenses fully covered by strict Sellmeier data
 - **8** lenses fully covered only after measured line-index data
 - **8** visible lenses fully covered only after measured line-index data
-- **12457 / 13521** non-air surfaces use strict catalog Sellmeier data
-- **92.1%** strict Sellmeier surface coverage overall
-- **12471 / 13521** non-air surfaces use trusted chromatic data
-- **92.2%** trusted chromatic coverage overall
+- **12511 / 13575** non-air surfaces use strict catalog Sellmeier data
+- **92.2%** strict Sellmeier surface coverage overall
+- **12525 / 13575** non-air surfaces use trusted chromatic data
+- **92.3%** trusted chromatic coverage overall
 - **22 / 117** historical sodium D surfaces use name-verified catalog dispersion data
 - **279 / 355** native e-line surfaces use name-verified catalog Sellmeier data
 
@@ -587,6 +587,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [TAMRON SP AF 180mm f/3.5 Di LD [IF] MACRO 1:1 (B01)](../../src/lens-data/tamron/TamronSPAF180mmf35Di.data.ts) | 14/14 | 14 | 14/14 |
 | [TAMRON SP AF 60mm f/2 Di II LD [IF] MACRO 1:1 (G005)](../../src/lens-data/tamron/TamronSPAF60mmf2Di.data.ts) | 14/14 | 14 | 14/14 |
 | [VIVITAR SERIES 1 70-210mm f/2.8-4 VMC](../../src/lens-data/vivitar/VivitarSeries170210mmf284.data.ts) | 14/14 | 14 | 14/14 |
+| [ZEISS OTUS ML 50mm f/1.4](../../src/lens-data/carl-zeiss-oberkochen/ZeissOtusML50mmf14.data.ts) | 14/14 | 14 | 14/14 |
 | [CANON EF 24mm f/1.4 L II USM](../../src/lens-data/canon/CanonEF24mmf14LII.data.ts) | 13/13 | 13 | 13/13 |
 | [CANON RF 15-30mm f/4.5-6.3 IS STM](../../src/lens-data/canon/CanonRF1530mmf4563ISSTM.data.ts) | 13/13 | 13 | 13/13 |
 | [CANON RF 24-105mm f/4-7.1 IS STM](../../src/lens-data/canon/CanonRF24105mmf471ISSTM.data.ts) | 13/13 | 13 | 13/13 |
@@ -744,6 +745,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [PENTAX SMC A* 200mm f/4 MACRO ED](../../src/lens-data/pentax/PentaxA200mmf4MacroED.data.ts) | 10/10 | 10 | 10/10 |
 | [PENTAX SMC FA* 300mm f/2.8 ED [IF]](../../src/lens-data/pentax/PentaxFAStar300mmF28EDIF.data.ts) | 10/10 | 10 | 10/10 |
 | [PENTAX SMC ZOOM 28-50mm f/3.5-4.5](../../src/lens-data/pentax/PentaxSMCZoom2850mmf3545.data.ts) | 10/10 | 10 | 10/10 |
+| [SAMSUNG 12-24mm f/4-5.6 ED](../../src/lens-data/samsung/SamsungNX1224mmf456ED.data.ts) | 10/10 | 10 | 10/10 |
 | [SIGMA 24mm f/3.5 DG DN | Contemporary](../../src/lens-data/sigma/Sigma24mmf35DGDN.data.ts) | 10/10 | 10 | 10/10 |
 | [SIGMA 35mm f/2 DG DN | Contemporary](../../src/lens-data/sigma/Sigma35mmf2DGDNContemporary.data.ts) | 10/10 | 10 | 10/10 |
 | [SIGMA 50mm f/2.8 (Sigma DP3 Merrill)](../../src/lens-data/sigma/SigmaDP3M50mmf28.data.ts) | 10/10 | 10 | 10/10 |
@@ -778,6 +780,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [KONICA HEXANON AR 21mm f/2.8](../../src/lens-data/konica/KonicaHexanonAR21mmf28.data.ts) | 9/9 | 9 | 9/9 |
 | [KONICA ZOOM-HEXANON AR 35-70mm f/3.5](../../src/lens-data/konica/KonicaZoomHexanonAR3570mmf35.data.ts) | 9/9 | 9 | 9/9 |
 | [LEICA SUMMILUX-M 35mm f/1.4 ASPHERICAL](../../src/lens-data/leica/LeicaSummiluxM35mmf14Aspherical.data.ts) | 9/9 | 9 | 9/9 |
+| [MAMIYA MACRO 120mm f/4 (JP 2003-185916 A Design)](../../src/lens-data/mamiya/MamiyaMacro120mmf4JP2003185916.data.ts) | 9/9 | 9 | 9/9 |
 | [MAMIYA-SEKOR ZOOM E 28-50mm f/3.5-4.5](../../src/lens-data/mamiya/MamiyaSekorZoomE2850mmf3545.data.ts) | 9/9 | 9 | 9/9 |
 | [MEIKE AF 85mm f/1.8 FF STM](../../src/lens-data/meike/Meike85mmf18.data.ts) | 9/9 | 9 | 9/9 |
 | [NIKON 1 NIKKOR 11-27.5mm f/3.5-5.6](../../src/lens-data/nikon/Nikon1Nikkor1127mmf3556.data.ts) | 9/9 | 9 | 9/9 |
@@ -887,6 +890,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [VOIGTLÄNDER SUPER WIDE-HELIAR 15mm f/4.5 Aspherical SL](../../src/lens-data/voigtlander/VoigtlanderSuperWideHeliar15mmf45AsphericalSL.data.ts) | 8/8 | 8 | 8/8 |
 | [VOIGTLÄNDER ULTRON 35mm f/1.7 Aspherical L39](../../src/lens-data/voigtlander/VoigtlanderUltron35mmf17AsphericalL39.data.ts) | 8/8 | 8 | 8/8 |
 | [YASHICA YASHINON-DX 21mm f/3.3](../../src/lens-data/yashica/YashicaYashinonDX21mmf33.data.ts) | 8/8 | 8 | 8/8 |
+| [7ARTISANS 40mm f/5.6 (CN 221175107 U Design)](../../src/lens-data/7artisans/SevenArtisansCN221175107.data.ts) | 7/7 | 7 | 7/7 |
 | [CANON 50mm f/0.95](../../src/lens-data/canon/Canon50mmf095Canon7.data.ts) | 7/7 | 7 | 7/7 |
 | [CANON 50mm f/1.2](../../src/lens-data/canon/Canon50mmf12.data.ts) | 7/7 | 7 | 7/7 |
 | [CANON EF 35mm f/2](../../src/lens-data/canon/CanonEF35mmf2.data.ts) | 7/7 | 7 | 7/7 |
@@ -940,6 +944,8 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [PENTAX SMC A 28mm f/2.8](../../src/lens-data/pentax/PentaxA28mmf28.data.ts) | 7/7 | 7 | 7/7 |
 | [PENTAX SMC A ZOOM 35-70mm f/4](../../src/lens-data/pentax/PentaxA3570mmf4.data.ts) | 7/7 | 7 | 7/7 |
 | [PENTAX SMC A* 135mm f/1.8](../../src/lens-data/pentax/PentaxA135mmf18.data.ts) | 7/7 | 7 | 7/7 |
+| [PENTAX SMC FA 645 150mm f/2.8 [IF]](../../src/lens-data/pentax/Pentax645FA150mmf28IF.data.ts) | 7/7 | 7 | 7/7 |
+| [PENTAX SMC FA 645 300mm f/5.6 ED [IF]](../../src/lens-data/pentax/Pentax645FA300mmf56EDIF.data.ts) | 7/7 | 7 | 7/7 |
 | [PENTAX SMC M 28mm f/2.8](../../src/lens-data/pentax/PentaxM28mmf28.data.ts) | 7/7 | 7 | 7/7 |
 | [PENTAX SMC PENTAX 30mm f/2.8](../../src/lens-data/pentax/PentaxSMCK30mmf28.data.ts) | 7/7 | 7 | 7/7 |
 | [PENTAX SUPER-TAKUMAR 28mm f/3.5](../../src/lens-data/pentax/PentaxSuperTakumar28mmf35.data.ts) | 7/7 | 7 | 7/7 |
