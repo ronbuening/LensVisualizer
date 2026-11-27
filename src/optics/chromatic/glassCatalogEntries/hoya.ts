@@ -6,6 +6,16 @@ import type { GlassEntry } from "../glassCatalogTypes.js";
 
 export const HOYA_GLASS_ENTRIES: readonly GlassEntry[] = [
   {
+    name: "PCD3",
+    vendor: "Hoya",
+    polynomial: [2.3762734, -0.0097138037, 0.012508633, -3.6568562e-6, 2.7977527e-5, -1.4850112e-6],
+    nd: 1.55232,
+    vd: 63.424095,
+    code6: "552634",
+    source:
+      "HOYA Zemax OpticStudio DATA 2026-07-07 including obsolete glasses, PCD3 NM/CD row; vendor formula-1 polynomial. https://www.hoya-opticalworld.com/common/agf/HOYA20260707_include_obsolete.agf (accessed 2026-11-18).",
+  },
+  {
     name: "CF5",
     vendor: "Hoya",
     polynomial: [2.2805282, -0.0082883965, 0.013972658, 0.00014315318, 2.1493375e-5, -4.4079002e-7],
