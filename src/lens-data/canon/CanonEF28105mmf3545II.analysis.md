@@ -6,7 +6,7 @@
 **Application Number:** JP 2001-175881  
 **Filed:** 11 June 2001  
 **Published:** 18 December 2002  
-**Inventor:** Makoto Mitsusaka (三坂 誠)  
+**Inventor:** Makoto Misaka (三坂 誠)  
 **Applicant:** Canon Inc.  
 **Title:** ズームレンズ及びそれを有する光学機器 (_Zoom Lens and Optical Apparatus Having the Same_)  
 **Example details:** Figures 1-4, prescription on patent p. 8

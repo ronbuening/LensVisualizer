@@ -4,7 +4,7 @@
 **Application Number:** JP2006162239A\
 **Filed / Priority:** 2006-06-12\
 **Published:** 2007-12-27\
-**Inventor:** Makoto Mitsusaka\
+**Inventor:** Makoto Misaka\
 **Applicant:** Canon Inc.\
 **Title:** Optical System and Optical Apparatus Having the Same\
 **Example details:** Numerical Example 1
