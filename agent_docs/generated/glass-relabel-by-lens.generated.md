@@ -4,8 +4,8 @@ Per-lens work queue combining raw catalog mismatches with candidate relabel targ
 Use this when auditing a patent lens-by-lens: review all rows for a lens together,
 then update the lens data, companion analysis/audit notes, and regenerate the glass reports.
 
-**Regenerate this file** by running `npm run generate:reports -- glassRelabelByLensScan`.
-Regenerate the full glass report set with `npm run generate:glass-reports`.
+**Refreshed on `main` after every merge; do not edit or commit this file.** Preview a branch's version with `npm run generate:reports -- glassRelabelByLensScan`, then `npm run reports:diff`.
+Preview the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
