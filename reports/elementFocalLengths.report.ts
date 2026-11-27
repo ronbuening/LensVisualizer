@@ -9,17 +9,17 @@
  *
  * Runs only via `npm run generate:reports`, never in `npm test`.
  *
- * Regenerate: `npm run generate:reports -- elementFocalLengths`
+ * Preview: `npm run generate:reports -- elementFocalLengths`
  */
 import { describe, expect, it } from "vitest";
-import { mkdirSync, writeFileSync } from "node:fs";
+import { refreshNotice, TRACKED_REPORT_DIR, writeReport } from "./reportOutput.js";
 import { buildLens } from "../src/optics/buildLens.js";
 import { computeElementFocalLength } from "../src/optics/optics.js";
 import { FLAT_R_THRESHOLD } from "../src/optics/geometry.js";
 import { LENS_CATALOG } from "../src/utils/catalog/lensCatalog.js";
 import type { ElementData, RuntimeLens } from "../src/types/optics.js";
 
-const REPORT_DIR = "agent_docs/generated";
+const REPORT_DIR = TRACKED_REPORT_DIR;
 const REPORT_PATH = `${REPORT_DIR}/element-focal-lengths.generated.md`;
 
 const modules = import.meta.glob<{ default: unknown }>("../src/lens-data/**/*.data.ts", { eager: true });
@@ -314,7 +314,7 @@ describe("element focal lengths report", () => {
     );
     lines.push("  at the authored reference line (helium d, sodium D, or mercury e, selected by `indexReference`).");
     lines.push("");
-    lines.push("**Regenerate this file** by running `npm run generate:reports -- elementFocalLengths`.");
+    lines.push(refreshNotice("npm run generate:reports -- elementFocalLengths"));
     lines.push("");
     lines.push("## Refractive Lens Elements");
     lines.push("");
@@ -393,8 +393,7 @@ describe("element focal lengths report", () => {
       lines.push(`| ${lensLink} | ${elemCell} | ${typeCell} | ${computedCell} | ${roleCell} |`);
     }
 
-    mkdirSync(REPORT_DIR, { recursive: true });
-    writeFileSync(REPORT_PATH, `${lines.join("\n").trimEnd()}\n`);
+    writeReport(REPORT_PATH, `${lines.join("\n").trimEnd()}\n`);
 
     expect(comparedRows.length + mirrorRows.length + plateRows.length + missingRows.length).toBe(totalElements);
     expect(catalogKeys.length).toBeGreaterThan(0);
