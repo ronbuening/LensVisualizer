@@ -2321,6 +2321,16 @@ export const OHARA_GLASS_ENTRIES: readonly GlassEntry[] = [
       "OHARA all-products Zemax catalog 2026-07-01 (OHARA_260701.AGF); vendor coefficients for discontinued PBH6. It shares a six-digit code with a current row, so code6 is omitted.",
   },
   {
+    name: "PBL22",
+    vendor: "Ohara",
+    polynomial: [2.466622, -0.0076071728, 0.02016524, 0.00028279173, 0.000030879156, 6.6471743e-7],
+    nd: 1.589206,
+    vd: 41.07921,
+    code6: "589411",
+    source:
+      "OHARA all-products Zemax catalog 2026-07-01 (OHARA_260701.AGF); discontinued PBL22, vendor formula-1 polynomial.",
+  },
+  {
     name: "BSM18",
     vendor: "Ohara",
     polynomial: [2.6385199, -0.010968446, 0.01597395, 0.00053519299, -0.000035705726, 2.6035403e-6],
