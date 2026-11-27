@@ -15,6 +15,7 @@ interface SliderControlProps {
   compact: boolean;
   useSideLayout: boolean;
   label: string;
+  /** Label column width that lines the readouts up; a row too wide for its panel takes it back before wrapping the note. */
   labelMinWidth: number;
   displayValue: string;
   displayValueStyle?: React.CSSProperties;
@@ -117,17 +118,33 @@ export default function SliderControl({
             }
       }
     >
+      {/* The buttons never shrink. The label grows from its text up to `labelMinWidth`, the padding that aligns the
+          readouts, so a row that is too wide takes that padding back first and only then wraps the note; neither
+          pushes a button past the panel edge. */}
       <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
-        <span style={{ ...SLIDER_LABEL, color: t.label, minWidth: labelMinWidth }}>{label}</span>
+        <span
+          style={{
+            ...SLIDER_LABEL,
+            color: t.label,
+            flex: "1 0 auto",
+            minWidth: "max-content",
+            maxWidth: labelMinWidth,
+            whiteSpace: "nowrap",
+          }}
+        >
+          {label}
+        </span>
         <span style={{ ...SLIDER_VALUE_BASE, color: t.focusDist, ...displayValueStyle }}>{displayValue}</span>
-        {displayNote && <span style={{ fontSize: 9.5, color: t.desc, whiteSpace: "nowrap" }}>{displayNote}</span>}
-        {action && <span style={{ marginLeft: "auto", display: "flex", alignItems: "center" }}>{action}</span>}
+        {displayNote && <span style={{ fontSize: 9.5, lineHeight: 1, color: t.desc }}>{displayNote}</span>}
+        {action && (
+          <span style={{ marginLeft: "auto", display: "flex", alignItems: "center", flexShrink: 0 }}>{action}</span>
+        )}
         {collapsible && (
           <CollapseButton
             expanded={!!expanded}
             onToggle={() => onExpandedChange?.(!expanded)}
             theme={t}
-            style={{ marginLeft: action ? 0 : "auto" }}
+            style={{ marginLeft: action ? 0 : "auto", flexShrink: 0 }}
           />
         )}
       </div>

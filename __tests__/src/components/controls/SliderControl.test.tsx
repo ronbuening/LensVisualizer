@@ -121,6 +121,25 @@ describe("SliderControl", () => {
     expect(buttons.length).toBeGreaterThan(0);
   });
 
+  it("lets the label and note give way so the header buttons keep their width", () => {
+    render(
+      <SliderControl
+        {...baseProps}
+        displayNote="marketed 23 cm"
+        action={<button>MOTION</button>}
+        collapsible
+        expanded
+      />,
+    );
+
+    expect(screen.getByRole("button", { name: "MOTION" }).parentElement?.style.flexShrink).toBe("0");
+    expect(screen.getByRole("button", { name: /LESS/ }).style.flexShrink).toBe("0");
+    expect(screen.getByText("marketed 23 cm").style.whiteSpace).toBe("");
+    const label = screen.getByText("Focus");
+    expect(label.style.flexGrow).toBe("1");
+    expect(label.style.maxWidth).toBe("60px");
+  });
+
   it("applies side layout styles when useSideLayout is true", () => {
     const { container } = render(<SliderControl {...baseProps} useSideLayout={true} />);
     const wrapper = container.firstElementChild as HTMLElement;

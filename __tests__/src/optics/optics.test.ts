@@ -44,17 +44,17 @@ describe("marketedCloseFocusNote", () => {
     >[0];
 
   it("names the maker's distance at the close end when it differs from the label", () => {
-    expect(marketedCloseFocusNote(lens(0.1), 1, 1)).toBe("marketed 10 cm");
+    expect(marketedCloseFocusNote(lens(0.1), 1, 1)).toBe("marketed 10\u00a0cm");
   });
 
   it("compares a [wide, tele] figure with its own end at the zoom extremes and with the range between them", () => {
     const zoom = lens([0.25, 0.45]);
-    expect(marketedCloseFocusNote(zoom, 1, 0.3, 0)).toBe("marketed 25 cm");
+    expect(marketedCloseFocusNote(zoom, 1, 0.3, 0)).toBe("marketed 25\u00a0cm");
     expect(marketedCloseFocusNote(zoom, 1, 0.25, 0)).toBe("");
-    expect(marketedCloseFocusNote(zoom, 1, 0.6, 1)).toBe("marketed 45 cm");
+    expect(marketedCloseFocusNote(zoom, 1, 0.6, 1)).toBe("marketed 45\u00a0cm");
     expect(marketedCloseFocusNote(zoom, 1, 0.45, 1)).toBe("");
     expect(marketedCloseFocusNote(zoom, 1, 0.35, 0.5)).toBe("");
-    expect(marketedCloseFocusNote(zoom, 1, 0.6, 0.5)).toBe("marketed 25 cm–45 cm");
+    expect(marketedCloseFocusNote(zoom, 1, 0.6, 0.5)).toBe("marketed 25\u00a0cm–45\u00a0cm");
   });
 
   it("stays empty away from the close end, when the two agree, or without a marketed distance", () => {

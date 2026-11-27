@@ -1,0 +1,1 @@
+Fixed focus panel buttons running off the panel edge beside a marketed distance note
