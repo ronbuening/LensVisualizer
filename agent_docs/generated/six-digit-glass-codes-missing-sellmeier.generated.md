@@ -4,12 +4,12 @@ Subset of [six-digit-glass-codes.generated.md](six-digit-glass-codes.generated.m
 element surface resolves to trusted catalog Sellmeier data through the reference-line safety net.
 These are the highest-priority code-only rows for catalog additions, aliases, or explicit `Unmatched` notes.
 
-**Regenerate this file** by running `npm run generate:reports -- sixDigitGlassCodeScan`.
-Regenerate the full glass report set with `npm run generate:glass-reports`.
+**Refreshed on `main` after every merge; do not edit or commit this file.** Preview a branch's version with `npm run generate:reports -- sixDigitGlassCodeScan`, then `npm run reports:diff`.
+Preview the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **1224** lenses scanned
+- **1230** lenses scanned
 - **1681** total code-only elements found
 - **306** elements in this report
 - **125** distinct lens files affected
