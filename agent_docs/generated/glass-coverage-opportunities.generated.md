@@ -4,16 +4,16 @@ Consolidated work queue for the three planned glass-coverage sweeps.
 Rows that cite `patents/` refer to ignored/untracked local PDF files used as source references only.
 Do not add, stage, or commit those patent files.
 
-**Regenerate this file** by running `npm run generate:reports -- glassCoverageOpportunitiesScan`.
-Regenerate the full glass report set with `npm run generate:glass-reports`.
+**Refreshed on `main` after every merge; do not edit or commit this file.** Preview a branch's version with `npm run generate:reports -- glassCoverageOpportunitiesScan`, then `npm run reports:diff`.
+Preview the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **1230** lenses scanned (**1208** visible)
-- **12483 / 13559** non-air surfaces use strict catalog Sellmeier data (92.1%)
-- **12501 / 13559** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 92.2%)
-- **1** mismatch surfaces in Sweep 1 across **1** lens files
-- **1** Sweep 1 surfaces have a matching untracked local patent PDF
+- **1224** lenses scanned (**1202** visible)
+- **12457 / 13521** non-air surfaces use strict catalog Sellmeier data (92.1%)
+- **12475 / 13521** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 92.3%)
+- **0** mismatch surfaces in Sweep 1 across **0** lens files
+- **0** Sweep 1 surfaces have a matching untracked local patent PDF
 - **306** code-only missing-Sellmeier elements in Sweep 2: **27** active unreviewed, **173** self-recording explicit dispositions, **0** dispositions missing any review record
 - **0** unresolved named-token elements in Sweep 2B, producing **0** token occurrences across **0** distinct tokens
 - **20** Tier A proprietary backfill rows in Sweep 3
@@ -24,7 +24,6 @@ Patent PDFs under `patents/` are untracked local references. A missing local pat
 
 | Lens | Patent | Surface | Ref | Current label | Stored n/ν | Best candidate(s) | localPatentPath | localPatentStatus |
 |---|---|---|---|---|---|---|---|---|
-| [OLYMPUS ZUIKO AUTO-W 21mm f/2](../../src/lens-data/olympus/OlympusZuikoAuto21mmf2.data.ts) | US 4,210,388 | 12 | d | `593348 — LF7-class light flint (no exact public catalog match)` | 1.59340 / 34.80 | S-FTM16 (Δn=-0.0007, Δν=+0.51)<br>FF5 (Δn=-0.0007, Δν=+0.65) | patents/US4210388.pdf | Matched untracked local patent PDF |
 
 ## Near-Complete Visible Lenses - Glass Opportunities
 
@@ -99,7 +98,6 @@ These lenses are missing trusted chromatic data only on glass elements. One or t
 | [CANON 10.2-30.6mm f/2-4.9 (Canon PowerShot G9 X)](../../src/lens-data/canon/CanonPowerShotG9X.data.ts) | JP 2016-161889 A | [PDF](../../patents/JP2016161889A.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 9 [glass] (L23 (G2n): `Unmatched (special high-dispersion glass; patent points to an SnO-rich JP2012-193065 class)`) | abbe: 1 |
 | [FUJIFILM FUJINON 23mm f/2 (Fujifilm X100)](../../src/lens-data/fujifilm/FujifilmX10023mmf2.data.ts) | US 2012/0069456 A1 | [PDF](../../patents/US20120069456A1.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 10A [glass] (Element 6: `Unmatched (569586 patent molded crown; no exact public catalog identity)`) | abbe: 1 |
 | [FUJIFILM FUJINON 23mm f/2 (Fujifilm X100V)](../../src/lens-data/fujifilm/FujifilmX100V23mmf2.data.ts) | US 2020/0333569 A1 | [PDF](../../patents/US20200333569A1.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 7A [glass] (Element 5: `Unmatched (near TAFD33 (HOYA), Δnd = 0.0017; possibly precision-molded proprietary)`) | abbe: 1 |
-| [LEICA SUPER-ANGULON-M 21mm f/3.4](../../src/lens-data/leica/LeicaSuperAngulonM21mmf34.data.ts) | DE 1,273,853 B | [PDF](../../patents/DE1273853B.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 3 [glass] (Element 2: `Unmatched (nd 1.72372 / νd 38.09)`) | abbe: 1 |
 | [MAMIYA SEKOR AF 150mm f/2.8 IF D](../../src/lens-data/mamiya/MamiyaSekorDAF150mmf28IF.data.ts) | JP 2001-183581 A | [PDF](../../patents/JP_2001183581_A.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 13 [glass] (Element 7: `Unmatched (nd=1.806098, νd=40.34; no exact current catalog identity)`) | abbe: 1 |
 | [MINOLTA AF 100mm f/2.8 Macro](../../src/lens-data/minolta/MinoltaAF100mmf28Macro.data.ts) | US 4,764,000 | [PDF](../../patents/US4764000.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 13 [glass] (Element 7: `807316 - dense lanthanum flint (patent nd=1.80741, vd=31.59; unresolved)`) | abbe: 1 |
 | [MINOLTA AF 135mm f/2.8 [T4.5] STF](../../src/lens-data/minolta/MinoltaSTF135mmf28T45.data.ts) | JP 1999-231209 A | [PDF](../../patents/JPA 1999231209-000000.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 9 [glass] (Element 5: `507589 — bulk absorbing ND glass (catalog unresolved; patent α=0.55)`) | abbe: 1 |
@@ -125,7 +123,6 @@ These lenses are missing trusted chromatic data only on glass elements. One or t
 | [MINOLTA MD 50mm f/1.7](../../src/lens-data/minolta/Minolta50mmf17MD.data.ts) | JP S60-111215 A | [PDF](../../patents/JPS60111215A.pdf) | 83.3% (5/6) | 83.3% (5/6) | 1 | 10 [glass] (Element 6: `Unmatched (781446 high-index mid-dispersion glass; no compatible public coefficient row)`) | abbe: 1 |
 | [MINOLTA SUPER ROKKOR 5cm f/1.8](../../src/lens-data/minolta/MinoltaSuperRokkor5cmf18.data.ts) | JP S38-11587 B | [PDF](../../patents/JPS3811587B.pdf) | 83.3% (5/6) | 83.3% (5/6) | 1 | 7 [glass] (Element 4: `Unmatched (patent nd 1.5749, νd 39.2; no exact catalog row; supplier unspecified)`) | abbe: 1 |
 | [PENTAX SMC TAKUMAR 6x7 600mm f/4](../../src/lens-data/pentax/PentaxSMCTakumar6x7600mmf4.data.ts) | US 3,502,393 | [PDF](../../patents/US3502393.pdf) | 83.3% (5/6) | 83.3% (5/6) | 1 | 5 [glass] (Element 3: `Unmatched (512598 crown; no public catalog row)`) | abbe: 1 |
-| [SCHACHT TRAVEGON 35mm f/3.5](../../src/lens-data/schacht/SchachtTravegon35mmf35.data.ts) | DE 1,020,809 B | [PDF](../../patents/DE1020809B.pdf) | 83.3% (5/6) | 83.3% (5/6) | 1 | 4 [glass] (Element 3: `Unmatched (nd 1.72019 / νd 50.3)`) | abbe: 1 |
 | [SCHNEIDER-KREUZNACH APO-SYMMAR 100mm f/5.6](../../src/lens-data/schneider-kreuznach/SchneiderAPOSymmar100mmf56.data.ts) | US 6,028,720 | [PDF](../../patents/US6028720.pdf) | 83.3% (5/6) | 83.3% (5/6) | 1 | 4 [glass] (Element 3: `Unmatched (phosphate crown class, ne=1.5223, ve=69.5; no public catalog match — possible special melt or discontinued glass)`) | abbe: 1 |
 | [SCHNEIDER-KREUZNACH SUPER-SYMMAR XL 110mm f/5.6 ASPHERIC](../../src/lens-data/schneider-kreuznach/SchneiderSuperSymmarXL110mmf56.data.ts) | US 5,870,234 | [PDF](../../patents/US5870234.pdf) | 83.3% (5/6) | 83.3% (5/6) | 1 | 1 [glass] (Element 1: `Unmatched (Schott KF9; patent e-line ne=1.52583, ve=51.25 stored as nd/vd)`) | abbe: 1 |
 | [RUSSAR-21 60mm f/18 (Prototype Design)](../../src/lens-data/unattributed/Russar21.data.ts) | US 2,516,724 A | [PDF](../../patents/US2516724.pdf) | 83.3% (5/6) | 83.3% (5/6) | 1 | 1 [glass] (Element 1: `Unmatched (Lenzos L-67; nd=1.6395, vd=43.3; reference wavelength unstated)`) | abbe: 1 |
