@@ -2142,4 +2142,14 @@ export const HOYA_GLASS_ENTRIES: readonly GlassEntry[] = [
     source:
       "HOYA Zemax OpticStudio DATA 2026-07-07 (HOYA20260707.agf), MP-LAC14-80 precision-moulding preform row; vendor formula-1 polynomial. Added as the LaK14-class row nearest a two-decimal patent index (1.70 / 55.5); code6 is omitted.",
   },
+  {
+    name: "C10",
+    vendor: "Hoya",
+    polynomial: [2.2249782, -0.010359114, 0.0094260408, 0.0008284716, -7.4517678e-5, 3.7903933e-6],
+    nd: 1.50137,
+    vd: 56.296772,
+    code6: "501563",
+    source:
+      "HOYA Zemax OpticStudio DATA 2026-07-07 including obsolete glasses, C10 NM/CD row; vendor formula-1 polynomial. https://www.hoya-opticalworld.com/common/agf/HOYA20260707_include_obsolete.agf (accessed 2026-11-25).",
+  },
 ];
