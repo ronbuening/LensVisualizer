@@ -12,11 +12,11 @@ import { runtimeView } from "../../prescription/runtimeView.js";
 import type { MtfOptions, MtfSpectralLine, MtfSupport } from "../../../types/mtf.js";
 import type { ImageSurfaceShape, PreparedGeometry, Ray3, Vec3 } from "../../types.js";
 import { landImageSurfaceLine } from "../../geometry/imageSurface.js";
-import type { EngineTraceResult, TraceOptions } from "../../trace/types.js";
+import type { EngineTraceResult, TraceCapture, TraceOptions } from "../../trace/types.js";
 import { solveChiefRayForRuntimeLens } from "../../state/fieldAdapters.js";
 import { solveScalarRoot } from "../../math/rootSolve.js";
 import { prepareEngineTrace, traceEngineRay } from "../../trace/rayAdapters.js";
-import { bulkTransmissionForTrace } from "../../trace/bulkAbsorption.js";
+import { bulkTransmissionForTrace, transmissionTraceCapture } from "../../trace/bulkAbsorption.js";
 import { anchoredIndexTable } from "../../chromatic/indexResolver.js";
 import type { MtfSpot } from "./mtfMath.js";
 import { mtfFiniteObjectPoint } from "./mtfConjugates.js";
@@ -71,6 +71,10 @@ export interface MtfBundle {
   rows: number;
   /** True when one half pupil was traced and mirrored about the meridional plane. */
   mirrored: boolean;
+  /** Centered axial source, radial surfaces and circular clearances on a flat image. */
+  rotationallySymmetric?: boolean;
+  /** Image-plane vertex at which the stored ray landings were measured. */
+  landingPlaneZ?: number;
   /** Cell pitch in mm: on the stop for stop sampling, on the launch plane otherwise. */
   stepMm: number;
   objectPoint?: Vec3;
@@ -110,7 +114,7 @@ export interface MtfFieldLaunch {
  */
 export function mtfImagePoint(
   state: PreparedGeometry,
-  trace: EngineTraceResult,
+  trace: EngineTraceResult<TraceCapture>,
   imagePlaneZ = state.imgZ,
 ): MtfSpot | null {
   return state.lens.imageSurface === null
@@ -118,7 +122,11 @@ export function mtfImagePoint(
     : mtfCurvedImagePoint(state, trace, imagePlaneZ);
 }
 
-function mtfFlatImagePoint(state: PreparedGeometry, trace: EngineTraceResult, imagePlaneZ: number): MtfSpot | null {
+function mtfFlatImagePoint(
+  state: PreparedGeometry,
+  trace: EngineTraceResult<TraceCapture>,
+  imagePlaneZ: number,
+): MtfSpot | null {
   if (trace.status !== "ok" || Math.abs(trace.terminalDirection[2]) < 1e-12) return null;
   const distance = (imagePlaneZ - trace.terminalPoint[2]) / trace.terminalDirection[2];
   if (!(distance >= -1e-9)) return null;
@@ -130,7 +138,11 @@ function mtfFlatImagePoint(state: PreparedGeometry, trace: EngineTraceResult, im
   };
 }
 
-function mtfCurvedImagePoint(state: PreparedGeometry, trace: EngineTraceResult, imagePlaneZ: number): MtfSpot | null {
+function mtfCurvedImagePoint(
+  state: PreparedGeometry,
+  trace: EngineTraceResult<TraceCapture>,
+  imagePlaneZ: number,
+): MtfSpot | null {
   if (trace.status !== "ok") return null;
   const landing = mtfCurvedLanding(state.lens.imageSurface!, trace, imagePlaneZ);
   return landing && { x: landing[0], y: landing[1], weight: bulkTransmissionForTrace(state.lens, trace.hits) };
@@ -508,8 +520,9 @@ export function traceMtfLattice(
   imagePlaneZ = state.imgZ,
   extras: { reference?: MtfSpot; opticalPath?: boolean } = {},
 ): MtfBundle | null {
-  const traceOptions: TraceOptions = {
+  const traceOptions: TraceOptions<"terminal" | "hits"> = {
     ...mtfTraceOptions(state, options, support, line, extras.opticalPath),
+    capture: transmissionTraceCapture(state.lens),
     stopSemiDiameter: lattice.clipSemiDiameterMm,
     launchBoundT: lattice.launchBoundT,
   };
@@ -542,6 +555,21 @@ export function traceMtfLattice(
     columns: n,
     rows: n,
     mirrored: mirror,
+    landingPlaneZ: imagePlaneZ,
+    rotationallySymmetric:
+      mirror &&
+      launch.fieldAngleDeg === 0 &&
+      launch.centerY === 0 &&
+      launch.direction[0] === 0 &&
+      launch.direction[1] === 0 &&
+      (!launch.objectPoint || (launch.objectPoint[0] === 0 && launch.objectPoint[1] === 0)) &&
+      state.lens.imageSurface === null &&
+      state.surfaces.every(
+        (surface) =>
+          surface.profile.kind !== "tilted-plane" &&
+          surface.interaction.type === "refract" &&
+          !surface.interaction.normal,
+      ),
     stepMm: (2 * lattice.stopSemiDiameterMm) / n,
     objectPoint: launch.objectPoint,
     openBorders: { x: false, y0: false, y1: false },
@@ -665,7 +693,10 @@ export function traceMtfLaunchPlaneBundle(
   imagePlaneZ = state.imgZ,
   extras: { reference?: MtfSpot; opticalPath?: boolean } = {},
 ): MtfBundle | null {
-  const traceOptions = mtfTraceOptions(state, options, support, line, extras.opticalPath);
+  const traceOptions = {
+    ...mtfTraceOptions(state, options, support, line, extras.opticalPath),
+    capture: transmissionTraceCapture(state.lens),
+  };
   const traceRay = prepareEngineTrace(state, traceOptions);
   const imagePoint = state.lens.imageSurface === null ? mtfFlatImagePoint : mtfCurvedImagePoint;
   // The chief is a geometric reference, not a pupil sample: trace it through every surface even
@@ -693,6 +724,7 @@ export function traceMtfLaunchPlaneBundle(
     columns: grid.columns,
     rows: grid.rows,
     mirrored: mirror,
+    landingPlaneZ: imagePlaneZ,
     stepMm: grid.step,
     objectPoint: launch.objectPoint,
     openBorders: { x: false, y0: false, y1: false },

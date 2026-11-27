@@ -159,7 +159,7 @@ the working number unavailable and names its surface (and whether it is before t
 or failed marginal ray also leaves the number null. At a finite station, a chief ray from a 0.01 mm off-axis object
 height supplies signed `magnification` as chief image height / object height on the applied chart plane, including
 a held or best-axial shift. Infinity and failed chief rays carry null magnification. These readouts are cached
-with the focus search and do not change any field values. Advanced shows the working aperture and the on-axis
+with the focus search and do not change any field values. When the axial field uses the same stop grid and image plane as the focus search, it reuses those wavelength bundles within the request. A different image plane traces a fresh bundle. Advanced shows the working aperture and the on-axis
 first-line diffraction cutoff `1/(λ·N_working)`, plus finite object-side frequency examples `ν_object = |m|·ν_image`.
 
 **Ray failures** (`trace/rayClassification.ts`, also used by the aimed launch and the vignetting tab). TIR and aperture
@@ -180,28 +180,17 @@ curve the ladder keeps because no finer grid gave one says why. The reference ch
 checks, so a clipped chief still fixes the common image reference.
 
 **Methods.** Geometric OTF is the normalized intensity-weighted Fourier sum of exact landing points. The diffraction
-method (`mtfShearedOtf.ts`, the tab's default, labelled "Diffraction-corrected") evaluates Hopkins' OTF from the same rays. At frequency ν the pupil
-overlaps itself sheared by λν, and each overlapping pair carries the phase exp(i2π[W(p+s) − W(p−s)]). That wavefront
-difference is the integral of the wavefront slope along the shear, which is what a ray's landing error measures
-(ε = −(λ/NA) ∂W/∂p), so five rays per pair (centre, ±s/2, ±s, Boole's rule) give the phase from landings alone.
-The rule integrates the slope exactly through sixth-order aberration along the shear; what remains is lattice
-sampling, which the grid ladder refines (at a 32-cell pupil two waves of balanced spherical read 0.011 low). The pupil is √weight on the regular stop lattice, with
-amplitude and landing error interpolated linearly along each lattice line. The shear is fixed in direction cosine:
-each pair opens by the lattice cells that λν spans at its own centre, from the rays' own cosines, because a
-wide-angle corner maps the lattice onto the exit pupil unevenly. That correction is first order and grid refinement
-does not remove its residual: within 0.003 up to 55 % of the cutoff on catalog corners, 0.009 near the cutoff of
-a 55° corner. Half-cutoff analytic controls pin two known limitations that grid refinement does not remove: about
-0.0023 low for 3r⁸ waves and about 0.0005, 0.0019 and 0.007 high for the Jacobian-weighted map
-q_y/NA = v + a(1 − v²) at a = 0.05, 0.1 and 0.2, respectively. Every wavelength shears its own lattice
-against the field's one image reference, so lateral color stays in the phase that `combineOtfs` sums. It needs no
-optical path, reference sphere or validity gate, and tends to the geometric OTF as ν → 0. Its kernel costs two to five
-times the geometric sum, which the ray trace dwarfs: request time did not rise. `MtfFieldResult.diffractionLimit` is the same overlap with zero phase: the response the traced pupil
-would give with no aberration. A pair whose rays straddle a gap in the beam has no landing errors between them, so its
-phase is right only for defocus. MTF rejects obstructed systems, which would need the optical-path route; on a
-refractive lens this happens only where a detached arc of rays transmits beside the main beam (13 of 5,723 catalog
-field bundles), and a field whose overlap is more than 1 % such pairs says so (`MTF_STRADDLING_NOTE_SHARE`).
+method (the tab's default, labelled "Diffraction-corrected") captures optical path for each transmitted
+sample and computes Hopkins' OTF in image-direction coordinates. Each wavelength uses its own λν shear and
+the same image reference. The spectral sum combines complex OTFs before taking their magnitude.
+The diffraction limit accumulates zero-phase overlap over the same pairs. When the optical-path mesh folds
+or an adjacent-cell phase difference reaches a quarter wave, that wavelength uses the ray-slope approximation
+in `mtfShearedOtf.ts`. The field names the wavelengths that needed it. It integrates five landing samples
+with Boole's rule and approximates the direction shear on the stop grid. This fallback can retain a bias
+after refinement, particularly on off-axis, high-frequency cuts. The gap-straddling diagnostic applies to
+the fallback.
 
-`mtfWavefront.ts` is the reference the estimator is held against, not a product path. With `recordOpticalPath` the
+`mtfWavefront.ts` implements the mapped optical-path calculation. With `recordOpticalPath` the
 sequential trace accumulates incident-medium optical length; `rayOpticalPathToImageMm` carries it to the foot of the
 perpendicular from the image point (a reference sphere at infinity, whose pupil coordinate is the ray's own direction
 cosine). `waveLatticeOtf` anchors quadrature at each lit endpoint and locates its partner at the exact shear ±λν in
@@ -209,9 +198,17 @@ a piecewise-affine 2-D direction mesh, holding the perpendicular cosine fixed. F
 stop-to-direction area Jacobian J, it interpolates field amplitude √flux/√J and unwrapped optical path, then
 integrates endpoint pairs with direction-area weight J. It averages the equivalent forward and backward integrals
 to preserve symmetry on the sampled grid. Pairs across an obstruction still count without sampling dark midpoints.
-Dark cells carry linearly extended map coordinates and zero amplitude; only triangles touching a lit vertex enter
+Dark rim cells carry locally fitted affine map coordinates and zero amplitude; only triangles touching a lit vertex enter
 the endpoint lookup, and a point outside that support contributes zero.
-It reads how far the rays travelled where the estimator reads where they land, so the two share only the trace.
+On the requested flat image plane, reference position minus landing gives the optical-path derivative with
+respect to index-scaled direction cosine. A curved image uses the displacement to the ray along the two
+local image tangents at the reference point. A lit triangle uses these derivatives for quadratic phase interpolation,
+independently of transmission. A partially lit triangle extends the measured slope only if trapezoidal integration
+of adjacent ray slopes agrees with the traced path change along both grid axes to half the MTF tolerance in radians.
+Otherwise it interpolates measured paths on the illuminated vertices. A singular tangent projection also uses sampled paths.
+For a centered rotationally symmetric refractive pupil, equal measured flux and path agreement within 0.00001 wave
+under transposition and central inversion allow one half-pupil integral to supply both axial cuts.
+The external comparator independently integrates a bilinearly mapped pupil on S&S rays and optiland wavefronts.
 It is valid only while the phase turns less than a quarter wave per lattice cell (`waveLatticePhaseStep`),
 which returns infinity for a folded or degenerate map on that interpolation support. Consistent triangle orientation,
 disjoint boundary edges and unit winding inside boundary triangles establish invertibility, including holes and
