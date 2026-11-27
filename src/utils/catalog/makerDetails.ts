@@ -110,7 +110,8 @@ export const MAKER_DETAILS: Record<string, MakerDetails> = {
       "Chinese optical manufacturer Shenzhen 7Artisans Photoelectric Technology Co., Ltd., producing manual-focus, autofocus and cinema lenses under the 7Artisans name.",
     history:
       "7Artisans was established in Shenzhen in 2016 by a group of photography enthusiasts. The company's account traces the project to a gathering in 2015 that brought together optical-design, manufacturing and camera-collecting interests. In September 2016, the group completed 100 engineering samples of a 50mm f/1.1 lens, with seven participants remaining to give the brand its name. The M 50mm f/1.1 entered commercial sale in 2017, followed by lenses for additional mounts and focal lengths. The Vision cinema series appeared in 2021 as the company expanded beyond still-photography lenses. Its later autofocus range includes the full-frame AF 135mm f/1.8 MAX, specified with sixteen elements in thirteen groups and versions for Sony E, Nikon Z and L mount.",
-    notableDesigns: "AF 135mm f/1.8 MAX, M 50mm f/1.1",
+    notableDesigns:
+      "M 50mm f/1.1, 35mm f/1.2, M 28mm f/1.4, Vision cinema lenses, AF 50mm f/1.8, AF 27mm f/2.8, AF 85mm f/1.8, AF 135mm f/1.8 MAX",
   },
   // https://www.zenitcamera.com/archive/history/marks.html
   // https://www.zenitcamera.com/archive/history/production-reliability-longevity.html

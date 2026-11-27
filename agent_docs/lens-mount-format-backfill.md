@@ -7,9 +7,9 @@ the fields unset and add a note here until a source check resolves it.
 
 ## Current Coverage
 
-- Total lens data files, literature reconstructions excluded: **1217**
-- Files with both `lensMounts` and `imageFormat`: **1154**
-- Files missing `lensMounts`: **52** (34 public lenses, 5 hidden patent designs and 13 hidden reference fixtures)
+- Total lens data files, literature reconstructions excluded: **1223**
+- Files with both `lensMounts` and `imageFormat`: **1158**
+- Files missing `lensMounts`: **54** (36 public lenses, 5 hidden patent designs and 13 hidden reference fixtures)
 - Files missing `imageFormat`: **45** (31 public lenses, 2 hidden patent designs and 12 hidden reference fixtures)
 - Files missing both fields: **34**
 - Formats currently in use: `1-1.7-inch-type`, `1-1.8-inch-type`, `1-2.3-inch-type`, `1-2.55-inch-type`,
@@ -43,6 +43,8 @@ with remaining compatibility questions explained in the lens analysis.
 | Vivitar Series 1 450mm f/4.5 | Secondary material describes T-mount, but the source set lacks a manufacturer mechanical specification for this rare production correlation. |
 | Nikon Ultra-Micro-Nikkor 29.5mm | Photolithography installation; its optical back focus and reduction ratio do not identify a consumer camera mount. |
 | Meyer Kino-Plasmat 100mm; Double-Plasmat 135mm | Historical barrel/specimen evidence and normalized patent scaling do not select a standard factory camera mount. |
+| Mamiya Macro 120mm f/4 (JP 2003-185916 A Design) | The example fits the Mamiya 645 AF 120mm f/4 Macro by specification only (9/8, 32°, 1:1); no maker section was found to confirm the product, so no mount is assigned. |
+| 7ARTISANS 40mm f/5.6 (CN 221175107 U Design) | CN 221175107 U names no product and no 7Artisans lens with this prescription is documented, so no production mount is assigned. |
 | Minor Photographic Objective 65mm f/2 | US 1,360,667 Figure 2 establishes no production manufacturer, mount, camera format, or image circle. The approximately 65° field and ambiguous focal distance do not establish a format. |
 | Russar-21; Russar-22 | Experimental prescription sources lack a manufacturer-issued standardized production fitting. |
 | Voigtländer Dynar | Normalized patent model lacks a selected commercial installation; leave mount and format unset. |
