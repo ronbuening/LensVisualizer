@@ -24,6 +24,7 @@ import { evaluateSellmeier, resolveGlass } from "../../../src/optics/chromatic/g
 import { LINE_NM } from "../../../src/optics/chromatic/spectralLines.js";
 import type { ElementData, SurfaceData, SurfaceSpectral } from "../../../src/types/optics.js";
 import { ALL_CATALOG_KEYS } from "../../../src/utils/catalog/lensCatalog.js";
+import { finiteOnlyFixture } from "./finiteOnlyFixture.js";
 
 interface EngineSliderState {
   focusT: number;
@@ -405,6 +406,27 @@ describe("canonical compiler ownership", () => {
       expect(actual.imagePlane).toBe(compiled.imagePlane);
       expect(actual.z).toEqual(expected.z);
       expect(actual.imgZ).toBe(expected.imgZ);
+    }
+  });
+
+  it("snaps finite-only controls to authored states from compiled authority alone", () => {
+    const compiled = compiledLensFromRuntime(buildLens(finiteOnlyFixture()));
+    const source = new Proxy(compiled.source, {
+      get() {
+        throw new Error("source read during preparation");
+      },
+    });
+    const guarded = { ...compiled, source };
+    // An absent or invalid coordinate takes the authored default; a valid one, the nearest state. Nothing else travels.
+    for (const [requested, focusT] of [
+      [NaN, 1],
+      [-1, 1],
+      [2, 1],
+      [0.2, 0],
+      [0.8, 1],
+    ]) {
+      for (const state of [prepareState(guarded, requested, 1, 1), prepareStateUncached(guarded, requested, 1, 1)])
+        expect([state.focusT, state.zoomT, state.aberrationT]).toEqual([focusT, 0, 0]);
     }
   });
 

@@ -6,6 +6,7 @@ import { exportDataTs, exportJson, importJson, draftFilename } from "../../../sr
 import { commonGlasses, findGlass, searchGlass, nearestGlass } from "../../../src/lensBuilder/glassSearch.js";
 import { ALL_CATALOG_KEYS, authoredInputForKey } from "../../../src/utils/catalog/lensCatalog.js";
 import type { LensDataV2Input } from "../../../src/types/lensDataV2.js";
+import { finiteOnlyFixture } from "../optics/finiteOnlyFixture.js";
 
 const authored = ALL_CATALOG_KEYS.map((k) => authoredInputForKey(k)!);
 const catalog = authored.filter((d) => parseUntrustedDraft(d).ok);
@@ -72,10 +73,19 @@ describe("lens builder authored model", () => {
     expect(result.ok).toBe(false);
     if (!result.ok) expect(result.issues.join(" ")).toMatch(/surfaces/);
   });
+
+  it("refuses a finite-only draft whose conjugate the prescription does not focus", () => {
+    const draft = finiteOnlyFixture();
+    expect(validateDraft(draft).ok).toBe(true);
+    draft.focus.conjugates![1].objectDistanceMm = 5000;
+    const result = validateDraft(draft);
+    expect(result.ok).toBe(false);
+    if (!result.ok) expect(result.issues.join(" ")).toMatch(/keyframe 1: the prescription does not image/);
+  });
 });
 
 describe("builder transport", () => {
-  it.each([...inputs, extensionInput, sourceInput, literatureInput])(
+  it.each([...inputs, extensionInput, sourceInput, literatureInput, finiteOnlyFixture()])(
     "round-trips authored data ($key) through a complete TS file",
     (input) => {
       const source = exportDataTs(input);

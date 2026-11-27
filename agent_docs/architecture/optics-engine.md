@@ -984,7 +984,13 @@ EFL and exposure-correction math, retaining existing control and fallback contra
 (0.003, in `state/focusDistance.ts`) defines when focus is treated as infinity: it gates distance labels and remapping,
 EFL (including perspective field scale), f-number and magnification summaries, pupil-aberration paraxial baselines,
 and the real-ray sensitivity difference `kt - k0` used for conjugate correction. Below the cutoff `conjugateK` is
-zero, matching the pre-optics-2 behavior. The cutoff does not snap interpolated surface gaps.
+zero, matching the pre-optics-2 behavior. The cutoff does not snap interpolated surface gaps. A lens that declares
+`focus.finiteOnly` (`flags.isFiniteOnly`, `RuntimeLens.isFiniteOnly`) has no infinity state: its coordinate 0 is an
+authored finite object, so code asking whether an object is at infinity uses `isInfinityFocus(focusT, finiteOnly)`,
+never the bare cutoff. Its preparation snaps focus to the nearest authored state, its diagram rays start at the
+authored object (`traceFiniteFocusFan`, aimed like finite MTF), its labels report the authored object-to-image
+distance (`focusDistanceAt`; `modeledFocusDistanceAt` is null), and `conjugateK` is zero. Its analysis context leaves
+only the summary and MTF available; `LENS_DATA_SPEC.md` § Finite-only states has the data rules.
 
 Focus labels (`formatDist` and `focusLabelDistanceM` in `first-order/format.ts`, which feed the focus readout, breathing,
 the summary and the uncertified patent-station buttons) report `modeledFocusDistanceAt` (`state/fieldAdapters.ts`).

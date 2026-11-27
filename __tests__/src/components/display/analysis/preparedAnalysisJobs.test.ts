@@ -31,7 +31,7 @@ const {
   mockComputeFieldCurvatureBundle: vi.fn(),
   mockComputeOpticalSummary: vi.fn(),
   mockComputeVignettingCurve: vi.fn(),
-  mockPreparedState: { cacheKey: "prepared-analysis-test", lens: {} },
+  mockPreparedState: { cacheKey: "prepared-analysis-test", lens: { flags: {} } },
   mockPrepareRuntimeState: vi.fn(),
 }));
 
@@ -349,7 +349,7 @@ const opticalSummary = {
 
 describe("prepared-state analysis tabs", () => {
   beforeEach(() => {
-    mockPreparedState.lens = {};
+    mockPreparedState.lens = { flags: {} };
     mockComputeBothPupilAberrationProfiles.mockReset();
     mockComputeBothPupilAberrationProfiles.mockReturnValue(pupilProfiles);
     mockComputeChromaticAnalysis.mockReset();

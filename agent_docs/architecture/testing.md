@@ -94,6 +94,8 @@ Shared browser/router helpers remain at `__tests__/testUtils.tsx`. They cover:
 Optics tests share `__tests__/src/optics/testLensFixtures.ts`: the canonical `build()` wrapper, `apertureAt()`,
 request helpers `analysisRequestForLens`, `analysisRequestAt` and `mtfInputs`, six
 lazily memoized production lenses, and synthetic single-element fixtures for layout, keyframe, TIR, ghost, and miss cases.
+`__tests__/src/optics/finiteOnlyFixture.ts` holds the synthetic finite-only singlet as plain V2 data, with no engine
+imports, so the browser spec can load it too.
 
 ## What Tests Cover
 

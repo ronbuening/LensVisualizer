@@ -29,6 +29,7 @@ import {
   publishedZoomStations,
 } from "../../optics/publishedStations.js";
 import { snapToZeroStop } from "../../utils/style/sliderStops.js";
+import { selector } from "../../utils/style/styles.js";
 import { focusStationOptions, focusTAfterZoomStep, patentStationNotes, zoomStationOptions } from "./patentStations.js";
 import SliderControl from "./SliderControl.js";
 import SliderResetButton from "./SliderResetButton.js";
@@ -353,7 +354,27 @@ export default function DiagramControls({
         </SliderControl>
       )}
 
-      {showSliders && (
+      {showSliders && L.isFiniteOnly && (
+        <label style={{ display: "flex", flexDirection: "column", gap: 4, color: t.label, fontSize: 10 }}>
+          FINITE OBJECT
+          <select
+            aria-label="Finite focus state"
+            value={focusT}
+            onChange={(event) => handleFocusChange(Number(event.target.value))}
+            style={{ ...selector(t, false), fontSize: 11 }}
+          >
+            {L.source.focus.keyframes.map((value, index) => (
+              <option key={value} value={value}>
+                {`State ${index + 1}: ${formatDist(value, L, zoomT)}`}
+              </option>
+            ))}
+          </select>
+          <span style={{ color: t.muted }}>
+            {`Authored states only, no focus travel between them. Fixed iris \u00d8${(2 * currentPhysStopSD).toFixed(2)} mm.`}
+          </span>
+        </label>
+      )}
+      {showSliders && !L.isFiniteOnly && (
         <SliderControl
           t={t}
           compact={compact}

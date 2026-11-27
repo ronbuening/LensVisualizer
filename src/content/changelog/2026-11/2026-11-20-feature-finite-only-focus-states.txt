@@ -1,0 +1,1 @@
+Added explicit finite-only focus states with finite-object rays and reference-line MTF

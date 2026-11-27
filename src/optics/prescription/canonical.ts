@@ -160,7 +160,7 @@ export interface CanonicalZoom {
 export interface CanonicalConjugate {
   /** Index into `zoom.stations`; 0 on a prime. */
   zoomStation: number;
-  /** Index into `focus.keyframes`; never 0, which is infinity. */
+  /** Index into `focus.keyframes`; 0 is allowed only in the explicit finite-only domain. */
   keyframe: number;
   objectDistanceMm: number;
   distanceReference: FiniteConjugate["distanceReference"];
@@ -169,8 +169,9 @@ export interface CanonicalConjugate {
 }
 
 export interface CanonicalFocus {
+  finiteOnly?: { defaultKeyframe: number };
   closeFocusM: number;
-  /** Normalized focus coordinate of each authored thickness, from 0 (infinity) to 1 (close focus). */
+  /** Normalized authored coordinates; 0 is infinity unless finiteOnly is set. */
   keyframes: number[];
   /** Focus slider step. */
   step: number;
@@ -234,8 +235,9 @@ export function stopRadiusAuthority(facts: {
   folded: boolean;
   hasSchedule: boolean;
   stopInsideElement: boolean;
+  finiteOnly?: boolean;
 }): StopRadiusAuthority {
-  if (facts.folded) return "authored";
+  if (facts.folded || facts.finiteOnly) return "authored";
   if (facts.hasSchedule) return "schedule";
   return facts.stopInsideElement ? "authored" : "derived";
 }
@@ -249,6 +251,7 @@ export function stopRadiusAuthority(facts: {
  * @returns where the wide-open stop radius comes from
  */
 export function lensDataStopRadiusAuthority(data: {
+  finiteOnlyFocus?: unknown;
   opticalPath?: unknown;
   zoomStopSemiDiameters?: unknown;
   surfaces: readonly { label: string; interaction?: { type?: unknown }; stopPlacement?: unknown }[];
@@ -259,6 +262,7 @@ export function lensDataStopRadiusAuthority(data: {
       data.surfaces.some((surface) => surface.interaction && surface.interaction.type !== "refract"),
     ),
     hasSchedule: Boolean(data.zoomStopSemiDiameters),
+    finiteOnly: Boolean(data.finiteOnlyFocus),
     stopInsideElement: data.surfaces.some(
       (surface) => surface.label === "STO" && surface.stopPlacement === "inside-element",
     ),

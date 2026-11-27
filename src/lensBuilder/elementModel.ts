@@ -278,6 +278,7 @@ function checkModel(model: BuilderModel): void {
  */
 export function toElementModel(draft: LensDataV2Input): ToModelResult {
   const reasons: string[] = [];
+  if (draft.focus.finiteOnly) reasons.push("Finite-only states and their physical iris need Advanced JSON.");
   if (draft.opticalPath || draft.surfaces.some((s) => s.interaction && s.interaction.type !== "refract"))
     reasons.push("Folded, mirror and blocking paths need Advanced JSON.");
   if (draft.imageSurface) reasons.push("A curved image surface needs Advanced JSON.");

@@ -5,7 +5,7 @@
  */
 
 import { wideOpenStop } from "../state/apertureStop.js";
-import { FOCUS_INFINITY_CUTOFF } from "../state/focusDistance.js";
+import { FOCUS_INFINITY_CUTOFF, isInfinityFocus } from "../state/focusDistance.js";
 import type { ParaxialTraceResult } from "../../types/optics.js";
 import { traceParaxialSurfaces } from "../math/paraxial.js";
 import { clearSemiDiameter } from "../geometry/rimCut.js";
@@ -152,10 +152,11 @@ export function entrancePupil(
  * Estimate focus-dependent conjugate correction from exact real-ray sensitivity.
  *
  * @param state - prepared geometry for the current controls
- * @returns relative conjugate correction, zero at infinity focus
+ * @returns relative conjugate correction, zero at infinity focus and on a finite-only lens
  */
 export function conjugateK(state: PreparedGeometry): number {
-  if (state.focusT < FOCUS_INFINITY_CUTOFF) return 0;
+  // A finite-only lens traces from its authored object (`traceFiniteFocusFan`): no collimated launch to correct.
+  if (state.lens.flags.isFiniteOnly || state.focusT < FOCUS_INFINITY_CUTOFF) return 0;
   const du = 1e-5;
   const currentEP = entrancePupil(state, {
     stopSD: wideOpenStop(state.lens, state.zoomT),
@@ -184,7 +185,7 @@ export function conjugateK(state: PreparedGeometry): number {
  * @returns 1/s in 1/mm, positive for a real object; 0 at infinity focus and for folded paths
  */
 export function paraxialObjectVergence(state: PreparedGeometry): number {
-  if (state.focusT < FOCUS_INFINITY_CUTOFF || state.lens.flags.isFoldedOptics) return 0;
+  if (isInfinityFocus(state.focusT, state.lens.flags.isFiniteOnly) || state.lens.flags.isFoldedOptics) return 0;
   return paraxialInFocusVergence(state);
 }
 

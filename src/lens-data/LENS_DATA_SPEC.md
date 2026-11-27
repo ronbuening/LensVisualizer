@@ -1082,6 +1082,9 @@ focus: {
 | `description` | `string` | | The focus mechanism, shown in the UI, in plain words. With no source close-focus data, say so (`Infinity focus only. The patent gives no close-focus spacings, so focus travel is not modeled.`), never an internal status code. |
 | `conjugates` | `ConjugateV2Input[]` | | Source-certified finite conjugates; see below. |
 | `published` | `number[]` | `[]` | On a prime: the focus keyframe indices (≥ 1) the source tabulates beyond infinity. A zoom's stations carry theirs. |
+| `finiteOnly` | `{ defaultKeyframe: number }` | absent | Explicit finite states with no infinity endpoint; see [Finite-only states](#finite-only-states) for its coordinate, conjugate, close-focus and iris rules. |
+
+The infinity and interpolated-focus conventions in this table and below apply when `finiteOnly` is absent.
 
 - When a published object-to-image distance is available, its keyframe coordinate is `closeFocusM / distanceM`.
   Values between keyframes are interpolated piecewise-linearly and are not source-published mechanical positions.
@@ -1148,8 +1151,9 @@ focus: {
 },
 ```
 
-- `zoomStation` indexes `zoom.stations` (0 on a prime); `keyframe` indexes `focus.keyframes` and is never 0
-  (infinity). Each pair names an authored state, and no state is certified twice.
+- `zoomStation` indexes `zoom.stations` (0 on a prime); `keyframe` indexes `focus.keyframes`. Index 0 is reserved for
+  infinity unless `finiteOnly` explicitly makes it a finite state. Each pair names an authored state, and no state
+  is certified twice.
 - `objectDistanceMm` is positive and axial, from the object plane to the current first vertex
   (`distanceReference: "first-surface"`) or to the fixed image plane (`"image-plane"`). `source` is non-empty and
   identifies the evidence for both the distance and the focus spacings.
@@ -1191,6 +1195,32 @@ focus: {
 - Source-rounded prescriptions may keep residual defocus: MTF evaluates the authored image plane by default, reports the
   axial best-focus shift as a diagnostic, and moves the plane only when the viewer asks. Do not edit the authored image
   distance to improve simulated MTF.
+
+### Finite-only states
+
+A sequential rectilinear prime may declare `focus.finiteOnly: { defaultKeyframe }` when its source defines only finite
+operating states. Its focus coordinates then name those states: coordinate `0` is finite, not infinity, and the viewer
+offers a state selector with no focus travel between states.
+
+- `keyframes` may be a single `[0]`; more states begin at `0`, end at `1` and increase. `defaultKeyframe` names the
+  state a new view, a lens change and a reset show.
+- Every keyframe has exactly one conjugate, keyframe `0` included. Omit `focus.published`: every state is explicit.
+  State provenance distinguishes a derived conjugate from a printed operating state; do not put a calculated
+  magnification in `sourceMagnification`.
+- The prescription must focus each conjugate on its authored image plane by the paraxial verdict of
+  `npm run audit:finite-conjugates` (above). The Lens Builder and the catalog close-focus sweep apply that verdict
+  through `validateFiniteOnlyStates` and refuse a state that fails it.
+- `closeFocusM` is the object-to-image distance of the nearest state, within 5 %.
+- The iris is fixed at the authored `STO.sd`: set `aperture.fStops` to `[nominalFNumber]` and `aperture.maxFNumber` to
+  `nominalFNumber`. The nominal f-number is an intrinsic software reference, not a finite working aperture or a retail
+  claim.
+- Ingest refuses the domain with a zoom, a folded or mirror path, perspective or aberration controls, a
+  non-rectilinear projection, a curved `imageSurface` or `catalog.acceptsTeleconverters`. V1 export refuses it;
+  Builder Advanced JSON and V2 export keep it, and the element editor does not show it.
+
+The viewer draws monochrome rays from the authored object, and the optical summary and reference-line MTF use the same
+object; MTF stays within the modeled field, which a declared image format does not extend. Chromatic rays, the other
+analysis tabs, aperture sweeps and comparison stay unavailable until each is validated for finite objects.
 
 ### Published Stations
 
@@ -1789,7 +1819,8 @@ Code: `src/optics/prescription/ingestV2.ts` unless noted. Each refusal has a syn
 | `gaps` and `aberrationControl.gaps` are keyed by surface labels; entries have `values` (and `aberrationControl` has `gaps`); rows match the station and keyframe counts | `ingestGaps`, `ingestAberrationControl` |
 | A gap surface leaves `d` out, even when it would agree; every other surface writes `d` | `ingestSurfaces` |
 | At least two zoom stations, each with `focalLengthMm`; `nominalFNumber`, `stopSemiDiameter` and `closeFocusM` on every station or none; labels on all stations or the first and last | `ingestZoom` |
-| `focus.keyframes` is a list of at least two numbers; `focus.published` only on a prime; published keyframes and conjugate stations/keyframes name real ones; at least one station published | `ingestLensV2`, `ingestPublishedStations`, `ingestConjugates` |
+| `focus.keyframes` is a list of at least two numbers (one with `focus.finiteOnly`); `focus.published` only on a prime; published keyframes and conjugate stations/keyframes name real ones; at least one station published | `ingestLensV2`, `ingestPublishedStations`, `ingestConjugates` |
+| `focus.finiteOnly`: a valid `defaultKeyframe`; exactly one conjugate per keyframe; no `focus.published`; `aperture.fStops` `[nominalFNumber]` and `aperture.maxFNumber` equal to it; a sequential rectilinear prime with a flat image, without movement, aberration controls or teleconverters | `ingestLensV2` |
 | The design f-number is on `aperture` or on the stations, not both and not neither | `ingestLensV2` |
 | The stop carries `sd` exactly when its radius is authored | `ingestSurfaces`, with the authority from `stopRadiusAuthority` (`canonical.ts`) |
 

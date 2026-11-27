@@ -11,7 +11,8 @@ import { authorPathForName } from "../../../../src/utils/catalog/authorCatalog.j
 import { espacenetPatentUrl } from "../../../../src/utils/catalog/patentCatalog.js";
 import themes from "../../../../src/utils/theme/themes.js";
 import type { PatentExample, RuntimeLens } from "../../../../src/types/optics.js";
-import { buildSimplePositiveElementLens } from "../../optics/testLensFixtures.js";
+import { build, buildSimplePositiveElementLens } from "../../optics/testLensFixtures.js";
+import { finiteOnlyFixture } from "../../optics/finiteOnlyFixture.js";
 
 vi.mock("../../../../src/utils/featureFlags.js", async (importOriginal) => {
   const actual = await importOriginal<typeof import("../../../../src/utils/featureFlags.js")>();
@@ -371,4 +372,12 @@ it("keeps source prescription notes reachable with compact details closed", () =
   expect(disclosure.closest("details")).toBeTruthy();
   fireEvent.click(disclosure);
   expect(screen.getByText(/source rating is not reproduced/)).toBeTruthy();
+});
+
+it("shows a finite-only lens's object rays and drops its infinity and color actions", () => {
+  renderHeader({ L: build(finiteOnlyFixture()) });
+  expect(screen.queryByRole("button", { name: /TRACKS FOCUS|FROM \u221e/ })).toBeNull();
+  expect(screen.queryByRole("button", { name: "COLOR" })).toBeNull();
+  expect(screen.getByText("FROM OBJECT")).toBeTruthy();
+  expect(screen.getByText("Color rays unavailable for finite-only lenses")).toBeTruthy();
 });

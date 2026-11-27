@@ -114,9 +114,13 @@ export interface MtfConjugateConsistency extends MtfConjugateCheck {
  * The alternate distance reference is diagnostic only and never substitutes a source point.
  *
  * @param request - prepared authored state and physical aperture used for the working f-number
+ * @param realRayDiagnostic - run the real-ray axial MTF search; it never changes the verdict, so a per-edit check skips it
  * @returns diagnostics, or null when this exact state declares no finite conjugate
  */
-export function assessMtfConjugateConsistency(request: AnalysisRequest): MtfConjugateConsistency | null {
+export function assessMtfConjugateConsistency(
+  request: AnalysisRequest,
+  { realRayDiagnostic = true }: { realRayDiagnostic?: boolean } = {},
+): MtfConjugateConsistency | null {
   const state = request.preparedGeometry;
   const conjugate = mtfFiniteConjugate(state);
   if (!conjugate) return null;
@@ -147,7 +151,7 @@ export function assessMtfConjugateConsistency(request: AnalysisRequest): MtfConj
           Math.abs(otherReference.offsetDepths) > 1)));
 
   let realRayBestFocusOffsetMm: number | null = null;
-  if (support.available) {
+  if (realRayDiagnostic && support.available) {
     const launch = prepareMtfFieldLaunch(state, options, support, 0);
     const bundle = launch?.aim
       ? traceMtfStopBundle(state, options, support, launch, MTF_FOCUS_GRID, support.spectralLines[0])

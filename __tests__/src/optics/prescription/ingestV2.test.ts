@@ -22,7 +22,7 @@ import {
   ingestTeleconverter,
   ingestTeleconverterV2,
 } from "../../../../src/optics/prescription/ingestV2.js";
-import { toLensData, toTeleconverterData } from "../../../../src/optics/prescription/v1/toLensData.js";
+import { toLensData, toLensDataInput, toTeleconverterData } from "../../../../src/optics/prescription/v1/toLensData.js";
 import type { LensDataV2Input, TeleconverterDataV2Input } from "../../../../src/types/lensDataV2.js";
 import type { LensDataInput, RuntimeLens } from "../../../../src/types/optics.js";
 import type { TeleconverterData } from "../../../../src/types/teleconverter.js";
@@ -31,6 +31,8 @@ import {
   ingestTeleconverter as convertTeleconverter,
 } from "../../../../src/optics/lensDataConversion.js";
 import { FIXTURE_PAIRS, type FixturePair } from "./ingestV2Fixtures.js";
+import { finiteOnlyFixture } from "../finiteOnlyFixture.js";
+import { toLensDataV2Input } from "../../../../src/optics/prescription/toLensDataV2.js";
 
 const lensPrescription = (file: object) => convertLens(file as LensDataInput).prescription;
 const converterPrescription = (file: object) => convertTeleconverter(file as TeleconverterData).prescription;
@@ -777,5 +779,57 @@ describe("V2 refusals name the authored path", () => {
     expect(() => ingestLensV2(editedV2("prime", (file) => (file.surfaces[1].medium = 13)))).toThrow(
       /Prescription "fixture-prime" cannot be ingested/,
     );
+  });
+});
+
+describe("finite-only focus domain", () => {
+  /** The fixture, edited by `edit`. */
+  const finite = (edit: (file: LensDataV2Input) => void = () => {}) => {
+    const file = finiteOnlyFixture();
+    edit(file);
+    return file;
+  };
+
+  it("keeps the domain through the V2 view and refuses V1, which has an infinity endpoint", () => {
+    const ingested = ingestLens(finiteOnlyFixture());
+    const written = toLensDataV2Input(ingested);
+    expect(written.focus.finiteOnly).toEqual({ defaultKeyframe: 1 });
+    expect(written.focus.published).toBeUndefined();
+    expect(ingestLens(written).prescription).toEqual(ingested.prescription);
+    expect(() => toLensData(ingested)).toThrow(/requires V2/);
+    expect(() => toLensDataInput(ingested)).toThrow(/requires V2/);
+    expect(refusalsOf({ ...pairOf("prime").v1, finiteOnlyFocus: { defaultKeyframe: 0 } }, ingestLensV1)).toContain(
+      "Finite-only focus requires V2 input",
+    );
+  });
+
+  it("accepts a single finite state at coordinate zero", () => {
+    const single = finite((file) => {
+      file.focus.keyframes = [0];
+      file.focus.finiteOnly = { defaultKeyframe: 0 };
+      file.focus.conjugates!.pop();
+      file.gaps!["2"].values = [[100]];
+    });
+    expect(refusalsOf(single)).toEqual([]);
+  });
+
+  it.each<[string, (file: LensDataV2Input) => void, RegExp]>([
+    [
+      "a state without a conjugate",
+      (file) => file.focus.conjugates!.pop(),
+      /exactly one explicit conjugate for keyframe 1/,
+    ],
+    ["a conjugate past the states", (file) => (file.focus.conjugates![1].keyframe = 2), /names no finite keyframe/],
+    ["a default past the states", (file) => (file.focus.finiteOnly!.defaultKeyframe = 2), /defaultKeyframe must name/],
+    ["an infinity-based published list", (file) => (file.focus.published = [1]), /omit the legacy infinity-based/],
+    ["an iris with more than one stop", (file) => (file.aperture.fStops = [8, 11]), /fixed iris/],
+    ["the default maximum f-number", (file) => delete file.aperture.maxFNumber, /fixed iris/],
+    ["a zoom", (file) => (file.zoom = { stations: [{ focalLengthMm: 50 }, { focalLengthMm: 60 }] } as never), /primes/],
+    ["a mirror surface", (file) => (file.surfaces[2].interaction = { type: "reflect" } as never), /primes/],
+    ["a fisheye projection", (file) => (file.projection = { kind: "fisheye-equisolid" } as never), /rectilinear/],
+    ["a curved image", (file) => (file.imageSurface = { R: -100 } as never), /flat image/],
+    ["teleconverters", (file) => (file.catalog = { acceptsTeleconverters: true }), /teleconverters/],
+  ])("refuses %s", (_, edit, refusal) => {
+    expect(refusalsOf(finite(edit)).join("\n")).toMatch(refusal);
   });
 });

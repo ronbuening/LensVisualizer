@@ -159,15 +159,20 @@ export function validateStations(
 
   /* ── Focus interpolation positions ── */
   const focusPositionCount =
-    Array.isArray(data.focusPositions) && data.focusPositions.length >= 2 ? data.focusPositions.length : 2;
+    Array.isArray(data.focusPositions) && data.focusPositions.length >= (data.finiteOnlyFocus ? 1 : 2)
+      ? data.focusPositions.length
+      : 2;
   if (data.focusPositions !== undefined) {
-    if (!Array.isArray(data.focusPositions) || data.focusPositions.length < 2) {
+    if (!Array.isArray(data.focusPositions) || data.focusPositions.length < (data.finiteOnlyFocus ? 1 : 2)) {
       errors.push(`"focusPositions" must be an array of at least 2 normalized focus coordinates`);
     } else {
       if (!data.focusPositions.every((n: unknown) => typeof n === "number" && isFinite(n))) {
         errors.push(`"focusPositions" must contain only finite numbers`);
       } else {
-        if (data.focusPositions[0] !== 0 || data.focusPositions[data.focusPositions.length - 1] !== 1) {
+        if (
+          data.focusPositions[0] !== 0 ||
+          (data.focusPositions.length > 1 && data.focusPositions[data.focusPositions.length - 1] !== 1)
+        ) {
           errors.push(`"focusPositions" must begin at 0 (infinity) and end at 1 (close focus)`);
         }
         for (let i = 1; i < data.focusPositions.length; i++) {
@@ -193,7 +198,7 @@ export function validateStations(
           !c ||
           typeof c !== "object" ||
           !Number.isFinite(c.focusT) ||
-          c.focusT <= 0 ||
+          (data.finiteOnlyFocus ? c.focusT < 0 : c.focusT <= 0) ||
           c.focusT > 1 ||
           !Number.isFinite(c.zoomT) ||
           c.zoomT < 0 ||

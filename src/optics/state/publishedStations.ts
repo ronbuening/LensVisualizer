@@ -128,7 +128,13 @@ export function publishedStationGrid(data: PublishedStationSource | CanonicalLen
     const focus = Array.from(
       { length: zoomCount },
       (_, i) =>
-        new Set(indices.includes(i) ? [0, ...(stations?.[i].publishedFocus ?? data.focus.published ?? [])] : []),
+        new Set(
+          indices.includes(i)
+            ? data.focus.finiteOnly
+              ? data.focus.keyframes.map((_, i) => i)
+              : [0, ...(stations?.[i].publishedFocus ?? data.focus.published ?? [])]
+            : [],
+        ),
     );
     for (const conjugate of data.focus.conjugates ?? []) {
       if (indices.includes(conjugate.zoomStation)) focus[conjugate.zoomStation].add(conjugate.keyframe);
@@ -267,8 +273,8 @@ export function publishedFocusStations(L: RuntimeLens, zoomStationIndex = 0): Pu
     return {
       index,
       focusT,
-      isInfinity: index === 0,
-      distanceM: index === 0 ? null : focusDistanceAt(focusT, L, zoomT),
+      isInfinity: index === 0 && !L.isFiniteOnly,
+      distanceM: index === 0 && !L.isFiniteOnly ? null : focusDistanceAt(focusT, L, zoomT),
       conjugate,
       certifiedDistanceM: conjugate ? certifiedObjectToImageM(L, conjugate) : null,
     };
@@ -329,9 +335,14 @@ export function publishedStationAvailability(L: RuntimeLens): PublishedStationAv
 
   const limits: PublishedStationLimit[] = [];
   if (stationCount === 1) {
-    limits.push({ kind: "single-prescription", text: "Single patent prescription — no other tabulated positions" });
+    limits.push({
+      kind: "single-prescription",
+      text: L.isFiniteOnly
+        ? "Single explicitly supported finite state"
+        : "Single patent prescription — no other tabulated positions",
+    });
   }
-  if (maxFocusStationCount === 1) {
+  if (maxFocusStationCount === 1 && !L.isFiniteOnly) {
     limits.push(
       getGroupMovementAvailability(L).focus
         ? /* Absence of a flag cannot tell a reconstructed close-focus row from one not yet reviewed. */

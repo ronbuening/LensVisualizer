@@ -68,8 +68,18 @@ describe("MTF preferences", () => {
       parseMtfPreferences({ spectrum: "cdf", view: "frequency", regularSpectrum: "single", regularView: "zoom" }),
     ).toMatchObject({ regularSpectrum: "cdf", regularView: "frequency" });
     const prime = parseMtfPreferences({ advanced: true, view: "zoom", regularView: "frequency" });
-    expect(resolveMtfPreferences(prime, false).view).toBe("frequency");
+    expect(resolveMtfPreferences(prime, { isZoom: false }).view).toBe("frequency");
     expect(prime.view).toBe("zoom");
+  });
+
+  it("holds a finite-only lens to the reference line without an aperture sweep or comparison stop", () => {
+    const stored = parseMtfPreferences({ advanced: true, view: "aperture", spectrum: "cdf", compareF8: true });
+    expect(resolveMtfPreferences(stored, { isFiniteOnly: true })).toMatchObject({
+      spectrum: "reference",
+      view: stored.regularView,
+      compareF8: false,
+    });
+    expect(stored).toMatchObject({ view: "aperture", spectrum: "cdf", compareF8: true });
   });
 
   it("accepts the aperture view without changing older defaults or repairing its Advanced preference", () => {

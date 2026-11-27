@@ -247,6 +247,7 @@ const STATION_FIELDS: Fields<ZoomStationV2Input> = {
 };
 
 const FOCUS_FIELDS: Fields<FocusV2Input> = {
+  finiteOnly: true,
   closeFocusM: true,
   keyframes: true,
   step: true,
@@ -880,6 +881,7 @@ function ingestConjugates(
   stationCount: number,
   keyframeCount: number | undefined,
   context: IngestContext,
+  finiteOnly = false,
 ): CanonicalConjugate[] {
   return records(value, "focus.conjugates", CONJUGATE_FIELDS, context).map((conjugate, index) => {
     const at = `focus.conjugates[${index}]`;
@@ -887,9 +889,11 @@ function ingestConjugates(
     if (!isIndexIn(zoomStation, 0, stationCount - 1)) {
       context.issues.push(`${at}.zoomStation ${String(zoomStation)} names no zoom station (0..${stationCount - 1})`);
     }
-    if (keyframeCount !== undefined && !isIndexIn(keyframe, 1, keyframeCount - 1)) {
+    if (keyframeCount !== undefined && !isIndexIn(keyframe, finiteOnly ? 0 : 1, keyframeCount - 1)) {
       context.issues.push(
-        `${at}.keyframe ${String(keyframe)} names no focus keyframe beyond infinity (1..${keyframeCount - 1})`,
+        finiteOnly
+          ? `${at}.keyframe ${String(keyframe)} names no finite keyframe (0..${keyframeCount - 1})`
+          : `${at}.keyframe ${String(keyframe)} names no focus keyframe beyond infinity (1..${keyframeCount - 1})`,
       );
     }
     const out = {
@@ -1004,32 +1008,78 @@ export function ingestLensV2(input: LensDataV2Input, request?: IngestRequest): I
   const zoom = zoomRead?.zoom;
   const stationCount = zoom?.stations.length ?? 1;
 
+  const surfaceInteractions = authoredSurfaces.map((surface) => surface.interaction as { type?: unknown } | undefined);
+  const folded = Boolean(data.opticalPath || surfaceInteractions.some((it) => it && it.type !== "refract"));
+
   const focusRecord = nested(data, "focus", "", FOCUS_FIELDS, context) ?? {};
   requireFields(focusRecord, ["closeFocusM"], "focus", context);
   const keyframes = withDefault(focusRecord, "focus.keyframes", context);
   /* Counted once, from the checked list. A refused list leaves the count unknown, and nothing is counted against it. */
-  const keyframeCount = isNumberListAtEveryIndex(keyframes) && keyframes.length >= 2 ? keyframes.length : undefined;
-  if (keyframeCount === undefined) context.issues.push(`focus.keyframes must be a list of at least two numbers`);
+  const keyframeCount =
+    isNumberListAtEveryIndex(keyframes) && keyframes.length >= (focusRecord.finiteOnly ? 1 : 2)
+      ? keyframes.length
+      : undefined;
+  if (keyframeCount === undefined)
+    context.issues.push(
+      focusRecord.finiteOnly
+        ? "focus.keyframes must contain at least one finite state"
+        : "focus.keyframes must be a list of at least two numbers",
+    );
   const focus: CanonicalFocus = {
     closeFocusM: focusRecord.closeFocusM as number,
     keyframes: keyframeCount === undefined ? [] : (keyframes as number[]),
     step: withDefault(focusRecord, "focus.step", context) as number,
   };
   put(focus as unknown as Untyped, "description", focusRecord.description);
+  if (focusRecord.finiteOnly !== undefined) {
+    const domain = nested(focusRecord, "finiteOnly", "focus", { defaultKeyframe: true }, context);
+    const index = domain?.defaultKeyframe;
+    if (!domain || !isIndexIn(index, 0, (keyframeCount ?? 0) - 1))
+      context.issues.push("focus.finiteOnly.defaultKeyframe must name an authored finite state");
+    focus.finiteOnly = { defaultKeyframe: index as number };
+    const projectionKind = (data.projection as Untyped | undefined)?.kind;
+    if (
+      zoom ||
+      folded ||
+      data.perspectiveControl ||
+      data.aberrationControl ||
+      data.imageSurface ||
+      (data.catalog as Untyped | undefined)?.acceptsTeleconverters ||
+      (projectionKind !== undefined && projectionKind !== "rectilinear")
+    )
+      context.issues.push(
+        "focus.finiteOnly supports sequential rectilinear primes with a flat image, without movement, aberration controls or teleconverters",
+      );
+  }
   if (context.sources) {
     recordReads(context.sources, "focus", "focus", focus as unknown as Untyped, ["closeFocusM", "description"]);
     /* The list is copied as written, so each keyframe index, and a comment on it, keeps its place. */
     if (has(focusRecord, "published")) context.sources.read["focus.published"] = "focus.published";
   }
   if (has(focusRecord, "conjugates")) {
-    focus.conjugates = ingestConjugates(focusRecord.conjugates, stationCount, keyframeCount, context);
+    focus.conjugates = ingestConjugates(
+      focusRecord.conjugates,
+      stationCount,
+      keyframeCount,
+      context,
+      Boolean(focus.finiteOnly),
+    );
   }
-  ingestPublishedStations(zoomRead?.stations, zoom, focusRecord, focus, keyframeCount, context);
+  if (focus.finiteOnly) {
+    for (let i = 0; i < (keyframeCount ?? 0); i++) {
+      const matches = focus.conjugates?.filter((c) => c.zoomStation === 0 && c.keyframe === i) ?? [];
+      if (matches.length !== 1)
+        context.issues.push(`focus.finiteOnly requires exactly one explicit conjugate for keyframe ${i}`);
+    }
+    if (focusRecord.published !== undefined)
+      context.issues.push("focus.finiteOnly states are explicit; omit the legacy infinity-based published list");
+    focus.published = [];
+  } else ingestPublishedStations(zoomRead?.stations, zoom, focusRecord, focus, keyframeCount, context);
 
-  const surfaceInteractions = authoredSurfaces.map((surface) => surface.interaction as { type?: unknown } | undefined);
   const stopAuthority = stopRadiusAuthority({
-    folded: Boolean(data.opticalPath || surfaceInteractions.some((it) => it && it.type !== "refract")),
+    folded,
     hasSchedule: zoom?.stations.some((station) => station.stopSemiDiameter !== undefined) ?? false,
+    finiteOnly: Boolean(focus.finiteOnly),
     stopInsideElement: authoredSurfaces.some(
       (surface) => surface.label === "STO" && surface.stopPlacement === "inside-element",
     ),
@@ -1074,6 +1124,14 @@ export function ingestLensV2(input: LensDataV2Input, request?: IngestRequest): I
   put(aperture, "blades", apertureRecord.blades);
   put(aperture, "bladeRoundedness", apertureRecord.bladeRoundedness);
   aperture.stopRadius = stopAuthority;
+  if (focus.finiteOnly) {
+    const stops = apertureRecord.fStops;
+    const nominal = apertureRecord.nominalFNumber;
+    if (!Array.isArray(stops) || stops.length !== 1 || stops[0] !== nominal || aperture.maxFNumber !== nominal)
+      context.issues.push(
+        "focus.finiteOnly has a fixed iris: set aperture.fStops to [nominalFNumber] and aperture.maxFNumber to nominalFNumber",
+      );
+  }
   if (context.sources) {
     const fields = ["nominalFNumber", "fStops", "blades", "bladeRoundedness"];
     recordReads(context.sources, "aperture", "aperture", aperture, fields);

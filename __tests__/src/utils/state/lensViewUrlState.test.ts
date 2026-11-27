@@ -145,6 +145,16 @@ describe("lensViewUrlState", () => {
     expect(params.toString()).toBe("v=1&focus=0.25&aberration=0.75&el=4&gm=1&ad=1&tab=coma");
   });
 
+  it("omits only the lens's own default focus, so a finite-only state 0 survives a reload", () => {
+    const query = (focus: number, defaultFocus?: number) =>
+      parseLensViewQuery(`?${buildLensViewQuery({ focus, defaultFocus })}`).focus;
+    // Hydration restores an omitted focus to the default: 0, or a finite-only lens's authored state.
+    expect(query(0)).toBeNull();
+    expect(query(0, 1)).toBe(0);
+    expect(query(1, 1)).toBeNull();
+    expect(query(0.5, 1)).toBe(0.5);
+  });
+
   it("round-trips the summary analysis tab", () => {
     const parsed = parseLensViewQuery("?v=1&ad=1&tab=summary");
     expect(parsed.analysisDrawerOpen).toBe(true);

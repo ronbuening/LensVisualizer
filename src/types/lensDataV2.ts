@@ -141,7 +141,7 @@ export interface ZoomV2Input {
 export interface ConjugateV2Input {
   /** Index into `zoom.stations`; 0 on a prime. */
   zoomStation: number;
-  /** Index into `focus.keyframes`, never 0 (infinity). */
+  /** Index into `focus.keyframes`; 0 is allowed only in the explicit finite-only domain. */
   keyframe: number;
   objectDistanceMm: number;
   distanceReference: FiniteConjugate["distanceReference"];
@@ -151,8 +151,10 @@ export interface ConjugateV2Input {
 }
 
 export interface FocusV2Input {
+  /** Explicit finite states only; prime sequential lenses. Keyframe 0 is finite, never infinity. */
+  finiteOnly?: { defaultKeyframe: number };
   closeFocusM: number;
-  /** Normalized focus coordinate of each authored thickness, from 0 (infinity) to 1; `[0, 1]` when left out. */
+  /** Normalized authored coordinates; 0 is infinity unless finiteOnly is set. Defaults to `[0, 1]`. */
   keyframes?: number[];
   /** Focus slider step; 0.004 when left out. */
   step?: number;

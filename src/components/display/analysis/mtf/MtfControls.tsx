@@ -21,6 +21,7 @@ import PortalTooltip from "../../../controls/PortalTooltip.js";
 import useMediaQuery from "../../../../utils/useMediaQuery.js";
 
 interface MtfControlsProps {
+  finiteOnly?: boolean;
   t: Theme;
   /** Effective settings from resolveMtfPreferences, including lens-specific view fallback. */
   preferences: MtfPreferences;
@@ -93,6 +94,7 @@ export default function MtfControls({
   comparisonFNumber,
   result = null,
   isZoom = false,
+  finiteOnly = false,
 }: MtfControlsProps) {
   const view = preferences.view;
   const isSweep = view === "aperture" || view === "zoom";
@@ -100,7 +102,7 @@ export default function MtfControls({
   const views: ReadonlyArray<[MtfChartView, string]> = [
     ["field", "Image height"],
     ["frequency", "Frequency"],
-    ...(preferences.advanced ? [["aperture", "Aperture"] as [MtfChartView, string]] : []),
+    ...(preferences.advanced && !finiteOnly ? [["aperture", "Aperture"] as [MtfChartView, string]] : []),
     ...(preferences.advanced && isZoom ? [["zoom", "Zoom"] as [MtfChartView, string]] : []),
   ];
   const selectStyle: CSSProperties = { ...selector(t, false), fontSize: 11, padding: "5px 26px 5px 8px" };
@@ -131,7 +133,9 @@ export default function MtfControls({
           touchHelp={touchHelp}
           style={selectStyle}
           value={preferences.spectrum}
-          options={SPECTRA.filter(([spectrum]) => spectrum !== "single" || preferences.advanced)}
+          options={SPECTRA.filter(([spectrum]) =>
+            finiteOnly ? spectrum === "reference" : spectrum !== "single" || preferences.advanced,
+          )}
           onChange={(spectrum) => onChange({ spectrum })}
         />
         <Select

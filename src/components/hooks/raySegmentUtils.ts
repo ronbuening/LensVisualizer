@@ -6,8 +6,10 @@
  */
 
 import { CHROMATIC_CHANNEL_ORDER } from "../../optics/chromatic.js";
+import { traceFiniteFocusFan } from "../../optics/optics.js";
+import type { FiniteFocusFanRequest } from "../../optics/optics.js";
 import type { RaySegment } from "./useOnAxisRays.js";
-import type { ChromaticChannel } from "../../types/optics.js";
+import type { ChromaticChannel, RuntimeLens } from "../../types/optics.js";
 
 function polylinePoints(points: number[][]): string {
   return points.map((point) => `${point[0]},${point[1]}`).join(" ");
@@ -65,6 +67,37 @@ export function compileRaySegment(
   const spPoints = polylinePoints(sp);
   const gpPoints = polylinePoints(gp);
   return { sp, gp, spPoints, gpPoints };
+}
+
+/**
+ * Trace a finite-only lens's fan from its authored object and compile each ray like any other diagram ray.
+ *
+ * @param L - runtime lens declaring `focus.finiteOnly`
+ * @param request - state, aperture, field and sampling of the fan
+ * @returns one compiled segment per pupil fraction
+ */
+export function compileFiniteFocusFan(
+  L: RuntimeLens,
+  request: FiniteFocusFanRequest,
+  sx: (z: number) => number,
+  sy: (y: number) => number,
+  clampedRayEnd: (lastZ: number, lastY: number, u: number, targetZ: number) => [number, number],
+  IMG_MM: number,
+): RaySegment[] {
+  return traceFiniteFocusFan(L, request).map((ray) =>
+    compileRaySegment(
+      ray.pts,
+      ray.ghostPts,
+      ray.u,
+      ray.clipped,
+      sx,
+      sy,
+      clampedRayEnd,
+      IMG_MM,
+      undefined,
+      ray.reachedImagePlane,
+    ),
+  );
 }
 
 /**

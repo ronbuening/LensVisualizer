@@ -15,7 +15,7 @@
 import { useMemo, useRef } from "react";
 import { resolveLensSystemData } from "../../utils/catalog/teleconverterCatalog.js";
 import { stopSemiDiameterForFNumber, wideOpenStopAtZoom } from "../../optics/optics.js";
-import { fNumberAtStopdown } from "../../optics/optics.js";
+import { fNumberAtStopdown, normalizeFiniteFocus } from "../../optics/optics.js";
 import { buildLens, withImageSurfaceSection } from "../../optics/buildLens.js";
 import type { CardinalElements } from "../../optics/analysis.js";
 import { computeCardinalElements, computeFocusEFL, createAnalysisRequest } from "../../optics/analysis.js";
@@ -134,7 +134,9 @@ export default function useLensComputation({
     () => (snapToPublishedStations && L ? nearestPublishedStation(L, requestedZoomT, requestedFocusT) : null),
     [snapToPublishedStations, L, requestedZoomT, requestedFocusT],
   );
-  const focusT = station ? station.focusT : requestedFocusT;
+  const proposedFocusT = station ? station.focusT : requestedFocusT;
+  // A finite-only lens shows an authored state even before the reducer has adopted its default.
+  const focusT = L?.isFiniteOnly ? normalizeFiniteFocus(L.source, proposedFocusT) : proposedFocusT;
   const zoomT = station ? station.zoomT : requestedZoomT;
   const aberrationT = station ? 0 : requestedAberrationT;
   const stopdownT = station ? 0 : requestedStopdownT;

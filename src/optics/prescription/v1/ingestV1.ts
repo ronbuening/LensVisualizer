@@ -90,6 +90,7 @@ const STATION_COORDINATE_TOLERANCE = 1e-8;
  * Typed as records over the V1 types, so a field added to a V1 type fails the typecheck here until ingest knows it. */
 
 const LENS_FIELDS: Readonly<Record<keyof LensDataInput, true>> = {
+  finiteOnlyFocus: true,
   publishedAt: true,
   key: true,
   maker: true,
@@ -928,6 +929,7 @@ export function ingestLensV1(input: LensDataInput, request?: IngestRequest): Ing
   const key = typeof data.key === "string" ? data.key : "?";
   const context = createContext(request, data);
   refuseUnknownFields(data, LENS_FIELDS, "", context);
+  if (data.finiteOnlyFocus !== undefined) context.issues.push("Finite-only focus requires V2 input");
   requireFields(data, ["key", "name", "closeFocusM", "fstopSeries", "yScFill", "nominalFno"], "", context);
   const authoredElements = requireRecords(data, "elements", key);
   const authoredSurfaces = requireRecords(data, "surfaces", key);

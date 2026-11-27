@@ -12,6 +12,8 @@ import { entrancePupilAtState } from "../../../../src/optics/state/fieldAdapters
 import { createCoordinateTransforms } from "../../../../src/optics/diagram/coordinateTransforms.js";
 import { raySampleCountForDensity } from "../../../../src/optics/trace/raySampling.js";
 import { catalogLensData } from "../../optics/testLensFixtures.js";
+import { finiteOnlyFixture } from "../../optics/finiteOnlyFixture.js";
+import { prepareRuntimeState } from "../../../../src/optics/state/runtimeAdapters.js";
 import type { RuntimeLens } from "../../../../src/types/optics.js";
 import SonnarRaw from "../../../../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.js";
 
@@ -242,5 +244,31 @@ describe("useOnAxisRays", () => {
     const wideFirst = r1.current.segments[0]?.sp;
     const stoppedFirst = r2.current.segments[0]?.sp;
     expect(wideFirst).not.toEqual(stoppedFirst);
+  });
+
+  it("draws a finite-only lens from its authored object onto the image plane, whatever the saved ray mode", () => {
+    const L = buildLens(finiteOnlyFixture());
+    const state = prepareRuntimeState(L, 0, 0);
+    const { result } = renderHook(() =>
+      useOnAxisRays({
+        L,
+        zPos: [...state.z],
+        IMG_MM: state.imgZ,
+        focusT: 0,
+        zoomT: 0,
+        sx: (z) => z,
+        sy: (y) => y,
+        clampedRayEnd: (z, y, u, target) => [target, y + u * (target - z)],
+        currentPhysStopSD: 2,
+        currentEPSD: L.EP.epSD,
+        rayDensity: "normal",
+        rayTracksF: false,
+        focusK: 0,
+        lensKey: L.source.key,
+      }),
+    );
+    expect(result.current.error).toBeNull();
+    expect(result.current.segments.length).toBeGreaterThan(1);
+    for (const segment of result.current.segments) expect(segment.sp.at(-1)![0]).toBe(state.imgZ);
   });
 });
