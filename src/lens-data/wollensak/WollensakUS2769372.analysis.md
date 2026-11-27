@@ -1,0 +1,79 @@
+# WOLLENSAK 100mm f/3.2 (US 2,769,372 Design)
+
+## Patent Reference and Design Identification
+
+**Patent:** [US 2,769,372 A — Three Component Objectives for Photographic and Projection Purposes](https://patents.google.com/patent/US2769372A/en)
+
+**Inventors:** Alan A. Cook; David C. Gilkeson
+
+**Assignee:** Wollensak Optical Company
+
+**Filed:** 25 July 1955
+
+**Published:** 6 November 1956
+
+**Example details:** Example I, Figure 2 prescription and claim 1; Figure 1 shows the common construction.
+
+Example I specifies a 100 mm objective at f/3.2 with a 55° total angular field and an 82.9 mm back focal length. The computed D-line effective focal length is 99.99 mm and the paraxial back focus is 82.91 mm. Example II is a separate f/3.5 design with a 50° field and is not used here. No particular production lens is documented for Example I.
+
+## Optical Architecture
+
+The objective has four elements in three air-separated components: a positive front singlet, a negative middle singlet and a positive rear cemented doublet. This is a Tessar-type arrangement. The seven optical surfaces are spherical or plane; R2 is the plane refracting rear face of element 1. Elements 3 and 4 meet at R6 and form cemented group C1.
+
+The patent gives element diameters of 32, 27, 28 and 28 mm. It also specifies a 45° bevel on R4 beginning at a diameter of 25 mm. The model therefore uses semi-diameters of 16 mm at R1–R2, 13.5 mm at R3, 12.5 mm at R4 and 14 mm at R5–R7. Figure 1 agrees within about 4% and shows square outer edges on the front singlet and rear doublet. The middle element's outline in the diagram joins the R3 and R4 optical edges with one straight segment. Figure 1 shows a level outer edge that ends in a short bevel at R4. The model uses the bevel-start radius as the clear optical boundary.
+
+The first-to-last vertex distance is 35.8 mm. The image plane lies at the computed paraxial focus, 82.91 mm behind R7, giving a total first-vertex-to-image distance of 118.71 mm. It is not moved to minimize a finite-aperture spot.
+
+## Element-by-Element Analysis
+
+### Element 1 — Plano-Convex Positive
+
+D-line index 1.638; Abbe number 55.0. Glass: M-PCD55AR (Hoya), spectral proxy. Focal length in air: +59.56 mm.
+
+The convex front surface and plane rear surface form the positive front component. It collects the incident beam and begins its convergence toward the negative middle component.
+
+### Element 2 — Biconcave Negative
+
+D-line index 1.620; Abbe number 36.0. Glass: TIM11 (Ohara), spectral proxy. Focal length in air: −38.32 mm.
+
+The middle component supplies negative power between the two positive components. Its lower Abbe number provides dispersion that helps balance the front component. The bevel on its rear face sets the smaller R4 optical radius.
+
+### Element 3 — Negative Meniscus
+
+D-line index 1.605; Abbe number 38.0. Glass: E-F5 (Hoya), spectral proxy. Focal length in air: −83.63 mm.
+
+This is the negative front member of the rear doublet. Its weakly curved front face and stronger cemented rear face give negative power in air. It provides the more dispersive member of the rear pair.
+
+### Element 4 — Biconvex Positive
+
+D-line index 1.700 and Abbe number 48.0. Glass: S-LAM51 (Ohara), spectral proxy. Focal length in air: +36.03 mm.
+
+Element 4 supplies the rear component's positive power. The cemented elements together have a focal length of +61.07 mm, so the rear component remains positive despite element 3's negative power.
+
+## Glass Identification and Selection
+
+The patent explicitly identifies the D line, taken here as sodium at 589.3 nm, and prints an index and Abbe number for each element. Those values remain unchanged. It supplies no trade names, suppliers, additional line indices or partial-dispersion data.
+
+All four elements use catalog dispersion curves as spectral proxies. The differences in index and Abbe number, catalog minus patent at the sodium D line, are +0.00048 and +0.17 for M-PCD55AR (element 1), +0.00080 and −0.13 for TIM11 (element 2), −0.00172 and +0.002 for E-F5 (element 3), and −0.00013 and +0.07 for S-LAM51 (element 4). Each row is within 0.002 in index and 0.25 in Abbe number. The curves describe how the index varies with wavelength in the color analysis. Wollensak's glass suppliers and melts remain unknown. Broadband performance and secondary-spectrum accuracy remain unverified.
+
+## Focus Mechanism and Aperture
+
+The model is focused at infinity. The patent gives no close-focus prescription, movement law or minimum object distance.
+
+The stop position is printed: 4.4 mm in front of element 3. This divides the 8.7 mm R4–R5 air space into 4.3 mm before the stop and 4.4 mm after it, placing the stop 22.0 mm behind R1. R4's optical rim lies at about 19.94 mm, clear of the stop plane. The opening diameter is not printed; the model derives a stop radius of 12.611 mm from the nominal f/3.2 aperture.
+
+At that opening the paraxial aperture is f/3.20 and the axial beam clears the fixed rims; the marginal ray reaches R4 at about 12.455 mm against its 12.5 mm radius. A ray launched instead at entrance height f/(2 × 3.2) = 15.624 mm reaches R4 at 12.691 mm and is clipped. That alternative finite-ray aperture definition does not describe the beam admitted by the modeled iris.
+
+## Field and Model Limits
+
+The patent's 55° total field corresponds to ±27.5°. At 27.5° the real chief ray reaches an image height of 51.524 mm and clears every optical rim; its largest front-element height is 13.108 mm against the 16 mm radius. Twice the chief-ray height gives an image-circle diameter of 103.05 mm, rounded upward. This is derived from the patent's field, not from a camera format. Edge distortion is approximately −1.0% relative to the paraxial rectilinear image height.
+
+The edge bundle is substantially vignetted. About 39% of a meridional fan passes at 27.5°. The two-dimensional pupil has approximately 30.1% geometrical transmission and 22.0% relative illumination compared with the axis. These describe the modeled bundle, exclude coating losses and are not measured performance.
+
+The prescription and field statements do not establish a commercial mount, image format, finite-focus mechanism or measured MTF. The bevel's full three-dimensional shape and the historical glass identities remain unknown.
+
+## Sources
+
+1. Alan A. Cook and David C. Gilkeson, [US 2,769,372 A](https://patents.google.com/patent/US2769372A/en), Wollensak Optical Company, published 6 November 1956. PDF page 1: Figures 1–3; page 2: Example I, D-line convention, diameters, bevel, stop, aperture and field; page 3: claim 1 repeats Example I.
+2. Ohara, [optical-glass catalog](https://www.ohara-inc.co.jp/en/product/catalog/), TIM11 and S-LAM51 dispersion coefficients.
+3. Hoya, [optical-glass catalog](https://www.hoya-opticalworld.com/english/datadownload/index.html), M-PCD55AR and E-F5 dispersion coefficients.

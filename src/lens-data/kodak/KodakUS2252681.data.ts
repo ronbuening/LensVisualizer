@@ -1,0 +1,276 @@
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * George H. Aklin's sole example in US 2,252,681 A (1941), printed at F = 100 mm and f/1.9.
+ * Radii, thicknesses, air spaces and D-line index/Abbe pairs follow the two printed tables in millimetres.
+ * The D line is taken as sodium, 589.3 nm. R10 is +60.8 mm; the text also describes it as about 0.61F.
+ * The diaphragm lies between the inner menisci; its exact station is inferred, splitting the 17.8 mm gap
+ * into 9.0 and 8.8 mm. Its radius is derived from the paraxial f/1.9 aperture. Clear rims are estimated from
+ * the drawing on PDF page 1: the inner doublets have square outer rims of 26 and 23 mm, and the rear doublet
+ * has a square 25 mm rim. The front singlet has a square 30.08 mm rim. The diaphragm-facing curves end at
+ * 18 mm (R5) and 19 mm (R6). The axial beam and full 5° bundle clear these rims. The image plane is the
+ * computed paraxial back focus, 63.27 mm behind R11. The ±5.0° display field is illustrative.
+ */
+const LENS_DATA = {
+  schema: 2,
+  key: "kodak-100mm-f19-us2252681",
+  maker: "Kodak",
+  name: "KODAK 100mm f/1.9 (US 2,252,681 Design)",
+  subtitle: "US 2,252,681 A, sole example — Eastman Kodak / Aklin",
+  visible: true,
+  source: {
+    patentNumber: "US 2,252,681 A",
+    patentYear: 1941,
+    example: {
+      label: "Sole example",
+      id: null,
+    },
+    authors: ["George H. Aklin"],
+    assignees: ["Eastman Kodak Company"],
+    sdSource: "heuristic",
+  },
+  catalog: {
+    focalLengthMm: {
+      design: 100.05,
+    },
+    fNumber: {
+      design: 1.9,
+    },
+    elementCount: 7,
+    groupCount: 4,
+    specs: [
+      "7 ELEMENTS / 4 GROUPS",
+      "ALL SPHERICAL",
+      "DESIGN f = 100 mm",
+      "DESIGN F/1.9",
+    ],
+  },
+  elements: [
+    {
+      id: 1,
+      name: "L1",
+      diagramLabel: "I",
+      label: "Element 1",
+      type: "Positive Meniscus",
+      nd: 1.573,
+      vd: 57.4,
+      indexReference: "D",
+      glass:
+        "BAK1 (spectral proxy; patent nD 1.573 / ν 57.4; supplier and melt unspecified)",
+      focalLengthMm: 123.3,
+      role: "Positive front singlet collecting light into the inner menisci.",
+    },
+    {
+      id: 2,
+      name: "L2",
+      diagramLabel: "II",
+      label: "Element 2",
+      type: "Positive Meniscus",
+      nd: 1.611,
+      vd: 57.2,
+      indexReference: "D",
+      glass: "Unmatched (nD 1.611 / ν 57.2)",
+      focalLengthMm: 82.98,
+      role: "Positive front member of the first inner meniscus doublet.",
+      cemented: "C1",
+    },
+    {
+      id: 3,
+      name: "L3",
+      diagramLabel: "III",
+      label: "Element 3",
+      type: "Negative Meniscus",
+      nd: 1.605,
+      vd: 38.2,
+      indexReference: "D",
+      glass:
+        "F5 (spectral proxy; patent nD 1.605 / ν 38.2; supplier and melt unspecified)",
+      focalLengthMm: -46.92,
+      role: "Dispersive negative member facing the diaphragm.",
+      cemented: "C1",
+    },
+    {
+      id: 4,
+      name: "L4",
+      diagramLabel: "IV",
+      label: "Element 4",
+      type: "Negative Meniscus",
+      nd: 1.689,
+      vd: 30.9,
+      indexReference: "D",
+      glass:
+        "L-TIM28 (spectral proxy; patent nD 1.689 / ν 30.9; supplier and melt unspecified)",
+      focalLengthMm: -65.78,
+      role: "Negative front member of the rear inner meniscus doublet.",
+      cemented: "C2",
+    },
+    {
+      id: 5,
+      name: "L5",
+      diagramLabel: "V",
+      label: "Element 5",
+      type: "Positive Meniscus",
+      nd: 1.744,
+      vd: 45.8,
+      indexReference: "D",
+      glass: "Unmatched (nD 1.744 / ν 45.8)",
+      focalLengthMm: 96.04,
+      role: "Higher-index positive member balancing the adjacent negative element.",
+      cemented: "C2",
+    },
+    {
+      id: 6,
+      name: "L6",
+      diagramLabel: "VI",
+      label: "Element 6",
+      type: "Plano-Concave Negative",
+      nd: 1.689,
+      vd: 30.9,
+      indexReference: "D",
+      glass:
+        "L-TIM28 (spectral proxy; patent nD 1.689 / ν 30.9; supplier and melt unspecified)",
+      focalLengthMm: -88.24,
+      role: "Dispersive negative member of the positive rear doublet.",
+      cemented: "C3",
+    },
+    {
+      id: 7,
+      name: "L7",
+      diagramLabel: "VII",
+      label: "Element 7",
+      type: "Biconvex Positive",
+      nd: 1.744,
+      vd: 45.8,
+      indexReference: "D",
+      glass: "Unmatched (nD 1.744 / ν 45.8)",
+      focalLengthMm: 45.14,
+      role: "Positive rear element completing the final converging doublet.",
+      cemented: "C3",
+    },
+  ],
+  surfaces: [
+    {
+      label: "1",
+      R: 60.2,
+      d: 11.3,
+      sd: 30.08,
+      medium: 1,
+    },
+    {
+      label: "2",
+      R: 379.2,
+      d: 1.9,
+      sd: 30.08,
+    },
+    {
+      label: "3",
+      R: 42,
+      d: 13.9,
+      sd: 26,
+      medium: 2,
+    },
+    {
+      label: "4",
+      R: 214,
+      d: 3.7,
+      sd: 26,
+      medium: 3,
+    },
+    {
+      label: "5",
+      R: 24.9,
+      d: 9,
+      sd: 18,
+    },
+    {
+      label: "STO",
+      R: "flat",
+      d: 8.8,
+    },
+    {
+      label: "6",
+      R: -27.4,
+      d: 3.7,
+      sd: 19,
+      medium: 4,
+    },
+    {
+      label: "7",
+      R: -73.1,
+      d: 7.9,
+      sd: 23,
+      medium: 5,
+    },
+    {
+      label: "8",
+      R: -37.8,
+      d: 1.9,
+      sd: 23,
+    },
+    {
+      label: "9",
+      R: "flat",
+      d: 3.8,
+      sd: 25,
+      medium: 6,
+    },
+    {
+      label: "10",
+      R: 60.8,
+      d: 12.8,
+      sd: 25,
+      medium: 7,
+    },
+    {
+      label: "11",
+      R: -68.3,
+      d: 63.269633,
+      sd: 25,
+    },
+  ],
+  aperture: {
+    nominalFNumber: 1.9,
+    fStops: [1.9, 2, 2.8, 4, 5.6, 8, 11, 16, 22],
+    maxFNumber: 22,
+  },
+  projection: {
+    kind: "rectilinear",
+    fullFieldDeg: 10,
+    maxTraceFieldDeg: 5,
+  },
+  focus: {
+    closeFocusM: 1e15,
+    description: "Infinity focus only. The patent gives no focusing mechanism or travel.",
+  },
+  groups: [
+    {
+      text: "Front singlet",
+      fromSurface: "1",
+      toSurface: "2",
+    },
+    {
+      text: "Front inner doublet",
+      fromSurface: "3",
+      toSurface: "5",
+    },
+    {
+      text: "Rear inner doublet",
+      fromSurface: "6",
+      toSurface: "8",
+    },
+    {
+      text: "Rear doublet",
+      fromSurface: "9",
+      toSurface: "11",
+    },
+  ],
+  doublets: [
+    { text: "C1", fromSurface: "3", toSurface: "5" },
+    { text: "C2", fromSurface: "6", toSurface: "8" },
+    { text: "C3", fromSurface: "9", toSurface: "11" },
+  ],
+  layout: {
+    yScFill: 0.5,
+  },
+} satisfies LensDataV2Input;
+export default LENS_DATA;
