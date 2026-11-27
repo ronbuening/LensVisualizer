@@ -709,6 +709,16 @@ export const SUMITA_GLASS_ENTRIES: readonly GlassEntry[] = [
     source:
       "SUMITA Zemax all-glass catalog 2025-11-07 including discontinued glasses; vendor formula-1 polynomial for discontinued BASF3.",
   },
+  /* BASF4: spectral proxy for the Bielicke US 1,888,156 barium flint (2026-11-21). */
+  {
+    name: "BASF4",
+    vendor: "Sumita",
+    polynomial: [2.661918, -0.01123772, 0.01866916, 0.002276675, -0.0002282323, 1.48979e-5],
+    nd: 1.65128,
+    vd: 38.3,
+    source:
+      "SUMITA all-glass Zemax catalog (2025-11-07), formula-1 coefficients for BASF4; https://www.sumita-opt.co.jp/en/download/",
+  },
   {
     name: "K-LaK10",
     vendor: "Sumita",

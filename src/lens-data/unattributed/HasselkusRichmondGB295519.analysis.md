@@ -1,0 +1,89 @@
+# HASSELKUS & RICHMOND 100mm f/4 (GB 295,519 Design)
+
+## Patent Reference and Design Identification
+
+**Patent:** [GB 295,519 A](https://patents.google.com/patent/GB295519A/en), _Improvements in and relating to Objectives suitable for Photographic Purposes_
+
+**Inventors:** John William Hasselkus and George Arthur Richmond
+
+**Assignee:** No company is printed; the two inventors are the individual applicants.
+
+**Filed:** 7 September 1927
+
+**Published:** 16 August 1928, when the complete specification was accepted
+
+**Example details:** Sole numerical example, printed p. 2; section on the drawing sheet, PDF p. 4
+
+The patent describes a six-element, four-group photographic objective at f/4 with a 70° field. Its focal length is stated as 100 units, without a physical unit; the model represents those dimensions in millimetres. The complete specification was left on 30 May 1928. The applicants give 3 North Side, Clapham Common, London SW4, the address of Ross Ltd's optical works. That association does not make Ross a printed assignee.
+
+The Ross Wide Angle Xpres f/4, dating from around 1928 and associated with aerial survey, is a likely but unconfirmed product connection. A [Science Museum Group record](https://collection.sciencemuseumgroup.org.uk/objects/co8204618/ross-xpres-wide-angle-lens) documents a surviving 5-inch f/4–11 Wide Angle Xpres with an Air Ministry reference. Historical lens references also associate the Wide Angle Xpres with this patent. No cited production prescription or construction drawing establishes that a manufactured Xpres used this exact numerical example. The model therefore retains the inventors' names and the patent-design designation.
+
+## Optical Architecture
+
+Six elements form four components: a front cemented doublet, a positive meniscus on each side of the stop, and a rear cemented doublet. The diagram uses the patent's element numerals I–VI. R2 and R9 are the cemented interfaces, marked C1 and C2. Both menisci turn their concave faces toward the stop. The doublets have weak net negative power, while the two menisci provide positive power.
+
+The front doublet has a computed focal length of −794.94 mm, compared with −4859.31 mm for the rear doublet. The front meniscus is also stronger than the rear: +120.31 versus +135.19 mm. These asymmetries follow the patent's stated approach to controlling coma while keeping the two complete halves at approximately equal focal lengths, about 167 and 161 mm.
+
+Every radius sign is printed. R1–R10 are +22.66, −95.51, +16.73, +24.25, +37.77, −43.64, −27.61, −19.95, +81.96 and −26.48 mm. The successive intersurface distances are 5.48, 1.91, 1.45, 3.47, 4.64, 3.47, 1.45, 3.13 and 5.92 mm. The first-to-last vertex span is 30.92 mm.
+
+The printed table computes to a helium d-line EFL of 100.08 mm, 0.1% above the stated 100, and a paraxial back focus of 85.73 mm. The patent gives no image distance; that computed back focus places the image at 116.65 mm from R1. The image plane is the paraxial infinity plane.
+
+## Element-by-Element Analysis
+
+### Elements 1 and 2 — Front Cemented Doublet
+
+Element 1 is biconvex and positive, with an in-air focal length of +30.53 mm. Element 2 is biconcave and negative, at −25.70 mm. Their shared R2 interface joins the higher-index outer glass to the lower-index inner glass. Together they form the stronger of the two weak negative doublets.
+
+### Elements 3 and 4 — Positive Menisci
+
+Element 3, ahead of the stop, has an in-air focal length of +120.31 mm. Element 4, behind it, has +135.19 mm. Both use the same printed glass indices; their different curvatures produce the power difference described in the patent.
+
+### Elements 5 and 6 — Rear Cemented Doublet
+
+Element 5 is biconcave and negative, at −28.82 mm in air. Element 6 is biconvex and positive, at +33.46 mm. They meet at R9 and reverse the front pair's glass order. Their combined power is much weaker than the front doublet's.
+
+## Glass Identification and Spectral Scope
+
+The patent explicitly identifies its Nd and Ng columns as the helium and mercury lines, respectively. All six elements use helium d as their reference line. The printed values are:
+
+| Elements | Helium nd | Mercury ng |
+| -------- | --------: | ---------: |
+| 1 and 6  |   1.61071 |    1.62501 |
+| 2 and 5  |   1.55065 |    1.56616 |
+| 3 and 4  |   1.51776 |    1.52839 |
+
+The two menisci (III and IV) use Sumita's BALK3 curve as a spectral proxy. The model keeps the printed helium d index of 1.51776 and borrows BALK3's wavelength dependence. The anchored curve gives a mercury g index of 1.52838, about 0.00001 below the printed 1.52839. The original supplier and melt are unknown.
+
+The doublet glasses (I/VI and II/V) remain labelled Unmatched. The closest catalog curves miss their printed mercury g indices by about 0.00065 and 0.00020, respectively, even after anchoring at the printed d indices. The patent gives no Abbe numbers or F/C indices. The unresolved doublet glasses limit the lens-wide results to helium d, approximately 587.6 nm, so the model cannot establish the patent's claimed chromatic correction.
+
+## Focus Mechanism
+
+The model is focused at infinity. The patent supplies no finite object distance, close-focus spacing or movement law. All optical spacings remain fixed. No production mount, film format, barrel or baffle dimensions are documented for this numerical example.
+
+## Iris and Clear-Aperture Assumptions
+
+The stop position is printed: b1 = b2 = 2.32 mm, halfway through the 4.64 mm central air space, at z = 14.63 mm from R1. Its physical diameter is not printed. The paraxial entrance-pupil radius at f/4 is 12.51 mm; pupil magnification gives a stop radius of 10.29 mm. The real f/4 marginal meets the stop plane at 10.22 mm. Both openings are derived quantities.
+
+Clear semi-diameters R1–R10 are 13.1, 13.1, 10.64, 11.5, 10.3, 10.2, 12, 10.4, 13.1 and 13.1 mm. They are estimated from the drawing sheet, which is drawn to the table's scale: its overall vertex span, shorter spans and the curvature of R1 all agree with the printed prescription. The four 13.1 mm values follow the doublet height and lie inside the positive elements' face crossings, at approximately 13.57 and 14.86 mm. R4 follows the front meniscus's 11.5 mm outer height; R7 is within about 4% of the rear meniscus's drawn height. R3, R5 and R6 remain above the drawn chamfer ends to pass the f/4 axial beam, which reaches 10.63, 10.28 and 10.14 mm there. R8 is slightly above its roughly 10.2–10.3 mm drawn curve end to preserve off-axis light. Opaque lands extend R3 and R8 to the doublets' 13.1 mm outer height without enlarging their clear apertures. These approximate the drawn short chamfers and broad shoulders; the meniscus edges use straight chamfers.
+
+The stated f/4 axial marginal clears every surface. Its smallest rim margin is about 0.01 mm at R3. R3 limits the accepted input radius to about 12.53 mm, equivalent to f/4.00 when expressed as EFL divided by twice that radius. Relative to the slightly larger real beam admitted by the derived iris, the effective aperture is f/4.02, 0.6% above nominal. The stop opening lies in air, with front and rear glass clearances of about 0.89 and 1.21 mm at its edge; the latter meets the rear meniscus's straight chamfer.
+
+## Air-Gap Clearance
+
+The R3/R4 air gap closes at a radius of 10.90 mm. The f/4 marginal needs heights of 10.628 and 10.631 mm on those faces, leaving approximately 0.093 mm of air at that ray. A 90% sag allowance would restrict their common radius to 10.47 mm and cut that beam. The model retains a 94% allowance; at the retained rims, maximum sag intrusion is 93.8% and the remaining gap is about 0.089 mm.
+
+The central gap has about 2.03 mm clearance at the shared 10.2 mm radius, and the R7/R8 gap retains about 0.56 mm at 10.4 mm. The R5 rim ends about 0.89 mm short of the stop plane. These geometric clearances do not establish manufacturing tolerances. The lands and straight chamfers approximate the drawing's edge shapes; the patent gives no numerical edge dimensions.
+
+## Field and Model Limitations
+
+The printed 70° full field corresponds to a 35° half-field. The real chief ray clears every rim there and reaches an image height of 70.098 mm. Twice that height, rounded to 0.1 mm, gives the 140.2 mm model image circle. It describes the patent's stated field at this model's dimensions; no physical image diameter or production film format is printed.
+
+The 35° chief ray falls about 0.002 mm short of the rounded circle's 70.1 mm radius. Wide-open geometric transmission is about 98.4% on axis, 80.8% at 17.5°, 52.9% at 29.2° and 35.3% at 35°. Off-axis bundles are vignetted, and a complete f/4 pupil is not transmitted at 35°. The monochromatic, infinity-focus model does not establish production performance, chromatic correction or the patent's full set of aberration claims. All surfaces are spherical.
+
+## Sources
+
+1. John William Hasselkus and George Arthur Richmond, [GB 295,519 A](https://patents.google.com/patent/GB295519A/en), filed 7 September 1927, accepted 16 August 1928. Original specification: front-page bibliography; printed p. 2 numerical table, spectral-line identification and field/aperture statements; drawing sheet, PDF p. 4.
+2. Science Museum Group, [Ross Xpres Wide Angle Lens](https://collection.sciencemuseumgroup.org.uk/objects/co8204618/ross-xpres-wide-angle-lens), object 1990-5036/1287: 5-inch f/4–11 lens, serial 132787, Air Ministry reference 14A/843. The record supplies no production prescription.
+3. Early Photography, [Xpres](http://www.earlyphotography.co.uk/site/entry_L58.html), distinguishes the late-1920s Wide Angle Xpres and associates it with BP 295519; its historical references do not identify a production numerical table.
+4. Grace's Guide, [Ross](https://gracesguide.co.uk/Ross), gives the works address as 3 North Side, Clapham Common.
+5. Orwell Astronomical Society, [E. H. Collinson](https://oasi.org.uk/OPO/EHC/EHC.php), records the use of an f/4 Ross Wide Angle Xpres originally produced for aerial survey.

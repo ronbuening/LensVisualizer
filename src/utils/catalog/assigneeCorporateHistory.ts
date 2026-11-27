@@ -22,6 +22,7 @@ const SOURCES = {
   canonHistory: "https://global.canon/en/c-museum/history/story04.html",
   cwSonderopticOwnership: "https://www.fdtimes.com/pdfs/articles/leica/Leica_Report_10-10HighRezPrint.pdf",
   cosinaHistory: "https://www.cosina.co.jp/company/",
+  dallmeyerHistory: "https://www.gracesguide.co.uk/J._H._Dallmeyer",
   fujifilmHistory: "https://global.fujifilm.com/en/about/corporate/history",
   fujifilmOverview: "https://global.fujifilm.com/en/about/corporate/overview",
   fujinonMerger: "https://av.watch.impress.co.jp/docs/news/357173.html",
@@ -50,6 +51,7 @@ const SOURCES = {
   mamiyaHistory: "https://www.mamiya-op.co.jp/en/company/history/",
   nikonHistory: "https://www.nikon.com/company/corporate/history/",
   nittohHistory: "https://www.nittohkogaku.co.jp/en/company/history.html",
+  northropHistory: "https://northropgrumman.com/who-we-are/northrop-grumman-heritage",
   olympusFounding: "https://www.olympus-global.com/company/milestones/founding.html?page=company",
   olympusImagingTransfer: "https://www.olympus-global.com/news/2021/nr02010.html",
   olympusImaging: "https://www.olympus-global.com/company/milestones/history/05.html?page=company",
@@ -350,6 +352,16 @@ export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporat
     corporateFamily: [
       { family: "Schneider-Kreuznach", effectiveFrom: "1936", effectiveTo: "1982", sourceUrl: SOURCES.iscoHistory },
       { family: "Schneider-Kreuznach", effectiveFrom: "2009", effectiveTo: "2014", sourceUrl: SOURCES.iscoMerger },
+    ],
+  },
+  "J. H. Dallmeyer, Limited": {
+    corporateFamily: [
+      {
+        family: "Dallmeyer",
+        effectiveFrom: "1892-04-11",
+        sourceUrl: SOURCES.dallmeyerHistory,
+        note: "Registered on this date to acquire the London optical business of John Henry Dallmeyer.",
+      },
     ],
   },
   "Jenoptik Jena GmbH": {
@@ -660,6 +672,16 @@ export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporat
         effectiveFrom: "1917-07-25",
         effectiveTo: "1988-04-01",
         sourceUrl: SOURCES.nikonHistory,
+      },
+    ],
+  },
+  "Northrop Aircraft, Inc.": {
+    corporateFamily: [
+      {
+        family: "Northrop Grumman",
+        effectiveFrom: "1939",
+        sourceUrl: SOURCES.northropHistory,
+        note: "Founded in 1939 as Northrop Aircraft Incorporated; the heritage page records the 1994 merger with Grumman that formed Northrop Grumman.",
       },
     ],
   },
