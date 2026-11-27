@@ -62,7 +62,8 @@ needs no test of its own.
   departures. Restating a transcription in a test does not verify it against the source; it only freezes it and adds
   a second place to edit on every correction.
 - Verify a batch with the existing tools instead: `npm run test` for the corpus sweeps, `npm run audit:image-circle`,
-  `npm run audit:patent-figure`, `npm run audit:surface`, and `npm run generate:glass-reports`. Record sources,
+  `npm run audit:patent-figure`, `npm run audit:surface`, and a glass report preview (`npm run generate:glass-reports`
+  then `npm run reports:diff`). Record sources,
   calculations, results, and limitations in the companion `*.audit.md` and the task record. Historical test counts in
   audit logs describe the checks run at that time.
 - Keep a test only when it guards shared engine, UI, or data-contract behavior that existing suites cannot cover. Add
@@ -244,9 +245,11 @@ walks expand to current files; generated bundles are checked at their source ent
 
 `npm run test` runs only product, data-contract, and build-pipeline tests. Two kinds of Vitest files stay out of it:
 
-- **Report generators** in `reports/*.report.ts` rewrite the committed files under `agent_docs/generated/`. They use
+- **Report generators** in `reports/*.report.ts` produce the files under `agent_docs/generated/`. They use
   `import.meta.glob`, so they run under Vitest through `vitest.reports.config.js`: `npm run generate:reports` (all), or
   `generate:glass-reports`, `generate:mirror-reports`, `generate:mount-svgs`, or `npm run generate:reports -- <name>`.
+  Those runs write the gitignored `.reports/` preview (compare with `npm run reports:diff`); only the post-merge
+  `npm run refresh:reports` on `main` rewrites the committed files (`reports/reportOutput.ts`).
   An invariant a report depends on belongs in the suite as its own test, not as an `expect` inside the generator.
 - **Tooling tests** for manual-only dev tools (the benchmark harness and its drivers, and the audit-script npm entries) are listed in `TOOLING_TESTS` in `vite.config.js` and run with
   `npm run test:tooling`. CI runs ordinary tests, eight pairs of rim projects and tooling in separate jobs; the

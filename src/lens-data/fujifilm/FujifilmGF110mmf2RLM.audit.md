@@ -43,7 +43,7 @@ Patent: US 2018/0100988 A1, Example 1 (Tables 1-3)
 
 - Updated [FujifilmGF110mmf2RLM.analysis.md](FujifilmGF110mmf2RLM.analysis.md) to describe L14 as coefficient-backed by NHG while keeping L13 unresolved.
 - Added H-ZLaF68L to the runtime catalog in [glassCatalogData.ts](../../optics/glassCatalogData.ts).
-- Batch verification is recorded in [six-digit-glass-codes-missing-sellmeier-reviewed.md](../../../agent_docs/generated/six-digit-glass-codes-missing-sellmeier-reviewed.md).
+- Batch verification is recorded in [six-digit-glass-codes-missing-sellmeier-reviewed.md](../../../reports/data/six-digit-glass-codes-missing-sellmeier-reviewed.md).
 
 ## 2026-06-25 — Catalog backfill follow-up
 
