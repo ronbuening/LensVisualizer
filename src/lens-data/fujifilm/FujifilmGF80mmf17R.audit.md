@@ -49,7 +49,7 @@ Catalog version: 88dde1c
 
 - Updated [FujifilmGF80mmf17R.analysis.md](FujifilmGF80mmf17R.analysis.md) to describe L31 as a catalog-backed NHG glass.
 - Added H-ZLaF68L to the runtime catalog in [glassCatalogData.ts](../../optics/glassCatalogData.ts).
-- Batch verification is recorded in [six-digit-glass-codes-missing-sellmeier-reviewed.md](../../../agent_docs/generated/six-digit-glass-codes-missing-sellmeier-reviewed.md).
+- Batch verification is recorded in [six-digit-glass-codes-missing-sellmeier-reviewed.md](../../../reports/data/six-digit-glass-codes-missing-sellmeier-reviewed.md).
 
 ## 2026-07-29 — Dispersion-coordinate follow-up
 

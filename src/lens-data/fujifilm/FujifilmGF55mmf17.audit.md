@@ -13,7 +13,7 @@ Patent: US 2023/0341664 A1, Example 1 (Tables 1-3)
 - The local patent PDF is image-only; Table 1 was checked visually on page 34 of the local render.
 - L34 remains a close E-FD8/M-FD80 class annotation; this pass only changed the unresolved L24 label.
 - Updated [FujifilmGF55mmf17.analysis.md](FujifilmGF55mmf17.analysis.md) to use the 772493 code label consistently.
-- Batch verification is recorded in [six-digit-glass-codes-missing-sellmeier-reviewed.md](../../../agent_docs/generated/six-digit-glass-codes-missing-sellmeier-reviewed.md).
+- Batch verification is recorded in [six-digit-glass-codes-missing-sellmeier-reviewed.md](../../../reports/data/six-digit-glass-codes-missing-sellmeier-reviewed.md).
 
 ## 2026-09-23 — Rear plate modeled as `rearPlates`
 

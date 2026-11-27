@@ -267,8 +267,8 @@ page chunk (300 KB raw on 2026-07-07).
   materially, load specs per mount id via a non-eager import keyed by the ids in `src/mounts/index.ts`
   with SSR preload in `src/entry-server.tsx`, mirroring B2a; otherwise record the measurement here
   and close the item as `[-] not worth it at current size`.
-- **Verification** — chunk size before/after recorded in the PR; `npm run generate:mount-svgs`
-  output unchanged; `npm run seo:audit` reports 0 errors; gate passes.
+- **Verification** — chunk size before/after recorded in the PR; `npm run generate:mount-svgs` then
+  `npm run reports:diff` shows no changes; `npm run seo:audit` reports 0 errors; gate passes.
 - **Out of scope** — the mount renderer or spec format. **Rollback** — revert the branch.
 
 ---

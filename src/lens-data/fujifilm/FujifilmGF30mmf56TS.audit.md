@@ -14,7 +14,7 @@ Patent: WO 2024/195273 A1, Example 4 (Tables 10-12)
 
 - The local WO PDF is image-only; the Example 4 table was cross-checked against the searchable US family publication text surfaced by Justia.
 - Updated [FujifilmGF30mmf56TS.analysis.md](FujifilmGF30mmf56TS.analysis.md) to use the unbroken 585587 code label consistently.
-- Batch verification is recorded in [six-digit-glass-codes-missing-sellmeier-reviewed.md](../../../agent_docs/generated/six-digit-glass-codes-missing-sellmeier-reviewed.md).
+- Batch verification is recorded in [six-digit-glass-codes-missing-sellmeier-reviewed.md](../../../reports/data/six-digit-glass-codes-missing-sellmeier-reviewed.md).
 
 ## 2026-06-25 — Patent partial-dispersion and APD status recheck
 
