@@ -6,8 +6,8 @@ and its catalog coordinates agree with the authored prescription within Δn ±0.
 Default d-line rows compare C/d/F; historical D rows compare C/D/F; native e-line rows compare C′/e/F′. D/e rows require an explicit name or alias.
 Trusted chromatic coverage additionally counts complete measured native-reference line tables, including measured g. Partial C/F tables with estimated g are not complete coverage.
 
-**Regenerate this file** by running `npm run generate:reports -- sellmeierCoverageScan`.
-Regenerate the full glass report set with `npm run generate:glass-reports`.
+**Refreshed on `main` after every merge; do not edit or commit this file.** Preview a branch's version with `npm run generate:reports -- sellmeierCoverageScan`, then `npm run reports:diff`.
+Preview the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
