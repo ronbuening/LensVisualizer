@@ -51,6 +51,7 @@ export const MAKER_PREFIXES = [
   { prefix: "PANASONIC", display: "Panasonic", slug: "panasonic" },
   { prefix: "P. ANGÉNIEUX", display: "P. Angénieux", slug: "angenieux" },
   { prefix: "PENTAX", display: "Pentax", slug: "pentax" },
+  { prefix: "PROJECTION OPTICS", display: "Projection Optics", slug: "projection-optics" },
   { prefix: "RICOH", display: "Ricoh", slug: "ricoh" },
   { prefix: "G. RODENSTOCK", display: "Rodenstock", slug: "rodenstock" },
   { prefix: "RODENSTOCK", display: "Rodenstock", slug: "rodenstock" },

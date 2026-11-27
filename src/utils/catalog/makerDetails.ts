@@ -42,6 +42,7 @@
  *               RF-mount throat clarification, USM/IS/DO/BR optical history),
  *               Nikon (NK founders, AF mount generations, Z-mount geometry),
  *               and Ricoh (GR Digital and GXR eras).
+ *   2026-11-17  Added the Projection Optics maker entry and Karl Martin's Omnar to the Busch entry.
  */
 
 export interface MakerDetails {
@@ -234,6 +235,23 @@ export const MAKER_DETAILS: Record<string, MakerDetails> = {
     notableDesigns:
       "Trioplan 100mm f/2.8, Trioplan 50mm f/2.9, Primoplan 58mm f/1.9, Orestor 135mm f/2.8, Orestegor 200mm f/4, Lydith 30mm f/3.5, Domiplan 50mm f/2.8",
   },
+  // Founders, Crown Optical, Pro-Jex, Super-Lite series, Repp's 1938 exit, John R. Miles, Hilux, London, Beseler:
+  // https://deltalenses.com/the-projection-optics-story/
+  // 1918 founding by Repp, State Street and Lyell Avenue addresses, Beseler ownership (Kingslake, 1974):
+  // https://www.graflex.org/articles/kingslake/
+  // Repp's patents:
+  // https://patents.google.com/patent/US1415002A/en
+  // https://patents.google.com/patent/US1479251A/en
+  "projection-optics": {
+    founded: 1918,
+    headquarters: "Rochester, New York, United States (historical optical works)",
+    summary:
+      "American maker of motion-picture projection lenses, founded in Rochester, New York, in 1918 and known for the Super-Lite series and the later Hilux and Super-Hilux lenses.",
+    history:
+      "Projection Optics Company was founded in Rochester in 1918 by the lens designer William H. Repp with William Fouquet and a partner named Kirchgesser, who had worked together at the Crown Optical Company. The firm started at 203 State Street, Crown Optical's address from 1917, and moved to 330 Lyell Avenue in 1930. Its main products were projection lenses for professional motion-picture projectors.\n\nRepp designed the early lenses. His US 1,415,002, filed in 1920 and granted in 1922 with the company as assignee, describes a four-element f/2.2 projection objective arranged so that other focal lengths needed only two new curves; lenses sold as Pro-Jex were advertised from 1920. His second patent, US 1,479,251, filed in 1922 and granted to him in 1924, is an f/2.2 lens of two cemented doublets for motion-picture projectors and the design of the Super-Lite, a name first used in a 1922 advertisement for a series launched in 1923. The two patents are the sources of the Projection Optics entries in this catalog.\n\nThe Super-Lite was made in several diameters, from Series I to Series IV, and the Bi-Focal Super-Lite, a varifocal projection lens, followed at f/2.5 in 1929 and was later made at f/2. Repp sold his shares in 1938, and later designs came from the outside firm of John R. Miles. The uncemented f/1.8 Hilux succeeded the Super-Lite in the early 1950s, followed by the Super-Hilux in 1955 and an f/1.4 Super-Hilux announced at the end of 1957. The company also made anamorphic projection lenses, 8 mm and 16 mm projection lenses, slide-projector lenses and overhead projectors.\n\nProjection Optics opened a London subsidiary in 1955. It was later bought by Beseler and continued under its new owner as a largely autonomous business making projection lenses.",
+    notableDesigns:
+      "Pro-Jex, Super-Lite Series I–IV, Bi-Focal Super-Lite, Super-Lite III C, Hilux, Super-Hilux, Super-Hilux f/1.4",
+  },
   samyang: {
     founded: 1972,
     headquarters: "Changwon and Gwacheon, South Korea",
@@ -261,14 +279,18 @@ export const MAKER_DETAILS: Record<string, MakerDetails> = {
   // Emil Busch and the Duncker founding (NDB 3, 1957): https://www.deutsche-biographie.de/sfz11230.html
   // Company chronology: https://collection.sciencemuseumgroup.org.uk/people/cp105648/emil-busch-ag
   // 1872 company name and Pantoskop: https://stereoscopyhistory.net/compendium/emil-busch
+  // Karl Martin, Omnar and Bis-Telar (1911 Encyclopædia Britannica, "Photography"):
+  // https://en.wikisource.org/wiki/1911_Encyclop%C3%A6dia_Britannica/Photography
+  // Martin's patent and its assignee: https://patents.google.com/patent/US759537A/en
   busch: {
     founded: 1800,
     headquarters: "Rathenow, Germany",
     summary:
       "German optical works in Rathenow, led from 1845 by Emil Busch, which made spectacle lenses, opera glasses, binoculars, cameras and photographic lenses, among them the Pantoskop wide-angle objective of 1865.",
     history:
-      "The firm descends from the Königlich Privilegierte Rathenowische Optische Industrie-Anstalt, which the Rathenow pastor Johann Heinrich August Duncker founded in 1800. His son Eduard Duncker led it after him, and in 1845 Eduard handed the management to his nephew Emil Busch (1820–1888), who had joined the firm in 1840. Busch turned the workshop into an industrial operation, introducing steam power in 1846 and building new machines for grinding spectacle and optical lenses. Its opera glasses gave the firm an international reputation.\n\nBusch began making photographic cameras in 1852. Production of the Pantoskop (also spelled Pantoscop), a wide-angle objective he developed, began in 1865, and the lens became widely praised. In 1872 Busch converted the company into a joint-stock company, the Rathenower Optische Industrie-Anstalt vormals Emil Busch AG. He also supported the founding of the Schott optical glassworks in Jena, and he died in Rathenow in 1888.\n\nThe company was renamed Emil Busch AG Optische Industrie in 1908. Carl Zeiss acquired a majority of its shares in the late 1920s, after which Busch stopped making photographic lenses but continued to make cameras. In 1946 the business became the state-owned Rathenower Optische Werke GmbH, and from 1948 VEB Rathenower Optische Werke, which later became part of VEB Carl Zeiss Jena.",
-    notableDesigns: "Pantoskop wide-angle objective, opera glasses, Galilean and prism binoculars",
+      "The firm descends from the Königlich Privilegierte Rathenowische Optische Industrie-Anstalt, which the Rathenow pastor Johann Heinrich August Duncker founded in 1800. His son Eduard Duncker led it after him, and in 1845 Eduard handed the management to his nephew Emil Busch (1820–1888), who had joined the firm in 1840. Busch turned the workshop into an industrial operation, introducing steam power in 1846 and building new machines for grinding spectacle and optical lenses. Its opera glasses gave the firm an international reputation.\n\nBusch began making photographic cameras in 1852. Production of the Pantoskop (also spelled Pantoscop), a wide-angle objective he developed, began in 1865, and the lens became widely praised. In 1872 Busch converted the company into a joint-stock company, the Rathenower Optische Industrie-Anstalt vormals Emil Busch AG. He also supported the founding of the Schott optical glassworks in Jena, and he died in Rathenow in 1888.\n\nKarl Martin of the Busch works showed in 1902 that separated lenses of the older optical glasses could give an objective corrected spherically, chromatically and for astigmatism, and the firm issued the Omnar anastigmat on that principle the same year, first at f/7.7 and later at f/5.5 and f/4.5. Martin's US 759,537, filed in 1901 and granted in 1904 with the firm as assignee, is the source of the Emil Busch 210mm f/11 entry in this catalog. The Bis-Telar telephoto followed at f/9 in 1905 and at f/7 in 1908.\n\nThe company was renamed Emil Busch AG Optische Industrie in 1908. Carl Zeiss acquired a majority of its shares in the late 1920s, after which Busch stopped making photographic lenses but continued to make cameras. In 1946 the business became the state-owned Rathenower Optische Werke GmbH, and from 1948 VEB Rathenower Optische Werke, which later became part of VEB Carl Zeiss Jena.",
+    notableDesigns:
+      "Pantoskop wide-angle objective, Omnar anastigmat, Bis-Telar telephoto, opera glasses, Galilean and prism binoculars",
   },
   // J. H. and T. R. Dallmeyer (1911 Britannica): https://en.wikisource.org/wiki/1911_Encyclop%C3%A6dia_Britannica/Dallmeyer,_John_Henry
   // Lens dates (1911 Britannica, Photography): https://en.wikisource.org/wiki/Page:EB1911_-_Volume_21.djvu/533
