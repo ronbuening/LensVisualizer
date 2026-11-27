@@ -27,11 +27,11 @@ import { isDLineReference } from "../src/optics/glassCatalog.js";
  *
  * Runs only via `npm run generate:reports`, never in `npm test`; its job is to surface the data.
  *
- * Regenerate: `npm run generate:reports -- glassRelabelCandidatesScan`
+ * Preview: `npm run generate:reports -- glassRelabelCandidatesScan`
  */
 import type { LensDataV2Input } from "../src/types/lensDataV2.js";
 import { describe, it, expect } from "vitest";
-import { mkdirSync, writeFileSync } from "node:fs";
+import { refreshNotice, TRACKED_REPORT_DIR, writeReport } from "./reportOutput.js";
 import {
   allEntries,
   GLASS_ND_TOLERANCE,
@@ -44,7 +44,7 @@ import { normalLinePgF } from "../src/optics/chromatic.js";
 import { findCandidates, walkLensSurfaces } from "./glassScanLib.js";
 import type { RefractiveIndexReferenceLine } from "../src/types/optics.js";
 
-const REPORT_DIR = "agent_docs/generated";
+const REPORT_DIR = TRACKED_REPORT_DIR;
 
 /**
  * Extract a Schott-style six-digit glass code from a glass annotation.
@@ -137,7 +137,7 @@ describe("glass-relabel candidate scan", () => {
     lines.push("catalog mismatch, this report searches the catalog for a *better* candidate whose reference index and");
     lines.push(`Abbe number both match within tolerance (Δn ±${GLASS_ND_TOLERANCE}, Δν ±${GLASS_VD_TOLERANCE}).`);
     lines.push("");
-    lines.push("**Regenerate** with `npm run generate:reports -- glassRelabelCandidatesScan`.");
+    lines.push(refreshNotice("npm run generate:reports -- glassRelabelCandidatesScan"));
     lines.push("");
     lines.push("## How to use this report");
     lines.push("");
@@ -224,8 +224,7 @@ describe("glass-relabel candidate scan", () => {
       `- **${withoutCandidates}** (nd, vd) groups have NO candidate (${totalSurfacesWithoutCandidate} surfaces) — needs patent verification or Unmatched relabeling.`,
     );
 
-    mkdirSync(REPORT_DIR, { recursive: true });
-    writeFileSync(`${REPORT_DIR}/glass-relabel-candidates.generated.md`, lines.join("\n") + "\n");
+    writeReport(`${REPORT_DIR}/glass-relabel-candidates.generated.md`, lines.join("\n") + "\n");
 
     expect(byStored.size).toBeGreaterThanOrEqual(0); // observational test
   });

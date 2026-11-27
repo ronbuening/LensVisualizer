@@ -9,6 +9,10 @@ src/generated/
 # On-demand folder maps from `npm run generate:readmes` (agent_docs/decisions.md, 2026-11-10)
 /src/**/readme.md
 
+# Report previews from `npm run generate:reports`; agent_docs/generated/ is written only on main
+# by the post-merge refresh (agent_docs/decisions.md, 2026-11-27)
+/.reports/
+
 # Local patent PDF/source archive
 patents/*
 !patents/.gitkeep

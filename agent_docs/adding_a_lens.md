@@ -37,8 +37,9 @@ On `npm run build`, every visible lens is also eligible for `/feeds/lenses.xml` 
 - **Annotated template:** `src/lens-data/TEMPLATE.data.ts.template` (includes the semi-diameter guidelines)
 - **Shared defaults:** `src/optics/prescription/defaults.ts` (the schema defaults canonical ingest applies)
 - **Mirror/folded reference fixtures:** `src/lens-data/reference/*.data.ts` — hidden synthetic examples listed under
-  [Reference fixtures](../src/lens-data/LENS_DATA_SPEC.md#reference-fixtures) in the spec; regenerate
-  `agent_docs/generated/mirror-fixtures.generated.md` with `npm run generate:mirror-reports` after changing them
+  [Reference fixtures](../src/lens-data/LENS_DATA_SPEC.md#reference-fixtures) in the spec; preview
+  `agent_docs/generated/mirror-fixtures.generated.md` with `npm run generate:mirror-reports` and `npm run reports:diff`
+  after changing them (`main` refreshes the committed report after merge)
 - **Mount/format backfill status:** [lens-mount-format-backfill.md](lens-mount-format-backfill.md)
 - **Re-auditing an existing lens against its patent:** [lens-patent-audit.md](lens-patent-audit.md) — for data files
   already in the catalog, not for authoring a new one
