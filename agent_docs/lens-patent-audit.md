@@ -32,7 +32,9 @@ Before opening either lens file, collect:
 
 1. **The patent.** Use Espacenet ([https://worldwide.espacenet.com](https://worldwide.espacenet.com)) for EP/WO, J-PlatPat for JP, USPTO/Google Patents for US. The patent number is in `source.patentNumber` and the data file's header comments — search by number, not by title. If multiple embodiments, identify the embodiment number (`Example N`, `第N実施例`) that matches the lens spec.
 2. **The vendor catalog Sellmeier source** (only when relabeling toward a glass not already in our catalog). See [glass-catalog-buildout.md](glass-catalog-buildout.md) for sourcing. Before accepting a code-only fallback, search refractiveindex.info and the original manufacturer catalogs/datasheets for the patent's glass code, exact `nd`/`νd` pair, and likely vendor-family names.
-3. **The current mismatch reports** — regenerate before starting so the surface lists are current:
+3. **The current mismatch reports** — `main` refreshes the committed reports after every merge, so a branch cut from
+   current `main` already has current surface lists. To see your branch's own state, preview them (never commit the
+   output; it lands in `.reports/agent_docs/generated/`):
    ```bash
    npm run generate:glass-reports
    ```
@@ -205,6 +207,11 @@ is wrong and that the replacement is right:
 - `source-summary` — the source's stated focal length, F-number, field angle or image height, back focus or total
   length, traced for both the printed and the corrected value.
 - `sibling-example` — another example of the same source that reprints the surface, or carries the consistent form.
+- `source-reprint` — the source prints the same example's table a second time (an early US drawing sheet that repeats
+  the specification table, say), and that printing carries the replacement value in the same cell. Name both
+  printings in the note and compare them in full: every other difference between them is its own erratum entry. A
+  second example is `sibling-example`, not this. (Added 2026-11-17 for the Kodak US 1,880,393 triplet, whose drawing
+  sheet prints lens 2 D = 1.575 against the specification's 1.573.)
 - `aberration-figure` — the source's own spherical-aberration, astigmatism, distortion or lateral-aberration plots.
 - `claims` — a claimed condition the printed value violates.
 - `family-publication` — another publication of the same application (its PCT publication, priority document or a
@@ -305,13 +312,15 @@ npm run typecheck && npm run format:check && npm run lint && npm run test
 
 Do not keep per-lens audit tests; see `agent_docs/architecture/testing.md` § Per-Lens And Audit Test Retention.
 
-If glass annotations changed, regenerate the catalog scans and confirm the lens drops off the affected mismatch lists:
+If glass annotations changed, preview the catalog scans and confirm the lens drops off the affected mismatch lists:
 
 ```bash
-npm run generate:glass-reports
+npm run generate:glass-reports && npm run reports:diff
 ```
 
-After regeneration, check the lens section in [glass-relabel-by-lens.generated.md](generated/glass-relabel-by-lens.generated.md):
+Then check the lens section in the preview's `.reports/agent_docs/generated/glass-relabel-by-lens.generated.md`; the
+committed [glass-relabel-by-lens.generated.md](generated/glass-relabel-by-lens.generated.md) follows on `main` after
+merge. Do not commit report output:
 
 - If the section disappeared, Phase 1 is fully cleared for catalog mismatches.
 - If rows remain, copy the remaining surface numbers and reasons into the audit log.

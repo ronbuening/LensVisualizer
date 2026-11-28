@@ -18,6 +18,7 @@ const KNOWN_ASPHERIC_COEFFICIENTS = new Set<string>(ASPHERIC_COEFFICIENT_SCHEMA.
 const SOURCE_ERRATUM_EVIDENCE = new Set([
   "source-summary",
   "sibling-example",
+  "source-reprint",
   "aberration-figure",
   "claims",
   "family-publication",

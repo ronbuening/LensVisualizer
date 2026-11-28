@@ -2,12 +2,12 @@
 
 Hidden/reference fixtures that exercise mirror, folded-path, annular, blocker, and image-plane metadata.
 
-**Regenerate this file** by running `npm run generate:reports -- mirrorFixtureAuthoringReport`.
-Regenerate the mirror report set with `npm run generate:mirror-reports`.
+**Refreshed on `main` after every merge; do not edit or commit this file.** Preview a branch's version with `npm run generate:reports -- mirrorFixtureAuthoringReport`, then `npm run reports:diff`.
+Preview the mirror report set with `npm run generate:mirror-reports`.
 
 ## Summary
 
-- **9** hidden/reference fixtures scanned
+- **10** hidden/reference fixtures scanned
 - **1** fixtures include second-surface mirror metadata
 - **2** fixtures include tilted meridional plane metadata
 - **5** fixtures include annular aperture or obstruction metadata
@@ -20,6 +20,7 @@ Regenerate the mirror report set with `npm run generate:mirror-reports`.
 | [REFERENCE Annular Obscured Mirror](../../src/lens-data/reference/ReferenceAnnularObscuredMirror.data.ts) | explicit | `STO` -> `OBS` -> `M1` | IMG: z=0, y=0, n=(1, 0) | `M1` | `OBS` | `M1` -> `M1B` | None | OK |
 | [REFERENCE Annular Ring Blocker](../../src/lens-data/reference/ReferenceAnnularRingBlocker.data.ts) | auto | `RING` | IMG: z=120, y=0, n=(1, 0) | None | `RING` | `RING` -> `RINGB` | None | OK |
 | [REFERENCE Cassegrain Back Focus](../../src/lens-data/reference/ReferenceCassegrainBackFocus.data.ts) | auto | `M1` -> `SEC` | IMG: z=135, y=0, n=(1, 0) | `SEC` -> `M1` | None | `M1` -> `M1B` | None | OK |
+| [REFERENCE Concentric Mirror Curved Focus](../../src/lens-data/reference/ReferenceConcentricMirrorCurvedFocus.data.ts) | explicit | `STO` -> `M1` | IMG: z=100, y=0, n=(1, 0) | `M1` | None | None | None | OK |
 | [REFERENCE Folded Diffractive Plate](../../src/lens-data/reference/ReferenceFoldedDiffractivePlate.data.ts) | explicit | `STO` -> `PF` -> `FOLD` | IMG: z=120, y=-100, n=(0, 1) | `FOLD` | None | None | None | OK |
 | [REFERENCE Gregorian Secondary](../../src/lens-data/reference/ReferenceGregorianSecondary.data.ts) | explicit | `M1` -> `SEC` | IMG: z=110, y=0, n=(1, 0) | `M1` -> `SEC` | None | `M1` -> `M1B` | None | OK |
 | [REFERENCE Maksutov Cassegrain Meniscus](../../src/lens-data/reference/ReferenceMaksutovCassegrainMeniscus.data.ts) | explicit | `MEN1` -> `MEN2` -> `M1` -> `SEC` | IMG: z=135, y=0, n=(1, 0) | `SEC` -> `M1` | None | `M1` -> `M1B` | None | OK |
@@ -64,6 +65,19 @@ Regenerate the mirror report set with `npm run generate:mirror-reports`.
 - Reflective surfaces: `SEC` -> `M1`
 - Blocking surfaces: None
 - Annular surfaces: `M1` -> `M1B`
+- Second-surface coatings: None
+- Tilted planes: None
+- Validation: OK
+
+### [REFERENCE Concentric Mirror Curved Focus](../../src/lens-data/reference/ReferenceConcentricMirrorCurvedFocus.data.ts)
+
+- Key: `reference-concentric-mirror-curved-focus`
+- Path mode: explicit
+- Hit order: `STO` -> `M1`
+- Image plane: IMG: z=100, y=0, n=(1, 0)
+- Reflective surfaces: `M1`
+- Blocking surfaces: None
+- Annular surfaces: None
 - Second-surface coatings: None
 - Tilted planes: None
 - Validation: OK

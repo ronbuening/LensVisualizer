@@ -776,6 +776,8 @@ representation by `expandCanonicalRearPlates()` in `prescription/rearPlates.ts`,
 per plate (reserved labels `RP<n>a` / `RP<n>b`) and one element per plate, all marked `synthetic: "rearPlate"`.
 Because the expansion runs before `S`, `N`, `labelIdx` and every derived constant, EFL, pupils, field limits, prepared
 states, the exact tracer, chromatic dispersion and all analyses see the plate, with no per-analysis correction.
+The variable-gap compiler also resolves schedules on the final plate's rear face after expansion. See
+[Rear Plates](../../src/lens-data/LENS_DATA_SPEC.md#rear-plates) for authoring.
 `RuntimeLens.source` retains the unexpanded canonical prescription; `CompiledLens.elements` includes generated
 media, while runtime `elements` exposes drawable metadata only. The canonical prescription stays unchanged. Each medium resolves once, including each generated plate; runtime
 and compiled dispersion tables share those resolvers. Quality summaries and table access perform no resolution.
@@ -795,7 +797,7 @@ What is hidden, and where:
 - `maxSD` ignores synthetic surfaces, whose generated rims are deliberately non-clipping.
 - `RuntimeLens.lastLensSurfaceIdx` is the last authored surface. Cardinal BFD is measured from it, while the matrix
   vertex (`rearVertexZ`) stays at the plate's rear face. The Summary tab counts authored surfaces and lists plates
-  separately; the last variable-gap readout is labelled "to plate".
+  separately. A gap readout includes "to plate" when its next surface is a rear plate.
 - Rays are drawn exactly as traced, including the small refraction at the invisible plate faces.
 
 Folded paths and perspective-control lenses reject `rearPlates`; a camera-fixed plate would otherwise tilt with the

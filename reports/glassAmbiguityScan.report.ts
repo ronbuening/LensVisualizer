@@ -10,10 +10,10 @@
  * that the diagnostic explanation and the runtime resolver choose the same row
  * is guarded in `npm test` by `__tests__/src/lens-data/glassResolutionParity.test.ts`.
  *
- * Regenerate: `npm run generate:reports -- glassAmbiguityScan`
+ * Preview: `npm run generate:reports -- glassAmbiguityScan`
  */
 import type { LensDataV2Input } from "../src/types/lensDataV2.js";
-import { mkdirSync, writeFileSync } from "node:fs";
+import { refreshNotice, TRACKED_REPORT_DIR, writeReport } from "./reportOutput.js";
 import { describe, expect, it } from "vitest";
 import {
   explainCompatibleGlassResolution,
@@ -25,7 +25,7 @@ import type { CompatibleGlassCandidate, GlassResolutionCriterion } from "../src/
 import { walkLensSurfaces } from "./glassScanLib.js";
 import type { RefractiveIndexReferenceLine } from "../src/types/optics.js";
 
-const REPORT_DIR = "agent_docs/generated";
+const REPORT_DIR = TRACKED_REPORT_DIR;
 const modules = import.meta.glob<{ default: LensDataV2Input }>("../src/lens-data/**/*.data.ts", { eager: true });
 
 interface AmbiguousElement {
@@ -171,8 +171,8 @@ describe("glass ambiguity scan", () => {
       "smallest reference-index residual; smallest Abbe residual; annotation token order; duplicate-code precedence; canonical name.",
     );
     lines.push("");
-    lines.push("**Regenerate this file** by running `npm run generate:reports -- glassAmbiguityScan`.");
-    lines.push("Regenerate the full glass report set with `npm run generate:glass-reports`.");
+    lines.push(refreshNotice("npm run generate:reports -- glassAmbiguityScan"));
+    lines.push("Preview the full glass report set with `npm run generate:glass-reports`.");
     lines.push("");
     lines.push("## Summary");
     lines.push("");
@@ -237,8 +237,7 @@ describe("glass ambiguity scan", () => {
     }
     lines.push("");
 
-    mkdirSync(REPORT_DIR, { recursive: true });
-    writeFileSync(`${REPORT_DIR}/glass-ambiguities.generated.md`, lines.join("\n") + "\n");
+    writeReport(`${REPORT_DIR}/glass-ambiguities.generated.md`, lines.join("\n") + "\n");
 
     expect(totalLenses).toBeGreaterThan(0);
     expect(rows.length).toBeGreaterThan(0);

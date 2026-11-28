@@ -66,8 +66,9 @@ npm run generate:metadata
 npm run typecheck && npm run format:check && npm run lint && npm run test
 ```
 
-Run `npm run build` when catalog/route/SEO metadata is affected, and `npm run generate:glass-reports` after glass-data
-changes. Do not hand-edit generated reports. A lens is integrated only when the corpus tests pass and the rendered
+Run `npm run build` when catalog/route/SEO metadata is affected, and preview the glass reports with
+`npm run generate:glass-reports` and `npm run reports:diff` after glass-data changes. Never hand-edit or commit generated
+reports or the README lens count; `main` refreshes them after merge. A lens is integrated only when the corpus tests pass and the rendered
 silhouette, stop/pupil behavior, representative rays, focus/zoom endpoints, and analysis prose all agree with the
 documented model.
 

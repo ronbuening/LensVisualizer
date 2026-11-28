@@ -182,8 +182,15 @@ const erratum = variant("status", {
       printed: number,
       applied: number,
       evidence: array(
-        literal("source-summary", "sibling-example", "aberration-figure", "claims", "family-publication"),
-        5,
+        literal(
+          "source-summary",
+          "sibling-example",
+          "source-reprint",
+          "aberration-figure",
+          "claims",
+          "family-publication",
+        ),
+        6,
       ),
       note: freeText,
     },

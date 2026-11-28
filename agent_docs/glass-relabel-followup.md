@@ -14,8 +14,9 @@ only open judgment calls and the closed decisions that must not be redone; the g
   file, which is the order to work them in during a patent audit.
 
 Groups with no candidate inside tolerance, and candidate-backed groups that would change a lens's narrative (several
-candidates, or an `*.analysis.md` that names the old glass), land here for authorial judgment. Regenerate every glass
-report with `npm run generate:glass-reports`; [README.md](README.md) lists each report and its scan. Sellmeier
+candidates, or an `*.analysis.md` that names the old glass), land here for authorial judgment. Preview every glass
+report with `npm run generate:glass-reports`; [README.md](README.md) lists each report, its scan and how `main`
+refreshes it. Sellmeier
 sourcing lives in [glass-catalog-buildout.md](glass-catalog-buildout.md); patent line-index backfill for truly
 proprietary glass lives in [proprietary-glass-backfill.md](proprietary-glass-backfill.md).
 
