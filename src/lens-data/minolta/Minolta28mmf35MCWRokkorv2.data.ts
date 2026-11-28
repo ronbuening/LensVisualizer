@@ -15,8 +15,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ SCALING:                                                                  ║
  * ║   Patent Example 2 is normalized to f = 1. All dimensional prescription  ║
  * ║   values are uniformly scaled ×28. Indices and Abbe numbers are          ║
- * ║   unchanged. No aspheric coefficients exist. The final surface d uses    ║
- * ║   the scaled published BFD: 1.32 × 28 = 36.96 mm.                        ║
+ * ║   unchanged. No aspheric coefficients exist. The final surface d is      ║
+ * ║   re-solved for paraxial focus: printed BF 1.32 × 28 = 36.96 →           ║
+ * ║   36.714083 mm (2026-11-03; see the note below).                         ║
  * ║                                                                          ║
  * ║ STOP MODEL:                                                               ║
  * ║   The patent publishes f/3.5 but no physical stop plane or diameter.      ║
@@ -42,10 +43,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║   invented.                                                               ║
  * ╚════════════════════════════════════════════════════════════════════════════╝
  *
- * MTF source audit: Example 2 retains published BF=1.32 ×28 =36.96 mm.
- * With the already documented Petzval-supported R9/R12 source emendations,
- * paraxial BFL is 36.714083 mm (offset −0.245917 mm), EFL 28.009933 mm.
- * All other printed values match; no plate is present. Preserve the source BF.
+ * Image plane: S14 d 36.96 → 36.714083 mm, re-solved for paraxial focus. With the
+ * Petzval-supported R9/R12 emendations the printed BF 1.32 left the plane 0.245917 mm
+ * beyond paraxial focus (EFL 28.009933 mm); Example 1's printed BF 1.30 reproduces
+ * to rounding, Example 2's does not, and no single value isolates why. No plate.
  */
 
 // FIG. 1 optical-rim audit: S1-S6 = 21.0/19.0/18.5/18.5/15.0/13.5 mm. Rear SDs retain ray-envelope estimates. All remain modeled, not source dimensions.
@@ -170,7 +171,7 @@ const LENS_DATA = {
     { label: "11", R: -77.8092, d: 1.904, sd: 7.5, medium: 6 },
     { label: "12", R: -15.1788, d: 0.1008, sd: 7.5 },
     { label: "13", R: "flat", d: 2.1, sd: 8.2, medium: 7 },
-    { label: "14", R: -24.3684, d: 36.96, sd: 8.2 },
+    { label: "14", R: -24.3684, d: 36.714083, sd: 8.2 }, // printed 36.96 (BF 1.32 ×28); re-solved for paraxial focus
   ],
 
   focus: {

@@ -122,3 +122,25 @@ F1 uses D12=1.810, D14=14.200 and D26=44.800. F2 and F3 arrays also match (1.313
 Independent matrix: EFL 99.242551936 mm (the prose says substantially 100 mm), BFL 44.763797375 mm versus printed 44.800. Offset remains **−0.036202625 mm**, exceeding the 0.022954016 mm limit. The source discusses full-aperture, multi-field polychromatic MTF but does not identify the tabulated plane as a Gaussian or designer-best-focus plane. A reference-index on-axis geometric diagnostic (812 rays, grid 32, 10/20/40 lp/mm) selects −0.007622504 mm, score 0.966085 → 0.993739. Finite-aperture/spectral compromise is plausible; the diagnostic does not establish it. Preserve all published values and disclosed source emendations; Section E row deleted. No changelog entry.
 
 Validation: focused runtime/paraxial check; full corpus gates at the ten-lens checkpoint.
+
+## 2026-11-03 — Image-plane consistency (kept as best-focus plane)
+
+Policy: LENS_DATA_SPEC § Image-Plane Consistency. The F1 plane stays at the printed 44.800 mm, and no value changes.
+The only edit is a header line.
+
+| Field | Before | After | Justification |
+| --- | --- | --- | --- |
+| Header note | — | best-focus plane line | Deliberate best-focus plane; real-ray best focus within 10 depths |
+
+- Residual kept: paraxial focus −0.036 mm from the plane (15.8 depths at f/1.398). Real-ray axial best focus is
+  −0.008 mm (about 3.5 depths), so the plane sits at the finite-aperture focus.
+- Travel, EFL (99.243 mm) and close focus (0.889248 m; label 0.8898 m) are unchanged.
+- Evidence:
+  - Named catalog glass codes rule out index rounding.
+  - The designer prints the same 44.800 mm F1 plane in all three Summilux-C examples (this Example 3, Example 2 and
+    EP 2 321 688 B1 Embodiment 1).
+  - The EP 2 321 688 B1 ray fans (Figs. 10a/10b) balance at that plane, while its paraxial focus runs from 44.868 mm
+    at C to 44.796 mm at F (see the Summilux-C 18 audit).
+  - The finite 1,000,010 mm "infinity" accounts for only +0.0098 mm.
+
+Follow-ups: none.

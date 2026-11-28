@@ -38,8 +38,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * repeated p. 2) matches every R/d and native ne/ve coordinate at scale 35.
  * The printed rear distance a5=0.5469 becomes 19.1415 mm, versus native-e
  * paraxial BFL 19.116417 mm; offset -0.025083 mm. No plates, aspherics or
- * other focus state are listed. The source does not establish a best-focus
- * interpretation or a single correctable misprint; retain its published plane.
+ * other focus state are listed. The source establishes neither a best-focus
+ * interpretation nor a single correctable misprint.
+ * Image-plane re-solve (LENS_DATA_SPEC Image-Plane Consistency, 2026-11-03):
+ * S12 d 19.1415 → 19.116417 mm puts the infinity row in paraxial focus
+ * (was −0.025083 mm, 10.9 depths at f/1.4).
  */
 
 const LENS_DATA = {
@@ -179,7 +182,7 @@ const LENS_DATA = {
     { label: "9", R: -47.999, d: 4.599, sd: 9.4, medium: 6 },
     { label: "10", R: -16.0125, d: 0.5985, sd: 10.6 },
     { label: "11", R: -700, d: 4.7985, sd: 12.9, medium: 7 },
-    { label: "12", R: -29.4595, d: 19.1415, sd: 12.9 },
+    { label: "12", R: -29.4595, d: 19.116417, sd: 12.9 }, // printed 19.1415 (a5 0.5469 × 35); re-solved for paraxial focus
   ],
 
   focus: {

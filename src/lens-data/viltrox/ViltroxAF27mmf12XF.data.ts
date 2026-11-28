@@ -37,7 +37,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * EFL 27.706645 mm reproduces printed 27.7, but the source physical rear
  * distance 17.229 mm differs from its prescription BFL 17.253627 mm.
  * A small finite-aperture best-focus compromise is plausible, not stated
- * by the patent. Preserve the source plane and document the residual.
+ * by the patent.
+ * Image plane kept as a best-focus plane (LENS_DATA_SPEC Image-Plane Consistency): paraxial offset
+ * +0.024627 mm (14.6 depths at f/1.2); real-ray axial best focus +0.010873 mm (6.4 depths); three-decimal
+ * index rounding alone spreads the paraxial focus by σ ≈ 0.045 mm.
  */
 
 /* SD review: CN115840281A, PDF p. 33, Fig. 4-1, 600 dpi, 2026-09-10 UTC.

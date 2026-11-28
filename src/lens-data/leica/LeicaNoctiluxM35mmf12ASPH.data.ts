@@ -4,9 +4,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * for the 24 × 36 mm format); e-line ne/νe retained.
  * All radii, thicknesses, indices and aspheres reproduce the printed rounded table. The patent's a2…a6 multiply
  * h^4…h^12; A_p = a / 35^(p-1), with K = 0 unchanged.
- * The printed table gives EFL 34.746 mm and Gaussian back focus 15.10 mm, against the printed 15.4 mm final gap: a
- * 0.30 mm residual defocus from the two-decimal spacing rounding, retained as printed. On-axis spherical
- * aberration is small (−0.10 mm at full pupil), so no sign misprint is indicated.
+ * The printed table gives EFL 34.746 mm and Gaussian back focus 15.096 mm, against the printed 15.4 mm (0.44) final
+ * gap: a 0.30 mm residual from the two-decimal spacing rounding. On-axis spherical aberration is small (−0.10 mm at
+ * full pupil), so no sign misprint is indicated.
+ * Image-plane re-solve (LENS_DATA_SPEC Image-Plane Consistency, 2026-11-03): S16 d 15.4 → 15.096398 mm puts the
+ * infinity row in paraxial focus (was −0.303602 mm, 168 depths at f/1.24); the source's own total length
+ * SO′ = 2.01 (70.35 mm) matches this focus (2.011) rather than the printed gap (2.02).
  * Semi-diameters are estimated from Fig. 2 (measured at 19.63 px/mm, drawn isotropic) and floor-checked by real-ray
  * trace; the patent prints none. L2 is square-cut at 15.1 mm inside L1's flat flange, and the L4 rear face ends at
  * 12.3 mm below its 13.4 mm outer step. The rear-asphere rim (11.35 mm) lies beyond that surface's sag extremum at
@@ -50,7 +53,7 @@ const LENS_DATA = {
     errata: [
       {
         status: "unresolved",
-        note: "The printed rounded Example 2 values give EFL 34.745964428 mm and BFL 15.096398034 mm at 35× scale, whereas the source summary gives f=35 mm and the last gap is 15.4 mm. All printed optical numbers are retained; no fitted prescription or focus cam is asserted.",
+        note: "The printed rounded Example 2 values give EFL 34.745964428 mm at 35× scale, whereas the source summary gives f=35 mm; the two-decimal normalized spacings do not isolate a single misprint. The printed radii, thicknesses and indices are retained; only the final gap is re-solved for paraxial focus (15.4 → 15.096398 mm, matching the printed total length SO′ = 2.01), and no fitted prescription or focus cam is asserted.",
       },
     ],
   },
@@ -299,7 +302,7 @@ const LENS_DATA = {
     {
       label: "16A",
       R: -93.555,
-      d: 15.4,
+      d: 15.096398, // printed 15.4 (0.44 × 35); re-solved for paraxial focus
       sd: 11.35,
       asphere: {
         K: 0,

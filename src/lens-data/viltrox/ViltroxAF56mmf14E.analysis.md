@@ -30,9 +30,9 @@ G1 uses a negative–positive–positive–negative sequence. The patent states 
 
 The aperture-stop record requires one source correction. In the Example 1 numerical table, the powered row printed as `STP` has `R = +34.11 mm` and changes the refractive index from L21 glass to L22 glass, so it is physically the cemented L21→L22 boundary. Figure 1 instead places the iris in the preceding air space between L14 and L21. The data therefore maps the actual plane in that gap to the sole `STO` and retains the powered source row as surface 11. This is a correction of a patent table label, not a change to the prescription values.
 
-The patent also places a plane-parallel filter plate GL behind L42 and explicitly states that the plate may be converted to air (¶0073). The published physical S20-to-image path is 16.67 mm: 13.67 mm of air, 2.00 mm of glass at `nd = 1.52`, and 1.00 mm of air. LensVisualizer traces GL as a hidden rear plate using those physical gaps; its air equivalent remains 15.985789 mm.
+The patent also places a plane-parallel filter plate GL behind L42 and explicitly states that the plate may be converted to air (¶0073). The published physical S20-to-image path is 16.67 mm: 13.67 mm of air, 2.00 mm of glass at `nd = 1.52`, and 1.00 mm of air (15.985789 mm air-equivalent). LensVisualizer traces GL as a hidden rear plate with its 1.00 mm air; the first air gap is re-solved to 14.180324 mm for paraxial infinity focus (see Verification Summary), so the modeled S20-to-image path is 17.180324 mm.
 
-The design is not described here as telephoto or retrofocus. In the normalized active model, total track divided by computed EFL is about 1.52, and the normalized rear spacing is far shorter than the EFL, so neither project criterion is satisfied.
+The design is not described here as telephoto or retrofocus. In the normalized active model, total track divided by computed EFL is about 1.53, and the normalized rear spacing is far shorter than the EFL, so neither project criterion is satisfied.
 
 ## Element-by-Element Analysis
 
@@ -139,15 +139,21 @@ The focus model is fully **PUBLISHED** rather than reconstructed. The patent sta
 | Focus state | D1 after L23 | D2 after L31 | D1 + D2 |
 |---|---:|---:|---:|
 | Infinity | 1.00 mm | 7.86 mm | 8.86 mm |
-| 0.63 m | 5.01 mm | 3.85 mm | 8.86 mm |
+| 0.63 m, printed | 5.01 mm | 3.85 mm | 8.86 mm |
+| 0.63 m, model | 5.175783 mm | 3.684217 mm | 8.86 mm |
 
-D1 increases by 4.01 mm while D2 decreases by exactly 4.01 mm. The constant sum proves that L31 translates 4.01 mm toward the image without requiring any inferred internal motion.
+In the printed table D1 increases by 4.01 mm while D2 decreases by exactly 4.01 mm. The constant sum proves that L31 translates toward the image without requiring any inferred internal motion. In the model it translates 4.175783 mm, because the close row is re-solved after the back-focus correction described below.
 
-Using the rounded refractive indices actually stored in the data, the independently computed first-order EFL changes from 56.2346 mm at infinity to 53.3112 mm at the published close state, a reduction of about 5.20%. The patent's own focal-length row changes from 55.90 mm to 52.89 mm. The offset between the raw-array and patent focal lengths is consistent with the patent's coarse two-decimal refractive-index presentation; no radius or spacing is altered to force agreement.
+Using the rounded refractive indices actually stored in the data, the independently computed first-order EFL changes from 56.2346 mm at infinity to 53.1692 mm at the re-solved close state, a reduction of about 5.45%. The patent's own focal-length row changes from 55.90 mm to 52.89 mm. The offset between the raw-array and patent focal lengths is consistent with the patent's coarse two-decimal refractive-index presentation; no radius or spacing is altered to force agreement.
 
-With the final image plane held fixed at the published close spacing state, the rounded-index paraxial model gives an object conjugate about 625.4 mm in front of surface 1 and lateral magnification about −0.0877. This independently supports using the patent's rounded 0.63 m value as a first-surface-referenced close-distance check and is also consistent in scale with Viltrox's marketed 0.1× maximum magnification.
+With the printed spacings, the rounded-index model put paraxial infinity focus 0.510324 mm beyond the image plane, and the printed close row focused about 625.4 mm in front of surface 1 (0.711 m object to image, lateral magnification about −0.088). The patent does not state the reference plane of its 0.63 m. Two readings compete:
 
-The patent's 0.63 m state remains the modeled close endpoint because it is the published spacing state; traced object to image it focuses at about 0.71 m, the distance the close-focus label reports. Viltrox markets the production lens at 0.6 m minimum focus distance and specifies an STM plus lead-screw drive. Those manufacturer specifications are retained as product context and are not used to interpolate a new patent focus position.
+- **From surface 1.** The printed row lands within 1% of 630 mm.
+- **Object to image.** This reading treats both rows as carrying the same rounding residual. With the infinity residual removed, the printed travel focuses at 0.652 m object to image (index-rounding spread 0.643–0.662 m), against 0.716 m for the first-surface reading.
+
+The model reads it as object to image. Re-solved there, the state's magnification is −0.101, matching Viltrox's 0.1× and 0.6 m minimum focus distance, whereas the first-surface reading gives −0.087. The sibling utility models CN 211826699 U and CN 211826700 U, which share this layout, also fit the object-to-image reading.
+
+The model therefore re-solves the S20 air gap 13.67 → 14.180324 mm for infinity, carries it to the close row, and moves L31 so the row focuses at 0.63 m object to image: D1 5.175783 mm, D2 3.684217 mm, 4% more travel than printed. `closeFocusM` is 0.63 m. Viltrox's 0.6 m minimum focus distance stays in `catalog.closeFocusM.marketing`, and its STM plus lead-screw drive is retained as product context.
 
 ## Chromatic Correction Strategy
 
@@ -172,13 +178,13 @@ The small differences between the source summary and active-model ratios are not
 
 ## Verification Summary
 
-The active prescription contains exactly ten elements, nine physical groups, twenty modeled surfaces including one `STO`, and no aspheres. The complete infinity-state sequential y–ν trace and an independent ABCD construction agree to machine precision. From the final rounded-index arrays, the infinity EFL is 56.234583 mm; the front and rear principal planes lie 44.8146 mm and 29.5815 mm, respectively, from surface 1. The Gaussian back focal distance is 16.4961 mm behind surface 20, whereas the source-constrained normalized image plane is 15.985789 mm behind that surface. The 0.5103 mm residual is retained as a source discrepancy; precision loss is plausible but unproven. Physical BFL with GL is 17.180324 mm versus the 16.67 mm source image distance. The surface-by-surface Petzval sum, using `φ/(n·n′)`, is +0.003489611 mm⁻¹.
+The active prescription contains exactly ten elements, nine physical groups, twenty modeled surfaces including one `STO`, and no aspheres. The complete infinity-state sequential y–ν trace and an independent ABCD construction agree to machine precision. From the final rounded-index arrays, the infinity EFL is 56.234583 mm; the front and rear principal planes lie 44.8146 mm and 29.5815 mm, respectively, from surface 1. The Gaussian back focal distance is 16.4961 mm behind surface 20, whereas the printed path put the image plane 15.985789 mm (air-equivalent) behind that surface. That 0.5103 mm residual fits the two-decimal indices, whose rounding alone spreads it by about ±0.5 mm, and no supported misprint explains it, so the S20 air gap is re-solved for paraxial focus. Physical BFL with GL is 17.180324 mm, now the modeled S20-to-image distance (printed 16.67 mm). The surface-by-surface Petzval sum, using `φ/(n·n′)`, is +0.003489611 mm⁻¹.
 
 The patent states f/1.4 but does not publish a physical stop diameter. The data therefore uses an **inferred** stop semi-diameter of 12.5889997 mm. A higher-precision catalog-coordinate sensitivity array that rounds to the patent's printed `nd`/`νd` rows gives EFL 55.9033 mm and independently reproduces f/1.4 at that same stop size. With the rounded indices actually retained in the data, the physical stop gives the modeled `nominalFno = 1.4120949`; the marketed and patent design aperture remain separately recorded as f/1.4.
 
-The patent likewise does not publish clear-aperture semi-diameters. The authored semi-diameters are modeling inferences derived from the final spherical geometry and checked at both published focus states for edge thickness, actual rim slope, cross-gap intrusion, and on/off-axis ray containment. For the close-state ray check, the patent's 0.63 m distance is applied from surface 1, consistent with the independently recovered 625.4 mm paraxial conjugate. They are not claimed as factory lens diameters. The closest modeled rim-band clearance occurs across the 0.97 mm S2–S3 air gap, where the selected clear apertures leave approximately 0.0082 mm axial clearance at the shared radial band; the data's non-default gap allowance reflects this source-geometry constraint rather than a layout adjustment.
+The patent likewise does not publish clear-aperture semi-diameters. The authored semi-diameters are modeling inferences derived from the final spherical geometry and checked at both published focus states for edge thickness, actual rim slope, cross-gap intrusion, and on/off-axis ray containment. For the original close-state ray check, the patent's 0.63 m distance was applied from surface 1. The re-solved close state is 543.5 mm from surface 1; its D2 rim clearance is 2.74 mm. They are not claimed as factory lens diameters. The closest modeled rim-band clearance occurs across the 0.97 mm S2–S3 air gap, where the selected clear apertures leave approximately 0.0082 mm axial clearance at the shared radial band; the data's non-default gap allowance reflects this source-geometry constraint rather than a layout adjustment.
 
-No uniform scaling is applied, and there are no aspheric coefficients to transform. The 2.00 mm GL filter at `nd = 1.52`, νd=64.2 is modeled in rearPlates with its 13.67/1.00 mm physical air gaps. The patent's mislabeled powered `STP` row and the ¶0025 L41 power-sign statement are retained as documented source errors rather than silently changing the numerical design.
+No uniform scaling is applied, and there are no aspheric coefficients to transform. The 2.00 mm GL filter at `nd = 1.52`, νd=64.2 is modeled in rearPlates with its 1.00 mm rear air gap; the air ahead of it is re-solved from 13.67 to 14.180324 mm. The patent's mislabeled powered `STP` row and the ¶0025 L41 power-sign statement are retained as documented source errors rather than silently changing the numerical design.
 
 ### Patent-figure SD review (2026-09-10 UTC)
 
@@ -199,7 +205,8 @@ Reviewed the local `patents/CN211955965U.pdf`, PDF page 16, Figure 1, at 600 dpi
 ## Image-plane source audit (2026-09-25)
 
 MTF audit: Example 1 R/d/nd/vd all match. GL is now traced at its
-physical gaps in rearPlates. Physical BFL 17.180324 mm differs from
-source image distance 16.67 mm; +0.510324 mm offset is unchanged.
-Coarse source indices are a plausible cause, not proven glass identity.
-Keep the source values; no supported single misprint resolves the mismatch.
+physical gaps in rearPlates. Physical BFL 17.180324 mm differed from
+the source image distance 16.67 mm (+0.510324 mm). Coarse source indices
+are the plausible cause; no supported single misprint resolves it. On
+2026-11-03 the S20 air gap was re-solved to 14.180324 mm and the 0.63 m
+row re-solved by L31 (see Focus Mechanism).

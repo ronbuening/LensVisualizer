@@ -77,6 +77,37 @@ Verification: focused surface/inferred-beam and image-circle audits; aperture ce
 
 - `catalog.closeFocusM.marketing` 0.13 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.
 
+## 2026-11-03 — Image-plane consistency (re-solve)
+
+Source: CN 121091494 A Example 1, Tables 1–3 (PDF pp. 12–14). Every R, d, nd and νd matches the file, and the
+printed rows did not focus with the printed two-decimal indices. Back focus first, per LENS_DATA_SPEC
+Image-Plane Consistency: the S22 air gap is re-solved for paraxial infinity focus, the change is carried to the close
+row, and G2 is then moved so the close row focuses at the source's 0.12 m.
+
+| Field | Before | After | Justification |
+| --- | --- | --- | --- |
+| S22 `d` | 12.49 | 11.417563 | Back focus re-solved for paraxial infinity focus; the plate and its 1.00 mm air are unchanged |
+| D1 (gap after STO), close | 3.75 | 3.608419 | G2 moved for paraxial focus at 0.12 m object to image |
+| D2 (gap after S16), close | 4.56 (printed 4.65) | 4.701581 | Same G2 move; D1 + D2 stays 8.31 mm |
+| `focus.closeFocusM` | 0.12 | 0.12 | Now the close row's paraxial object-to-image distance |
+
+- Residual at infinity: −1.072437 → 0.000000 mm (57 → 0 depths at f/4). Before the re-solve the infinity row
+  focused at 0.252 m and the close row at 0.111 m object to image.
+- G2 travel: 1.10 → 1.241581 mm. EFL 14.192130 mm unchanged at infinity; close EFL 13.615918 → 13.545261 mm.
+  Physical track 71.07 → 69.997563 mm.
+- Close focus: the patent's "物距 0.12M" has no stated reference. The model reads it as object to image. With the
+  residual removed, the printed 1.10 mm travel focuses at 0.128 m object to image, whereas the first-vertex reading
+  needs only about 0.57 mm of travel. Viltrox's 0.13 m stays in `catalog.closeFocusM.marketing`.
+- Cause: the indices are printed to two decimals. A ±0.005 change on one element moves infinity focus by up to
+  0.55 mm (L5, L6, L7); rounding over all twelve gives σ ≈ 0.59 mm, so −1.07 mm is about 1.8σ. EFL 14.19 against
+  the printed 14.3 mm is inside the matching σ ≈ 0.20 mm. ¶0135's f/1.47 and ω = 14.02° are boilerplate and do not
+  point to any prescription cell. The close-endpoint exemption's "two-decimal gap rounding" explanation was wrong:
+  the residual came from the indices, and the re-solved close row now reads 0.12 m.
+- Clearance: the D1 and D2 minima are their vertex gaps, 4.85 / 3.608 mm and 3.46 / 4.702 mm at infinity / close.
+  Aperture, image-circle, field-coverage and surface-probe audits are unchanged.
+
+Follow-ups: none for the image plane. The f/1.47 aperture contradiction stays as recorded above.
+
 ## 2026-11-10 — Metadata fill
 
 - `catalog.fNumber.design` stays unset. The only f-number CN 121091494 A prints for Example 1 is ¶0135 (PDF p. 14,

@@ -9,9 +9,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ Native prescription coordinates are e-line ne / νe.                      ║
  * ║ No dimensional scale change is applied.                                  ║
  * ║                                                                            ║
- * ║ ASPHERES: the patent uses p(s)=ΣK(n)(s²/2)^n and states K(1)=1/Rvertex.  ║
- * ║ LensVisualizer therefore uses R=1/K(1), K=-1 as an algebraic carrier,    ║
- * ║ and A_(2n)=K(n)/2^n for n>=2. K=-1 is not a patent conic claim.           ║
+ * ║ ASPHERES: the patent uses p(s)=ΣK(n)(s²/2)^n over the chord s from the    ║
+ * ║ vertex (s² = h² + p²) and states K(1)=1/Rvertex. LensVisualizer uses      ║
+ * ║ R=1/K(1) with K=-1 plus A4–A20 fitted (least squares) to that implicit   ║
+ * ║ law over each clear radius; residual < 1e-5 µm. Not printed values.      ║
  * ║                                                                            ║
  * ║ APERTURE: the patent publishes the stop plane and K=1.4 but no physical  ║
  * ║ stop diameter. The stop radius is derived from the design f-number,      ║
@@ -34,12 +35,13 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ Product 11873 correlation is strong but not manufacturer-confirmed here.  ║
  * ╚════════════════════════════════════════════════════════════════════════════╝
  *
- * MTF source audit: the e-line prescription gives BFL 19.636496 against
- * published S15-to-image 19.595 mm (offset +0.041496), EFL 35.411722
- * against nominal 35. The source discusses best focusing and −0.07 mm
- * defocus for field curvature, but does not tie those to the S15 spacing.
- * Retain the equation-consistent aspheres and published image plane; do not
- * interpret this small offset as a proven designer optimum.
+ * Image plane kept as a best-focus plane (LENS_DATA_SPEC Image-Plane
+ * Consistency): paraxial offset +0.041496 mm (18 depths; BFL 19.636496
+ * against the published 19.595 mm intercept); real-ray axial best focus
+ * −0.045 mm. FIG. 2's on-axis 546 nm transverse aberration is drawn near this
+ * plane: it rises slightly and crosses zero at a quarter to a third of the
+ * plotted aperture. The model crosses at 26 % of the pupil at 19.595 mm, at
+ * 60 % at real-ray best focus, and never at paraxial focus.
  */
 
 const LENS_DATA = {
@@ -202,7 +204,19 @@ const LENS_DATA = {
       d: 6.07,
       sd: 12.6,
       medium: 3,
-      asphere: { K: -1, A4: -9.7585e-6, A6: -3.925875e-8, A8: 3.2073125e-10, A10: -2.1098125e-12, A12: 4.71109375e-15 },
+      // K = -1 plus A4–A20 fitted (least squares) to the patent's chord law over the clear radius; not printed values.
+      asphere: {
+        K: -1,
+        A4: -0.000004270330164888788,
+        A6: -4.799941771676951e-8,
+        A8: 2.5717007664108087e-10,
+        A10: -1.521722448526045e-12,
+        A12: 7.887500301297801e-16,
+        A14: 4.302406366051071e-18,
+        A16: 4.378254029830555e-20,
+        A18: -8.036784091990732e-23,
+        A20: -4.048100207442673e-26,
+      },
     },
     { label: "5", R: -57.56, d: 1.61, sd: 12.6, medium: 4 },
     { label: "6", R: 16.624, d: 4.34, sd: 12.6 },
@@ -218,7 +232,19 @@ const LENS_DATA = {
       d: 5.94,
       sd: 14.2,
       medium: 8,
-      asphere: { K: -1, A4: -5.85875e-6, A6: 4.007375e-9, A8: 1.285e-11, A10: -1.7418125e-13, A12: 3.7078125e-16 },
+      // K = -1 plus A4–A20 fitted (least squares) to the patent's chord law over the clear radius; not printed values.
+      asphere: {
+        K: -1,
+        A4: -0.000005280842246332671,
+        A6: 2.461343605047417e-9,
+        A8: 1.527448013744133e-11,
+        A10: -1.7079014960741882e-13,
+        A12: 2.838222197893344e-16,
+        A14: 2.830118784387705e-19,
+        A16: -1.9235682919069156e-22,
+        A18: 5.804681244062897e-26,
+        A20: -2.3948586414689003e-28,
+      },
     },
     { label: "14", R: -31.325, d: 2.05, sd: 14.2, medium: 9 },
     { label: "15", R: 31.325, d: 19.595, sd: 14.2 },

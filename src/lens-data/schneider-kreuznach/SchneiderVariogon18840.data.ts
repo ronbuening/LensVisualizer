@@ -38,6 +38,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Wide EFL 8.260539 vs printed 8 and BFL 13.162519 vs 13.1 leave
  * +0.062519 mm offset. Preserve published values; the source invokes
  * Gaussian back-focus constancy and does not specify a best-focus convention.
+ *
+ * Image plane kept as a best-focus plane (LENS_DATA_SPEC Image-Plane Consistency): paraxial offset +0.063 / +0.061 /
+ * +0.056 mm (16.4 / 16.1 / 14.7 depths at f/1.8); real-ray axial best focus +0.013 / -0.008 / +0.020 mm (3.4 / 2.1 /
+ * 5.3 depths); the printed d24 = 13.1 is the patent's one-decimal back focal length.
  */
 
 const LENS_DATA = {

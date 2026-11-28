@@ -28,8 +28,6 @@ const CLOSE_FOCUS_EXEMPT: Readonly<Record<string, string>> = {
     "source-printed 250 mm object-to-image state; the printed +0.069 mm image-plane offset at 7 mm moves it ~8 %",
   "tamron-a062-20-40mm-f28-di-iii-vxd":
     "source-printed 300 mm state at W/M/T; the stations between them are interpolated and illustrative",
-  "viltrox-af-14mm-f4-air":
-    "source-printed 0.12 m state; two-decimal gap rounding at 14 mm moves the paraxial distance ~7 %",
 };
 
 describe("close-focus endpoint", () => {

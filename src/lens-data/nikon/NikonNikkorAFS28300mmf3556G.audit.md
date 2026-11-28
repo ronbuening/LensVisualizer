@@ -117,3 +117,39 @@ L21 (1.76546 / 46.73, aspherical) was labelled Unmatched beside HIKARI J-LASFH2,
 
 - Why the old value differed: printed close rows state no distance; 0.5 m is the old (production) value.
 - `catalog.closeFocusM.marketing` 0.5 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.
+
+## 2026-11-03 — Image-plane consistency (erratum)
+
+Source: `patents/US20100220400A1.pdf`, Table 2 on PDF p. 24 (printed p. 8), FIG. 5A–C on PDF p. 6 and Fig. 4 on PDF
+p. 5, checked visually. Table 2 prints d25 = 2.586 mm, the air space from L42 (S25) to the L43 resin layer (S26), and
+the file carried that value. Every Lens Group Data entry reproduces except G4 (−26.505 against the printed −25.979). I
+tried every single R, d and n in G4; only d25 = 4.889 reproduces the printed G4 focal length, the system focal lengths
+and the back focus at all three states. The same value closes the gap between the spacing sums and the printed TL,
+which is 2.302 / 2.303 / 2.304 mm and constant over zoom. FIG. 5A–C start the spherical-aberration curves at zero on a
+±0.5 mm scale at the printed Bf, which the printed d25's +0.822 mm wide-end defocus would not allow. On Fig. 4 the
+L42–L43 axial gap measures about 5 mm at the drawing's L43 thickness scale (approximate).
+
+| Field | Before | After | Justification |
+| --- | --- | --- | --- |
+| S25 `d` | 2.586 | 4.889 | Corrected erratum; evidence `source-summary` (G4 f, TL, f, Bf) and `aberration-figure` (FIG. 5A–C) |
+| `source.errata` | none | `corrected` S25 `d` 2.586 → 4.889 | Four-place record: value comment, header, errata, this log |
+| Station `closeFocusM`, W / M / T | 9.011 / 3.357 / 7.446 | 0.974 / 3.005 / 7.258 | The printed close rows' paraxial object-to-image distances with the corrected spacing |
+| `focus.closeFocusM` | 3.357 | 3.005 | Mid station, the file's existing convention |
+
+- Residual at infinity: +0.822078 / +0.348876 / +0.217272 mm (54.9 / 10.4 / 5.2 depths) → +0.001341 / +0.005662 /
+  +0.014214 mm (0.1 / 0.2 / 0.3 depths). No gap was re-solved.
+- EFL 28.447933 / 99.280999 / 290.494641 → 28.820298 / 100.000820 / 292.034859 mm (printed 28.79 / 100 / 292).
+- Track 157.586 / 202.890 / 230.349 → 159.889 / 205.193 / 232.652 mm (printed TL 159.888 / 205.193 / 232.653).
+- G2 focus travel unchanged (0.681 / 0.691 / 3.344 mm); the printed close rows now focus at 0.974 / 3.005 / 7.258 m.
+  `catalog.closeFocusM.marketing` keeps Nikon's 0.5 m.
+- The 2026-09-25 conclusion that no single misprint explains the conflicts is superseded.
+- Rims: no semi-diameter changed. L43 and G5 now sit 2.303 mm further from L42, which raises the off-axis beam there.
+  - At wide infinity, the unclipped meridional fan's peak height at S28 goes 10.32 → 10.82 mm (cap 9.5) and at S35A
+    13.18 → 13.85 mm (cap 12.8).
+  - The 41-ray meridional fan's transmission at the wide corner falls 66 % → 59 % (new blockers S28 and S35A). At
+    the mid corner it falls 54 % → 51 %; tele is unchanged.
+  - The chief ray's field coverage rises 93.2 % → 95.6 % at wide (still limited by S6A).
+  - The S25→S26 minimum rim clearance rises 0.287 → 2.590 mm.
+
+Follow-ups: re-measure the S26/27A/28 (9.5 mm) and S29–S35A rims against Fig. 4 at the corrected spacing before any
+change; the 2026-10-30 outline review used the printed d25.

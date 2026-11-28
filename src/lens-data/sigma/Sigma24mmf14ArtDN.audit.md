@@ -103,5 +103,38 @@ No user-visible data correction, so no changelog entry.
 
 `focus.closeFocusM` 0.25 → 0.182 m. The close-focus distance now records where the authored close row focuses — its paraxial in-focus object-to-image distance — so the close-focus label and `closeFocusM` agree within 2 %. The old value was up to -27.2 % from that row. No gap, keyframe, published flag or other optical value changed.
 
-- Why the old value differed: printed close state states no distance; 0.25 m is the old (production) value.
+- Why the old value differed: 0.25 m is the old (production) value. The printed close state does state its distance:
+  d0 = 136.5 mm from the first surface in the column headed 249 mm ([可変間隔データ]). (Corrected 2026-11-03 by the
+  image-plane entry below; this line first said the state printed no distance.)
 - `catalog.closeFocusM.marketing` 0.25 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.
+
+## 2026-11-03 — Image-plane consistency (re-solve)
+
+Source: local `patents/JP2023074094A.pdf` (text layer), Example 1 surface table, [各種データ] and [可変間隔データ]
+(INF and 249mm columns: d0 ∞ / 136.5000, d10 3.7171 / 9.2968, d12 8.1632 / 2.5835, BF 23.0355 / 23.0355). Every cell
+still matches the file. LENS_DATA_SPEC § Image-Plane Consistency: an inconsistency no single value isolates, so the air
+gaps are re-solved, back focus first.
+
+| Field | Before | After | Justification |
+|---|---|---|---|
+| S32A `d` (BF) | 23.0355 | 21.987349 | Paraxial focus at infinity; the plane sat 1.048151 mm behind it (418 depths at F1.46) |
+| `gaps["10A"]` near row | 9.2968 | 7.682694 | G2 alone re-solved to focus the printed d0 = 136.5 mm (first surface) after the BF change |
+| `gaps["12"]` near row | 2.5835 | 4.197606 | Same move, opposite sign; d10 + d12 stays 11.8803 |
+| `focus.closeFocusM` | 0.182 | 0.2522 | Object-to-image distance of the re-solved near row |
+| `source.errata` | none | one `unresolved` entry | f, track and G2-travel contradiction, which the re-solve does not explain |
+
+- Residual: infinity −1.048151 → 0 mm; near row now focuses 136.50 mm from the first vertex (was 65.32 mm with the
+  printed values, and 86.6 mm with only the BF re-solved).
+- Travel: G2 5.5797 → 3.965594 mm. EFL unchanged at 24.0037 mm (printed 23.86). Track 116.762 → 115.714 mm (printed
+  lens length 113.95).
+- Close focus: 0.182 → 0.2522 m; `catalog.closeFocusM.marketing` 0.25 m stays (within 1 %, so the readout no longer
+  names it).
+- Evidence for the class: no one- or two-thickness change reproduces f, BF and lens length together (scan of every d);
+  Example 2 of the same patent also misses its own summary (traced f 27.28 vs 27.50 mm, BFD 22.85 vs BF 21.7787 mm,
+  track 110.69 vs 113.50 mm). The real-ray axial best focus (−1.035 mm) sat at paraxial focus, so the printed BF was not a
+  best-focus plane.
+- The 2026-11-03 relabel line that said the close state printed no distance is corrected above.
+
+Follow-ups:
+
+- The unresolved f / track / travel contradiction is for Section G of `agent_docs/sd-audit-queue.md` (coordinator).

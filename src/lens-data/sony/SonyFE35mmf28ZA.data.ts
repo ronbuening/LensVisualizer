@@ -27,8 +27,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * MTF audit: JP2015041012A Example 1, paragraphs 0077–0080, matches
  * every radius, gap, index and all six K/A4–A10 rows at native scale.
  * Printed d13=20.03 mm precedes the image directly (no plate). EFL
- * 35.948432 / BFL 20.500542 do not reproduce source 36.06 / 20.03 mm.
- * Retain the source contradiction and +0.470542 mm offset; see audit.
+ * 35.948432 / BFL 20.500542 do not reproduce source 36.06 / 20.03 mm
+ * (two-decimal indices). Image plane re-solved for paraxial focus
+ * (LENS_DATA_SPEC Image-Plane Consistency): d13 20.03 -> 20.500542 mm
+ * (offset +0.470542 -> 0); near D6/D8 3.13/3.89 -> 3.228268/3.791732 at
+ * 350 mm object to image; closeFocusM 0.406 -> 0.35 m. See audit.
  */
 
 const LENS_DATA = {
@@ -204,7 +207,7 @@ const LENS_DATA = {
     {
       label: "13A",
       R: -14.19,
-      d: 20.03,
+      d: 20.500542, // printed 20.03; re-solved for paraxial focus
       sd: 8.5,
       asphere: { K: 0, A4: 4.1193e-4, A6: -3.8255e-6, A8: 2.1891e-8, A10: -5.6738e-11 },
     }, // BFD
@@ -212,16 +215,17 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   focus: {
-    closeFocusM: 0.406,
-    description: "Inner focus — single negative element (L121/G2) moves object→image. Linear AF motor.",
+    closeFocusM: 0.35,
+    description:
+      "Inner focus — single negative element (L121/G2) moves object→image by 1.738 mm to the patent's 350 mm state (read as object to image plane). Linear AF motor. The near row is re-solved for paraxial focus; the patent prints 1.64 mm of travel.",
     conjugates: [
       {
         zoomStation: 0,
         keyframe: 1,
         objectDistanceMm: 350,
-        distanceReference: "first-surface",
+        distanceReference: "image-plane",
         source:
-          "JP 2015-041012 A, Example 1, paragraph 0079, close focus finite column, 物体距離 row (PDF p. 12): 最至近距離（物体距離350mm）; D6=3.13 mm; BF=3.89 mm. Distance reference identified by the conjugate audit as first-surface (audit-resolved).",
+          "JP 2015-041012 A, Example 1, paragraph 0079, close focus finite column, 物体距離 row (PDF p. 12): 最至近距離（物体距離350mm）; D6=3.13 mm; BF=3.89 mm. The patent does not define the distance reference. Image-plane reference identified by the conjugate audit on the re-solved rows (audit-resolved), which rejects first-surface; on the corrected image plane the printed 1.64 mm travel also sits nearer the 1.738 mm an object-to-image reading needs than the 1.488 mm a first-surface reading needs.",
       },
     ],
     // (moved from publishedStations) The close-focus row is source-tabulated.
@@ -231,10 +235,14 @@ const LENS_DATA = {
   /* (moved from var) ── Variable air spacings (inner focus) ──
    *  G2 (L121) moves object→image for near-focus.
    *  Total gap sum D(6)+D(8) = 7.02 mm is conserved.
-   *  Focus travel: 1.64 mm.
-   *  Close-focus object distance: 350 mm (¶0079).
+   *  Focus travel: 1.738268 mm (printed 1.64; near row re-solved for paraxial focus).
+   *  Close-focus object distance: 350 mm (¶0079), read as object to image plane.
+   *  Printed near row D(6)/D(8) = 3.13/3.89 mm; re-solved 3.228268/3.791732 mm.
    */
-  gaps: { "6A": { label: "D6", values: [[1.49, 3.13]] }, "8A": { label: "BF", values: [[5.53, 3.89]] } },
+  gaps: {
+    "6A": { label: "D6", values: [[1.49, 3.228268]] }, // printed 1.49 / 3.13; near row re-solved for paraxial focus
+    "8A": { label: "D8", values: [[5.53, 3.791732]] }, // printed 5.53 / 3.89; near row re-solved for paraxial focus
+  },
 
   /* ── Aperture configuration ── */
   aperture: { nominalFNumber: 2.884, fStops: [2.884, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22, blades: 7 },

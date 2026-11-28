@@ -48,8 +48,36 @@ Validation: focused runtime/paraxial check; full corpus gates at the ten-lens ch
 
 `focus.closeFocusM` 0.35 → 0.406 m. The close-focus distance now records where the authored close row focuses — its paraxial in-focus object-to-image distance — so the close-focus label and `closeFocusM` agree within 2 %. The old value was up to 16.0 % from that row. No gap, keyframe, published flag or other optical value changed.
 
-- Why the old value differed: printed close row states no distance; 0.35 m is the old (production) value.
+- Why the old value differed: 0.35 m is the old (production) value. The printed close row does state its distance,
+  物体距離 350 mm (¶0079). (Corrected 2026-11-03 by the image-plane entry below; this line first said it printed none.)
 - `catalog.closeFocusM.marketing` 0.35 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.
+
+## 2026-11-03 — Image-plane consistency (re-solve)
+
+Source: local `patents/JP2015041012A.pdf` (text layer), Example 1 ¶0077–0080. ¶0077 prints every nd to two decimals
+(1.80, 1.83, 1.76, 1.58, 1.83, 1.63, 1.68), d13 = 20.03 directly before the image plane; ¶0079 prints D(6)/D(8)
+1.49/5.53 at infinity and 3.13/3.89 at "最至近距離（物体距離350mm）"; ¶0080 f = 36.06. The file still matches every cell.
+LENS_DATA_SPEC § Image-Plane Consistency: source rounding, so the air gaps are re-solved, back focus first.
+
+| Field | Before | After | Justification |
+|---|---|---|---|
+| S13A `d` (back focus) | 20.03 | 20.500542 | Paraxial focus at infinity; the plane sat 0.470542 mm in front of it (48 depths at F2.884) |
+| `gaps["6A"]` near row | 3.13 | 3.228268 | L121 re-solved to focus 350 mm object to image plane after the back-focus change |
+| `gaps["8A"]` near row | 3.89 | 3.791732 | Same move, opposite sign; D(6) + D(8) stays 7.02 |
+| `gaps["8A"].label` | `BF` | `D8` | The gap is the patent's D(8), G2 to G3; the back focus is S13A `d` |
+| `focus.closeFocusM` | 0.406 | 0.35 | Object-to-image distance of the re-solved near row |
+
+- Residual: infinity +0.470542 → 0 mm; near row now focuses 350.0 mm from the image plane (was 405.9 mm).
+- Travel: L121 1.64 → 1.738268 mm. EFL unchanged at 35.948 mm (printed 36.06). Track 47.580 → 48.051 mm.
+- Close focus: 0.406 → 0.35 m, now equal to `catalog.closeFocusM.marketing` 0.35 m.
+- Evidence for the class: two-decimal indices (¶0077); the real-ray axial best focus (+0.387 mm) sat near paraxial focus,
+  so the printed plane was not a best-focus plane.
+- Reference choice: ¶0079 does not say where 350 mm is measured from. Object to image plane matches Sony's 0.35 m minimum
+  focus distance; read from the first surface instead, the near row would be D(6)/D(8) 2.977801/4.042199 mm (0.3981 m) on the re-solved plane.
+
+Follow-ups:
+
+- None.
 
 ## 2026-11-14 — Published finite conjugates
 
@@ -66,6 +94,19 @@ The retained rows are `consistent` under the 25-diffraction-depth criterion. Exi
 The distance reference is audit-resolved: the patent gives no explicit reference definition, and only the retained reference is consistent. The conjugate source string records that qualification.
 
 The patent prints object distance without an explicit reference definition; the discriminating audit identifies first-surface.
+
+## 2026-11-14 — Conjugate reconciled with the re-solved rows
+
+The 2026-11-14 certification identified a first-surface reference on the printed rows, whose infinity plane sat
+0.470542 mm in front of focus. On the rows re-solved 2026-11-03 the audit rejects first-surface (−59.4 depths) and
+finds image-plane consistent. On the corrected plane the printed 1.64 mm travel sits nearer the 1.738268 mm an
+object-to-image reading needs than the 1.487801 mm a first-surface reading needs.
+
+| Field | Before | After | Justification |
+| --- | --- | --- | --- |
+| `focus.conjugates[0].distanceReference` | first-surface | image-plane | Audit-resolved on the re-solved rows |
+
+- The printed 350 mm and the declared state are unchanged; `source` records the reference evidence.
 
 ## 2026-11-17 — Aperture slider limit
 

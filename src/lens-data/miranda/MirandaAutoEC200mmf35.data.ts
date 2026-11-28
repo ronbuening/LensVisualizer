@@ -37,6 +37,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  not manufacturer-confirmed. The current taxonomy has no Miranda mount ID,║
  * ║  so lensMounts is intentionally omitted.                                  ║
  * ╚══════════════════════════════════════════════════════════════════════════════╝
+ *
+ * Image plane kept as a best-focus plane (LENS_DATA_SPEC Image-Plane Consistency): paraxial offset
+ * +0.150 mm (10.4 depths); real-ray axial best focus +0.115 mm (8.0 depths at f/3.5).
  */
 
 const LENS_DATA = {

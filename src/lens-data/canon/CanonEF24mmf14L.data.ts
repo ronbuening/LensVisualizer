@@ -14,11 +14,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *     patent's own f2b/f = 1.47 correspondence value.
  *
  * Corrected d-line paraxial trace: EFL = 24.599402 mm; Gaussian BFL from surface 22
- * = 38.133626 mm. The final d = 36.467 mm remains the patent's listed image-plane
- * spacing rather than being silently replaced with the computed Gaussian BFL.
- * Source contradiction: after correcting D2 to 6.050 mm and S18 A10 to
- * -1.48493e-13, EFL agrees with the printed 24.6 mm, but the image plane
- * remains 1.666626 mm before paraxial focus. No rear plate is listed.
+ * = 38.133626 mm. After correcting D2 to 6.050 mm and S18 A10 to -1.48493e-13, EFL
+ * agrees with the printed 24.6 mm. No rear plate is listed.
+ * Image-plane re-solve (2026-11-03): S22 d 36.467 -> 38.133626 mm, so the image plane
+ * sits at paraxial focus (residual was +1.666626 mm). The printed 36.467 is not this
+ * example's back focus: Tables 1, 5, 6 and 7 all print the same final 36.467 mm while
+ * their own paraxial BFLs differ (Ex5 38.279, Ex6 38.134, Ex7 37.884 mm, each EFL 24.599).
  *
  * Original-PDF shape and glass review: 2026-10-30. Published d/C/F/g indices are
  * retained; no catalog-derived spectral override is introduced. Figure 7 shoulders
@@ -74,10 +75,6 @@ const LENS_DATA = {
       {
         status: "unresolved",
         note: "Table 6 L7 prints vd 28.64, while its printed d/C/F indices give 28.460607. The genuinely printed vd 28.64 is restored, preserving every original line index; a second independent source evidence kind has not been established. Sibling Tables 1–5/7 do not reuse this medium; no formal corrected-vd assertion is made.",
-      },
-      {
-        status: "unresolved",
-        note: "Table 6 final gap 36.467 mm is retained. Corrected source prescription gives Gaussian BFL 38.133626 mm, a 1.666626 mm source-plane offset; no plate or further isolated source correction resolves it.",
       },
     ],
   },
@@ -304,7 +301,7 @@ const LENS_DATA = {
     { label: "19", R: -199.304, d: 6.939, sd: 16.7, medium: 10 },
     { label: "20", R: -23.537, d: 0.15, sd: 16.7 },
     { label: "21", R: -85.475, d: 5.342, sd: 19.1, medium: 11 },
-    { label: "22", R: -29.783, d: 36.467, sd: 19.1 },
+    { label: "22", R: -29.783, d: 38.133626, sd: 19.1 }, // printed 36.467; re-solved for paraxial focus
   ],
 
   focus: {

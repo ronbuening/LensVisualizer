@@ -26,8 +26,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ apertures for tightly curved, thin-gapped lens pairs, not patent   ║
  * ║ numerical apertures. Surfaces 6A, 7, 10-13A and 34 were raised to  ║
  * ║ pass the traced chief ray at the patent's wide-end ω = 38.26°      ║
- * ║ (2ω = 76.52°); Table 2 has unresolved prescription/summary      ║
- * ║ differences; S16 .100 was verified on 2026-09-25 (see audit).     ║
+ * ║ (2ω = 76.52°); Table 2's printed d25 is corrected (see below);  ║
+ * ║ S16 .100 was verified on 2026-09-25 (see audit).                  ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  *
  * 2026-10-30 Fig. 4: S7 land to15.8 preserves cap12.4; S11/12/13A
@@ -35,11 +35,13 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Source-scale front reduction fails the full beam margin; old front
  * caps remain. Curves are qualified proxies; hybrid cure unspecified.
  *
- * Image-plane audit: Table 2 S16 prints .100 mm, corrected from 1.000.
- * Other R/d/nd/vd and aspheres match. At wide infinity the source now
- * yields EFL 28.447933 / BFL 39.244078 mm, versus printed 28.79 / 38.422.
- * Source total lengths also do not equal the tabulated spacing sums.
- * Preserve published Bf despite the +0.822078 mm residual; see audit.
+ * Source erratum (2026-11-03): Table 2 prints d25 = 2.586 mm (L42 to the L43 resin layer);
+ * the file carries 4.889 mm. That one value, and no other, reproduces the printed G4 focal
+ * length (−25.979; printed d25 gives −26.505), TL 159.888 / 205.193 / 232.653 (the spacing
+ * sums ran 2.302–2.304 mm short), f 28.79 / 100 / 292 and Bf 38.422 / 65.896 / 79.261
+ * (residual +0.822 / +0.349 / +0.217 → +0.001 / +0.006 / +0.014 mm). FIG. 5A–C start
+ * spherical aberration at zero on a ±0.5 mm scale, which rejects the printed spacing.
+ * The printed close rows then focus at 0.974 / 3.005 / 7.258 m (were 9.011 / 3.357 / 7.446).
  */
 
 const LENS_DATA = {
@@ -70,6 +72,17 @@ const LENS_DATA = {
     patentYear: 2010,
     authors: ["Hiroshi Yamamoto", "Satoshi Miwa", "Takeshi Suzuki", "Haruo Sato"],
     assignees: ["Nikon Corporation"],
+    errata: [
+      {
+        status: "corrected",
+        surface: "25",
+        field: "d",
+        printed: 2.586,
+        applied: 4.889,
+        evidence: ["source-summary", "aberration-figure"],
+        note: "Only this value reproduces Table 2's G4 focal length (−25.979; printed gives −26.505), TL 159.888/205.193/232.653 (printed spacings sum 2.302–2.304 mm short), f 28.79/100/292 and Bf (residual +0.822 → +0.001 mm at wide); FIG. 5A–C plot spherical aberration from zero, which the printed value's 0.82 mm defocus would not.",
+      },
+    ],
   },
 
   elements: [
@@ -359,7 +372,7 @@ const LENS_DATA = {
 
     { label: "23", R: -79.1792, d: 1.0, sd: 10.6, medium: 13 },
     { label: "24", R: 15.8779, d: 3.0, sd: 8.5, medium: 14 },
-    { label: "25", R: 51.8482, d: 2.586, sd: 8.5 },
+    { label: "25", R: 51.8482, d: 4.889, sd: 8.5 }, // printed 2.586; corrected source misprint (source.errata)
     { label: "26", R: -23.4054, d: 0.19, sd: 9.5, medium: 15 },
     {
       label: "27A",
@@ -399,15 +412,15 @@ const LENS_DATA = {
   zoom: {
     // (moved from publishedStations) The close-focus row is source-tabulated.
     stations: [
-      { focalLengthMm: 28.79, nominalFNumber: 3.57, closeFocusM: 9.011, label: "Wide", published: true, publishedFocus: [1] },
-      { focalLengthMm: 100, nominalFNumber: 5.34, closeFocusM: 3.357, label: "Mid", published: true, publishedFocus: [1] },
-      { focalLengthMm: 292, nominalFNumber: 5.96, closeFocusM: 7.446, label: "Tele", published: true, publishedFocus: [1] },
+      { focalLengthMm: 28.79, nominalFNumber: 3.57, closeFocusM: 0.974, label: "Wide", published: true, publishedFocus: [1] },
+      { focalLengthMm: 100, nominalFNumber: 5.34, closeFocusM: 3.005, label: "Mid", published: true, publishedFocus: [1] },
+      { focalLengthMm: 292, nominalFNumber: 5.96, closeFocusM: 7.258, label: "Tele", published: true, publishedFocus: [1] },
     ],
     step: 0.004,
   },
 
   focus: {
-    closeFocusM: 3.357,
+    closeFocusM: 3.005,
     description:
       "Internal focusing by moving the complete second lens group G2 toward the object; d5 decreases while d13A increases by the same amount.",
   },

@@ -31,7 +31,7 @@ The design contains eight elements in six air-separated groups. Its four functio
 
 The architecture separates image formation, aberration balancing, and focus compensation. L1 supplies substantial front positive power. Component II is a weak positive moving component whose low-dispersion positive member is paired with a high-index negative member. Component III concentrates most of its negative power in L4, while the L5/L6 doublet is nearly afocal and therefore acts primarily as an aberration-correction unit. Component IV is a positive rear doublet whose larger focus travel carries most of the magnification change.
 
-The patent calls the system a telephoto objective. Under the project's stricter geometric definition, however, the modeled first-surface-to-image track is 191.160 mm and the EFL is 179.927 mm, giving $TL/EFL=1.06243$. The modeled prescription is therefore not classified as telephoto by that rule. Its back focal distance is also shorter than the EFL, so it is not retrofocus.
+The patent calls the system a telephoto objective. Under the project's stricter geometric definition, however, the modeled first-surface-to-image track is 191.014 mm and the EFL is 179.927 mm, giving $TL/EFL=1.06161$ (1.06243 with the printed 191.160 mm track). The modeled prescription is therefore not classified as telephoto by that rule. Its back focal distance is also shorter than the EFL, so it is not retrofocus.
 
 All fourteen refracting surfaces are spherical or plano. The prescription contains no cover glass, filter, inactive dummy plane, flare-cutter plane, folded path, or mechanical component. Exactly one aperture stop is modeled inside the D8 air space, as required by Figure 1 and claim 7. The patent does not publish the stop's exact axial split or diameter; the data file places it at the midpoint of D8 and derives its semi-diameter from the published f/2.3.
 
@@ -122,16 +122,18 @@ The commercial `APO` label is retained from the selected production identity. Th
 
 The focus status is **PUBLISHED**. The patent gives the three changing internal air gaps at infinity and at image magnification $\beta=-0.12$; no internal group trajectory is reconstructed beyond those published endpoints.
 
-| Gap | Infinity | Close endpoint | Change |
+| Gap | Infinity (printed → model) | Close endpoint (printed → model) | Model change |
 |---|---:|---:|---:|
-| D2, before Component II | 3.006 mm | 0.432 mm | −2.574 mm |
-| D6, after Component II | 26.982 mm | 29.538 mm | +2.556 mm |
-| D11, before Component IV | 17.982 mm | 0.576 mm | −17.406 mm |
-| Rear image-space completion | 80.622 mm | 98.046 mm | +17.424 mm |
+| D2, before Component II | 3.006 mm | 0.432 → 0.425294 mm | −2.580706 mm |
+| D6, after Component II | 26.982 mm | 29.538 → 29.544659 mm | +2.562659 mm |
+| D11, before Component IV | 17.982 mm | 0.576 → 0.530650 mm | −17.451350 mm |
+| Rear image-space gap (BF) | 80.622 → 80.475630 mm | 98.046 (completion) → 97.945026 mm | +17.469396 mm |
 
-D2 contracts by 2.574 mm, placing Component II that distance toward the object. D6 expands by only 2.556 mm because the patent's normalized D2+D6 totals differ by 0.01; the literal scaled table therefore shifts the nominally fixed Component III coordinate forward by 0.018 mm. D11 contracts by 17.406 mm relative to Component III, while Component IV moves 17.424 mm relative to R1 after the table residual is included. The D11 travel is approximately 6.76 times the D2 travel.
+With the printed BF of 44.79 (80.622 mm scaled) the image plane sat 0.146 mm behind the rounded prescription's paraxial focus, about 24 depths of focus at f/2.3. The model therefore sets the infinity BF to the computed 80.475630 mm. It carries that change to the close row, then moves Components II and IV in the patent's own proportions until the row focuses at $\beta=-0.12$. That puts the object 1603.701 mm from the first surface, 1.794715 m from the image; the traced magnification is $-0.119987$. Radii, thicknesses and indices are unchanged, and both states stay published.
 
-The rear image-space value is not a published moving lens gap. It is the computed completion required to hold the image plane at 191.160 mm from the first surface while the patent-published internal groups move. At that fixed image plane, the authored close endpoint traces to magnification $-0.120513$ and an object-to-image distance of 1.788651 m. This is a model-consistent conjugate distance, not a manufacturer-published minimum focusing distance.
+D2 contracts by 2.581 mm, placing Component II that distance toward the object (printed 2.574 mm). D6 expands by only 2.563 mm because the patent's normalized D2+D6 totals differ by 0.01; the scaled table therefore shifts the nominally fixed Component III coordinate forward by 0.018 mm, as printed. D11 contracts by 17.451 mm relative to Component III (printed 17.406 mm), while Component IV moves 17.469 mm relative to R1 after the table residual is included. The D11 travel is approximately 6.76 times the D2 travel.
+
+The rear image-space value is not a published moving lens gap. It holds the image plane at 191.014 mm from the first surface while the internal groups move. The resulting 1.7947 m object-to-image distance is a model-consistent conjugate, not a manufacturer-published minimum focusing distance.
 
 The patent states that the fourth component carries most of the magnification variation, while the second component's principal role is maintaining aberration correction, especially coma, at close distances. The relative travels and the computed component powers agree with that division of labor.
 
@@ -180,13 +182,13 @@ The final data arrays were independently traced in height/reduced-angle form and
 | Design EFL | 179.927035 mm |
 | Modeled wide-open f-number | 2.300000 |
 | BFL from R14 | 80.475630 mm |
-| Authored infinity rear spacing | 80.622000 mm |
-| First surface to image plane | 191.160000 mm |
-| Close-end magnification | −0.120513 |
+| Authored infinity rear spacing | 80.475630 mm (printed 80.622) |
+| First surface to image plane | 191.013630 mm |
+| Close-end magnification | −0.119987 |
 | Petzval sum | $+4.24469948\times10^{-4}$ mm$^{-1}$ |
 | Signed Petzval image-surface radius, $-1/P$ | −2355.879 mm |
 
-The 0.146 mm difference between the computed BFL and the authored 80.622 mm rear spacing is the scaled residual of the patent's rounded prescription, not an added optical plate.
+The printed 80.622 mm rear spacing (BF = 44.79 at F = 100) is 0.146 mm longer than the computed BFL. That residual comes from the patent's rounded prescription, not from an added optical plate, and the model's rear spacing is re-solved to the computed BFL.
 
 The patent publishes no semi-diameters. The modeled values are inferred from the f/2.3 marginal ray, the default 0.6-field chief-ray bundles, the full-frame image height, and geometry constraints. Both defined focus states retain positive edge thickness, acceptable actual rim slope, valid shared-gap clearance, and complete containment of the default 0.6-field ray fans. Selected full-field peripheral rays vignette at front or rear physical apertures; the semi-diameters are not enlarged beyond valid element geometry merely to eliminate that modeled vignetting.
 
@@ -204,8 +206,9 @@ The patent publishes no semi-diameters. The modeled values are inferred from the
 MTF source audit: Example 1 (PDF p. 7, column 3) matches every stored
 radius/gap/index at scale ×1.8, with the documented V1=61.2 emendation.
 Native EFL 99.959464 and BFL 44.708683 differ from F=100 and BF=44.79.
-Scaled offset −0.146370 mm is retained as source inconsistency; no plate
-or additional focus adjustment is supported by the published prescription.
+Scaled offset −0.146370 mm was a source inconsistency with no supported
+plate or misprint; on 2026-11-03 the BF and the close row were re-solved for
+paraxial focus (see Focus Mechanism).
 
 
 ## Production mount assignment

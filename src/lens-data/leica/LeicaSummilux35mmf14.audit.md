@@ -96,3 +96,20 @@ The final a5=0.5469 scales to 19.1415 mm. Native-e paraxial EFL is 1.004090767 n
 The source discusses sagittal field and coma correction, but does not define the image distance as a best-focus compromise. A native-reference, axial geometric MTF diagnostic (812 rays, pupil grid 32, 10/20/40 lp/mm) selects −0.143916125 mm, score 0.146621 → 0.517552. That substantial finite-aperture shift does not establish that the printed image plane was chosen by a designer-best-focus criterion. Keep the published geometry and explicitly qualify the mismatch; remove the completed Section E row. No changelog entry.
 
 Validation: focused runtime/paraxial check; full corpus gates at the ten-lens checkpoint.
+
+## 2026-11-03 — Image-plane consistency (re-solve)
+
+| Field | Before | After | Justification |
+| --- | --- | --- | --- |
+| S12 `d` (image distance) | 19.1415 | 19.116417 | Re-solved for paraxial infinity focus; printed a5 0.5469 × 35 kept in the inline comment |
+
+- Residual: −0.025083 → 0 mm (10.9 depths at f/1.4 before). EFL 35.143177 mm unchanged; track 51.5655 →
+  51.540417 mm. No focus travel is modeled; closeFocusM 1.0 unchanged.
+- Evidence: FR 1.233.449 Tableau 1 and US 2,975,673 Table 1 (PDF p. 2) both print a5 = 0.5469, and every R, d and
+  ne matches the file at ×35. A Monte Carlo of four-decimal rounding reaches a5 = 0.5469 only at about the 99.9th
+  percentile, and a single-value scan finds no plausible misprint. The census real-ray axial best focus, −0.149 mm,
+  lies ahead of both the printed plane and paraxial focus, so the printed plane is not a best-focus plane.
+- Aperture, image-circle, field-coverage and surface-probe audits are unchanged.
+- Text sync: header, inline comment, analysis (Verification Summary residual paragraph, image-plane section).
+
+Follow-ups: none.

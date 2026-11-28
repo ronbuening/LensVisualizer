@@ -23,7 +23,7 @@ Independent first-order computation from the final data gives a Gaussian EFL of 
 
 The front meniscus has a standalone focal length of −115.163256 mm. The isolated rear L2–L4 triplet remains positive, with an EFL of +32.872821 mm. These are standalone or subsystem powers calculated from the final prescription; they are not claims that the same elements contribute those powers unchanged in situ.
 
-The source gives `s′ = 101 mm` from the last-lens vertex to the Gaussian image plane in the normalized example. Uniform scaling places that source image plane 35.350 mm behind the final vertex. The rounded prescription itself focuses paraxially at 34.854758 mm, so the stored source image plane lies 0.495242 mm behind the computed paraxial focus. That discrepancy is retained rather than corrected by altering a radius, spacing, or index.
+The source gives `s′ = 101 mm` from the last-lens vertex to the Gaussian image plane in the normalized example. Uniform scaling places that source image plane 35.350 mm behind the final vertex. The rounded prescription itself focuses paraxially at 34.854758 mm, so the printed plane would lie 0.495242 mm behind the computed paraxial focus, about 21 depths of focus at f/4.5. The model re-solves the final air gap to 34.854758 mm and leaves every radius, other spacing and index unchanged. Radii printed in half units can account for the difference: moving r3, r6 or r8 alone by 0.27–0.39 units, comparable to the 0.5-unit print step (38.5→38.77, 39→38.61, −36→−36.29), restores both f = 100 and s′ ≈ 101.
 
 The patent describes an all-spherical design. No aspheric coefficients, diffractive phase data, rear plates, filters, or inactive dummy planes are present in the implemented prescription. [1, pp. 1–6]
 
@@ -101,7 +101,7 @@ The patent defines a compact set of dispersion, curvature, and spacing condition
 | `|r6| / |r1|` | 0.256579 | 0.25–0.30 | pass |
 | `l4 + d5 + l6 + d7` | 8.575 mm | `> 8.4 mm` | pass |
 
-These passes do not erase the separate source-system discrepancy: the rounded numerical prescription computes an EFL below the patent's normalization and a paraxial BFD shorter than the scaled `s′` value. The source table is retained literally rather than adjusted to force exact agreement.
+These passes do not erase the separate source-system discrepancy: the rounded numerical prescription computes an EFL below the patent's normalization and a paraxial BFD shorter than the scaled `s′` value. The radii, spacings and indices are retained literally; only the final air gap is re-solved to the paraxial back focus, and the EFL mismatch is kept.
 
 ## Verification Summary
 
