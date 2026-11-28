@@ -207,6 +207,11 @@ is wrong and that the replacement is right:
 - `source-summary` — the source's stated focal length, F-number, field angle or image height, back focus or total
   length, traced for both the printed and the corrected value.
 - `sibling-example` — another example of the same source that reprints the surface, or carries the consistent form.
+- `source-reprint` — the source prints the same example's table a second time (an early US drawing sheet that repeats
+  the specification table, say), and that printing carries the replacement value in the same cell. Name both
+  printings in the note and compare them in full: every other difference between them is its own erratum entry. A
+  second example is `sibling-example`, not this. (Added 2026-11-17 for the Kodak US 1,880,393 triplet, whose drawing
+  sheet prints lens 2 D = 1.575 against the specification's 1.573.)
 - `aberration-figure` — the source's own spherical-aberration, astigmatism, distortion or lateral-aberration plots.
 - `claims` — a claimed condition the printed value violates.
 - `family-publication` — another publication of the same application (its PCT publication, priority document or a

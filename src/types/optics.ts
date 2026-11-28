@@ -407,12 +407,14 @@ export interface PublishedStations {
 }
 
 /**
- * Evidence a source erratum may cite. Four kinds are internal to the cited document; `family-publication` is another
- * publication of the same application that prints the corrected value. An MTF chart is never one.
+ * Evidence a source erratum may cite. Five kinds are internal to the cited document (`source-reprint` is the
+ * document's own second printing of the same table); `family-publication` is another publication of the same
+ * application that prints the corrected value. An MTF chart is never one.
  */
 export type SourceErratumEvidence =
   | "source-summary"
   | "sibling-example"
+  | "source-reprint"
   | "aberration-figure"
   | "claims"
   | "family-publication";
